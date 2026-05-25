@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #050505; color: #111; }
+* { box-sizing: border-box; }
+.poxiol-card { transition: all .3s ease; }
+.poxiol-card:hover { transform: translateY(-6px); }
+.poxiol-card img { transition: transform .4s ease; }
+.poxiol-card:hover img { transform: scale(1.04); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
