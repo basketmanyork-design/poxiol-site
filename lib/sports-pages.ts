@@ -40,7 +40,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM BASKETBALL UNIFORMS",
     h1: "Custom Basketball Uniforms for Teams, Clubs and Schools",
     heroText: "Create professional basketball jerseys, shorts, reversible sets and warmups with POXIOL custom sublimation printing, flexible MOQ and fast sampling support.",
-    heroImage: "/images/sports-pages/basketball/hero.svg",
+    heroImage: "/images/sports-pages/basketball/hero.webp",
     primaryKeyword: "custom basketball uniforms",
     productTypes: [
       { title: "Basketball Jerseys", description: "Sleeveless custom jerseys with team name, logo, player name and number options." },
@@ -51,9 +51,9 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Storm Court Set", description: "Black and electric lime basketball uniform with sharp motion graphics.", image: "/images/sports-pages/basketball/design-1.svg" },
-      { title: "Metro Blue Set", description: "Blue and white team set for clubs and school programs.", image: "/images/sports-pages/basketball/design-2.svg" },
-      { title: "Red Impact Set", description: "Red, black and white basketball kit for strong team identity.", image: "/images/sports-pages/basketball/design-3.svg" }
+      { title: "Storm Court Set", description: "Black and electric lime basketball uniform with sharp motion graphics.", image: "/images/sports-pages/basketball/design-1.webp" },
+      { title: "Metro Blue Set", description: "Blue and white team set for clubs and school programs.", image: "/images/sports-pages/basketball/design-2.webp" },
+      { title: "Red Impact Set", description: "Red, black and white basketball kit for strong team identity.", image: "/images/sports-pages/basketball/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Basketball Clubs", description: "Flexible team orders for local clubs and amateur programs." },
@@ -70,7 +70,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM SOCCER KITS",
     h1: "Custom Soccer Kits for Clubs, Schools and Tournaments",
     heroText: "Build complete soccer kits with custom jerseys, shorts, socks, goalkeeper kits and training shirts for clubs, academies and school teams.",
-    heroImage: "/images/sports-pages/soccer/hero.svg",
+    heroImage: "/images/sports-pages/soccer/hero.webp",
     primaryKeyword: "custom soccer kits",
     productTypes: [
       { title: "Soccer Jerseys", description: "Custom soccer shirts with team logo, colors, names and numbers." },
@@ -80,9 +80,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Training Shirts", description: "Lightweight training tops for practice, academies and team sessions." }
     ], features: genericFeatures(),
     designs: [
-      { title: "United Field Kit", description: "Royal blue, white and silver soccer kit for clubs and academies.", image: "/images/sports-pages/soccer/design-1.svg" },
-      { title: "Navy Crest Kit", description: "Clean navy and lime style for modern teamwear programs.", image: "/images/sports-pages/soccer/design-2.svg" },
-      { title: "City Red Kit", description: "Red and white soccer kit with safe custom team identity.", image: "/images/sports-pages/soccer/design-3.svg" }
+      { title: "United Field Kit", description: "Royal blue, white and silver soccer kit for clubs and academies.", image: "/images/sports-pages/soccer/design-1.webp" },
+      { title: "Navy Crest Kit", description: "Clean navy and lime style for modern teamwear programs.", image: "/images/sports-pages/soccer/design-2.webp" },
+      { title: "City Red Kit", description: "Red and white soccer kit with safe custom team identity.", image: "/images/sports-pages/soccer/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Soccer Clubs", description: "Custom kits for local clubs, academies and seasonal teams." },
@@ -98,7 +98,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM BASEBALL & SOFTBALL UNIFORMS",
     h1: "Custom Baseball & Softball Uniforms for Teams",
     heroText: "Create button-front baseball jerseys, pants, caps and softball team sets with custom names, numbers, colors and sublimation graphics.",
-    heroImage: "/images/sports-pages/baseball/hero.svg",
+    heroImage: "/images/sports-pages/baseball/hero.webp",
     primaryKeyword: "custom baseball uniforms",
     productTypes: [
       { title: "Button Baseball Jerseys", description: "Classic button-front jerseys with modern custom design options." },
@@ -108,9 +108,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Full Uniform Sets", description: "Complete jersey, pants and cap systems for teams and retailers." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Falcons Classic", description: "White, navy and red baseball uniform with classic team styling.", image: "/images/sports-pages/baseball/design-1.svg" },
-      { title: "Black Gold Line", description: "Premium black and gold baseball set for clubs and retailers.", image: "/images/sports-pages/baseball/design-2.svg" },
-      { title: "Softball Energy", description: "Modern softball uniform with dynamic custom graphics.", image: "/images/sports-pages/baseball/design-3.svg" }
+      { title: "Falcons Classic", description: "White, navy and red baseball uniform with classic team styling.", image: "/images/sports-pages/baseball/design-1.webp" },
+      { title: "Black Gold Line", description: "Premium black and gold baseball set for clubs and retailers.", image: "/images/sports-pages/baseball/design-2.webp" },
+      { title: "Softball Energy", description: "Modern softball uniform with dynamic custom graphics.", image: "/images/sports-pages/baseball/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Baseball Clubs", description: "Custom uniforms for youth, amateur and local teams." },
@@ -126,7 +126,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM AMERICAN FOOTBALL UNIFORMS",
     h1: "Custom American Football Uniforms for Teams and Schools",
     heroText: "Create custom American football jerseys, pants, practice uniforms and full team sets with original graphics, names, numbers and fast sampling support.",
-    heroImage: "/images/sports-pages/american-football/hero.svg",
+    heroImage: "/images/sports-pages/american-football/hero.webp",
     primaryKeyword: "custom American football uniforms",
     productTypes: [
       { title: "Football Jerseys", description: "Custom game jerseys with team colors, names, numbers and original graphics." },
@@ -135,9 +135,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Full Team Sets", description: "Complete uniform solutions for teams, schools and retailers." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Titans Power", description: "Dark navy, silver and electric lime football uniform with strong geometric graphics.", image: "/images/sports-pages/american-football/design-1.svg" },
-      { title: "Red Practice Set", description: "Black and red practice jersey design for training programs.", image: "/images/sports-pages/american-football/design-2.svg" },
-      { title: "Silver Field Set", description: "White and dark blue football uniform with silver accent details.", image: "/images/sports-pages/american-football/design-3.svg" }
+      { title: "Titans Power", description: "Dark navy, silver and electric lime football uniform with strong geometric graphics.", image: "/images/sports-pages/american-football/design-1.webp" },
+      { title: "Red Practice Set", description: "Black and red practice jersey design for training programs.", image: "/images/sports-pages/american-football/design-2.webp" },
+      { title: "Silver Field Set", description: "White and dark blue football uniform with silver accent details.", image: "/images/sports-pages/american-football/design-3.webp" }
     ],
     buyerTypes: [
       { title: "School Teams", description: "Custom football uniforms for school sports programs." },
@@ -153,7 +153,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM RUNNING & MARATHON WEAR",
     h1: "Custom Running & Marathon Wear for Clubs and Events",
     heroText: "Create lightweight running singlets, marathon vests, race shirts, shorts and event apparel for clubs, races, charity events and corporate teams.",
-    heroImage: "/images/sports-pages/running/hero.svg",
+    heroImage: "/images/sports-pages/running/hero.webp",
     primaryKeyword: "custom running apparel",
     productTypes: [
       { title: "Running Singlets", description: "Lightweight custom singlets for running clubs and events." },
@@ -163,9 +163,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Full Running Sets", description: "Complete apparel systems for running teams and events." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Velocity Run", description: "Neon yellow, black and gray running singlet with speed graphics.", image: "/images/sports-pages/running/design-1.svg" },
-      { title: "City Run Blue", description: "Blue and white event vest for clubs and race teams.", image: "/images/sports-pages/running/design-2.svg" },
-      { title: "Orange Pace Kit", description: "Orange, white and black running set for energetic team identity.", image: "/images/sports-pages/running/design-3.svg" }
+      { title: "Velocity Run", description: "Neon yellow, black and gray running singlet with speed graphics.", image: "/images/sports-pages/running/design-1.webp" },
+      { title: "City Run Blue", description: "Blue and white event vest for clubs and race teams.", image: "/images/sports-pages/running/design-2.webp" },
+      { title: "Orange Pace Kit", description: "Orange, white and black running set for energetic team identity.", image: "/images/sports-pages/running/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Running Clubs", description: "Custom apparel for group training and race day." },
@@ -181,7 +181,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM VOLLEYBALL UNIFORMS",
     h1: "Custom Volleyball Uniforms for Teams and Schools",
     heroText: "Create custom volleyball jerseys, shorts, women’s sets and sleeveless team uniforms with breathable fabric, original graphics and fast sampling support.",
-    heroImage: "/images/sports-pages/volleyball/hero.svg",
+    heroImage: "/images/sports-pages/volleyball/hero.webp",
     primaryKeyword: "custom volleyball uniforms",
     productTypes: [
       { title: "Volleyball Jerseys", description: "Custom team jerseys with names, numbers and original graphics." },
@@ -190,9 +190,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Sleeveless Jerseys", description: "Lightweight sleeveless options for high-intensity play." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Rangers Court", description: "Purple, white and navy volleyball uniform with dynamic gradient style.", image: "/images/sports-pages/volleyball/design-1.svg" },
-      { title: "Red Navy Strike", description: "Red and navy volleyball set with breathable athletic fit.", image: "/images/sports-pages/volleyball/design-2.svg" },
-      { title: "Teal Motion Set", description: "White, teal and black volleyball team design with modern graphics.", image: "/images/sports-pages/volleyball/design-3.svg" }
+      { title: "Rangers Court", description: "Purple, white and navy volleyball uniform with dynamic gradient style.", image: "/images/sports-pages/volleyball/design-1.webp" },
+      { title: "Red Navy Strike", description: "Red and navy volleyball set with breathable athletic fit.", image: "/images/sports-pages/volleyball/design-2.webp" },
+      { title: "Teal Motion Set", description: "White, teal and black volleyball team design with modern graphics.", image: "/images/sports-pages/volleyball/design-3.webp" }
     ],
     buyerTypes: [
       { title: "School Teams", description: "Custom uniforms for school volleyball programs." },
@@ -208,7 +208,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM ICE HOCKEY JERSEYS",
     h1: "Custom Ice Hockey Jerseys for Teams and Clubs",
     heroText: "Create long-sleeve custom hockey jerseys, practice jerseys, team socks and full hockey sets with original graphics and name-number customization.",
-    heroImage: "/images/sports-pages/ice-hockey/hero.svg",
+    heroImage: "/images/sports-pages/ice-hockey/hero.webp",
     primaryKeyword: "custom ice hockey jerseys",
     productTypes: [
       { title: "Hockey Jerseys", description: "Long-sleeve custom jerseys with team name and number options." },
@@ -217,9 +217,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Full Hockey Sets", description: "Team jersey systems for clubs, schools and retailers." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Ice Blue Classic", description: "White, blue and black long-sleeve hockey jersey with custom number style.", image: "/images/sports-pages/ice-hockey/design-1.svg" },
-      { title: "Black Cyan Rink", description: "Black and cyan hockey jersey with bold geometric graphics.", image: "/images/sports-pages/ice-hockey/design-2.svg" },
-      { title: "Red Navy Ice", description: "Red, white and navy hockey team jersey with safe identity.", image: "/images/sports-pages/ice-hockey/design-3.svg" }
+      { title: "Ice Blue Classic", description: "White, blue and black long-sleeve hockey jersey with custom number style.", image: "/images/sports-pages/ice-hockey/design-1.webp" },
+      { title: "Black Cyan Rink", description: "Black and cyan hockey jersey with bold geometric graphics.", image: "/images/sports-pages/ice-hockey/design-2.webp" },
+      { title: "Red Navy Ice", description: "Red, white and navy hockey team jersey with safe identity.", image: "/images/sports-pages/ice-hockey/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Hockey Clubs", description: "Custom jerseys for club teams and amateur programs." },
@@ -235,7 +235,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM TENNIS WEAR",
     h1: "Custom Tennis Wear for Clubs, Schools and Brands",
     heroText: "Create custom tennis shirts, shorts, skirts, polo shirts and club apparel with breathable fabrics, clean styling and logo customization.",
-    heroImage: "/images/sports-pages/tennis/hero.svg",
+    heroImage: "/images/sports-pages/tennis/hero.webp",
     primaryKeyword: "custom tennis wear",
     productTypes: [
       { title: "Tennis Shirts", description: "Custom shirts for clubs, teams and sports programs." },
@@ -245,9 +245,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Club Apparel", description: "Complete tennis apparel solutions for teams and brands." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Green Club Set", description: "White and green tennis shirt and shorts with clean club styling.", image: "/images/sports-pages/tennis/design-1.svg" },
-      { title: "Navy Court Set", description: "Navy and white tennis skirt and top with elegant athletic style.", image: "/images/sports-pages/tennis/design-2.svg" },
-      { title: "Lime Polo Set", description: "White, lime and gray tennis polo apparel for clubs and events.", image: "/images/sports-pages/tennis/design-3.svg" }
+      { title: "Green Club Set", description: "White and green tennis shirt and shorts with clean club styling.", image: "/images/sports-pages/tennis/design-1.webp" },
+      { title: "Navy Court Set", description: "Navy and white tennis skirt and top with elegant athletic style.", image: "/images/sports-pages/tennis/design-2.webp" },
+      { title: "Lime Polo Set", description: "White, lime and gray tennis polo apparel for clubs and events.", image: "/images/sports-pages/tennis/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Tennis Clubs", description: "Custom club apparel for teams and members." },
@@ -263,7 +263,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM GOLF WEAR",
     h1: "Custom Golf Wear and Polo Shirts for Clubs and Events",
     heroText: "Create custom golf polos, pants, club apparel and corporate golf wear with clean styling, logo customization and OEM/ODM support.",
-    heroImage: "/images/sports-pages/golf/hero.svg",
+    heroImage: "/images/sports-pages/golf/hero.webp",
     primaryKeyword: "custom golf wear",
     productTypes: [
       { title: "Golf Polo Shirts", description: "Custom polo shirts for clubs, teams and corporate events." },
@@ -272,9 +272,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Corporate Golf Wear", description: "Branded golf apparel for company events and campaigns." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Elite Green Polo", description: "White, forest green and beige golf polo set for clubs and events.", image: "/images/sports-pages/golf/design-1.svg" },
-      { title: "Corporate Navy Polo", description: "Navy and white golf polo for corporate sports programs.", image: "/images/sports-pages/golf/design-2.svg" },
-      { title: "Event Golf Set", description: "Green and gray golf apparel for event and club programs.", image: "/images/sports-pages/golf/design-3.svg" }
+      { title: "Elite Green Polo", description: "White, forest green and beige golf polo set for clubs and events.", image: "/images/sports-pages/golf/design-1.webp" },
+      { title: "Corporate Navy Polo", description: "Navy and white golf polo for corporate sports programs.", image: "/images/sports-pages/golf/design-2.webp" },
+      { title: "Event Golf Set", description: "Green and gray golf apparel for event and club programs.", image: "/images/sports-pages/golf/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Golf Clubs", description: "Custom club apparel and polo shirts." },
@@ -290,7 +290,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM TRAINING WEAR",
     h1: "Custom Training Wear and Warm-up Suits for Teams",
     heroText: "Create custom tracksuits, warm-up jackets, training tops, pants and team travel apparel for clubs, schools, coaches and sportswear brands.",
-    heroImage: "/images/sports-pages/training/hero.svg",
+    heroImage: "/images/sports-pages/training/hero.webp",
     primaryKeyword: "custom training wear",
     productTypes: [
       { title: "Tracksuits", description: "Custom jacket and pants sets for team travel and warmups." },
@@ -300,9 +300,9 @@ export const sportsPages: SportsPageData[] = [
       { title: "Team Travel Suits", description: "Unified apparel systems for clubs, schools and coaches." }
     ], features: genericFeatures(),
     designs: [
-      { title: "Pro Training Set", description: "Charcoal, white and electric lime tracksuit for warmups and travel.", image: "/images/sports-pages/training/design-1.svg" },
-      { title: "Navy Travel Set", description: "Navy and white warm-up jacket and pants for team travel.", image: "/images/sports-pages/training/design-2.svg" },
-      { title: "Black Motion Set", description: "Black and gray training top and pants with lime accents.", image: "/images/sports-pages/training/design-3.svg" }
+      { title: "Pro Training Set", description: "Charcoal, white and electric lime tracksuit for warmups and travel.", image: "/images/sports-pages/training/design-1.webp" },
+      { title: "Navy Travel Set", description: "Navy and white warm-up jacket and pants for team travel.", image: "/images/sports-pages/training/design-2.webp" },
+      { title: "Black Motion Set", description: "Black and gray training top and pants with lime accents.", image: "/images/sports-pages/training/design-3.webp" }
     ],
     buyerTypes: [
       { title: "Clubs", description: "Warmups and travel apparel for club teams." },
