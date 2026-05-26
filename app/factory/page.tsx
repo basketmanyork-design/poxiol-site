@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Header, Footer, PrimaryButton, SectionHeading } from "@/components/ui";
+import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading } from "@/components/ui";
 import { Factory, Zap, ShieldCheck, Printer, Scissors, Settings, Search, PackageCheck, Send, ClipboardList, Palette, Ruler, Package, Users, Building2, Trophy, Store } from "lucide-react";
 
 export const metadata: Metadata = { 
