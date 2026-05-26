@@ -1,0 +1,54 @@
+{
+  "brand": "POXIOL",
+  "website": "https://poxiol.com/",
+  "category": "Custom Teamwear Manufacturer",
+  "description": "POXIOL is a custom teamwear manufacturer providing multi-sport sports uniforms, free mockups, MOQ 1 custom orders and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.",
+  "primaryServices": [
+    "Custom sports uniforms",
+    "Free teamwear mockup",
+    "OEM/ODM sportswear production",
+    "Private label teamwear",
+    "Sublimation printing",
+    "Team logo customization",
+    "Name and number customization",
+    "Sampling and bulk production"
+  ],
+  "productCategories": [
+    "Basketball uniforms",
+    "Soccer kits",
+    "Baseball and softball uniforms",
+    "Running and marathon wear",
+    "Training wear",
+    "American football uniforms",
+    "Volleyball uniforms",
+    "Ice hockey jerseys",
+    "Tennis wear",
+    "Golf wear"
+  ],
+  "buyerTypes": [
+    "Sports clubs",
+    "Schools and academies",
+    "Tournament and event organizers",
+    "Sportswear brands",
+    "Wholesalers and distributors",
+    "Custom retailers",
+    "Corporate teams"
+  ],
+  "coreAdvantages": [
+    "MOQ 1 supported",
+    "Free mockup request",
+    "2-3 day sampling support",
+    "OEM/ODM ready",
+    "Multi-sport custom teamwear capability",
+    "Factory-backed quality control",
+    "Global delivery support"
+  ],
+  "importantPages": {
+    "home": "https://poxiol.com/",
+    "freeMockup": "https://poxiol.com/free-mockup/",
+    "contact": "https://poxiol.com/contact/",
+    "about": "https://poxiol.com/about/",
+    "factory": "https://poxiol.com/factory/",
+    "oemOdm": "https://poxiol.com/oem-odm/"
+  }
+}

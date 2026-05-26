@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
 import { sportsCategories, uspCards, solutionCards, processSteps, featuredDesigns, techItems, galleryItems, factoryStats } from "@/lib/home-data";
+import StructuredData, { organizationSchema, websiteSchema, homepageFaqSchema } from "@/components/seo/StructuredData";
+
 
 const trustProof = [["15+", "Years Experience"], ["30,000+", "Monthly Capacity"], ["MOQ 1", "Sample Orders"], ["2-3D", "Fast Sampling"], ["OEM/ODM", "Brand Support"], ["180D", "Quality Support"]];
 const capability = [["Team Orders", "Uniforms for clubs, schools, leagues and training groups."], ["OEM/ODM Collections", "Private label teamwear for brands, wholesalers and distributors."], ["Event Apparel", "Running, tournament, staff and race apparel for deadline-driven projects."], ["Repeat Programs", "Roster updates, reorder support and multi-season uniform systems."]];
@@ -10,6 +12,7 @@ export default function HomePage() {
   const tabs = ["All", "Basketball", "Soccer", "Baseball", "Running", "Training", "Volleyball"];
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <StructuredData data={[organizationSchema, websiteSchema, homepageFaqSchema]} />
       <Header />
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.18),transparent_30%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.09),transparent_28%)]" />
