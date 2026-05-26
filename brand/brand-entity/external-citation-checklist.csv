@@ -1,0 +1,13 @@
+Priority,Platform Type,Platform / Action,Use Case,Recommended Brand Description,Status,URL,Notes
+High,Social,LinkedIn Company Page,B2B trust and brand entity,Use 500-character company description,,,Add website URL and logo
+High,Social,Facebook Page,Brand citation and traffic,Use Facebook description,,,
+High,Social,Instagram Profile,Visual brand and product trust,Use Instagram bio,,,
+High,Search,Google Search Console,Indexing and performance,Submit sitemap,,https://search.google.com/search-console,
+High,Search,Bing Webmaster Tools,Bing/Copilot discovery,Submit sitemap,,https://www.bing.com/webmasters,
+High,Directory,Google Business Profile if eligible,Local/business entity signal,Use 300-character description,,,Only if suitable company address is available
+Medium,Video,YouTube Channel,Manufacturing/process video entity,Use YouTube about copy,,,
+Medium,Visual,Pinterest Business Profile,Design and uniform discovery,Use Pinterest profile copy,,,
+Medium,B2B,Alibaba / Made-in-China / Global Sources profile,B2B buyer trust,Use 1000-character description,,,If applicable
+Medium,PR,Brand announcement post,Brand entity reinforcement,Use boilerplate,,,Publish on company blog or PR platform
+Low,Q&A,Quora / Reddit profile,Question discovery,Use short description,,,Avoid spam; answer useful questions
+Low,Design,Behance / Dribbble optional,Teamwear design proof,Use 300-character description,,,For design mockups and collections
