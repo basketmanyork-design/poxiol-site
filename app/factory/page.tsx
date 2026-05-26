@@ -129,7 +129,7 @@ export default function FactoryPage() {
             <div className="absolute -inset-4 rounded-[3rem] bg-lime-400/20 blur-2xl group-hover:bg-lime-400/30 transition duration-500"></div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
               <img 
-                src="/images/factory/factory-main.webp" 
+                src="/images/factory/factory-catalog.jpg" 
                 alt="POXIOL factory floor" 
                 className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0"
               />

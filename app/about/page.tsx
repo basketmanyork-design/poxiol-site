@@ -101,7 +101,7 @@ export default function AboutPage() {
           </div>
           <div className="relative aspect-square overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
             <img 
-              src="/images/hero/hero-multisport-teamwear.webp" 
+              src="/images/hero/hero-multisport-teamwear.jpg" 
               alt="POXIOL Teamwear Production" 
               className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0"
             />
@@ -220,7 +220,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <div className="aspect-[4/5] rounded-3xl bg-neutral-800 overflow-hidden">
-                   <img src="/images/factory/factory-main.webp" alt="Factory" className="h-full w-full object-cover grayscale" />
+                   <img src="/images/factory/factory-catalog.jpg" alt="Factory" className="h-full w-full object-cover grayscale" />
                 </div>
                 <div className="aspect-square rounded-3xl bg-lime-400 p-8 flex flex-col justify-end">
                    <ShieldCheck className="h-10 w-10 text-black mb-4" />
@@ -231,9 +231,10 @@ export default function AboutPage() {
                 <div className="aspect-square rounded-3xl bg-neutral-900 flex items-center justify-center p-8">
                    <Target className="h-16 w-16 text-lime-400" />
                 </div>
-                <div className="aspect-[4/5] rounded-3xl border border-white/10 overflow-hidden">
-                   <img src="/images/sports/basketball.webp" alt="Uniform" className="h-full w-full object-cover grayscale" />
-                </div>
+                 <div className="aspect-[4/5] rounded-3xl border border-white/10 overflow-hidden">
+                    <img src="/images/sports/basketball-action.jpg" alt="Uniform" className="h-full w-full object-cover grayscale" />
+                 </div>
+
               </div>
             </div>
           </div>

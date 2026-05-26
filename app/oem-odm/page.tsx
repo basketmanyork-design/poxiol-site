@@ -84,7 +84,7 @@ export default function OEMPage() {
             <div className="absolute -inset-4 rounded-[3rem] bg-lime-400/10 blur-2xl group-hover:bg-lime-400/20 transition"></div>
             <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
               <img 
-                src="/images/free-mockup/free-mockup-hero.webp" 
+                src="/images/solutions/oem-odm-catalog.jpg" 
                 alt="POXIOL OEM Design Studio" 
                 className="h-full w-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition duration-700"
               />
