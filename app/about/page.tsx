@@ -1,58 +1,77 @@
 import type { Metadata } from "next";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading } from "@/components/ui";
 import Link from "next/link";
-import { CheckCircle2, Users, Trophy, Building2, Layers, Zap, ShieldCheck, Microscope } from "lucide-react";
+import { CheckCircle2, Users, Trophy, Building2, Layers, Zap, ShieldCheck, Microscope, Target, Globe, Rocket, Store, ClipboardList } from "lucide-react";
 
 export const metadata: Metadata = { 
-  title: "About POXIOL | Custom Teamwear and Sports Uniform Manufacturer", 
-  description: "Learn about POXIOL, a custom teamwear manufacturer providing sports uniforms, free mockups, sublimation printing, MOQ 1 and OEM/ODM production for clubs, schools, events, brands and distributors." 
+  title: "About POXIOL | Custom Teamwear Manufacturer for Clubs, Schools and Brands", 
+  description: "POXIOL is a custom teamwear manufacturer providing basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and OEM/ODM sportswear production for clubs, schools, events, brands and distributors." 
 };
 
 const categories = [
-  "Basketball Jerseys & Full Sets",
-  "Soccer Kits & Goalkeeper Gear",
-  "Baseball & Softball Uniforms",
-  "Running Singlets & Event Shirts",
-  "Tracksuits & Training Jackets",
-  "American Football Practice Jerseys",
-  "Volleyball & School Team Sets",
-  "Ice Hockey & Long-Sleeve Jerseys",
-  "Tennis Wear & Golf Polos",
-  "OEM/ODM Private Label Collections"
+  "Custom basketball uniforms",
+  "Custom soccer kits",
+  "Baseball and softball uniforms",
+  "Running and marathon apparel",
+  "Training wear and warm-up suits",
+  "Volleyball uniforms",
+  "American football uniforms",
+  "Ice hockey jerseys",
+  "Tennis wear",
+  "Golf wear and corporate sportswear"
+];
+
+const customizationOptions = [
+  "Team logos", "Player names", "Player numbers", "Team colors", "Original pattern design", 
+  "Sublimation printing", "Custom fit and size range", "OEM/ODM collection development", 
+  "Private label and brand support", "Packaging support"
 ];
 
 const buyerTypes = [
   {
     icon: <Users className="h-6 w-6 text-lime-400" />,
     title: "Clubs & Local Teams",
-    desc: "Professional look, flexible reordering, and team identity support for amateur and pro clubs."
+    desc: "Create a unified team identity with custom uniforms, training apparel and repeat-order support for clubs and local programs."
   },
   {
     icon: <Building2 className="h-6 w-6 text-lime-400" />,
     title: "Schools & Academies",
-    desc: "Consistent colors and sizing across different sports programs and school departments."
+    desc: "Support multi-sport teamwear programs with consistent colors, team logos, sizing options and seasonal uniform planning."
   },
   {
     icon: <Trophy className="h-6 w-6 text-lime-400" />,
     title: "Tournaments & Events",
-    desc: "Deadline-based production for race organizers, sports leagues, and seasonal events."
+    desc: "Deadline-based event apparel such as running singlets, staff shirts, referee tops and tournament uniforms."
   },
   {
-    icon: <Layers className="h-6 w-6 text-lime-400" />,
-    title: "Brands & Distributors",
-    desc: "Reliable manufacturing partner for private label teamwear and catalog expansion."
+    icon: <Rocket className="h-6 w-6 text-lime-400" />,
+    title: "Sportswear Brands",
+    desc: "OEM/ODM support from concept development to sample production and custom teamwear collection planning."
+  },
+  {
+    icon: <Globe className="h-6 w-6 text-lime-400" />,
+    title: "Wholesalers",
+    desc: "Multi-sport product options, flexible customization and catalog expansion support for resellers and distributors."
   }
 ];
 
 const differentiators = [
-  "Free mockup request process",
-  "MOQ 1 flexible orders",
-  "1-2H design support",
-  "2-3 day sampling support",
-  "3-5 day production lead time",
-  "Sublimation & Performance fabrics",
-  "Logo, name & number customization",
-  "180-day quality support"
+  { title: "Free Mockup Support", desc: "Submit your sport, logo, and colors. Our team will review your project details and help prepare the next step." },
+  { title: "MOQ 1 Flexible Orders", desc: "We support flexible orders from MOQ 1, making it easier to test a sample or serve a small team before scaling." },
+  { title: "Fast Sampling", desc: "Sample production can be arranged quickly after design confirmation to review fabric, fit, and print effect." },
+  { title: "Multi-Sport Capability", desc: "We support a wide range of teamwear categories, making it easier to manage multiple sports through one supplier." },
+  { title: "OEM/ODM Ready", desc: "Support including original design, private label planning, sampling, production and category expansion." },
+  { title: "Performance & Sublimation", desc: "Focus on breathable fabrics, quick-dry options, and high-quality sublimation printing that never peels." }
+];
+
+const workflow = [
+  "Submit sport, logo, colors and quantity.",
+  "Request a free mockup or design direction.",
+  "Confirm product details and sample requirements.",
+  "Review sample, fabric, sizing and print effect.",
+  "Move into team or bulk production.",
+  "Complete QC inspection and packing.",
+  "Arrange delivery and future reorder support."
 ];
 
 export default function AboutPage() {
@@ -69,21 +88,21 @@ export default function AboutPage() {
         <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="mb-6 text-sm font-extrabold uppercase tracking-[0.2em] text-lime-400">Since 2011</p>
-            <h1 className="text-6xl font-black leading-[0.95] tracking-tight md:text-8xl">
-              ABOUT <span className="text-lime-400 text-stroke-thin text-stroke-white">POXIOL</span> TEAMWEAR
+            <h1 className="text-6xl font-black leading-[0.95] tracking-tight md:text-8xl uppercase">
+              About <span className="text-lime-400">POXIOL</span> Teamwear
             </h1>
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-neutral-400">
-              POXIOL is a professional custom teamwear manufacturer helping clubs, schools, events, brands, wholesalers and distributors build professional sports uniforms across multiple categories.
+              POXIOL helps teams, schools, events, sportswear brands and distributors build custom teamwear with fast mockups, flexible MOQ, performance fabrics and scalable OEM/ODM production support.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <PrimaryButton href="/free-mockup/">Get Free Mockup</PrimaryButton>
-              <SecondaryButton href="/factory/">Explore Factory</SecondaryButton>
+              <SecondaryButton href="/contact/">Contact POXIOL</SecondaryButton>
             </div>
           </div>
           <div className="relative aspect-square overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
             <img 
               src="/images/hero/hero-multisport-teamwear.webp" 
-              alt="POXIOL manufacturing" 
+              alt="POXIOL Teamwear Production" 
               className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0"
             />
           </div>
@@ -93,34 +112,47 @@ export default function AboutPage() {
       {/* Who We Are */}
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-4xl text-center">
-          <SectionHeading eyebrow="Our Identity" title="Professional Custom Teamwear Manufacturer" center />
+          <SectionHeading eyebrow="Our Identity" title="Who We Are" center />
           <div className="mt-12 space-y-8 text-lg leading-relaxed text-neutral-400">
             <p>
-              POXIOL is focused on multi-sport uniforms, flexible customization and B2B sportswear production support. We help global buyers create team identity through custom basketball uniforms, soccer kits, baseball and softball uniforms, running apparel, training wear, volleyball uniforms, ice hockey jerseys, tennis wear, golf wear and corporate sportswear.
+              POXIOL is a custom teamwear manufacturer focused on helping global buyers create professional sports uniforms for teams, clubs, schools, tournaments, events, distributors and sportswear brands.
             </p>
             <p>
-              Our work is built around a simple goal: make custom teamwear easier, faster and more reliable. Whether a buyer needs one sample, a small team order, a seasonal program or an OEM/ODM sportswear collection, POXIOL supports the process from design mockup to sampling, production and delivery.
+              We provide multi-sport custom apparel solutions. Our work is not limited to printing logos on blank apparel. We support the full custom teamwear process, including design direction, visual mockup, fabric selection, sample development, sublimation printing, name and number customization, production, quality checking and delivery support.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Categories Grid */}
+      {/* What We Make */}
       <section className="bg-white px-5 py-24 text-neutral-950 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 grid gap-12 lg:grid-cols-2 lg:items-end">
             <SectionHeading eyebrow="Product Range" title="What POXIOL Makes" />
             <p className="text-lg text-neutral-600">
-              We provide professional sports uniforms and teamwear across 10+ major categories, all built with performance fabrics and elite durability.
+              POXIOL develops and produces custom sports uniforms and teamwear products for multiple sports and buyer types, all built with performance fabrics and elite durability.
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((cat, idx) => (
-              <div key={idx} className="flex items-center gap-4 rounded-2xl border border-neutral-100 bg-neutral-50 p-6 transition hover:bg-lime-50">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-lime-600" />
-                <span className="font-bold">{cat}</span>
-              </div>
-            ))}
+          
+          <div className="grid gap-12 lg:grid-cols-[1fr_0.4fr]">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {categories.map((cat, idx) => (
+                <div key={idx} className="flex items-center gap-4 rounded-2xl border border-neutral-100 bg-neutral-50 p-6 transition hover:bg-lime-50">
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-lime-600" />
+                  <span className="font-bold">{cat}</span>
+                </div>
+              ))}
+            </div>
+            <div className="rounded-3xl bg-neutral-900 p-10 text-white">
+              <h4 className="text-xl font-black mb-6 uppercase text-lime-400">Customization</h4>
+              <ul className="space-y-4">
+                {customizationOptions.map((opt, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-sm font-bold text-neutral-300">
+                    <Zap className="h-4 w-4 text-lime-400" /> {opt}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -129,14 +161,30 @@ export default function AboutPage() {
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Client Groups" title="Who We Serve" center />
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {buyerTypes.map((type, idx) => (
               <div key={idx} className="group rounded-3xl border border-white/5 bg-white/5 p-8 transition hover:bg-lime-400 hover:text-black">
                 <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 transition group-hover:bg-black/10">
                   {type.icon}
                 </div>
-                <h3 className="mb-4 text-2xl font-black">{type.title}</h3>
+                <h3 className="mb-4 text-2xl font-black uppercase tracking-tight">{type.title}</h3>
                 <p className="text-neutral-400 group-hover:text-black/80">{type.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Differentiators */}
+      <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20 bg-neutral-950">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="The Advantage" title="What Makes POXIOL Different" center />
+          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {differentiators.map((diff, idx) => (
+              <div key={idx} className="relative p-8 rounded-[2.5rem] border border-white/5 bg-white/5">
+                <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-lime-400 text-black font-black text-sm">{idx + 1}</div>
+                <h4 className="text-xl font-black uppercase mb-4 text-white">{diff.title}</h4>
+                <p className="text-neutral-400 leading-relaxed text-sm">{diff.desc}</p>
               </div>
             ))}
           </div>
@@ -146,51 +194,45 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="relative overflow-hidden bg-lime-400 px-5 py-24 text-black md:px-10 md:py-32 xl:px-20">
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <SectionHeading eyebrow="Our Mission" title="Make Custom Teamwear More Accessible" center />
+          <SectionHeading eyebrow="Our Mission" title="Turn Identity Into Professional Apparel" center />
           <p className="mt-12 text-2xl font-bold leading-relaxed">
-            POXIOL exists to help teams and sportswear buyers move faster from idea to uniform. A team should not need a full design department to create a professional custom kit. Our mission is to make custom teamwear more accessible, flexible and production-ready for global buyers.
+            POXIOL exists to help teams and sportswear buyers turn identity into professional apparel. A great uniform is more than a jersey. It represents the team, the school, the event, the brand and the athletes wearing it.
           </p>
         </div>
         <div className="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-white/20 blur-[100px]"></div>
       </section>
 
-      {/* Differentiators */}
+      {/* How We Work */}
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <div>
-              <SectionHeading eyebrow="The Advantage" title="What Makes POXIOL Different" />
-              <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                {differentiators.map((diff, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <ShieldCheck className="h-5 w-5 text-lime-400" />
-                    <span className="font-bold text-neutral-300">{diff}</span>
+              <SectionHeading eyebrow="Process" title="How We Work" />
+              <div className="mt-12 space-y-6">
+                {workflow.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-4">
+                    <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-neutral-800 text-lime-400 font-black text-xs">{idx + 1}</div>
+                    <span className="text-lg font-bold text-neutral-300">{item}</span>
                   </div>
                 ))}
-              </div>
-              <div className="mt-12">
-                <PrimaryButton href="/free-mockup/">Request Mockup</PrimaryButton>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="aspect-[4/5] rounded-3xl bg-neutral-800 p-8 flex flex-col justify-end">
-                  <Zap className="h-10 w-10 text-lime-400 mb-4" />
-                  <h4 className="text-2xl font-black">Fast Sampling</h4>
-                  <p className="text-neutral-400 mt-2">2-3 day turnaround for custom samples.</p>
+                <div className="aspect-[4/5] rounded-3xl bg-neutral-800 overflow-hidden">
+                   <img src="/images/factory/factory-main.webp" alt="Factory" className="h-full w-full object-cover grayscale" />
                 </div>
-                <div className="aspect-square rounded-3xl bg-neutral-900 overflow-hidden">
-                  <img src="/images/factory/factory-qc.webp" alt="QC" className="h-full w-full object-cover grayscale" />
+                <div className="aspect-square rounded-3xl bg-lime-400 p-8 flex flex-col justify-end">
+                   <ShieldCheck className="h-10 w-10 text-black mb-4" />
+                   <h4 className="text-2xl font-black text-black uppercase">QC Check</h4>
                 </div>
               </div>
               <div className="space-y-4 pt-12">
-                <div className="aspect-square rounded-3xl bg-neutral-900 overflow-hidden">
-                  <img src="/images/sports/basketball.webp" alt="Basketball" className="h-full w-full object-cover grayscale" />
+                <div className="aspect-square rounded-3xl bg-neutral-900 flex items-center justify-center p-8">
+                   <Target className="h-16 w-16 text-lime-400" />
                 </div>
-                <div className="aspect-[4/5] rounded-3xl border border-lime-400/30 p-8 flex flex-col justify-end">
-                  <Microscope className="h-10 w-10 text-lime-400 mb-4" />
-                  <h4 className="text-2xl font-black">Quality First</h4>
-                  <p className="text-neutral-400 mt-2">Inspection before packing & 180D support.</p>
+                <div className="aspect-[4/5] rounded-3xl border border-white/10 overflow-hidden">
+                   <img src="/images/sports/basketball.webp" alt="Uniform" className="h-full w-full object-cover grayscale" />
                 </div>
               </div>
             </div>
@@ -201,11 +243,14 @@ export default function AboutPage() {
       {/* Footer CTA */}
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20 border-t border-white/5">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-5xl font-black md:text-7xl mb-8">READY TO START YOUR PROJECT?</h2>
+          <h2 className="text-5xl font-black md:text-7xl mb-8 uppercase">Ready to start?</h2>
           <p className="text-xl text-neutral-400 mb-12">
-            The fastest way to start is to request a free mockup. Our team will review your sport, logo, and colors to create a professional concept.
+            Whether you are preparing for a new season, launching a teamwear brand, expanding a wholesale catalog or planning an event apparel program, POXIOL can help you start with a clear custom teamwear solution.
           </p>
-          <PrimaryButton href="/free-mockup/" className="px-12 py-5 text-xl">Get Your Free Mockup Now</PrimaryButton>
+          <div className="flex flex-wrap justify-center gap-6">
+            <PrimaryButton href="/free-mockup/" className="px-12 py-5 text-xl">Get Free Mockup</PrimaryButton>
+            <SecondaryButton href="/contact/" className="px-12 py-5 text-xl">Contact POXIOL</SecondaryButton>
+          </div>
         </div>
       </section>
 
