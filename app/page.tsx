@@ -7,6 +7,7 @@ const capability = [["Team Orders", "Uniforms for clubs, schools, leagues and tr
 const qcSteps = ["Fabric inspection", "Print color check", "Stitching inspection", "Size check", "Packing check", "Final QC before shipment"];
 
 export default function HomePage() {
+  const tabs = ["All", "Basketball", "Soccer", "Baseball", "Running", "Training", "Volleyball"];
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <Header />
