@@ -3,9 +3,10 @@ import React from "react";
 
 export const freeMockupHref = "/free-mockup/";
 
-export function SectionHeading({ eyebrow, title, subtitle, dark = false }: { eyebrow: string; title: string; subtitle?: string; dark?: boolean }) {
+export function SectionHeading({ eyebrow, title, subtitle, dark = false, center = false }: { eyebrow: string; title: string; subtitle?: string; dark?: boolean; center?: boolean }) {
   return (
-    <div className="mx-auto mb-12 max-w-3xl text-left md:mb-14 md:text-center">
+    <div className={`mx-auto mb-12 max-w-3xl ${center ? "text-center" : "text-left md:text-center"} md:mb-14`}>
+
       <p className={`mb-4 text-sm font-extrabold uppercase tracking-[0.16em] ${dark ? "text-lime-400" : "text-lime-600"}`}>{eyebrow}</p>
       <h2 className={`text-4xl font-black leading-[1.05] md:text-5xl ${dark ? "text-white" : "text-neutral-950"}`}>{title}</h2>
       {subtitle ? <p className={`mt-5 text-base leading-7 md:text-lg ${dark ? "text-neutral-300" : "text-neutral-600"}`}>{subtitle}</p> : null}
