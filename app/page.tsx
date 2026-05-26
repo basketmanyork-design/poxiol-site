@@ -1,28 +1,217 @@
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
-import { sportsCategories, uspCards, solutionCards, processSteps, featuredDesigns, techItems, galleryItems, factoryStats, complianceBadges } from "@/lib/home-data";
 
 export default function HomePage() {
-  const tabs = ["All", "Basketball", "Soccer", "Baseball", "Running", "Training", "Volleyball"];
   return (
-    <main>
+    <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <Header />
-      <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.18),transparent_30%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.09),transparent_28%)]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <div><p className="mb-5 text-sm font-extrabold uppercase tracking-[0.16em] text-lime-400">Custom Teamwear Manufacturer</p><h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl">Custom Teamwear Built for Every Game</h1><p className="mt-7 max-w-2xl text-base leading-8 text-neutral-300 md:text-xl">Professional sports uniforms for basketball, soccer, baseball, running, training and more. Fast mockups, flexible MOQ, premium sublimation printing and global delivery.</p><div className="mt-8 flex flex-wrap gap-3">{["MOQ 1","Free Mockup","2-3 Day Sampling","3-5 Day Production"].map(item=><span key={item} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white">{item}</span>)}</div><div className="mt-9 flex flex-col gap-3 sm:flex-row"><PrimaryButton>Get Free Mockup</PrimaryButton><SecondaryButton href="#sports-categories">Explore Sports</SecondaryButton></div></div>
-          <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl md:min-h-[620px]"><img src="/images/hero/hero-multisport-teamwear.svg" alt="POXIOL custom teamwear hero" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute left-6 top-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">1-2H</p><p className="text-sm font-bold text-white">Design Mockup</p></div><div className="absolute bottom-6 right-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">180D</p><p className="text-sm font-bold text-white">Quality Support</p></div></div>
+
+      {/* 1. HERO — Elite Positioning */}
+      <section className="relative overflow-hidden pt-20 pb-32 md:pt-32 md:pb-48 px-6">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(182,255,0,0.15),transparent_40%),radial-gradient(circle_at_30%_70%,rgba(255,255,255,0.05),transparent_30%)]" />
+        <div className="container mx-auto max-w-7xl relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-3 bg-[#B6FF00]/10 border border-[#B6FF00]/20 px-4 py-2 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-[#B6FF00] animate-pulse" />
+              <span className="text-[#B6FF00] text-xs font-black uppercase tracking-[0.2em]">The 15-Day Delivery Promise</span>
+            </div>
+            <h1 className="text-6xl md:text-8xl xl:text-9xl font-black leading-[0.85] uppercase tracking-tighter italic">
+              Elite Gear<br />For <span className="text-[#B6FF00]">Elite</span> Teams
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-xl leading-relaxed">
+              Stop settling for template designs. We build professional-grade, 100% custom teamwear engineered for the world's most competitive leagues.
+            </p>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <PrimaryButton className="px-10 py-5 text-xl">START YOUR DESIGN</PrimaryButton>
+              <div className="px-10 py-5 rounded-2xl border border-zinc-800 font-bold text-xl bg-zinc-900/50 backdrop-blur flex items-center gap-3">
+                MOQ 1 PIECE
+              </div>
+            </div>
+            <div className="flex items-center gap-6 pt-10 border-t border-white/5">
+               <div className="flex -space-x-3">
+                  {[1,2,3,4].map(i => (
+                    <div key={i} className="w-12 h-12 rounded-full border-2 border-black bg-zinc-800 flex items-center justify-center text-[10px] font-black">TEAM</div>
+                  ))}
+               </div>
+               <div>
+                  <div className="flex gap-1 text-[#B6FF00]">
+                    {[1,2,3,4,5].map(i => <span key={i} className="text-lg">★</span>)}
+                  </div>
+                  <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1">Trusted by 1,200+ Teams Worldwide</p>
+               </div>
+            </div>
+          </div>
+          <div className="relative group">
+            <div className="absolute -inset-10 bg-[#B6FF00]/10 rounded-full blur-[120px]" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[48px] border border-white/10 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
+              <img src="/images/hero/hero-multisport-teamwear.svg" className="w-full h-full object-cover" alt="Elite Teamwear" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-10 left-10 p-6 bg-white text-black rounded-3xl shadow-2xl flex items-center gap-4 animate-bounce">
+                <span className="text-4xl">⏱</span>
+                <div>
+                  <p className="text-[10px] font-black uppercase text-zinc-500">Record Speed</p>
+                  <p className="text-2xl font-black italic uppercase">15 DAYS</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      <section id="sports-categories" className="bg-white px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Sports Categories" title="Custom Uniforms for Every Team Sport" subtitle="Choose your sport and start building a professional team look with POXIOL."/><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">{sportsCategories.map(item=><Link href={item.href} key={item.title} className="poxiol-card group overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 hover:border-lime-400 hover:shadow-xl"><div className="relative h-44 overflow-hidden"><img src={item.image} alt={`POXIOL ${item.title}`} className="h-full w-full object-cover" /></div><div className="p-5"><h3 className="text-lg font-black text-neutral-950">{item.title}</h3><p className="mt-2 text-sm leading-6 text-neutral-600">{item.description}</p><p className="mt-4 text-sm font-black text-neutral-950 group-hover:text-lime-600">{item.cta} →</p></div></Link>)}</div><div className="mt-12 rounded-[2rem] bg-neutral-950 p-8 text-center text-white md:p-10"><h3 className="text-2xl font-black">Not sure which sport category fits your project?</h3><p className="mx-auto mt-3 max-w-2xl text-neutral-300">Send us your logo, colors and sport type. We’ll help you choose the best teamwear solution.</p><div className="mt-6"><PrimaryButton>Get Free Mockup</PrimaryButton></div></div></div></section>
-      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Why POXIOL" title="Fast, Flexible and Built for Teamwear Buyers" subtitle="From one-piece samples to team orders and brand OEM collections, POXIOL helps global buyers move faster with confidence." dark/><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{uspCards.map(card=><div key={card.title} className="rounded-[1.75rem] border border-white/10 bg-white/[0.06] p-8 transition hover:border-lime-400 hover:bg-lime-400/10"><p className="text-4xl font-black text-lime-400">{card.metric}</p><h3 className="mt-6 text-2xl font-black text-white">{card.title}</h3><p className="mt-3 leading-7 text-neutral-300">{card.description}</p><span className="mt-6 inline-flex rounded-full border border-white/15 px-4 py-2 text-xs font-black uppercase tracking-wide text-white/80">{card.label}</span></div>)}</div></div></section>
-      <section className="bg-neutral-100 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Teamwear Solutions" title="Built for Clubs, Schools, Events and Brands" subtitle="POXIOL supports different teamwear buyers with flexible customization, fast sampling and scalable OEM/ODM production."/><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{solutionCards.map(card=><Link key={card.title} href={card.href} className="poxiol-card group overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm hover:border-lime-400 hover:shadow-xl"><div className="relative h-52 overflow-hidden"><img src={card.image} alt={card.title} className="h-full w-full object-cover" /></div><div className="p-7"><h3 className="text-2xl font-black text-neutral-950">{card.title}</h3><p className="mt-2 font-semibold text-neutral-500">{card.subtitle}</p><p className="mt-4 leading-7 text-neutral-700">{card.description}</p><p className="mt-5 font-black text-neutral-950 group-hover:text-lime-600">{card.cta} →</p></div></Link>)}</div></div></section>
-      <section className="bg-white px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Customization Process" title="From Idea to Team Uniform in 5 Steps" subtitle="Send your logo, colors and sport type. POXIOL turns your idea into professional custom teamwear with fast mockup, sampling and production support."/><div className="grid gap-5 lg:grid-cols-5">{processSteps.map(step=><div key={step.step} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 text-left lg:text-center"><div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-lime-400 lg:mx-auto">{step.step}</div><h3 className="mt-5 text-xl font-black text-neutral-950">{step.title}</h3><p className="mt-3 text-sm leading-6 text-neutral-600">{step.description}</p></div>)}</div></div></section>
-      <section id="designs" className="bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Featured Designs" title="Original Teamwear Designs Ready for Customization" subtitle="Explore POXIOL original designs for basketball, soccer, baseball, running, training and more. Choose a style, change colors, add your logo and build your own team identity." dark/><div className="mb-10 flex gap-3 overflow-x-auto md:justify-center">{tabs.map((tab,index)=><button key={tab} className={`whitespace-nowrap rounded-full border px-5 py-2 text-sm font-black ${index===0?"border-lime-400 bg-lime-400 text-neutral-950":"border-white/15 text-white"}`}>{tab}</button>)}</div><div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">{featuredDesigns.map(item=><Link key={item.title} href={item.href} className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] transition hover:border-lime-400"><div className="relative h-56 overflow-hidden md:h-72"><img src={item.image} alt={item.title} className="h-full w-full object-cover" /></div><div className="p-4 md:p-5"><p className="text-xs font-black uppercase tracking-wide text-lime-400">{item.sport}</p><h3 className="mt-2 text-base font-black text-white md:text-lg">{item.title}</h3><p className="mt-2 hidden text-sm leading-6 text-neutral-400 md:block">{item.description}</p><p className="mt-4 text-sm font-black text-white group-hover:text-lime-400">Request This Design →</p></div></Link>)}</div></div></section>
-      <section id="technology" className="bg-white px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"><div className="relative min-h-[360px] overflow-hidden rounded-[2rem] bg-neutral-100 md:min-h-[620px]"><img src="/images/technology/fabric-main.svg" alt="POXIOL performance fabric and sublimation technology" className="absolute inset-0 h-full w-full object-cover" /></div><div><p className="mb-4 text-sm font-extrabold uppercase tracking-[0.16em] text-lime-600">Fabric & Technology</p><h2 className="text-4xl font-black leading-[1.05] text-neutral-950 md:text-5xl">Performance Fabric Built for Real Team Sports</h2><p className="mt-5 text-lg leading-8 text-neutral-600">POXIOL combines sublimation printing, breathable fabrics and strict QC inspection to create custom uniforms that stay sharp, comfortable and game-ready.</p><div className="mt-8 grid gap-4 md:grid-cols-2">{techItems.map(item=><div key={item.title} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-5"><h3 className="font-black text-neutral-950">{item.title}</h3><p className="mt-2 text-sm leading-6 text-neutral-600">{item.description}</p></div>)}</div></div></div></section>
-      <section id="gallery" className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Global Team Gallery" title="Built for Teams, Events and Brands Worldwide" subtitle="From clubs and schools to tournaments and brand collections, POXIOL helps different teamwear buyers create a professional identity." dark/><div className="grid auto-rows-[120px] grid-cols-2 gap-3 md:auto-rows-[140px] md:grid-cols-4 md:gap-5">{galleryItems.map(item=><div key={item.title} className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 ${item.className}`}><img src={item.image} alt={item.title} className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" /><div className="absolute bottom-0 p-5"><h3 className="text-xl font-black text-white group-hover:text-lime-400">{item.title}</h3><p className="mt-1 hidden text-sm text-neutral-300 md:block">{item.description}</p></div></div>)}</div></div></section>
-      <section id="factory" className="bg-neutral-100 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center"><div><p className="mb-4 text-sm font-extrabold uppercase tracking-[0.16em] text-lime-600">Factory & Compliance</p><h2 className="text-4xl font-black leading-[1.05] text-neutral-950 md:text-5xl">Factory Strength You Can Trust</h2><p className="mt-5 text-lg leading-8 text-neutral-600">POXIOL combines design, sampling, production, quality control and international compliance to support global custom teamwear buyers.</p><div className="mt-7 flex flex-wrap gap-3">{complianceBadges.map(badge=><span key={badge} className="rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-black text-neutral-950">{badge}</span>)}</div><div className="mt-8 flex flex-col gap-3 sm:flex-row"><SecondaryButton href="/contact/" darkText>Verify Capability</SecondaryButton><PrimaryButton>Get Free Mockup</PrimaryButton></div></div><div className="grid h-[440px] grid-cols-3 gap-4"><div className="relative col-span-2 overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/factory-main.svg" alt="POXIOL factory" className="h-full w-full object-cover"/></div><div className="grid gap-4"><div className="relative overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/qc-closeup.svg" alt="POXIOL QC" className="h-full w-full object-cover"/></div><div className="relative overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/sampling-desk.svg" alt="POXIOL sampling" className="h-full w-full object-cover"/></div></div></div></div><div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">{factoryStats.map(stat=><div key={stat.label} className="rounded-3xl border border-neutral-200 bg-white p-6 text-center"><p className="text-3xl font-black text-neutral-950 md:text-4xl">{stat.value}</p><p className="mt-2 text-sm font-semibold text-neutral-600">{stat.label}</p></div>)}</div></div></section>
-      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-24 xl:px-20"><div className="mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_80%_50%,rgba(182,255,0,0.16),transparent_28%),linear-gradient(135deg,#111,#050505)] p-8 md:grid-cols-[1fr_0.8fr] md:items-center md:p-14"><div><h2 className="text-4xl font-black leading-[1.05] text-white md:text-6xl">Ready to Build Your Custom Teamwear?</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-300">Send your sport, logo, colors and quantity. Get a free POXIOL mockup and start your team uniform project today.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><PrimaryButton>Get Free Mockup Now</PrimaryButton><SecondaryButton href="/contact/">Contact Sales</SecondaryButton></div></div><div className="relative min-h-[260px] overflow-hidden rounded-[1.5rem] bg-white/5"><img src="/images/cta/final-cta-uniforms.svg" alt="POXIOL custom uniforms" className="h-full w-full object-cover"/></div></div></section>
+
+      {/* 2. TRUST BAR — Authority */}
+      <section className="py-12 bg-black border-y border-white/5">
+        <div className="container mx-auto px-6">
+          <p className="text-center text-[10px] font-black uppercase tracking-[0.5em] text-zinc-600 mb-8">Official Gear Provider For</p>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700 font-black italic text-2xl">
+             <span>AAU LEAGUES</span>
+             <span>METRO UNITED</span>
+             <span>ELITE ACADEMY</span>
+             <span>VARSITY PREP</span>
+             <span>STATE WARRIORS</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. SPORTS GRID — Category Expansion */}
+      <section id="sports-categories" className="py-32 px-6">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20">
+            <div className="space-y-4">
+              <span className="text-[#B6FF00] font-black uppercase tracking-[0.3em] text-xs">The 2026 Collection</span>
+              <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter">SHOP BY SPORT</h2>
+            </div>
+            <div className="flex gap-3">
+               <span className="bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-lg text-[10px] font-black">CE CERTIFIED</span>
+               <span className="bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-lg text-[10px] font-black">REACH COMPLIANT</span>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { name: "Basketball", img: "/images/sports/basketball-uniforms.svg", desc: "180-230 GSM MESH", price: "39" },
+              { name: "Soccer", img: "/images/sports/soccer-kits.svg", desc: "160 GSM INTERLOCK", price: "35" },
+              { name: "Baseball", img: "/images/sports/baseball-softball.svg", desc: "HEAVY TECH KNIT", price: "45" },
+              { name: "Football", img: "/images/sports/american-football.svg", desc: "DUAL-LAYER MESH", price: "55" },
+              { name: "Hockey", img: "/images/sports/ice-hockey-jerseys.svg", desc: "240 GSM PRO-WEIGHT", price: "59" },
+              { name: "Volleyball", img: "/images/sports/volleyball-uniforms.svg", desc: "ELITE STRETCH", price: "32" }
+            ].map((sport) => (
+              <div key={sport.name} className="group relative h-[600px] overflow-hidden rounded-[40px] border border-white/5 bg-zinc-900">
+                <img src={sport.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt={sport.name} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-10 space-y-2">
+                  <div className="text-xs font-black text-[#B6FF00] tracking-[0.2em] uppercase">{sport.desc}</div>
+                  <h3 className="text-5xl font-black uppercase italic tracking-tighter">{sport.name}</h3>
+                  <div className="flex items-center gap-4 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    <span className="text-zinc-400 font-bold uppercase italic text-sm">Full sets from ${sport.price}</span>
+                    <button className="bg-[#B6FF00] text-black px-6 py-2 rounded-xl font-black uppercase italic text-xs">CUSTOMIZE</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FABRIC & TECH — Differentiation */}
+      <section id="technology" className="py-32 bg-black border-y border-white/5 px-6">
+        <div className="container mx-auto max-w-7xl grid lg:grid-cols-2 gap-20 items-center">
+          <div className="space-y-12">
+            <div>
+              <span className="text-[#B6FF00] font-black uppercase tracking-[0.3em] text-xs">Fabric Mastery</span>
+              <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter leading-none mt-4">ELITE TECH<br />ENGINEERING</h2>
+              <p className="text-zinc-400 text-lg leading-relaxed mt-6">
+                We use proprietary 100% Polyester Mesh (160-230 GSM) engineered for the rigorous demands of professional athletics. Our fabrics are lab-tested for moisture-wicking, durability, and skin safety.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-8">
+               {[
+                 { title: "PERMANENT COLOR", desc: "Inks bond to fibers. Zero cracking or peeling." },
+                 { title: "PRO BREATHABILITY", desc: "Open-weave mesh supports extreme airflow." },
+                 { title: "4-WAY STRETCH", desc: "Fabric moves with the athlete. High mobility." },
+                 { title: "ANTI-MICROBIAL", desc: "Treated for odor control and skin comfort." }
+               ].map((item, i) => (
+                 <div key={i} className="space-y-2 border-l-2 border-[#B6FF00]/30 pl-6">
+                    <h4 className="font-black uppercase italic text-[#B6FF00] tracking-widest text-sm">{item.title}</h4>
+                    <p className="text-zinc-500 text-xs leading-relaxed">{item.desc}</p>
+                 </div>
+               ))}
+            </div>
+            <div className="pt-8">
+               <Link href="/contact/" className="text-sm font-black uppercase italic tracking-widest text-white hover:text-[#B6FF00] underline decoration-[#B6FF00] underline-offset-8 transition-all">
+                  VIEW COMPLETE SIZING & FABRIC GUIDE →
+               </Link>
+            </div>
+          </div>
+          <div className="relative">
+             <div className="absolute -inset-10 bg-[#B6FF00]/5 rounded-full blur-[100px]" />
+             <div className="aspect-square bg-zinc-900 rounded-[48px] border border-white/10 overflow-hidden relative">
+                <img src="/images/technology/fabric-main.svg" className="w-full h-full object-cover" alt="Fabric Detail" />
+                <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] hover:backdrop-blur-0 transition-all duration-700" />
+                <div className="absolute top-10 right-10 bg-black/60 border border-white/10 backdrop-blur px-6 py-4 rounded-2xl">
+                   <p className="text-[#B6FF00] font-black italic uppercase text-2xl">SUBLIMATION</p>
+                   <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mt-1">Vs. Screen Printing</p>
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. TEAM STORES — B2B Perfection */}
+      <section className="py-32 bg-[#0A0A0A] px-6">
+        <div className="container mx-auto max-w-7xl grid lg:grid-cols-2 gap-20 items-center">
+          <div className="order-2 lg:order-1 relative">
+             <div className="aspect-video bg-zinc-900 rounded-[32px] border border-white/10 overflow-hidden shadow-2xl relative">
+                <img src="/images/solutions/brand-oem.svg" className="w-full h-full object-cover opacity-50" alt="Team Portal" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center bg-black/40 backdrop-blur-sm">
+                   <p className="text-4xl font-black italic uppercase tracking-tighter">ELITE ACADEMY STORES</p>
+                   <p className="text-zinc-400 mt-4 max-w-xs">A custom portal for your players to pay and order individually.</p>
+                </div>
+             </div>
+             <div className="absolute -top-10 -right-10 bg-[#B6FF00] text-black p-8 rounded-3xl shadow-2xl max-w-xs rotate-3 hidden md:block">
+                <p className="text-3xl font-black italic uppercase leading-none">ZERO RISK.<br />NO HASSLE.</p>
+                <p className="mt-4 text-sm font-bold opacity-80">We handle the money. We handle the shipping. You handle the coaching.</p>
+             </div>
+          </div>
+          <div className="order-1 lg:order-2 space-y-8">
+            <span className="text-[#B6FF00] font-black uppercase tracking-widest text-xs italic">Platform Service</span>
+            <h2 className="text-5xl lg:text-8xl font-black uppercase italic tracking-tighter leading-none">YOUR OWN<br />TEAM STORE</h2>
+            <p className="text-xl text-zinc-400 leading-relaxed">
+              We build a custom e-commerce portal for your club in minutes. Let players, parents, and fans buy their own gear—no more bulk-buying risk for the coach.
+            </p>
+            <div className="space-y-4 pt-4">
+              {[
+                "Player-Direct Purchasing (Save hours of admin)",
+                "No Minimum Order on Re-orders",
+                "Worldwide Individual Shipping",
+                "Fundraising Kickbacks Integrated"
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-4 text-sm font-bold uppercase italic text-zinc-300">
+                  <span className="w-5 h-5 rounded-full bg-[#B6FF00] flex items-center justify-center text-black text-[10px]">✓</span>
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="pt-6">
+               <PrimaryButton className="px-10">LAUNCH TEAM STORE</PrimaryButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FINAL CALL — Conversion */}
+      <section className="py-40 relative overflow-hidden bg-black text-center px-6">
+         <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[#B6FF00]/10 rounded-full blur-[200px] -mr-[500px] -mt-[500px]" />
+         <div className="relative z-10 max-w-5xl mx-auto space-y-12">
+            <h2 className="text-7xl md:text-9xl font-black uppercase italic tracking-tighter leading-none">READY TO<br /><span className="text-[#B6FF00]">TRANSFORM</span><br />YOUR TEAM?</h2>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+               <PrimaryButton className="px-16 py-8 text-2xl">GET FREE 3D MOCKUP</PrimaryButton>
+               <div className="text-left">
+                  <p className="text-zinc-500 font-black uppercase italic tracking-widest text-sm leading-none">Proposal ready in</p>
+                  <p className="text-[#B6FF00] text-3xl font-black italic uppercase leading-none mt-2">24 HOURS</p>
+               </div>
+            </div>
+         </div>
+      </section>
+
       <Footer />
     </main>
   );
