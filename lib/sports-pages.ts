@@ -40,7 +40,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM BASKETBALL UNIFORMS",
     h1: "Custom Basketball Uniforms for Teams, Clubs and Schools",
     heroText: "Create professional basketball jerseys, shorts, reversible sets and warmups with POXIOL custom sublimation printing, flexible MOQ and fast sampling support.",
-    heroImage: "/images/sports-pages/basketball/hero.webp",
+    heroImage: "/images/sports-pages/basketball/hero.png",
     primaryKeyword: "custom basketball uniforms",
     productTypes: [
       { title: "Basketball Jerseys", description: "Sleeveless custom jerseys with team name, logo, player name and number options." },
@@ -70,7 +70,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM SOCCER KITS",
     h1: "Custom Soccer Kits for Clubs, Schools and Tournaments",
     heroText: "Build complete soccer kits with custom jerseys, shorts, socks, goalkeeper kits and training shirts for clubs, academies and school teams.",
-    heroImage: "/images/sports-pages/soccer/hero.webp",
+    heroImage: "/images/sports-pages/soccer/hero.png",
     primaryKeyword: "custom soccer kits",
     productTypes: [
       { title: "Soccer Jerseys", description: "Custom soccer shirts with team logo, colors, names and numbers." },
@@ -98,7 +98,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM BASEBALL & SOFTBALL UNIFORMS",
     h1: "Custom Baseball & Softball Uniforms for Teams",
     heroText: "Create button-front baseball jerseys, pants, caps and softball team sets with custom names, numbers, colors and sublimation graphics.",
-    heroImage: "/images/sports-pages/baseball/hero.webp",
+    heroImage: "/images/sports-pages/baseball/hero.png",
     primaryKeyword: "custom baseball uniforms",
     productTypes: [
       { title: "Button Baseball Jerseys", description: "Classic button-front jerseys with modern custom design options." },
@@ -126,7 +126,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM AMERICAN FOOTBALL UNIFORMS",
     h1: "Custom American Football Uniforms for Teams and Schools",
     heroText: "Create custom American football jerseys, pants, practice uniforms and full team sets with original graphics, names, numbers and fast sampling support.",
-    heroImage: "/images/sports-pages/american-football/hero.webp",
+    heroImage: "/images/sports-pages/american-football/hero.png",
     primaryKeyword: "custom American football uniforms",
     productTypes: [
       { title: "Football Jerseys", description: "Custom game jerseys with team colors, names, numbers and original graphics." },
@@ -154,6 +154,7 @@ export const sportsPages: SportsPageData[] = [
     h1: "Custom Running & Marathon Wear for Clubs and Events",
     heroText: "Create lightweight running singlets, marathon vests, race shirts, shorts and event apparel for clubs, races, charity events and corporate teams.",
     heroImage: "/images/sports-pages/running/hero.webp",
+
     primaryKeyword: "custom running apparel",
     productTypes: [
       { title: "Running Singlets", description: "Lightweight custom singlets for running clubs and events." },
@@ -181,7 +182,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM VOLLEYBALL UNIFORMS",
     h1: "Custom Volleyball Uniforms for Teams and Schools",
     heroText: "Create custom volleyball jerseys, shorts, women’s sets and sleeveless team uniforms with breathable fabric, original graphics and fast sampling support.",
-    heroImage: "/images/sports-pages/volleyball/hero.webp",
+    heroImage: "/images/sports-pages/volleyball/hero.png",
     primaryKeyword: "custom volleyball uniforms",
     productTypes: [
       { title: "Volleyball Jerseys", description: "Custom team jerseys with names, numbers and original graphics." },
@@ -208,7 +209,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM ICE HOCKEY JERSEYS",
     h1: "Custom Ice Hockey Jerseys for Teams and Clubs",
     heroText: "Create long-sleeve custom hockey jerseys, practice jerseys, team socks and full hockey sets with original graphics and name-number customization.",
-    heroImage: "/images/sports-pages/ice-hockey/hero.webp",
+    heroImage: "/images/sports-pages/ice-hockey/hero.png",
     primaryKeyword: "custom ice hockey jerseys",
     productTypes: [
       { title: "Hockey Jerseys", description: "Long-sleeve custom jerseys with team name and number options." },
@@ -235,7 +236,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM TENNIS WEAR",
     h1: "Custom Tennis Wear for Clubs, Schools and Brands",
     heroText: "Create custom tennis shirts, shorts, skirts, polo shirts and club apparel with breathable fabrics, clean styling and logo customization.",
-    heroImage: "/images/sports-pages/tennis/hero.webp",
+    heroImage: "/images/sports-pages/tennis/hero.png",
     primaryKeyword: "custom tennis wear",
     productTypes: [
       { title: "Tennis Shirts", description: "Custom shirts for clubs, teams and sports programs." },
@@ -263,7 +264,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM GOLF WEAR",
     h1: "Custom Golf Wear and Polo Shirts for Clubs and Events",
     heroText: "Create custom golf polos, pants, club apparel and corporate golf wear with clean styling, logo customization and OEM/ODM support.",
-    heroImage: "/images/sports-pages/golf/hero.webp",
+    heroImage: "/images/sports-pages/golf/hero.png",
     primaryKeyword: "custom golf wear",
     productTypes: [
       { title: "Golf Polo Shirts", description: "Custom polo shirts for clubs, teams and corporate events." },
@@ -290,7 +291,7 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM TRAINING WEAR",
     h1: "Custom Training Wear and Warm-up Suits for Teams",
     heroText: "Create custom tracksuits, warm-up jackets, training tops, pants and team travel apparel for clubs, schools, coaches and sportswear brands.",
-    heroImage: "/images/sports-pages/training/hero.webp",
+    heroImage: "/images/sports-pages/training/hero.png",
     primaryKeyword: "custom training wear",
     productTypes: [
       { title: "Tracksuits", description: "Custom jacket and pants sets for team travel and warmups." },

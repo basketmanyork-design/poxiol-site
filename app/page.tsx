@@ -54,7 +54,8 @@ export default function HomePage() {
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row"><PrimaryButton>Get Free Mockup</PrimaryButton><SecondaryButton href="#sports-categories">Explore Sports</SecondaryButton></div>
           </div>
-          <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl md:min-h-[620px]"><img src="/images/hero/hero-multisport-teamwear.webp" alt="POXIOL custom teamwear hero" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute left-6 top-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">1-2H</p><p className="text-sm font-bold text-white">Design Support</p></div><div className="absolute bottom-6 right-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">180D</p><p className="text-sm font-bold text-white">Quality Support</p></div></div>
+          <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl md:min-h-[620px]"><img src="/images/hero/hero-multisport-teamwear.png" alt="POXIOL custom teamwear hero" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute left-6 top-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">1-2H</p><p className="text-sm font-bold text-white">Design Support</p></div><div className="absolute bottom-6 right-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">180D</p><p className="text-sm font-bold text-white">Quality Support</p></div></div>
+
         </div>
       </section>
 
