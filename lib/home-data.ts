@@ -58,13 +58,14 @@ export const techItems = [
 ];
 
 export const galleryItems = [
-  { title: "Club Teams", description: "Custom team uniforms for local clubs, amateur teams and seasonal programs.", image: "/images/gallery/club-teams.webp", className: "md:col-span-2 md:row-span-3" },
-  { title: "School Teams", description: "Consistent teamwear for school sports programs across multiple sports.", image: "/images/gallery/school-teams.webp", className: "md:col-span-1 md:row-span-2" },
-  { title: "Tournament Apparel", description: "Event-ready uniforms, running vests and staff apparel for leagues and races.", image: "/images/gallery/tournament-apparel.webp", className: "md:col-span-1 md:row-span-3" },
-  { title: "Brand Collections", description: "OEM/ODM teamwear collections developed for sportswear brands and distributors.", image: "/images/gallery/brand-collections.webp", className: "md:col-span-1 md:row-span-2" },
-  { title: "Running Events", description: "Lightweight custom running apparel for clubs, events and charity races.", image: "/images/gallery/running-events.webp", className: "md:col-span-2 md:row-span-2" },
-  { title: "Training Groups", description: "Warmups, tracksuits and training apparel for team practice and travel.", image: "/images/gallery/training-groups.webp", className: "md:col-span-1 md:row-span-2" },
+  { title: "Elite Club Projects", description: "Pro-grade uniforms for elite clubs, amateur teams and league programs.", image: "/images/gallery/club-teams.webp", className: "md:col-span-2 md:row-span-3" },
+  { title: "Academy & School Programs", description: "High-performance teamwear for sports academies and school departments.", image: "/images/gallery/school-teams.webp", className: "md:col-span-1 md:row-span-2" },
+  { title: "Global Tournament Gear", description: "Deadline-driven apparel for international tournaments, leagues and staff.", image: "/images/gallery/tournament-apparel.webp", className: "md:col-span-1 md:row-span-3" },
+  { title: "Brand OEM Collections", description: "Private label collections developed for sportswear brands and distributors.", image: "/images/gallery/brand-collections.webp", className: "md:col-span-1 md:row-span-2" },
+  { title: "Marathon & Race Events", description: "Lightweight performance apparel for marathon clubs and large-scale race events.", image: "/images/gallery/running-events.webp", className: "md:col-span-2 md:row-span-2" },
+  { title: "Pro Training Systems", description: "Elite tracksuits and training apparel for pro teams and specialized training groups.", image: "/images/gallery/training-groups.webp", className: "md:col-span-1 md:row-span-2" },
 ];
+
 
 export const factoryStats = [
   { value: "15+", label: "Years Experience" },

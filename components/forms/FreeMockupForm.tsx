@@ -46,7 +46,25 @@ export default function FreeMockupForm() {
         <div><h3 className="mb-4 text-lg font-black text-neutral-950">Design Details</h3><div className="grid gap-4 md:grid-cols-2">
           <div><FieldLabel>Main Colors</FieldLabel><input value={form.colors} onChange={(e)=>updateField("colors",e.target.value)} className={inputClass} placeholder="Black + lime, blue + white..." /></div>
           <div><FieldLabel required>Do You Have a Logo?</FieldLabel><select required value={form.hasLogo} onChange={(e)=>updateField("hasLogo",e.target.value)} className={inputClass}><option value="">Select option</option><option value="Yes, I can upload it">Yes, I can upload it</option><option value="Not yet, need design help">Not yet, need design help</option></select></div>
-          <div className="md:col-span-2 rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-5"><p className="text-sm font-black text-neutral-950">Logo / Reference Files</p><p className="mt-2 text-sm leading-6 text-neutral-600">Have logo or reference files? Submit the form first. The POXIOL team will reply and ask you to send files by email or WhatsApp.</p></div>
+          <div className="md:col-span-2 rounded-2xl border-2 border-dashed border-lime-400/30 bg-lime-400/5 p-6 text-center">
+            <p className="text-sm font-black text-neutral-950 uppercase tracking-wide">Logo & Reference Files</p>
+            <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+              Submit the form first. After submission, you can immediately send your high-resolution logos (.AI, .PDF, .PNG) or reference photos directly to our design team via **WhatsApp** or **Email**.
+            </p>
+            <div className="mt-5 flex flex-wrap justify-center gap-4">
+              <a 
+                href="https://wa.me/8613055646888" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-xs font-black text-white transition hover:scale-105"
+              >
+                Send via WhatsApp
+              </a>
+              <span className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2 text-xs font-black text-white transition hover:scale-105">
+                Send via Email
+              </span>
+            </div>
+          </div>
           <div className="md:col-span-2"><FieldLabel>Design Notes</FieldLabel><textarea value={form.notes} onChange={(e)=>updateField("notes",e.target.value)} className="min-h-[120px] w-full rounded-2xl border border-neutral-300 bg-white p-4 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-lime-400" placeholder="Tell us your team name, player numbers, preferred style or any special request." /></div>
         </div></div>
       </div>
