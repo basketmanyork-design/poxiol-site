@@ -1,6 +1,3 @@
-# Normalize www to apex domain
-https://www.poxiol.com/* https://poxiol.com/:splat 301
-
 # Common old / alternate paths
 /home/ / 301
 /mockup/ /free-mockup/ 301
