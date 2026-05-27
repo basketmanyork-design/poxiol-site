@@ -1,15 +1,16 @@
 export const sportsCategories = [
-  { title: "Basketball Uniforms", description: "Custom jerseys, shorts and full sublimation team sets.", cta: "View Basketball", href: "/custom-basketball-uniforms/", image: "/images/sports/basketball-uniforms.webp" },
-  { title: "Soccer Kits", description: "Jerseys, shorts, socks and goalkeeper kits for clubs and schools.", cta: "View Soccer", href: "/custom-soccer-kits/", image: "/images/sports/soccer-kits.webp" },
-  { title: "Baseball & Softball", description: "Button jerseys, pants, caps and full team uniforms.", cta: "View Baseball", href: "/custom-baseball-softball-uniforms/", image: "/images/sports/baseball-softball.webp" },
-  { title: "Running & Marathon Wear", description: "Lightweight singlets, event vests and marathon apparel.", cta: "View Running", href: "/custom-running-marathon-wear/", image: "/images/sports/running-marathon.webp" },
-  { title: "Training Wear", description: "Warm-up suits, tracksuits, training tops and team travel apparel.", cta: "View Training", href: "/custom-training-wear/", image: "/images/sports/training-wear.webp" },
+  { title: "Basketball Uniforms", description: "Custom jerseys, shorts and full sublimation team sets.", cta: "View Basketball", href: "/custom-basketball-uniforms/", image: "/images/sports/basketball.webp" },
+  { title: "Soccer Kits", description: "Jerseys, shorts, socks and goalkeeper kits for clubs and schools.", cta: "View Soccer", href: "/custom-soccer-kits/", image: "/images/sports/soccer.webp" },
+  { title: "Baseball & Softball", description: "Button jerseys, pants, caps and full team uniforms.", cta: "View Baseball", href: "/custom-baseball-softball-uniforms/", image: "/images/sports/baseball.webp" },
+  { title: "Running & Marathon Wear", description: "Lightweight singlets, event vests and marathon apparel.", cta: "View Running", href: "/custom-running-marathon-wear/", image: "/images/sports/running.webp" },
+  { title: "Training Wear", description: "Warm-up suits, tracksuits, training tops and team travel apparel.", cta: "View Training", href: "/custom-training-wear/", image: "/images/sports/training.webp" },
   { title: "American Football Uniforms", description: "Custom jerseys, pants and practice uniforms for teams.", cta: "View Football", href: "/custom-american-football-uniforms/", image: "/images/sports/american-football.webp" },
-  { title: "Volleyball Uniforms", description: "Team jerseys, shorts and women’s volleyball sets.", cta: "View Volleyball", href: "/custom-volleyball-uniforms/", image: "/images/sports/volleyball-uniforms.webp" },
-  { title: "Ice Hockey Jerseys", description: "Sublimated hockey jerseys with name and number customization.", cta: "View Hockey", href: "/custom-ice-hockey-jerseys/", image: "/images/sports/ice-hockey-jerseys.webp" },
-  { title: "Tennis Wear", description: "Club shirts, shorts, skirts and team apparel.", cta: "View Tennis", href: "/custom-tennis-wear/", image: "/images/sports/tennis-wear.webp" },
-  { title: "Golf Wear", description: "Golf polos, pants and corporate teamwear.", cta: "View Golf", href: "/custom-golf-wear/", image: "/images/sports/golf-wear.webp" },
+  { title: "Volleyball Uniforms", description: "Team jerseys, shorts and women’s volleyball sets.", cta: "View Volleyball", href: "/custom-volleyball-uniforms/", image: "/images/sports/volleyball.webp" },
+  { title: "Ice Hockey Jerseys", description: "Sublimated hockey jerseys with name and number customization.", cta: "View Hockey", href: "/custom-ice-hockey-jerseys/", image: "/images/sports/hockey.webp" },
+  { title: "Tennis Wear", description: "Club shirts, shorts, skirts and team apparel.", cta: "View Tennis", href: "/custom-tennis-wear/", image: "/images/sports/tennis.webp" },
+  { title: "Golf Wear", description: "Golf polos, pants and corporate teamwear.", cta: "View Golf", href: "/custom-golf-wear/", image: "/images/sports/golf.webp" },
 ];
+
 
 export const uspCards = [
   { metric: "MOQ 1", title: "Start Small, Scale Fast", description: "Order from one piece for samples, trials, custom retail projects or small team needs before scaling into larger production.", label: "Flexible Orders" },
