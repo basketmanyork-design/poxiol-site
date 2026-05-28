@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
 import { sportsCategories, uspCards, solutionCards, processSteps, featuredDesigns, techItems, galleryItems, factoryStats } from "@/lib/home-data";
