@@ -19,6 +19,8 @@ const categories = [
   "Ice hockey jerseys",
   "Tennis wear",
   "Golf wear",
+  "Rugby teamwear",
+  "Esports jerseys",
 ];
 
 const buyerTypes = [

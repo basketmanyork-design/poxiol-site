@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header, Footer, SectionHeading } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -11,19 +12,32 @@ const fabrics = [
     name: "Performance Mesh Fabric",
     description: "A lightweight and highly breathable fabric with small holes for maximum airflow. Perfect for high-intensity sports.",
     features: ["Superior breathability", "Lightweight", "Excellent moisture management", "Sublimation compatible"],
-    bestFor: "Basketball uniforms, Soccer kits, Training wear, Running singlets",
+    bestFor: [
+      { name: "Basketball uniforms", href: "/custom-basketball-uniforms/" },
+      { name: "Soccer kits", href: "/custom-soccer-kits/" },
+      { name: "Training wear", href: "/custom-training-wear/" },
+      { name: "Running singlets", href: "/custom-running-marathon-wear/" },
+    ],
   },
   {
     name: "Elite Interlock Fabric",
     description: "A double-knit fabric with a smooth, firm surface. It provides a premium look and feel with high durability.",
     features: ["Smooth texture", "High durability", "Professional aesthetic", "Sublimation compatible"],
-    bestFor: "Soccer jerseys, Basketball uniforms, Baseball jerseys, Club apparel",
+    bestFor: [
+      { name: "Soccer jerseys", href: "/custom-soccer-kits/" },
+      { name: "Basketball uniforms", href: "/custom-basketball-uniforms/" },
+      { name: "Baseball jerseys", href: "/custom-baseball-softball-uniforms/" },
+    ],
   },
   {
     name: "Quick-Dry Polyester",
     description: "Our core performance fabric designed to pull sweat away from the body and dry rapidly for player comfort.",
     features: ["Advanced moisture-wicking", "Ultra-fast drying", "Soft against skin", "Anti-odor treatment available"],
-    bestFor: "Multi-sport uniforms, Volleyball sets, Marathon wear, Event apparel",
+    bestFor: [
+      { name: "Multi-sport uniforms", href: "/custom-training-wear/" },
+      { name: "Volleyball sets", href: "/custom-volleyball-uniforms/" },
+      { name: "Marathon wear", href: "/custom-running-marathon-wear/" },
+    ],
   },
 ];
 
@@ -63,7 +77,17 @@ export default function FabricGuidePage() {
                 
                 <div className="mt-auto pt-8">
                   <h3 className="text-xs font-black uppercase tracking-widest text-neutral-500">Best For</h3>
-                  <p className="mt-2 text-sm font-bold text-neutral-300">{fabric.bestFor}</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {fabric.bestFor.map(item => (
+                      <Link 
+                        key={item.name} 
+                        href={item.href}
+                        className="text-sm font-bold text-neutral-300 hover:text-lime-400 underline underline-offset-4 decoration-white/20 hover:decoration-lime-400"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

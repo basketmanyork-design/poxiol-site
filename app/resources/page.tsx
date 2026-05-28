@@ -53,6 +53,18 @@ const resourceCategories = [
       { name: "Printing FAQ", href: "/faq/" },
     ],
   },
+  {
+    title: "Custom Sports Categories",
+    links: [
+      { name: "Custom Basketball Uniforms", href: "/custom-basketball-uniforms/" },
+      { name: "Custom Soccer Kits", href: "/custom-soccer-kits/" },
+      { name: "Custom Baseball & Softball", href: "/custom-baseball-softball-uniforms/" },
+      { name: "Running & Marathon Wear", href: "/custom-running-marathon-wear/" },
+      { name: "Training & Warmup Apparel", href: "/custom-training-wear/" },
+      { name: "American Football Uniforms", href: "/custom-american-football-uniforms/" },
+      { name: "Custom Volleyball Uniforms", href: "/custom-volleyball-uniforms/" },
+    ],
+  },
 ];
 
 export default function ResourcesPage() {

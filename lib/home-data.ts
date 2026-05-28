@@ -9,6 +9,8 @@ export const sportsCategories = [
   { title: "Ice Hockey Jerseys", description: "Sublimated hockey jerseys with name and number customization.", cta: "View Hockey", href: "/custom-ice-hockey-jerseys/", image: "/images/sports/hockey.webp" },
   { title: "Tennis Wear", description: "Club shirts, shorts, skirts and team apparel.", cta: "View Tennis", href: "/custom-tennis-wear/", image: "/images/sports/tennis.webp" },
   { title: "Golf Wear", description: "Golf polos, pants and corporate teamwear.", cta: "View Golf", href: "/custom-golf-wear/", image: "/images/sports/golf.webp" },
+  { title: "Rugby Teamwear", description: "Custom rugby jerseys, shorts and high-durability teamwear.", cta: "View Rugby", href: "/custom-rugby-uniforms/", image: "/images/sports/rugby.webp" },
+  { title: "Esports Jerseys", description: "Sublimated pro jerseys and hoodies for gaming teams and events.", cta: "View Esports", href: "/custom-esports-jerseys/", image: "/images/sports/esports.webp" },
 ];
 
 
@@ -47,7 +49,10 @@ export const featuredDesigns = [
   { title: "Rangers Volleyball Set", sport: "Volleyball", description: "Dynamic volleyball uniform design with breathable fit and bold team identity.", image: "/images/designs/rangers-volleyball-set.webp", href: "/free-mockup/" },
   { title: "Titans Football Uniform", sport: "American Football", description: "Powerful custom football uniform design for practice and game day.", image: "/images/designs/titans-football-uniform.webp", href: "/free-mockup/" },
   { title: "Elite Golf Polo Set", sport: "Golf", description: "Clean golf polo design for clubs, events and corporate sportswear programs.", image: "/images/designs/elite-golf-polo-set.webp", href: "/free-mockup/" },
+  { title: "Samoa Rugby Pro Jersey", sport: "Rugby", description: "High-durability rugby jersey with traditional patterns and modern fit.", image: "/images/designs/samoa-rugby-jersey.webp", href: "/free-mockup/" },
+  { title: "Cyber League Pro Jersey", sport: "Esports", description: "Vibrant neon-accented esports jersey for gaming teams and tournaments.", image: "/images/designs/cyber-league-esports.webp", href: "/free-mockup/" },
 ];
+
 
 export const techItems = [
   { title: "Sublimation Printing", description: "Full-color designs are printed into the fabric fibers, helping custom graphics stay sharp through training, washing and competition." },

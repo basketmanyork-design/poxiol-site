@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SportsLandingPage from "@/components/sports/SportsLandingPage";
 import { getSportsPageBySlug } from "@/lib/sports-pages";
+import StructuredData from "@/components/seo/StructuredData";
+import { hockeyPageSchema } from "@/lib/seo-data";
 
 const pageData = getSportsPageBySlug("custom-ice-hockey-jerseys");
 
@@ -11,5 +13,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   if (!pageData) return null;
-  return <SportsLandingPage data={pageData} />;
+  return (
+    <>
+      <StructuredData data={hockeyPageSchema} />
+      <SportsLandingPage data={pageData} />
+    </>
+  );
 }
