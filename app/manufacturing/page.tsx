@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
 import { Factory, Zap, ShieldCheck, Printer, Layers, Globe } from "lucide-react";
+import StructuredData from "@/components/seo/StructuredData";
+import { manufacturingPageSchema } from "@/lib/seo-data";
 
 export const metadata: Metadata = {
   title: "Teamwear Manufacturing Process | OEM Sportswear Manufacturer | POXIOL",
@@ -49,6 +51,7 @@ const timeline = [
 export default function ManufacturingHubPage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <StructuredData data={manufacturingPageSchema} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">

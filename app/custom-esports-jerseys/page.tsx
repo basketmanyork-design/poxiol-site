@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import SportsLandingPage from "@/components/sports/SportsLandingPage";
 import { getSportsPageBySlug } from "@/lib/sports-pages";
 import StructuredData from "@/components/seo/StructuredData";
-import { volleyballPageSchema } from "@/lib/seo-data";
+import { esportsPageSchema } from "@/lib/seo-data";
 
-const pageData = getSportsPageBySlug("custom-volleyball-uniforms");
+const pageData = getSportsPageBySlug("custom-esports-jerseys");
 
 export const metadata: Metadata = {
   title: pageData?.metaTitle,
@@ -15,7 +15,7 @@ export default function Page() {
   if (!pageData) return null;
   return (
     <>
-      <StructuredData data={volleyballPageSchema} />
+      <StructuredData data={esportsPageSchema} />
       <SportsLandingPage data={pageData} />
     </>
   );

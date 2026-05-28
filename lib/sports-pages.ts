@@ -312,7 +312,58 @@ export const sportsPages: SportsPageData[] = [
       { title: "Brands", description: "OEM/ODM training wear collection development." }
     ], faqs: commonFaqs,
   },
+  {
+    slug: "custom-rugby-uniforms",
+    metaTitle: "Custom Rugby Jersey Manufacturer | Rugby Teamwear | POXIOL",
+    metaDescription: "Professional custom rugby jerseys and shorts. Durable, sublimated rugby teamwear for clubs and schools. POXIOL offers MOQ 1 and OEM/ODM services.",
+    eyebrow: "CUSTOM RUGBY TEAMWEAR",
+    h1: "Custom Rugby Jerseys and Uniforms for Clubs",
+    heroText: "Engineered for high-intensity play. Create custom sublimated rugby jerseys and shorts with durable stitching, reinforced collars and performance fabrics.",
+    heroImage: "/images/sports-pages/rugby/hero.png",
+    primaryKeyword: "custom rugby jerseys",
+    productTypes: [
+      { title: "Rugby Jerseys", description: "Durable, high-tensile jerseys built for contact sports." },
+      { title: "Rugby Shorts", description: "Reinforced shorts with internal drawstrings and grip waistbands." },
+      { title: "Training Apparel", description: "Rugby singlets, training tops and warmup gear for teams." },
+      { title: "Club Wear", description: "Custom polo shirts and travel apparel for rugby clubs." }
+    ], features: genericFeatures(),
+    designs: [
+      { title: "Pacific Pro Jersey", description: "Traditional patterns with modern reinforced construction.", image: "/images/designs/samoa-rugby-jersey.webp" },
+      { title: "Elite Club Kit", description: "Clean, professional look for competitive rugby clubs.", image: "/images/designs/united-field-soccer-kit.webp" }
+    ],
+    buyerTypes: [
+      { title: "Rugby Clubs", description: "Professional kits for competitive rugby teams." },
+      { title: "Schools", description: "Durable uniforms for school rugby programs." },
+      { title: "Brands", description: "OEM/ODM rugby apparel development." }
+    ], faqs: commonFaqs,
+  },
+  {
+    slug: "custom-esports-jerseys",
+    metaTitle: "Custom Esports Jersey Manufacturer | Pro Gaming Teamwear | POXIOL",
+    metaDescription: "Professional custom esports jerseys and hoodies for gaming teams and events. Sublimated pro gaming apparel with MOQ 1 and fast design support.",
+    eyebrow: "CUSTOM ESPORTS APPAREL",
+    h1: "Custom Esports Jerseys for Pro Gaming Teams",
+    heroText: "Level up your team's look with vibrant, fully sublimated esports jerseys, hoodies and jackets designed for pro gamers and content creators.",
+    heroImage: "/images/sports-pages/esports/hero.png",
+    primaryKeyword: "custom esports jerseys",
+    productTypes: [
+      { title: "Pro Jerseys", description: "Vibrant sublimated jerseys with custom team graphics and player IDs." },
+      { title: "Esports Hoodies", description: "Premium hoodies and zip-ups for team travel and events." },
+      { title: "Gaming Jackets", description: "Technical jackets designed for pro gaming comfort." },
+      { title: "Event Apparel", description: "Staff and fan apparel for esports tournaments and launches." }
+    ], features: genericFeatures(),
+    designs: [
+      { title: "Cyber Neon Jersey", description: "High-contrast neon graphics for maximum visual impact.", image: "/images/designs/cyber-league-esports.webp" },
+      { title: "Stealth Gaming Set", description: "Dark, professional aesthetic for pro esports organizations.", image: "/images/designs/storm-court-basketball.webp" }
+    ],
+    buyerTypes: [
+      { title: "Pro Teams", description: "Custom pro jerseys for competitive gaming organizations." },
+      { title: "Gaming Clubs", description: "Affordable teamwear for local and online gaming communities." },
+      { title: "Brands", description: "OEM/ODM gaming apparel development." }
+    ], faqs: commonFaqs,
+  },
 ];
+
 
 export function getSportsPageBySlug(slug: string) {
   return sportsPages.find((page) => page.slug === slug);

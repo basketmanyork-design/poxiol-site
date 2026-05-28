@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer } from "@/components/ui";
+import StructuredData from "@/components/seo/StructuredData";
+import { basketballGuideSchema } from "@/lib/seo-data";
 
 export const metadata: Metadata = {
   title: "How to Order Custom Basketball Uniforms for Your Team | POXIOL",
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function GuidePage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <StructuredData data={basketballGuideSchema} />
       <Header />
       <article className="bg-white px-5 py-20 md:px-10 md:py-28 xl:px-20 text-neutral-900">
         <div className="mx-auto max-w-4xl">
