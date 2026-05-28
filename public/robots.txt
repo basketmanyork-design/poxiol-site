@@ -1,9 +1,4 @@
 User-agent: *
 Allow: /
 
-# Keep internal build folders out of search results
-Disallow: /_next/
-Disallow: /api/
-
-# Sitemap
-Sitemap: https://poxiol.com/sitemap.xml
+Sitemap: https://www.poxiol.com/sitemap.xml

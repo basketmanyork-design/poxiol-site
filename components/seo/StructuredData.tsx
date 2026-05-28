@@ -18,8 +18,8 @@ export const organizationSchema = {
   "@type": "Organization",
   "name": "POXIOL Teamwear",
   "alternateName": "POXIOL",
-  "url": "https://poxiol.com/",
-  "logo": "https://poxiol.com/logo.png",
+  "url": "https://www.poxiol.com/",
+  "logo": "https://www.poxiol.com/logo.png",
   "description": "POXIOL is a custom teamwear manufacturer providing multi-sport sports uniforms, free mockups, MOQ 1 custom orders and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.",
   "knowsAbout": [
     "Custom teamwear",
@@ -37,12 +37,12 @@ export const organizationSchema = {
     {
       "@type": "Offer",
       "name": "Free Custom Teamwear Mockup",
-      "url": "https://poxiol.com/free-mockup/"
+      "url": "https://www.poxiol.com/free-mockup/"
     },
     {
       "@type": "Offer",
       "name": "OEM/ODM Teamwear Production",
-      "url": "https://poxiol.com/oem-odm/"
+      "url": "https://www.poxiol.com/oem-odm/"
     }
   ]
 };
@@ -55,7 +55,7 @@ export const websiteSchema = {
   "description": "Custom teamwear and sports uniforms for clubs, schools, events, brands and distributors.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://poxiol.com/?s={search_term_string}",
+    "target": "https://www.poxiol.com/?s={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 };

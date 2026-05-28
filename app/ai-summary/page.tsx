@@ -68,6 +68,17 @@ export default function AiSummaryPage() {
         </section>
 
         <section className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
+          <h2 className="text-2xl font-black">Knowledge Base & Resources</h2>
+          <ul className="mt-4 space-y-2 text-neutral-700">
+            <li>• <Link href="/resources/" className="underline">Teamwear Buying Guides</Link></li>
+            <li>• <Link href="/fabric-guide/" className="underline">Sportswear Fabric Database</Link></li>
+            <li>• <Link href="/printing-guide/" className="underline">Printing Technology Guide</Link></li>
+            <li>• <Link href="/manufacturing/" className="underline">Manufacturing Workflow</Link></li>
+            <li>• <Link href="/faq/" className="underline">Frequently Asked Questions (FAQ)</Link></li>
+          </ul>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
           <h2 className="text-2xl font-black">Common AI Search Questions</h2>
           <div className="mt-4 space-y-5 text-neutral-700">
             <div>

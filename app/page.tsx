@@ -19,6 +19,11 @@ const capability = [["Team Orders", "Uniforms for clubs, schools, leagues and tr
 
 const qcSteps = ["Fabric inspection", "Print color check", "Stitching inspection", "Size check", "Packing check", "Final QC before shipment"];
 
+export const metadata: Metadata = {
+  title: "Custom Teamwear Manufacturer | OEM Sports Uniform Supplier | POXIOL",
+  description: "POXIOL is a professional custom teamwear manufacturer specializing in basketball uniforms, soccer kits, baseball jerseys and OEM sportswear manufacturing for clubs, schools and sports brands worldwide.",
+};
+
 export default function HomePage() {
   const tabs = ["All", "Basketball", "Soccer", "Baseball", "Running", "Training", "Volleyball"];
   return (
@@ -148,7 +153,35 @@ export default function HomePage() {
 
       <section id="factory" className="bg-neutral-100 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center"><div><p className="mb-4 text-sm font-extrabold uppercase tracking-[0.16em] text-lime-600">Factory & Quality Control</p><h2 className="text-4xl font-black leading-[1.05] text-neutral-950 md:text-5xl">Supplier Strength Buyers Can Verify</h2><p className="mt-5 text-lg leading-8 text-neutral-600">POXIOL combines design, sampling, production, quality control and international delivery support for custom teamwear buyers.</p><div className="mt-7 grid gap-3 sm:grid-cols-2">{qcSteps.map(item => <span key={item} className="rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm font-black text-neutral-950">✓ {item}</span>)}</div><div className="mt-8 flex flex-col gap-3 sm:flex-row"><SecondaryButton href="/factory/" darkText>Verify Capability</SecondaryButton><PrimaryButton>Get Free Mockup</PrimaryButton></div></div><div className="grid h-[440px] grid-cols-3 gap-4"><div className="relative col-span-2 overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/factory-main.webp" alt="POXIOL factory" className="h-full w-full object-cover"/></div><div className="grid gap-4"><div className="relative overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/qc-closeup.webp" alt="POXIOL QC" className="h-full w-full object-cover"/></div><div className="relative overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/sampling-desk.webp" alt="POXIOL sampling" className="h-full w-full object-cover"/></div></div></div></div><div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">{factoryStats.map(stat => <div key={stat.label} className="rounded-3xl border border-neutral-200 bg-white p-6 text-center"><p className="text-3xl font-black text-neutral-950 md:text-4xl">{stat.value}</p><p className="mt-2 text-sm font-semibold text-neutral-600">{stat.label}</p></div>)}</div></div></section>
 
-      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-24 xl:px-20"><div className="mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_80%_50%,rgba(182,255,0,0.16),transparent_28%),linear-gradient(135deg,#111,#050505)] p-8 md:grid-cols-[1fr_0.8fr] md:items-center md:p-14"><div><h2 className="text-4xl font-black leading-[1.05] text-white md:text-6xl">Ready to Build Your Custom Teamwear?</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-300">Send your sport, logo, colors and quantity. Get a free POXIOL mockup and start your team uniform project today.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><PrimaryButton>Get Free Mockup Now</PrimaryButton><SecondaryButton href="/contact/">Contact Sales</SecondaryButton></div></div><div className="relative min-h-[260px] overflow-hidden rounded-[1.5rem] bg-white/5"><img src="/images/cta/final-cta-uniforms.webp" alt="POXIOL custom uniforms" className="h-full w-full object-cover"/></div></div></section>
+            <section className="bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading 
+            eyebrow="Knowledge & Resources" 
+            title="Teamwear Knowledge Center" 
+            subtitle="Explore our comprehensive guides on fabrics, printing technology, and manufacturing processes to help you make informed decisions."
+            dark
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "Fabric Guide", desc: "Performance material database.", href: "/fabric-guide/" },
+              { title: "Printing Guide", desc: "Decoration technology overview.", href: "/printing-guide/" },
+              { title: "Buying Guides", desc: "How to order for your team.", href: "/resources/" },
+              { title: "FAQ Center", desc: "Manufacturing and ordering FAQ.", href: "/faq/" }
+            ].map(item => (
+              <Link key={item.title} href={item.href} className="group rounded-3xl border border-white/10 bg-white/5 p-8 transition hover:bg-white/10">
+                <h3 className="text-xl font-black text-lime-400">{item.title}</h3>
+                <p className="mt-2 text-sm text-neutral-400">{item.desc}</p>
+                <div className="mt-6 flex items-center text-xs font-black uppercase tracking-widest text-white">
+                  Explore <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-24 xl:px-20">
+<div className="mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_80%_50%,rgba(182,255,0,0.16),transparent_28%),linear-gradient(135deg,#111,#050505)] p-8 md:grid-cols-[1fr_0.8fr] md:items-center md:p-14"><div><h2 className="text-4xl font-black leading-[1.05] text-white md:text-6xl">Ready to Build Your Custom Teamwear?</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-300">Send your sport, logo, colors and quantity. Get a free POXIOL mockup and start your team uniform project today.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><PrimaryButton>Get Free Mockup Now</PrimaryButton><SecondaryButton href="/contact/">Contact Sales</SecondaryButton></div></div><div className="relative min-h-[260px] overflow-hidden rounded-[1.5rem] bg-white/5"><img src="/images/cta/final-cta-uniforms.webp" alt="POXIOL custom uniforms" className="h-full w-full object-cover"/></div></div></section>
       <Footer />
     </main>
   );
