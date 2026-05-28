@@ -15,7 +15,7 @@ const comparisonData = [
   { feature: "B2B Customization", poxiol: "Full OEM/ODM Support", others: "Basic Logo Printing" }
 ];
 
-const capability = [["Team Orders", "Uniforms for clubs, schools, leagues and training groups."], ["OEM/ODM Collections", "Private label teamwear for brands, wholesalers and distributors."], ["Event Apparel", "Running, tournament, staff and race apparel for deadline-driven projects."], ["Repeat Programs", "Roster updates, reorder support and multi-season uniform systems."]];
+const capability = [["Team Orders", "Uniforms for clubs, schools, leagues and training groups."], ["OEM/ODM Collectioimport { Metadata } from "next";\nns", "Private label teamwear for brands, wholesalers and distributors."], ["Event Apparel", "Running, tournament, staff and race apparel for deadline-driven projects."], ["Repeat Programs", "Roster updates, reorder support and multi-season uniform systems."]];
 
 const qcSteps = ["Fabric inspection", "Print color check", "Stitching inspection", "Size check", "Packing check", "Final QC before shipment"];
 
