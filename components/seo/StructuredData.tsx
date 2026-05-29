@@ -47,6 +47,19 @@ export const organizationSchema = {
   ]
 };
 
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "POXIOL",
+  "url": "https://www.poxiol.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.poxiol.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+
 export const fullFaqPageSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
