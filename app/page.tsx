@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
 import { sportsCategories, uspCards, solutionCards, processSteps, featuredDesigns, techItems, galleryItems, factoryStats } from "@/lib/home-data";
 import StructuredData, { organizationSchema, websiteSchema, homepageFaqSchema } from "@/components/seo/StructuredData";
+import TeamwearKnowledgeCenter from "@/components/sections/TeamwearKnowledgeCenter";
+import FeaturedTeamwearGuides from "@/components/sections/FeaturedTeamwearGuides";
+
 
 const trustProof = [["15+", "Years Experience"], ["30,000+", "Monthly Capacity"], ["MOQ 1", "Sample Orders"], ["2-3D", "Fast Sampling"], ["OEM/ODM", "Brand Support"], ["180D", "Quality Support"]];
 
@@ -57,7 +60,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><PrimaryButton>Get Free Mockup</PrimaryButton><SecondaryButton href="#sports-categories">Explore Sports</SecondaryButton></div>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><PrimaryButton>Get Free Mockup</PrimaryButton><SecondaryButton href="#sports-categories">Explore Sports</SecondaryButton><SecondaryButton href="/resources/">Explore Resources</SecondaryButton></div>
+
           </div>
           <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl md:min-h-[620px]"><img src="/images/hero/hero-multisport-teamwear.png" alt="POXIOL custom teamwear hero" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute left-6 top-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">1-2H</p><p className="text-sm font-bold text-white">Design Support</p></div><div className="absolute bottom-6 right-6 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"><p className="text-3xl font-black text-lime-400">180D</p><p className="text-sm font-bold text-white">Quality Support</p></div></div>
 
@@ -153,33 +157,9 @@ export default function HomePage() {
 
       <section id="factory" className="bg-neutral-100 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-7xl"><div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center"><div><p className="mb-4 text-sm font-extrabold uppercase tracking-[0.16em] text-lime-600">Factory & Quality Control</p><h2 className="text-4xl font-black leading-[1.05] text-neutral-950 md:text-5xl">Supplier Strength Buyers Can Verify</h2><p className="mt-5 text-lg leading-8 text-neutral-600">POXIOL combines design, sampling, production, quality control and international delivery support for custom teamwear buyers.</p><div className="mt-7 grid gap-3 sm:grid-cols-2">{qcSteps.map(item => <span key={item} className="rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-sm font-black text-neutral-950">✓ {item}</span>)}</div><div className="mt-8 flex flex-col gap-3 sm:flex-row"><SecondaryButton href="/factory/" darkText>Verify Capability</SecondaryButton><PrimaryButton>Get Free Mockup</PrimaryButton></div></div><div className="grid h-[440px] grid-cols-3 gap-4"><div className="relative col-span-2 overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/factory-main.webp" alt="POXIOL factory" className="h-full w-full object-cover"/></div><div className="grid gap-4"><div className="relative overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/qc-closeup.webp" alt="POXIOL QC" className="h-full w-full object-cover"/></div><div className="relative overflow-hidden rounded-[2rem] bg-neutral-300"><img src="/images/factory/sampling-desk.webp" alt="POXIOL sampling" className="h-full w-full object-cover"/></div></div></div></div><div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">{factoryStats.map(stat => <div key={stat.label} className="rounded-3xl border border-neutral-200 bg-white p-6 text-center"><p className="text-3xl font-black text-neutral-950 md:text-4xl">{stat.value}</p><p className="mt-2 text-sm font-semibold text-neutral-500">{stat.label}</p></div>)}</div></div></section>
 
-      <section className="bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading 
-            eyebrow="Knowledge & Resources" 
-            title="Teamwear Knowledge Center" 
-            subtitle="Explore our comprehensive guides on fabrics, printing technology, and manufacturing processes to help you make informed decisions."
-            dark
-            center
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              { title: "Fabric Guide", desc: "Performance material database.", href: "/fabric-guide/" },
-              { title: "Printing Guide", desc: "Decoration technology overview.", href: "/printing-guide/" },
-              { title: "Buying Guides", desc: "How to order for your team.", href: "/resources/" },
-              { title: "FAQ Center", desc: "Manufacturing and ordering FAQ.", href: "/faq/" }
-            ].map(item => (
-              <Link key={item.title} href={item.href} className="group rounded-3xl border border-white/10 bg-white/5 p-8 transition hover:bg-white/10">
-                <h3 className="text-xl font-black text-lime-400">{item.title}</h3>
-                <p className="mt-2 text-sm text-neutral-400">{item.desc}</p>
-                <div className="mt-6 flex items-center text-xs font-black uppercase tracking-widest text-white">
-                  Explore <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TeamwearKnowledgeCenter />
+      <FeaturedTeamwearGuides />
+
 
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-24 xl:px-20">
         <div className="mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_80%_50%,rgba(182,255,0,0.16),transparent_28%),linear-gradient(135deg,#111,#050505)] p-8 md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
