@@ -22,7 +22,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The academy required breathable custom basketball uniforms for tournament competition and training programs.",
     solution: "POXIOL developed sublimated basketball jerseys and shorts with quick-dry polyester, custom player names, individual numbers and team branding.",
     result: "The academy launched the season with a unified team identity and durable uniforms suitable for competitive play.",
-    image: "/images/projects/basketball-academy.webp",
+    image: "https://sc02.alicdn.com/kf/A772a22928d684adb8167d7d829671a08I.png",
   },
   {
     slug: "australia-soccer-club-kit-project",
@@ -34,7 +34,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The club needed home and away kits with sponsor visibility and consistent branding.",
     solution: "POXIOL produced match jerseys, training shirts, goalkeeper kits, sponsor branding and custom packaging.",
     result: "The club improved its visual identity and launched new teamwear before league season.",
-    image: "/images/projects/soccer-club.webp",
+    image: "https://sc02.alicdn.com/kf/Ab583a0a8bb5c4ff2a81a568159e94033H.png",
   },
   {
     slug: "school-athletics-multi-sport-program",
@@ -46,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The school needed uniforms for multiple sports under one unified identity.",
     solution: "POXIOL supplied basketball uniforms, soccer kits and volleyball apparel with consistent color standards.",
     result: "The school established a professional athletic identity across all sports programs.",
-    image: "/images/projects/school-multi-sport.webp",
+    image: "https://sc02.alicdn.com/kf/A0f261719535c4e9aa43fd2bcb07cb17dB.png",
   },
   {
     slug: "europe-volleyball-team-apparel-project",
@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The team needed lightweight stretch uniforms for competitive matches.",
     solution: "POXIOL selected stretch performance fabric and produced custom sublimated volleyball uniforms.",
     result: "The team received comfortable tournament uniforms with a professional visual identity.",
-    image: "/images/projects/volleyball-team.webp",
+    image: "https://sc02.alicdn.com/kf/A4533af8b04db4d1298efa1baf63d11a8a.png",
   },
   {
     slug: "middle-east-sports-event-program",
@@ -70,7 +70,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The event required large-volume custom uniforms with strict delivery deadlines.",
     solution: "POXIOL provided mass production, sublimation printing, event branding and logistics planning.",
     result: "Uniforms were delivered before event launch and supported a unified event image.",
-    image: "/images/projects/event-program.webp",
+    image: "https://sc02.alicdn.com/kf/Ae0775326d0f14eae9deb24588c952252r.png",
   },
   {
     slug: "canada-basketball-club-program",
@@ -82,7 +82,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The club required custom reversible uniforms for training and competition.",
     solution: "POXIOL developed reversible basketball jerseys with team colors, numbers and sponsor graphics.",
     result: "The club improved training flexibility and match-day presentation.",
-    image: "/images/projects/canada-basketball.webp",
+    image: "https://sc02.alicdn.com/kf/A4f2c0bb476fe4b92b27c1438f156e7c03.png",
   },
   {
     slug: "uk-football-academy-kit-program",
@@ -94,7 +94,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The academy needed soccer kits and training wear for youth teams.",
     solution: "POXIOL produced match kits, training shirts and goalkeeper apparel with academy branding.",
     result: "The academy created a consistent professional appearance across age groups.",
-    image: "/images/projects/uk-soccer.webp",
+    image: "https://sc02.alicdn.com/kf/Ad40bd4153a154c6d9cf2eb6e7323340eZ.png",
   },
   {
     slug: "private-label-teamwear-brand-launch",
@@ -106,7 +106,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "A new brand needed private label basketball and soccer apparel for launch.",
     solution: "POXIOL supported OEM production, custom labels, hang tags and branded packaging.",
     result: "The brand launched its first teamwear collection with professional presentation.",
-    image: "/images/projects/brand-launch.webp",
+    image: "https://sc02.alicdn.com/kf/A50d83c550d9f43548963f0a54327adb3N.png",
   },
   {
     slug: "distributor-bulk-teamwear-program",
@@ -118,7 +118,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "A distributor needed scalable production across multiple sports categories.",
     solution: "POXIOL provided basketball, soccer and baseball teamwear with repeatable production standards.",
     result: "The distributor expanded its product offering and improved supply reliability.",
-    image: "/images/projects/distributor-bulk.webp",
+    image: "https://sc02.alicdn.com/kf/A52b2f94464374e28adda193b6547ef4dw.png",
   },
   {
     slug: "university-athletics-project",
@@ -130,7 +130,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The university needed coordinated apparel across several athletic teams.",
     solution: "POXIOL created custom teamwear using consistent color standards, sizing and packaging.",
     result: "The athletics program improved uniform consistency across departments.",
-    image: "/images/projects/university-athletics.webp",
+    image: "https://sc02.alicdn.com/kf/A90d246ea5a2a4e6fb858541ecb9128b24.png",
   },
 ];
 
