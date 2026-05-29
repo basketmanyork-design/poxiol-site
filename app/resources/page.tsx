@@ -11,26 +11,26 @@ const resourceCategories = [
   {
     title: "Custom Teamwear Buying Guides",
     links: [
-      { name: "Basketball Uniform Guide", href: "/guides/how-to-order-custom-basketball-uniforms-for-your-team/" },
-      { name: "Soccer Jersey Guide", href: "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/" },
-      { name: "Baseball Uniform Guide", href: "/guides/how-to-order-custom-basketball-uniforms-for-your-team/" }, // Placeholder for now
-      { name: "Teamwear MOQ Guide", href: "/guides/moq-1-custom-teamwear-how-it-works/" },
+      { name: "Basketball Uniform Guide", href: "/how-to-order-custom-basketball-uniforms/" },
+      { name: "Soccer Jersey Guide", href: "/soccer-jersey-buying-guide/" },
+      { name: "Teamwear Manufacturer Guide", href: "/how-to-choose-a-teamwear-manufacturer/" },
+      { name: "Choosing Manufacturing Models", href: "/oem-vs-odm-sportswear/" },
     ],
   },
   {
     title: "Sportswear Fabric Knowledge",
     links: [
       { name: "Fabric Guide Overview", href: "/fabric-guide/" },
-      { name: "Moisture-Wicking Fabric Guide", href: "/fabric-guide/" },
-      { name: "Mesh Fabric Guide", href: "/fabric-guide/" },
-      { name: "Polyester Sports Fabric Guide", href: "/fabric-guide/" },
+      { name: "Best Sportswear Fabrics", href: "/best-sportswear-fabrics/" },
+      { name: "Moisture-Wicking Technology", href: "/fabric-guide/" },
+      { name: "Polyester Sports Fabrics", href: "/fabric-guide/" },
     ],
   },
   {
     title: "Sportswear Printing Guides",
     links: [
       { name: "Printing Guide Overview", href: "/printing-guide/" },
-      { name: "Sublimation vs Screen Printing", href: "/guides/sublimation-vs-screen-printing-for-custom-teamwear/" },
+      { name: "Sublimation Printing Guide", href: "/sublimation-printing-guide/" },
       { name: "Embroidery for Teamwear", href: "/printing-guide/" },
       { name: "Heat Transfer Printing", href: "/printing-guide/" },
     ],
@@ -39,37 +39,39 @@ const resourceCategories = [
     title: "Sportswear Manufacturing Knowledge",
     links: [
       { name: "Manufacturing Hub", href: "/manufacturing/" },
-      { name: "OEM Sportswear Guide", href: "/guides/oem-odm-sportswear-manufacturing-guide-for-brands/" },
-      { name: "ODM Teamwear Guide", href: "/guides/oem-odm-sportswear-manufacturing-guide-for-brands/" },
-      { name: "Sportswear Production Process", href: "/manufacturing/" },
-      { name: "Quality Control Guide", href: "/manufacturing/" },
+      { name: "OEM vs ODM Manufacturing", href: "/oem-vs-odm-sportswear/" },
+      { name: "Production Process Guide", href: "/manufacturing/" },
+      { name: "Quality Control Standards", href: "/manufacturing/" },
+      { name: "Private Label Solutions", href: "/manufacturing/" },
     ],
   },
   {
     title: "Regional & B2B Solutions",
     links: [
       { name: "School Teamwear Solutions", href: "/custom-basketball-uniforms-for-schools/" },
+      { name: "Youth Academy Uniforms", href: "/custom-soccer-uniforms-for-academies/" },
       { name: "Australia Teamwear Partner", href: "/soccer-jersey-supplier-australia/" },
-      { name: "OEM Basketball Manufacturing", href: "/oem-basketball-apparel-manufacturer/" },
-      { name: "Distributor & Wholesaler Support", href: "/manufacturing/" },
+      { name: "USA Soccer Teamwear", href: "/soccer-teamwear-supplier-usa/" },
+      { name: "OEM Basketball Specialist", href: "/oem-basketball-apparel-manufacturer/" },
     ],
   },
   {
     title: "Success Stories",
     links: [
       { name: "All Projects & Case Studies", href: "/projects/" },
-      { name: "USA Basketball Academy Case Study", href: "/projects/usa-basketball-academy-project/" },
-      { name: "Australia Soccer Club Case Study", href: "/projects/australia-soccer-club-project/" },
-      { name: "Europe Volleyball Case Study", href: "/projects/europe-volleyball-team-project/" },
+      { name: "USA Basketball Academy", href: "/projects/usa-basketball-academy-uniform-program/" },
+      { name: "Australia Soccer Club", href: "/projects/australia-soccer-club-kit-project/" },
+      { name: "European Volleyball Team", href: "/projects/europe-volleyball-team-apparel-project/" },
     ],
   },
   {
     title: "FAQ Center",
-
     links: [
       { name: "General FAQ", href: "/faq/" },
+      { name: "Basketball FAQ", href: "/faq/" },
+      { name: "Soccer FAQ", href: "/faq/" },
       { name: "Manufacturing FAQ", href: "/faq/" },
-      { name: "Printing FAQ", href: "/faq/" },
+      { name: "Shipping & Payments FAQ", href: "/faq/" },
     ],
   },
   {
@@ -78,16 +80,13 @@ const resourceCategories = [
       { name: "Custom Basketball Uniforms", href: "/custom-basketball-uniforms/" },
       { name: "Custom Soccer Kits", href: "/custom-soccer-kits/" },
       { name: "Custom Baseball & Softball", href: "/custom-baseball-softball-uniforms/" },
-      { name: "Running & Marathon Wear", href: "/custom-running-marathon-wear/" },
-      { name: "Training & Warmup Apparel", href: "/custom-training-wear/" },
-      { name: "American Football Uniforms", href: "/custom-american-football-uniforms/" },
       { name: "Custom Volleyball Uniforms", href: "/custom-volleyball-uniforms/" },
-      { name: "Custom Rugby Uniforms", href: "/custom-rugby-uniforms/" },
+      { name: "Custom American Football", href: "/custom-american-football-uniforms/" },
       { name: "Custom Esports Jerseys", href: "/custom-esports-jerseys/" },
-      { name: "Custom Ice Hockey Jerseys", href: "/custom-ice-hockey-jerseys/" },
     ],
   },
 ];
+
 
 
 export default function ResourcesPage() {

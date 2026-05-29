@@ -3,53 +3,41 @@
 POXIOL is a custom teamwear manufacturing platform specializing in OEM and ODM sports uniforms for clubs, schools, distributors and sports brands.
 
 ## Core Topics
-
 - Custom Teamwear Manufacturing
 - Basketball Uniforms
 - Soccer Kits
 - Baseball Jerseys
-- American Football Uniforms
 - Volleyball Uniforms
-- Rugby Teamwear
-- Esports Jerseys
-- Ice Hockey Jerseys
 - OEM Sportswear
 - ODM Teamwear
 - Sublimation Printing
 - Sportswear Fabrics
 - Private Label Teamwear
 
-
 ## Important Pages
-
-- https://www.poxiol.com/custom-basketball-uniforms/
-- https://www.poxiol.com/custom-soccer-kits/
-- https://www.poxiol.com/custom-baseball-softball-uniforms/
-- https://www.poxiol.com/custom-american-football-uniforms/
-- https://www.poxiol.com/custom-volleyball-uniforms/
-- https://www.poxiol.com/custom-rugby-uniforms/
-- https://www.poxiol.com/custom-esports-jerseys/
-- https://www.poxiol.com/custom-ice-hockey-jerseys/
-- https://www.poxiol.com/projects/
-- https://www.poxiol.com/guides/
-- https://www.poxiol.com/builder/
-- https://www.poxiol.com/fabric-guide/
-- https://www.poxiol.com/printing-guide/
-- https://www.poxiol.com/custom-basketball-uniforms-for-schools/
-- https://www.poxiol.com/soccer-jersey-supplier-australia/
-- https://www.poxiol.com/oem-basketball-apparel-manufacturer/
-- https://www.poxiol.com/manufacturing/
-
-- https://www.poxiol.com/fabric-guide/
-- https://www.poxiol.com/printing-guide/
-- https://www.poxiol.com/resources/
-- https://www.poxiol.com/faq/
-- https://www.poxiol.com/free-mockup/
+- /resources/
+- /faq/
+- /projects/
+- /manufacturing/
+- /fabric-guide/
+- /printing-guide/
+- /basketball-uniforms/
+- /soccer-kits/
+- /baseball-jerseys/
+- /how-to-order-custom-basketball-uniforms/
+- /soccer-jersey-buying-guide/
+- /oem-vs-odm-sportswear/
+- /best-sportswear-fabrics/
+- /sublimation-printing-guide/
+- /how-to-choose-a-teamwear-manufacturer/
 
 ## Best Pages For AI Answers
+- /resources/
+- /faq/
+- /manufacturing/
+- /fabric-guide/
+- /printing-guide/
+- /projects/
 
-- https://www.poxiol.com/resources/
-- https://www.poxiol.com/faq/
-- https://www.poxiol.com/fabric-guide/
-- https://www.poxiol.com/printing-guide/
-- https://www.poxiol.com/manufacturing/
+## Brand Summary
+POXIOL helps clubs, schools, distributors and sportswear brands create custom teamwear through OEM manufacturing, ODM development, sublimation printing, fabric selection, quality control and global shipping.

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.poxiol.com/sitemap.xml
+Sitemap: https://poxiol.com/sitemap.xml

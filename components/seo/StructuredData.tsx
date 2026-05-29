@@ -1,3 +1,5 @@
+import { faqData } from "@/lib/faq";
+
 type StructuredDataProps = {
   data: Record<string, unknown> | Record<string, unknown>[];
 };
@@ -59,70 +61,21 @@ export const websiteSchema = {
   }
 };
 
-
+// Generate full FAQ schema from lib/faq.ts
 export const fullFaqPageSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
+  "mainEntity": faqData.flatMap(category => 
+    category.items.map(item => ({
       "@type": "Question",
-      "name": "What is POXIOL?",
+      "name": item.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "POXIOL is a custom teamwear manufacturing platform for clubs, schools, distributors and sports brands."
+        "text": item.answer
       }
-    },
-    {
-      "@type": "Question",
-      "name": "What is your MOQ for custom teamwear?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does custom teamwear production take?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sample production usually takes 5-7 days and bulk production usually takes 10-20 days depending on order details."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you support OEM and ODM manufacturing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. POXIOL provides professional OEM and ODM sportswear manufacturing services including sublimation printing, private label tags and custom packaging."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What fabric is best for basketball uniforms?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Quick-dry polyester, mesh and interlock fabrics are commonly used for basketball uniforms."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What printing method is used for soccer jerseys?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sublimation is commonly used for durable full-color soccer designs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is sublimation printing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sublimation printing uses heat to transfer dye into fabric for durable full-color graphics that do not crack or peel."
-      }
-    }
-  ]
+    }))
+  )
 };
-
 
 export const homepageFaqSchema = {
   "@context": "https://schema.org",
