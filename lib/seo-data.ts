@@ -275,14 +275,326 @@ export const hockeyPageSchema = {
   ]
 };
 
-export const manufacturingPageSchema = {
-
+export const manufacturingHubSchema = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "OEM/ODM Sportswear Manufacturing",
-  "provider": {
-    "@type": "Organization",
-    "name": "POXIOL"
-  },
-  "description": "Professional teamwear manufacturing services including sublimation printing, private label production, and scalable OEM/ODM solutions."
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.poxiol.com/#organization",
+      "name": "POXIOL",
+      "url": "https://www.poxiol.com/",
+      "description": "POXIOL is a custom teamwear manufacturing platform specializing in OEM and ODM sports uniforms for clubs, schools, distributors and sports brands.",
+      "brand": {
+        "@type": "Brand",
+        "name": "POXIOL"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.poxiol.com/manufacturing#webpage",
+      "url": "https://www.poxiol.com/manufacturing",
+      "name": "OEM Sportswear Manufacturing | Custom Teamwear Factory | POXIOL",
+      "description": "POXIOL is a professional OEM and ODM sportswear manufacturer specializing in custom basketball uniforms, soccer kits, baseball jerseys, volleyball apparel and private label teamwear. Learn about our production process, quality control, sublimation printing and global shipping solutions.",
+      "isPartOf": {
+        "@id": "https://www.poxiol.com/#website"
+      },
+      "about": {
+        "@id": "https://www.poxiol.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.poxiol.com/manufacturing#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is your MOQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "POXIOL supports flexible MOQ options starting from sample quantities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you produce samples before bulk production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Sample production is available for design and quality confirmation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you support OEM manufacturing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We provide complete OEM sportswear manufacturing services."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you support ODM manufacturing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We offer ODM solutions for brands and organizations looking for faster development."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What printing method do you recommend?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sublimation printing is recommended for most teamwear applications due to durability and design flexibility."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use my own brand label?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Private label branding is fully supported."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you ship worldwide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. POXIOL ships globally to clubs, schools, distributors and sports brands."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.poxiol.com/manufacturing#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.poxiol.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Manufacturing",
+          "item": "https://www.poxiol.com/manufacturing"
+        }
+      ]
+    }
+  ]
 };
+
+export const fabricGuideSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.poxiol.com/#organization",
+      "name": "POXIOL",
+      "url": "https://www.poxiol.com/",
+      "description": "POXIOL is a custom teamwear manufacturing platform specializing in OEM and ODM sports uniforms for clubs, schools, distributors and sports brands.",
+      "brand": {
+        "@type": "Brand",
+        "name": "POXIOL"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.poxiol.com/fabric-guide#webpage",
+      "url": "https://www.poxiol.com/fabric-guide",
+      "name": "Sportswear Fabric Guide | Teamwear Fabric Database | POXIOL",
+      "description": "Explore POXIOL sportswear fabric guide for custom teamwear, including mesh fabric, interlock fabric, bird eye fabric, quick-dry polyester, spandex sports fabric and moisture-wicking materials for basketball, soccer, baseball, volleyball and team sports.",
+      "about": [
+        "Sportswear fabrics",
+        "Teamwear materials",
+        "Sublimation fabrics",
+        "Performance sportswear"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.poxiol.com/fabric-guide#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What fabric is best for basketball uniforms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mesh fabric, quick-dry polyester and interlock fabric are commonly used for basketball uniforms because they provide breathability, comfort and good printing results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What fabric is best for soccer jerseys?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Interlock fabric, bird eye fabric and quick-dry polyester are popular choices for soccer jerseys."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What fabric works best with sublimation printing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Polyester-based fabrics are best for sublimation printing because the dye bonds well with polyester fibers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is mesh fabric good for sports uniforms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Mesh fabric is breathable and lightweight, making it suitable for basketball, training wear and warm-weather sportswear."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is moisture-wicking fabric?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Moisture-wicking fabric helps move sweat away from the body to improve comfort during sports activity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I choose fabric before production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. POXIOL can recommend fabric options before sample or bulk production."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is spandex good for teamwear?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spandex blends are useful for sportswear that requires flexibility and movement, such as volleyball and training apparel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide fabric recommendations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. POXIOL recommends fabric based on sport type, printing method, design requirements and target use."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.poxiol.com/fabric-guide#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.poxiol.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Fabric Guide",
+          "item": "https://www.poxiol.com/fabric-guide"
+        }
+      ]
+    }
+  ]
+};
+
+export const printingGuideSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.poxiol.com/#organization",
+      "name": "POXIOL",
+      "url": "https://www.poxiol.com/",
+      "description": "POXIOL is a custom teamwear manufacturing platform specializing in OEM and ODM sports uniforms for clubs, schools, distributors and sports brands.",
+      "brand": {
+        "@type": "Brand",
+        "name": "POXIOL"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.poxiol.com/printing-guide#webpage",
+      "url": "https://www.poxiol.com/printing-guide",
+      "name": "Sportswear Printing Guide | Sublimation, Screen Printing & Embroidery | POXIOL",
+      "description": "Learn about sublimation printing, screen printing, embroidery and heat transfer methods for custom teamwear, basketball uniforms, soccer kits and sportswear manufacturing.",
+      "about": [
+        "Sublimation printing",
+        "Screen printing",
+        "Embroidery",
+        "Heat transfer printing",
+        "Sportswear decoration"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.poxiol.com/printing-guide#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best printing method for teamwear?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sublimation is usually the best option for fully customized sports uniforms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does sublimation crack or peel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The dye becomes part of the fabric."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can embroidery be combined with sublimation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, depending on product type and design requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is screen printing cheaper?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It can be economical for simple graphics and larger quantities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can player names and numbers be customized?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Heat transfer and sublimation are commonly used."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.poxiol.com/printing-guide#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.poxiol.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Printing Guide",
+          "item": "https://www.poxiol.com/printing-guide"
+        }
+      ]
+    }
+  ]
+};
+

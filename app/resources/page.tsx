@@ -46,7 +46,26 @@ const resourceCategories = [
     ],
   },
   {
+    title: "Regional & B2B Solutions",
+    links: [
+      { name: "School Teamwear Solutions", href: "/custom-basketball-uniforms-for-schools/" },
+      { name: "Australia Teamwear Partner", href: "/soccer-jersey-supplier-australia/" },
+      { name: "OEM Basketball Manufacturing", href: "/oem-basketball-apparel-manufacturer/" },
+      { name: "Distributor & Wholesaler Support", href: "/manufacturing/" },
+    ],
+  },
+  {
+    title: "Success Stories",
+    links: [
+      { name: "All Projects & Case Studies", href: "/projects/" },
+      { name: "USA Basketball Academy Case Study", href: "/projects/usa-basketball-academy-project/" },
+      { name: "Australia Soccer Club Case Study", href: "/projects/australia-soccer-club-project/" },
+      { name: "Europe Volleyball Case Study", href: "/projects/europe-volleyball-team-project/" },
+    ],
+  },
+  {
     title: "FAQ Center",
+
     links: [
       { name: "General FAQ", href: "/faq/" },
       { name: "Manufacturing FAQ", href: "/faq/" },
@@ -63,9 +82,13 @@ const resourceCategories = [
       { name: "Training & Warmup Apparel", href: "/custom-training-wear/" },
       { name: "American Football Uniforms", href: "/custom-american-football-uniforms/" },
       { name: "Custom Volleyball Uniforms", href: "/custom-volleyball-uniforms/" },
+      { name: "Custom Rugby Uniforms", href: "/custom-rugby-uniforms/" },
+      { name: "Custom Esports Jerseys", href: "/custom-esports-jerseys/" },
+      { name: "Custom Ice Hockey Jerseys", href: "/custom-ice-hockey-jerseys/" },
     ],
   },
 ];
+
 
 export default function ResourcesPage() {
   return (

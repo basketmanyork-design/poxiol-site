@@ -35,11 +35,12 @@ function genericFeatures() {
 export const sportsPages: SportsPageData[] = [
   {
     slug: "custom-basketball-uniforms",
-    metaTitle: "Custom Basketball Uniforms Manufacturer | POXIOL Teamwear",
-    metaDescription: "POXIOL provides custom basketball jerseys, shorts and full team uniforms with sublimation printing, MOQ 1, free mockup, fast sampling and OEM/ODM service.",
+    metaTitle: "Custom Basketball Uniform Manufacturer | Sublimated Basketball Jerseys | POXIOL",
+    metaDescription: "POXIOL is a professional custom basketball uniform manufacturer specializing in OEM teamwear, sublimation printing, private label sportswear and custom uniforms for clubs, schools, distributors and sports brands worldwide.",
     eyebrow: "CUSTOM BASKETBALL UNIFORMS",
-    h1: "Custom Basketball Uniforms for Teams, Clubs and Schools",
-    heroText: "Create professional basketball jerseys, shorts, reversible sets and warmups with POXIOL custom sublimation printing, flexible MOQ and fast sampling support.",
+    h1: "Custom Basketball Uniform Manufacturer",
+    heroText: "POXIOL provides professional custom teamwear manufacturing for basketball uniforms, reversible jerseys, youth basketball teamwear. We support clubs, schools, academies, distributors and sports brands with fast mockups, flexible MOQ and reliable production.",
+
     heroImage: "/images/sports-pages/basketball/hero.png",
     primaryKeyword: "custom basketball uniforms",
     productTypes: [
@@ -65,11 +66,12 @@ export const sportsPages: SportsPageData[] = [
   },
   {
     slug: "custom-soccer-kits",
-    metaTitle: "Custom Soccer Kits Manufacturer | POXIOL Teamwear",
-    metaDescription: "Custom soccer jerseys, shorts, socks and goalkeeper kits for clubs, schools and tournaments. POXIOL offers free mockup, sublimation printing, MOQ 1 and OEM/ODM production.",
-    eyebrow: "CUSTOM SOCCER KITS",
-    h1: "Custom Soccer Kits for Clubs, Schools and Tournaments",
-    heroText: "Build complete soccer kits with custom jerseys, shorts, socks, goalkeeper kits and training shirts for clubs, academies and school teams.",
+    metaTitle: "Custom Soccer Jersey Manufacturer | Soccer Kits & Teamwear | POXIOL",
+    metaDescription: "POXIOL is a professional custom soccer jersey manufacturer specializing in OEM teamwear, sublimation printing, private label sportswear and custom uniforms for clubs, schools, distributors and sports brands worldwide.",
+    eyebrow: "CUSTOM SOCCER TEAMWEAR",
+    h1: "Custom Soccer Jersey Manufacturer",
+    heroText: "POXIOL provides professional custom teamwear manufacturing for soccer jerseys, football kits, goalkeeper jerseys, youth soccer uniforms. We support clubs, schools, academies, distributors and sports brands with fast mockups, flexible MOQ and reliable production.",
+
     heroImage: "/images/sports-pages/soccer/hero.png",
     primaryKeyword: "custom soccer kits",
     productTypes: [
@@ -93,11 +95,12 @@ export const sportsPages: SportsPageData[] = [
   },
   {
     slug: "custom-baseball-softball-uniforms",
-    metaTitle: "Custom Baseball & Softball Uniforms Manufacturer | POXIOL",
-    metaDescription: "POXIOL creates custom baseball and softball uniforms including button jerseys, pants, caps and full team sets with sublimation printing and OEM/ODM service.",
-    eyebrow: "CUSTOM BASEBALL & SOFTBALL UNIFORMS",
-    h1: "Custom Baseball & Softball Uniforms for Teams",
-    heroText: "Create button-front baseball jerseys, pants, caps and softball team sets with custom names, numbers, colors and sublimation graphics.",
+    metaTitle: "Custom Baseball Jersey Manufacturer | Baseball Uniforms | POXIOL",
+    metaDescription: "POXIOL is a professional custom baseball uniform manufacturer specializing in OEM teamwear, sublimation printing, button jerseys, pants and custom uniforms for clubs, schools, distributors and sports brands worldwide.",
+    eyebrow: "CUSTOM BASEBALL UNIFORMS",
+    h1: "Custom Baseball Jersey Manufacturer",
+    heroText: "POXIOL provides professional custom teamwear manufacturing for baseball jerseys, button-front uniforms, baseball pants, youth baseball teamwear. We support clubs, schools, academies, distributors and sports brands with fast mockups, flexible MOQ and reliable production.",
+
     heroImage: "/images/sports-pages/baseball/hero.png",
     primaryKeyword: "custom baseball uniforms",
     productTypes: [
@@ -177,11 +180,12 @@ export const sportsPages: SportsPageData[] = [
   },
   {
     slug: "custom-volleyball-uniforms",
-    metaTitle: "Custom Volleyball Uniforms Manufacturer | POXIOL",
-    metaDescription: "Custom volleyball jerseys, shorts and team uniforms with breathable fabric, sublimation printing, free mockup, MOQ 1 and OEM/ODM production by POXIOL.",
-    eyebrow: "CUSTOM VOLLEYBALL UNIFORMS",
-    h1: "Custom Volleyball Uniforms for Teams and Schools",
-    heroText: "Create custom volleyball jerseys, shorts, women’s sets and sleeveless team uniforms with breathable fabric, original graphics and fast sampling support.",
+    metaTitle: "Custom Volleyball Uniform Manufacturer | Volleyball Teamwear | POXIOL",
+    metaDescription: "POXIOL is a professional custom volleyball uniform manufacturer specializing in OEM teamwear, sublimation printing, breathable jerseys and custom uniforms for clubs, schools, distributors and sports brands worldwide.",
+    eyebrow: "CUSTOM VOLLEYBALL TEAMWEAR",
+    h1: "Custom Volleyball Uniform Manufacturer",
+    heroText: "POXIOL provides professional custom teamwear manufacturing for volleyball jerseys, volleyball shorts, youth volleyball uniforms. We support clubs, schools, academies, distributors and sports brands with fast mockups, flexible MOQ and reliable production.",
+
     heroImage: "/images/sports-pages/volleyball/hero.png",
     primaryKeyword: "custom volleyball uniforms",
     productTypes: [
@@ -315,10 +319,11 @@ export const sportsPages: SportsPageData[] = [
   {
     slug: "custom-rugby-uniforms",
     metaTitle: "Custom Rugby Jersey Manufacturer | Rugby Teamwear | POXIOL",
-    metaDescription: "Professional custom rugby jerseys and shorts. Durable, sublimated rugby teamwear for clubs and schools. POXIOL offers MOQ 1 and OEM/ODM services.",
+    metaDescription: "POXIOL is a professional custom rugby jersey manufacturer specializing in OEM teamwear, sublimation printing, high-durability rugby jerseys and custom uniforms for clubs, schools, distributors and sports brands worldwide.",
     eyebrow: "CUSTOM RUGBY TEAMWEAR",
-    h1: "Custom Rugby Jerseys and Uniforms for Clubs",
-    heroText: "Engineered for high-intensity play. Create custom sublimated rugby jerseys and shorts with durable stitching, reinforced collars and performance fabrics.",
+    h1: "Custom Rugby Jersey Manufacturer",
+    heroText: "POXIOL provides professional custom teamwear manufacturing for rugby jerseys, rugby shorts, youth rugby uniforms. We support clubs, schools, academies, distributors and sports brands with fast mockups, flexible MOQ and reliable production.",
+
     heroImage: "/images/sports-pages/rugby/hero.png",
     primaryKeyword: "custom rugby jerseys",
     productTypes: [
@@ -340,10 +345,11 @@ export const sportsPages: SportsPageData[] = [
   {
     slug: "custom-esports-jerseys",
     metaTitle: "Custom Esports Jersey Manufacturer | Pro Gaming Teamwear | POXIOL",
-    metaDescription: "Professional custom esports jerseys and hoodies for gaming teams and events. Sublimated pro gaming apparel with MOQ 1 and fast design support.",
-    eyebrow: "CUSTOM ESPORTS APPAREL",
-    h1: "Custom Esports Jerseys for Pro Gaming Teams",
-    heroText: "Level up your team's look with vibrant, fully sublimated esports jerseys, hoodies and jackets designed for pro gamers and content creators.",
+    metaDescription: "POXIOL is a professional custom esports jersey manufacturer specializing in OEM teamwear, sublimation printing, pro gaming apparel and custom uniforms for gaming teams, schools, distributors and sports brands worldwide.",
+    eyebrow: "CUSTOM ESPORTS TEAMWEAR",
+    h1: "Custom Esports Jersey Manufacturer",
+    heroText: "POXIOL provides professional custom teamwear manufacturing for esports jerseys, pro gaming hoodies, team jackets. We support clubs, schools, academies, distributors and sports brands with fast mockups, flexible MOQ and reliable production.",
+
     heroImage: "/images/sports-pages/esports/hero.png",
     primaryKeyword: "custom esports jerseys",
     productTypes: [

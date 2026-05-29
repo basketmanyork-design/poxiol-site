@@ -35,7 +35,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <p className="mb-5 text-sm font-extrabold uppercase tracking-[0.16em] text-lime-400">Elite B2B Teamwear Partner</p>
-            <h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl">POXIOL: PREMIUM TEAMWEAR MANUFACTURING FOR GLOBAL BRANDS</h1>
+            <h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl">CUSTOM TEAMWEAR MANUFACTURER FOR CLUBS, SCHOOLS & SPORTS BRANDS</h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-neutral-300 md:text-xl">The elite B2B partner for clubs, academies, sportswear brands and distributors. We turn your design ideas into performance gear with fast mockups, MOQ 1 flexibility, and scalable OEM/ODM production.</p>
             <div className="mt-8 flex flex-wrap items-center gap-6 border-y border-white/10 py-6">
               <div className="flex flex-col">

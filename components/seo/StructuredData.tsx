@@ -47,18 +47,69 @@ export const organizationSchema = {
   ]
 };
 
-export const websiteSchema = {
+export const fullFaqPageSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "POXIOL Teamwear",
-  "url": "https://poxiol.com/",
-  "description": "Custom teamwear and sports uniforms for clubs, schools, events, brands and distributors.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.poxiol.com/?s={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is POXIOL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "POXIOL is a custom teamwear manufacturing platform for clubs, schools, distributors and sports brands."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is your MOQ for custom teamwear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does custom teamwear production take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sample production usually takes 5-7 days and bulk production usually takes 10-20 days depending on order details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support OEM and ODM manufacturing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. POXIOL provides professional OEM and ODM sportswear manufacturing services including sublimation printing, private label tags and custom packaging."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What fabric is best for basketball uniforms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quick-dry polyester, mesh and interlock fabrics are commonly used for basketball uniforms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What printing method is used for soccer jerseys?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sublimation is commonly used for durable full-color soccer designs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is sublimation printing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sublimation printing uses heat to transfer dye into fabric for durable full-color graphics that do not crack or peel."
+      }
+    }
+  ]
 };
+
 
 export const homepageFaqSchema = {
   "@context": "https://schema.org",
@@ -69,31 +120,31 @@ export const homepageFaqSchema = {
       "name": "What is POXIOL?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "POXIOL is a custom teamwear manufacturer providing custom sports uniforms, free mockups, MOQ 1 custom orders and OEM/ODM sportswear production for teams, schools, events, brands, wholesalers and distributors."
+        "text": "POXIOL is a custom teamwear manufacturing platform specializing in OEM and ODM sports uniforms for clubs, schools, distributors and sports brands."
       }
     },
     {
       "@type": "Question",
-      "name": "What sports uniforms does POXIOL customize?",
+      "name": "What is your MOQ for custom teamwear?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "POXIOL customizes basketball uniforms, soccer kits, baseball and softball uniforms, running and marathon wear, training wear, American football uniforms, volleyball uniforms, ice hockey jerseys, tennis wear and golf wear."
+        "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
       }
     },
     {
       "@type": "Question",
-      "name": "Does POXIOL provide free mockups?",
+      "name": "How long does custom teamwear production take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. POXIOL provides a free teamwear mockup request process for customers who submit their sport category, logo, colors, quantity and design notes."
+        "text": "Sample production usually takes 5-7 days and bulk production usually takes 10-20 days depending on order details."
       }
     },
     {
       "@type": "Question",
-      "name": "Does POXIOL support OEM/ODM sportswear production?",
+      "name": "Do you support OEM and ODM manufacturing?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. POXIOL supports OEM/ODM teamwear production for sportswear brands, wholesalers, distributors and custom retailers."
+        "text": "Yes. POXIOL provides professional OEM and ODM sportswear manufacturing services including sublimation printing, private label tags and custom packaging."
       }
     }
   ]

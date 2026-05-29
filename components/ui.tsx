@@ -54,7 +54,7 @@ export function WhatsAppButton() {
 
 export function Header() {
   const nav = [
-    ["Home", "/"], ["Sports", "/#sports-categories"], ["OEM/ODM", "/oem-odm/"], ["Resources", "/resources/"], ["About", "/about/"], ["Contact", "/contact/"]
+    ["Home", "/"], ["Sports", "/#sports-categories"], ["OEM/ODM", "/oem-odm/"], ["Guides", "/guides/"], ["Builder", "/builder/"], ["Resources", "/resources/"], ["About", "/about/"], ["Contact", "/contact/"]
   ];
 
   return (
@@ -73,7 +73,7 @@ export function Footer() {
   const columns = [
     { title: "Custom Teamwear", links: [["Basketball Uniforms", "/custom-basketball-uniforms/"], ["Soccer Kits", "/custom-soccer-kits/"], ["Baseball & Softball", "/custom-baseball-softball-uniforms/"], ["Running & Marathon Wear", "/custom-running-marathon-wear/"], ["Training Wear", "/custom-training-wear/"]] },
     { title: "OEM/ODM Solutions", links: [["Sportswear Brand Support", "/oem-odm/"], ["Private Label Production", "/oem-odm/"], ["American Football", "/custom-american-football-uniforms/"], ["Volleyball Uniforms", "/custom-volleyball-uniforms/"], ["Global Team Supply", "/oem-odm/"]] },
-    { title: "Knowledge Center", links: [["Buying Guides", "/resources/"], ["Fabric Guide", "/fabric-guide/"], ["Printing Guide", "/printing-guide/"], ["Manufacturing Hub", "/manufacturing/"], ["FAQ Center", "/faq/"]] },
+    { title: "Knowledge Center", links: [["Buying Guides", "/guides/"], ["Teamwear Builder", "/builder/"], ["Fabric Guide", "/fabric-guide/"], ["Printing Guide", "/printing-guide/"], ["Manufacturing Hub", "/manufacturing/"], ["FAQ Center", "/faq/"]] },
     { title: "Company", links: [["About POXIOL", "/about/"], ["Factory & QC", "/factory/"], ["Contact Us", "/contact/"], ["Free Mockup", "/free-mockup/"], ["Sitemap", "/sitemap.xml"]] },
   ];
 
