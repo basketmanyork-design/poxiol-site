@@ -2,40 +2,40 @@ import Link from "next/link";
 
 const cards = [
   {
-    title: "Resources Center",
-    description: "Everything you need to know about custom teamwear manufacturing.",
-    button: "EXPLORE RESOURCES",
-    href: "/resources",
-  },
-  {
-    title: "FAQ Center",
-    description: "Answers to common questions about teamwear production, MOQ, fabrics and shipping.",
-    button: "VIEW FAQ",
-    href: "/faq",
-  },
-  {
     title: "Manufacturing Hub",
-    description: "Learn how OEM and ODM teamwear manufacturing works.",
+    description: "Learn how OEM and ODM teamwear manufacturing works at POXIOL.",
     button: "LEARN MANUFACTURING",
-    href: "/manufacturing",
-  },
-  {
-    title: "Fabric Guide",
-    description: "Compare sportswear fabrics and choose the right material.",
-    button: "EXPLORE FABRICS",
-    href: "/fabric-guide",
-  },
-  {
-    title: "Printing Guide",
-    description: "Learn sublimation, embroidery, screen printing and heat transfer.",
-    button: "LEARN PRINTING",
-    href: "/printing-guide",
+    href: "/manufacturing/",
   },
   {
     title: "Projects Library",
-    description: "Explore real teamwear projects and case studies.",
+    description: "Explore real-world teamwear projects and client success stories.",
     button: "VIEW PROJECTS",
-    href: "/projects",
+    href: "/projects/",
+  },
+  {
+    title: "Resources Center",
+    description: "Everything you need to know about custom teamwear manufacturing.",
+    button: "EXPLORE RESOURCES",
+    href: "/resources/",
+  },
+  {
+    title: "FAQ Center",
+    description: "Answers to common questions about production, MOQ, and shipping.",
+    button: "VIEW FAQ",
+    href: "/faq/",
+  },
+  {
+    title: "Fabric Guide",
+    description: "Compare performance fabrics and choose the right material.",
+    button: "EXPLORE FABRICS",
+    href: "/fabric-guide/",
+  },
+  {
+    title: "Printing Guide",
+    description: "Learn sublimation, embroidery, and other decoration techniques.",
+    button: "LEARN PRINTING",
+    href: "/printing-guide/",
   },
 ];
 

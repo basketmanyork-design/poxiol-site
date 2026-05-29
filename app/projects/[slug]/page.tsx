@@ -88,18 +88,26 @@ export default async function ProjectPage({ params }: Props) {
             </div>
             
             <div className="flex flex-col space-y-8">
-              <div className="aspect-[3/4] w-full rounded-3xl bg-neutral-900 flex items-center justify-center text-xs font-black uppercase tracking-widest text-white/20">
-                [ Hero Project Image ]
+              <div className="aspect-[3/4] w-full overflow-hidden rounded-3xl bg-neutral-900">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="h-full w-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://placehold.co/800x1200/0a0a0a/ffffff?text=POXIOL+Project';
+                  }}
+                />
               </div>
               <div className="grid grid-cols-2 gap-8">
-                <div className="aspect-square rounded-3xl bg-neutral-900 flex items-center justify-center text-xs font-black uppercase tracking-widest text-white/20">
-                  [ Detail 1 ]
+                <div className="aspect-square overflow-hidden rounded-3xl bg-neutral-900">
+                  <img src="https://placehold.co/600x600/0a0a0a/ffffff?text=Detail+1" alt="Project Detail 1" className="h-full w-full object-cover opacity-50" />
                 </div>
-                <div className="aspect-square rounded-3xl bg-neutral-900 flex items-center justify-center text-xs font-black uppercase tracking-widest text-white/20">
-                  [ Detail 2 ]
+                <div className="aspect-square overflow-hidden rounded-3xl bg-neutral-900">
+                  <img src="https://placehold.co/600x600/0a0a0a/ffffff?text=Detail+2" alt="Project Detail 2" className="h-full w-full object-cover opacity-50" />
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import { caseStudies } from "@/lib/case-studies";
+import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
+
 
 export const metadata: Metadata = {
   title: "Teamwear Projects & Case Studies | Custom Sportswear Portfolio | POXIOL",
@@ -11,7 +13,9 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <StructuredData data={[organizationSchema, websiteSchema]} />
       <Header />
+
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading 
@@ -25,12 +29,17 @@ export default function ProjectsPage() {
           <div className="mt-20 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {caseStudies.map((project) => (
               <div key={project.slug} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition hover:border-lime-400/30">
-                <div className="aspect-[4/3] w-full bg-neutral-900">
-                  {/* Placeholder for project image */}
-                  <div className="flex h-full w-full items-center justify-center text-xs font-black uppercase tracking-widest text-white/20">
-                    [ Project Image ]
-                  </div>
+                <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-900">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://placehold.co/800x600/0a0a0a/ffffff?text=POXIOL+Project';
+                    }}
+                  />
                 </div>
+
                 <div className="p-8">
                   <div className="flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-lime-400">
                     <span>{project.clientType}</span>
