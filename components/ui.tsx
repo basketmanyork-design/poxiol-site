@@ -54,7 +54,7 @@ export function WhatsAppButton() {
 
 export function Header() {
   const nav = [
-    ["Home", "/"], ["Sports", "/#sports-categories"], ["Resources", "/resources/"], ["Projects", "/projects/"], ["About", "/about/"], ["Contact", "/contact/"]
+    ["Home", "/"], ["Sports", "/sports/"], ["Resources", "/resources/"], ["Projects", "/projects/"], ["About", "/about/"], ["Contact", "/contact/"]
   ];
 
 
