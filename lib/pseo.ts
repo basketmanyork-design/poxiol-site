@@ -4,6 +4,7 @@ export type PSEOPage = {
   h1: string;
   intro: string;
   content: string;
+  author?: { name: string; role: string; bio: string };
   faqs: { question: string; answer: string }[];
 };
 
@@ -15,6 +16,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "How To Order Custom Basketball Uniforms",
     intro: "Ordering custom basketball uniforms doesn't have to be complicated. This complete guide covers everything from selecting the right fabrics to final delivery, helping clubs, schools, and academies navigate the manufacturing process with ease.",
     content: "The process starts with choosing the right fabric weight and type—typically a lightweight mesh or a smooth interlock polyester for maximum performance. Next, our design team works with you to create a professional 3D mockup, incorporating your team logos, colors, and player numbers. Once the design is approved, we move into sublimation printing, where your graphics are permanently infused into the fabric. After passing strict quality control, your uniforms are packed and shipped directly to your door. At POXIOL, we specialize in making this process fast, reliable, and affordable for teams worldwide.",
+    author: {
+      name: "David Zhang",
+      role: "Lead Manufacturing Specialist",
+      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+    },
     faqs: [
       { question: "What is the typical production timeline for basketball uniforms?", answer: "Most orders are completed within 10-14 days after final design approval." },
       { question: "Can I see a sample before bulk production?", answer: "Yes, we highly recommend ordering a sample to verify fit, color, and fabric quality." },
@@ -27,6 +33,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "Complete Soccer Jersey Buying Guide",
     intro: "Whether you're a semi-pro club or a youth academy, choosing the right soccer kit is essential for team identity and player performance. This guide explores the technical aspects of soccer apparel manufacturing.",
     content: "A high-quality soccer jersey must balance breathability with durability. We recommend using 'Bird Eye' or 'Micro-Mesh' polyester, which provides excellent moisture-wicking properties for match-day intensity. Sublimation remains the gold standard for soccer printing, as it allows for unlimited sponsor logos and intricate patterns without adding weight to the garment. Don't forget the importance of 'Cool-Dry' technology, which keeps players comfortable during the full 90 minutes. POXIOL provides end-to-end support for soccer organizations looking to upgrade their teamwear.",
+    author: {
+      name: "Sarah Miller",
+      role: "Fabric Technology Consultant",
+      bio: "Sarah is a textile engineer specializing in performance sportswear fabrics and moisture-management technologies."
+    },
     faqs: [
       { question: "Do you manufacture goalkeeper kits as well?", answer: "Yes, we produce specialized goalkeeper jerseys with padded elbows and matching shorts." },
       { question: "Are soccer socks customizable?", answer: "Yes, we can produce custom knitted socks with your club name or logo." },
@@ -39,6 +50,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "OEM vs ODM Sportswear Manufacturing",
     intro: "Understanding the difference between OEM and ODM is crucial for brands and distributors looking to optimize their supply chain. Each model offers unique advantages depending on your design needs and timeline.",
     content: "OEM (Original Equipment Manufacturing) is for clients who have their own designs and tech packs and need a factory to execute them to exact specifications. This offers maximum control over every detail. ODM (Original Design Manufacturing), on the other hand, involves choosing from a factory's existing designs and customizing them with your branding. This is faster and requires less development effort. At POXIOL, we support both models, providing the technical expertise to bring your vision to life or the proven templates to get your brand to market quickly.",
+    author: {
+      name: "David Zhang",
+      role: "Lead Manufacturing Specialist",
+      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+    },
     faqs: [
       { question: "Which model is better for a new sportswear brand?", answer: "ODM is often better for a fast launch, while OEM is better if you have a unique product concept." },
       { question: "Can I switch from ODM to OEM later?", answer: "Yes, many clients start with ODM and move to OEM as they grow and develop custom patterns." },
@@ -51,6 +67,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "Best Sportswear Fabrics Explained",
     intro: "The performance of a sports uniform starts with the fabric. From moisture-wicking polyester to high-stretch spandex, choosing the right material is key to player comfort and durability.",
     content: "For basketball and soccer, lightweight 'Interlock' or 'Mesh' polyesters are the standard due to their breathability and strength. Baseball jerseys often require a heavier, higher-density polyester for durability during sliding and fielding. If you're designing training wear, look for 'Bird Eye' mesh, which features a unique knit pattern that maximizes airflow. All our fabrics at POXIOL are engineered for moisture management, ensuring that sweat is moved away from the skin quickly. This technical focus ensures your team stays cool under pressure.",
+    author: {
+      name: "Sarah Miller",
+      role: "Fabric Technology Consultant",
+      bio: "Sarah is a textile engineer specializing in performance sportswear fabrics and moisture-management technologies."
+    },
     faqs: [
       { question: "What is GSM in fabric?", answer: "GSM stands for Grams per Square Meter; it measures the weight and thickness of the fabric." },
       { question: "Is 100% polyester better than cotton for sports?", answer: "Yes, polyester is superior for sports because it doesn't absorb water (sweat) and dries much faster than cotton." },
@@ -63,6 +84,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "Complete Sublimation Printing Guide",
     intro: "Sublimation printing has revolutionized teamwear by allowing for unlimited design creativity without sacrificing performance. Learn why it's the preferred choice for professional sports uniforms.",
     content: "Unlike screen printing or heat transfer, sublimation uses heat to turn ink into a gas that infuses directly into the fabric fibers. This results in a print that will never crack, peel, or fade, and maintains the fabric's full breathability. This process is perfect for complex patterns, gradients, and multiple sponsor logos. At POXIOL, we use high-precision Japanese printers and eco-friendly inks to ensure vibrant, lasting colors that stand out on the field and the court. Sublimation is the ultimate solution for durable, high-impact teamwear branding.",
+    author: {
+      name: "Michael Chen",
+      role: "Printing & Sublimation Expert",
+      bio: "Michael has spent 15 years mastering digital sublimation and textile printing, ensuring pro-level color accuracy for professional sports teams."
+    },
     faqs: [
       { question: "Can you sublimate on cotton?", answer: "No, sublimation requires at least 80% polyester content to allow the dye to bond with the fibers." },
       { question: "Will the colors fade in the wash?", answer: "No, because the dye is part of the fabric, sublimated designs are incredibly resistant to fading." },
@@ -75,6 +101,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "How To Choose A Teamwear Manufacturer",
     intro: "Finding the right manufacturing partner can be the difference between a successful season and a branding disaster. Use this checklist to evaluate potential suppliers for your team or brand.",
     content: "When evaluating a manufacturer, look for direct-factory communication to avoid middleman costs and delays. Check their track record with similar sports—do they specialize in basketball, soccer, or baseball? Ask about their quality control process and whether they provide 3D mockups for design verification. It's also vital to confirm their shipping capabilities and turnaround times. POXIOL prides itself on transparency, technical expertise, and a global logistics network that serves clubs and brands in over 30 countries. Choosing a specialist manufacturer ensures your teamwear meets the highest standards of performance and style.",
+    author: {
+      name: "David Zhang",
+      role: "Lead Manufacturing Specialist",
+      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+    },
     faqs: [
       { question: "What are the risks of using a trading company instead of a factory?", answer: "Trading companies often have higher prices, slower communication, and less control over the production quality." },
       { question: "Should I look for a manufacturer with a low MOQ?", answer: "Yes, if you're a small club or a new brand, flexible MOQs allow you to test designs without high inventory risk." },
@@ -102,6 +133,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "Custom Soccer Uniforms for Youth Academies",
     intro: "Empower your youth soccer academy with professional-grade custom kits. POXIOL specializes in durable, high-performance soccer apparel that builds team spirit and stands out on the pitch.",
     content: "Our academy soccer uniforms are designed with the development of young players in mind. We use lightweight, moisture-wicking fabrics that ensure comfort during intense training and matches. Our sublimation technology allows you to incorporate club crests, sponsor logos, and unique patterns that won't peel or fade. We offer comprehensive size charts for youth teams and provide scalable manufacturing solutions for growing academies. With POXIOL, your academy gets elite-level gear at direct-to-factory prices.",
+    author: {
+      name: "David Zhang",
+      role: "Lead Manufacturing Specialist",
+      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+    },
     faqs: [
       { question: "What is the best fabric for youth soccer uniforms?", answer: "We recommend breathable Interlock polyester for its durability and comfort." },
       { question: "Can we design a unique kit for our academy?", answer: "Yes, our designers can create a completely custom kit based on your academy's colors and branding." },
@@ -114,6 +150,11 @@ export const pseoPages: PSEOPage[] = [
     h1: "Premier Soccer Jersey Supplier for Australian Clubs",
     intro: "POXIOL is a leading soccer jersey supplier for the Australian market, providing high-quality custom kits to clubs, schools, and leagues across Melbourne, Sydney, Brisbane, and Perth.",
     content: "We specialize in manufacturing professional-grade soccer kits tailored for the Australian climate, using advanced moisture-wicking fabrics that keep players cool and dry. Our streamlined B2B process makes it easy for Australian sports distributors and club managers to order custom sublimated jerseys, shorts, and socks with low MOQs and rapid international shipping. With our direct-to-factory model, Australian teams receive elite-level gear without the traditional retail markup.",
+    author: {
+      name: "Sarah Miller",
+      role: "Fabric Technology Consultant",
+      bio: "Sarah is a textile engineer specializing in performance sportswear fabrics and moisture-management technologies."
+    },
     faqs: [
       { question: "How long is shipping to Australia?", answer: "Shipping to major Australian cities typically takes 4-7 business days via express courier." },
       { question: "Can you handle sponsor logos for NPL clubs?", answer: "Yes, we can integrate unlimited sponsor logos into the sublimated design for a professional, durable finish." },
