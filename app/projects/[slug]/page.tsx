@@ -93,9 +93,6 @@ export default async function ProjectPage({ params }: Props) {
                   src={project.image} 
                   alt={project.title} 
                   className="h-full w-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://placehold.co/800x1200/0a0a0a/ffffff?text=POXIOL+Project';
-                  }}
                 />
               </div>
               <div className="grid grid-cols-2 gap-8">

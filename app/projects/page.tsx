@@ -1,14 +1,10 @@
+"use client";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import { caseStudies } from "@/lib/case-studies";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
-
-
-export const metadata: Metadata = {
-  title: "Teamwear Projects & Case Studies | Custom Sportswear Portfolio | POXIOL",
-  description: "Explore our portfolio of custom teamwear projects. See how POXIOL helps basketball academies, soccer clubs, and professional teams with high-performance manufacturing.",
-};
 
 export default function ProjectsPage() {
   return (
@@ -91,3 +87,4 @@ export default function ProjectsPage() {
     </main>
   );
 }
+
