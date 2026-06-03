@@ -1,13 +1,10 @@
+"use client";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading } from "@/components/ui";
 import { sportsPages } from "@/lib/sports-pages";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
-
-export const metadata: Metadata = {
-  title: "Custom Sports Teamwear Categories | Professional Manufacturing | POXIOL",
-  description: "Explore POXIOL's custom teamwear manufacturing services for basketball, soccer, baseball, volleyball, rugby, and esports. Pro-level uniforms for clubs and brands.",
-};
 
 export default function SportsPage() {
   return (
