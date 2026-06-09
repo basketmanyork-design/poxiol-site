@@ -46,6 +46,12 @@ const inputClass = "h-[50px] w-full rounded-2xl border border-neutral-300 bg-whi
 
 export default function ContactForm() {
   const [form, setForm] = useState<ContactFormState>(initialState);
+  
+  // Real File Upload states
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [referenceFile, setReferenceFile] = useState<File | null>(null);
+  const [sizeChartFile, setSizeChartFile] = useState<File | null>(null);
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -65,17 +71,26 @@ export default function ContactForm() {
         throw new Error("Form endpoint is not configured. Add NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT in Cloudflare Pages.");
       }
 
+      // Package everything in FormData to allow native file attachments on Formspree
+      const formData = new FormData();
+      formData.append("formType", "Contact V6.2 File Upload");
+      formData.append("sourcePage", window.location.href);
+
+      Object.entries(form).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      if (logoFile) formData.append("logo_file", logoFile);
+      if (referenceFile) formData.append("reference_design_file", referenceFile);
+      if (sizeChartFile) formData.append("size_chart_tech_pack_file", sizeChartFile);
+
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
+          // NOTE: DO NOT set Content-Type header. Fetch will automatically set boundary for multipart/form-data.
         },
-        body: JSON.stringify({
-          formType: "Contact V6",
-          ...form,
-          sourcePage: window.location.href,
-        }),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -84,6 +99,9 @@ export default function ContactForm() {
 
       setSubmitted(true);
       setForm(initialState);
+      setLogoFile(null);
+      setReferenceFile(null);
+      setSizeChartFile(null);
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     } finally {
@@ -99,7 +117,7 @@ export default function ContactForm() {
         </div>
         <h2 className="mt-6 text-3xl font-black text-neutral-950">Request Received</h2>
         <p className="mt-4 leading-7 text-neutral-600">
-          Thank you. POXIOL has received your custom teamwear request. Our team will review your logo, sport category, quantity and deadline, then reply with the next step for mockup or quotation.
+          Thank you. POXIOL has received your custom teamwear request. Our team will review your sport category, quantity, logo/reference files and delivery deadline, then reply with the next step for mockup or quotation.
         </p>
         <button
           type="button"
@@ -118,7 +136,7 @@ export default function ContactForm() {
         <p className="text-sm font-black uppercase tracking-[0.14em] text-lime-600">POXIOL B2B Inquiry</p>
         <h2 className="mt-3 text-3xl font-black text-neutral-950">Let’s Build Your Custom Teamwear Project</h2>
         <p className="mt-3 text-sm leading-6 text-neutral-600">
-          Send your sport category, logo, colors, quantity and target delivery date. POXIOL will help you prepare a mockup and production plan.
+          Send your sport category, logo, colors, quantity and target delivery date. POXIOL will review your request and help prepare a mockup or quotation plan.
         </p>
       </div>
 
@@ -293,17 +311,49 @@ export default function ContactForm() {
 
         {/* Step 3: Logo & Message */}
         <div>
-          <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">3. Design Details</h3>
-          <div className="grid gap-4">
-            <div className="rounded-2xl border-2 border-dashed border-lime-400/30 bg-lime-400/5 p-6 text-center">
-              <p className="text-sm font-black text-neutral-950 uppercase tracking-wide">Logo & Reference Files</p>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                Upload your logo or reference design if available. If you don’t have a design yet, POXIOL can help create a mockup based on your team colors and sport category.
+          <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">3. Design Details & Attachments</h3>
+          <div className="grid gap-6">
+            <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
+              <p className="text-sm font-black text-neutral-950 uppercase tracking-wide">Upload Custom Teamwear Documents</p>
+              <p className="mt-2 text-xs leading-relaxed text-neutral-500">
+                Upload your logo, reference design or size chart if available. If you do not have a design yet, POXIOL can help create a mockup based on your sport category, colors and team name.
               </p>
-              <p className="mt-2 text-xs text-neutral-500">
-                Submit this form first. You can immediately send high-res files (.AI, .PDF, .PNG) directly to our design team via **WhatsApp** or **Email** afterwards.
-              </p>
+              
+              {/* File Inputs Grid */}
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                <div>
+                  <FieldLabel>Logo File</FieldLabel>
+                  <input 
+                    type="file" 
+                    accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
+                    onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
+                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
+                  />
+                  <p className="mt-1 text-[10px] text-neutral-400">AI, EPS, PDF, SVG, PNG, JPG</p>
+                </div>
+                <div>
+                  <FieldLabel>Reference Design</FieldLabel>
+                  <input 
+                    type="file" 
+                    accept=".png,.jpg,.jpeg,.pdf,.webp"
+                    onChange={(e) => setReferenceFile(e.target.files?.[0] || null)}
+                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
+                  />
+                  <p className="mt-1 text-[10px] text-neutral-400">PNG, JPG, PDF, WebP</p>
+                </div>
+                <div>
+                  <FieldLabel>Size Chart / Tech Pack</FieldLabel>
+                  <input 
+                    type="file" 
+                    accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg"
+                    onChange={(e) => setSizeChartFile(e.target.files?.[0] || null)}
+                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
+                  />
+                  <p className="mt-1 text-[10px] text-neutral-400">PDF, XLSX, CSV, PNG, JPG</p>
+                </div>
+              </div>
             </div>
+
             <div>
               <FieldLabel>Tell us your design idea or special requests</FieldLabel>
               <textarea
@@ -328,7 +378,7 @@ export default function ContactForm() {
         disabled={loading}
         className="mt-8 h-[56px] w-full rounded-full bg-lime-400 text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {loading ? "Submitting..." : "Get Free Mockup Within 24 Hours"}
+        {loading ? "Submitting..." : "Submit & Get Free Mockup"}
       </button>
 
       <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3">

@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) return { title: "Project Not Found" };
 
   return {
-    title: `${project.title} | POXIOL Case Study`,
-    description: project.challenge,
+    title: `${project.title} | POXIOL B2B Case Study`,
+    description: project.overview,
   };
 }
 
@@ -69,38 +69,90 @@ export default async function ProjectPage({ params }: Props) {
 
               <div className="mt-12 space-y-10">
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">The Challenge</h2>
-                  <p className="mt-4 text-lg leading-relaxed text-neutral-400">{project.challenge}</p>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Project Overview</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.overview}</p>
                 </div>
+
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">The Solution</h2>
-                  <p className="mt-4 text-lg leading-relaxed text-neutral-400">{project.solution}</p>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Buyer Background</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.buyerBackground}</p>
                 </div>
+
+                {project.orderRequirements && project.orderRequirements.length > 0 && (
+                  <div>
+                    <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Order Requirements</h2>
+                    <ul className="mt-4 space-y-3">
+                      {project.orderRequirements.map((req, i) => (
+                        <li key={i} className="flex items-start text-base text-neutral-300">
+                          <span className="mr-3 text-lime-400 font-bold">✓</span>
+                          <span>{req}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">The Result</h2>
-                  <p className="mt-4 text-lg leading-relaxed text-neutral-400">{project.result}</p>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Design & Mockup</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.designMockup}</p>
+                </div>
+
+                <div>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Fabric & Printing</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.fabricPrinting}</p>
+                </div>
+
+                {project.productionTimeline && project.productionTimeline.length > 0 && (
+                  <div>
+                    <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Production Timeline</h2>
+                    <div className="mt-4 space-y-4 border-l-2 border-lime-400/20 pl-6">
+                      {project.productionTimeline.map((step, i) => (
+                        <div key={i} className="relative">
+                          <div className="absolute -left-[31px] top-1 h-3.5 w-3.5 rounded-full border-2 border-neutral-950 bg-lime-400"></div>
+                          <p className="text-base text-neutral-300 font-bold">{step}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Quality Control</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.qualityControl}</p>
+                </div>
+
+                <div>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Packing & Delivery</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.packingDelivery}</p>
+                </div>
+
+                <div>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Result</h2>
+                  <p className="mt-4 text-lg font-bold leading-relaxed text-lime-400">{project.result}</p>
                 </div>
               </div>
               
               <div className="mt-16">
-                <PrimaryButton>Start Similar Project</PrimaryButton>
+                <PrimaryButton href="/free-mockup/">Start Similar Project</PrimaryButton>
               </div>
             </div>
             
-            <div className="flex flex-col space-y-8">
-              <div className="aspect-[3/4] w-full overflow-hidden rounded-3xl bg-neutral-900">
+            <div className="flex flex-col space-y-8 lg:sticky lg:top-24 h-fit">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 shadow-xl">
                 <img 
                   src={project.image} 
                   alt={project.title} 
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-8">
-                <div className="aspect-square overflow-hidden rounded-3xl bg-neutral-900">
-                  <img src="https://placehold.co/600x600/0a0a0a/ffffff?text=Detail+1" alt="Project Detail 1" className="h-full w-full object-cover opacity-50" />
+              <div className="grid grid-cols-2 gap-6">
+                <div className="aspect-square overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 relative group">
+                  <img src="/images/manufacturing/sublimation.webp" alt="Sublimation printing process" className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
+                  <p className="absolute bottom-4 left-4 text-xs font-black uppercase text-white tracking-wider">Sublimation</p>
                 </div>
-                <div className="aspect-square overflow-hidden rounded-3xl bg-neutral-900">
-                  <img src="https://placehold.co/600x600/0a0a0a/ffffff?text=Detail+2" alt="Project Detail 2" className="h-full w-full object-cover opacity-50" />
+                <div className="aspect-square overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 relative group">
+                  <img src="/images/manufacturing/qc-process.webp" alt="Quality control process" className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
+                  <p className="absolute bottom-4 left-4 text-xs font-black uppercase text-white tracking-wider">Quality Control</p>
                 </div>
               </div>
             </div>

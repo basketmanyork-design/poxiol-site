@@ -15,10 +15,10 @@ export type SportsPageData = {
 };
 
 const commonFaqs = [
-  { question: "What is the minimum order quantity?", answer: "POXIOL supports flexible custom orders starting from MOQ 1, suitable for samples, trials, small teams and custom retail projects." },
+  { question: "What is the minimum order quantity?", answer: "Sample order support is available for design and quality confirmation. Bulk team order pricing depends on product type, quantity, fabric, customization details and packaging requirements." },
   { question: "Can I get a free mockup before ordering?", answer: "Yes. Send your logo, colors, sport category and quantity. Our design team can create a professional visual mockup for review." },
-  { question: "How long does sampling take?", answer: "Sample production usually takes 2-3 days after design confirmation, depending on product type and customization details." },
-  { question: "How long does production take?", answer: "For many custom teamwear orders, production can be completed in 3-5 days after sample approval and order confirmation. Larger or complex orders may need more time." },
+  { question: "How long does sampling take?", answer: "Mockup support is usually fast after receiving your logo, colors and design idea. Sample time depends on material, printing method, size requirement and seasonal production schedule." },
+  { question: "How long does production take?", answer: "Bulk production time depends on order quantity, customization complexity, confirmed size breakdown and current factory schedule. POXIOL will provide a production plan before order confirmation." },
   { question: "Can you customize names, numbers and team logos?", answer: "Yes. POXIOL supports custom team names, player names, numbers, logos, colors and original pattern designs." },
   { question: "Do you support OEM/ODM for sportswear brands?", answer: "Yes. POXIOL supports OEM/ODM teamwear development, including design support, sampling, production and flexible customization." },
 ];
@@ -26,9 +26,9 @@ const commonFaqs = [
 function genericFeatures() {
   return [
     { title: "Sublimation Printing", description: "Full-color graphics printed into the fabric for long-lasting team identity." },
-    { title: "Fast Mockup", description: "Free design support helps you preview your custom teamwear before sampling." },
-    { title: "MOQ 1", description: "Flexible order options support samples, trials and small team needs." },
-    { title: "OEM/ODM Ready", description: "Support for clubs, schools, brands, distributors and custom retailers." },
+    { title: "Fast Mockup Support", description: "Free design support helps you preview your custom teamwear before sampling." },
+    { title: "Sample Support Available", description: "Sample order support is available for design and quality confirmation." },
+    { title: "Production Time Based on Quantity", description: "Bulk production time depends on order quantity and confirmed size breakdown." },
   ];
 }
 

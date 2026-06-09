@@ -86,7 +86,7 @@ export default function HomePage() {
           </div>
           <div className="relative min-h-[380px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl md:min-h-[500px]">
             <img 
-              src="/images/poxiol-v6/home_hero_custom_teamwear_manufacturer.png" 
+              src="/images/poxiol-v62/home_hero_v62.png" 
               alt="POXIOL custom teamwear heroes" 
               className="absolute inset-0 h-full w-full object-cover" 
             />
