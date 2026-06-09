@@ -24,7 +24,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The academy needed breathable reversible uniforms for training and tournament use, with individual player names and numbers.",
     solution: "We prepared front/back mockups, confirmed size breakdown, produced one sample set and then moved into bulk production after approval.",
     result: "Uniforms were delivered for the tournament schedule, with consistent color, clear number printing and size grouping.",
-    image: "/images/projects/project-basketball.webp",
+    image: "/images/poxiol-v6/projects_basketball_academy_uniform_program.png",
   },
   {
     slug: "australia-soccer-club-kit-project",
@@ -37,7 +37,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The club needed two kit colors, sponsor logo placement and unified visual identity for several teams.",
     solution: "We organized design mockups for both home and away kits, prepared sponsor placement proof and supported youth/adult size planning.",
     result: "The club received a complete team kit program with consistent branding across age groups.",
-    image: "/images/projects/project-soccer.webp",
+    image: "/images/poxiol-v6/projects_soccer_club_kit_launch.png",
   },
   {
     slug: "school-athletics-multi-sport-program",

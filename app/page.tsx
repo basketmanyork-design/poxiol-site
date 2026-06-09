@@ -37,10 +37,10 @@ const workflowSteps = [
 ];
 
 const evidenceBlocks = [
-  { title: "Digital Mockup & Pattern Setup", image: "/images/contact/mockup-visual.webp" },
-  { title: "Sublimation Printing", image: "/images/manufacturing/sublimation.webp" },
-  { title: "Fabric Cutting & Sewing", image: "/images/manufacturing/factory-line.webp" },
-  { title: "Size Measurement & QC", image: "/images/manufacturing/qc-process.webp" }
+  { title: "Digital Mockup & Pattern Setup", image: "/images/poxiol-v6/home_oem_odm_solutions.png" },
+  { title: "Sublimation Printing", image: "/images/poxiol-v6/manufacturing_sublimation_printing.png" },
+  { title: "Fabric Cutting & Sewing", image: "/images/poxiol-v6/manufacturing_cutting_sewing.png" },
+  { title: "Size Measurement & QC", image: "/images/poxiol-v6/manufacturing_quality_control.png" }
 ];
 
 const oemSolutions = [
@@ -86,7 +86,7 @@ export default function HomePage() {
           </div>
           <div className="relative min-h-[380px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl md:min-h-[500px]">
             <img 
-              src="/images/hero/hero-trust-new.webp" 
+              src="/images/poxiol-v6/home_hero_custom_teamwear_manufacturer.png" 
               alt="POXIOL custom teamwear heroes" 
               className="absolute inset-0 h-full w-full object-cover" 
             />
@@ -246,7 +246,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 md:min-h-[500px]">
             <img 
-              src="/images/solutions/oem-meeting.webp" 
+              src="/images/poxiol-v6/home_oem_odm_solutions.png" 
               alt="POXIOL OEM/ODM sportswear solutions meeting" 
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -314,7 +314,7 @@ export default function HomePage() {
           </div>
           <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 md:min-h-[500px]">
             <img 
-              src="/images/solutions/partnership.webp" 
+              src="/images/poxiol-v6/home_club_partnership_program.png" 
               alt="POXIOL club partnership handshake" 
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -327,7 +327,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 md:min-h-[500px]">
             <img 
-              src="/images/contact/mockup-visual.webp" 
+              src="/images/poxiol-v6/manufacturing_packing_global_delivery.png" 
               alt="POXIOL design resources and mockup screens" 
               className="absolute inset-0 h-full w-full object-cover"
             />
