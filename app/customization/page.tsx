@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const customOptions = [
-  { title: "Logo / Name / Number", desc: "Professional sublimation for team crests, player names, and numbers with zero peeling or fading.", href: "/customization/logo-name-number/" },
+  { title: "Logo / Name / Number", desc: "Professional high-color sublimation for team crests, player names, and numbers with zero peeling or fading.", href: "/customization/logo-name-number/" },
   { title: "Fabric Options", desc: "Select from moisture-wicking meshes, interlock polyester, or compression materials for elite performance.", href: "/customization/fabric-options/" },
   { title: "Private Label", desc: "Woven neck labels, heat-transfer tags, and custom hangtags for your own sportswear brand.", href: "/customization/private-label/" },
   { title: "Custom Packaging", desc: "Branded individual polybags, size labels, and professional export cardboard cartons.", href: "/customization/custom-packaging/" },
@@ -17,7 +17,7 @@ const customOptions = [
 
 export default function CustomizationPage() {
   return (
-    <main className="bg-[#0A0A0A] text-white">
+    <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">
@@ -36,7 +36,7 @@ export default function CustomizationPage() {
       </section>
 
       <section className="bg-neutral-900 px-5 py-32 border-y border-white/5">
-        <div className="mx-auto max-w-7xl grid gap-16 lg:grid-cols-2 items-center">
+        <div className="mx-auto max-w-7xl grid gap-16 lg:grid-cols-2 items-center text-left">
           <div className="aspect-[4/5] rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
             <img src="/images/poxiol-v6/home_club_partnership_program.png" alt="Customization discussion" className="h-full w-full object-cover" />
           </div>
@@ -52,7 +52,7 @@ export default function CustomizationPage() {
               </div>
               <div className="flex gap-4 items-start">
                 <span className="text-[#B6FF00] font-black">✓</span>
-                <p className="text-neutral-400"><strong className="text-white">Color Matching:</strong> Professional sublimation inks and color calibration to ensure your brand colors are accurate.</p>
+                <p className="text-neutral-400"><strong className="text-white">Color Matching:</strong> High-color sublimation printing and color calibration to ensure your brand colors are accurate.</p>
               </div>
             </div>
             <div className="mt-12">

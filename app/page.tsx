@@ -38,7 +38,7 @@ export default function HomePage() {
               Build Your <br />Elite Team <br /><span className="text-[#B6FF00]">Identity.</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-              Factory-direct custom basketball, soccer and team uniforms with professional 3D mockups, flexible MOQ and 180-day quality guarantee.
+              Factory-direct custom basketball, soccer and team uniforms with professional 3D mockups, flexible MOQ and After-Sales Quality Support.
             </p>
             
             <div className="mt-10 flex flex-wrap gap-3">

@@ -9,23 +9,23 @@ export const metadata: Metadata = {
 
 const facilityBlocks = [
   { 
-    title: "Digital Production Line", 
-    desc: "Integrated digital workflow from CAD pattern design to high-speed sublimation printing and laser cutting.",
+    title: "Production Line", 
+    desc: "Integrated digital workflow from CAD pattern design to high-speed sublimation printing and precision laser cutting.",
     image: "/images/poxiol-v6/manufacturing_sublimation_printing.png"
   },
   { 
     title: "Quality Control System", 
-    desc: "Multi-stage inspection protocol covering print alignment, fabric stretch, stitch density and size conformity.",
+    desc: "Strict protocol covering print alignment, fabric stretch, stitch density and size conformity at every stage of production.",
     image: "/images/poxiol-v6/manufacturing_quality_control.png"
   },
   { 
     title: "OEM / ODM Capability", 
-    desc: "Supporting original brand development with custom patterns, private labeling, and tailored packaging solutions.",
+    desc: "Supporting original brand development with custom patterns, private labeling, and tailored collection engineering.",
     image: "/images/poxiol-v6/home_oem_odm_solutions.png"
   },
   { 
     title: "Packing & Shipping", 
-    desc: "Standardized export packing with size-grouped labeling and reliable global logistics for door-to-door delivery.",
+    desc: "Standardized export packing with size-grouped labeling and reliable global logistics for door-to-door delivery worldwide.",
     image: "/images/poxiol-v6/manufacturing_packing_global_delivery.png"
   }
 ];
@@ -33,13 +33,13 @@ const facilityBlocks = [
 const factoryFaqs = [
   { question: "Where is your factory located?", answer: "Our specialized teamwear manufacturing facility is located in China, optimized for global export with efficient logistics access." },
   { question: "What is your monthly production capacity?", answer: "We currently have a monthly capacity of over 30,000 custom pieces across various sport categories." },
-  { question: "Do you use safe and durable inks?", answer: "Yes. We use professional sublimation inks that are eco-friendly and provide vibrant, long-lasting color that won't fade or peel." },
+  { question: "Do you use safe and durable inks?", answer: "Yes. We use professional sublimation inks that are eco-friendly and provide vibrant, high-color sublimation printing that won't fade or peel." },
   { question: "Can I visit your facility?", answer: "Yes. We welcome B2B partners and brand owners to visit our facility. Please contact our specialist to schedule a factory tour." },
 ];
 
 export default function FactoryPage() {
   return (
-    <main className="bg-[#0A0A0A] text-white">
+    <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <Header />
       
       {/* Hero Section */}
@@ -47,7 +47,7 @@ export default function FactoryPage() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Facility" title="Real Manufacturing Power" subtitle="POXIOL operates a dedicated teamwear facility, eliminating the middleman and controlling every detail of your order." dark center />
           
-          {/* Trust Numbers */}
+          {/* Factory Trust Numbers */}
           <div className="mt-20 grid grid-cols-2 gap-6 rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-8 md:grid-cols-3 lg:grid-cols-6">
             {factoryStats.map(stat => (
               <div key={stat.label} className="text-center">
@@ -93,7 +93,7 @@ export default function FactoryPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-black uppercase md:text-5xl">B2B Manufacturing Partner</h2>
           <p className="mt-8 text-xl text-neutral-300 leading-relaxed">
-            Our facility is designed for high-volume repeat business. We support sportswear brands and large distributors with reliable monthly capacity and strict Quality Support.
+            Our facility is designed for high-volume repeat business. We support sportswear brands and large distributors with reliable monthly capacity and Strict QC Before Shipment.
           </p>
           <div className="mt-12 flex justify-center gap-6">
             <SecondaryButton href="/oem-odm/">Explore OEM Capacity</SecondaryButton>

@@ -40,7 +40,7 @@ export default function SampleOrderPage() {
                 </li>
                 <li className="flex gap-4">
                   <span className="text-lime-400 font-bold">04</span>
-                  <span className="text-neutral-300">Receive physical sample within 7-10 days via DHL/FedEx.</span>
+                  <span className="text-neutral-300">Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country.</span>
                 </li>
               </ul>
             </div>
