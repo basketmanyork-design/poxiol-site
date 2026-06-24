@@ -3,6 +3,10 @@ import "./globals.css";
 import { WhatsAppButton } from "@/components/ui";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.poxiol.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
   description:
     "POXIOL provides custom basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and multi-sport teamwear with MOQ 1, free mockup, fast sampling and OEM/ODM service.",

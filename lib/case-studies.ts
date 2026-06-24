@@ -120,7 +120,7 @@ export const caseStudies: CaseStudy[] = [
     qualityControl: "The QC process checked fabric, print, stitching, measurements and packing separation for each sport category.",
     packingDelivery: "Items were sorted by sport category, size and team group for easier distribution.",
     challenge: "The school needed consistent athletic colors across three distinct apparel categories (basketball, volleyball, and tracksuits) utilizing different fabrics.",
-    solution: "Our laboratory performed dye-matching on mesh, interlock, and tricot fabrics to guarantee color uniformity, backed by custom size tag coding.",
+    solution: "Our laboratory performed dye-matching on mesh, interlock, and tricot fabrics to support color uniformity, backed by custom size tag coding.",
     result: "The school received a complete multi-sport apparel program with unified identity and organized delivery.",
     image: "/images/poxiol-v62/project_school_multisport_v62.png",
   },
