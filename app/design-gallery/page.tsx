@@ -23,7 +23,7 @@ export default function DesignGalleryPage() {
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#B6FF00]">{design.sport}</span>
                   <h3 className="mt-3 text-2xl font-black uppercase italic leading-none">{design.title}</h3>
                   <p className="mt-4 text-xs text-neutral-400 opacity-0 group-hover:opacity-100 transition duration-300">{design.description}</p>
-                  <SecondaryButton href={freeMockupHref} className="mt-6 opacity-0 group-hover:opacity-100 transition h-12 text-xs">Request This Look</SecondaryButton>
+                  <SecondaryButton href={`/free-mockup/?style=${design.title.toLowerCase().replace(/\s+/g, '-')}`} className="mt-6 opacity-0 group-hover:opacity-100 transition h-12 text-xs">Request This Look</SecondaryButton>
                 </div>
               </div>
             ))}

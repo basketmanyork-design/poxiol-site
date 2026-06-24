@@ -51,7 +51,7 @@ export default function SampleOrderPage() {
             subtitle="Tell us which product you want to sample. Include logo, colors and sizes so we can prepare your sample tech-pack."
             formType="Sample Order V8"
             ctaText="Start Sample Order"
-            successUrl="/sample-received/"
+            successUrl="/sample-request-received/"
           />
         </div>
       </section>

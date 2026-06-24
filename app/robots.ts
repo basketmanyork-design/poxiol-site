@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         "/static/",
         "/thank-you/",
         "/quote-received/",
-        "/sample-received/"
+        "/sample-request-received/"
       ],
     },
     sitemap: "https://www.poxiol.com/sitemap.xml",

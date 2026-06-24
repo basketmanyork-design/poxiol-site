@@ -17,10 +17,10 @@ export const sportsCategories = [
 export const uspCards = [
   { metric: "MOQ 1", title: "Start Small, Scale Fast", description: "Order from one piece for samples, trials, custom retail projects or small team needs before scaling into larger production.", label: "Flexible Orders" },
   { metric: "1-2H", title: "Fast Design Mockup", description: "Send your logo, colors or reference. Our design team creates a professional visual mockup quickly for your approval.", label: "Free Mockup" },
-  { metric: "2-3D", title: "Quick Sampling", description: "Confirm fabric, size, color, printing and fit with fast sample production before moving into team or bulk orders.", label: "Fast Sample" },
+  { metric: "2-3D", title: "Quick Sampling", description: "Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country.", label: "Fast Sample" },
   { metric: "3-5D", title: "Fast Production", description: "Flexible production capacity supports urgent team orders, tournament deadlines and repeat teamwear programs.", label: "Fast Turnaround" },
   { metric: "OEM/ODM", title: "Original Teamwear Development", description: "From simple logo customization to full teamwear collection development, POXIOL supports brands, clubs and wholesalers.", label: "Design + Production" },
-  { metric: "180D", title: "Quality Guarantee", description: "If fading or quality issues occur within 180 days after delivery, POXIOL supports free reproduction for qualified cases.", label: "Quality Promise" },
+  { metric: "QC", title: "Quality Support", description: "Strict QC before shipment and comprehensive after-sales quality support for every custom order.", label: "Quality Promise" },
 ];
 
 export const solutionCards = [
@@ -79,7 +79,7 @@ export const factoryStats = [
   { value: "30,000+", label: "Monthly Capacity" },
   { value: "99.1%", label: "On-Time Delivery" },
   { value: "≤1h", label: "Response Time" },
-  { value: "180D", label: "Quality Support" },
+  { value: "Strict QC", label: "Quality Support" },
 ];
 
-export const complianceBadges = ["CE", "REACH", "IEC", "EPR", "QC Inspection", "180-Day Support"];
+export const complianceBadges = ["CE", "REACH", "IEC", "EPR", "QC Inspection", "Quality Support"];

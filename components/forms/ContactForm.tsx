@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type ContactFormState = {
   fullName: string;
@@ -17,6 +17,7 @@ type ContactFormState = {
   colors: string;
   needNumbers: string;
   message: string;
+  selected_style: string;
 };
 
 const initialState: ContactFormState = {
@@ -33,6 +34,7 @@ const initialState: ContactFormState = {
   colors: "",
   needNumbers: "",
   message: "",
+  selected_style: "",
 };
 
 function FieldLabel({ children, required = false }: { children: React.ReactNode; required?: boolean }) {
@@ -53,16 +55,24 @@ interface ContactFormProps {
   successUrl?: string;
 }
 
-export default function ContactForm({
-  title = "Let’s Build Your Custom Teamwear Project",
-  subtitle = "Send your sport category, logo, colors, quantity and target delivery date. POXIOL will review your request and help prepare a mockup or quotation plan.",
-  formType = "Contact V8 Optimized",
-  ctaText = "Submit & Get Free Mockup",
-  successUrl = "/thank-you/",
+function ContactFormInner({
+  title,
+  subtitle,
+  formType,
+  ctaText,
+  successUrl,
 }: ContactFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [form, setForm] = useState<ContactFormState>(initialState);
   
+  useEffect(() => {
+    const style = searchParams.get("style");
+    if (style) {
+      setForm(prev => ({ ...prev, selected_style: style }));
+    }
+  }, [searchParams]);
+
   // Real File Upload states
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [referenceFile, setReferenceFile] = useState<File | null>(null);
@@ -88,7 +98,7 @@ export default function ContactForm({
 
       // Package everything in FormData to allow native file attachments on Formspree
       const formData = new FormData();
-      formData.append("formType", formType);
+      formData.append("formType", formType || "Contact V8 Optimized");
       formData.append("sourcePage", window.location.href);
 
       Object.entries(form).forEach(([key, value]) => {
@@ -111,7 +121,7 @@ export default function ContactForm({
         throw new Error("Submit failed. Please try again or contact us by email.");
       }
 
-      router.push(successUrl);
+      router.push(successUrl || "/thank-you/");
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     } finally {
@@ -128,6 +138,13 @@ export default function ContactForm({
           {subtitle}
         </p>
       </div>
+
+      {form.selected_style && (
+        <div className="mb-8 rounded-2xl bg-[#B6FF00]/10 border border-[#B6FF00]/30 p-4">
+          <p className="text-xs font-black uppercase tracking-widest text-neutral-500">Requested Look / Style</p>
+          <p className="mt-1 text-lg font-black text-neutral-950 uppercase italic">{form.selected_style.replace(/-/g, ' ')}</p>
+        </div>
+      )}
 
       <div className="space-y-6">
         {/* Step 1: Buyer Information */}
@@ -373,5 +390,13 @@ export default function ContactForm({
         <p>✓ Simple order & sample support</p>
       </div>
     </form>
+  );
+}
+
+export default function ContactForm(props: ContactFormProps) {
+  return (
+    <Suspense fallback={<div className="p-10 text-center font-bold text-neutral-500">Loading form...</div>}>
+      <ContactFormInner {...props} />
+    </Suspense>
   );
 }

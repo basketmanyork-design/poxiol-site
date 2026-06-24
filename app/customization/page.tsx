@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton, freeMockupHref } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -7,28 +8,28 @@ export const metadata: Metadata = {
 };
 
 const customOptions = [
-  { title: "Team Branding", desc: "High-definition sublimation for club crests, sponsor logos, and original graphics." },
-  { title: "Player Identity", desc: "Custom names and numbers in various font styles and placements." },
-  { title: "Performance Fabrics", desc: "Select from moisture-wicking meshes, interlock polyester, or compression materials." },
-  { title: "Trim & Detail", desc: "Custom collars, ribbed cuffs, reinforced stitching, and ergonomic paneling." },
-  { title: "Private Labeling", desc: "Woven neck labels, printed heat-transfer tags, and custom hangtags for your brand." },
-  { title: "Custom Packaging", desc: "Individual polybags, size-labeled cartons, and retail-ready presentation." }
+  { title: "Logo / Name / Number", desc: "Professional sublimation for team crests, player names, and numbers with zero peeling or fading.", href: "/customization/logo-name-number/" },
+  { title: "Fabric Options", desc: "Select from moisture-wicking meshes, interlock polyester, or compression materials for elite performance.", href: "/customization/fabric-options/" },
+  { title: "Private Label", desc: "Woven neck labels, heat-transfer tags, and custom hangtags for your own sportswear brand.", href: "/customization/private-label/" },
+  { title: "Custom Packaging", desc: "Branded individual polybags, size labels, and professional export cardboard cartons.", href: "/customization/custom-packaging/" },
+  { title: "Mockup Before Production", desc: "High-fidelity 3D mockup of your design for confirmation before any physical sampling or production.", href: "/free-mockup/" }
 ];
 
 export default function CustomizationPage() {
   return (
     <main className="bg-[#0A0A0A] text-white">
       <Header />
-      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
+      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Customization" title="Total Creative Control" subtitle="At POXIOL, customization goes far beyond a logo. We help you engineer every detail of your uniform." dark center />
           
-          <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 text-left">
             {customOptions.map(opt => (
-              <div key={opt.title} className="rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-10 hover:border-[#B6FF00] transition">
+              <Link key={opt.title} href={opt.href} className="rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-10 hover:border-[#B6FF00] transition group">
                 <h3 className="text-2xl font-black uppercase text-[#B6FF00]">{opt.title}</h3>
                 <p className="mt-6 text-neutral-400 leading-relaxed text-sm">{opt.desc}</p>
-              </div>
+                <span className="mt-8 inline-block text-[10px] font-black uppercase tracking-widest text-neutral-500 group-hover:text-white group-hover:underline">Explore Details →</span>
+              </Link>
             ))}
           </div>
         </div>
@@ -51,7 +52,7 @@ export default function CustomizationPage() {
               </div>
               <div className="flex gap-4 items-start">
                 <span className="text-[#B6FF00] font-black">✓</span>
-                <p className="text-neutral-400"><strong className="text-white">Color Matching:</strong> Strict Pantone matching to ensure your brand colors are always accurate.</p>
+                <p className="text-neutral-400"><strong className="text-white">Color Matching:</strong> Professional sublimation inks and color calibration to ensure your brand colors are accurate.</p>
               </div>
             </div>
             <div className="mt-12">

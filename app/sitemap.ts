@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
     "/solutions/",
-    "/sports/",
+    "/products/",
     "/design-gallery/",
     "/factory/",
     "/customization/",
@@ -30,8 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1.0 : 0.8,
   }));
 
-  // 2. Sports Category Pages
-  const sportsRoutes = sportsPages.map((sport) => ({
+  // 2. Product Category Pages
+  const productRoutes = sportsPages.map((sport) => ({
     url: `${baseUrl}/${sport.slug}/`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
@@ -46,5 +46,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...sportsRoutes, ...projectRoutes];
+  return [...staticPages, ...productRoutes, ...projectRoutes];
 }

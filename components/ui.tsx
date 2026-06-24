@@ -56,7 +56,7 @@ export function WhatsAppButton() {
 
 export function Header() {
   const nav = [
-    ["Solutions", "/solutions/"], ["Products", "/sports/"], ["Gallery", "/design-gallery/"], ["Factory", "/factory/"], ["Customization", "/customization/"], ["About", "/about/"], ["Contact", "/contact/"]
+    ["Solutions", "/solutions/"], ["Products", "/products/"], ["Gallery", "/design-gallery/"], ["Factory", "/factory/"], ["Customization", "/customization/"], ["About", "/about/"], ["Contact", "/contact/"]
   ];
 
   return (
@@ -74,7 +74,7 @@ export function Header() {
 export function Footer() {
   const columns = [
     { title: "B2B Solutions", links: [["Basketball Program", "/solutions/"], ["Soccer Program", "/solutions/"], ["Private Label OEM", "/solutions/"], ["Teamwear Package", "/solutions/"]] },
-    { title: "Product Categories", links: [["Basketball Uniforms", "/sports/"], ["Soccer Jerseys", "/sports/"], ["Training Wear", "/sports/"], ["Design Gallery", "/design-gallery/"]] },
+    { title: "Product Categories", links: [["Basketball Uniforms", "/products/basketball-uniforms/"], ["Soccer Jerseys", "/products/soccer-jerseys/"], ["Training Wear", "/products/training-wear/"], ["Design Gallery", "/design-gallery/"]] },
     { title: "Manufacturing", links: [["Factory Overview", "/factory/"], ["Quality Control", "/factory/"], ["Customization Options", "/customization/"], ["OEM/ODM Process", "/oem-odm/"]] },
     { title: "Company", links: [["About POXIOL", "/about/"], ["Resources", "/resources/"], ["FAQ Center", "/faq/"], ["Contact Us", "/contact/"]] },
   ];
