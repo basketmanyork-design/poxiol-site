@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type ContactFormState = {
   fullName: string;
@@ -44,7 +45,22 @@ function FieldLabel({ children, required = false }: { children: React.ReactNode;
 
 const inputClass = "h-[50px] w-full rounded-2xl border border-neutral-300 bg-white px-4 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-lime-400";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  title?: string;
+  subtitle?: string;
+  formType?: string;
+  ctaText?: string;
+  successUrl?: string;
+}
+
+export default function ContactForm({
+  title = "Let’s Build Your Custom Teamwear Project",
+  subtitle = "Send your sport category, logo, colors, quantity and target delivery date. POXIOL will review your request and help prepare a mockup or quotation plan.",
+  formType = "Contact V8 Optimized",
+  ctaText = "Submit & Get Free Mockup",
+  successUrl = "/thank-you/",
+}: ContactFormProps) {
+  const router = useRouter();
   const [form, setForm] = useState<ContactFormState>(initialState);
   
   // Real File Upload states
@@ -52,7 +68,6 @@ export default function ContactForm() {
   const [referenceFile, setReferenceFile] = useState<File | null>(null);
   const [sizeChartFile, setSizeChartFile] = useState<File | null>(null);
 
-  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -73,7 +88,7 @@ export default function ContactForm() {
 
       // Package everything in FormData to allow native file attachments on Formspree
       const formData = new FormData();
-      formData.append("formType", "Contact V6.2 File Upload");
+      formData.append("formType", formType);
       formData.append("sourcePage", window.location.href);
 
       Object.entries(form).forEach(([key, value]) => {
@@ -88,7 +103,6 @@ export default function ContactForm() {
         method: "POST",
         headers: {
           Accept: "application/json",
-          // NOTE: DO NOT set Content-Type header. Fetch will automatically set boundary for multipart/form-data.
         },
         body: formData,
       });
@@ -97,11 +111,7 @@ export default function ContactForm() {
         throw new Error("Submit failed. Please try again or contact us by email.");
       }
 
-      setSubmitted(true);
-      setForm(initialState);
-      setLogoFile(null);
-      setReferenceFile(null);
-      setSizeChartFile(null);
+      router.push(successUrl);
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     } finally {
@@ -109,34 +119,13 @@ export default function ContactForm() {
     }
   }
 
-  if (submitted) {
-    return (
-      <div className="rounded-[2rem] bg-white p-8 shadow-xl md:p-10">
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-lime-400 text-2xl font-black text-neutral-950">
-          ✓
-        </div>
-        <h2 className="mt-6 text-3xl font-black text-neutral-950">Request Received</h2>
-        <p className="mt-4 leading-7 text-neutral-600">
-          Thank you. POXIOL has received your custom teamwear request. Our team will review your sport category, quantity, logo/reference files and delivery deadline, then reply with the next step for mockup or quotation.
-        </p>
-        <button
-          type="button"
-          onClick={() => setSubmitted(false)}
-          className="mt-8 h-[52px] rounded-full bg-neutral-950 px-7 text-sm font-black uppercase text-white transition hover:bg-lime-400 hover:text-neutral-950"
-        >
-          Submit Another Request
-        </button>
-      </div>
-    );
-  }
-
   return (
     <form onSubmit={handleSubmit} className="rounded-[2rem] bg-white p-6 shadow-xl md:p-9">
       <div className="mb-8">
         <p className="text-sm font-black uppercase tracking-[0.14em] text-lime-600">POXIOL B2B Inquiry</p>
-        <h2 className="mt-3 text-3xl font-black text-neutral-950">Let’s Build Your Custom Teamwear Project</h2>
+        <h2 className="mt-3 text-3xl font-black text-neutral-950">{title}</h2>
         <p className="mt-3 text-sm leading-6 text-neutral-600">
-          Send your sport category, logo, colors, quantity and target delivery date. POXIOL will review your request and help prepare a mockup or quotation plan.
+          {subtitle}
         </p>
       </div>
 
@@ -329,7 +318,6 @@ export default function ContactForm() {
                     onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
-                  <p className="mt-1 text-[10px] text-neutral-400">AI, EPS, PDF, SVG, PNG, JPG</p>
                 </div>
                 <div>
                   <FieldLabel>Reference Design</FieldLabel>
@@ -339,7 +327,6 @@ export default function ContactForm() {
                     onChange={(e) => setReferenceFile(e.target.files?.[0] || null)}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
-                  <p className="mt-1 text-[10px] text-neutral-400">PNG, JPG, PDF, WebP</p>
                 </div>
                 <div>
                   <FieldLabel>Size Chart / Tech Pack</FieldLabel>
@@ -349,7 +336,6 @@ export default function ContactForm() {
                     onChange={(e) => setSizeChartFile(e.target.files?.[0] || null)}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
-                  <p className="mt-1 text-[10px] text-neutral-400">PDF, XLSX, CSV, PNG, JPG</p>
                 </div>
               </div>
             </div>
@@ -378,7 +364,7 @@ export default function ContactForm() {
         disabled={loading}
         className="mt-8 h-[56px] w-full rounded-full bg-lime-400 text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {loading ? "Submitting..." : "Submit & Get Free Mockup"}
+        {loading ? "Submitting..." : ctaText}
       </button>
 
       <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3">

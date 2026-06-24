@@ -5,7 +5,14 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/_next/", "/static/"],
+      disallow: [
+        "/api/", 
+        "/_next/", 
+        "/static/",
+        "/thank-you/",
+        "/quote-received/",
+        "/sample-received/"
+      ],
     },
     sitemap: "https://www.poxiol.com/sitemap.xml",
   };

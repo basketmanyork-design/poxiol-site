@@ -5,20 +5,24 @@ import { caseStudies } from "@/lib/case-studies";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.poxiol.com";
 
-  // 1. Static Pages
+  // 1. Static Core Pages
   const staticPages = [
     "",
+    "/solutions/",
     "/sports/",
-    "/projects/",
+    "/design-gallery/",
+    "/factory/",
+    "/customization/",
+    "/about/",
     "/contact/",
     "/free-mockup/",
+    "/get-quote/",
+    "/sample-order/",
     "/oem-odm/",
-    "/manufacturing/",
-    "/about/",
+    "/resources/",
     "/faq/",
     "/fabric-guide/",
     "/printing-guide/",
-    "/resources/",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -39,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/projects/${project.slug}/`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
-    priority: 0.6,
+    priority: 0.7,
   }));
 
   return [...staticPages, ...sportsRoutes, ...projectRoutes];

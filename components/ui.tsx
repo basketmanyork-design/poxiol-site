@@ -2,12 +2,14 @@ import Link from "next/link";
 import React from "react";
 
 export const freeMockupHref = "/free-mockup/";
+export const getQuoteHref = "/get-quote/";
+export const sampleOrderHref = "/sample-order/";
+export const whatsAppHref = "https://wa.me/8613055646888";
 
 export function SectionHeading({ eyebrow, title, subtitle, dark = false, center = false }: { eyebrow: string; title: string; subtitle?: string; dark?: boolean; center?: boolean }) {
   return (
     <div className={`mx-auto mb-12 max-w-3xl ${center ? "text-center" : "text-left md:text-center"} md:mb-14`}>
-
-      <p className={`mb-4 text-sm font-extrabold uppercase tracking-[0.16em] ${dark ? "text-lime-400" : "text-lime-600"}`}>{eyebrow}</p>
+      <p className={`mb-4 text-sm font-extrabold uppercase tracking-[0.16em] ${dark ? "text-[#B6FF00]" : "text-lime-600"}`}>{eyebrow}</p>
       <h2 className={`text-4xl font-black leading-[1.05] md:text-5xl ${dark ? "text-white" : "text-neutral-950"}`}>{title}</h2>
       {subtitle ? <p className={`mt-5 text-base leading-7 md:text-lg ${dark ? "text-neutral-300" : "text-neutral-600"}`}>{subtitle}</p> : null}
     </div>
@@ -18,7 +20,7 @@ export function PrimaryButton({ href = freeMockupHref, children, className = "" 
   return (
     <Link 
       href={href} 
-      className={`inline-flex items-center justify-center rounded-full bg-[#B6FF00] text-black font-black uppercase tracking-wide transition hover:bg-white ${className}`}
+      className={`inline-flex items-center justify-center rounded-full bg-[#B6FF00] text-black font-black uppercase tracking-wide transition hover:bg-white px-8 py-4 ${className}`}
     >
       {children}
     </Link>
@@ -29,7 +31,7 @@ export function SecondaryButton({ href, children, darkText = false, className = 
   return (
     <Link 
       href={href} 
-      className={`inline-flex items-center justify-center rounded-full border transition ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}
+      className={`inline-flex items-center justify-center rounded-full border transition px-8 py-4 ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}
     >
       {children}
     </Link>
@@ -39,7 +41,7 @@ export function SecondaryButton({ href, children, darkText = false, className = 
 export function WhatsAppButton() {
   return (
     <a 
-      href="https://wa.me/8613055646888" 
+      href={whatsAppHref} 
       target="_blank" 
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition hover:scale-110 active:scale-95"
@@ -54,17 +56,16 @@ export function WhatsAppButton() {
 
 export function Header() {
   const nav = [
-    ["Home", "/"], ["Sports", "/sports/"], ["Resources", "/resources/"], ["Projects", "/projects/"], ["About", "/about/"], ["Contact", "/contact/"]
+    ["Solutions", "/solutions/"], ["Products", "/sports/"], ["Gallery", "/design-gallery/"], ["Factory", "/factory/"], ["Customization", "/customization/"], ["About", "/about/"], ["Contact", "/contact/"]
   ];
-
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/95 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-10 xl:px-20">
-        <Link href="/" className="text-2xl font-black tracking-tight text-white">POXIOL<span className="text-lime-400">.</span></Link>
-        <nav className="hidden items-center gap-7 lg:flex">{nav.map(([label, href]) => <Link key={label} href={href} className="text-sm font-bold text-white/80 transition hover:text-lime-400">{label}</Link>)}</nav>
-        <Link href="/free-mockup/" className="hidden rounded-full bg-lime-400 px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white md:inline-flex">GET FREE MOCKUP</Link>
-        <Link href="/free-mockup/" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white lg:hidden">↗</Link>
+        <Link href="/" className="text-2xl font-black tracking-tight text-white uppercase">POXIOL<span className="text-[#B6FF00]">.</span></Link>
+        <nav className="hidden items-center gap-7 lg:flex">{nav.map(([label, href]) => <Link key={label} href={href} className="text-sm font-bold text-white/80 transition hover:text-[#B6FF00]">{label}</Link>)}</nav>
+        <Link href={freeMockupHref} className="hidden rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white md:inline-flex">FREE MOCKUP</Link>
+        <Link href={freeMockupHref} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white lg:hidden">↗</Link>
       </div>
     </header>
   );
@@ -72,21 +73,46 @@ export function Header() {
 
 export function Footer() {
   const columns = [
-    { title: "Knowledge Center", links: [["Resources Center", "/resources/"], ["FAQ Center", "/faq/"], ["Manufacturing Hub", "/manufacturing/"], ["Fabric Guide", "/fabric-guide/"], ["Printing Guide", "/printing-guide/"]] },
-    { title: "Case Studies", links: [["Teamwear Projects", "/projects/"], ["Customer Success", "/projects/"], ["OEM Manufacturing", "/projects/"]] },
-    { title: "Popular Resources", links: [["Basketball Guide", "/how-to-order-custom-basketball-uniforms/"], ["Soccer Guide", "/soccer-jersey-buying-guide/"], ["OEM vs ODM", "/oem-vs-odm-sportswear/"], ["Sublimation Guide", "/sublimation-printing-guide/"], ["Fabric Knowledge", "/best-sportswear-fabrics/"]] },
-    { title: "Company", links: [["About POXIOL", "/about/"], ["OEM & ODM", "/oem-odm/"], ["Contact Us", "/contact/"]] },
+    { title: "B2B Solutions", links: [["Basketball Program", "/solutions/"], ["Soccer Program", "/solutions/"], ["Private Label OEM", "/solutions/"], ["Teamwear Package", "/solutions/"]] },
+    { title: "Product Categories", links: [["Basketball Uniforms", "/sports/"], ["Soccer Jerseys", "/sports/"], ["Training Wear", "/sports/"], ["Design Gallery", "/design-gallery/"]] },
+    { title: "Manufacturing", links: [["Factory Overview", "/factory/"], ["Quality Control", "/factory/"], ["Customization Options", "/customization/"], ["OEM/ODM Process", "/oem-odm/"]] },
+    { title: "Company", links: [["About POXIOL", "/about/"], ["Resources", "/resources/"], ["FAQ Center", "/faq/"], ["Contact Us", "/contact/"]] },
   ];
 
-
   return (
-    <footer className="border-t border-white/10 bg-neutral-950 px-5 py-16 text-white md:px-10 xl:px-20">
+    <footer className="border-t border-white/10 bg-neutral-950 px-5 py-20 text-white md:px-10 xl:px-20">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
-          <div><Link href="/" className="text-3xl font-black">POXIOL<span className="text-lime-400">.</span></Link><p className="mt-4 max-w-xs leading-7 text-neutral-400">Professional custom teamwear, OEM/ODM sports uniforms and performance apparel for teams, schools, events and brands worldwide.</p><div className="mt-6"><PrimaryButton>Get Free Mockup</PrimaryButton></div></div>
-          {columns.map(col => <div key={col.title}><h3 className="font-black text-white">{col.title}</h3><ul className="mt-4 space-y-3">{col.links.map(([label, href]) => <li key={label}><Link href={href} className="text-sm text-neutral-400 transition hover:text-lime-400">{label}</Link></li>)}</ul></div>)}
+        <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(4,1fr)]">
+          <div>
+            <Link href="/" className="text-3xl font-black uppercase tracking-tight">POXIOL<span className="text-[#B6FF00]">.</span></Link>
+            <p className="mt-6 max-w-xs leading-8 text-neutral-400">Elite custom teamwear manufacturer specializing in high-performance uniforms for clubs, schools, brands and events worldwide.</p>
+            <div className="mt-8 flex flex-col gap-3">
+              <Link href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</Link>
+              <Link href={getQuoteHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</Link>
+              <Link href={sampleOrderHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Start Sample Order →</Link>
+            </div>
+          </div>
+          {columns.map(col => (
+            <div key={col.title}>
+              <h3 className="font-black text-white text-sm uppercase tracking-widest">{col.title}</h3>
+              <ul className="mt-6 space-y-4">
+                {col.links.map(([label, href]) => (
+                  <li key={label}>
+                    <Link href={href} className="text-sm text-neutral-400 transition hover:text-[#B6FF00]">{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 text-sm text-neutral-500 md:flex-row md:items-center md:justify-between"><p>© 2026 POXIOL Teamwear. All rights reserved.</p><p>Built for teams. Designed for brands. Ready for global delivery.</p></div>
+        <div className="mt-20 flex flex-col gap-6 border-t border-white/10 pt-10 text-xs font-bold uppercase tracking-widest text-neutral-500 md:flex-row md:items-center md:justify-between">
+          <p>© 2026 POXIOL TEAMWEAR. ALL RIGHTS RESERVED.</p>
+          <div className="flex gap-8">
+            <span>MOQ 1 Set</span>
+            <span>Fast Sample</span>
+            <span>Global Delivery</span>
+          </div>
+        </div>
       </div>
     </footer>
   );
