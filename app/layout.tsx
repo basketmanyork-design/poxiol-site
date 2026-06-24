@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
   title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
   description:
-    "POXIOL provides custom basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and multi-sport teamwear with MOQ 1, free mockup, fast sampling and OEM/ODM service.",
+    "POXIOL provides custom basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and multi-sport teamwear with MOQ 1, free mockup, sample production in 2-3 days and OEM/ODM service.",
   keywords: [
     "custom teamwear",
     "custom sports uniforms",

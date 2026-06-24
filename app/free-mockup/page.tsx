@@ -28,7 +28,7 @@ export default function FreeMockupPage() {
             <p className="mb-5 text-sm font-black uppercase tracking-[0.16em] text-lime-400">Free Mockup Request</p>
             <h1 className="text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl">Get Your Free POXIOL Teamwear Mockup</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-neutral-300">Send us your sport, logo, colors and quantity. Our design team will help create a professional custom uniform preview for your team, event or brand.</p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">{["MOQ 1 supported", "1-2H design support", "2-3 day sampling", "OEM/ODM ready", "Quality Support"].map(item => <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white">{item}</div>)}</div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">{["MOQ 1 supported", "1-2H design support", "Sample Production: 2–3 Days", "OEM/ODM ready", "Quality Support"].map(item => <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white">{item}</div>)}</div>
             <div className="mt-8 rounded-[1.5rem] border border-lime-400/25 bg-lime-400/10 p-5 text-sm leading-7 text-neutral-200">No complete design file? No problem. Send your idea, reference style, team color or logo. POXIOL will help turn it into a professional teamwear concept.</div>
           </div>
           <ContactForm 

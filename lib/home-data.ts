@@ -17,7 +17,7 @@ export const sportsCategories = [
 export const uspCards = [
   { metric: "MOQ 1", title: "Start Small, Scale Fast", description: "Order from one piece for samples, trials, custom retail projects or small team needs before scaling into larger production.", label: "Flexible Orders" },
   { metric: "1-2H", title: "Fast Design Mockup", description: "Send your logo, colors or reference. Our design team creates a professional visual mockup quickly for your approval.", label: "Free Mockup" },
-  { metric: "2-3D", title: "Quick Sampling", description: "Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country.", label: "Fast Sample" },
+  { metric: "2-3D", title: "Quick Sampling", description: "Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country.", label: "Sample Production" },
   { metric: "3-5D", title: "Fast Production", description: "Flexible production capacity supports urgent team orders, tournament deadlines and repeat teamwear programs.", label: "Fast Turnaround" },
   { metric: "OEM/ODM", title: "Original Teamwear Development", description: "From simple logo customization to full teamwear collection development, POXIOL supports brands, clubs and wholesalers.", label: "Design + Production" },
   { metric: "QC", title: "Quality Support", description: "Strict QC before shipment and comprehensive after-sales quality support for every custom order.", label: "Quality Promise" },

@@ -19,7 +19,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
             <h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl uppercase">{data.h1}</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-neutral-300">{data.heroText}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["Sample Support", "Free Mockup", "Fast Sampling", "OEM/ODM Ready", "Quality Support"].map((item)=>(
+              {["Sample Support", "Free Mockup", "Sample Production", "OEM/ODM Ready", "Quality Support"].map((item)=>(
                 <span key={item} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white">{item}</span>
               ))}
             </div>

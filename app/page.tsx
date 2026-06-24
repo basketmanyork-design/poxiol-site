@@ -8,14 +8,14 @@ import ContactForm from "@/components/forms/ContactForm";
 
 export const metadata: Metadata = {
   title: "Custom Teamwear Manufacturer | OEM Sports Uniform Supplier | POXIOL",
-  description: "Elite B2B custom teamwear manufacturer offering basketball uniforms, soccer kits and OEM sportswear with free mockup, MOQ 1 set and fast sampling.",
+  description: "Elite B2B custom teamwear manufacturer offering basketball uniforms, soccer kits and OEM sportswear with free mockup, MOQ 1 set and sample production in 2-3 days.",
 };
 
 const trustMetrics = [
   { value: "15+", label: "Years Experience" },
   { value: "3,000+", label: "Team Projects" },
   { value: "50+", label: "Countries Shipped" },
-  { value: "2-3 Days", label: "Fast Sampling" }
+  { value: "2-3 Days", label: "Sample Production" }
 ];
 
 const conversionChips = ["Free Mockup", "MOQ 1 Set", "Sample in 2–3 Days", "Factory Direct", "OEM/ODM"];
