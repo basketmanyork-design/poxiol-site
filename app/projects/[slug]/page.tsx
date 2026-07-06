@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import { caseStudies, getCaseStudyBySlug } from "@/lib/case-studies";
 import Link from "next/link";
+import { CaseStudySchema } from "@/components/seo/GEOStructuredData";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -32,22 +33,30 @@ export default async function ProjectPage({ params }: Props) {
 
   if (!project) notFound();
 
+  const baseUrl = "https://www.poxiol.com";
+
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <CaseStudySchema 
+        title={project.title} 
+        url={`${baseUrl}/projects/${project.slug}/`} 
+        description={project.overview} 
+        keywords={project.snapshot.map(s => s.details).filter(d => d.length < 50)}
+      />
       <Header />
       
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <Link 
             href="/projects/"
-            className="inline-flex items-center text-xs font-black uppercase tracking-widest text-neutral-500 hover:text-lime-400"
+            className="inline-flex items-center text-xs font-black uppercase tracking-widest text-neutral-500 hover:text-[#B6FF00]"
           >
             <span className="mr-2">←</span> Back to Projects
           </Link>
           
           <div className="mt-10 grid gap-16 lg:grid-cols-2">
             <div>
-              <div className="flex items-center space-x-2 text-xs font-black uppercase tracking-widest text-lime-400">
+              <div className="flex items-center space-x-2 text-xs font-black uppercase tracking-widest text-[#B6FF00]">
                 <span>{project.clientType}</span>
                 <span className="h-1 w-1 rounded-full bg-white/20"></span>
                 <span>{project.country}</span>
@@ -56,35 +65,48 @@ export default async function ProjectPage({ params }: Props) {
                 {project.title}
               </h1>
               
-              <div className="mt-12 grid grid-cols-2 gap-8 border-y border-white/10 py-10">
-                <div>
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-neutral-500">Quantity</h3>
-                  <p className="mt-2 text-xl font-bold">{project.quantity}</p>
-                </div>
-                <div>
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-neutral-500">Product</h3>
-                  <p className="mt-2 text-xl font-bold">{project.product}</p>
-                </div>
+              {/* Project Snapshot Table */}
+              <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02]">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-white/10 bg-white/[0.04]">
+                       <th colSpan={2} className="px-6 py-4 text-xs font-black uppercase tracking-widest text-lime-400">Project Snapshot</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-sm">
+                    {project.snapshot.map((row, idx) => (
+                      <tr key={row.item} className={idx !== project.snapshot.length - 1 ? "border-b border-white/5" : ""}>
+                        <td className="px-6 py-4 font-bold text-white w-1/3">{row.item}</td>
+                        <td className="px-6 py-4 text-neutral-400">{row.details}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
 
               <div className="mt-12 space-y-10">
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Project Overview</h2>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">Project Overview</h2>
                   <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.overview}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Buyer Background</h2>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">Buyer Background</h2>
                   <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.buyerBackground}</p>
+                </div>
+
+                <div>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">Main Challenge</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.challenge}</p>
                 </div>
 
                 {project.orderRequirements && project.orderRequirements.length > 0 && (
                   <div>
-                    <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Order Requirements</h2>
+                    <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">Order Requirements</h2>
                     <ul className="mt-4 space-y-3">
                       {project.orderRequirements.map((req, i) => (
                         <li key={i} className="flex items-start text-base text-neutral-300">
-                          <span className="mr-3 text-lime-400 font-bold">✓</span>
+                          <span className="mr-3 text-[#B6FF00] font-bold">✓</span>
                           <span>{req}</span>
                         </li>
                       ))}
@@ -93,18 +115,13 @@ export default async function ProjectPage({ params }: Props) {
                 )}
 
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Design & Mockup</h2>
-                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.designMockup}</p>
-                </div>
-
-                <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Fabric & Printing</h2>
-                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.fabricPrinting}</p>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">POXIOL Solution</h2>
+                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.solution}</p>
                 </div>
 
                 {project.productionTimeline && project.productionTimeline.length > 0 && (
                   <div>
-                    <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Production Timeline</h2>
+                    <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">Production Timeline</h2>
                     <div className="mt-4 space-y-4 border-l-2 border-lime-400/20 pl-6">
                       {project.productionTimeline.map((step, i) => (
                         <div key={i} className="relative">
@@ -117,18 +134,13 @@ export default async function ProjectPage({ params }: Props) {
                 )}
 
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Quality Control</h2>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">QC Process</h2>
                   <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.qualityControl}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Packing & Delivery</h2>
-                  <p className="mt-4 text-base leading-relaxed text-neutral-300">{project.packingDelivery}</p>
-                </div>
-
-                <div>
-                  <h2 className="text-xl font-black uppercase tracking-tight text-lime-400">Result</h2>
-                  <p className="mt-4 text-lg font-bold leading-relaxed text-lime-400">{project.result}</p>
+                  <h2 className="text-xl font-black uppercase tracking-tight text-[#B6FF00]">Result</h2>
+                  <p className="mt-4 text-lg font-bold leading-relaxed text-[#B6FF00]">{project.result}</p>
                 </div>
               </div>
               
@@ -147,12 +159,12 @@ export default async function ProjectPage({ params }: Props) {
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div className="aspect-square overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 relative group">
-                  <img src="/images/manufacturing/sublimation.webp" alt="Sublimation printing process" className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
-                  <p className="absolute bottom-4 left-4 text-xs font-black uppercase text-white tracking-wider">Sublimation</p>
+                  <img src="/images/poxiol-v6/manufacturing_sublimation_printing.png" alt="Sublimation printing process" className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
+                  <p className="absolute bottom-4 left-4 text-[10px] font-black uppercase text-white tracking-widest">Sublimation</p>
                 </div>
                 <div className="aspect-square overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 relative group">
-                  <img src="/images/manufacturing/qc-process.webp" alt="Quality control process" className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
-                  <p className="absolute bottom-4 left-4 text-xs font-black uppercase text-white tracking-wider">Quality Control</p>
+                  <img src="/images/poxiol-v6/manufacturing_quality_control.png" alt="Quality control process" className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
+                  <p className="absolute bottom-4 left-4 text-[10px] font-black uppercase text-white tracking-widest">Quality Control</p>
                 </div>
               </div>
             </div>

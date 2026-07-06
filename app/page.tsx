@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMockupHref, getQuoteHref, sampleOrderHref, whatsAppHref } from "@/components/ui";
 import { sportsCategories } from "@/lib/home-data";
 import { caseStudies } from "@/lib/case-studies";
-import StructuredData, { organizationSchema, websiteSchema, homepageFaqSchema } from "@/components/seo/StructuredData";
+import { OrganizationSchema } from "@/components/seo/GEOStructuredData";
 import ContactForm from "@/components/forms/ContactForm";
 
 export const metadata: Metadata = {
@@ -20,10 +20,36 @@ const trustMetrics = [
 
 const conversionChips = ["Free Mockup", "MOQ 1 Set", "Sample in 2–3 Days", "Factory Direct", "OEM/ODM"];
 
+const targetBuyers = [
+  { title: "Clubs & Academies", desc: "Custom seasonal uniforms, training kits and reorder programs for local clubs and academies." },
+  { title: "Schools & Teams", desc: "Youth and adult size support, team name and number customization, size-grouped packing for easy distribution." },
+  { title: "Sportswear Brands", desc: "OEM/ODM collection development, private labels, packaging, sampling and bulk production support." },
+  { title: "Distributors & Custom Retailers", desc: "Flexible product options, repeatable designs, multi-sport catalog expansion and factory-direct production." },
+  { title: "Event Organizers", desc: "Custom event shirts, race wear, tournament uniforms and fast production planning for deadline-driven projects." }
+];
+
+const trustEvidence = [
+  { title: "15+ Years Experience", desc: "Long-term experience in custom sports uniforms and B2B teamwear production." },
+  { title: "3,000+ Team Projects", desc: "Custom teamwear programs for clubs, schools, academies, brands and event buyers." },
+  { title: "50+ Countries Shipped", desc: "Global delivery support for sample orders and bulk teamwear programs." },
+  { title: "Multi-Stage QC", desc: "Fabric surface check, print clarity check, stitching inspection, size measurement and final packing review." },
+  { title: "Private Label Support", desc: "Neck labels, hangtags, packaging, barcode labels and distributor-ready packing available." },
+  { title: "Free Mockup Workflow", desc: "Submit logo, colors and quantity before production to confirm visual direction." }
+];
+
+const homeFaqs = [
+  { q: "What does POXIOL manufacture?", a: "POXIOL manufactures custom basketball uniforms, soccer kits, training wear, team hoodies, jackets and sports team accessories for clubs, schools, academies, brands, distributors and event organizers." },
+  { q: "Does POXIOL support MOQ 1 set samples?", a: "Yes. POXIOL supports 1 set sample orders for design and quality confirmation before bulk production." },
+  { q: "How fast can POXIOL prepare a sample?", a: "For standard custom teamwear projects, sample production can usually be arranged in 2–3 days after mockup confirmation." },
+  { q: "Can POXIOL support OEM and ODM teamwear?", a: "Yes. POXIOL supports OEM and ODM development, including custom design, fabric selection, private label, packaging and bulk production." },
+  { q: "What information should buyers send for a quote?", a: "Buyers should send sport category, product type, logo, color direction, quantity, size list, reference design and target delivery date." },
+  { q: "Does POXIOL ship globally?", a: "Yes. POXIOL supports global shipping for sample orders, team orders and distributor programs." }
+];
+
 export default function HomePage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
-      <StructuredData data={[organizationSchema, websiteSchema, homepageFaqSchema]} />
+      <OrganizationSchema />
       <Header />
 
       {/* 1. Optimized Hero Section */}
@@ -77,6 +103,49 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 1.5 GEO Module: Factory Sourcing Summary */}
+      <section className="bg-black px-5 py-16 md:px-10 md:py-24 border-b border-white/5">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading 
+            eyebrow="GEO / AI Summary" 
+            title="Factory Sourcing Summary" 
+            subtitle="A quick sourcing overview for clubs, schools, brands, distributors and event organizers looking for reliable custom teamwear manufacturing."
+            dark
+          />
+          <div className="mt-12 overflow-x-auto rounded-[2rem] border border-white/10 bg-white/[0.02]">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-white/10 bg-white/[0.04]">
+                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-lime-400">POXIOL Capability</th>
+                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-lime-400">Details</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm text-neutral-300">
+                {[
+                  ["Main Products", "Basketball uniforms, soccer kits, baseball uniforms, training wear, team hoodies, jackets and accessories"],
+                  ["Buyer Types", "Clubs, schools, academies, sportswear brands, distributors, event organizers and custom retailers"],
+                  ["MOQ", "1 set sample support, bulk team orders and distributor programs available"],
+                  ["Mockup Support", "Free visual mockup based on logo, colors, sport category and quantity"],
+                  ["Sample Time", "2–3 days after mockup confirmation for standard custom teamwear samples"],
+                  ["Production", "Sublimation printing, cutting, sewing, quality control, private label packing and global shipping"],
+                  ["Custom Options", "Team name, player name, number, logo, sponsor graphic, colors, pattern, neck label, hangtag and packaging"],
+                  ["OEM / ODM", "Private label teamwear development and custom sportswear production for brands and distributors"],
+                  ["Export Markets", "USA, Europe, Australia, Middle East and global teamwear buyers"]
+                ].map(([item, capability], idx) => (
+                  <tr key={item} className={idx !== 8 ? "border-b border-white/5" : ""}>
+                    <td className="px-8 py-5 font-bold text-white whitespace-nowrap">{item}</td>
+                    <td className="px-8 py-5 leading-relaxed">{capability}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-10 text-center">
+             <Link href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-widest hover:underline">Send Your Logo & Quantity → Get a Free Mockup</Link>
+          </div>
+        </div>
+      </section>
+
       {/* Trust Strip */}
       <section className="border-y border-white/5 bg-neutral-950 py-12">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
@@ -91,25 +160,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Solutions Section */}
+      {/* 2. Who We Help Section */}
       <section className="bg-neutral-900 px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading 
-            eyebrow="Solutions" 
-            title="Custom Teamwear Solutions" 
-            subtitle="Providing flexible manufacturing for clubs, academies, schools and sportswear brands."
+            eyebrow="Target Buyers" 
+            title="Built for Serious Teamwear Buyers" 
+            subtitle="Providing flexible manufacturing, exact visual consistency, and responsive deadlines for B2B partners."
             dark center
           />
-          <div className="mt-20 grid gap-8 md:grid-cols-3">
-            {[
-              { title: "Basketball Uniforms", desc: "Full sublimation reversible sets and team packages.", href: "/sports/" },
-              { title: "Soccer Club Kits", desc: "Home/Away kits with sponsor integration and pro fit.", href: "/sports/" },
-              { title: "OEM/ODM Production", desc: "Private label manufacturing for established sports brands.", href: "/oem-odm/" }
-            ].map(item => (
-              <div key={item.title} className="group rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-10 transition hover:border-[#B6FF00]/50 hover:bg-[#B6FF00]/5">
-                <h3 className="text-2xl font-black uppercase tracking-tight">{item.title}</h3>
-                <p className="mt-4 text-neutral-400 leading-relaxed">{item.desc}</p>
-                <Link href={item.href} className="mt-8 inline-block text-xs font-black uppercase tracking-widest text-[#B6FF00] hover:underline">Explore Solution →</Link>
+          <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {targetBuyers.map(item => (
+              <div key={item.title} className="group rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-[#B6FF00]/50 hover:bg-[#B6FF00]/5">
+                <h3 className="text-lg font-black uppercase tracking-tight text-white group-hover:text-[#B6FF00]">{item.title}</h3>
+                <p className="mt-4 text-xs text-neutral-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -126,7 +190,7 @@ export default function HomePage() {
               subtitle="Specialized categories engineered for high-intensity athletic performance."
               dark
             />
-            <SecondaryButton href="/sports/" className="mb-14">View All Categories</SecondaryButton>
+            <SecondaryButton href="/products/" className="mb-14">View All Categories</SecondaryButton>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {sportsCategories.slice(0, 4).map(sport => (
@@ -142,28 +206,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Factory & Customization Evidence */}
+      {/* 4. Why Buyers Trust POXIOL Section */}
       <section className="bg-neutral-900 px-5 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-7xl grid gap-20 lg:grid-cols-2 items-center">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="aspect-square rounded-[2rem] overflow-hidden border border-white/10"><img src="/images/poxiol-v6/manufacturing_sublimation_printing.png" className="h-full w-full object-cover" /></div>
-            <div className="aspect-square rounded-[2rem] overflow-hidden border border-white/10 mt-12"><img src="/images/poxiol-v6/manufacturing_cutting_sewing.png" className="h-full w-full object-cover" /></div>
+        <div className="mx-auto max-w-7xl">
+           <SectionHeading 
+            eyebrow="Evidence" 
+            title="Why Buyers Trust POXIOL" 
+            subtitle="POXIOL combines factory-direct production, clear sampling steps, quality inspection and project-based teamwear support."
+            dark center
+          />
+          <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {trustEvidence.map((item, idx) => (
+              <div key={item.title} className="flex gap-6">
+                 <span className="text-4xl font-black text-white/10">{idx + 1}</span>
+                 <div>
+                    <h3 className="text-xl font-black uppercase text-white">{item.title}</h3>
+                    <p className="mt-3 text-sm text-neutral-400 leading-relaxed">{item.desc}</p>
+                 </div>
+              </div>
+            ))}
           </div>
-          <div>
-            <SectionHeading eyebrow="Factory Direct" title="Real Manufacturing Power" dark />
-            <p className="text-lg text-neutral-400 leading-relaxed">
-              POXIOL is not a middleman. We operate our own specialized sublimation and sewing facility, giving us absolute control over print vibrancy, stitch durability, and delivery timelines.
-            </p>
-            <ul className="mt-10 space-y-5">
-              {["Industrial Sublimation Printing", "Precision Laser Fabric Cutting", "100% Manual QC Inspection", "Private Label & Custom Packaging"].map(item => (
-                <li key={item} className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest">
-                  <span className="h-2 w-2 rounded-full bg-[#B6FF00]" /> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-12">
-              <PrimaryButton href={sampleOrderHref}>Start Sample Order</PrimaryButton>
-            </div>
+          <div className="mt-20 text-center">
+             <div className="inline-block rounded-3xl border border-white/10 bg-white/[0.02] p-8 max-w-3xl">
+                <p className="text-sm text-neutral-500 italic">
+                   Note: Only real and verifiable documents, buyer feedback, and factory records are displayed on this site. We maintain 100% original visual assets to ensure copyright safety for our partners.
+                </p>
+                <div className="mt-8 flex justify-center gap-6">
+                   <Link href="/certificates-testing/" className="text-[#B6FF00] font-black uppercase text-xs tracking-widest hover:underline">View Certificates →</Link>
+                   <Link href="/quality-control-process/" className="text-[#B6FF00] font-black uppercase text-xs tracking-widest hover:underline">QC Workflow →</Link>
+                </div>
+             </div>
           </div>
         </div>
       </section>
@@ -185,11 +257,29 @@ export default function HomePage() {
           <ContactForm 
             title="Start Your Project"
             subtitle="Provide your sport, quantity and logo files to receive a high-fidelity mockup within 24 hours."
-            formType="Homepage Lead V8"
+            formType="Homepage Lead V90"
             ctaText="Request Mockup & Quote"
             successUrl="/thank-you/"
           />
         </div>
+      </section>
+
+      {/* AI / GEO Friendly FAQ */}
+      <section className="bg-neutral-900 px-5 py-24 md:px-10 md:py-32 border-y border-white/5">
+         <div className="mx-auto max-w-4xl">
+            <SectionHeading eyebrow="FAQ" title="Custom Teamwear Sourcing FAQ" dark center />
+            <div className="mt-16 space-y-4 text-left">
+               {homeFaqs.map((faq)=>(
+                  <details key={faq.q} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 group">
+                  <summary className="cursor-pointer text-lg font-black text-white list-none flex justify-between items-center group-open:text-[#B6FF00]">
+                     {faq.q}
+                     <span className="text-xl font-light transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-4 leading-7 text-neutral-400 border-t border-white/5 pt-4">{faq.a}</p>
+                  </details>
+               ))}
+            </div>
+         </div>
       </section>
 
       <Footer />

@@ -9,8 +9,9 @@ export type SportsPageData = {
   primaryKeyword: string;
   productTypes: { title: string; description: string }[];
   features: { title: string; description: string }[];
-  designs: { title: string; description: string; image: string }[];
+  designs: { title: string; description: string; image: string; href?: string }[];
   buyerTypes: { title: string; description: string }[];
+  procurementTable: { item: string; specification: string }[];
   faqs: { question: string; answer: string }[];
 };
 
@@ -23,23 +24,38 @@ const commonFaqs = [
   { question: "Do you support OEM/ODM for sportswear brands?", answer: "Yes. POXIOL supports OEM/ODM teamwear development, including design support, sampling, production and flexible customization." },
 ];
 
+function genericProcurementTable(productName: string, mainProducts: string) {
+  return [
+    { item: "Product Name", specification: productName },
+    { item: "Main Products", specification: mainProducts },
+    { item: "Material", specification: "Polyester mesh, interlock, bird eye, stretch performance fabric" },
+    { item: "Printing", specification: "Sublimation, heat transfer, embroidery, screen printing" },
+    { item: "Custom Areas", specification: "Team name, logo, player name, number, sponsor graphic, colors, collar, sleeve, label, packaging" },
+    { item: "Sizes", specification: "Youth and adult sizes available" },
+    { item: "Sample Support", specification: "1 set sample support for design and quality confirmation" },
+    { item: "Bulk Production", specification: "Production planning based on quantity, customization and delivery deadline" },
+    { item: "Packaging", specification: "Individual polybag, size label, hangtag, custom packaging, carton packing" },
+    { item: "Buyer Types", specification: "Clubs, schools, academies, event organizers, brands, distributors and wholesalers" },
+  ];
+}
+
 function genericFeatures() {
   return [
     { title: "High-Color Sublimation", description: "Vibrant graphics printed into the fabric using professional sublimation inks for long-lasting team identity." },
     { title: "Fast Mockup Support", description: "Free design support helps you preview your custom teamwear before sampling." },
     { title: "Sample Support Available", description: "Sample order support is available for design and quality confirmation." },
-    { title: "Quality Support", description: "Strict QC before shipment and comprehensive after-sales quality support for every order." },
+    { title: "Quality Support", description: "Strict QC before shipment and comprehensive After-Sales Quality Support for every order." },
   ];
 }
 
 export const sportsPages: SportsPageData[] = [
   {
     slug: "products/basketball-uniforms",
-    metaTitle: "Custom Basketball Uniform Manufacturer | Sublimated Basketball Jerseys | POXIOL",
-    metaDescription: "POXIOL is a professional custom basketball uniform manufacturer specializing in OEM teamwear, high-color sublimation printing, and custom uniforms for clubs and schools.",
+    metaTitle: "Custom Basketball Uniform Manufacturer | OEM Sublimated Jerseys & Shorts | POXIOL",
+    metaDescription: "POXIOL manufactures pro-grade custom basketball uniforms, reversible jerseys, shooting shirts and team sets for clubs, academies and schools. Factory-direct OEM/ODM production with 2-3 day sampling and global shipping.",
     eyebrow: "CUSTOM BASKETBALL UNIFORMS",
-    h1: "Custom Basketball Uniform Manufacturer",
-    heroText: "POXIOL provides professional custom teamwear manufacturing for basketball uniforms, reversible jerseys, and youth basketball teamwear. We support clubs, schools, and brands with fast mockups and reliable production.",
+    h1: "Custom Basketball Uniform Manufacturer for Clubs, Schools and Sportswear Brands",
+    heroText: "POXIOL manufactures custom basketball jerseys, shorts, reversible uniforms and full team packages for global B2B buyers. We support free mockup design, sample confirmation, sublimation printing, player name and number customization, private label packaging and bulk production planning.",
     heroImage: "/images/sports-pages/basketball/hero.png",
     primaryKeyword: "custom basketball uniforms",
     productTypes: [
@@ -50,24 +66,31 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Storm Court Set", description: "Black and electric lime basketball uniform with sharp motion graphics.", image: "/images/designs/storm-court-basketball.webp" },
-      { title: "Metro Blue Set", description: "Blue and white team set for clubs and school programs.", image: "/images/sports-pages/basketball/design-2.webp" },
-      { title: "Red Impact Set", description: "Red, black and white basketball kit for strong team identity.", image: "/images/sports-pages/basketball/design-3.webp" }
+      { title: "Storm Court Set", description: "Bold sublimation basketball set with sharp geometric motion graphics.", image: "/images/designs/storm-court-basketball.webp", href: "/free-mockup/?style=storm-court-basketball-set" },
+      { title: "Metro Blue Set", description: "Blue and white team set for clubs and school programs.", image: "/images/sports-pages/basketball/design-2.webp", href: "/free-mockup/?style=metro-blue-basketball-set" },
+      { title: "Red Impact Set", description: "Red, black and white basketball kit for strong team identity.", image: "/images/sports-pages/basketball/design-3.webp", href: "/free-mockup/?style=red-impact-basketball-set" }
     ],
     buyerTypes: [
       { title: "Basketball Clubs", description: "Flexible team orders for local clubs and amateur programs." },
       { title: "Schools & Academies", description: "Consistent uniforms for school teams and sports departments." },
       { title: "Sportswear Brands", description: "OEM/ODM basketball collection development for brands and distributors." }
     ],
-    faqs: commonFaqs,
+    procurementTable: genericProcurementTable("Custom Basketball Uniforms", "Jerseys, shorts, reversible sets, practice jerseys and full team packages"),
+    faqs: [
+      { question: "Can I order one basketball uniform sample before bulk production?", answer: "Yes. POXIOL supports 1 set sample orders for design and quality confirmation before bulk production." },
+      { question: "Can I customize player names and numbers?", answer: "Yes. Player name, team name, number, logo, sponsor graphics and custom colors can be added." },
+      { question: "Do you support reversible basketball uniforms?", answer: "Yes. POXIOL can produce reversible basketball uniforms for training, school teams, youth leagues and club programs." },
+      { question: "Do you support youth and adult sizes?", answer: "Yes. Youth and adult sizes are available. Buyers can provide a size breakdown before bulk production." },
+      { question: "Can sportswear brands order private label basketball uniforms?", answer: "Yes. POXIOL supports neck label, hangtag, packaging and OEM/ODM collection development for private label buyers." },
+    ],
   },
   {
     slug: "products/soccer-jerseys",
-    metaTitle: "Custom Soccer Jersey Manufacturer | Soccer Kits & Teamwear | POXIOL",
-    metaDescription: "POXIOL is a professional custom soccer jersey manufacturer specializing in OEM teamwear, high-color sublimation printing, and custom uniforms for clubs worldwide.",
+    metaTitle: "Custom Soccer Jersey Manufacturer | OEM Soccer Kits & Football Teamwear | POXIOL",
+    metaDescription: "POXIOL manufactures custom soccer kits, football jerseys, shorts and goalkeeper sets for club and school programs. Factory-direct manufacturing with premium sublimation, private label support and fast production.",
     eyebrow: "CUSTOM SOCCER TEAMWEAR",
-    h1: "Custom Soccer Jersey Manufacturer",
-    heroText: "POXIOL provides professional custom teamwear manufacturing for soccer jerseys, football kits, and goalkeeper jerseys. We support clubs and schools with fast mockups and reliable production.",
+    h1: "Custom Soccer Kit Manufacturer for Clubs, Schools and Distributors",
+    heroText: "POXIOL provides custom soccer jerseys, shorts, socks, goalkeeper kits and full team packages for global B2B buyers. We support home and away kit design, sponsor placement, team logo customization, sublimation printing, sample confirmation, private label packaging and bulk production planning.",
     heroImage: "/images/sports-pages/soccer/hero.png",
     primaryKeyword: "custom soccer kits",
     productTypes: [
@@ -78,16 +101,23 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "United Field Kit", description: "Royal blue, white and silver soccer kit for clubs and academies.", image: "/images/designs/united-field-soccer-kit.webp" },
-      { title: "Navy Crest Kit", description: "Clean navy and lime style for modern teamwear programs.", image: "/images/sports-pages/soccer/design-2.webp" },
-      { title: "City Red Kit", description: "Red and white soccer kit with safe custom team identity.", image: "/images/sports-pages/soccer/design-3.webp" }
+      { title: "United Field Kit", description: "Royal blue, white and silver soccer kit for clubs and academies.", image: "/images/designs/united-field-soccer-kit.webp", href: "/free-mockup/?style=united-field-soccer-kit" },
+      { title: "Navy Crest Kit", description: "Clean navy and lime style for modern teamwear programs.", image: "/images/sports-pages/soccer/design-2.webp", href: "/free-mockup/?style=navy-crest-soccer-kit" },
+      { title: "City Red Kit", description: "Red and white soccer kit with safe custom team identity.", image: "/images/sports-pages/soccer/design-3.webp", href: "/free-mockup/?style=city-red-soccer-kit" }
     ],
     buyerTypes: [
       { title: "Soccer Clubs", description: "Custom kits for local clubs, academies and seasonal teams." },
       { title: "Schools", description: "Team kits for school soccer programs and tournaments." },
       { title: "Sportswear Brands", description: "OEM/ODM soccer collection production and sampling." }
     ],
-    faqs: commonFaqs,
+    procurementTable: genericProcurementTable("Custom Soccer Kits", "Jerseys, shorts, socks, goalkeeper kits and full team packages"),
+    faqs: [
+      { question: "Can POXIOL make home and away soccer kits?", answer: "Yes. POXIOL supports home and away kit design for clubs, schools and tournament programs." },
+      { question: "Can I add sponsor logos to soccer jerseys?", answer: "Yes. Sponsor graphics can be added if the buyer owns or has authorization to use them." },
+      { question: "Can I order soccer jerseys with shorts and socks?", answer: "Yes. POXIOL can support jersey-only orders, jersey + shorts sets and full soccer kits with socks." },
+      { question: "Do you support goalkeeper kits?", answer: "Yes. Goalkeeper kits can be developed with custom colors, numbers and team branding." },
+      { question: "Can distributors order private label soccer kits?", answer: "Yes. POXIOL supports private label neck labels, hangtags, packaging and repeat order production for distributors and sportswear brands." },
+    ],
   },
   {
     slug: "products/training-wear",
@@ -95,7 +125,7 @@ export const sportsPages: SportsPageData[] = [
     metaDescription: "Custom training wear, warm-up suits, tracksuits, and jackets for clubs, schools and brands. POXIOL offers OEM/ODM and high-color sublimation printing.",
     eyebrow: "CUSTOM TRAINING WEAR",
     h1: "Custom Training Wear and Warm-up Suits",
-    heroText: "Create custom tracksuits, warm-up jackets, and training tops for clubs, schools, and sportswear brands with professional quality support.",
+    heroText: "Create custom tracksuits, warm-up jackets, and training tops for clubs, schools, and sportswear brands with professional After-Sales Quality Support.",
     heroImage: "/images/sports-pages/training/hero.png",
     primaryKeyword: "custom training wear",
     productTypes: [
@@ -106,15 +136,16 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Pro Training Set", description: "Charcoal, white and electric lime tracksuit for warmups and travel.", image: "/images/designs/pro-training-tracksuit.webp" },
-      { title: "Navy Travel Set", description: "Navy and white warm-up jacket and pants for team travel.", image: "/images/sports-pages/training/design-2.webp" },
-      { title: "Black Motion Set", description: "Black and gray training top and pants with lime accents.", image: "/images/sports-pages/training/design-3.webp" }
+      { title: "Pro Training Set", description: "Modern tracksuit design for warmups, training sessions and travel wear.", image: "/images/designs/pro-training-tracksuit.webp", href: "/free-mockup/?style=pro-training-tracksuit" },
+      { title: "Navy Travel Set", description: "Navy and white warm-up jacket and pants for team travel.", image: "/images/sports-pages/training/design-2.webp", href: "/free-mockup/?style=navy-travel-set" },
+      { title: "Black Motion Set", description: "Black and gray training top and pants with lime accents.", image: "/images/sports-pages/training/design-3.webp", href: "/free-mockup/?style=black-motion-training-set" }
     ],
     buyerTypes: [
       { title: "Clubs", description: "Warmups and travel apparel for club teams." },
       { title: "Schools", description: "Training wear for school sports departments." },
       { title: "Brands", description: "OEM/ODM training wear collection development." }
     ],
+    procurementTable: genericProcurementTable("Custom Training Wear", "Tracksuits, warm-up jackets, training tops and travel suits"),
     faqs: commonFaqs,
   },
   {
@@ -133,12 +164,13 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Elite Tech Hoodie", description: "Modern fit hoodie with vibrant team accents.", image: "/images/designs/cyber-league-esports.webp" }
+      { title: "Elite Tech Hoodie", description: "Modern fit hoodie with vibrant team accents.", image: "/images/designs/cyber-league-esports.webp", href: "/free-mockup/?style=elite-tech-hoodie" }
     ],
     buyerTypes: [
       { title: "Clubs", description: "Branded outerwear for team members and supporters." },
       { title: "Brands", description: "OEM hoodie collections with private label support." }
     ],
+    procurementTable: genericProcurementTable("Custom Hoodies & Jackets", "Pullover hoodies, zip-up jackets and team outerwear"),
     faqs: commonFaqs,
   },
   {
@@ -156,12 +188,13 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Pro Gear Bag", description: "Heavy-duty custom bag for athlete gear.", image: "/images/manufacturing/packing-shipping.webp" }
+      { title: "Pro Gear Bag", description: "Heavy-duty custom bag for athlete gear.", image: "/images/manufacturing/packing-shipping.webp", href: "/free-mockup/?style=pro-gear-bag" }
     ],
     buyerTypes: [
       { title: "Clubs", description: "Complete accessory kits for team members." },
       { title: "Events", description: "Branded merchandise and participant gear." }
     ],
+    procurementTable: genericProcurementTable("Custom Team Accessories", "Custom team socks and gear bags"),
     faqs: commonFaqs,
   },
 ];

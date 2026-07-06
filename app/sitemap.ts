@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { sportsPages } from "@/lib/sports-pages";
 import { caseStudies } from "@/lib/case-studies";
+import { resourcePages } from "@/lib/resources-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.poxiol.com";
@@ -23,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/faq/",
     "/fabric-guide/",
     "/printing-guide/",
+    "/certificates-testing/",
+    "/quality-control-process/",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -46,5 +49,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...productRoutes, ...projectRoutes];
+  // 4. Resource Pages (GEO Articles)
+  const resourceRoutes = resourcePages.map((page) => ({
+    url: `${baseUrl}/resources/${page.slug}/`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...productRoutes, ...projectRoutes, ...resourceRoutes];
 }
