@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
+import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 
 export const metadata: Metadata = {
   title: "Custom Teamwear Quality Control Process | POXIOL Sports Uniform QC",
   description: "Learn how POXIOL controls fabric, printing, sewing, sizing, packing and final inspection for custom basketball uniforms, soccer kits and OEM teamwear orders.",
 };
+
+const qcFaqs = [
+  { question: "How does POXIOL control teamwear quality?", answer: "POXIOL uses a multi-stage QC process covering fabric condition, print clarity, color consistency, stitching strength, size accuracy, packing quantity and shipment readiness." },
+  { question: "Can I request production photos?", answer: "Yes. POXIOL can provide project-based production or packing photos when required and confirmed before production to help B2B buyers track quality status." },
+  { question: "What is the size tolerance for custom uniforms?", answer: "Our QC team measures every finished garment against your confirmed size chart. We typically maintain a high-precision tolerance of +/- 1.0cm to 1.5cm for athletic fits." }
+];
 
 const qcSteps = [
   { step: "01", title: "Fabric Inspection", desc: "Before printing and cutting, fabric surface, stretch, weight, color and visible defects are checked against project requirements." },
@@ -19,8 +26,23 @@ const qcSteps = [
 ];
 
 export default function QualityControlProcessPage() {
+  const baseUrl = "https://www.poxiol.com";
+  const fullUrl = `${baseUrl}/quality-control-process/`;
+
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      {/* --- AEO / GEO Infrastructure --- */}
+      <ServiceSchema 
+        name="Custom Teamwear Quality Control Service"
+        description="Comprehensive 9-stage quality inspection for custom sports uniforms and OEM teamwear."
+        url={fullUrl}
+      />
+      <FAQSchema faqs={qcFaqs} />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: `${baseUrl}/` },
+        { name: "QC Process", url: fullUrl }
+      ]} />
+
       <Header />
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(182,255,0,0.12),transparent_30%)]" />
@@ -28,7 +50,7 @@ export default function QualityControlProcessPage() {
           <SectionHeading 
             eyebrow="Workflow" 
             title="Custom Teamwear Quality Control Process" 
-            subtitle="POXIOL uses a multi-stage quality control workflow to help B2B buyers reduce production risk."
+            subtitle="POXIOL uses a multi-stage quality control workflow to help B2B buyers reduce production risk and ensure repeatable quality."
             dark
             center
           />
@@ -79,13 +101,31 @@ export default function QualityControlProcessPage() {
             </table>
           </div>
 
-          <div className="mt-24 rounded-[3rem] border border-neutral-200 bg-neutral-50 p-10 text-center">
+          <div className="mt-24 rounded-[3rem] border border-neutral-200 bg-neutral-50 p-10 text-center shadow-inner">
              <h3 className="text-2xl font-black uppercase mb-4">Request a QC Plan</h3>
              <p className="text-neutral-600 mb-10 leading-relaxed max-w-2xl mx-auto">Send your product type, quantity, size chart and quality requirements. POXIOL will help confirm the specific QC plan before production starts.</p>
              <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <PrimaryButton href="/free-mockup/">Get Free Mockup</PrimaryButton>
                 <SecondaryButton href="/contact/" darkText>Request QC Plan</SecondaryButton>
              </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AEO FAQ Section */}
+      <section className="bg-neutral-900 px-5 py-24 md:px-10 text-neutral-950 border-y border-white/5">
+        <div className="mx-auto max-w-4xl text-center">
+          <SectionHeading eyebrow="Expert Answers" title="QC & Manufacturing FAQ" dark center/>
+          <div className="mt-16 space-y-4 text-left">
+            {qcFaqs.map((faq) => (
+              <details key={faq.question} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 group">
+                <summary className="cursor-pointer text-lg font-black text-white list-none flex justify-between items-center group-open:text-[#B6FF00] transition">
+                  {faq.question}
+                  <span className="text-xl font-light transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-4 leading-7 text-neutral-400 border-t border-white/5 pt-4 max-w-3xl">{faq.answer}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

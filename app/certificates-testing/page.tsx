@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
+import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 
 export const metadata: Metadata = {
   title: "Certificates & Testing | POXIOL Custom Teamwear Quality Documents",
@@ -41,9 +42,29 @@ const documentCategories = [
   }
 ];
 
+const certificatesFaqs = [
+  { question: "Can POXIOL provide testing reports?", answer: "Testing reports may be available depending on fabric type, order requirements and buyer market. Buyers should confirm required testing standards before production." },
+  { question: "Can I request a QC report before shipment?", answer: "Yes. POXIOL can provide project-based QC records including size measurement, print clarity, stitching inspection and packing quantity review." },
+  { question: "Are all documents on this page verified?", answer: "Only verified documents are displayed as confirmed. Any pending or project-based document is clearly marked as pending upload or available upon request." }
+];
+
 export default function CertificatesTestingPage() {
+  const baseUrl = "https://www.poxiol.com";
+  const fullUrl = `${baseUrl}/certificates-testing/`;
+
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <ServiceSchema 
+        name="Teamwear Quality Verification & Testing"
+        description="Verification of fabric quality, color fastness, and production standards for B2B teamwear."
+        url={fullUrl}
+      />
+      <FAQSchema faqs={certificatesFaqs} />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: `${baseUrl}/` },
+        { name: "Certificates", url: fullUrl }
+      ]} />
+
       <Header />
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(182,255,0,0.12),transparent_30%)]" />
@@ -65,7 +86,7 @@ export default function CertificatesTestingPage() {
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-12 md:grid-cols-2">
             {documentCategories.map((cat) => (
-              <div key={cat.title} className="rounded-[2.5rem] border border-neutral-200 bg-neutral-50 p-8 md:p-12">
+              <div key={cat.title} className="rounded-[2.5rem] border border-neutral-200 bg-neutral-50 p-8 md:p-12 shadow-sm">
                 <h2 className="text-2xl font-black uppercase tracking-tight text-neutral-950 mb-8">{cat.title}</h2>
                 <ul className="space-y-4">
                   {cat.items.map((item) => (
@@ -84,7 +105,7 @@ export default function CertificatesTestingPage() {
               </div>
             ))}
 
-            <div className="rounded-[2.5rem] border border-neutral-200 bg-neutral-50 p-8 md:p-12">
+            <div className="rounded-[2.5rem] border border-neutral-200 bg-neutral-50 p-8 md:p-12 shadow-sm">
               <h2 className="text-2xl font-black uppercase tracking-tight text-neutral-950 mb-8">4. Private Label & Packaging Proof</h2>
               <div className="grid grid-cols-2 gap-4">
                  {[
@@ -115,21 +136,18 @@ export default function CertificatesTestingPage() {
         </div>
       </section>
 
-      <section className="bg-neutral-900 px-5 py-20 md:px-10 text-neutral-950 border-y border-white/5">
+      {/* AEO FAQ Section */}
+      <section className="bg-neutral-900 px-5 py-24 md:px-10 text-neutral-950 border-y border-white/5">
         <div className="mx-auto max-w-4xl text-center">
-          <SectionHeading eyebrow="FAQ" title="Certificates FAQ" dark center/>
+          <SectionHeading eyebrow="Expert Answers" title="Certificates FAQ" dark center/>
           <div className="mt-16 space-y-4 text-left">
-            {[
-              { q: "Can POXIOL provide testing reports?", a: "Testing reports may be available depending on fabric type, order requirements and buyer market. Buyers should confirm required testing standards before production." },
-              { q: "Can I request a QC report before shipment?", a: "Yes. POXIOL can provide project-based QC records including size measurement, print clarity, stitching inspection and packing quantity review." },
-              { q: "Are all documents on this page verified?", a: "Only verified documents are displayed as confirmed. Any pending or project-based document is clearly marked as pending upload or available upon request." }
-            ].map((faq) => (
-              <details key={faq.q} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 group">
-                <summary className="cursor-pointer text-lg font-black text-white list-none flex justify-between items-center group-open:text-[#B6FF00]">
-                  {faq.q}
+            {certificatesFaqs.map((faq) => (
+              <details key={faq.question} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 group">
+                <summary className="cursor-pointer text-lg font-black text-white list-none flex justify-between items-center group-open:text-[#B6FF00] transition">
+                  {faq.question}
                   <span className="text-xl font-light transition-transform group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-4 leading-7 text-neutral-400 border-t border-white/5 pt-4">{faq.a}</p>
+                <p className="mt-4 leading-7 text-neutral-400 border-t border-white/5 pt-4 max-w-3xl">{faq.answer}</p>
               </details>
             ))}
           </div>
