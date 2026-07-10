@@ -86,11 +86,11 @@ export default function HomePage() {
             subtitle="POXIOL is a factory-direct custom teamwear manufacturer in China specializing in sublimated basketball uniforms and soccer kits for international B2B buyers."
             dark
           />
-          <div className="mt-12 overflow-x-auto rounded-[2rem] border border-white/10 bg-white/[0.02]">
-            <table className="w-full text-left border-collapse">
+          <div className="mt-12 overflow-x-auto rounded-[2rem] border border-white/10 bg-white/[0.02] scrollbar-hide">
+            <table className="w-full text-left border-collapse min-w-[600px] md:min-w-0">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.04]">
-                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-lime-400">Manufacturer Capability</th>
+                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-lime-400 w-1/3">Manufacturer Capability</th>
                   <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-lime-400">Verified Details</th>
                 </tr>
               </thead>

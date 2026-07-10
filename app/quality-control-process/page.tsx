@@ -72,8 +72,8 @@ export default function QualityControlProcessPage() {
              ))}
           </div>
 
-          <div className="mt-24 overflow-x-auto rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
-            <table className="w-full text-left border-collapse">
+          <div className="mt-24 overflow-x-auto rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm scrollbar-hide">
+            <table className="w-full text-left border-collapse min-w-[700px] md:min-w-0">
               <thead>
                 <tr className="border-b border-neutral-200 bg-neutral-100/50">
                   <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-neutral-500">QC Stage</th>
