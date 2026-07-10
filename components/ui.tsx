@@ -89,7 +89,12 @@ export function Footer() {
             <div className="mt-8 flex flex-col gap-3">
               <Link href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</Link>
               <Link href={getQuoteHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</Link>
-              <Link href={sampleOrderHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Start Sample Order →</Link>
+              <div className="mt-4">
+                <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest leading-relaxed">
+                  Prefer platform-backed sourcing? <br />
+                  <a href="https://basketman.en.alibaba.com/" target="_blank" rel="noreferrer" className="text-white hover:text-[#B6FF00] underline">Visit our Alibaba store</a> for Trade Assurance and supplier verification support.
+                </p>
+              </div>
             </div>
           </div>
           {columns.map(col => (
@@ -107,10 +112,11 @@ export function Footer() {
         </div>
         <div className="mt-20 flex flex-col gap-6 border-t border-white/10 pt-10 text-xs font-bold uppercase tracking-widest text-neutral-500 md:flex-row md:items-center md:justify-between">
           <p>© 2026 POXIOL TEAMWEAR. ALL RIGHTS RESERVED.</p>
-          <div className="flex gap-8">
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
             <span>MOQ 1 Set</span>
             <span>Fast Sample</span>
             <span>Global Delivery</span>
+            <a href="https://basketman.en.alibaba.com/" target="_blank" rel="noreferrer" className="text-white hover:text-[#B6FF00]">Verified Alibaba Store</a>
           </div>
         </div>
       </div>

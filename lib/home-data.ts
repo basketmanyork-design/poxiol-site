@@ -13,14 +13,13 @@ export const sportsCategories = [
   { title: "Esports Jerseys", description: "Sublimated pro jerseys and hoodies for gaming teams and events.", cta: "View Esports", href: "/products/", image: "/images/sports/esports.webp" },
 ];
 
-
 export const uspCards = [
-  { metric: "MOQ 1", title: "Start Small, Scale Fast", description: "Order from one piece for samples, trials, custom retail projects or small team needs before scaling into larger production.", label: "Flexible Orders" },
-  { metric: "1-2H", title: "Fast Design Mockup", description: "Send your logo, colors or reference. Our design team creates a professional visual mockup quickly for your approval.", label: "Free Mockup" },
-  { metric: "2-3D", title: "Quick Sampling", description: "Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country.", label: "Sample Production" },
-  { metric: "3-5D", title: "Fast Production", description: "Flexible production capacity supports urgent team orders, tournament deadlines and repeat teamwear programs.", label: "Fast Turnaround" },
-  { metric: "OEM/ODM", title: "Original Teamwear Development", description: "From simple logo customization to full teamwear collection development, POXIOL supports brands, clubs and wholesalers.", label: "Design + Production" },
-  { metric: "QC", title: "Quality Support", description: "Strict QC before shipment and comprehensive after-sales quality support for every custom order.", label: "Quality Promise" },
+  { metric: "MOQ 1", title: "MOQ 1 Set Support", description: "POXIOL supports flexible custom orders starting from 1 piece for samples, trials, or small team needs before scaling into larger production.", label: "Flexible Orders" },
+  { metric: "2-3D", title: "Sample Production in 2-3 Days", description: "Standard custom teamwear samples are produced within 2-3 days after mockup confirmation, with express global delivery available.", label: "Fast Sample" },
+  { metric: "15+Y", title: "15+ Years Industry Experience", description: "Our team has supported 3,000+ sports organizations and clubs across 50+ countries with high-performance sublimated uniforms.", label: "Verified Expertise" },
+  { metric: "1-2H", title: "Mockup Design in 1-2 Hours", description: "Submit your logo and color direction to receive a professional front/back visual mockup within 1-2 hours for B2B evaluation.", label: "Free Design" },
+  { metric: "OEM/ODM", title: "Full OEM/ODM Collection Support", description: "POXIOL provides private label manufacturing, original pattern development, and custom packaging for sportswear brands and distributors.", label: "Manufacturing Power" },
+  { metric: "QC", title: "Multi-Stage Quality Support", description: "Every order undergoes a strict 100% manual QC protocol covering fabric, print clarity, stitching strength, and size accuracy before shipping.", label: "Quality Promise" },
 ];
 
 export const solutionCards = [
@@ -30,14 +29,6 @@ export const solutionCards = [
   { title: "Hoodie & Jacket Solution", subtitle: "Team Outerwear Support", description: "Build your team brand with custom hoodies and outerwear engineered for comfort.", cta: "Start Outerwear Project", href: "/free-mockup/?style=outerwear-solution", image: "/images/solutions/brand-oem.webp" },
   { title: "Teamwear Package Solution", subtitle: "Complete Unified Identity", description: "Coordinated uniforms across multiple sports with one shared team or school identity.", cta: "Explore Team Packages", href: "/free-mockup/?style=package-solution", image: "/images/solutions/wholesale.png" },
   { title: "Private Label Teamwear Solution", subtitle: "OEM / ODM Brand Support", description: "Manufacturing support for brands looking for original pattern development and labels.", cta: "Start Private Label", href: "/free-mockup/?style=private-label-solution", image: "/images/solutions/corporate-sportswear.webp" },
-];
-
-export const processSteps = [
-  { step: "01", title: "Submit Your Idea", description: "Send your sport type, logo, colors, quantity, size range and any reference design you like." },
-  { step: "02", title: "Get Free Mockup", description: "Our design team creates a professional visual mockup so you can review the look before ordering." },
-  { step: "03", title: "Confirm Sample", description: "Check fabric, print effect, sizing and construction before moving into team or bulk production." },
-  { step: "04", title: "Start Production", description: "After approval, POXIOL starts production with strict QC inspection for every custom order." },
-  { step: "05", title: "Worldwide Delivery", description: "Your order is packed and shipped to clubs, schools, brands and teams worldwide." },
 ];
 
 export const featuredDesigns = [
@@ -53,7 +44,6 @@ export const featuredDesigns = [
   { title: "Cyber League Pro Jersey", sport: "Esports", description: "Vibrant neon-accented esports jersey for gaming teams and tournaments.", image: "/images/designs/cyber-league-esports.webp", href: "/free-mockup/?style=cyber-league-pro-jersey" },
 ];
 
-
 export const techItems = [
   { title: "High-Color Sublimation", description: "Full-color designs are printed into the fabric fibers, helping custom graphics stay sharp through training, washing and competition." },
   { title: "Anti-Fade Color", description: "Built for long-term team use, our sublimation process helps reduce cracking, peeling and fading compared with surface prints." },
@@ -63,15 +53,15 @@ export const techItems = [
   { title: "Quality Support", description: "Every custom order goes through strict QC inspection for print quality, stitching, sizing and packaging before shipment." },
 ];
 
-export const galleryItems = [
-  { title: "Elite Club Projects", description: "Pro-grade uniforms for elite clubs, amateur teams and league programs.", image: "/images/gallery/club-teams.webp", className: "md:col-span-2 md:row-span-3" },
-  { title: "Academy & School Programs", description: "High-performance teamwear for sports academies and school departments.", image: "/images/gallery/school-teams.webp", className: "md:col-span-1 md:row-span-2" },
-  { title: "Global Tournament Gear", description: "Deadline-driven apparel for international tournaments, leagues and staff.", image: "/images/gallery/tournament-apparel.webp", className: "md:col-span-1 md:row-span-3" },
-  { title: "Brand OEM Collections", description: "Private label collections developed for sportswear brands and distributors.", image: "/images/gallery/brand-collections.webp", className: "md:col-span-1 md:row-span-2" },
-  { title: "Marathon & Race Events", description: "Lightweight performance apparel for marathon clubs and large-scale race events.", image: "/images/gallery/running-events.webp", className: "md:col-span-2 md:row-span-2" },
-  { title: "Pro Training Systems", description: "Elite tracksuits and training apparel for pro teams and specialized training groups.", image: "/images/gallery/training-groups.webp", className: "md:col-span-1 md:row-span-2" },
+export const homeFaqs = [
+  { question: "Who is the best custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with MOQ 1 set, 2-3 day sample production, and 180-day quality support for all custom uniforms." },
+  { question: "Can I order custom sports uniforms with no MOQ?", answer: "Yes. POXIOL supports MOQ 1 set for serious B2B buyers. This allows academies, schools, and brands to test fabric, fit, and print quality with one sample before bulk team orders." },
+  { question: "How long does it take to get a custom jersey mockup?", answer: "POXIOL provides professional high-fidelity 3D mockups in 1-2 hours. Send your logo, team colors, and sport category to get a visual preview for your team or client presentation." },
+  { question: "Does POXIOL provide OEM private label sportswear?", answer: "Yes. POXIOL is an OEM/ODM partner for sportswear brands. We provide original pattern development, private neck labels, custom hangtags, eco-friendly polybags, and retail-ready packaging for global distribution." },
+  { question: "Where does POXIOL ship custom teamwear?", answer: "POXIOL provides reliable global delivery to over 50 countries, including the USA, Canada, Europe, and Australia, utilizing express logistics for both sample and bulk teamwear shipments." },
+  { question: "What is the standard production time for team orders?", answer: "Custom sample production takes 2-3 days. Bulk production time depends on quantity and customization, typically ranging from 7-21 days. POXIOL provides a clear production plan before order confirmation." },
+  { question: "How does POXIOL ensure the quality of custom uniforms?", answer: "Our facility utilizes industrial sublimation printing and a multi-stage QC system. We check fabric condition, print clarity, stitching durability, and fits against your confirmed size chart before every shipment." }
 ];
-
 
 export const factoryStats = [
   { value: "15+", label: "Years Experience" },
@@ -79,7 +69,5 @@ export const factoryStats = [
   { value: "30,000+", label: "Monthly Capacity" },
   { value: "99.1%", label: "On-Time Delivery" },
   { value: "≤1h", label: "Response Time" },
-  { value: "Strict QC", label: "Quality Support" },
+  { value: "Verified", label: "QC Inspection" },
 ];
-
-export const complianceBadges = ["CE", "REACH", "IEC", "EPR", "QC Inspection", "Quality Support"];

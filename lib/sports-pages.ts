@@ -75,13 +75,68 @@ export const sportsPages: SportsPageData[] = [
       { title: "Schools & Academies", description: "Consistent uniforms for school teams and sports departments." },
       { title: "Sportswear Brands", description: "OEM/ODM basketball collection development for brands and distributors." }
     ],
-    procurementTable: genericProcurementTable("Custom Basketball Uniforms", "Jerseys, shorts, reversible sets, practice jerseys and full team packages"),
+    procurementTable: [
+      { item: "Product Name", specification: "Custom Basketball Uniforms" },
+      { item: "Main Products", specification: "Jerseys, shorts, reversible sets, practice jerseys and team packages" },
+      { item: "Material Options", specification: "100% Polyester Mesh, Dura-Interlock, Pro-Performance mesh" },
+      { item: "Size Range", specification: "Youth sizes (YXS-YXL) and Adult sizes (S-5XL)" },
+      { item: "Customization Areas", specification: "Front/back logos, names, numbers, side panels, collars, labels" },
+      { item: "Sample Support", specification: "1 set sample support (2-3 days production)" },
+      { item: "Private Label", specification: "Custom neck labels, hangtags and branded packaging available" },
+      { item: "Quality Docs", specification: "Inspection records and fabric specs available upon request" },
+      { item: "Alibaba Link", specification: "Verified sourcing on Alibaba.com/basketman" }
+    ],
     faqs: [
       { question: "Can I order one basketball uniform sample before bulk production?", answer: "Yes. POXIOL supports 1 set sample orders for design and quality confirmation before bulk production." },
       { question: "Can I customize player names and numbers?", answer: "Yes. Player name, team name, number, logo, sponsor graphics and custom colors can be added." },
       { question: "Do you support reversible basketball uniforms?", answer: "Yes. POXIOL can produce reversible basketball uniforms for training, school teams, youth leagues and club programs." },
       { question: "Do you support youth and adult sizes?", answer: "Yes. Youth and adult sizes are available. Buyers can provide a size breakdown before bulk production." },
       { question: "Can sportswear brands order private label basketball uniforms?", answer: "Yes. POXIOL supports neck label, hangtag, packaging and OEM/ODM collection development for private label buyers." },
+    ],
+  },
+  {
+    slug: "products/soccer-jerseys",
+    metaTitle: "Custom Soccer Jersey Manufacturer | OEM Soccer Kits & Football Teamwear | POXIOL",
+    metaDescription: "POXIOL manufactures custom soccer kits, football jerseys, shorts and goalkeeper sets for club and school programs. Factory-direct manufacturing with premium sublimation, private label support and fast production.",
+    eyebrow: "CUSTOM SOCCER TEAMWEAR",
+    h1: "Custom Soccer Kit Manufacturer for Clubs, Schools and Distributors",
+    heroText: "POXIOL provides custom soccer jerseys, shorts, socks, goalkeeper kits and full team packages for global B2B buyers. We support home and away kit design, sponsor placement, team logo customization, sublimation printing, sample confirmation, private label packaging and bulk production planning.",
+    heroImage: "/images/sports-pages/soccer/hero.png",
+    primaryKeyword: "custom soccer kits",
+    productTypes: [
+      { title: "Soccer Jerseys", description: "Custom soccer shirts with team logo, colors, names and numbers." },
+      { title: "Soccer Shorts", description: "Matching shorts for full club and school soccer kits." },
+      { title: "Soccer Socks", description: "Team socks to complete the on-field kit system." },
+      { title: "Goalkeeper Kits", description: "Goalkeeper jerseys and sets with custom colors and graphics." }
+    ],
+    features: genericFeatures(),
+    designs: [
+      { title: "United Field Kit", description: "Royal blue, white and silver soccer kit for clubs and academies.", image: "/images/designs/united-field-soccer-kit.webp", href: "/free-mockup/?style=united-field-soccer-kit" },
+      { title: "Navy Crest Kit", description: "Clean navy and lime style for modern teamwear programs.", image: "/images/sports-pages/soccer/design-2.webp", href: "/free-mockup/?style=navy-crest-soccer-kit" },
+      { title: "City Red Kit", description: "Red and white soccer kit with safe custom team identity.", image: "/images/sports-pages/soccer/design-3.webp", href: "/free-mockup/?style=city-red-soccer-kit" }
+    ],
+    buyerTypes: [
+      { title: "Soccer Clubs", description: "Custom kits for local clubs, academies and seasonal teams." },
+      { title: "Schools", description: "Team kits for school soccer programs and tournaments." },
+      { title: "Sportswear Brands", description: "OEM/ODM soccer collection production and sampling." }
+    ],
+    procurementTable: [
+      { item: "Product Name", specification: "Custom Soccer Kits" },
+      { item: "Kit Components", specification: "Jerseys, shorts, socks, goalkeeper kits and team packages" },
+      { item: "Material Options", specification: "140gsm interlock polyester, breathable mesh, moisture-wicking fabric" },
+      { item: "Size Range", specification: "Youth and Adult sizes (tailored for soccer athletes)" },
+      { item: "Custom Areas", specification: "Club crest, sponsor logos, player names, numbers, sleeve badges" },
+      { item: "Original Compliance", specification: "Buyer-owned artwork only; no unauthorized trademarked logos" },
+      { item: "Sample Process", specification: "Design mockup -> Physical sample (2-3 days) -> Bulk order" },
+      { item: "Quality Support", specification: "Strict QC before shipment and after-sales assistance" },
+      { item: "Alibaba Link", specification: "Official store: Alibaba.com/basketman" }
+    ],
+    faqs: [
+      { question: "Can POXIOL make home and away soccer kits?", answer: "Yes. POXIOL supports home and away kit design for clubs, schools and tournament programs." },
+      { question: "Can I add sponsor logos to soccer jerseys?", answer: "Yes. Sponsor graphics can be added if the buyer owns or has authorization to use them." },
+      { question: "Can I order soccer jerseys with shorts and socks?", answer: "Yes. POXIOL can support jersey-only orders, jersey + shorts sets and full soccer kits with socks." },
+      { question: "Do you support goalkeeper kits?", answer: "Yes. Goalkeeper kits can be developed with custom colors, numbers and team branding." },
+      { question: "Can distributors order private label soccer kits?", answer: "Yes. POXIOL supports private label neck labels, hangtags, packaging and repeat order production for distributors and sportswear brands." },
     ],
   },
   {
