@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { SportsPageData } from "@/lib/sports-pages";
-import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref } from "@/components/ui";
+import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref, getQuoteHref } from "@/components/ui";
 import { ProductSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
 
 function titleCaseKeyword(keyword: string) {
@@ -13,7 +13,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
   const fullUrl = `${baseUrl}/${data.slug}/`;
 
   return (
-    <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+    <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black text-left">
       {/* --- AEO / GEO Infrastructure --- */}
       <ProductSchema 
         name={data.h1} 
@@ -33,17 +33,17 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       ]} />
 
       <Header />
-      <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
+      <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.16),transparent_30%)]" />
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>
-            <span className="mb-5 text-sm font-black uppercase tracking-[0.16em] text-[#B6FF00]">{data.eyebrow}</span>
+            <p className="mb-5 text-sm font-black uppercase tracking-[0.16em] text-[#B6FF00]">{data.eyebrow}</p>
             <h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl uppercase">{data.h1}</h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-300">
-              Custom {productLabel} Manufacturer. POXIOL provides factory-direct custom {productLabel.toLowerCase()} with professional 3D mockups, 1-set sample support, and reliable bulk production for clubs and schools.
+               {data.heroText}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["MOQ 1 Set", "Free 3D Mockup", "2-3D Sampling", "OEM/ODM Ready", "Quality Support"].map((item)=>(
+              {["Sample Support", "Free Mockup", "Sample Production: 2–3 Days", "OEM/ODM Ready", "Quality Support"].map((item)=>(
                 <span key={item} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white">{item}</span>
               ))}
             </div>
@@ -66,7 +66,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
             title={`${productLabel} Procurement Summary`} 
             subtitle={`Custom ${productLabel} Manufacturing Summary. Standard B2B parameters for professional teamwear orders and OEM sportswear programs.`}
           />
-          <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-start mt-16 text-left">
+          <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-start mt-16">
             <div className="overflow-x-auto rounded-[2.5rem] border border-neutral-200 bg-neutral-50 shadow-sm">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -77,37 +77,38 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                 </thead>
                 <tbody className="text-sm text-neutral-700">
                   {data.procurementTable.map((row, idx) => (
-                    <tr key={row.item} className="border-b border-neutral-200/60 last:border-0">
+                    <tr key={row.item} className={idx !== data.procurementTable.length - 1 ? "border-b border-neutral-200/60" : ""}>
                       <td className="px-8 py-5 font-bold text-neutral-950 whitespace-nowrap">{row.item}</td>
-                      <td className="px-8 py-5 leading-relaxed">{row.specification}</td>
+                      <td className="px-8 py-5 leading-relaxed">
+                        {row.item === "Alibaba Link" ? (
+                          <a href="https://basketman.en.alibaba.com/" target="_blank" rel="noreferrer" className="text-lime-600 font-bold hover:underline">Visit Verified Alibaba Store ↗</a>
+                        ) : (
+                          row.specification
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            <div className="rounded-[2.5rem] border border-neutral-200 bg-white p-10 shadow-xl border-t-8 border-t-[#B6FF00]">
-               <h3 className="text-2xl font-black uppercase tracking-tight text-neutral-950">{productLabel.includes("Basketball") ? "Fast Quote Checklist" : "Soccer Kit Procurement Checklist"}</h3>
-               <p className="mt-4 text-sm text-neutral-500 leading-relaxed">To get a fast quote and production plan for your {productLabel.toLowerCase()} project, please send:</p>
-               <ul className="mt-8 space-y-4">
-                  {[
-                    "Sport category and product type",
-                    "Total quantity and size breakdown",
-                    "Delivery country and shipping method",
-                    "Team logo or brand logo files",
-                    "Player name and number list if available",
-                    "Target delivery or match date",
-                    "Packaging or private label requirements"
-                  ].map(item => (
+            {data.checklist && (
+              <div className="rounded-[2.5rem] border border-neutral-200 bg-white p-10 shadow-xl border-t-8 border-t-[#B6FF00]">
+                <h3 className="text-2xl font-black uppercase tracking-tight text-neutral-950">{data.checklist.title}</h3>
+                <p className="mt-4 text-sm text-neutral-500 leading-relaxed">{data.checklist.intro}</p>
+                <ul className="mt-8 space-y-4">
+                  {data.checklist.items.map(item => (
                     <li key={item} className="flex items-center gap-3 text-sm font-bold text-neutral-700">
-                       <span className="h-2 w-2 rounded-full bg-lime-500" /> {item}
+                      <span className="h-2 w-2 rounded-full bg-lime-500" /> {item}
                     </li>
                   ))}
-               </ul>
-               <div className="mt-10">
-                  <PrimaryButton href="/free-mockup/" className="w-full">Start My Request</PrimaryButton>
-               </div>
-            </div>
+                </ul>
+                <div className="mt-10 flex flex-col gap-4">
+                  <PrimaryButton href={freeMockupHref} className="w-full">Start My Request</PrimaryButton>
+                  <SecondaryButton href={getQuoteHref} darkText className="w-full">Request Quote</SecondaryButton>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -133,9 +134,9 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
           <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
              <div>
                 <SectionHeading eyebrow="B2B Evidence" title="Professional Customization Support" subtitle={`Vibrant team identity through high-color sublimation and durable construction.`} dark/>
-                <div className="mt-12 grid gap-6 text-left">
+                <div className="mt-12 grid gap-6">
                    {data.features.map(feat => (
-                     <div key={feat.title} className="flex gap-5">
+                     <div key={feat.title} className="flex gap-5 text-left">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#B6FF00] text-sm font-black text-neutral-950">✓</div>
                         <div>
                            <h4 className="text-lg font-black text-white uppercase tracking-tight">{feat.title}</h4>
@@ -157,13 +158,13 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       <section className="bg-white px-5 py-20 md:px-10 md:py-32 xl:px-20 text-neutral-950 border-y border-neutral-100">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Inspiration" title="Original Teamwear Design Concepts" subtitle="Select a design style and customize it with your own team colors and logos."/>
-          <div className="grid gap-8 md:grid-cols-3 mt-16 text-left">
+          <div className="grid gap-8 md:grid-cols-3 mt-16">
             {data.designs.map((item)=>(
               <div key={item.title} className="group overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-neutral-50 shadow-sm">
-                <div className="relative h-72 overflow-hidden bg-neutral-200">
+                <div className="relative h-72 overflow-hidden bg-neutral-200 text-left">
                   <img src={item.image} alt={`POXIOL ${item.title} Design`} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
                 </div>
-                <div className="p-8">
+                <div className="p-8 text-left">
                   <h3 className="text-2xl font-black text-neutral-950 uppercase italic tracking-tighter">{item.title}</h3>
                   <p className="mt-3 leading-7 text-neutral-600 text-sm">{item.description}</p>
                   <Link 
@@ -198,10 +199,10 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       </section>
 
       {/* Footer CTA */}
-      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-24 xl:px-20">
+      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-24 xl:px-20 border-t border-white/5">
         <div className="mx-auto max-w-7xl rounded-[3rem] border border-white/10 bg-[radial-gradient(circle_at_80%_50%,rgba(182,255,0,0.16),transparent_28%),linear-gradient(135deg,#111,#050505)] p-8 text-center md:p-20">
           <h2 className="text-4xl font-black leading-[1.05] text-white md:text-7xl uppercase tracking-tighter">Ready to Build Your Team Uniforms?</h2>
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-neutral-300">Send your sport, logo, colors and quantity. Get a free POXIOL mockup and professional production plan today.</p>
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-neutral-300">Send your sport, logo, colors and quantity. Get a free POXIOL mockup and move faster with custom teamwear production support.</p>
           <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
             <PrimaryButton href={freeMockupHref} className="h-16 px-10">Get Free Mockup</PrimaryButton>
             <SecondaryButton href="/get-quote/" className="h-16 px-10">Request Factory Quote</SecondaryButton>

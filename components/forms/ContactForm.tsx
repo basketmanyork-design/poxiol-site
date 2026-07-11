@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { whatsAppHref } from "@/components/ui";
 
 type ContactFormState = {
   fullName: string;
@@ -130,7 +131,7 @@ function ContactFormInner({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[2rem] bg-white p-6 shadow-xl md:p-9">
+    <form onSubmit={handleSubmit} className="rounded-[2rem] bg-white p-6 shadow-xl md:p-9 text-left">
       <div className="mb-8">
         <p className="text-sm font-black uppercase tracking-[0.14em] text-lime-600">POXIOL B2B Inquiry</p>
         <h2 className="mt-3 text-3xl font-black text-neutral-950">{title}</h2>
@@ -395,7 +396,20 @@ function ContactFormInner({
 
 export default function ContactForm(props: ContactFormProps) {
   return (
-    <Suspense fallback={<div className="p-10 text-center font-bold text-neutral-500">Loading form...</div>}>
+    <Suspense fallback={
+      <div className="rounded-[2rem] bg-white p-10 shadow-xl text-center">
+        <p className="text-sm font-black uppercase tracking-widest text-lime-600 mb-6">Contact POXIOL</p>
+        <div className="py-10">
+          <p className="text-neutral-950 font-black text-xl mb-4">Inquiry System Initializing...</p>
+          <p className="text-neutral-500 text-sm mb-10">Please wait or use the alternative contact methods below.</p>
+          
+          <div className="flex flex-col gap-4">
+            <a href="mailto:york@basketman.cn" className="h-[52px] flex items-center justify-center rounded-full bg-neutral-950 text-white text-xs font-black uppercase tracking-widest hover:bg-lime-400 hover:text-neutral-950 transition">Email Inquiry ↗</a>
+            <a href={whatsAppHref} target="_blank" rel="noreferrer" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">WhatsApp Chat ↗</a>
+          </div>
+        </div>
+      </div>
+    }>
       <ContactFormInner {...props} />
     </Suspense>
   );

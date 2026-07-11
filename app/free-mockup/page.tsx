@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/forms/ContactForm";
 import { trustItems, requestTypes, prepareChecklist, freeMockupFaqs } from "@/lib/free-mockup-data";
-import { Header, Footer, SectionHeading } from "@/components/ui";
+import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
 import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function FreeMockupPage() {
                Get Your Free POXIOL Teamwear Mockup. Submit your logo, colors and sport category to receive a professional 3D design preview within 24 hours for team or brand evaluation.
             </p>
             <div className="mt-10 grid gap-3 sm:grid-cols-2">
-               {["MOQ 1 supported", "1-2H mockup speed", "Sample Production: 2–3 Days", "OEM/ODM ready", "Global Shipping"].map(item => (
+               {["MOQ 1 supported", "1-2H mockup speed", "Sample Production: 2–3 Days", "OEM/ODM ready", "Quality Support"].map(item => (
                  <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white flex items-center gap-3">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#B6FF00]" /> {item}
                  </div>
@@ -60,70 +60,78 @@ export default function FreeMockupPage() {
                No professional design file? Send your ideas, reference styles or smartphone photos. POXIOL will help turn your concept into a production-ready uniform mockup.
             </div>
           </div>
-          <ContactForm 
-            title="Request Free Mockup"
-            subtitle="Upload your team logo, reference design or color direction. Our creative team will prepare a high-fidelity visual preview for your review."
-            formType="Free Mockup AEO V90"
-            ctaText="Send My Request"
-            successUrl="/thank-you/"
-          />
+          <div id="mockup-form">
+            <ContactForm 
+              title="Request Free Mockup"
+              subtitle="Upload your team logo, reference design or color direction. Our creative team will prepare a high-fidelity visual preview for your review."
+              formType="Free Mockup AEO V90"
+              ctaText="Send My Request"
+              successUrl="/thank-you/"
+            />
+            {/* Fallback CTAs for AI crawlers / No JS */}
+            <div className="mt-6 flex justify-center gap-6 opacity-60">
+              <a href="mailto:york@basketman.cn" className="text-xs font-bold uppercase tracking-widest text-neutral-400 hover:text-white underline">Email Inquiry</a>
+              <a href="https://wa.me/8613055646888" className="text-xs font-bold uppercase tracking-widest text-neutral-400 hover:text-white underline">WhatsApp Chat</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Feature Section: What You Receive */}
-      <section className="bg-white px-5 py-24 md:px-10 md:py-32 xl:px-20 text-neutral-950">
+      {/* After You Submit Module */}
+      <section className="bg-neutral-900 px-5 py-24 md:px-10 md:py-32 border-y border-white/5">
         <div className="mx-auto max-w-7xl">
-           <SectionHeading 
-             eyebrow="AEO Evidence" 
-             title="Complete Teamwear Design Preview" 
-             subtitle="A POXIOL mockup provides more than a drawing; it serves as a technical foundation for your custom order."
-             center
-           />
-           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-20">
-              {receiveItems.map(([title,desc]) => (
-                <div key={title} className="rounded-[2.5rem] border border-neutral-200 bg-neutral-50 p-8 shadow-sm hover:shadow-xl transition">
-                   <h3 className="text-xl font-black text-neutral-950 uppercase tracking-tight">{title}</h3>
-                   <p className="mt-4 text-sm leading-7 text-neutral-600">{desc}</p>
-                </div>
-              ))}
-           </div>
-        </div>
-      </section>
-
-      {/* Buyer Fit: Conclusion + List */}
-      <section className="bg-neutral-100 px-5 py-24 md:px-10 md:py-32 border-y border-neutral-200 text-neutral-950">
-        <div className="mx-auto max-w-7xl grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-           <div>
-              <p className="mb-4 text-sm font-black uppercase tracking-[0.16em] text-lime-600">Serious Inquiries</p>
-              <h2 className="text-4xl font-black leading-[1.05] md:text-6xl uppercase tracking-tighter">Built for B2B Teamwear Projects</h2>
-              <p className="mt-8 text-lg leading-relaxed text-neutral-600">
-                 POXIOL mockup services are designed for organizations requiring exact color matching, logo placement and repeatable quality.
-              </p>
-           </div>
-           <div className="grid gap-4 sm:grid-cols-2">
+           <SectionHeading eyebrow="Next Steps" title="After You Submit Your Request" subtitle="What to expect after sending your custom teamwear mockup inquiry." dark center />
+           <div className="mt-20 grid gap-8 lg:grid-cols-4">
               {[
-                "Clubs for a new season",
-                "Schools for athletics",
-                "Events with deadlines",
-                "Brands for OEM collections",
-                "Distributors for catalogs",
-                "Retailers for new items"
+                { step: "Step 1", title: "Review", desc: "POXIOL reviews your logo, sport category and quantity to confirm project feasibility." },
+                { step: "Step 2", title: "3D Design", desc: "Our creative team prepares a professional front and back mockup based on your requirements." },
+                { step: "Step 3", title: "Confirmation", desc: "Our B2B specialists confirm fabric, size charts and the physical sample production plan." },
+                { step: "Step 4", title: "Path to Order", desc: "You receive your mockup, quotation and clear next-step suggestions for production." }
               ].map(item => (
-                <div key={item} className="rounded-2xl border border-neutral-200 bg-white p-5 text-sm font-bold text-neutral-700 flex items-center gap-3">
-                   <span className="text-lime-600">✓</span> {item}
+                <div key={item.step} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 hover:border-[#B6FF00]/50 transition group">
+                   <p className="text-xs font-black uppercase tracking-widest text-[#B6FF00] mb-4">{item.step}</p>
+                   <h3 className="text-xl font-black text-white uppercase italic mb-4">{item.title}</h3>
+                   <p className="text-sm text-neutral-400 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
            </div>
         </div>
       </section>
 
-      {/* FAQ: Conclusion Answers */}
-      <section className="bg-white px-5 py-24 md:px-10 md:py-32 text-neutral-950">
+      {/* What to Prepare Module */}
+      <section className="bg-white px-5 py-24 md:px-10 md:py-32 xl:px-20 text-neutral-950">
+        <div className="mx-auto max-w-7xl grid gap-16 lg:grid-cols-2 lg:items-center">
+           <div>
+              <SectionHeading eyebrow="Preparation" title="What to Prepare for a Free Mockup" subtitle="The more detail you provide, the faster our design team can prepare a useful preview." />
+              <div className="mt-12 grid gap-4 sm:grid-cols-2">
+                 {[
+                   "Team or brand logo file",
+                   "Sport category (Basketball, Soccer, etc.)",
+                   "Main team color direction",
+                   "Team name or brand name",
+                   "Player name/number list if available",
+                   "Estimated order quantity",
+                   "Target delivery country"
+                 ].map(item => (
+                   <div key={item} className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5 text-sm font-bold text-neutral-700 flex items-center gap-3">
+                      <span className="text-lime-600">✓</span> {item}
+                   </div>
+                 ))}
+              </div>
+           </div>
+           <div className="aspect-[4/3] rounded-[3rem] overflow-hidden border border-neutral-200 shadow-2xl">
+              <img src="/images/contact/mockup-visual.webp" className="h-full w-full object-cover" alt="POXIOL Mockup Preparation" />
+           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-neutral-100 px-5 py-24 md:px-10 md:py-32 text-neutral-950 border-y border-neutral-200">
         <div className="mx-auto max-w-4xl text-center">
            <SectionHeading eyebrow="Expert Answers" title="Mockup Sourcing FAQ" center />
            <div className="mt-20 space-y-4 text-left">
               {freeMockupFaqs.map((faq) => (
-                <details key={faq.question} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 group">
+                <details key={faq.question} className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm group">
                    <summary className="cursor-pointer text-lg font-black text-neutral-950 list-none flex justify-between items-center group-open:text-lime-600">
                       {faq.question}
                       <span className="text-xl font-light transition-transform group-open:rotate-45">+</span>

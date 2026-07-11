@@ -28,7 +28,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sr-only">
             <h1>Custom Teamwear Manufacturer for Clubs, Schools and Sportswear Brands</h1>
-            <p>POXIOL is a factory-direct teamwear manufacturer in China providing custom basketball, soccer and sports uniforms with MOQ 1 set and 2-3 day sample production for global B2B buyers.</p>
+            <p>POXIOL is a factory-direct teamwear manufacturer in China providing custom basketball, soccer and sports uniforms with MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation for global B2B buyers.</p>
           </div>
           <div>
             <span className="mb-6 inline-block text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00]">
@@ -38,7 +38,7 @@ export default function HomePage() {
               Build Your <br />Elite Team <br /><span className="text-[#B6FF00]">Identity.</span>
             </h2>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-              Custom Teamwear Manufacturer in China. We provide factory-direct basketball, soccer and athletic uniforms with MOQ 1 set and 2–3 day sample production for clubs, schools and sportswear brands worldwide.
+              Custom Teamwear Manufacturer in China. We provide factory-direct basketball, soccer and athletic uniforms with MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation for clubs, schools and sportswear brands worldwide.
             </p>
             
             <div className="mt-10 flex flex-wrap gap-3">
