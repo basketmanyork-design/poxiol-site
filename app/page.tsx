@@ -42,7 +42,7 @@ export default function HomePage() {
             </p>
             
             <div className="mt-10 flex flex-wrap gap-3">
-              {["MOQ 1 Set", "Free 3D Mockup", "Sample in 2–3 Days", "Quality Support", "Global Shipping"].map(chip => (
+              {["MOQ 1 Set", "Free 3D Mockup", "2–3 Days Sample Production", "Quality Support", "Global Shipping"].map(chip => (
                 <span key={chip} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white">
                   {chip}
                 </span>
