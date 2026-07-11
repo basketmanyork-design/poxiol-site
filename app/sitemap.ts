@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { sportsPages } from "@/lib/sports-pages";
 import { caseStudies } from "@/lib/case-studies";
 import { resourcePages } from "@/lib/resources-data";
+import { pseoPages } from "@/lib/pseo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.poxiol.com";
@@ -57,5 +58,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...productRoutes, ...projectRoutes, ...resourceRoutes];
+  // 5. PSEO Pages (Knowledge Guides)
+  const pseoRoutes = pseoPages.map((page) => ({
+    url: `${baseUrl}/resources/${page.slug}/`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...productRoutes, ...projectRoutes, ...resourceRoutes, ...pseoRoutes];
 }

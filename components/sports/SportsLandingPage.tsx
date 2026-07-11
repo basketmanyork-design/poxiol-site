@@ -43,7 +43,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
               Custom {productLabel} Manufacturer. POXIOL provides factory-direct custom {productLabel.toLowerCase()} with professional 3D mockups, 1-set sample support, and reliable bulk production for clubs and schools.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["MOQ 1 Set", "Free 3D Mockup", "2-3D Sampling", "OEM/ODM Ready", "Global Shipping"].map((item)=>(
+              {["MOQ 1 Set", "Free 3D Mockup", "Sample Production: 2–3 Days", "OEM/ODM Ready", "Global Shipping"].map((item)=>(
                 <span key={item} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white">{item}</span>
               ))}
             </div>

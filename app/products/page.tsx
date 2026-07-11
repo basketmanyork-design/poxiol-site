@@ -6,7 +6,7 @@ import { CollectionPageSchema, FAQSchema, BreadcrumbSchema } from "@/components/
 
 export const metadata: Metadata = {
   title: "Performance Teamwear Products | Custom Sports Uniforms | POXIOL",
-  description: "Explore POXIOL's full range of custom teamwear products. Factory-direct basketball uniforms, soccer kits and training wear with high-color sublimation and 2-3 day sampling.",
+  description: "Explore POXIOL's full range of custom teamwear products. Factory-direct basketball uniforms, soccer kits and training wear with high-color sublimation and 2–3 Days Sample Production.",
 };
 
 const productsFaqs = [

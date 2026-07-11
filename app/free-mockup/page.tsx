@@ -50,7 +50,7 @@ export default function FreeMockupPage() {
                Get Your Free POXIOL Teamwear Mockup. Submit your logo, colors and sport category to receive a professional 3D design preview within 24 hours for team or brand evaluation.
             </p>
             <div className="mt-10 grid gap-3 sm:grid-cols-2">
-               {["MOQ 1 supported", "1-2H mockup speed", "2-3 day sampling", "OEM/ODM ready", "Global Shipping"].map(item => (
+               {["MOQ 1 supported", "1-2H mockup speed", "Sample Production: 2–3 Days", "OEM/ODM ready", "Global Shipping"].map(item => (
                  <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white flex items-center gap-3">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#B6FF00]" /> {item}
                  </div>
