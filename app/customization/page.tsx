@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton, freeMockupHref } from "@/components/ui";
+import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 
 export const metadata: Metadata = {
   title: "Unlimited Teamwear Customization Options | POXIOL",
@@ -15,9 +16,30 @@ const customOptions = [
   { title: "Mockup Before Production", desc: "High-fidelity 3D mockup of your design for confirmation before any physical sampling or production.", href: "/free-mockup/" }
 ];
 
+const customizationFaqs = [
+  { question: "What customization areas are available on the jersey?", answer: "Sublimation printing allows for 100% surface customization. You can add team logos, sponsor graphics, player names, numbers, and original pattern designs on the front, back, sleeves, and side panels." },
+  { question: "Can I use my own brand labels?", answer: "Yes. POXIOL supports private labeling for sportswear brands, including woven neck labels, heat-transfer tags, and custom hangtags for a retail-ready presentation." },
+  { question: "Do you offer different fabric options?", answer: "Yes. We offer a variety of high-performance polyester fabrics including 140gsm interlock for soccer, 160-180gsm mesh for basketball, and specialized moisture-wicking materials for training." }
+];
+
 export default function CustomizationPage() {
+  const baseUrl = "https://www.poxiol.com";
+  const fullUrl = `${baseUrl}/customization/`;
+
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      {/* --- AEO / GEO Infrastructure --- */}
+      <ServiceSchema 
+        name="Teamwear Customization Services"
+        description="Comprehensive customization options for sports uniforms, including sublimation, private label, and technical fabric selection."
+        url={fullUrl}
+      />
+      <FAQSchema faqs={customizationFaqs} />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: `${baseUrl}/` },
+        { name: "Customization", url: fullUrl }
+      ]} />
+
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">

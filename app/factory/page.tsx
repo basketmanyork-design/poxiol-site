@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, SecondaryButton } from "@/components/ui";
 import { factoryStats } from "@/lib/home-data";
-import { LocalBusinessSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
+import { LocalBusinessSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
 
 export const metadata: Metadata = {
   title: "Custom Teamwear Factory in China | POXIOL Sportswear Manufacturing",
@@ -46,6 +46,11 @@ export default function FactoryPage() {
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       {/* --- AEO / GEO Infrastructure --- */}
       <LocalBusinessSchema />
+      <ServiceSchema 
+        name="Custom Teamwear Manufacturing Service"
+        description="Factory-direct production of sublimated basketball, soccer, and athletic uniforms."
+        url={fullUrl}
+      />
       <FAQSchema faqs={facilityFaqs} />
       <BreadcrumbSchema items={[
         { name: "Home", url: `${baseUrl}/` },
