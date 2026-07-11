@@ -60,7 +60,7 @@ POXIOL manufactures and customizes sports uniforms and teamwear, including:
 - MOQ 1 flexible custom orders
 - Free mockup request process
 - 1-2H design support for clear requests
-- 2-3 day sampling support
+- Sample Production: 2–3 Days After Mockup Confirmation support
 - 3-5 day production support for many custom orders
 - Multi-sport catalog
 - OEM/ODM teamwear development

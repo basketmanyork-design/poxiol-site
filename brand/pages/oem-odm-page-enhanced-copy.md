@@ -90,7 +90,7 @@ Key advantages:
 - Multi-sport product capability
 - Free mockup support
 - MOQ 1 flexible custom orders
-- 2-3 day sampling support
+- 2–3 Days Sample Production support
 - 3-5 day production support for many custom orders
 - Sublimation printing experience
 - Private label and custom branding support

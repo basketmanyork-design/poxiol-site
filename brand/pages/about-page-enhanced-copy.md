@@ -63,7 +63,7 @@ Key advantages include:
 - Logo, name and number customization
 - OEM/ODM sportswear development
 - Quality inspection before shipment
-- 180-day quality support for qualified cases
+- Quality support for qualified cases
 
 ## Section 5: Our Teamwear Mission
 POXIOL exists to help teams and sportswear buyers move faster from idea to uniform. A team should not need a full design department to create a professional custom kit. A brand should not need to build a complete factory system to test a new teamwear collection. A school or club should be able to start with a simple idea, color direction or logo and turn it into a professional uniform concept.
@@ -72,5 +72,8 @@ Our mission is to make custom teamwear more accessible, flexible and production-
 
 ## Section 6: Start with a Free Mockup
 The fastest way to start with POXIOL is to request a free mockup. Send your sport category, logo, main colors, quantity and design notes. Our team will review your request and help you understand the next step for mockup, sample, quote or production.
+
+CTA: Get Free Mockup
+le, quote or production.
 
 CTA: Get Free Mockup
