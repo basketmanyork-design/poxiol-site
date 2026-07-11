@@ -7,7 +7,7 @@ import ContactForm from "@/components/forms/ContactForm";
 
 export const metadata: Metadata = {
   title: "Custom Teamwear Manufacturer | OEM Sports Uniform Supplier | POXIOL",
-  description: "Elite B2B custom teamwear manufacturer offering basketball uniforms, soccer kits and OEM sportswear with free mockup, MOQ 1 set and sample production in 2-3 days.",
+  description: "Elite B2B custom teamwear manufacturer offering basketball uniforms, soccer kits and OEM sportswear with free mockup, MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation.",
 };
 
 export default function HomePage() {
