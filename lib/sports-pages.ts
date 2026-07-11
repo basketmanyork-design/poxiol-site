@@ -143,7 +143,7 @@ export const sportsPages: SportsPageData[] = [
   {
     slug: "products/baseball-uniforms",
     metaTitle: "Custom Baseball Uniform Manufacturer | Sublimated Baseball Jerseys | POXIOL",
-    metaDescription: "POXIOL manufactures pro-grade custom baseball uniforms, button jerseys, pants and caps for clubs and schools. OEM/ODM production with 2-3 day sampling.",
+    metaDescription: "POXIOL manufactures pro-grade custom baseball uniforms, button jerseys, pants and caps for clubs and schools. OEM/ODM production with 2–3 Days Sample Production.",
     eyebrow: "CUSTOM BASEBALL UNIFORMS",
     h1: "Custom Baseball Uniform Manufacturer",
     heroText: "POXIOL provides factory-direct custom baseball uniforms, including full-button jerseys, two-button jerseys, and team pants for competitive leagues.",
