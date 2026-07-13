@@ -15,7 +15,7 @@ export const sportsCategories = [
 
 export const uspCards = [
   { metric: "MOQ 1", title: "MOQ 1 Set Support", description: "POXIOL supports flexible custom orders starting from 1 piece for samples, trials, or small team needs before scaling into larger production.", label: "Flexible Orders" },
-  { metric: "2-3D", title: "Sample Production: 2–3 Days After Mockup Confirmation", description: "Standard custom teamwear samples are produced within 2-3 days after mockup confirmation, with express global delivery available.", label: "2–3 Days Sample Production" },
+  { metric: "2–3 Days", title: "Sample Production: 2–3 Days After Mockup Confirmation", description: "Standard custom teamwear samples are produced within 2-3 days after mockup confirmation, with express global delivery available.", label: "2–3 Days Sample Production" },
   { metric: "15+Y", title: "15+ Years Industry Experience", description: "Our team has supported 3,000+ sports organizations and clubs across 50+ countries with high-performance sublimated uniforms.", label: "Verified Expertise" },
   { metric: "1-2H", title: "Mockup Design in 1-2 Hours", description: "Submit your logo and color direction to receive a professional front/back visual mockup within 1-2 hours for B2B evaluation.", label: "Free Design" },
   { metric: "OEM/ODM", title: "Full OEM/ODM Collection Support", description: "POXIOL provides private label manufacturing, original pattern development, and custom packaging for sportswear brands and distributors.", label: "Manufacturing Power" },
