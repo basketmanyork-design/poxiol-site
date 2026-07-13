@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Allow: /_next/static/
+Allow: /assets/
+Allow: /images/
+Disallow: /api/
+Disallow: /thank-you/
+Disallow: /quote-received/
+Disallow: /sample-request-received/
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://www.poxiol.com/sitemap.xml

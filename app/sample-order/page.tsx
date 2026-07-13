@@ -5,7 +5,7 @@ import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEO
 
 export const metadata: Metadata = {
   title: "Start a Sample Order | POXIOL Custom Teamwear Testing",
-  description: "Test the fabric, fit, and print quality before bulk production. Start a 1-piece custom jersey sample order with 2-3 day production and express shipping.",
+  description: "Test the fabric, fit, and print quality before bulk production. Start a 1-piece custom jersey sample order with Sample Production: 2–3 Days After Mockup Confirmation.",
 };
 
 const sampleFaqs = [
@@ -45,7 +45,7 @@ export default function SampleOrderPage() {
                Sample <br />Order <br /><span className="text-[#B6FF00]">Support.</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-8 text-neutral-300">
-               Verify POXIOL Manufacturing Quality. Start a 1-piece custom jersey sample order with 2–3 day production to test fabric moisture-wicking, sublimation vibrancy and sizing fit before bulk production.
+               Verify POXIOL Manufacturing Quality. Start a 1-piece custom jersey sample order with Sample Production: 2–3 Days After Mockup Confirmation to test fabric moisture-wicking, sublimation vibrancy and sizing fit before bulk production.
             </p>
             
             <div className="mt-12 p-10 rounded-[2.5rem] border border-white/10 bg-white/[0.03] shadow-2xl">
@@ -54,8 +54,8 @@ export default function SampleOrderPage() {
                 {[
                   ["Submit Design", "Provide logo, colors and sport category to receive a design mockup."],
                   ["Confirm Specs", "Confirm the fabric weight, print alignment and size chart details."],
-                  ["Production", "Sample production is completed in 2–3 days after mockup confirmation."],
-                  ["Delivery", "Physical sample sent via express DHL/FedEx for 3-7 day global arrival."]
+                  ["Production", "Sample Production: 2–3 Days After Mockup Confirmation."],
+                  ["Delivery", "Express international delivery usually takes 3–7 business days depending on country."]
                 ].map(([step, desc], i) => (
                   <li key={step} className="flex gap-5">
                     <span className="text-sm font-black text-[#B6FF00] tracking-widest">{String(i+1).padStart(2,"0")}</span>
