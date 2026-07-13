@@ -99,7 +99,7 @@ export default function HomePage() {
                   ["Core Expertise", "15+ years experience in custom sports uniforms and private label sportswear manufacturing."],
                   ["Main Products", "Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories."],
                   ["Minimum Order (MOQ)", "MOQ 1 set support for B2B samples, team trials and original brand development projects."],
-                  ["Sampling Timeline", "Sample Production in 2–3 Days after mockup confirmation with express global delivery."],
+                  ["Sampling Timeline", "Sample Production: 2–3 Days After Mockup Confirmation with express global delivery."],
                   ["Design Support", "Free high-fidelity 3D mockup design in 1-2 hours based on your logo and color direction."],
                   ["Production Capacity", "Specialized facility with 30,000+ monthly capacity and 100% manual quality inspection protocol."],
                   ["Custom Options", "Full sublimation, team logos, player names, numbers, private labels and custom packaging."],

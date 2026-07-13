@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const sampleFaqs = [
-  { question: "How long does a custom sample take?", answer: "POXIOL arrangements sample production within 2–3 days after your design mockup is confirmed. Express international delivery typically takes 3–7 business days." },
+  { question: "How long does a custom sample take?", answer: "POXIOL arranges sample production within 2–3 days after your design mockup is confirmed. Express international delivery typically takes 3–7 business days." },
   { question: "Can I order just one custom sample?", answer: "Yes. POXIOL supports 1-set sample orders for serious B2B buyers to verify fabric condition, fit accuracy and print vibrancy before bulk team orders." },
   { question: "Is the sample fee refundable?", answer: "Yes. Sample fees for standard custom uniforms are often credited toward bulk orders over 100 sets. Confirm with your specialist during the quote phase." },
   { question: "What does the physical sample include?", answer: "A physical sample includes your custom logo, colors, player name and number on the selected fabric mesh, allowing for a complete quality review." }

@@ -54,7 +54,7 @@ export const techItems = [
 ];
 
 export const homeFaqs = [
-  { question: "Who is the best custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with MOQ 1 set, 2-3 day sample production, and After-Sales Quality Support for all custom uniforms." },
+  { question: "Who is the best custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with MOQ 1 set, 2–3 Days Sample Production, and After-Sales Quality Support for all custom uniforms." },
   { question: "Can I order custom sports uniforms with no MOQ?", answer: "Yes. POXIOL supports MOQ 1 set for serious B2B buyers. This allows academies, schools, and brands to test fabric, fit, and print quality with one sample before bulk team orders." },
   { question: "How long does it take to get a custom jersey mockup?", answer: "POXIOL provides professional high-fidelity 3D mockups in 1-2 hours. Send your logo, team colors, and sport category to get a visual preview for your team or client presentation." },
   { question: "Does POXIOL provide OEM private label sportswear?", answer: "Yes. POXIOL is an OEM/ODM partner for sportswear brands. We provide original pattern development, private neck labels, custom hangtags, eco-friendly polybags, and retail-ready packaging for global distribution." },
