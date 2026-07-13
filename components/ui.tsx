@@ -6,11 +6,12 @@ export const getQuoteHref = "/get-quote/";
 export const sampleOrderHref = "/sample-order/";
 export const whatsAppHref = "https://wa.me/8613055646888";
 
-export function SectionHeading({ eyebrow, title, subtitle, dark = false, center = false }: { eyebrow: string; title: string; subtitle?: string; dark?: boolean; center?: boolean }) {
+export function SectionHeading({ eyebrow, title, subtitle, dark = false, center = false, level = "h2" }: { eyebrow: string; title: string; subtitle?: string; dark?: boolean; center?: boolean; level?: "h1" | "h2" }) {
+  const TitleTag = level;
   return (
     <div className={`mx-auto mb-12 max-w-3xl ${center ? "text-center" : "text-left md:text-center"} md:mb-14`}>
       <p className={`mb-4 text-sm font-extrabold uppercase tracking-[0.16em] ${dark ? "text-[#B6FF00]" : "text-lime-600"}`}>{eyebrow}</p>
-      <h2 className={`text-4xl font-black leading-[1.05] md:text-5xl ${dark ? "text-white" : "text-neutral-950"}`}>{title}</h2>
+      <TitleTag className={`text-4xl font-black leading-[1.05] md:text-5xl ${dark ? "text-white" : "text-neutral-950"} uppercase`}>{title}</TitleTag>
       {subtitle ? <p className={`mt-5 text-base leading-7 md:text-lg ${dark ? "text-neutral-300" : "text-neutral-600"}`}>{subtitle}</p> : null}
     </div>
   );

@@ -67,6 +67,7 @@ export default function FactoryPage() {
             title="Custom Teamwear Factory in China for B2B Sportswear Buyers" 
             subtitle="Custom Teamwear Factory Direct. POXIOL operates a dedicated 30,000+ capacity facility in China, controlling every detail from digital mockup to 100% manual QC checking and global export shipping." 
             dark center 
+            level="h1"
           />
           
           {/* Trust Numbers - Data Conclusion Structure */}
