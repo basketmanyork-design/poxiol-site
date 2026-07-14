@@ -406,6 +406,7 @@ export default function ContactForm(props: ContactFormProps) {
           <div className="flex flex-col gap-4">
             <a href="mailto:york@basketman.cn" className="h-[52px] flex items-center justify-center rounded-full bg-neutral-950 text-white text-xs font-black uppercase tracking-widest hover:bg-lime-400 hover:text-neutral-950 transition">Email Inquiry ↗</a>
             <a href={whatsAppHref} target="_blank" rel="noreferrer" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">WhatsApp Chat ↗</a>
+            <a href="/get-quote/" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">Get Factory Quote ↗</a>
           </div>
         </div>
       </div>

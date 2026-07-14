@@ -7,6 +7,10 @@ Disallow: /api/
 Disallow: /thank-you/
 Disallow: /quote-received/
 Disallow: /sample-request-received/
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /?s=
 
 User-agent: OAI-SearchBot
 Allow: /
