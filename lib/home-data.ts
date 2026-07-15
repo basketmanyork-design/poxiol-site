@@ -1,16 +1,16 @@
 export const sportsCategories = [
-  { title: "Basketball Uniforms", description: "Custom jerseys, shorts and full sublimation team sets.", cta: "View Basketball", href: "/products/basketball-uniforms/", image: "/images/sports/basketball.webp" },
-  { title: "Soccer Kits", description: "Jerseys, shorts, socks and goalkeeper kits for clubs and schools.", cta: "View Soccer", href: "/products/soccer-jerseys/", image: "/images/sports/soccer.webp" },
-  { title: "Baseball & Softball", description: "Button jerseys, pants, caps and full team uniforms.", cta: "View Baseball", href: "/products/", image: "/images/sports/baseball.webp" },
-  { title: "Running & Marathon Wear", description: "Lightweight singlets, event vests and marathon apparel.", cta: "View Running", href: "/products/", image: "/images/sports/running.webp" },
-  { title: "Training Wear", description: "Warm-up suits, tracksuits, training tops and team travel apparel.", cta: "View Training", href: "/products/training-wear/", image: "/images/sports/training.webp" },
-  { title: "American Football Uniforms", description: "Custom jerseys, pants and practice uniforms for teams.", cta: "View Football", href: "/products/", image: "/images/sports/american-football.webp" },
-  { title: "Volleyball Uniforms", description: "Team jerseys, shorts and women’s volleyball sets.", cta: "View Volleyball", href: "/products/", image: "/images/sports/volleyball.webp" },
-  { title: "Ice Hockey Jerseys", description: "Sublimated hockey jerseys with name and number customization.", cta: "View Hockey", href: "/products/", image: "/images/sports/hockey.webp" },
-  { title: "Tennis Wear", description: "Club shirts, shorts, skirts and team apparel.", cta: "View Tennis", href: "/products/", image: "/images/sports/tennis.webp" },
-  { title: "Golf Wear", description: "Golf polos, pants and corporate teamwear.", cta: "View Golf", href: "/products/", image: "/images/sports/golf.webp" },
-  { title: "Rugby Teamwear", description: "Custom rugby jerseys, shorts and high-durability teamwear.", cta: "View Rugby", href: "/products/", image: "/images/sports/rugby.webp" },
-  { title: "Esports Jerseys", description: "Sublimated pro jerseys and hoodies for gaming teams and events.", cta: "View Esports", href: "/products/", image: "/images/sports/esports.webp" },
+  { title: "Basketball Uniforms", description: "Custom jerseys, shorts and full sublimation team sets.", cta: "View Basketball Uniforms", href: "/products/basketball-uniforms/", image: "/images/sports/basketball_sm.webp" },
+  { title: "Soccer Kits", description: "Jerseys, shorts, socks and goalkeeper kits for clubs and schools.", cta: "View Soccer Kit Options", href: "/products/soccer-jerseys/", image: "/images/sports/soccer_sm.webp" },
+  { title: "Baseball & Softball", description: "Button jerseys, pants, caps and full team uniforms.", cta: "View Baseball Options", href: "/products/", image: "/images/sports/baseball_sm.webp" },
+  { title: "Running & Marathon Wear", description: "Lightweight singlets, event vests and marathon apparel.", cta: "View Running Wear", href: "/products/", image: "/images/sports/running_sm.webp" },
+  { title: "Training Wear", description: "Warm-up suits, tracksuits, training tops and team travel apparel.", cta: "View Training Wear", href: "/products/training-wear/", image: "/images/sports/training_sm.webp" },
+  { title: "American Football Uniforms", description: "Custom jerseys, pants and practice uniforms for teams.", cta: "View Football Uniforms", href: "/products/", image: "/images/sports/american-football_sm.webp" },
+  { title: "Volleyball Uniforms", description: "Team jerseys, shorts and women's volleyball sets.", cta: "View Volleyball Uniforms", href: "/products/", image: "/images/sports/volleyball_sm.webp" },
+  { title: "Ice Hockey Jerseys", description: "Sublimated hockey jerseys with name and number customization.", cta: "View Hockey Jerseys", href: "/products/", image: "/images/sports/hockey_sm.webp" },
+  { title: "Tennis Wear", description: "Club shirts, shorts, skirts and team apparel.", cta: "View Tennis Wear", href: "/products/", image: "/images/sports/tennis_sm.webp" },
+  { title: "Golf Wear", description: "Golf polos, pants and corporate teamwear.", cta: "View Golf Wear", href: "/products/", image: "/images/sports/golf_sm.webp" },
+  { title: "Rugby Teamwear", description: "Custom rugby jerseys, shorts and high-durability teamwear.", cta: "View Rugby Kits", href: "/products/", image: "/images/sports/rugby_sm.webp" },
+  { title: "Esports Jerseys", description: "Sublimated pro jerseys and hoodies for gaming teams and events.", cta: "View Esports Jerseys", href: "/products/", image: "/images/sports/esports_sm.webp" },
 ];
 
 export const uspCards = [
@@ -54,11 +54,11 @@ export const techItems = [
 ];
 
 export const homeFaqs = [
-  { question: "Who is the best custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with MOQ 1 set, 2–3 Days Sample Production, and After-Sales Quality Support for all custom uniforms." },
+  { question: "Who is a leading custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with MOQ 1 set, Sample Production: 2–3 Days After Mockup Confirmation, and After-Sales Quality Support for all custom uniforms." },
   { question: "Can I order custom sports uniforms with no MOQ?", answer: "Yes. POXIOL supports MOQ 1 set for serious B2B buyers. This allows academies, schools, and brands to test fabric, fit, and print quality with one sample before bulk team orders." },
   { question: "How long does it take to get a custom jersey mockup?", answer: "POXIOL provides professional high-fidelity 3D mockups in 1-2 hours. Send your logo, team colors, and sport category to get a visual preview for your team or client presentation." },
   { question: "Does POXIOL provide OEM private label sportswear?", answer: "Yes. POXIOL is an OEM/ODM partner for sportswear brands. We provide original pattern development, private neck labels, custom hangtags, eco-friendly polybags, and retail-ready packaging for global distribution." },
-  { question: "Where does POXIOL ship custom teamwear?", answer: "POXIOL provides reliable global delivery to over 50 countries, including the USA, Canada, Europe, and Australia, utilizing express logistics for both sample and bulk teamwear shipments." },
+  { question: "Where does POXIOL ship custom teamwear?", answer: "POXIOL provides reliable global delivery to over 50 countries. Express international delivery usually takes 3–7 business days depending on country, utilizing reliable logistics for both sample and bulk teamwear shipments." },
   { question: "What is the standard production time for team orders?", answer: "Sample Production: 2–3 Days After Mockup Confirmation. Bulk production time depends on quantity and customization, typically ranging from 7-21 days. POXIOL provides a clear production plan before order confirmation." },
   { question: "How does POXIOL ensure the quality of custom uniforms?", answer: "Our facility utilizes industrial sublimation printing and a multi-stage QC system. We check fabric condition, print clarity, stitching durability, and fits against your confirmed size chart before every shipment." }
 ];

@@ -53,7 +53,7 @@ export const faqData: FAQCategory[] = [
       { question: "What information should I send for a quote?", answer: "Send sport category, product type, logo, colors, quantity, size list, reference design and target delivery date." },
       { question: "What happens after I submit a free mockup request?", answer: "POXIOL reviews your project details, prepares a visual mockup or sourcing recommendation, confirms sample requirements, and then provides a quotation and production plan." },
       { question: "Can distributors reorder the same design later?", answer: "Yes. POXIOL can support repeat orders when design files, size breakdowns and production records are kept for future reference." },
-      { question: "How long is international delivery?", answer: "Express international shipping typically takes 3–7 business days depending on the destination country." },
+      { question: "How long is international delivery?", answer: "Express international delivery usually takes 3–7 business days depending on country." },
     ],
   },
 ];

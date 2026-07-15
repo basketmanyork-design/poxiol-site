@@ -1,15 +1,2 @@
-# Common old / alternate paths
-/home/ / 301
-/mockup/ /free-mockup/ 301
-/get-free-mockup/ /free-mockup/ 301
-/request-free-mockup/ /free-mockup/ 301
-/oem/ /oem-odm/ 301
-/odm/ /oem-odm/ 301
-/production/ /factory/ 301
-
-# Product synonym redirects
-/basketball-uniforms/ /custom-basketball-uniforms/ 301
-/soccer-kits/ /custom-soccer-kits/ 301
-/baseball-uniforms/ /custom-baseball-softball-uniforms/ 301
-/running-wear/ /custom-running-marathon-wear/ 301
-/training-wear/ /custom-training-wear/ 301
+# Cloudflare Pages redirects for POXIOL
+# Note: Primary www redirect is handled at the DNS level via Cloudflare

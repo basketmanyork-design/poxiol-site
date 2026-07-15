@@ -139,6 +139,9 @@ export default function ManufacturingPage() {
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-black uppercase tracking-tight text-white">{item.title}</h3>
                   <p className="mt-2 text-neutral-400">{item.desc}</p>
+                  {item.step === "03" && (
+                    <Link href="/guides/custom-basketball-uniform-fabric-gsm/" className="mt-3 inline-block text-xs font-bold text-lime-400 hover:underline">Read Fabric GSM Guide →</Link>
+                  )}
                 </div>
                 <div className="hidden text-white/10 lg:block">{item.icon}</div>
               </div>

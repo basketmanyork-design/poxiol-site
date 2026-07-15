@@ -122,7 +122,8 @@ export default function FactoryPage() {
             Our facility supports sportswear brands and high-volume distributors with reliable 30,000+ monthly capacity and strict Quality Support protocol.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row justify-center gap-6">
-            <SecondaryButton href="/oem-odm/">OEM Capacity Profile</SecondaryButton>
+            <SecondaryButton href="/guides/how-to-choose-teamwear-manufacturer-china/">How to Choose a Factory</SecondaryButton>
+            <SecondaryButton href="/guides/private-label-teamwear-manufacturing/">Private Label Guide</SecondaryButton>
             <SecondaryButton href="/contact/">Schedule Factory Visit</SecondaryButton>
           </div>
         </div>

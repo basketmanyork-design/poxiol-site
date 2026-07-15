@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import ContactForm from "@/components/forms/ContactForm";
 import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
@@ -48,7 +49,7 @@ export default function SampleOrderPage() {
                Verify POXIOL Manufacturing Quality. Start a 1-piece custom jersey sample order with Sample Production: 2–3 Days After Mockup Confirmation to test fabric moisture-wicking, sublimation vibrancy and sizing fit before bulk production.
             </p>
             
-            <div className="mt-12 p-10 rounded-[2.5rem] border border-white/10 bg-white/[0.03] shadow-2xl">
+             <div className="mt-12 p-10 rounded-[2.5rem] border border-white/10 bg-white/[0.03] shadow-2xl">
               <h3 className="text-xl font-black uppercase italic mb-8">4-Step Sampling Process</h3>
               <ul className="space-y-6">
                 {[
@@ -62,11 +63,15 @@ export default function SampleOrderPage() {
                     <div>
                       <p className="font-bold text-white uppercase text-sm">{step}</p>
                       <p className="mt-1 text-sm text-neutral-400 leading-relaxed">{desc}</p>
+                      {step === "Confirm Specs" && (
+                        <Link href="/guides/teamwear-sample-approval-checklist/" className="mt-2 inline-block text-[10px] font-black uppercase tracking-widest text-[#B6FF00] hover:underline">View Approval Checklist →</Link>
+                      )}
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
+
           </div>
           
           <ContactForm 

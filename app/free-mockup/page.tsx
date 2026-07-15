@@ -56,9 +56,12 @@ export default function FreeMockupPage() {
                  </div>
                ))}
             </div>
-            <div className="mt-10 rounded-[2rem] border border-lime-400/20 bg-lime-400/5 p-8 text-sm leading-7 text-neutral-300">
-               No professional design file? Send your ideas, reference styles or smartphone photos. POXIOL will help turn your concept into a production-ready uniform mockup.
-            </div>
+             <div className="mt-10 rounded-[2rem] border border-lime-400/20 bg-lime-400/5 p-8 text-sm leading-7 text-neutral-300">
+                No professional design file? Send your ideas, reference styles or smartphone photos. POXIOL will help turn your concept into a production-ready uniform mockup.
+                <br /><br />
+                <Link href="/guides/teamwear-sample-approval-checklist/" className="font-black text-lime-400 hover:underline uppercase tracking-widest text-[10px]">What to check before approving? →</Link>
+             </div>
+
           </div>
           <div id="mockup-form">
             <ContactForm 

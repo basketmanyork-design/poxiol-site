@@ -76,7 +76,7 @@ export const buyingGuides: BuyingGuide[] = [
     metaDescription: "Explore the benefits of dye-sublimation printing for custom sportswear. Learn why it's the gold standard for durable, high-vibrancy team uniforms.",
     eyebrow: "Manufacturing Tech",
     h1: "The Ultimate Guide to Sublimation Printing",
-    intro: "Dye-sublimation is the gold standard for custom teamwear. Unlike screen printing or heat transfers, sublimation infuses the ink directly into the fabric fibers, ensuring designs never crack, peel, or fade.",
+    intro: "Dye-sublimation is a gold standard for custom teamwear. Unlike screen printing or heat transfers, sublimation infuses the ink directly into the fabric fibers, ensuring designs have high color fastness and are highly resistant to cracking or peeling.",
     sections: [
       {
         title: "The Sublimation Process",
@@ -91,6 +91,17 @@ export const buyingGuides: BuyingGuide[] = [
       { question: "Does sublimation work on cotton?", answer: "Sublimation requires polyester fibers to bond correctly. For performance teamwear, we use high-grade polyesters and poly-blends." },
       { question: "Is there a limit to colors?", answer: "No. Sublimation allows for unlimited colors, gradients, and fine details at no additional cost." },
     ],
+  },
+  {
+    slug: "b2b-sourcing-faq",
+    title: "B2B Sourcing Pro-FAQ | Manufacturing Technical Hub | POXIOL",
+    metaTitle: "B2B Sourcing FAQ: Factory Verification & Technical Specs",
+    metaDescription: "The professional's hub for teamwear manufacturing questions. Covers factory verification, fabric GSM, size tolerances, and private label support.",
+    eyebrow: "Professional Hub",
+    h1: "B2B Sourcing & Manufacturing FAQ",
+    intro: "Deep technical insights and procurement advice for sports organizations, brand owners, and sportswear distributors looking for factory-direct manufacturing excellence.",
+    sections: [],
+    faqs: [],
   },
 ];
 

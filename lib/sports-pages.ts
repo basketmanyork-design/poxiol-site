@@ -14,6 +14,7 @@ export type SportsPageData = {
   procurementTable: { item: string; specification: string }[];
   faqs: { question: string; answer: string }[];
   checklist?: { title: string; intro: string; items: string[] };
+  relatedGuides?: { title: string; slug: string }[];
 };
 
 const commonFaqs = [
@@ -110,7 +111,12 @@ export const sportsPages: SportsPageData[] = [
         "Target delivery or match date",
         "Packaging or private label requirements"
       ]
-    }
+    },
+    relatedGuides: [
+      { title: "B2B Sourcing Pro-FAQ", slug: "b2b-sourcing-faq" },
+      { title: "Basketball Uniform Fabric GSM Guide", slug: "custom-basketball-uniform-fabric-gsm" },
+      { title: "Teamwear Sample Approval Checklist", slug: "teamwear-sample-approval-checklist" }
+    ]
   },
   {
     slug: "products/soccer-jerseys",
@@ -170,7 +176,12 @@ export const sportsPages: SportsPageData[] = [
         "Target match or event date",
         "Packaging or private label needs"
       ]
-    }
+    },
+    relatedGuides: [
+      { title: "B2B Sourcing Pro-FAQ", slug: "b2b-sourcing-faq" },
+      { title: "How to Choose a Teamwear Manufacturer", slug: "how-to-choose-teamwear-manufacturer-china" },
+      { title: "Private Label Manufacturing Guide", slug: "private-label-teamwear-manufacturing" }
+    ]
   },
   {
     slug: "products/training-wear",

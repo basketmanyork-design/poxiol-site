@@ -3,6 +3,7 @@ import { sportsPages } from "@/lib/sports-pages";
 import { caseStudies } from "@/lib/case-studies";
 import { resourcePages } from "@/lib/resources-data";
 import { pseoPages } from "@/lib/pseo";
+import { guidePages } from "@/lib/guides-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.poxiol.com";
@@ -66,5 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...productRoutes, ...projectRoutes, ...resourceRoutes, ...pseoRoutes];
+  // 6. Expert Guide Pages (Stage 6)
+  const guideRoutes = guidePages.map((guide) => ({
+    url: `${baseUrl}/guides/${guide.slug}/`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
+
+  return [...staticPages, ...productRoutes, ...projectRoutes, ...resourceRoutes, ...pseoRoutes, ...guideRoutes];
 }

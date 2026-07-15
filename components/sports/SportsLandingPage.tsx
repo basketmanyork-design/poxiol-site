@@ -195,6 +195,23 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
               </details>
             ))}
           </div>
+
+          {data.relatedGuides && data.relatedGuides.length > 0 && (
+            <div className="mt-20 border-t border-neutral-200 pt-16">
+              <h3 className="text-sm font-black uppercase tracking-[0.2em] text-neutral-400 mb-8">Related Expert Guides</h3>
+              <div className="flex flex-wrap justify-center gap-4">
+                {data.relatedGuides.map((guide) => (
+                  <Link 
+                    key={guide.slug}
+                    href={`/guides/${guide.slug}/`}
+                    className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:border-lime-500 hover:text-lime-600"
+                  >
+                    {guide.title} <span className="ml-2">→</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

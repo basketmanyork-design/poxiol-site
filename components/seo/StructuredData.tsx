@@ -77,6 +77,22 @@ export const fullFaqPageSchema = {
   )
 };
 
+// Generic FAQ Schema Generator
+export function generateFaqSchema(items: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": items.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+}
+
 export const homepageFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",

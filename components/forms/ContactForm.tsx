@@ -38,9 +38,9 @@ const initialState: ContactFormState = {
   selected_style: "",
 };
 
-function FieldLabel({ children, required = false }: { children: React.ReactNode; required?: boolean }) {
+function FieldLabel({ htmlFor, children, required = false }: { htmlFor?: string; children: React.ReactNode; required?: boolean }) {
   return (
-    <label className="mb-2 block text-sm font-black text-neutral-950">
+    <label htmlFor={htmlFor} className="mb-2 block text-sm font-black text-neutral-950">
       {children} {required ? <span className="text-lime-600">*</span> : null}
     </label>
   );
@@ -153,9 +153,11 @@ function ContactFormInner({
           <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">1. Buyer Information</h3>
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <FieldLabel required>Full Name</FieldLabel>
+              <FieldLabel htmlFor="field-fullName" required>Full Name</FieldLabel>
               <input
                 required
+                id="field-fullName"
+                name="fullName"
                 value={form.fullName}
                 onChange={(e) => updateField("fullName", e.target.value)}
                 className={inputClass}
@@ -163,10 +165,12 @@ function ContactFormInner({
               />
             </div>
             <div>
-              <FieldLabel required>Email Address</FieldLabel>
+              <FieldLabel htmlFor="field-email" required>Email Address</FieldLabel>
               <input
                 required
                 type="email"
+                id="field-email"
+                name="email"
                 value={form.email}
                 onChange={(e) => updateField("email", e.target.value)}
                 className={inputClass}
@@ -174,9 +178,11 @@ function ContactFormInner({
               />
             </div>
             <div>
-              <FieldLabel required>WhatsApp / Phone</FieldLabel>
+              <FieldLabel htmlFor="field-phone" required>WhatsApp / Phone</FieldLabel>
               <input
                 required
+                id="field-phone"
+                name="phone"
                 value={form.phone}
                 onChange={(e) => updateField("phone", e.target.value)}
                 className={inputClass}
@@ -184,9 +190,11 @@ function ContactFormInner({
               />
             </div>
             <div>
-              <FieldLabel required>Country / Region</FieldLabel>
+              <FieldLabel htmlFor="field-country" required>Country / Region</FieldLabel>
               <input
                 required
+                id="field-country"
+                name="country"
                 value={form.country}
                 onChange={(e) => updateField("country", e.target.value)}
                 className={inputClass}
@@ -194,9 +202,11 @@ function ContactFormInner({
               />
             </div>
             <div className="md:col-span-2">
-              <FieldLabel required>Buyer Type</FieldLabel>
+              <FieldLabel htmlFor="field-buyerType" required>Buyer Type</FieldLabel>
               <select
                 required
+                id="field-buyerType"
+                name="buyerType"
                 value={form.buyerType}
                 onChange={(e) => updateField("buyerType", e.target.value)}
                 className={inputClass}
@@ -219,9 +229,11 @@ function ContactFormInner({
           <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">2. Project Details</h3>
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <FieldLabel required>Sport Category</FieldLabel>
+              <FieldLabel htmlFor="field-sportCategory" required>Sport Category</FieldLabel>
               <select
                 required
+                id="field-sportCategory"
+                name="sportCategory"
                 value={form.sportCategory}
                 onChange={(e) => updateField("sportCategory", e.target.value)}
                 className={inputClass}
@@ -239,9 +251,11 @@ function ContactFormInner({
               </select>
             </div>
             <div>
-              <FieldLabel required>Product Type</FieldLabel>
+              <FieldLabel htmlFor="field-productType" required>Product Type</FieldLabel>
               <select
                 required
+                id="field-productType"
+                name="productType"
                 value={form.productType}
                 onChange={(e) => updateField("productType", e.target.value)}
                 className={inputClass}
@@ -256,9 +270,11 @@ function ContactFormInner({
               </select>
             </div>
             <div>
-              <FieldLabel required>Estimated Quantity</FieldLabel>
+              <FieldLabel htmlFor="field-quantity" required>Estimated Quantity</FieldLabel>
               <select
                 required
+                id="field-quantity"
+                name="quantity"
                 value={form.quantity}
                 onChange={(e) => updateField("quantity", e.target.value)}
                 className={inputClass}
@@ -273,17 +289,21 @@ function ContactFormInner({
               </select>
             </div>
             <div>
-              <FieldLabel>Target Delivery Date</FieldLabel>
+              <FieldLabel htmlFor="field-deliveryDate">Target Delivery Date</FieldLabel>
               <input
                 type="date"
+                id="field-deliveryDate"
+                name="deliveryDate"
                 value={form.deliveryDate}
                 onChange={(e) => updateField("deliveryDate", e.target.value)}
                 className={inputClass}
               />
             </div>
             <div>
-              <FieldLabel>Team / Brand Name</FieldLabel>
+              <FieldLabel htmlFor="field-teamName">Team / Brand Name</FieldLabel>
               <input
+                id="field-teamName"
+                name="teamName"
                 value={form.teamName}
                 onChange={(e) => updateField("teamName", e.target.value)}
                 className={inputClass}
@@ -291,8 +311,10 @@ function ContactFormInner({
               />
             </div>
             <div>
-              <FieldLabel>Main Colors</FieldLabel>
+              <FieldLabel htmlFor="field-colors">Main Colors</FieldLabel>
               <input
+                id="field-colors"
+                name="colors"
                 value={form.colors}
                 onChange={(e) => updateField("colors", e.target.value)}
                 className={inputClass}

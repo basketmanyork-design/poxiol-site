@@ -35,8 +35,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" as="image" href="/images/poxiol-v62/home_hero_v62_desktop.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/poxiol-v62/home_hero_v62_mobile.webp" fetchPriority="high" media="(max-width: 768px)" />
+      </head>
       <body className="antialiased selection:bg-lime-400 selection:text-neutral-950">
-        <Script id="okki-analytics-config" strategy="afterInteractive">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:rounded-xl focus:bg-lime-400 focus:px-6 focus:py-3 focus:text-sm focus:font-black focus:text-black focus:uppercase">Skip to Content</a>
+        <Script id="okki-analytics-config" strategy="lazyOnload">
           {`
             window.okkiConfigs = window.okkiConfigs || [];
             function okkiAdd() { okkiConfigs.push(arguments); };
@@ -45,9 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
         <Script 
           src="//tfile.xiaoman.cn/okki/analyze.js?id=395585-32576-" 
-          strategy="afterInteractive" 
+          strategy="lazyOnload" 
         />
-        {children}
+        <div id="main-content">{children}</div>
         <WhatsAppButton />
       </body>
     </html>

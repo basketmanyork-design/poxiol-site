@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMockupHref, getQuoteHref, sampleOrderHref, whatsAppHref } from "@/components/ui";
 import { sportsCategories, uspCards, homeFaqs } from "@/lib/home-data";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
-import ContactForm from "@/components/forms/ContactForm";
+
+const ContactForm = dynamic(() => import("@/components/forms/ContactForm"), {
+  loading: () => <div className="rounded-[2rem] bg-white p-6 shadow-xl md:p-9 min-h-[600px] flex flex-col items-center justify-center text-neutral-400">
+    <p className="text-sm font-bold">Loading Inquiry System...</p>
+    <a href={freeMockupHref} className="mt-4 text-sm font-black uppercase text-lime-600 hover:underline">Get Free Mockup</a>
+    <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className="mt-2 text-sm font-bold text-neutral-500 hover:underline">Chat on WhatsApp</a>
+  </div>,
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: "Custom Teamwear Manufacturer | OEM Sports Uniform Supplier | POXIOL",
@@ -14,7 +23,7 @@ export default function HomePage() {
   const baseUrl = "https://www.poxiol.com";
 
   return (
-    <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+    <main id="main-content" className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       {/* --- AEO / GEO Infrastructure --- */}
       <OrganizationSchema />
       <FAQSchema faqs={homeFaqs.map(f => ({ question: f.question, answer: f.answer }))} />
@@ -57,8 +66,15 @@ export default function HomePage() {
 
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl shadow-[#B6FF00]/5">
             <img 
-              src="/images/poxiol-v62/home_hero_v62.png" 
+              src="/images/poxiol-v62/home_hero_v62_desktop.webp" 
+              srcSet="/images/poxiol-v62/home_hero_v62_mobile.webp 720w, /images/poxiol-v62/home_hero_v62_desktop.webp 900w"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              width="900" 
+              height="1125"
               alt="POXIOL Custom Teamwear Uniforms Factory" 
+              fetchPriority="high"
+              loading="eager"
+              decoding="sync"
               className="absolute inset-0 h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition duration-700" 
             />
             <div className="absolute bottom-10 left-10 right-10 rounded-3xl border border-white/15 bg-black/40 p-6 backdrop-blur-2xl">
@@ -194,12 +210,21 @@ export default function HomePage() {
                      {faq.question}
                      <span className="text-xl font-light transition-transform group-open:rotate-45">+</span>
                   </summary>
-                  <p className="mt-4 leading-7 text-neutral-400 border-t border-white/5 pt-4">{faq.answer}</p>
-                  </details>
-               ))}
-            </div>
-         </div>
-      </section>
+                <p className="mt-4 leading-7 text-neutral-400 border-t border-white/5 pt-4">{faq.answer}</p>
+                   </details>
+                ))}
+             </div>
+             <div className="mt-12 text-center">
+                <Link 
+                  href="/guides/b2b-sourcing-faq/" 
+                  className="inline-flex items-center text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00] hover:underline"
+                >
+                  View Technical B2B FAQ Hub <span className="ml-2">→</span>
+                </Link>
+             </div>
+          </div>
+       </section>
+
 
       <Footer />
     </main>
