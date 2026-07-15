@@ -28,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/printing-guide/",
     "/certificates-testing/",
     "/quality-control-process/",
+    "/manufacturing/",
+    "/guides/b2b-sourcing-faq/",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
