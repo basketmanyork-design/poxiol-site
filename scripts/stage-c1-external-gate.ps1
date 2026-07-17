@@ -101,9 +101,10 @@ function Invoke-SanityCommand {
         New-Item -ItemType Directory -Force $logDir | Out-Null
         $so = if ($StdoutFile) { Join-Path $logDir $StdoutFile } else { $null }
         $se = if ($StderrFile) { Join-Path $logDir $StderrFile } else { $null }
+        $stderrPath = if ($se) { $se } else { Join-Path $logDir "sanity-null.stderr.txt" }
 
         if ($so) {
-            & $sanityCmd @Arguments 1> $so 2> (if ($se) { $se } else { $null })
+            & $sanityCmd @Arguments 1> $so 2> $stderrPath
         } else {
             $output = & $sanityCmd @Arguments 2>&1
         }
@@ -175,11 +176,18 @@ if ($precheck.ExitCode -eq 0 -and $stdoutContent -match $projectId) {
     # -- Login --
     Write-Step "Sanity Login"
 
-    # Check login --help
+    # Check login --help (stderr contains v4 banner, suppress $ErrorActionPreference)
+    $prevEA = $ErrorActionPreference
+    $ErrorActionPreference = "Continue"
     $loginHelp = & $sanityCmd login --help 2>&1 | Out-String
+    $ErrorActionPreference = $prevEA
     $providers = @()
     if ($loginHelp -match 'google')   { $providers += "google" }
     if ($loginHelp -match 'github')   { $providers += "github" }
+    if ($providers.Count -eq 0) {
+        Write-Warn "Could not parse login --help. Defaulting to google, github providers."
+        $providers = @("google", "github")
+    }
 
     $result.loginAttempted = $true
     $maxRetries = 3
