@@ -83,6 +83,10 @@ $result = [PSCustomObject]@{
     sanityFailedFieldPaths    = @()
     validationResultParsingStatus = $null
     blockingWarnings          = @()
+    tokenAuthenticationAttempted   = $false
+    tokenAuthenticationSucceeded   = $false
+    tokenClearedAfterExecution     = $false
+    tokenStoredPersistently        = $false
     webhookDisabled           = $true
     cloudflareDeployHookDisabled = $true
     externalGatePassed        = $false
@@ -182,7 +186,48 @@ if ($preResp.ExitCode -eq 0 -and $precheckFound) {
 }
 
 # =================================================================
-# LOGIN  (only if precheck did NOT confirm the project)
+# TOKEN FALLBACK  (hidden input, process-scoped, cleared on exit)
+# =================================================================
+if (-not $result.authenticatedProjectConfirmed) {
+    $result.tokenAuthenticationAttempted = $true
+    $result.tokenStoredPersistently = $false
+    Write-Host ""
+    Write-Host "No active Sanity session found." -ForegroundColor Yellow
+    Write-Host "You can authenticate by pasting a temporary token." -ForegroundColor Yellow
+    Write-Host "Create one at: https://www.sanity.io/manage > $projectId > API > Tokens" -ForegroundColor Cyan
+    $secureToken = Read-Host "Enter temporary Sanity token" -AsSecureString
+    $bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureToken)
+    try {
+        $plainToken = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($bstr)
+        if ([string]::IsNullOrWhiteSpace($plainToken)) {
+            Write-Warn "No token provided. Skipping token authentication."
+            $result.tokenAuthenticationSucceeded = $false
+        } else {
+            $env:SANITY_AUTH_TOKEN = $plainToken
+            Write-Host "Token set for this process. Testing..."
+            $tokTest = Invoke-SanityCommand -CommandName "token-verify" -Arguments @("projects","list") `
+                -StdoutFile "token-verify.stdout.txt" -StderrFile "token-verify.stderr.txt"
+            if ($tokTest.ExitCode -eq 0 -and (Test-ProjectIdInOutput -StdoutFile $tokTest.StdoutFile -StderrFile $tokTest.StderrFile)) {
+                $result.tokenAuthenticationSucceeded = $true
+                $result.authSessionValid = $true
+                $result.authenticatedProjectConfirmed = $true
+                Write-Pass "Token authentication succeeded. Project $projectId confirmed."
+            } else {
+                $result.tokenAuthenticationSucceeded = $false
+                Write-Warn "Token authentication failed or project not visible."
+            }
+        }
+    } finally {
+        if ($bstr -ne [System.IntPtr]::Zero) {
+            [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
+        }
+        $plainToken = $null
+        $secureToken = $null
+    }
+}
+
+# =================================================================
+# LOGIN  (only if precheck AND token BOTH failed)
 # =================================================================
 if (-not $result.authenticatedProjectConfirmed) {
     Write-Step "Sanity Login"
@@ -350,5 +395,13 @@ $result.externalGatePassed = $pass
 Write-Host "External Gate Passed: $pass"
 
 $result.executedAt = (Get-Date).ToString("o")
+$result.tokenClearedAfterExecution = $true
 Save-Result
+
+# Token cleanup (always runs, even on error)
+$env:SANITY_AUTH_TOKEN = $null
+Remove-Item Env:SANITY_AUTH_TOKEN -ErrorAction SilentlyContinue
+$plainToken = $null
+$secureToken = $null
+
 exit $(if($pass){0}else{1})
