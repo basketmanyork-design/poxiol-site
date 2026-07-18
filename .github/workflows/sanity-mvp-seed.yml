@@ -1,0 +1,64 @@
+name: POXIOL Sanity MVP Seed
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type SEED_DRAFTS_ONLY to continue'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: poxiol-sanity-mvp-seed
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    if: ${{ github.event.inputs.confirm == 'SEED_DRAFTS_ONLY' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_MVP_SEED_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify secret exists
+        run: |
+          if [ -z "${SANITY_AUTH_TOKEN:-}" ]; then
+            echo "::error::SANITY_MVP_SEED_TOKEN is not configured"
+            exit 1
+          fi
+
+      - name: Install root dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Install Studio dependencies
+        working-directory: studio
+        run: npm install --legacy-peer-deps
+
+      - name: Run MVP draft seed
+        working-directory: studio
+        run: ./node_modules/.bin/sanity exec scripts/seed-mvp.ts
+
+      - name: Verify seed result
+        run: node scripts/verify-mvp-seed-result.cjs
+
+      - name: Upload non-sensitive seed report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanity-mvp-seed-result
+          path: migration-output/mvp-seed-result.json
+          if-no-files-found: warn
+          retention-days: 7
