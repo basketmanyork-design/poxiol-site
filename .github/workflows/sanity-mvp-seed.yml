@@ -42,9 +42,6 @@ jobs:
             exit 1
           fi
 
-      - name: Install root dependencies
-        run: npm install --legacy-peer-deps
-
       - name: Install Studio dependencies
         working-directory: studio
         run: npm install --legacy-peer-deps
