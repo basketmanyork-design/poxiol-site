@@ -1,0 +1,19 @@
+{
+  "sourceTotal": 0,
+  "generatedTotal": 51,
+  "skippedTotal": 0,
+  "drafts": 51,
+  "published": 0,
+  "resolvedPathConflicts": 0,
+  "invalidReferences": 0,
+  "piiDetected": 0,
+  "piiRemaining": 0,
+  "riskWordsBlocked": 0,
+  "riskWordsWarning": 0,
+  "missingSeo": 0,
+  "byType": {
+    "faqCategory": 15,
+    "faqItem": 31,
+    "caseStudy": 5
+  }
+}

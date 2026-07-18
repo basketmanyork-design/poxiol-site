@@ -1,0 +1,122 @@
+{
+  "selfHashPolicy": "file-integrity-report.json is hashed externally by pre-import-gate and does not include its own hash.",
+  "files": [
+    {
+      "filename": "content-drafts.ndjson",
+      "sizeBytes": 19172,
+      "sha256": "ccbfa7279173fe1cc8a83e63313b0497c0f5fb244827d2b89b9e7d1adf319e3a",
+      "recordCount": 37,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "source-mapping-report.json",
+      "sizeBytes": 3500,
+      "sha256": "80c0ef7917591a08e2b680017fffdf0afa8f7f29a8192034c8176046578605ac",
+      "recordCount": 37,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "assets-manifest.json",
+      "sizeBytes": 129,
+      "sha256": "299eab65e09ad24672eef7d85c21d88690863ade5474888997340ffa7cf30965",
+      "recordCount": 4,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "references-report.json",
+      "sizeBytes": 9894,
+      "sha256": "e28db6fc0cda4e3b155334404deb4e32645590eb28753d1033ed1b3d1e8a7f10",
+      "recordCount": 31,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "url-report.json",
+      "sizeBytes": 6283,
+      "sha256": "2881494dfa28fb16c9efb99c17b95ee937a9367d609d33e7a5af3b74a202cd93",
+      "recordCount": 37,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "privacy-report.json",
+      "sizeBytes": 944,
+      "sha256": "0a09eb3284907fe38df9a2f0f002ac86662a303649580fea5ac85dee0440582d",
+      "recordCount": 5,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "validation-report.json",
+      "sizeBytes": 381,
+      "sha256": "86fc31f8e740e5289af7eed32646a0d83bddd5694a162cf4d82cdff145fe9404",
+      "recordCount": 15,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "seo-review-report.json",
+      "sizeBytes": 207,
+      "sha256": "e1e5e527e0bbbc78c1054cb361dcc41676cabd27f0300b2f74b78212359359ea",
+      "recordCount": 7,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "risk-words-report.json",
+      "sizeBytes": 130,
+      "sha256": "c0081e3a5cf4b44b600f3d08df0a3784e8a23f5351c4b95484bd301272f0ccfe",
+      "recordCount": 5,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "skipped-records.json",
+      "sizeBytes": 40,
+      "sha256": "a031b13afda4652f0cfe7b001a59e44627efc3bad50648ad50aa1783ddff7ea8",
+      "recordCount": 2,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "deferred-records.json",
+      "sizeBytes": 20193,
+      "sha256": "d9c01fba50fd4b6ce2bd3be37ece9b46b74d5012d481cb72965b4c57f6907fb5",
+      "recordCount": 63,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "migration-summary.json",
+      "sizeBytes": 900,
+      "sha256": "7f459fa5b59032cdcb76e36ea57227fcafe4b9ab7b98ca1427d3fd0ab80feb8a",
+      "recordCount": 28,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    },
+    {
+      "filename": "source-coverage-report.json",
+      "sizeBytes": 25831,
+      "sha256": "6f238b54e1667aaa5535f3e8215dca3a6921c57a60df696dc3769235d32f33b7",
+      "recordCount": 85,
+      "parseSuccess": true,
+      "piiRemaining": 0,
+      "secretRemaining": 0
+    }
+  ]
+}

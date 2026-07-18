@@ -1,0 +1,852 @@
+[
+  {
+    "sourceRecordKey": "usa-basketball-academy-uniform-program",
+    "sourceFile": "lib/case-studies.ts",
+    "sourceType": "caseStudy",
+    "sourceSafeSlug": "usa-basketball-academy-uniform-program",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.case-study-case-003",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "australia-soccer-club-kit-project",
+    "sourceFile": "lib/case-studies.ts",
+    "sourceType": "caseStudy",
+    "sourceSafeSlug": "australia-soccer-club-kit-project",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.case-study-case-002",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "school-athletics-multi-sport-program",
+    "sourceFile": "lib/case-studies.ts",
+    "sourceType": "caseStudy",
+    "sourceSafeSlug": "school-athletics-multi-sport-program",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.case-study-case-001",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "middle-east-sports-event-program",
+    "sourceFile": "lib/case-studies.ts",
+    "sourceType": "caseStudy",
+    "sourceSafeSlug": "middle-east-sports-event-program",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.case-study-case-005",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "distributor-bulk-teamwear-program",
+    "sourceFile": "lib/case-studies.ts",
+    "sourceType": "caseStudy",
+    "sourceSafeSlug": "distributor-bulk-teamwear-program",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.case-study-case-004",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g0-i0",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-0-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-58a237ff48ba5a1e",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g0-i1",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-0-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-b6614f939cc32bc6",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g0-i2",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-0-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-d1096f343e5a878d",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g0-i3",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-0-3",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-5d50bbdc631930aa",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g0-i4",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-0-4",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-e0caaeffefe745c1",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g0-i5",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-0-5",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-fb7f5d41b91e30f7",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g1-i0",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-1-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-87ff6714b0f215c7",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g1-i1",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-1-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-5d689623e799fe8e",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g1-i2",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-1-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-c98a193626b4825d",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g2-i0",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-2-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-5c385d15e15eaf8e",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g2-i1",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-2-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-95c2f6a0a59a0ff9",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g2-i2",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-2-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-cd22732a9a169194",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g3-i0",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-3-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-e8fbe50f21163011",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g3-i1",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-3-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-813dafa082364131",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g3-i2",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-3-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-ff432213b9506070",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g4-i0",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-4-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-cc10b4077f4722ae",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g4-i1",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-4-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-04c7df5ef8a2773e",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g4-i2",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-4-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-0de3dde898e21b57",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g5-i0",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-5-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-453359d1805fe72b",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g5-i1",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-5-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-fe44d146c0d02272",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g5-i2",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-5-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-ad7961602c34946c",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "generalFaqs-g5-i3",
+    "sourceFile": "lib/faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "faq-5-3",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-9cff0e36354d351e",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g0-i0",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-0-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-33252ab0a6926f06",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g0-i1",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-0-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-205ea92b5cfb37e6",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g0-i2",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-0-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-dca019351dd11a54",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g1-i0",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-1-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-a2dc8dceb5f6bc7b",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g1-i1",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-1-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-7804abc6a9113d9b",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g1-i2",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-1-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-58b766260485677a",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g2-i0",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-2-0",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-f79943d498339314",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g2-i1",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-2-1",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-21cf9e0671ff96d5",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "b2bFaqs-g2-i2",
+    "sourceFile": "lib/b2b-faq.ts",
+    "sourceType": "faqItem",
+    "sourceSafeSlug": "b2bfaq-2-2",
+    "finalStatus": "generated",
+    "targetDocumentId": "drafts.faq-9f99d2124557cb88",
+    "plannedBatch": null,
+    "reason": null
+  },
+  {
+    "sourceRecordKey": "how-to-order-custom-basketball-uniforms",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "how-to-order-custom-basketball-uniforms",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "soccer-jersey-buying-guide",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "soccer-jersey-buying-guide",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "oem-vs-odm-sportswear",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "oem-vs-odm-sportswear",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "best-sportswear-fabrics",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "best-sportswear-fabrics",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "sublimation-printing-guide",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "sublimation-printing-guide",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "how-to-choose-a-teamwear-manufacturer",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "how-to-choose-a-teamwear-manufacturer",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-basketball-uniforms-for-schools",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-basketball-uniforms-for-schools",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-soccer-uniforms-for-academies",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-soccer-uniforms-for-academies",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "soccer-jersey-supplier-australia",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "soccer-jersey-supplier-australia",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "oem-basketball-apparel-manufacturer",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "oem-basketball-apparel-manufacturer",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-baseball-jerseys-for-clubs",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-baseball-jerseys-for-clubs",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "soccer-teamwear-supplier-usa",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "soccer-teamwear-supplier-usa",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-volleyball-uniforms-for-schools",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-volleyball-uniforms-for-schools",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "oem-soccer-apparel-manufacturer",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "oem-soccer-apparel-manufacturer",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "soccer-teamwear-supplier-uk",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "soccer-teamwear-supplier-uk",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-basketball-jerseys-melbourne",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-basketball-jerseys-melbourne",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "oem-baseball-apparel-manufacturer",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "oem-baseball-apparel-manufacturer",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-soccer-kits-london",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-soccer-kits-london",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "oem-volleyball-apparel-manufacturer",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "oem-volleyball-apparel-manufacturer",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-teamwear-new-york",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-teamwear-new-york",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-sports-apparel-distributor",
+    "sourceFile": "lib/pseo.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-sports-apparel-distributor",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "teamwear-sample-approval-checklist",
+    "sourceFile": "lib/guides-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "teamwear-sample-approval-checklist",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-basketball-uniform-fabric-gsm",
+    "sourceFile": "lib/guides-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-basketball-uniform-fabric-gsm",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "how-to-choose-teamwear-manufacturer-china",
+    "sourceFile": "lib/guides-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "how-to-choose-teamwear-manufacturer-china",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "private-label-teamwear-manufacturing",
+    "sourceFile": "lib/guides-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "private-label-teamwear-manufacturing",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-basketball-uniform-manufacturer-guide",
+    "sourceFile": "lib/resources-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-basketball-uniform-manufacturer-guide",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-soccer-kits-wholesale-guide",
+    "sourceFile": "lib/resources-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-soccer-kits-wholesale-guide",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "custom-teamwear-moq-production-time",
+    "sourceFile": "lib/resources-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "custom-teamwear-moq-production-time",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "sports-uniform-fabric-guide",
+    "sourceFile": "lib/resources-data.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "sports-uniform-fabric-guide",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "basketball-uniform-size-guide",
+    "sourceFile": "lib/guides.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "basketball-uniform-size-guide",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "b2b-sourcing-faq",
+    "sourceFile": "lib/guides.ts",
+    "sourceType": "article",
+    "sourceSafeSlug": "b2b-sourcing-faq",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "article migration in Batch 2"
+  },
+  {
+    "sourceRecordKey": "products/basketball-uniforms",
+    "sourceFile": "lib/sports-pages.ts",
+    "sourceType": "product",
+    "sourceSafeSlug": "products/basketball-uniforms",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "product migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "products/soccer-jerseys",
+    "sourceFile": "lib/sports-pages.ts",
+    "sourceType": "product",
+    "sourceSafeSlug": "products/soccer-jerseys",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "product migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "products/training-wear",
+    "sourceFile": "lib/sports-pages.ts",
+    "sourceType": "product",
+    "sourceSafeSlug": "products/training-wear",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "product migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "products/hoodies-jackets",
+    "sourceFile": "lib/sports-pages.ts",
+    "sourceType": "product",
+    "sourceSafeSlug": "products/hoodies-jackets",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "product migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "products/team-accessories",
+    "sourceFile": "lib/sports-pages.ts",
+    "sourceType": "product",
+    "sourceSafeSlug": "products/team-accessories",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "product migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-basketball-uniforms",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "basketball-uniforms",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-soccer-kits",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "soccer-kits",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-baseball-softball",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "baseball-softball",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-running-marathon-wear",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "running-marathon-wear",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-training-wear",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "training-wear",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-american-football-uniforms",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "american-football-uniforms",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-volleyball-uniforms",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "volleyball-uniforms",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-ice-hockey-jerseys",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "ice-hockey-jerseys",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-tennis-wear",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "tennis-wear",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-golf-wear",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "golf-wear",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-rugby-teamwear",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "rugby-teamwear",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "home-cat-esports-jerseys",
+    "sourceFile": "lib/home-data.ts",
+    "sourceType": "productCategory",
+    "sourceSafeSlug": "esports-jerseys",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 3,
+    "reason": "productCategory migration in Batch 3"
+  },
+  {
+    "sourceRecordKey": "author-york",
+    "sourceFile": "hardcoded",
+    "sourceType": "author",
+    "sourceSafeSlug": "york",
+    "finalStatus": "deferred",
+    "targetDocumentId": null,
+    "plannedBatch": 2,
+    "reason": "author migration in Batch 2"
+  }
+]

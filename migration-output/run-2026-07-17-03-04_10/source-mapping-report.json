@@ -1,0 +1,182 @@
+[
+  {
+    "sourceKey": "seed-general-custom-teamwear",
+    "targetId": "drafts.faq-category-general-custom-teamwear"
+  },
+  {
+    "sourceKey": "seed-oem-odm",
+    "targetId": "drafts.faq-category-oem-odm"
+  },
+  {
+    "sourceKey": "seed-basketball",
+    "targetId": "drafts.faq-category-basketball"
+  },
+  {
+    "sourceKey": "seed-soccer",
+    "targetId": "drafts.faq-category-soccer"
+  },
+  {
+    "sourceKey": "seed-quality-control",
+    "targetId": "drafts.faq-category-quality-control"
+  },
+  {
+    "sourceKey": "seed-ordering-shipping",
+    "targetId": "drafts.faq-category-ordering-shipping"
+  },
+  {
+    "sourceKey": "seed-factory-sourcing-verification",
+    "targetId": "drafts.faq-category-factory-sourcing-verification"
+  },
+  {
+    "sourceKey": "seed-technical-fabric-production-specs",
+    "targetId": "drafts.faq-category-technical-fabric-production-specs"
+  },
+  {
+    "sourceKey": "seed-private-label-brand-support",
+    "targetId": "drafts.faq-category-private-label-brand-support"
+  },
+  {
+    "sourceKey": "usa-basketball-academy-uniform-program",
+    "targetId": "drafts.case-study-case-003"
+  },
+  {
+    "sourceKey": "australia-soccer-club-kit-project",
+    "targetId": "drafts.case-study-case-002"
+  },
+  {
+    "sourceKey": "school-athletics-multi-sport-program",
+    "targetId": "drafts.case-study-case-001"
+  },
+  {
+    "sourceKey": "middle-east-sports-event-program",
+    "targetId": "drafts.case-study-case-005"
+  },
+  {
+    "sourceKey": "distributor-bulk-teamwear-program",
+    "targetId": "drafts.case-study-case-004"
+  },
+  {
+    "sourceKey": "faq-58a237ff48ba5a1e",
+    "targetId": "drafts.faq-58a237ff48ba5a1e"
+  },
+  {
+    "sourceKey": "faq-b6614f939cc32bc6",
+    "targetId": "drafts.faq-b6614f939cc32bc6"
+  },
+  {
+    "sourceKey": "faq-d1096f343e5a878d",
+    "targetId": "drafts.faq-d1096f343e5a878d"
+  },
+  {
+    "sourceKey": "faq-5d50bbdc631930aa",
+    "targetId": "drafts.faq-5d50bbdc631930aa"
+  },
+  {
+    "sourceKey": "faq-e0caaeffefe745c1",
+    "targetId": "drafts.faq-e0caaeffefe745c1"
+  },
+  {
+    "sourceKey": "faq-fb7f5d41b91e30f7",
+    "targetId": "drafts.faq-fb7f5d41b91e30f7"
+  },
+  {
+    "sourceKey": "faq-87ff6714b0f215c7",
+    "targetId": "drafts.faq-87ff6714b0f215c7"
+  },
+  {
+    "sourceKey": "faq-5d689623e799fe8e",
+    "targetId": "drafts.faq-5d689623e799fe8e"
+  },
+  {
+    "sourceKey": "faq-c98a193626b4825d",
+    "targetId": "drafts.faq-c98a193626b4825d"
+  },
+  {
+    "sourceKey": "faq-5c385d15e15eaf8e",
+    "targetId": "drafts.faq-5c385d15e15eaf8e"
+  },
+  {
+    "sourceKey": "faq-95c2f6a0a59a0ff9",
+    "targetId": "drafts.faq-95c2f6a0a59a0ff9"
+  },
+  {
+    "sourceKey": "faq-cd22732a9a169194",
+    "targetId": "drafts.faq-cd22732a9a169194"
+  },
+  {
+    "sourceKey": "faq-e8fbe50f21163011",
+    "targetId": "drafts.faq-e8fbe50f21163011"
+  },
+  {
+    "sourceKey": "faq-813dafa082364131",
+    "targetId": "drafts.faq-813dafa082364131"
+  },
+  {
+    "sourceKey": "faq-ff432213b9506070",
+    "targetId": "drafts.faq-ff432213b9506070"
+  },
+  {
+    "sourceKey": "faq-cc10b4077f4722ae",
+    "targetId": "drafts.faq-cc10b4077f4722ae"
+  },
+  {
+    "sourceKey": "faq-04c7df5ef8a2773e",
+    "targetId": "drafts.faq-04c7df5ef8a2773e"
+  },
+  {
+    "sourceKey": "faq-0de3dde898e21b57",
+    "targetId": "drafts.faq-0de3dde898e21b57"
+  },
+  {
+    "sourceKey": "faq-453359d1805fe72b",
+    "targetId": "drafts.faq-453359d1805fe72b"
+  },
+  {
+    "sourceKey": "faq-fe44d146c0d02272",
+    "targetId": "drafts.faq-fe44d146c0d02272"
+  },
+  {
+    "sourceKey": "faq-ad7961602c34946c",
+    "targetId": "drafts.faq-ad7961602c34946c"
+  },
+  {
+    "sourceKey": "faq-9cff0e36354d351e",
+    "targetId": "drafts.faq-9cff0e36354d351e"
+  },
+  {
+    "sourceKey": "faq-33252ab0a6926f06",
+    "targetId": "drafts.faq-33252ab0a6926f06"
+  },
+  {
+    "sourceKey": "faq-205ea92b5cfb37e6",
+    "targetId": "drafts.faq-205ea92b5cfb37e6"
+  },
+  {
+    "sourceKey": "faq-dca019351dd11a54",
+    "targetId": "drafts.faq-dca019351dd11a54"
+  },
+  {
+    "sourceKey": "faq-a2dc8dceb5f6bc7b",
+    "targetId": "drafts.faq-a2dc8dceb5f6bc7b"
+  },
+  {
+    "sourceKey": "faq-7804abc6a9113d9b",
+    "targetId": "drafts.faq-7804abc6a9113d9b"
+  },
+  {
+    "sourceKey": "faq-58b766260485677a",
+    "targetId": "drafts.faq-58b766260485677a"
+  },
+  {
+    "sourceKey": "faq-f79943d498339314",
+    "targetId": "drafts.faq-f79943d498339314"
+  },
+  {
+    "sourceKey": "faq-21cf9e0671ff96d5",
+    "targetId": "drafts.faq-21cf9e0671ff96d5"
+  },
+  {
+    "sourceKey": "faq-9f99d2124557cb88",
+    "targetId": "drafts.faq-9f99d2124557cb88"
+  }
+]

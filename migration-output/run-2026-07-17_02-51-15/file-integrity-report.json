@@ -1,0 +1,62 @@
+[
+  {
+    "filename": "assets-manifest.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "content-drafts.ndjson",
+    "sizeBytes": 21495,
+    "sha256": "4d3e1feb09943bfa87f15ef21e888ff3334a548f069d87f93d4591e354cdf86c"
+  },
+  {
+    "filename": "deferred-records.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "migration-summary.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "privacy-report.json",
+    "sizeBytes": 594,
+    "sha256": "b3967787a619e48c6a89f83197ef4f292595c4c88d191558b95498bb51c7d3a1"
+  },
+  {
+    "filename": "references-report.json",
+    "sizeBytes": 3993,
+    "sha256": "956f9f2570dddd1b630b0a4da211b1e7245e0fc76a007076a35975ed4793456f"
+  },
+  {
+    "filename": "risk-words-report.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "seo-review-report.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "skipped-records.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "source-mapping-report.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "url-report.json",
+    "sizeBytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "filename": "validation-report.json",
+    "sizeBytes": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  }
+]

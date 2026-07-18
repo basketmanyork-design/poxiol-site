@@ -1,0 +1,206 @@
+[
+  {
+    "sourceKey": "seed-sample",
+    "targetId": "drafts.faq-category-sample"
+  },
+  {
+    "sourceKey": "seed-moq",
+    "targetId": "drafts.faq-category-moq"
+  },
+  {
+    "sourceKey": "seed-fabric",
+    "targetId": "drafts.faq-category-fabric"
+  },
+  {
+    "sourceKey": "seed-sizing",
+    "targetId": "drafts.faq-category-sizing"
+  },
+  {
+    "sourceKey": "seed-customization",
+    "targetId": "drafts.faq-category-customization"
+  },
+  {
+    "sourceKey": "seed-name-and-number",
+    "targetId": "drafts.faq-category-name-and-number"
+  },
+  {
+    "sourceKey": "seed-private-label",
+    "targetId": "drafts.faq-category-private-label"
+  },
+  {
+    "sourceKey": "seed-quality-control",
+    "targetId": "drafts.faq-category-quality-control"
+  },
+  {
+    "sourceKey": "seed-packaging",
+    "targetId": "drafts.faq-category-packaging"
+  },
+  {
+    "sourceKey": "seed-shipping",
+    "targetId": "drafts.faq-category-shipping"
+  },
+  {
+    "sourceKey": "seed-payment",
+    "targetId": "drafts.faq-category-payment"
+  },
+  {
+    "sourceKey": "seed-basketball",
+    "targetId": "drafts.faq-category-basketball"
+  },
+  {
+    "sourceKey": "seed-soccer",
+    "targetId": "drafts.faq-category-soccer"
+  },
+  {
+    "sourceKey": "seed-general-sourcing",
+    "targetId": "drafts.faq-category-general-sourcing"
+  },
+  {
+    "sourceKey": "seed-technical",
+    "targetId": "drafts.faq-category-technical"
+  },
+  {
+    "sourceKey": "usa-basketball-academy-uniform-program",
+    "targetId": "drafts.case-study-case-003"
+  },
+  {
+    "sourceKey": "australia-soccer-club-kit-project",
+    "targetId": "drafts.case-study-case-002"
+  },
+  {
+    "sourceKey": "school-athletics-multi-sport-program",
+    "targetId": "drafts.case-study-case-001"
+  },
+  {
+    "sourceKey": "middle-east-sports-event-program",
+    "targetId": "drafts.case-study-case-005"
+  },
+  {
+    "sourceKey": "distributor-bulk-teamwear-program",
+    "targetId": "drafts.case-study-case-004"
+  },
+  {
+    "sourceKey": "faq-faq-58a237ff48ba5a1e",
+    "targetId": "drafts.faq-58a237ff48ba5a1e"
+  },
+  {
+    "sourceKey": "faq-faq-b6614f939cc32bc6",
+    "targetId": "drafts.faq-b6614f939cc32bc6"
+  },
+  {
+    "sourceKey": "faq-faq-d1096f343e5a878d",
+    "targetId": "drafts.faq-d1096f343e5a878d"
+  },
+  {
+    "sourceKey": "faq-faq-5d50bbdc631930aa",
+    "targetId": "drafts.faq-5d50bbdc631930aa"
+  },
+  {
+    "sourceKey": "faq-faq-e0caaeffefe745c1",
+    "targetId": "drafts.faq-e0caaeffefe745c1"
+  },
+  {
+    "sourceKey": "faq-faq-fb7f5d41b91e30f7",
+    "targetId": "drafts.faq-fb7f5d41b91e30f7"
+  },
+  {
+    "sourceKey": "faq-faq-87ff6714b0f215c7",
+    "targetId": "drafts.faq-87ff6714b0f215c7"
+  },
+  {
+    "sourceKey": "faq-faq-5d689623e799fe8e",
+    "targetId": "drafts.faq-5d689623e799fe8e"
+  },
+  {
+    "sourceKey": "faq-faq-c98a193626b4825d",
+    "targetId": "drafts.faq-c98a193626b4825d"
+  },
+  {
+    "sourceKey": "faq-faq-5c385d15e15eaf8e",
+    "targetId": "drafts.faq-5c385d15e15eaf8e"
+  },
+  {
+    "sourceKey": "faq-faq-95c2f6a0a59a0ff9",
+    "targetId": "drafts.faq-95c2f6a0a59a0ff9"
+  },
+  {
+    "sourceKey": "faq-faq-cd22732a9a169194",
+    "targetId": "drafts.faq-cd22732a9a169194"
+  },
+  {
+    "sourceKey": "faq-faq-e8fbe50f21163011",
+    "targetId": "drafts.faq-e8fbe50f21163011"
+  },
+  {
+    "sourceKey": "faq-faq-813dafa082364131",
+    "targetId": "drafts.faq-813dafa082364131"
+  },
+  {
+    "sourceKey": "faq-faq-ff432213b9506070",
+    "targetId": "drafts.faq-ff432213b9506070"
+  },
+  {
+    "sourceKey": "faq-faq-cc10b4077f4722ae",
+    "targetId": "drafts.faq-cc10b4077f4722ae"
+  },
+  {
+    "sourceKey": "faq-faq-04c7df5ef8a2773e",
+    "targetId": "drafts.faq-04c7df5ef8a2773e"
+  },
+  {
+    "sourceKey": "faq-faq-0de3dde898e21b57",
+    "targetId": "drafts.faq-0de3dde898e21b57"
+  },
+  {
+    "sourceKey": "faq-faq-453359d1805fe72b",
+    "targetId": "drafts.faq-453359d1805fe72b"
+  },
+  {
+    "sourceKey": "faq-faq-fe44d146c0d02272",
+    "targetId": "drafts.faq-fe44d146c0d02272"
+  },
+  {
+    "sourceKey": "faq-faq-ad7961602c34946c",
+    "targetId": "drafts.faq-ad7961602c34946c"
+  },
+  {
+    "sourceKey": "faq-faq-9cff0e36354d351e",
+    "targetId": "drafts.faq-9cff0e36354d351e"
+  },
+  {
+    "sourceKey": "faq-faq-33252ab0a6926f06",
+    "targetId": "drafts.faq-33252ab0a6926f06"
+  },
+  {
+    "sourceKey": "faq-faq-205ea92b5cfb37e6",
+    "targetId": "drafts.faq-205ea92b5cfb37e6"
+  },
+  {
+    "sourceKey": "faq-faq-dca019351dd11a54",
+    "targetId": "drafts.faq-dca019351dd11a54"
+  },
+  {
+    "sourceKey": "faq-faq-a2dc8dceb5f6bc7b",
+    "targetId": "drafts.faq-a2dc8dceb5f6bc7b"
+  },
+  {
+    "sourceKey": "faq-faq-7804abc6a9113d9b",
+    "targetId": "drafts.faq-7804abc6a9113d9b"
+  },
+  {
+    "sourceKey": "faq-faq-58b766260485677a",
+    "targetId": "drafts.faq-58b766260485677a"
+  },
+  {
+    "sourceKey": "faq-faq-f79943d498339314",
+    "targetId": "drafts.faq-f79943d498339314"
+  },
+  {
+    "sourceKey": "faq-faq-21cf9e0671ff96d5",
+    "targetId": "drafts.faq-21cf9e0671ff96d5"
+  },
+  {
+    "sourceKey": "faq-faq-9f99d2124557cb88",
+    "targetId": "drafts.faq-9f99d2124557cb88"
+  }
+]

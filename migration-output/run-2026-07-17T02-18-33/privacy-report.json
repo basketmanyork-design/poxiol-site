@@ -1,0 +1,32 @@
+[
+  {
+    "sourceRecordKey": "case-003",
+    "piiDetected": true,
+    "piiRemoved": true,
+    "remainingRisk": 0
+  },
+  {
+    "sourceRecordKey": "case-002",
+    "piiDetected": true,
+    "piiRemoved": true,
+    "remainingRisk": 0
+  },
+  {
+    "sourceRecordKey": "case-001",
+    "piiDetected": true,
+    "piiRemoved": true,
+    "remainingRisk": 0
+  },
+  {
+    "sourceRecordKey": "case-005",
+    "piiDetected": true,
+    "piiRemoved": true,
+    "remainingRisk": 0
+  },
+  {
+    "sourceRecordKey": "case-004",
+    "piiDetected": true,
+    "piiRemoved": true,
+    "remainingRisk": 0
+  }
+]

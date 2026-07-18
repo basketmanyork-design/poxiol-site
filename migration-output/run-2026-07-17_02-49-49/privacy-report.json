@@ -1,0 +1,32 @@
+[
+  {
+    "sourceRecordKey": "usa-basketball-academy-uniform-program",
+    "targetId": "case-study-case-003",
+    "piiDetected": true,
+    "piiRemoved": true
+  },
+  {
+    "sourceRecordKey": "australia-soccer-club-kit-project",
+    "targetId": "case-study-case-002",
+    "piiDetected": true,
+    "piiRemoved": true
+  },
+  {
+    "sourceRecordKey": "school-athletics-multi-sport-program",
+    "targetId": "case-study-case-001",
+    "piiDetected": true,
+    "piiRemoved": true
+  },
+  {
+    "sourceRecordKey": "middle-east-sports-event-program",
+    "targetId": "case-study-case-005",
+    "piiDetected": true,
+    "piiRemoved": true
+  },
+  {
+    "sourceRecordKey": "distributor-bulk-teamwear-program",
+    "targetId": "case-study-case-004",
+    "piiDetected": true,
+    "piiRemoved": true
+  }
+]

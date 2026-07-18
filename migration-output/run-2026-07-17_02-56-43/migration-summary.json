@@ -1,0 +1,17 @@
+{
+  "sourceTotal": 54,
+  "generatedTotal": 45,
+  "deferredTotal": 49,
+  "skippedTotal": 0,
+  "duplicateIds": 0,
+  "invalidReferences": 0,
+  "urlConflicts": 0,
+  "piiDetected": 0,
+  "piiRemoved": 0,
+  "piiRemaining": 0,
+  "byType": {
+    "faqCategory": 9,
+    "caseStudy": 5,
+    "faqItem": 31
+  }
+}

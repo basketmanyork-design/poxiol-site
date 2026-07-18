@@ -1,0 +1,17 @@
+{
+  "documentsChecked": 37,
+  "fieldChecksPerformed": 296,
+  "requiredFieldErrors": 0,
+  "typeErrors": 0,
+  "portableTextErrors": 0,
+  "publishStatusErrors": 0,
+  "slugErrors": 0,
+  "referenceErrors": 28,
+  "undefinedFieldWarnings": 0,
+  "duplicateIdErrors": 0,
+  "privacyErrors": 0,
+  "riskWordErrors": 0,
+  "errors": [],
+  "warnings": [],
+  "validationRulesVersion": "1.0.0-c1"
+}

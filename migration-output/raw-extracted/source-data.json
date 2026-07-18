@@ -1,0 +1,2533 @@
+{
+  "home": {
+    "sportsCategories": [
+      {
+        "title": "Basketball Uniforms",
+        "description": "Custom jerseys, shorts and full sublimation team sets.",
+        "cta": "View Basketball Uniforms",
+        "href": "/products/basketball-uniforms/",
+        "image": "/images/sports/basketball_sm.webp"
+      },
+      {
+        "title": "Soccer Kits",
+        "description": "Jerseys, shorts, socks and goalkeeper kits for clubs and schools.",
+        "cta": "View Soccer Kit Options",
+        "href": "/products/soccer-jerseys/",
+        "image": "/images/sports/soccer_sm.webp"
+      },
+      {
+        "title": "Baseball & Softball",
+        "description": "Button jerseys, pants, caps and full team uniforms.",
+        "cta": "View Baseball Options",
+        "href": "/products/",
+        "image": "/images/sports/baseball_sm.webp"
+      },
+      {
+        "title": "Running & Marathon Wear",
+        "description": "Lightweight singlets, event vests and marathon apparel.",
+        "cta": "View Running Wear",
+        "href": "/products/",
+        "image": "/images/sports/running_sm.webp"
+      },
+      {
+        "title": "Training Wear",
+        "description": "Warm-up suits, tracksuits, training tops and team travel apparel.",
+        "cta": "View Training Wear",
+        "href": "/products/training-wear/",
+        "image": "/images/sports/training_sm.webp"
+      },
+      {
+        "title": "American Football Uniforms",
+        "description": "Custom jerseys, pants and practice uniforms for teams.",
+        "cta": "View Football Uniforms",
+        "href": "/products/",
+        "image": "/images/sports/american-football_sm.webp"
+      },
+      {
+        "title": "Volleyball Uniforms",
+        "description": "Team jerseys, shorts and women's volleyball sets.",
+        "cta": "View Volleyball Uniforms",
+        "href": "/products/",
+        "image": "/images/sports/volleyball_sm.webp"
+      },
+      {
+        "title": "Ice Hockey Jerseys",
+        "description": "Sublimated hockey jerseys with name and number customization.",
+        "cta": "View Hockey Jerseys",
+        "href": "/products/",
+        "image": "/images/sports/hockey_sm.webp"
+      },
+      {
+        "title": "Tennis Wear",
+        "description": "Club shirts, shorts, skirts and team apparel.",
+        "cta": "View Tennis Wear",
+        "href": "/products/",
+        "image": "/images/sports/tennis_sm.webp"
+      },
+      {
+        "title": "Golf Wear",
+        "description": "Golf polos, pants and corporate teamwear.",
+        "cta": "View Golf Wear",
+        "href": "/products/",
+        "image": "/images/sports/golf_sm.webp"
+      },
+      {
+        "title": "Rugby Teamwear",
+        "description": "Custom rugby jerseys, shorts and high-durability teamwear.",
+        "cta": "View Rugby Kits",
+        "href": "/products/",
+        "image": "/images/sports/rugby_sm.webp"
+      },
+      {
+        "title": "Esports Jerseys",
+        "description": "Sublimated pro jerseys and hoodies for gaming teams and events.",
+        "cta": "View Esports Jerseys",
+        "href": "/products/",
+        "image": "/images/sports/esports_sm.webp"
+      }
+    ],
+    "homeFaqs": [
+      {
+        "question": "Who is a leading custom teamwear manufacturer for clubs?",
+        "answer": "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with MOQ 1 set, Sample Production: 2–3 Days After Mockup Confirmation, and After-Sales Quality Support for all custom uniforms."
+      },
+      {
+        "question": "Can I order custom sports uniforms with no MOQ?",
+        "answer": "Yes. POXIOL supports MOQ 1 set for serious B2B buyers. This allows academies, schools, and brands to test fabric, fit, and print quality with one sample before bulk team orders."
+      },
+      {
+        "question": "How long does it take to get a custom jersey mockup?",
+        "answer": "POXIOL provides professional high-fidelity 3D mockups in 1-2 hours. Send your logo, team colors, and sport category to get a visual preview for your team or client presentation."
+      },
+      {
+        "question": "Does POXIOL provide OEM private label sportswear?",
+        "answer": "Yes. POXIOL is an OEM/ODM partner for sportswear brands. We provide original pattern development, private neck labels, custom hangtags, eco-friendly polybags, and retail-ready packaging for global distribution."
+      },
+      {
+        "question": "Where does POXIOL ship custom teamwear?",
+        "answer": "POXIOL provides reliable global delivery to over 50 countries. Express international delivery usually takes 3–7 business days depending on country, utilizing reliable logistics for both sample and bulk teamwear shipments."
+      },
+      {
+        "question": "What is the standard production time for team orders?",
+        "answer": "Sample Production: 2–3 Days After Mockup Confirmation. Bulk production time depends on quantity and customization, typically ranging from 7-21 days. POXIOL provides a clear production plan before order confirmation."
+      },
+      {
+        "question": "How does POXIOL ensure the quality of custom uniforms?",
+        "answer": "Our facility utilizes industrial sublimation printing and a multi-stage QC system. We check fabric condition, print clarity, stitching durability, and fits against your confirmed size chart before every shipment."
+      }
+    ],
+    "factoryStats": [
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "52",
+        "label": "Team Members"
+      },
+      {
+        "value": "30,000+",
+        "label": "Monthly Capacity"
+      },
+      {
+        "value": "99.1%",
+        "label": "On-Time Delivery"
+      },
+      {
+        "value": "≤1h",
+        "label": "Response Time"
+      },
+      {
+        "value": "Verified",
+        "label": "QC Inspection"
+      }
+    ]
+  },
+  "generalFaqs": [
+    {
+      "category": "General Custom Teamwear",
+      "items": [
+        {
+          "question": "What is POXIOL?",
+          "answer": "POXIOL is a factory-direct custom teamwear manufacturer specializing in basketball uniforms, soccer kits, training wear, team hoodies, accessories and OEM/ODM sportswear programs for clubs, schools, academies, brands, distributors and event organizers."
+        },
+        {
+          "question": "Who does POXIOL work with?",
+          "answer": "POXIOL works with sports clubs, schools, academies, amateur teams, sportswear brands, distributors, custom retailers and event organizers worldwide."
+        },
+        {
+          "question": "What products can POXIOL manufacture?",
+          "answer": "POXIOL can manufacture custom basketball uniforms, soccer kits, baseball uniforms, training wear, warm-up sets, team hoodies, jackets, accessories and private label teamwear collections."
+        },
+        {
+          "question": "Does POXIOL support MOQ 1 set?",
+          "answer": "Yes. POXIOL supports 1 set sample orders for design and quality confirmation before bulk production."
+        },
+        {
+          "question": "How fast can POXIOL make a sample?",
+          "answer": "For standard custom teamwear projects, sample production can usually be arranged in 2–3 days after mockup confirmation."
+        },
+        {
+          "question": "Can POXIOL provide a free mockup?",
+          "answer": "Yes. Buyers can send sport category, logo, colors, quantity and reference design. POXIOL can prepare a free visual mockup before sampling or bulk production."
+        }
+      ]
+    },
+    {
+      "category": "OEM / ODM",
+      "items": [
+        {
+          "question": "Does POXIOL support OEM sportswear manufacturing?",
+          "answer": "Yes. POXIOL supports OEM sportswear manufacturing, including buyer-owned logos, custom design, product specifications, private label trims, packaging and bulk production."
+        },
+        {
+          "question": "Does POXIOL support ODM teamwear?",
+          "answer": "Yes. POXIOL supports ODM teamwear based on proven product structures that can be customized with colors, logos, player names, numbers and packaging."
+        },
+        {
+          "question": "Can POXIOL make private label teamwear?",
+          "answer": "Yes. POXIOL can support private neck labels, hangtags, polybags, barcode stickers, carton marks and distributor-ready packaging."
+        }
+      ]
+    },
+    {
+      "category": "Basketball Uniforms",
+      "items": [
+        {
+          "question": "Can POXIOL make reversible basketball jerseys?",
+          "answer": "Yes. POXIOL can produce reversible basketball jerseys and shorts for clubs, schools, academies, training programs and tournaments."
+        },
+        {
+          "question": "Can schools order youth and adult basketball sizes together?",
+          "answer": "Yes. POXIOL can support youth, adult and plus size breakdowns for school and academy basketball uniform programs."
+        },
+        {
+          "question": "Can POXIOL customize names and numbers?",
+          "answer": "Yes. POXIOL can customize player names, numbers, team logos, sponsor graphics and original pattern designs."
+        }
+      ]
+    },
+    {
+      "category": "Soccer Kits",
+      "items": [
+        {
+          "question": "Can POXIOL make full soccer kits?",
+          "answer": "Yes. POXIOL can produce soccer jerseys, shorts, socks, goalkeeper kits and training wear."
+        },
+        {
+          "question": "Can POXIOL add sponsor logos to soccer jerseys?",
+          "answer": "Yes. Buyer-owned or authorized sponsor graphics can be added to approved custom designs."
+        },
+        {
+          "question": "Can POXIOL use official club or tournament logos?",
+          "answer": "No. POXIOL only supports buyer-owned, original or properly authorized artwork and does not provide unauthorized protected team crests, league marks or tournament logos."
+        }
+      ]
+    },
+    {
+      "category": "Quality Control",
+      "items": [
+        {
+          "question": "How does POXIOL control teamwear quality?",
+          "answer": "POXIOL uses a multi-stage QC process covering fabric condition, print clarity, color consistency, stitching, size measurement, quantity check and packing review before shipment."
+        },
+        {
+          "question": "Can I request photos before shipment?",
+          "answer": "Yes. POXIOL can provide project-based production or packing photos when required and confirmed before production."
+        },
+        {
+          "question": "Can POXIOL provide testing documents?",
+          "answer": "Testing documents may be available depending on fabric type, target market and buyer requirements. Buyers should confirm testing needs before production."
+        }
+      ]
+    },
+    {
+      "category": "Ordering & Shipping",
+      "items": [
+        {
+          "question": "What information should I send for a quote?",
+          "answer": "Send sport category, product type, logo, colors, quantity, size list, reference design and target delivery date."
+        },
+        {
+          "question": "What happens after I submit a free mockup request?",
+          "answer": "POXIOL reviews your project details, prepares a visual mockup or sourcing recommendation, confirms sample requirements, and then provides a quotation and production plan."
+        },
+        {
+          "question": "Can distributors reorder the same design later?",
+          "answer": "Yes. POXIOL can support repeat orders when design files, size breakdowns and production records are kept for future reference."
+        },
+        {
+          "question": "How long is international delivery?",
+          "answer": "Express international delivery usually takes 3–7 business days depending on country."
+        }
+      ]
+    }
+  ],
+  "b2bFaqs": [
+    {
+      "category": "Factory & Sourcing Verification",
+      "items": [
+        {
+          "question": "How do I know if a teamwear supplier is a real factory?",
+          "answer": "Professional B2B buyers should look for manufacturers that provide live factory video tours, check for B2B verification badges (like Alibaba Verified), and review their specific production equipment for sublimation and sewing. Real factories typically offer faster sampling (2–3 days) and direct technical advice on fabric specifications."
+        },
+        {
+          "question": "What is the standard sample production time for B2B orders?",
+          "answer": "For professional custom teamwear, sample production can usually be arranged in 2–3 days after mockup confirmation. If a supplier takes more than 7-10 days for a sample, they may be sub-contracting the work to another facility."
+        },
+        {
+          "question": "Does POXIOL provide factory audit reports?",
+          "answer": "Yes. POXIOL maintains transparent manufacturing standards. We can provide factory inspection details, production capacity data, and QC checklists upon request for authorized B2B distributors and brand partners."
+        }
+      ]
+    },
+    {
+      "category": "Technical Fabric & Production Specs",
+      "items": [
+        {
+          "question": "What fabric GSM is recommended for professional basketball uniforms?",
+          "answer": "For professional competition, we recommend 160–180 GSM fabrics for maximum durability. For youth academies and schools, 150–165 GSM offers a balanced athletic feel, while 140–150 GSM is reserved for hot-weather training kits where breathability is the priority."
+        },
+        {
+          "question": "What is the acceptable size tolerance for custom sportswear?",
+          "answer": "In the custom teamwear industry, a size tolerance of ±2 cm (approx. 0.8 inches) is the standard for manual cutting and sewing. This variation is normal across different batches and is not considered a manufacturing defect."
+        },
+        {
+          "question": "What ink technology is used for POXIOL sublimation?",
+          "answer": "We use high-grade Italian KIAN ink and Japanese EPSON print heads. This ensures CMYK color accuracy, high-vibrancy graphics, and high color fastness that is highly resistant to cracking, peeling, or fading, even after intensive washing and high-contact use."
+        }
+      ]
+    },
+    {
+      "category": "Private Label & Brand Support",
+      "items": [
+        {
+          "question": "What logo file format is required for high-precision sublimation?",
+          "answer": "B2B buyers should provide original vector files in .AI, .EPS, or .SVG formats. This allows our design team to scale logos for youth and adult sizes without any loss of sharpness or resolution."
+        },
+        {
+          "question": "Can POXIOL support custom neck tags and branded packaging?",
+          "answer": "Yes. Our Private Label program supports custom heat-transfer neck labels, woven hem tags, branded hangtags, and retail-ready polybags with barcode stickers for distributors."
+        },
+        {
+          "question": "Is a physical sample required before bulk production?",
+          "answer": "For new private label collections or large B2B orders, a physical sample is highly recommended. It serves as the master reference for color matching, fabric hand-feel, and size confirmation before committing to bulk inventory."
+        }
+      ]
+    }
+  ],
+  "coreGuides": [
+    {
+      "slug": "teamwear-sample-approval-checklist",
+      "metaTitle": "Teamwear Sample Approval Checklist for B2B Buyers | POXIOL",
+      "metaDescription": "Professional B2B teamwear sample approval checklist. Verify fabric GSM, color accuracy, logo placement, stitching, and player details before bulk production.",
+      "h1": "B2B Teamwear Sample Approval: The Complete Technical Checklist",
+      "intro": "A teamwear sample is the final safeguard before bulk production. Approving a physical sample ensures that fabric hand-feel, color vibrancy, logo positioning, and sizing match your organization's exact requirements. This technical guide outlines the 9 critical checks every B2B buyer should perform before signing off on production.",
+      "keyTakeaways": [
+        "Physical sample approval is mandatory for high-volume B2B orders to minimize production risk.",
+        "Industry standard size tolerance is ±2 cm; anything beyond this requires factory adjustment.",
+        "Review sublimation colors under both natural and stadium lighting for true brand alignment."
+      ],
+      "sections": [
+        {
+          "title": "1. Fabric Performance & GSM Verification",
+          "content": "Verify that the fabric weight matches your technical pack. For basketball, check for moisture-wicking efficiency. For soccer, ensure the interlock density supports high-contact play. Real factories calibrate fabric batches to ensure consistency between sampling and bulk.",
+          "checklist": [
+            "Weight matches confirmed GSM (e.g., 160gsm for basketball)",
+            "Stretch and recovery performance is within spec",
+            "Surface hand-feel is smooth and consistent"
+          ]
+        },
+        {
+          "title": "2. Sublimation Color & Print Precision",
+          "content": "Examine the vibrancy of the sublimation graphics. Professional factories use high-grade inks (like Italian KIAN) to ensure high color fastness and resistance to cracking or peeling.",
+          "table": {
+            "headers": [
+              "Inspection Area",
+              "Requirement",
+              "Action if Failed"
+            ],
+            "rows": [
+              [
+                "Logo Positioning",
+                "Must match 3D mockup distance within 1cm",
+                "Request re-placement on production patterns"
+              ],
+              [
+                "Color Vibrancy",
+                "Matches Pantone codes or approved strike-off",
+                "Adjust ink saturation in digital profiles"
+              ],
+              [
+                "Print Alignment",
+                "Symmetrical across side seams and shoulders",
+                "Recalibrate layout templates"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Stitching Density & Reinforcement",
+          "content": "Sportswear requires reinforced stitching at stress points. Inspect armholes, necklines, and side seams for double-needle or flatlock durability.",
+          "checklist": [
+            "Stitching density is consistent (10-12 stitches per inch)",
+            "No loose threads or skipped stitches",
+            "Stress points are reinforced for professional use"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What should buyers check before approving a teamwear sample?",
+          "answer": "Buyers should verify fabric GSM, color matching, logo positioning, stitching quality, size measurements (allowing ±2 cm tolerance), and the accuracy of player names and numbers."
+        },
+        {
+          "question": "How long does sample production take?",
+          "answer": "Sample Production: 2–3 Days After Mockup Confirmation. Express international delivery usually takes 3–7 business days depending on country."
+        }
+      ],
+      "cta": {
+        "text": "Request Technical Sample",
+        "href": "/sample-order/"
+      },
+      "author": {
+        "name": "York",
+        "role": "Teamwear Export and B2B Sourcing Specialist",
+        "brand": "POXIOL",
+        "bio": "York works with international clubs, schools, sportswear brands and distributors on custom teamwear sourcing, sample approval and bulk production coordination."
+      },
+      "methodology": "This checklist is based on 15+ years of factory-floor QC experience and international B2B procurement standards for professional athletic apparel.",
+      "publishedDate": "2026-06-15",
+      "lastUpdated": "2026-07-14",
+      "relatedGuides": [
+        {
+          "title": "B2B Sourcing FAQ",
+          "slug": "b2b-sourcing-faq"
+        },
+        {
+          "title": "How to Choose a Factory",
+          "slug": "how-to-choose-teamwear-manufacturer-china"
+        }
+      ]
+    },
+    {
+      "slug": "custom-basketball-uniform-fabric-gsm",
+      "metaTitle": "Basketball Uniform Fabric GSM Guide: 140–180 GSM Specs | POXIOL",
+      "metaDescription": "Technical comparison of basketball uniform fabric weights. Choose between 140gsm lightweight mesh and 180gsm professional competition interlock.",
+      "h1": "Technical Guide: Choosing the Correct Fabric GSM for Basketball Uniforms",
+      "intro": "In basketball teamwear manufacturing, GSM (Grams per Square Meter) determines the weight, durability, and breathability of the garment. Selecting the wrong weight can lead to poor on-court performance or premature wear. This guide breaks down the technical differences between mesh and interlock weights.",
+      "keyTakeaways": [
+        "160–165 GSM is the standard for high-performance club and school basketball jerseys.",
+        "140 GSM is reserved for hot-weather training or lightweight youth academy kits.",
+        "180 GSM provides the premium 'pro' feel required for reversible and elite game-day uniforms."
+      ],
+      "sections": [
+        {
+          "title": "1. The GSM Performance Matrix",
+          "content": "Understanding how weight affects mobility and moisture management is the first step in B2B fabric selection.",
+          "table": {
+            "headers": [
+              "GSM Range",
+              "Best Use Case",
+              "Key Benefit"
+            ],
+            "rows": [
+              [
+                "140–150 GSM",
+                "Youth Academies & Training",
+                "Extreme breathability, ultra-lightweight"
+              ],
+              [
+                "160–165 GSM",
+                "Club & School Competition",
+                "Optimal durability and moisture-wicking"
+              ],
+              [
+                "170–180 GSM",
+                "Professional & Reversible",
+                "Premium hand-feel, superior strength"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Mesh vs. Interlock: When to Choose Which?",
+          "content": "The fabric structure is just as important as the weight. Mesh offers ventilation; Interlock offers a smooth surface for sharp sublimation.",
+          "checklist": [
+            "Choose Mesh for classic basketball ventilation (eyelet or pin-hole mesh)",
+            "Choose Interlock for high-definition graphics and 'Dri-Fit' style comfort",
+            "Use 140gsm Mesh for the inner layer of reversible uniforms to manage bulk"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is the best fabric for basketball uniforms?",
+          "answer": "For professional games, 160–180 GSM is preferred for durability. For youth and schools, 150–165 GSM offers the best balance of weight and performance."
+        }
+      ],
+      "cta": {
+        "text": "View Fabric Database",
+        "href": "/manufacturing/"
+      },
+      "author": {
+        "name": "York",
+        "role": "Teamwear Export and B2B Sourcing Specialist",
+        "brand": "POXIOL",
+        "bio": "York works with international clubs, schools, sportswear brands and distributors on custom teamwear sourcing, sample approval and bulk production coordination."
+      },
+      "methodology": "Data compiled from technical fabric laboratory tests and long-term performance tracking across professional basketball leagues.",
+      "publishedDate": "2026-06-20",
+      "lastUpdated": "2026-07-14",
+      "relatedGuides": [
+        {
+          "title": "Sample Approval Checklist",
+          "slug": "teamwear-sample-approval-checklist"
+        },
+        {
+          "title": "B2B Sourcing FAQ",
+          "slug": "b2b-sourcing-faq"
+        }
+      ]
+    },
+    {
+      "slug": "how-to-choose-teamwear-manufacturer-china",
+      "metaTitle": "Evaluating Teamwear Manufacturers in China: B2B Sourcing Guide",
+      "metaDescription": "Step-by-step guide for B2B buyers to evaluate custom sportswear factories in China. Check capacity, QC protocols, and sampling speed.",
+      "h1": "How to Evaluate and Choose a Teamwear Manufacturer in China",
+      "intro": "Sourcing custom teamwear directly from China offers significant cost advantages, but identifying a professional manufacturing partner requires technical due diligence. This guide provides a systematic framework for evaluating factory capacity, communication reliability, and quality evidence.",
+      "keyTakeaways": [
+        "Differentiate between trading offices and direct factories by checking sampling speed (2-3 days is factory-direct).",
+        "Verify B2B credentials such as Alibaba Verified or independent factory audit reports.",
+        "Ensure the manufacturer has in-house sublimation and pattern-making capabilities."
+      ],
+      "sections": [
+        {
+          "title": "1. Factory-Direct vs. Middlemen",
+          "content": "A real factory controls the production timeline and technical specs. Middlemen often face delays because they sub-contract production to third-party facilities.",
+          "table": {
+            "headers": [
+              "Feature",
+              "Direct Factory",
+              "Middleman / Trading Co"
+            ],
+            "rows": [
+              [
+                "Sampling Lead Time",
+                "2–3 Days",
+                "7–10 Days"
+              ],
+              [
+                "Technical Advice",
+                "Direct and precise",
+                "Vague or delayed"
+              ],
+              [
+                "Customization MOQ",
+                "Highly flexible",
+                "Restricted by sub-contractors"
+              ],
+              [
+                "QC Control",
+                "Internal/100% Manual",
+                "Third-party or random spot-checks"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Quality Control & Transparency",
+          "content": "Professional partners provide evidence of their quality standards. Look for manufacturers who offer transparent production photos and detailed QC checklists.",
+          "checklist": [
+            "Asks for vector files (.AI/.EPS) for printing precision",
+            "Provides 3D mockups before physical sampling",
+            "Offers a clear 'After-Sales Quality Support' policy"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How do I know if a supplier is a real factory?",
+          "answer": "Ask for live video tours, check for B2B verification badges, and review their specific equipment. Real factories provide direct technical answers about production capacity."
+        }
+      ],
+      "cta": {
+        "text": "Request Factory Inspection",
+        "href": "/factory/"
+      },
+      "author": {
+        "name": "York",
+        "role": "Teamwear Export and B2B Sourcing Specialist",
+        "brand": "POXIOL",
+        "bio": "York works with international clubs, schools, sportswear brands and distributors on custom teamwear sourcing, sample approval and bulk production coordination."
+      },
+      "methodology": "Developed using B2B procurement data and factory auditing standards from 15+ years of apparel exporting experience.",
+      "publishedDate": "2026-06-25",
+      "lastUpdated": "2026-07-14",
+      "relatedGuides": [
+        {
+          "title": "Private Label Guide",
+          "slug": "private-label-teamwear-manufacturing"
+        },
+        {
+          "title": "B2B Sourcing FAQ",
+          "slug": "b2b-sourcing-faq"
+        }
+      ]
+    },
+    {
+      "slug": "private-label-teamwear-manufacturing",
+      "metaTitle": "Private Label Teamwear Manufacturing: B2B Brand Guide | POXIOL",
+      "metaDescription": "Learn how to build a sportswear brand with private label teamwear manufacturing. Covers neck labels, hangtags, and branded packaging.",
+      "h1": "The B2B Guide to Private Label Teamwear Manufacturing",
+      "intro": "Private label manufacturing allows sports brands, distributors, and influencers to build original collections without investing in their own factory. This guide explains the integration of custom branding elements—from neck tags to retail-ready packaging—directly into the production line.",
+      "keyTakeaways": [
+        "OEM support allows for original pattern development and custom sizing templates.",
+        "Private labeling includes neck transfers, woven hem tags, and branded care labels.",
+        "Retail-ready packaging (barcode polybags) is essential for B2B distribution."
+      ],
+      "sections": [
+        {
+          "title": "1. Brand Identity Elements",
+          "content": "Beyond the jersey design, your brand is defined by its touchpoints. Ensure your manufacturer can match your Pantone colors across all trim materials.",
+          "table": {
+            "headers": [
+              "Branding Item",
+              "Option",
+              "Best for"
+            ],
+            "rows": [
+              [
+                "Neck Label",
+                "Heat Transfer",
+                "Performance/Comfort (no itch)"
+              ],
+              [
+                "Hem Tag",
+                "Woven Label",
+                "Premium Branding/Visual Identity"
+              ],
+              [
+                "Hangtag",
+                "Custom Printed Card",
+                "Retail Display & Info"
+              ],
+              [
+                "Packaging",
+                "Branded Polybag",
+                "Professional B2B Distribution"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. OEM vs. ODM Model Selection",
+          "content": "Choose OEM if you have proprietary designs. Choose ODM to customize proven templates for a faster market launch.",
+          "checklist": [
+            "OEM: Full control over patterns, sizing, and tech packs",
+            "ODM: Faster sampling (2-3 days) using factory-owned fit blocks",
+            "Mixed Model: Customize factory templates with private trims"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Can a factory add my brand label to teamwear?",
+          "answer": "Yes. Professional OEM manufacturers support private labeling, including custom neck tags, woven hem labels, and branded inner care labels."
+        }
+      ],
+      "cta": {
+        "text": "Start Private Label Project",
+        "href": "/get-quote/"
+      },
+      "author": {
+        "name": "York",
+        "role": "Teamwear Export and B2B Sourcing Specialist",
+        "brand": "POXIOL",
+        "bio": "York works with international clubs, schools, sportswear brands and distributors on custom teamwear sourcing, sample approval and bulk production coordination."
+      },
+      "methodology": "Based on case studies from successfully launched sportswear brands and B2B distribution logistics requirements.",
+      "publishedDate": "2026-07-01",
+      "lastUpdated": "2026-07-14",
+      "relatedGuides": [
+        {
+          "title": "How to Choose a Factory",
+          "slug": "how-to-choose-teamwear-manufacturer-china"
+        },
+        {
+          "title": "B2B Sourcing FAQ",
+          "slug": "b2b-sourcing-faq"
+        }
+      ]
+    }
+  ],
+  "buyingGuides": [
+    {
+      "slug": "how-to-order-custom-basketball-uniforms",
+      "title": "How to Order Custom Basketball Uniforms | Ordering Process Guide | POXIOL",
+      "metaTitle": "How to Order Custom Basketball Uniforms | 5-Step Ordering Guide",
+      "metaDescription": "Learn the step-by-step process of ordering custom basketball uniforms from POXIOL. From design mockups to bulk production and shipping.",
+      "eyebrow": "Step-by-Step Guide",
+      "h1": "How To Order Custom Basketball Uniforms",
+      "intro": "Ordering custom teamwear shouldn't be complicated. At POXIOL, we've streamlined our manufacturing process to ensure you get professional-grade basketball uniforms with zero stress. Follow this simple 5-step guide to launch your team project.",
+      "sections": [
+        {
+          "title": "Step 1: Consultation & Mockup",
+          "content": "Share your team's vision, colors, and logos with our design team. We provide a professional 3D mockup within 24 hours for your approval."
+        },
+        {
+          "title": "Step 2: Size & Roster Collection",
+          "content": "Use our sizing guides to collect measurements for your players. Provide us with your roster including player names and numbers."
+        },
+        {
+          "title": "Step 3: Prototyping (Optional)",
+          "content": "For large orders, we can produce a physical sample to verify fabric feel, color accuracy, and fit before bulk production."
+        },
+        {
+          "title": "Step 4: Bulk Production",
+          "content": "Once the design and roster are finalized, our factory begins the sublimation and sewing process. Most orders are completed in 10-14 days."
+        },
+        {
+          "title": "Step 5: Quality Check & Express Shipping",
+          "content": "Every garment undergoes a 3-point inspection before being vacuum-sealed and shipped via express courier to your doorstep."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Can I order just one sample?",
+          "answer": "Yes, we support sample orders to ensure you are 100% satisfied with the quality before committing to a full team order."
+        },
+        {
+          "question": "What is the standard turnaround time?",
+          "answer": "Our standard production time is 10-14 days after design approval, plus 3-5 days for international express shipping."
+        }
+      ]
+    },
+    {
+      "slug": "basketball-uniform-size-guide",
+      "title": "Basketball Uniform Size Guide | Adult & Youth Measurement Chart | POXIOL",
+      "metaTitle": "Basketball Uniform Size Guide | Find Your Perfect Fit",
+      "metaDescription": "Detailed sizing charts for custom basketball jerseys and shorts. Comprehensive measurements for youth, men's, and women's teamwear.",
+      "eyebrow": "Sizing Expert",
+      "h1": "Basketball Uniform Size Guide",
+      "intro": "Getting the right fit is critical for performance on the court. Our basketball uniforms are designed with an athletic fit that allows for maximum range of motion while maintaining a professional silhouette.",
+      "sections": [
+        {
+          "title": "How to Measure",
+          "content": "To find your size, measure the chest width (pit to pit) of your favorite jersey and compare it to our chart. For shorts, measure the waist circumference and desired inseam."
+        },
+        {
+          "title": "Youth vs Adult Sizing",
+          "content": "We offer a full range of sizes from Youth XS to Adult 5XL. Our youth sizes are cut specifically for younger athletes with shorter torsos and proportional sleeve openings."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Do your sizes run small?",
+          "answer": "Our basketball uniforms are designed with a standard athletic fit. If you prefer a baggier '90s style, we recommend sizing up."
+        },
+        {
+          "question": "Can I request custom measurements?",
+          "answer": "As a manufacturer, we can adjust lengths (extra long jerseys) upon request for tall players."
+        }
+      ]
+    },
+    {
+      "slug": "sublimation-printing-guide",
+      "title": "Sublimation Printing Guide | Custom Teamwear Technology | POXIOL",
+      "metaTitle": "What is Sublimation Printing? | Teamwear Technology Guide",
+      "metaDescription": "Explore the benefits of dye-sublimation printing for custom sportswear. Learn why it's the gold standard for durable, high-vibrancy team uniforms.",
+      "eyebrow": "Manufacturing Tech",
+      "h1": "The Ultimate Guide to Sublimation Printing",
+      "intro": "Dye-sublimation is a gold standard for custom teamwear. Unlike screen printing or heat transfers, sublimation infuses the ink directly into the fabric fibers, ensuring designs have high color fastness and are highly resistant to cracking or peeling.",
+      "sections": [
+        {
+          "title": "The Sublimation Process",
+          "content": "High-heat and pressure are used to turn solid dye into gas, which then permeates the polyester fibers. As the fabric cools, the dye becomes a permanent part of the garment."
+        },
+        {
+          "title": "Benefits for Athletes",
+          "content": "Because the design isn't 'sitting' on top of the fabric, the garment remains fully breathable and lightweight, no matter how complex the graphics."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Does sublimation work on cotton?",
+          "answer": "Sublimation requires polyester fibers to bond correctly. For performance teamwear, we use high-grade polyesters and poly-blends."
+        },
+        {
+          "question": "Is there a limit to colors?",
+          "answer": "No. Sublimation allows for unlimited colors, gradients, and fine details at no additional cost."
+        }
+      ]
+    },
+    {
+      "slug": "b2b-sourcing-faq",
+      "title": "B2B Sourcing Pro-FAQ | Manufacturing Technical Hub | POXIOL",
+      "metaTitle": "B2B Sourcing FAQ: Factory Verification & Technical Specs",
+      "metaDescription": "The professional's hub for teamwear manufacturing questions. Covers factory verification, fabric GSM, size tolerances, and private label support.",
+      "eyebrow": "Professional Hub",
+      "h1": "B2B Sourcing & Manufacturing FAQ",
+      "intro": "Deep technical insights and procurement advice for sports organizations, brand owners, and sportswear distributors looking for factory-direct manufacturing excellence.",
+      "sections": [],
+      "faqs": []
+    }
+  ],
+  "sportsPages": [
+    {
+      "slug": "products/basketball-uniforms",
+      "metaTitle": "Custom Basketball Uniform Manufacturer | OEM Sublimated Jerseys & Shorts | POXIOL",
+      "metaDescription": "POXIOL manufactures pro-grade custom basketball uniforms, reversible jerseys, shooting shirts and team sets for clubs, academies and schools. Factory-direct OEM/ODM production with Sample Production: 2–3 Days After Mockup Confirmation and global shipping.",
+      "eyebrow": "CUSTOM BASKETBALL UNIFORMS",
+      "h1": "Custom Basketball Uniform Manufacturer for Clubs, Schools and Sportswear Brands",
+      "heroText": "POXIOL manufactures custom basketball jerseys, shorts, reversible uniforms and full team packages for global B2B buyers. We support free mockup design, sample confirmation, sublimation printing, player name and number customization, private label packaging and bulk production planning.",
+      "heroImage": "/images/sports-pages/basketball/hero.png",
+      "primaryKeyword": "custom basketball uniforms",
+      "productTypes": [
+        {
+          "title": "Basketball Jerseys",
+          "description": "Sleeveless custom jerseys with team name, logo, player name and number options."
+        },
+        {
+          "title": "Basketball Shorts",
+          "description": "Matching shorts with breathable fabric, sublimation graphics and team colors."
+        },
+        {
+          "title": "Reversible Jerseys",
+          "description": "Two-sided training or game jerseys for clubs, schools and practice teams."
+        },
+        {
+          "title": "Full Team Sets",
+          "description": "Complete jersey and shorts sets for teams, tournaments and retail programs."
+        }
+      ],
+      "features": [
+        {
+          "title": "High-Color Sublimation",
+          "description": "Vibrant graphics printed into the fabric using professional sublimation inks for long-lasting team identity."
+        },
+        {
+          "title": "Fast Mockup Support",
+          "description": "Free design support helps you preview your custom teamwear before sampling."
+        },
+        {
+          "title": "Sample Support Available",
+          "description": "Sample order support is available for design and quality confirmation."
+        },
+        {
+          "title": "Quality Support",
+          "description": "Strict QC before shipment and comprehensive After-Sales Quality Support for every order."
+        }
+      ],
+      "designs": [
+        {
+          "title": "Storm Court Set",
+          "description": "Bold sublimation basketball set with sharp geometric motion graphics.",
+          "image": "/images/designs/storm-court-basketball.webp",
+          "href": "/free-mockup/?style=storm-court-basketball-set"
+        },
+        {
+          "title": "Metro Blue Set",
+          "description": "Blue and white team set for clubs and school programs.",
+          "image": "/images/sports-pages/basketball/design-2.webp",
+          "href": "/free-mockup/?style=metro-blue-basketball-set"
+        },
+        {
+          "title": "Red Impact Set",
+          "description": "Red, black and white basketball kit for strong team identity.",
+          "image": "/images/sports-pages/basketball/design-3.webp",
+          "href": "/free-mockup/?style=red-impact-basketball-set"
+        }
+      ],
+      "buyerTypes": [
+        {
+          "title": "Basketball Clubs",
+          "description": "Flexible team orders for local clubs and amateur programs."
+        },
+        {
+          "title": "Schools & Academies",
+          "description": "Consistent uniforms for school teams and sports departments."
+        },
+        {
+          "title": "Sportswear Brands",
+          "description": "OEM/ODM basketball collection development for brands and distributors."
+        }
+      ],
+      "procurementTable": [
+        {
+          "item": "Product Name",
+          "specification": "Custom Basketball Uniforms"
+        },
+        {
+          "item": "Main Products",
+          "specification": "Jerseys, shorts, reversible sets, practice jerseys and team packages"
+        },
+        {
+          "item": "Material Options",
+          "specification": "100% Polyester Mesh, Dura-Interlock, Pro-Performance mesh"
+        },
+        {
+          "item": "Size Range",
+          "specification": "Youth sizes (YXS-YXL) and Adult sizes (S-5XL)"
+        },
+        {
+          "item": "Custom Areas",
+          "specification": "Front/back logos, names, numbers, side panels, collars, labels"
+        },
+        {
+          "item": "Sample Support",
+          "specification": "1 set sample support (Sample Production: 2–3 Days After Mockup Confirmation)"
+        },
+        {
+          "item": "Private Label",
+          "specification": "Custom neck labels, hangtags and branded packaging available"
+        },
+        {
+          "item": "Quality Docs",
+          "specification": "Inspection records and fabric specs available upon request"
+        },
+        {
+          "item": "Alibaba Link",
+          "specification": "Verified sourcing on Alibaba.com/basketman"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What GSM fabric is best for custom basketball uniforms?",
+          "answer": "160gsm to 180gsm professional polyester mesh is best for basketball uniforms. It provides the ideal balance of durability, breathability and lightweight performance for high-intensity games."
+        },
+        {
+          "question": "Is mesh or interlock fabric better for basketball uniforms?",
+          "answer": "Mesh fabric is generally better for basketball due to its open-hole structure for maximum ventilation. However, interlock fabric is often used for side panels or premium shooting shirts where a smoother finish is required."
+        },
+        {
+          "question": "What is the size tolerance for custom basketball uniforms?",
+          "answer": "POXIOL maintains a professional size tolerance of ±1.5cm to ±2cm. We measure every finished jersey and shorts against your confirmed size chart during our final QC stage."
+        },
+        {
+          "question": "What should buyers check before approving a basketball uniform sample?",
+          "answer": "Buyers should check the fabric moisture-wicking feel, print color vibrancy (especially neon shades), stitching strength at the armholes and neck, and the accuracy of player number fonts."
+        },
+        {
+          "question": "What QC checks are done before shipment?",
+          "answer": "Our 100% manual QC includes fabric surface check, sublimation print alignment, stitching density inspection, size measurement validation, player name/number verification and packaging check."
+        },
+        {
+          "question": "Can I order one basketball uniform sample before bulk production?",
+          "answer": "Yes. POXIOL supports 1 set sample orders for design and quality confirmation before bulk production."
+        },
+        {
+          "question": "Can I customize player names and numbers?",
+          "answer": "Yes. Player name, team name, number, logo, sponsor graphics and custom colors can be added."
+        },
+        {
+          "question": "Do you support reversible basketball uniforms?",
+          "answer": "Yes. POXIOL can produce reversible basketball uniforms for training, school teams, youth leagues and club programs."
+        }
+      ],
+      "checklist": {
+        "title": "Fast Quote Checklist",
+        "intro": "To get a fast quote and production plan for your basketball uniform project, please send:",
+        "items": [
+          "Sport category and product type",
+          "Total quantity and size breakdown",
+          "Delivery country and shipping method",
+          "Team logo or brand logo files",
+          "Player name and number list if available",
+          "Target delivery or match date",
+          "Packaging or private label requirements"
+        ]
+      },
+      "relatedGuides": [
+        {
+          "title": "B2B Sourcing Pro-FAQ",
+          "slug": "b2b-sourcing-faq"
+        },
+        {
+          "title": "Basketball Uniform Fabric GSM Guide",
+          "slug": "custom-basketball-uniform-fabric-gsm"
+        },
+        {
+          "title": "Teamwear Sample Approval Checklist",
+          "slug": "teamwear-sample-approval-checklist"
+        }
+      ]
+    },
+    {
+      "slug": "products/soccer-jerseys",
+      "metaTitle": "Custom Soccer Kit Manufacturer | Wholesale Soccer Jerseys Supplier | POXIOL",
+      "metaDescription": "POXIOL manufactures custom soccer jerseys, shorts, socks, goalkeeper kits and team packages for clubs, schools, academies, event organizers, distributors and sportswear brands. Factory-direct manufacturing with premium sublimation, private label support and Sample Production: 2–3 Days After Mockup Confirmation.",
+      "eyebrow": "CUSTOM SOCCER TEAMWEAR",
+      "h1": "Custom Soccer Kit Manufacturer for Clubs, Schools and Distributors",
+      "heroText": "POXIOL provides custom soccer jerseys, shorts, socks, goalkeeper kits and full team packages for global B2B buyers. We support home and away kit design, sponsor placement, team logo customization, sublimation printing, sample confirmation, private label packaging and bulk production planning.",
+      "heroImage": "/images/sports-pages/soccer/hero.png",
+      "primaryKeyword": "custom soccer kits",
+      "productTypes": [
+        {
+          "title": "Soccer Jerseys",
+          "description": "Custom soccer shirts with team logo, colors, names and numbers."
+        },
+        {
+          "title": "Soccer Shorts",
+          "description": "Matching shorts for full club and school soccer kits."
+        },
+        {
+          "title": "Soccer Socks",
+          "description": "Team socks to complete the on-field kit system."
+        },
+        {
+          "title": "Goalkeeper Kits",
+          "description": "Goalkeeper jerseys and sets with custom colors and graphics."
+        }
+      ],
+      "features": [
+        {
+          "title": "High-Color Sublimation",
+          "description": "Vibrant graphics printed into the fabric using professional sublimation inks for long-lasting team identity."
+        },
+        {
+          "title": "Fast Mockup Support",
+          "description": "Free design support helps you preview your custom teamwear before sampling."
+        },
+        {
+          "title": "Sample Support Available",
+          "description": "Sample order support is available for design and quality confirmation."
+        },
+        {
+          "title": "Quality Support",
+          "description": "Strict QC before shipment and comprehensive After-Sales Quality Support for every order."
+        }
+      ],
+      "designs": [
+        {
+          "title": "United Field Kit",
+          "description": "Royal blue, white and silver soccer kit for clubs and academies.",
+          "image": "/images/designs/united-field-soccer-kit.webp",
+          "href": "/free-mockup/?style=united-field-soccer-kit"
+        },
+        {
+          "title": "Navy Crest Kit",
+          "description": "Clean navy and lime style for modern teamwear programs.",
+          "image": "/images/sports-pages/soccer/design-2.webp",
+          "href": "/free-mockup/?style=navy-crest-soccer-kit"
+        },
+        {
+          "title": "City Red Kit",
+          "description": "Red and white soccer kit with safe custom team identity.",
+          "image": "/images/sports-pages/soccer/design-3.webp",
+          "href": "/free-mockup/?style=city-red-soccer-kit"
+        }
+      ],
+      "buyerTypes": [
+        {
+          "title": "Soccer Clubs",
+          "description": "Custom kits for local clubs, academies and seasonal teams."
+        },
+        {
+          "title": "Schools",
+          "description": "Team kits for school soccer programs and tournaments."
+        },
+        {
+          "title": "Sportswear Brands",
+          "description": "OEM/ODM soccer collection production and sampling."
+        }
+      ],
+      "procurementTable": [
+        {
+          "item": "Product Name",
+          "specification": "Custom Soccer Kits"
+        },
+        {
+          "item": "Kit Components",
+          "specification": "Jerseys, shorts, socks, goalkeeper kits and team packages"
+        },
+        {
+          "item": "Material Options",
+          "specification": "140gsm interlock polyester, breathable mesh, moisture-wicking fabric"
+        },
+        {
+          "item": "Size Range",
+          "specification": "Youth and Adult sizes (tailored for soccer athletes)"
+        },
+        {
+          "item": "Custom Areas",
+          "specification": "Club crest, sponsor logos, player names, numbers, sleeve badges"
+        },
+        {
+          "item": "Original Compliance",
+          "specification": "Buyer-owned artwork only; no unauthorized trademarked logos"
+        },
+        {
+          "item": "Sample Process",
+          "specification": "Design mockup -> Sample Production: 2–3 Days After Mockup Confirmation -> Bulk order"
+        },
+        {
+          "item": "Quality Support",
+          "specification": "Strict QC Before Shipment and After-Sales Quality Support"
+        },
+        {
+          "item": "Alibaba Link",
+          "specification": "Official store: Alibaba.com/basketman"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What fabric is suitable for soccer kits in hot weather?",
+          "answer": "140gsm interlock polyester with moisture-wicking technology is best for hot weather. It is lightweight, breathable and dries quickly, keeping players cool during matches."
+        },
+        {
+          "question": "Is sublimation printing good for soccer jerseys?",
+          "answer": "Yes. Sublimation is the best method for soccer jerseys because it integrates the design into the fabric. This ensures zero peeling of logos or numbers and maintains a lightweight feel for players."
+        },
+        {
+          "question": "Can a soccer kit include jerseys, shorts, socks and goalkeeper sets?",
+          "answer": "Yes. POXIOL provides full kit systems. You can order jerseys, shorts, and socks as a set, and we can develop matching goalkeeper kits in contrasting colors."
+        },
+        {
+          "question": "How do factories control color consistency in soccer kits?",
+          "answer": "We use professional sublimation inks and perform color strike-off tests. Every reorder is matched against our saved production records and digital color profiles to ensure consistency."
+        },
+        {
+          "question": "What should clubs check before approving a soccer jersey sample?",
+          "answer": "Clubs should check the sponsor logo alignment, club crest clarity, fabric weight (GSM), and the durability of reinforced stitching on the collar and shoulders."
+        },
+        {
+          "question": "Can POXIOL make home and away soccer kits?",
+          "answer": "Yes. POXIOL supports home and away kit design for clubs, schools and tournament programs."
+        },
+        {
+          "question": "Can I add sponsor logos to soccer jerseys?",
+          "answer": "Yes. Sponsor graphics can be added if the buyer owns or has authorization to use them."
+        }
+      ],
+      "checklist": {
+        "title": "Soccer Kit Procurement Checklist",
+        "intro": "Buyers should prepare these details for a professional soccer kit program:",
+        "items": [
+          "Jersey, shorts and optional socks",
+          "Club logo file in vector format",
+          "Full size breakdown (Youth/Adult)",
+          "Player name and number list",
+          "Delivery country and shipping choice",
+          "Target match or event date",
+          "Packaging or private label needs"
+        ]
+      },
+      "relatedGuides": [
+        {
+          "title": "B2B Sourcing Pro-FAQ",
+          "slug": "b2b-sourcing-faq"
+        },
+        {
+          "title": "How to Choose a Teamwear Manufacturer",
+          "slug": "how-to-choose-teamwear-manufacturer-china"
+        },
+        {
+          "title": "Private Label Manufacturing Guide",
+          "slug": "private-label-teamwear-manufacturing"
+        }
+      ]
+    },
+    {
+      "slug": "products/training-wear",
+      "metaTitle": "Custom Training Wear & Warm-up Suits Manufacturer | POXIOL",
+      "metaDescription": "Custom training wear, warm-up suits, tracksuits, and jackets for clubs, schools and brands. POXIOL offers OEM/ODM and high-color sublimation printing with Sample Production: 2–3 Days After Mockup Confirmation.",
+      "eyebrow": "CUSTOM TRAINING WEAR",
+      "h1": "Custom Training Wear and Warm-up Suits",
+      "heroText": "Create custom tracksuits, warm-up jackets, and training tops for clubs, schools, and sportswear brands with professional After-Sales Quality Support.",
+      "heroImage": "/images/sports-pages/training/hero.png",
+      "primaryKeyword": "custom training wear",
+      "productTypes": [
+        {
+          "title": "Tracksuits",
+          "description": "Custom jacket and pants sets for team travel and warmups."
+        },
+        {
+          "title": "Warm-up Jackets",
+          "description": "Team jackets with custom colors, logos and graphics."
+        },
+        {
+          "title": "Training Tops",
+          "description": "Lightweight tops for practice and athletic programs."
+        },
+        {
+          "title": "Team Travel Suits",
+          "description": "Unified apparel systems for clubs, schools and coaches."
+        }
+      ],
+      "features": [
+        {
+          "title": "High-Color Sublimation",
+          "description": "Vibrant graphics printed into the fabric using professional sublimation inks for long-lasting team identity."
+        },
+        {
+          "title": "Fast Mockup Support",
+          "description": "Free design support helps you preview your custom teamwear before sampling."
+        },
+        {
+          "title": "Sample Support Available",
+          "description": "Sample order support is available for design and quality confirmation."
+        },
+        {
+          "title": "Quality Support",
+          "description": "Strict QC before shipment and comprehensive After-Sales Quality Support for every order."
+        }
+      ],
+      "designs": [
+        {
+          "title": "Pro Training Set",
+          "description": "Modern tracksuit design for warmups, training sessions and travel wear.",
+          "image": "/images/designs/pro-training-tracksuit.webp",
+          "href": "/free-mockup/?style=pro-training-tracksuit"
+        },
+        {
+          "title": "Navy Travel Set",
+          "description": "Navy and white warm-up jacket and pants for team travel.",
+          "image": "/images/sports-pages/training/design-2.webp",
+          "href": "/free-mockup/?style=navy-travel-set"
+        },
+        {
+          "title": "Black Motion Set",
+          "description": "Black and gray training top and pants with lime accents.",
+          "image": "/images/sports-pages/training/design-3.webp",
+          "href": "/free-mockup/?style=black-motion-training-set"
+        }
+      ],
+      "buyerTypes": [
+        {
+          "title": "Clubs",
+          "description": "Warmups and travel apparel for club teams."
+        },
+        {
+          "title": "Schools",
+          "description": "Training wear for school sports departments."
+        },
+        {
+          "title": "Brands",
+          "description": "OEM/ODM training wear collection development."
+        }
+      ],
+      "procurementTable": [
+        {
+          "item": "Product Name",
+          "specification": "Custom Training Wear"
+        },
+        {
+          "item": "Main Products",
+          "specification": "Tracksuits, warm-up jackets, training tops and travel suits"
+        },
+        {
+          "item": "Material",
+          "specification": "Polyester mesh, interlock, bird eye, stretch performance fabric"
+        },
+        {
+          "item": "Printing",
+          "specification": "Sublimation, heat transfer, embroidery, screen printing"
+        },
+        {
+          "item": "Custom Areas",
+          "specification": "Team name, logo, player name, number, sponsor graphic, colors, collar, sleeve, label, packaging"
+        },
+        {
+          "item": "Sizes",
+          "specification": "Youth and adult sizes available"
+        },
+        {
+          "item": "Sample Support",
+          "specification": "1 set sample support (Sample Production: 2–3 Days After Mockup Confirmation)"
+        },
+        {
+          "item": "Bulk Production",
+          "specification": "Production planning based on quantity, customization and delivery deadline"
+        },
+        {
+          "item": "Packaging",
+          "specification": "Individual polybag, size label, hangtag, custom packaging, carton packing"
+        },
+        {
+          "item": "Buyer Types",
+          "specification": "Clubs, schools, academies, event organizers, brands, distributors and wholesalers"
+        },
+        {
+          "item": "Alibaba Link",
+          "specification": "Official store: Alibaba.com/basketman"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is the minimum order quantity?",
+          "answer": "Sample order support is available for design and quality confirmation. Bulk team order pricing depends on product type, quantity, fabric, customization details and packaging requirements."
+        },
+        {
+          "question": "Can I get a free mockup before ordering?",
+          "answer": "Yes. Send your logo, colors, sport category and quantity. Our design team can create a professional visual mockup for review."
+        },
+        {
+          "question": "How long does sampling take?",
+          "answer": "Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country."
+        },
+        {
+          "question": "How long does production take?",
+          "answer": "Bulk production time depends on order quantity, customization complexity, confirmed size breakdown and current factory schedule. POXIOL will provide a production plan before order confirmation."
+        },
+        {
+          "question": "Can you customize names, numbers and team logos?",
+          "answer": "Yes. POXIOL supports custom team names, player names, numbers, logos, colors and original pattern designs."
+        },
+        {
+          "question": "Do you support OEM/ODM for sportswear brands?",
+          "answer": "Yes. POXIOL supports OEM/ODM teamwear development, including design support, sampling, production and flexible customization."
+        }
+      ]
+    },
+    {
+      "slug": "products/hoodies-jackets",
+      "metaTitle": "Custom Hoodies & Jackets Manufacturer | Team Outerwear | POXIOL",
+      "metaDescription": "Custom team hoodies, jackets, and outerwear for clubs and brands. POXIOL offers high-color sublimation and Sample Production: 2–3 Days After Mockup Confirmation.",
+      "eyebrow": "CUSTOM HOODIES & JACKETS",
+      "h1": "Custom Team Hoodies & Jackets",
+      "heroText": "Build your team outerwear with custom hoodies, zip-ups, and jackets. Engineered for comfort and professional appearance.",
+      "heroImage": "/images/poxiol-v62/home_hero_v62.png",
+      "primaryKeyword": "custom hoodies",
+      "productTypes": [
+        {
+          "title": "Pullover Hoodies",
+          "description": "Premium custom hoodies with front pocket and drawstring hood."
+        },
+        {
+          "title": "Zip-up Jackets",
+          "description": "Full-zip or half-zip jackets for easy layering and team travel."
+        },
+        {
+          "title": "Fleece Outerwear",
+          "description": "Warm and durable materials for colder climate teamwear."
+        }
+      ],
+      "features": [
+        {
+          "title": "High-Color Sublimation",
+          "description": "Vibrant graphics printed into the fabric using professional sublimation inks for long-lasting team identity."
+        },
+        {
+          "title": "Fast Mockup Support",
+          "description": "Free design support helps you preview your custom teamwear before sampling."
+        },
+        {
+          "title": "Sample Support Available",
+          "description": "Sample order support is available for design and quality confirmation."
+        },
+        {
+          "title": "Quality Support",
+          "description": "Strict QC before shipment and comprehensive After-Sales Quality Support for every order."
+        }
+      ],
+      "designs": [
+        {
+          "title": "Elite Tech Hoodie",
+          "description": "Modern fit hoodie with vibrant team accents.",
+          "image": "/images/designs/cyber-league-esports.webp",
+          "href": "/free-mockup/?style=elite-tech-hoodie"
+        }
+      ],
+      "buyerTypes": [
+        {
+          "title": "Clubs",
+          "description": "Branded outerwear for team members and supporters."
+        },
+        {
+          "title": "Brands",
+          "description": "OEM hoodie collections with private label support."
+        }
+      ],
+      "procurementTable": [
+        {
+          "item": "Product Name",
+          "specification": "Custom Hoodies & Jackets"
+        },
+        {
+          "item": "Main Products",
+          "specification": "Pullover hoodies, zip-up jackets and team outerwear"
+        },
+        {
+          "item": "Material",
+          "specification": "Polyester mesh, interlock, bird eye, stretch performance fabric"
+        },
+        {
+          "item": "Printing",
+          "specification": "Sublimation, heat transfer, embroidery, screen printing"
+        },
+        {
+          "item": "Custom Areas",
+          "specification": "Team name, logo, player name, number, sponsor graphic, colors, collar, sleeve, label, packaging"
+        },
+        {
+          "item": "Sizes",
+          "specification": "Youth and adult sizes available"
+        },
+        {
+          "item": "Sample Support",
+          "specification": "1 set sample support (Sample Production: 2–3 Days After Mockup Confirmation)"
+        },
+        {
+          "item": "Bulk Production",
+          "specification": "Production planning based on quantity, customization and delivery deadline"
+        },
+        {
+          "item": "Packaging",
+          "specification": "Individual polybag, size label, hangtag, custom packaging, carton packing"
+        },
+        {
+          "item": "Buyer Types",
+          "specification": "Clubs, schools, academies, event organizers, brands, distributors and wholesalers"
+        },
+        {
+          "item": "Alibaba Link",
+          "specification": "Official store: Alibaba.com/basketman"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is the minimum order quantity?",
+          "answer": "Sample order support is available for design and quality confirmation. Bulk team order pricing depends on product type, quantity, fabric, customization details and packaging requirements."
+        },
+        {
+          "question": "Can I get a free mockup before ordering?",
+          "answer": "Yes. Send your logo, colors, sport category and quantity. Our design team can create a professional visual mockup for review."
+        },
+        {
+          "question": "How long does sampling take?",
+          "answer": "Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country."
+        },
+        {
+          "question": "How long does production take?",
+          "answer": "Bulk production time depends on order quantity, customization complexity, confirmed size breakdown and current factory schedule. POXIOL will provide a production plan before order confirmation."
+        },
+        {
+          "question": "Can you customize names, numbers and team logos?",
+          "answer": "Yes. POXIOL supports custom team names, player names, numbers, logos, colors and original pattern designs."
+        },
+        {
+          "question": "Do you support OEM/ODM for sportswear brands?",
+          "answer": "Yes. POXIOL supports OEM/ODM teamwear development, including design support, sampling, production and flexible customization."
+        }
+      ]
+    },
+    {
+      "slug": "products/team-accessories",
+      "metaTitle": "Custom Team Accessories Manufacturer | POXIOL",
+      "metaDescription": "Custom team socks, bags, and accessories to complete your team look. High-quality manufacturing with POXIOL quality support and Sample Production: 2–3 Days After Mockup Confirmation.",
+      "eyebrow": "CUSTOM TEAM ACCESSORIES",
+      "h1": "Custom Team Accessories",
+      "heroText": "Complete your elite team identity with custom socks, bags, and branded accessories manufactured to match your uniforms.",
+      "heroImage": "/images/poxiol-v6/manufacturing_packing_global_delivery.png",
+      "primaryKeyword": "team accessories",
+      "productTypes": [
+        {
+          "title": "Team Socks",
+          "description": "Custom sublimated or knitted socks with team logos and colors."
+        },
+        {
+          "title": "Custom Bags",
+          "description": "Durable gear bags and backpacks for team travel."
+        }
+      ],
+      "features": [
+        {
+          "title": "High-Color Sublimation",
+          "description": "Vibrant graphics printed into the fabric using professional sublimation inks for long-lasting team identity."
+        },
+        {
+          "title": "Fast Mockup Support",
+          "description": "Free design support helps you preview your custom teamwear before sampling."
+        },
+        {
+          "title": "Sample Support Available",
+          "description": "Sample order support is available for design and quality confirmation."
+        },
+        {
+          "title": "Quality Support",
+          "description": "Strict QC before shipment and comprehensive After-Sales Quality Support for every order."
+        }
+      ],
+      "designs": [
+        {
+          "title": "Pro Gear Bag",
+          "description": "Heavy-duty custom bag for athlete gear.",
+          "image": "/images/manufacturing/packing-shipping.webp",
+          "href": "/free-mockup/?style=pro-gear-bag"
+        }
+      ],
+      "buyerTypes": [
+        {
+          "title": "Clubs",
+          "description": "Complete accessory kits for team members."
+        },
+        {
+          "title": "Events",
+          "description": "Branded merchandise and participant gear."
+        }
+      ],
+      "procurementTable": [
+        {
+          "item": "Product Name",
+          "specification": "Custom Team Accessories"
+        },
+        {
+          "item": "Main Products",
+          "specification": "Custom team socks and gear bags"
+        },
+        {
+          "item": "Material",
+          "specification": "Polyester mesh, interlock, bird eye, stretch performance fabric"
+        },
+        {
+          "item": "Printing",
+          "specification": "Sublimation, heat transfer, embroidery, screen printing"
+        },
+        {
+          "item": "Custom Areas",
+          "specification": "Team name, logo, player name, number, sponsor graphic, colors, collar, sleeve, label, packaging"
+        },
+        {
+          "item": "Sizes",
+          "specification": "Youth and adult sizes available"
+        },
+        {
+          "item": "Sample Support",
+          "specification": "1 set sample support (Sample Production: 2–3 Days After Mockup Confirmation)"
+        },
+        {
+          "item": "Bulk Production",
+          "specification": "Production planning based on quantity, customization and delivery deadline"
+        },
+        {
+          "item": "Packaging",
+          "specification": "Individual polybag, size label, hangtag, custom packaging, carton packing"
+        },
+        {
+          "item": "Buyer Types",
+          "specification": "Clubs, schools, academies, event organizers, brands, distributors and wholesalers"
+        },
+        {
+          "item": "Alibaba Link",
+          "specification": "Official store: Alibaba.com/basketman"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is the minimum order quantity?",
+          "answer": "Sample order support is available for design and quality confirmation. Bulk team order pricing depends on product type, quantity, fabric, customization details and packaging requirements."
+        },
+        {
+          "question": "Can I get a free mockup before ordering?",
+          "answer": "Yes. Send your logo, colors, sport category and quantity. Our design team can create a professional visual mockup for review."
+        },
+        {
+          "question": "How long does sampling take?",
+          "answer": "Sample Production: 2–3 Days After Mockup Confirmation. Express Delivery: Usually 3–7 Days Depending on Country."
+        },
+        {
+          "question": "How long does production take?",
+          "answer": "Bulk production time depends on order quantity, customization complexity, confirmed size breakdown and current factory schedule. POXIOL will provide a production plan before order confirmation."
+        },
+        {
+          "question": "Can you customize names, numbers and team logos?",
+          "answer": "Yes. POXIOL supports custom team names, player names, numbers, logos, colors and original pattern designs."
+        },
+        {
+          "question": "Do you support OEM/ODM for sportswear brands?",
+          "answer": "Yes. POXIOL supports OEM/ODM teamwear development, including design support, sampling, production and flexible customization."
+        }
+      ]
+    }
+  ],
+  "pseoPages": [
+    {
+      "slug": "how-to-order-custom-basketball-uniforms",
+      "title": "How To Order Custom Basketball Uniforms | Complete Buying Guide | POXIOL",
+      "h1": "How To Order Custom Basketball Uniforms",
+      "intro": "Ordering custom basketball uniforms doesn't have to be complicated. This complete guide covers everything from selecting the right fabrics to final delivery, helping clubs, schools, and academies navigate the manufacturing process with ease.",
+      "content": "The process starts with choosing the right fabric weight and type—typically a lightweight mesh or a smooth interlock polyester for maximum performance. Next, our design team works with you to create a professional 3D mockup, incorporating your team logos, colors, and player numbers. Once the design is approved, we move into sublimation printing, where your graphics are permanently infused into the fabric. After passing strict quality control, your uniforms are packed and shipped directly to your door. At POXIOL, we specialize in making this process fast, reliable, and affordable for teams worldwide.",
+      "author": {
+        "name": "David Zhang",
+        "role": "Lead Manufacturing Specialist",
+        "bio": "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      },
+      "faqs": [
+        {
+          "question": "What is the typical production timeline for basketball uniforms?",
+          "answer": "Most orders are completed within 10-14 days after final design approval."
+        },
+        {
+          "question": "Can I see a sample before bulk production?",
+          "answer": "Yes, we highly recommend ordering a sample to verify fit, color, and fabric quality."
+        },
+        {
+          "question": "What file formats do I need for logos?",
+          "answer": "Vector files like AI, EPS, or SVG are preferred for the sharpest printing results."
+        }
+      ]
+    },
+    {
+      "slug": "soccer-jersey-buying-guide",
+      "title": "Soccer Jersey Buying Guide | How To Order Custom Soccer Kits | POXIOL",
+      "h1": "Complete Soccer Jersey Buying Guide",
+      "intro": "Whether you're a semi-pro club or a youth academy, choosing the right soccer kit is essential for team identity and player performance. This guide explores the technical aspects of soccer apparel manufacturing.",
+      "content": "A high-quality soccer jersey must balance breathability with durability. We recommend using 'Bird Eye' or 'Micro-Mesh' polyester, which provides excellent moisture-wicking properties for match-day intensity. Sublimation remains the gold standard for soccer printing, as it allows for unlimited sponsor logos and intricate patterns without adding weight to the garment. Don't forget the importance of 'Cool-Dry' technology, which keeps players comfortable during the full 90 minutes. POXIOL provides end-to-end support for soccer organizations looking to upgrade their teamwear.",
+      "author": {
+        "name": "Sarah Miller",
+        "role": "Fabric Technology Consultant",
+        "bio": "Sarah is a textile engineer specializing in performance sportswear fabrics and moisture-management technologies."
+      },
+      "faqs": [
+        {
+          "question": "Do you manufacture goalkeeper kits as well?",
+          "answer": "Yes, we produce specialized goalkeeper jerseys with padded elbows and matching shorts."
+        },
+        {
+          "question": "Are soccer socks customizable?",
+          "answer": "Yes, we can produce custom knitted socks with your club name or logo."
+        },
+        {
+          "question": "What is the minimum order for soccer kits?",
+          "answer": "We offer flexible MOQs starting as low as 10-15 sets for many club programs."
+        }
+      ]
+    },
+    {
+      "slug": "oem-vs-odm-sportswear",
+      "title": "OEM vs ODM Sportswear Manufacturing | Complete Teamwear Guide | POXIOL",
+      "h1": "OEM vs ODM Sportswear Manufacturing",
+      "intro": "Understanding the difference between OEM and ODM is crucial for brands and distributors looking to optimize their supply chain. Each model offers unique advantages depending on your design needs and timeline.",
+      "content": "OEM (Original Equipment Manufacturing) is for clients who have their own designs and tech packs and need a factory to execute them to exact specifications. This offers maximum control over every detail. ODM (Original Design Manufacturing), on the other hand, involves choosing from a factory's existing designs and customizing them with your branding. This is faster and requires less development effort. At POXIOL, we support both models, providing the technical expertise to bring your vision to life or the proven templates to get your brand to market quickly.",
+      "author": {
+        "name": "David Zhang",
+        "role": "Lead Manufacturing Specialist",
+        "bio": "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      },
+      "faqs": [
+        {
+          "question": "Which model is better for a new sportswear brand?",
+          "answer": "ODM is often better for a fast launch, while OEM is better if you have a unique product concept."
+        },
+        {
+          "question": "Can I switch from ODM to OEM later?",
+          "answer": "Yes, many clients start with ODM and move to OEM as they grow and develop custom patterns."
+        },
+        {
+          "question": "Does POXIOL help with pattern making for OEM?",
+          "answer": "Yes, our in-house pattern makers can help refine your designs for better fit and production efficiency."
+        }
+      ]
+    },
+    {
+      "slug": "best-sportswear-fabrics",
+      "title": "Best Sportswear Fabrics Explained | Complete Teamwear Fabric Guide | POXIOL",
+      "h1": "Best Sportswear Fabrics Explained",
+      "intro": "The performance of a sports uniform starts with the fabric. From moisture-wicking polyester to high-stretch spandex, choosing the right material is key to player comfort and durability.",
+      "content": "For basketball and soccer, lightweight 'Interlock' or 'Mesh' polyesters are the standard due to their breathability and strength. Baseball jerseys often require a heavier, higher-density polyester for durability during sliding and fielding. If you're designing training wear, look for 'Bird Eye' mesh, which features a unique knit pattern that maximizes airflow. All our fabrics at POXIOL are engineered for moisture management, ensuring that sweat is moved away from the skin quickly. This technical focus ensures your team stays cool under pressure.",
+      "author": {
+        "name": "Sarah Miller",
+        "role": "Fabric Technology Consultant",
+        "bio": "Sarah is a textile engineer specializing in performance sportswear fabrics and moisture-management technologies."
+      },
+      "faqs": [
+        {
+          "question": "What is GSM in fabric?",
+          "answer": "GSM stands for Grams per Square Meter; it measures the weight and thickness of the fabric."
+        },
+        {
+          "question": "Is 100% polyester better than cotton for sports?",
+          "answer": "Yes, polyester is superior for sports because it doesn't absorb water (sweat) and dries much faster than cotton."
+        },
+        {
+          "question": "Do you offer eco-friendly fabric options?",
+          "answer": "Yes, we can source recycled polyester (rPET) for brands looking for sustainable manufacturing solutions."
+        }
+      ]
+    },
+    {
+      "slug": "sublimation-printing-guide",
+      "title": "Sublimation Printing Guide | Complete Teamwear Printing Guide | POXIOL",
+      "h1": "Complete Sublimation Printing Guide",
+      "intro": "Sublimation printing has revolutionized teamwear by allowing for unlimited design creativity without sacrificing performance. Learn why it's the preferred choice for professional sports uniforms.",
+      "content": "Unlike screen printing or heat transfer, sublimation uses heat to turn ink into a gas that infuses directly into the fabric fibers. This results in a print with high color fastness that is highly resistant to cracking or peeling, and maintains the fabric's full breathability. This process is professional-grade for complex patterns, gradients, and multiple sponsor logos. At POXIOL, we use high-precision Japanese printers and professional-grade inks to ensure vibrant, lasting colors that stand out on the field and the court. Sublimation is a leading solution for durable, high-impact teamwear branding.",
+      "author": {
+        "name": "Michael Chen",
+        "role": "Printing & Sublimation Expert",
+        "bio": "Michael has spent 15 years mastering digital sublimation and textile printing, ensuring pro-level color accuracy for professional sports teams."
+      },
+      "faqs": [
+        {
+          "question": "Can you sublimate on cotton?",
+          "answer": "No, sublimation requires at least 80% polyester content to allow the dye to bond with the fibers."
+        },
+        {
+          "question": "Will the colors fade in the wash?",
+          "answer": "No, because the dye is part of the fabric, sublimated designs are incredibly resistant to fading."
+        },
+        {
+          "question": "Is there a limit to the number of colors I can use?",
+          "answer": "With sublimation, there is no limit to the number of colors or the complexity of the design."
+        }
+      ]
+    },
+    {
+      "slug": "how-to-choose-a-teamwear-manufacturer",
+      "title": "How To Choose A Teamwear Manufacturer | Complete Buyer Guide | POXIOL",
+      "h1": "How To Choose A Teamwear Manufacturer",
+      "intro": "Finding the right manufacturing partner can be the difference between a successful season and a branding disaster. Use this checklist to evaluate potential suppliers for your team or brand.",
+      "content": "When evaluating a manufacturer, look for direct-factory communication to avoid middleman costs and delays. Check their track record with similar sports—do they specialize in basketball, soccer, or baseball? Ask about their quality control process and whether they provide 3D mockups for design verification. It's also vital to confirm their shipping capabilities and turnaround times. POXIOL prides itself on transparency, technical expertise, and a global logistics network that serves clubs and brands in over 30 countries. Choosing a specialist manufacturer ensures your teamwear meets the highest standards of performance and style.",
+      "author": {
+        "name": "David Zhang",
+        "role": "Lead Manufacturing Specialist",
+        "bio": "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      },
+      "faqs": [
+        {
+          "question": "What are the risks of using a trading company instead of a factory?",
+          "answer": "Trading companies often have higher prices, slower communication, and less control over the production quality."
+        },
+        {
+          "question": "Should I look for a manufacturer with a low MOQ?",
+          "answer": "Yes, if you're a small club or a new brand, flexible MOQs allow you to test designs without high inventory risk."
+        },
+        {
+          "question": "How important is a manufacturer's location?",
+          "answer": "More important than location is their ability to handle international logistics and clear communication in your language."
+        }
+      ]
+    },
+    {
+      "slug": "custom-basketball-uniforms-for-schools",
+      "title": "Custom Basketball Uniforms for Schools | High School Basketball Jerseys | POXIOL",
+      "h1": "Custom Basketball Uniforms for Schools & Academies",
+      "intro": "POXIOL provides professional-grade custom basketball uniforms specifically designed for school programs and basketball academies. We understand the unique needs of school athletics, from durable performance fabrics to consistent branding across youth and varsity teams.",
+      "content": "Our school basketball uniform program features high-performance mesh and interlock fabrics that stand up to daily practice and game-day intensity. As a direct manufacturer, we offer schools flexible ordering, budget-friendly pricing, and fast delivery timelines to ensure your teams are ready for the season opener. Whether you need classic sublimated jerseys or modern reversible sets, our design team provides free mockups within 24 hours to help you visualize your school's unique identity.",
+      "faqs": [
+        {
+          "question": "Do you offer youth and adult sizes for schools?",
+          "answer": "Yes, we provide a full range of sizes from youth XS to adult 5XL to accommodate all school grade levels."
+        },
+        {
+          "question": "Can we add school logos and player names?",
+          "answer": "Absolutely. Our sublimation process allows for unlimited customization including school logos, player names, and numbers at no extra cost."
+        },
+        {
+          "question": "What is the turnaround time for school orders?",
+          "answer": "Standard production for school orders is 10-14 days after design approval."
+        }
+      ]
+    },
+    {
+      "slug": "custom-soccer-uniforms-for-academies",
+      "title": "Custom Soccer Uniforms for Academies | Youth Soccer Kits Manufacturer | POXIOL",
+      "h1": "Custom Soccer Uniforms for Youth Academies",
+      "intro": "Empower your youth soccer academy with professional-grade custom kits. POXIOL specializes in durable, high-performance soccer apparel that builds team spirit and stands out on the pitch.",
+      "content": "Our academy soccer uniforms are designed with the development of young players in mind. We use lightweight, moisture-wicking fabrics that ensure comfort during intense training and matches. Our sublimation technology allows you to incorporate club crests, sponsor logos, and unique patterns that won't peel or fade. We offer comprehensive size charts for youth teams and provide scalable manufacturing solutions for growing academies. With POXIOL, your academy gets elite-level gear at direct-to-factory prices.",
+      "author": {
+        "name": "David Zhang",
+        "role": "Lead Manufacturing Specialist",
+        "bio": "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      },
+      "faqs": [
+        {
+          "question": "What is the best fabric for youth soccer uniforms?",
+          "answer": "We recommend breathable Interlock polyester for its durability and comfort."
+        },
+        {
+          "question": "Can we design a unique kit for our academy?",
+          "answer": "Yes, our designers can create a completely custom kit based on your academy's colors and branding."
+        },
+        {
+          "question": "Do you offer bulk discounts for academies?",
+          "answer": "Yes, we provide tiered pricing for large-scale academy uniform programs."
+        }
+      ]
+    },
+    {
+      "slug": "soccer-jersey-supplier-australia",
+      "title": "Soccer Jersey Supplier Australia | Custom Football Kits Manufacturer | POXIOL",
+      "h1": "Premier Soccer Jersey Supplier for Australian Clubs",
+      "intro": "POXIOL is a leading soccer jersey supplier for the Australian market, providing high-quality custom kits to clubs, schools, and leagues across Melbourne, Sydney, Brisbane, and Perth.",
+      "content": "We specialize in manufacturing professional-grade soccer kits tailored for the Australian climate, using advanced moisture-wicking fabrics that keep players cool and dry. Our streamlined B2B process makes it easy for Australian sports distributors and club managers to order custom sublimated jerseys, shorts, and socks with low MOQs and rapid international shipping. With our direct-to-factory model, Australian teams receive elite-level gear without the traditional retail markup.",
+      "author": {
+        "name": "Sarah Miller",
+        "role": "Fabric Technology Consultant",
+        "bio": "Sarah is a textile engineer specializing in performance sportswear fabrics and moisture-management technologies."
+      },
+      "faqs": [
+        {
+          "question": "How long is shipping to Australia?",
+          "answer": "Shipping to major Australian cities typically takes 4-7 business days via express courier."
+        },
+        {
+          "question": "Can you handle sponsor logos for NPL clubs?",
+          "answer": "Yes, we can integrate unlimited sponsor logos into the sublimated design for a professional, durable finish."
+        },
+        {
+          "question": "Are your soccer kits suitable for hot Australian summers?",
+          "answer": "Yes, we use lightweight, breathable Interlock and Mesh fabrics specifically engineered for performance in warm conditions."
+        }
+      ]
+    },
+    {
+      "slug": "oem-basketball-apparel-manufacturer",
+      "title": "OEM Basketball Apparel Manufacturer | Private Label Basketball Jerseys | POXIOL",
+      "h1": "Professional OEM Basketball Apparel Manufacturer",
+      "intro": "POXIOL is a dedicated OEM basketball apparel manufacturer, helping sports brands and private labels develop high-quality basketball clothing lines with custom specs and branding.",
+      "content": "As a specialist in basketball teamwear production, we offer comprehensive OEM services including pattern development, fabric sourcing, sublimation printing, and private labeling. Our factory is equipped to handle everything from initial sampling to large-scale bulk production for international basketball brands. We prioritize technical excellence, ensuring that every garment meets pro-level standards for durability, fit, and performance.",
+      "faqs": [
+        {
+          "question": "Do you support private labeling?",
+          "answer": "Yes, we provide custom neck labels, hang tags, and branded packaging for all OEM orders."
+        },
+        {
+          "question": "What fabrics do you offer for OEM basketball jerseys?",
+          "answer": "We offer a wide range of performance polyesters including 140gsm mesh, 160gsm interlock, and elite pro-stretch fabrics."
+        },
+        {
+          "question": "Can you produce custom patterns?",
+          "answer": "Yes, our pattern makers can develop custom fits and styles based on your brand's unique specifications."
+        }
+      ]
+    },
+    {
+      "slug": "custom-baseball-jerseys-for-clubs",
+      "title": "Custom Baseball Jerseys for Clubs | Team Baseball Uniforms | POXIOL",
+      "h1": "Custom Baseball Jerseys for Competitive Clubs",
+      "intro": "Level up your baseball club's appearance with premium custom jerseys. POXIOL manufactures durable, stylish, and high-performance baseball uniforms for competitive teams and leagues.",
+      "content": "Our baseball jersey manufacturing focus is on durability and range of motion. We use high-density, breathable polyester fabrics that withstand the rigors of the game. From full-button traditional jerseys to modern v-neck designs, we offer a variety of styles to suit your club's tradition. Our sublimation process ensures your team graphics and numbers remain sharp and vibrant season after season. With fast turnaround times and reliable global shipping, POXIOL is the preferred partner for baseball clubs looking for elite gear.",
+      "faqs": [
+        {
+          "question": "Do you offer full-button baseball jerseys?",
+          "answer": "Yes, we manufacture full-button, two-button, and v-neck baseball jerseys."
+        },
+        {
+          "question": "What is the typical MOQ for baseball clubs?",
+          "answer": "We offer flexible MOQs, usually starting at 10-15 jerseys per design."
+        },
+        {
+          "question": "Can we include piping and custom sleeves?",
+          "answer": "Yes, all design elements including piping, sleeve patterns, and logos are fully customizable."
+        }
+      ]
+    },
+    {
+      "slug": "soccer-teamwear-supplier-usa",
+      "title": "Soccer Teamwear Supplier USA | Custom Football Kits America | POXIOL",
+      "h1": "Trusted Soccer Teamwear Supplier for USA Markets",
+      "intro": "POXIOL is a premier soccer teamwear supplier for the United States, delivering custom soccer kits to academies, schools, and professional leagues from New York to Los Angeles.",
+      "content": "We understand the rapid growth of soccer in the US and provide scalable manufacturing solutions to meet the increasing demand for high-quality teamwear. Our factory specializes in US-standard sizing and performance fabrics that excel in various regional climates. By partnering with POXIOL, US-based sports distributors and soccer organizations gain access to direct factory pricing and expert design support, ensuring their teams look as professional as the pros.",
+      "faqs": [
+        {
+          "question": "What are the shipping times to the USA?",
+          "answer": "Express shipping to the US typically takes 3-6 business days."
+        },
+        {
+          "question": "Do you comply with US sizing standards?",
+          "answer": "Yes, we use standard US athletic sizing for all our soccer apparel."
+        },
+        {
+          "question": "Can you produce jerseys for collegiate programs?",
+          "answer": "Absolutely, we work with many colleges and universities to provide NCAA-compliant uniform designs."
+        }
+      ]
+    },
+    {
+      "slug": "custom-volleyball-uniforms-for-schools",
+      "title": "Custom Volleyball Uniforms for Schools | School Volleyball Kits | POXIOL",
+      "h1": "Custom Volleyball Uniforms for School Teams",
+      "intro": "Provide your school volleyball team with the perfect blend of comfort and style. POXIOL manufactures high-stretch, breathable volleyball uniforms tailored for school athletics.",
+      "content": "Our school volleyball uniform program focus is on player mobility and fabric durability. We use performance spandex and polyester blends that move with the player while providing excellent breathability. Whether you need jerseys for indoor or beach volleyball, our design team can create a custom look that reflects your school's pride. With our direct-to-factory model, schools can maximize their athletic budget without compromising on the quality of their gear.",
+      "faqs": [
+        {
+          "question": "What is the best fabric for school volleyball jerseys?",
+          "answer": "We recommend our high-stretch performance polyester for maximum comfort and durability."
+        },
+        {
+          "question": "Do you offer female-specific cuts for schools?",
+          "answer": "Yes, we provide specialized female and male cuts to ensure a perfect fit for all players."
+        },
+        {
+          "question": "Can we add school mascots to the design?",
+          "answer": "Yes, school mascots, logos, and player numbers are easily included in our sublimated designs."
+        }
+      ]
+    },
+    {
+      "slug": "oem-soccer-apparel-manufacturer",
+      "title": "OEM Soccer Apparel Manufacturer | Private Label Soccer Kits | POXIOL",
+      "h1": "Elite OEM Soccer Apparel Manufacturer",
+      "intro": "Scale your soccer brand with POXIOL's expert OEM manufacturing services. We provide professional-grade soccer apparel production with custom branding and technical specifications.",
+      "content": "As a specialist soccer apparel manufacturer, we support brands and distributors in developing comprehensive soccer kit lines. Our OEM services include advanced fabric sourcing, high-precision sublimation printing, and meticulous QC standards. We help you create unique soccer gear that sets your brand apart in a competitive market. From match-day jerseys to training wear and accessories, POXIOL is your reliable partner for soccer apparel excellence.",
+      "faqs": [
+        {
+          "question": "What is your production capacity for soccer jerseys?",
+          "answer": "We have a high-volume capacity suitable for both boutique brands and large-scale distributors."
+        },
+        {
+          "question": "Can you source recycled fabrics for soccer kits?",
+          "answer": "Yes, we offer various eco-friendly polyester options for sustainable soccer branding."
+        },
+        {
+          "question": "Do you provide custom neck tape and labeling?",
+          "answer": "Yes, we offer full private-label services including custom neck tape, labels, and tags."
+        }
+      ]
+    },
+    {
+      "slug": "soccer-teamwear-supplier-uk",
+      "title": "Soccer Teamwear Supplier UK | Custom Football Kits Britain | POXIOL",
+      "h1": "Professional Soccer Teamwear Supplier for UK Clubs",
+      "intro": "POXIOL is a leading soccer teamwear supplier for the United Kingdom, providing custom football kits to clubs, academies, and schools across England, Scotland, and Wales.",
+      "content": "We deliver professional-grade soccer kits designed for the UK football culture, utilizing high-performance fabrics that excel on the pitch. Our direct factory partnership offers UK sports distributors and club secretaries an efficient way to order custom kits with low MOQs and reliable international delivery. With POXIOL, your UK team gets top-tier apparel at competitive prices, backed by our expertise in global teamwear manufacturing.",
+      "faqs": [
+        {
+          "question": "How long is delivery to the UK?",
+          "answer": "Shipping to the UK typically takes 4-7 business days via express air courier."
+        },
+        {
+          "question": "Are your kits suitable for UK weather conditions?",
+          "answer": "Yes, our fabrics are selected for their durability and performance in varied weather, from wet match days to summer training."
+        },
+        {
+          "question": "Can we use British sizing standards?",
+          "answer": "Yes, we offer sizing charts aligned with UK and European standards for a perfect fit."
+        }
+      ]
+    },
+    {
+      "slug": "custom-basketball-jerseys-melbourne",
+      "title": "Custom Basketball Jerseys Melbourne | Teamwear Manufacturer | POXIOL",
+      "h1": "Custom Basketball Jerseys for Melbourne Clubs",
+      "intro": "Elevate your Melbourne-based basketball team with premium custom jerseys. POXIOL provides high-performance basketball apparel for clubs and academies across Melbourne.",
+      "content": "We specialize in manufacturing elite basketball jerseys for the thriving Melbourne sports community. Our focus is on providing breathable, durable, and stylish uniforms that represent your club with pride. With our direct-to-factory model and efficient shipping to Victoria, Melbourne teams receive professional-grade gear at a fraction of local retail costs. Whether for community leagues or elite academies, POXIOL is your trusted partner for basketball teamwear in Melbourne.",
+      "faqs": [
+        {
+          "question": "What are the shipping times to Melbourne?",
+          "answer": "Express shipping to Melbourne typically takes 4-6 business days."
+        },
+        {
+          "question": "Do you work with local Melbourne sports distributors?",
+          "answer": "Yes, we partner with various distributors and club managers across Melbourne."
+        },
+        {
+          "question": "Can I get a custom design for my Melbourne academy?",
+          "answer": "Absolutely, we provide free 3D mockups within 24 hours to help your academy stand out."
+        }
+      ]
+    },
+    {
+      "slug": "oem-baseball-apparel-manufacturer",
+      "title": "OEM Baseball Apparel Manufacturer | Private Label Baseball Gear | POXIOL",
+      "h1": "Professional OEM Baseball Apparel Manufacturer",
+      "intro": "Launch and scale your baseball brand with POXIOL's specialized OEM manufacturing. We offer high-quality baseball apparel production with custom branding and specs.",
+      "content": "Our baseball OEM services are designed for brands that demand quality and durability. We provide expert pattern development, high-density fabric sourcing, and professional sublimation and embroidery services. Whether you're creating a line of traditional jerseys or modern performance wear, POXIOL has the manufacturing expertise to ensure your brand's baseball collection meets the highest industry standards.",
+      "faqs": [
+        {
+          "question": "What types of baseball jerseys can you manufacture?",
+          "answer": "We produce full-button, two-button, v-neck, and compression-style baseball tops."
+        },
+        {
+          "question": "Can you provide custom pant patterns for baseball?",
+          "answer": "Yes, our pattern makers can develop custom baseball pants with reinforced areas and specific fits."
+        },
+        {
+          "question": "What branding options do you offer for baseball lines?",
+          "answer": "We offer private labels, woven tags, custom packaging, and high-quality embroidery."
+        }
+      ]
+    },
+    {
+      "slug": "custom-soccer-kits-london",
+      "title": "Custom Soccer Kits London | Football Teamwear Manufacturer | POXIOL",
+      "h1": "Custom Soccer Kits for London Clubs",
+      "intro": "Stand out on the London football scene with professional custom kits. POXIOL provides elite soccer apparel for clubs and academies throughout Greater London.",
+      "content": "We are a preferred manufacturer for London-based soccer organizations, offering high-performance match-day kits and training wear. Our direct-to-factory model ensures London clubs receive premium gear without the high cost of local retailers. We provide rapid design support and reliable shipping to the UK capital, ensuring your team is ready for every fixture. From Sunday league teams to elite youth academies, POXIOL is your London partner for soccer kit excellence.",
+      "faqs": [
+        {
+          "question": "How fast is delivery to London?",
+          "answer": "Shipping to London generally takes 4-7 business days via express courier."
+        },
+        {
+          "question": "Can we order full team kits including socks?",
+          "answer": "Yes, we provide complete kit solutions including jerseys, shorts, and custom socks."
+        },
+        {
+          "question": "Do you support London-based sports academies?",
+          "answer": "Yes, we work with many academies across London to provide professional-grade youth kits."
+        }
+      ]
+    },
+    {
+      "slug": "oem-volleyball-apparel-manufacturer",
+      "title": "OEM Volleyball Apparel Manufacturer | Private Label Volleyball Kits | POXIOL",
+      "h1": "Expert OEM Volleyball Apparel Manufacturer",
+      "intro": "Develop your volleyball brand with POXIOL's specialized OEM manufacturing. We provide high-stretch, performance-focused volleyball apparel production.",
+      "content": "As a specialist in volleyball apparel, we understand the technical requirements for player mobility and fabric resilience. Our OEM services include sourcing premium spandex and polyester blends, precision sublimation printing, and expert assembly. We help you create a volleyball line that combines style with athletic excellence, providing the scalability your brand needs to succeed in the global teamwear market.",
+      "faqs": [
+        {
+          "question": "What is your focus for volleyball apparel manufacturing?",
+          "answer": "We focus on high-stretch fabrics, durable seams, and vibrant, non-fading sublimated designs."
+        },
+        {
+          "question": "Can you produce specialized beach volleyball gear?",
+          "answer": "Yes, we can manufacture specialized sets for both indoor and beach volleyball."
+        },
+        {
+          "question": "Do you offer private labeling for volleyball brands?",
+          "answer": "Yes, we provide full private-label support including custom branding and packaging."
+        }
+      ]
+    },
+    {
+      "slug": "custom-teamwear-new-york",
+      "title": "Custom Teamwear New York | Sports Apparel Manufacturer | POXIOL",
+      "h1": "Custom Teamwear for New York Sports Teams",
+      "intro": "Equip your New York-based sports organization with elite custom teamwear. POXIOL provides professional-grade apparel for clubs, schools, and leagues across the New York area.",
+      "content": "We are a trusted partner for New York sports teams, offering high-performance uniforms for basketball, soccer, baseball, and more. Our direct-to-factory model provides New York sports directors and club managers with a cost-effective way to source pro-level gear. With efficient shipping to the Tri-State area and expert design support, POXIOL ensures your New York team looks and performs at their best. From local leagues to competitive academies, we are your New York source for teamwear excellence.",
+      "faqs": [
+        {
+          "question": "What are the shipping times to New York?",
+          "answer": "Express shipping to New York typically takes 3-5 business days."
+        },
+        {
+          "question": "Do you work with New York school athletic departments?",
+          "answer": "Yes, we provide custom uniform solutions for many schools and universities in the New York area."
+        },
+        {
+          "question": "Can I get a custom design for my NYC club?",
+          "answer": "Absolutely, our designers provide free 3D mockups within 24 hours to capture your NYC team's identity."
+        }
+      ]
+    },
+    {
+      "slug": "custom-sports-apparel-distributor",
+      "title": "Custom Sports Apparel Distributor | Teamwear Manufacturing Partner | POXIOL",
+      "h1": "Manufacturing Partner for Sports Apparel Distributors",
+      "intro": "Scale your distribution business with a reliable manufacturing partner. POXIOL provides high-quality custom sports apparel for distributors looking for scalable and dependable production.",
+      "content": "As a manufacturing partner for sports apparel distributors, we offer a wide range of teamwear categories, including basketball, soccer, and baseball. Our direct factory model provides distributors with competitive pricing, consistent quality, and reliable timelines. We support your business with white-label solutions, custom branding, and a streamlined order process that makes it easy to serve your local club and school networks. Partner with POXIOL to expand your product offering and increase your distribution capacity.",
+      "faqs": [
+        {
+          "question": "How do you support sports apparel distributors?",
+          "answer": "We provide wholesale pricing, scalable production, and reliable logistics support for distributors."
+        },
+        {
+          "question": "Can we use our own branding for the apparel we distribute?",
+          "answer": "Yes, we offer full private-label and white-label services for our distribution partners."
+        },
+        {
+          "question": "Do you provide design support for distributors' clients?",
+          "answer": "Yes, our design team can work with you to provide mockups for your end customers."
+        }
+      ]
+    }
+  ],
+  "resourcePages": [
+    {
+      "slug": "custom-basketball-uniform-manufacturer-guide",
+      "metaTitle": "How to Choose a Custom Basketball Uniform Manufacturer | POXIOL",
+      "metaDescription": "A B2B sourcing guide for clubs, schools, academies, distributors and sportswear brands choosing a custom basketball uniform manufacturer. Learn about fabric, sublimation, sizing, samples, QC and bulk production.",
+      "h1": "How to Choose a Custom Basketball Uniform Manufacturer",
+      "intro": "Choosing a custom basketball uniform manufacturer is not only about finding a low price. B2B buyers need to check whether the supplier can support mockup design, sample confirmation, size planning, sublimation printing, bulk production, quality control and reliable delivery.",
+      "sections": [
+        {
+          "title": "What a Basketball Uniform Manufacturer Should Provide",
+          "content": [
+            "Front and back mockup support",
+            "Youth and adult size options",
+            "Custom player name and number placement",
+            "Fabric recommendations for training or game use",
+            "Sublimation printing or other craft options",
+            "Sample confirmation before bulk production",
+            "QC inspection before shipment",
+            "Size-grouped packing for team distribution"
+          ]
+        },
+        {
+          "title": "Key Product Types",
+          "content": [
+            "Jersey only",
+            "Jersey and shorts set",
+            "Reversible basketball uniform",
+            "Practice pinnies",
+            "Youth team uniforms",
+            "Adult club uniforms",
+            "School team packages",
+            "Private label basketball apparel"
+          ]
+        },
+        {
+          "title": "Fabric Considerations",
+          "content": "Basketball uniforms need breathable and durable fabrics. The right fabric depends on whether the product is for training, tournament use, school programs, retail resale or premium teamwear. Common choices include polyester mesh, interlock fabric, bird eye fabric and stretch performance fabric."
+        }
+      ],
+      "ctaText": "Send your logo, colors, quantity and target deadline to get a free basketball uniform mockup from POXIOL."
+    },
+    {
+      "slug": "custom-soccer-kits-wholesale-guide",
+      "metaTitle": "Custom Soccer Kits Wholesale Guide for Clubs and Distributors | POXIOL",
+      "metaDescription": "Learn how to source custom soccer kits wholesale, including home and away kit design, sponsor placement, fabric options, sample confirmation, size breakdown, QC and bulk production.",
+      "h1": "Custom Soccer Kits Wholesale Guide for Clubs, Schools and Distributors",
+      "intro": "Custom soccer kits are often purchased by clubs, schools, academies, tournament organizers and sportswear distributors. A complete soccer kit program may include jerseys, shorts, socks, goalkeeper kits, training jerseys and home/away colorways.",
+      "sections": [
+        {
+          "title": "What to Confirm Before Ordering",
+          "content": [
+            "Club or team logo",
+            "Sponsor graphic",
+            "Home and away colors",
+            "Product type",
+            "Quantity",
+            "Size breakdown",
+            "Youth/adult ratio",
+            "Delivery country",
+            "Target delivery date",
+            "Reference design or tech pack"
+          ]
+        },
+        {
+          "title": "Fabric and Printing",
+          "content": "Soccer kits usually require lightweight and breathable fabric. Sublimation printing is commonly used for full custom graphics because it keeps the garment lightweight and supports complex color patterns. Other craft options may include heat transfer, embroidery and screen printing depending on the design and buyer requirements."
+        },
+        {
+          "title": "Sponsor Placement",
+          "content": "Sponsor placement should be reviewed carefully before production. Buyers should confirm front chest sponsor, sleeve sponsor, back sponsor, number visibility and logo size."
+        }
+      ],
+      "ctaText": "Send your club logo, colors, quantity and target deadline to get a free soccer kit mockup and factory quotation."
+    },
+    {
+      "slug": "how-to-choose-teamwear-manufacturer-china",
+      "metaTitle": "How to Choose a Teamwear Manufacturer in China | POXIOL",
+      "metaDescription": "A B2B guide to choosing a teamwear manufacturer in China for custom sports uniforms, OEM/ODM production, private label packaging, sample confirmation, QC and global delivery.",
+      "h1": "How to Choose a Teamwear Manufacturer in China",
+      "intro": "China is one of the major sourcing regions for custom sports uniforms and teamwear. However, not every supplier is suitable for B2B buyers who need stable quality, clear communication, sample confirmation and repeat production.",
+      "sections": [
+        {
+          "title": "What B2B Buyers Should Check",
+          "content": [
+            "Product Focus: Experience in your specific category.",
+            "Mockup and Design Support: Clear visual preview before sampling.",
+            "Sample Support: Confirm fabric and fit before bulk order.",
+            "Manufacturing Process: Transparent workflow from mockup to shipping.",
+            "QC System: Comprehensive checks for print, stitching and sizing.",
+            "Packaging and Export Support: Professional B2B packing standards.",
+            "OEM / ODM Capability: Support for private label and brand development."
+          ]
+        }
+      ],
+      "ctaText": "Send your sport category, logo, quantity and target deadline to start your custom teamwear project with POXIOL."
+    },
+    {
+      "slug": "custom-teamwear-moq-production-time",
+      "metaTitle": "Custom Teamwear MOQ and Production Time Guide | POXIOL",
+      "metaDescription": "Learn how MOQ, sample time and bulk production time work for custom teamwear, including basketball uniforms, soccer kits, OEM sportswear and private label teamwear orders.",
+      "h1": "Custom Teamwear MOQ and Production Time Guide",
+      "intro": "MOQ and production time are two of the most common questions in custom teamwear sourcing. The answer depends on product type, fabric, printing method, quantity, size breakdown, customization details and factory schedule.",
+      "sections": [
+        {
+          "title": "Factors That Affect MOQ",
+          "content": [
+            "Product type and complexity",
+            "Fabric availability and customization",
+            "Printing method and color count",
+            "Custom label and packaging requirements",
+            "Order quantity and seasonal schedule"
+          ]
+        },
+        {
+          "title": "Sample and Production Timeline",
+          "content": "Sample Production: 2–3 Days after design confirmation. Bulk production time depends on quantity and customization complexity. POXIOL provides a clear production plan before order confirmation."
+        }
+      ],
+      "ctaText": "Send your order details to get a realistic production plan and factory quotation."
+    },
+    {
+      "slug": "private-label-teamwear-manufacturing",
+      "metaTitle": "Private Label Teamwear Manufacturing for Sportswear Brands | POXIOL",
+      "metaDescription": "POXIOL supports private label teamwear manufacturing for sportswear brands, distributors and custom uniform retailers, including OEM/ODM production, labels, hangtags, packaging and repeat order support.",
+      "h1": "Private Label Teamwear Manufacturing for Sportswear Brands and Distributors",
+      "intro": "Private label teamwear allows sportswear brands, distributors and custom uniform retailers to sell custom sports uniforms under their own brand identity. This requires more than basic production. Buyers need support for label, packaging, fit, fabric, product development and repeat orders.",
+      "sections": [
+        {
+          "title": "What Private Label Buyers Usually Need",
+          "content": [
+            "Custom neck labels and woven labels",
+            "Branded hangtags and stickers",
+            "Custom polybags and shipping marks",
+            "Product collection development",
+            "Fabric and fit adjustment",
+            "Reorder management"
+          ]
+        },
+        {
+          "title": "OEM vs ODM",
+          "content": "OEM means the buyer provides design or specification and the manufacturer produces according to the requirement. ODM means the manufacturer helps develop product direction, design structure, fabric options and sample direction based on the buyer's market needs. POXIOL can support both OEM and ODM teamwear projects."
+        }
+      ],
+      "ctaText": "Contact POXIOL to develop your private label teamwear collection."
+    },
+    {
+      "slug": "sports-uniform-fabric-guide",
+      "metaTitle": "Sports Uniform Fabric Guide for Custom Teamwear Buyers | POXIOL",
+      "metaDescription": "A B2B guide to sports uniform fabrics for basketball, soccer, volleyball, running and training wear. Learn about polyester mesh, interlock, bird eye, stretch fabric and quick-dry performance materials.",
+      "h1": "Sports Uniform Fabric Guide for Custom Teamwear Buyers",
+      "intro": "Fabric selection is one of the most important decisions in custom teamwear manufacturing. The right fabric affects comfort, durability, print result, price and buyer satisfaction.",
+      "sections": [
+        {
+          "title": "Common Sports Uniform Fabrics",
+          "content": [
+            "Polyester Mesh: Breathable and lightweight for basketball.",
+            "Interlock Fabric: Smooth surface for high print clarity.",
+            "Bird Eye Fabric: Ideal for quick-dry performance sportswear.",
+            "Stretch Fabric: Improved movement for volleyball and training.",
+            "Quick-Dry Performance: Sweat-management for soccer and running."
+          ]
+        },
+        {
+          "title": "Why Fabric Samples Matter",
+          "content": "A sample helps buyers check fabric hand feel, thickness, stretch, print effect and comfort before bulk production. POXIOL can recommend fabric options based on sport category, target market, product type, budget and customization requirements."
+        }
+      ],
+      "ctaText": "Send your product category and target market to get fabric recommendations for your custom teamwear project."
+    }
+  ],
+  "caseStudies": [
+    {
+      "slug": "usa-basketball-academy-uniform-program",
+      "title": "Basketball Academy Uniform Program",
+      "clientType": "Basketball Academy",
+      "country": "North America",
+      "quantity": "300 sets",
+      "product": "Reversible basketball jersey and shorts sets",
+      "timeline": "21 days",
+      "customization": "Team logo, player number, reversible color design, youth/adult size breakdown",
+      "overview": "POXIOL supported a basketball academy uniform program with reversible basketball jersey sets, player number customization, size grouping and production planning for training and tournament use.",
+      "buyerBackground": "The buyer was a basketball academy preparing uniforms for training sessions and tournament use. The academy needed a professional uniform system for multiple age groups and wanted the uniforms to be breathable, durable and easy to reorder.",
+      "orderRequirements": [
+        "Reversible jersey + shorts set",
+        "Team identity based on black, white and green color system",
+        "Player number customization",
+        "Youth and adult size planning",
+        "Sample confirmation before bulk order",
+        "Size-grouped packing for team distribution"
+      ],
+      "designMockup": "POXIOL prepared front and back mockups based on the academy's colors and number layout. After sample confirmation, bulk production was arranged with size-grouped packing.",
+      "fabricPrinting": "The project used lightweight performance fabric with sublimation printing for long-lasting color and clear number graphics.",
+      "productionTimeline": [
+        "Day 1–3: Design mockup and layout confirmation",
+        "Day 4–8: Sample preparation and review",
+        "Day 9–18: Bulk production",
+        "Day 19–21: QC, packing and shipment preparation"
+      ],
+      "qualityControl": "The QC process checked fabric surface, sublimation print clarity, number alignment, stitching strength, size measurement and packing labels.",
+      "packingDelivery": "Uniforms were sorted by size and packed for easier team distribution after delivery.",
+      "challenge": "The academy required reversible uniforms with clear number visibility and consistent team colors. The order also needed size grouping for easier distribution after delivery.",
+      "solution": "We engineered a dual-layer lightweight polyester mesh system, rendered full visual mocks, and did custom sorting by size prior to air shipping.",
+      "result": "The academy received a complete reversible uniform program with consistent color, clear numbers and organized packing.",
+      "image": "/images/poxiol-v62/projects_basketball_academy_uniform_program.png",
+      "snapshot": [
+        {
+          "item": "Buyer Type",
+          "details": "Basketball Academy"
+        },
+        {
+          "item": "Region",
+          "details": "North America"
+        },
+        {
+          "item": "Product",
+          "details": "Reversible basketball jersey and shorts sets"
+        },
+        {
+          "item": "Quantity",
+          "details": "300 sets"
+        },
+        {
+          "item": "Timeline",
+          "details": "21 days"
+        },
+        {
+          "item": "Customization",
+          "details": "Team logo, player number, reversible color design, youth/adult size breakdown"
+        },
+        {
+          "item": "Related Product",
+          "details": "Custom Basketball Uniforms"
+        }
+      ],
+      "sourceRecordKey": "case-003",
+      "publicBuyerLabel": "Academy Sports Director — France",
+      "buyerDisclosureStatus": "anonymous",
+      "consentConfirmed": false
+    },
+    {
+      "slug": "australia-soccer-club-kit-project",
+      "title": "Soccer Club Home & Away Kit Launch",
+      "clientType": "Soccer Club",
+      "country": "Australia",
+      "quantity": "500 sets",
+      "product": "Home and away soccer kits",
+      "timeline": "25 days",
+      "customization": "Club colors, sponsor placement, player numbers, youth/adult size breakdown",
+      "overview": "POXIOL supported a soccer club with home and away kit development, custom color matching, mockup confirmation and bulk production planning.",
+      "buyerBackground": "The soccer club needed a coordinated home and away kit launch before the season. The buyer wanted consistent team identity and clear sponsor placement.",
+      "orderRequirements": [
+        "Home kit and away kit",
+        "Team color matching",
+        "Sponsor placement support",
+        "Player number customization",
+        "Youth and adult sizes",
+        "Bulk order planning"
+      ],
+      "designMockup": "POXIOL prepared mockups for both kit versions and helped the buyer review color balance, logo placement and number visibility.",
+      "fabricPrinting": "The kits used breathable performance fabric and sublimation printing for durable team graphics.",
+      "productionTimeline": [
+        "Day 1–3: Mockup development",
+        "Day 4–7: Sample confirmation",
+        "Day 8–21: Bulk production",
+        "Day 22–25: Inspection, packing and shipping preparation"
+      ],
+      "qualityControl": "Checks included color consistency, sponsor placement, number visibility, stitching, size measurement and carton packing list.",
+      "packingDelivery": "The order was packed by size and kit type to support easier club distribution.",
+      "challenge": "The project required two kit colorways, number visibility and packing separated by kit type and size.",
+      "solution": "POXIOL prepared mockups for both home and away kits, helped review number visibility and sponsor placement, then arranged sample confirmation and bulk production.",
+      "result": "The club completed its kit launch with a unified home and away kit system.",
+      "image": "/images/poxiol-v62/projects_soccer_club_kit_launch.png",
+      "snapshot": [
+        {
+          "item": "Buyer Type",
+          "details": "Soccer Club"
+        },
+        {
+          "item": "Region",
+          "details": "Australia"
+        },
+        {
+          "item": "Product",
+          "details": "Home and away soccer kits"
+        },
+        {
+          "item": "Quantity",
+          "details": "500 sets"
+        },
+        {
+          "item": "Timeline",
+          "details": "25 days"
+        },
+        {
+          "item": "Customization",
+          "details": "Club colors, sponsor placement, player numbers, youth/adult size breakdown"
+        },
+        {
+          "item": "Related Product",
+          "details": "Custom Soccer Kits"
+        }
+      ],
+      "sourceRecordKey": "case-002",
+      "publicBuyerLabel": "Football Club Manager — West Africa",
+      "buyerDisclosureStatus": "anonymous",
+      "consentConfirmed": false
+    },
+    {
+      "slug": "school-athletics-multi-sport-program",
+      "title": "School Multi-Sport Uniform Program",
+      "clientType": "School Athletics Department",
+      "country": "United States",
+      "quantity": "800 pieces",
+      "product": "Basketball uniforms, volleyball uniforms and training wear",
+      "timeline": "28 days",
+      "customization": "Unified school color system, team logo placement, player numbers, size-grouped packing",
+      "overview": "POXIOL supported a school athletics department with a coordinated multi-sport apparel program covering basketball, volleyball and training wear.",
+      "buyerBackground": "The school needed a coordinated apparel program across several sports while maintaining one shared visual identity.",
+      "orderRequirements": [
+        "Basketball uniforms",
+        "Volleyball uniforms",
+        "Training wear",
+        "Unified color and pattern direction",
+        "Player number customization",
+        "Size grouping by sport and team"
+      ],
+      "designMockup": "POXIOL created a unified design system and adapted it across basketball, volleyball and training wear. Packing was organized by sport, size and team group.",
+      "fabricPrinting": "Different fabric options were matched to each product category, with sublimation printing used for clear graphics and color consistency.",
+      "productionTimeline": [
+        "Day 1–5: Multi-sport design mockup",
+        "Day 6–10: Sample and size confirmation",
+        "Day 11–24: Bulk production",
+        "Day 25–28: QC, packing and delivery preparation"
+      ],
+      "qualityControl": "QC checked color consistency across sports, print position, stitching, size measurement, quantity by team and packing separation.",
+      "packingDelivery": "Items were sorted by sport category, size and team group for easier distribution.",
+      "challenge": "Different sports required different product fits and fabrics, but the school wanted consistent colors and branding.",
+      "solution": "POXIOL created a unified design system and adapted it across basketball, volleyball and training wear. Packing was organized by sport, size and team group.",
+      "result": "The school received a complete multi-sport apparel program with unified identity and organized delivery.",
+      "image": "/images/poxiol-v62/project_school_multisport_v62.png",
+      "snapshot": [
+        {
+          "item": "Buyer Type",
+          "details": "School Athletics Department"
+        },
+        {
+          "item": "Region",
+          "details": "United States"
+        },
+        {
+          "item": "Product",
+          "details": "Basketball uniforms, volleyball uniforms and training wear"
+        },
+        {
+          "item": "Quantity",
+          "details": "800 pieces"
+        },
+        {
+          "item": "Timeline",
+          "details": "28 days"
+        },
+        {
+          "item": "Customization",
+          "details": "Unified school color system, team logo placement, player numbers, size-grouped packing"
+        },
+        {
+          "item": "Related Product",
+          "details": "Custom Teamwear for Schools"
+        }
+      ],
+      "sourceRecordKey": "case-001",
+      "publicBuyerLabel": "Teamwear Distributor — Europe",
+      "buyerDisclosureStatus": "anonymous",
+      "consentConfirmed": false
+    },
+    {
+      "slug": "middle-east-sports-event-program",
+      "title": "Sports Event Bulk Uniform Program",
+      "clientType": "Event Organizer",
+      "country": "Middle East",
+      "quantity": "1,200 pieces",
+      "product": "Event uniforms and staff apparel",
+      "timeline": "30 days",
+      "customization": "Event color system, size grouping, staff and participant apparel",
+      "overview": "POXIOL supported a sports event with uniforms for staff and participants, requiring strict delivery and organized packing.",
+      "buyerBackground": "The buyer needed uniforms for a sports event with a strict deadline and multiple size groups.",
+      "orderRequirements": [
+        "Staff shirts",
+        "Participant uniforms",
+        "Event branding",
+        "Multiple size groups"
+      ],
+      "designMockup": "POXIOL confirmed branding and color layout for event staff and participants.",
+      "fabricPrinting": "Lightweight mesh for staff and training performance fabric for participants.",
+      "productionTimeline": [
+        "Day 1–5: Prep and design confirmation",
+        "Day 6–25: Bulk production",
+        "Day 26–30: QC and export packing"
+      ],
+      "qualityControl": "Checking print quality, size breakdown and event-day distribution labels.",
+      "packingDelivery": "Packed by staff/participant category and size.",
+      "challenge": "The event required a large volume of apparel delivered under a very tight timeline with complex distribution needs.",
+      "solution": "POXIOL confirmed size breakdown, arranged production scheduling and organized export packing labels to support easier event distribution.",
+      "result": "The buyer received event apparel sorted by size and category before the event date.",
+      "image": "/images/poxiol-v6/manufacturing_packing_global_delivery.png",
+      "snapshot": [
+        {
+          "item": "Buyer Type",
+          "details": "Event Organizer"
+        },
+        {
+          "item": "Region",
+          "details": "Middle East"
+        },
+        {
+          "item": "Product",
+          "details": "Event uniforms and staff apparel"
+        },
+        {
+          "item": "Quantity",
+          "details": "1,200 pieces"
+        },
+        {
+          "item": "Timeline",
+          "details": "30 days"
+        },
+        {
+          "item": "Customization",
+          "details": "Event color system, size grouping, staff and participant apparel"
+        },
+        {
+          "item": "Related Product",
+          "details": "Custom Event Teamwear"
+        }
+      ],
+      "sourceRecordKey": "case-005",
+      "publicBuyerLabel": "Team Captain — Caribbean",
+      "buyerDisclosureStatus": "anonymous",
+      "consentConfirmed": false
+    },
+    {
+      "slug": "distributor-bulk-teamwear-program",
+      "title": "Teamwear Distributor Bulk Program",
+      "clientType": "Regional Distributor",
+      "country": "Global",
+      "quantity": "3,000 pieces",
+      "product": "Multi-sport custom uniforms",
+      "timeline": "35 days",
+      "customization": "Multi-sport category development, repeatable mockup templates, fabric recommendations",
+      "overview": "POXIOL established a repeatable manufacturing workflow for a regional distributor to support multiple teamwear categories.",
+      "buyerBackground": "The distributor needed a scalable production partner for multiple teamwear categories and repeat local buyers.",
+      "orderRequirements": [
+        "Repeatable mockup templates",
+        "Multi-sport fabric options",
+        "Bulk production planning",
+        "Distributor price support"
+      ],
+      "designMockup": "POXIOL created design templates for the distributor's catalog.",
+      "fabricPrinting": "Durable sublimation inks on mesh and interlock fabrics.",
+      "productionTimeline": [
+        "Day 1–5: Catalog prep",
+        "Day 6–30: Continuous production cycles",
+        "Day 31–35: QC and consolidated shipping"
+      ],
+      "qualityControl": "Batch-level QC for color consistency and stitching durability.",
+      "packingDelivery": "Bulk packing for ocean or air freight.",
+      "challenge": "The distributor required a stable supply chain to handle consistent orders from various local sports teams and schools.",
+      "solution": "POXIOL supported product category planning, mockup template creation, fabric recommendations and bulk production workflow setup.",
+      "result": "The distributor expanded its custom teamwear catalog with a more repeatable production workflow.",
+      "image": "/images/poxiol-v6/manufacturing_sublimation_printing.png",
+      "snapshot": [
+        {
+          "item": "Buyer Type",
+          "details": "Regional Distributor"
+        },
+        {
+          "item": "Region",
+          "details": "Global"
+        },
+        {
+          "item": "Product",
+          "details": "Multi-sport custom uniforms"
+        },
+        {
+          "item": "Quantity",
+          "details": "3,000 pieces"
+        },
+        {
+          "item": "Timeline",
+          "details": "35 days"
+        },
+        {
+          "item": "Customization",
+          "details": "Multi-sport category development, repeatable mockup templates, fabric recommendations"
+        },
+        {
+          "item": "Related Product",
+          "details": "OEM / ODM Teamwear"
+        }
+      ],
+      "sourceRecordKey": "case-004",
+      "publicBuyerLabel": "Sportswear Brand Partner — Netherlands",
+      "buyerDisclosureStatus": "anonymous",
+      "consentConfirmed": false
+    }
+  ]
+}

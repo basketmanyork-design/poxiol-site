@@ -1,0 +1,32 @@
+{
+  "runId": "run-2026-07-17-03-04_10",
+  "createdAt": "2026-07-17T03:04:10.675Z",
+  "extractedSourceTotal": 85,
+  "seedDocumentsTotal": 9,
+  "generatedSourceTotal": 36,
+  "generatedSeedTotal": 9,
+  "deferredSourceTotal": 53,
+  "deferredSeedTotal": 0,
+  "skippedSourceTotal": 0,
+  "mergedSourceTotal": 0,
+  "rejectedSourceTotal": 0,
+  "generatedTotal": 45,
+  "deferredTotal": 53,
+  "overallPlannedTotal": 94,
+  "duplicateIds": 0,
+  "invalidReferences": 0,
+  "urlConflicts": 0,
+  "faqPublicRoutes": 0,
+  "piiDetected": 0,
+  "piiRemoved": 0,
+  "piiRemaining": 0,
+  "blockedRiskWords": 0,
+  "warningRiskWords": 0,
+  "seoNeedsReview": 0,
+  "byType": {
+    "faqCategory": 9,
+    "caseStudy": 5,
+    "faqItem": 31
+  },
+  "selfHashPolicy": "file-integrity-report.json is hashed externally by pre-import-gate and does not include its own hash."
+}

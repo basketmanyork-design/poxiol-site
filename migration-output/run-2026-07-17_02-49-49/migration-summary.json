@@ -1,0 +1,25 @@
+{
+  "sourceTotal": 54,
+  "seedDocumentsTotal": 15,
+  "generatedTotal": 51,
+  "deferredTotal": 49,
+  "skippedTotal": 0,
+  "mergedTotal": 0,
+  "rejectedTotal": 0,
+  "duplicateIds": 0,
+  "invalidReferences": 28,
+  "urlConflicts": 0,
+  "faqPublicRoutes": 0,
+  "piiDetected": 0,
+  "piiRemoved": 0,
+  "piiRemaining": 0,
+  "riskWordsBlocked": 0,
+  "riskWordsWarning": 0,
+  "seoNeedsReview": 0,
+  "altNeedsReview": 0,
+  "byType": {
+    "faqCategory": 15,
+    "caseStudy": 5,
+    "faqItem": 31
+  }
+}

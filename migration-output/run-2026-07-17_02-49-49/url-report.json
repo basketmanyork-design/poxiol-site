@@ -1,0 +1,410 @@
+[
+  {
+    "documentId": "drafts.faq-category-sample",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-moq",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-fabric",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-sizing",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-customization",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-name-and-number",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-private-label",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-quality-control",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-packaging",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-shipping",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-payment",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-basketball",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-soccer",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-general-sourcing",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-category-technical",
+    "type": "faqCategory",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.case-study-case-003",
+    "type": "caseStudy",
+    "routeType": "public",
+    "resolvedPath": "/projects/case-003/",
+    "hasPublicRoute": true,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.case-study-case-002",
+    "type": "caseStudy",
+    "routeType": "public",
+    "resolvedPath": "/projects/case-002/",
+    "hasPublicRoute": true,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.case-study-case-001",
+    "type": "caseStudy",
+    "routeType": "public",
+    "resolvedPath": "/projects/case-001/",
+    "hasPublicRoute": true,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.case-study-case-005",
+    "type": "caseStudy",
+    "routeType": "public",
+    "resolvedPath": "/projects/case-005/",
+    "hasPublicRoute": true,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.case-study-case-004",
+    "type": "caseStudy",
+    "routeType": "public",
+    "resolvedPath": "/projects/case-004/",
+    "hasPublicRoute": true,
+    "excludeFromSitemap": false
+  },
+  {
+    "documentId": "drafts.faq-58a237ff48ba5a1e",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-b6614f939cc32bc6",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-d1096f343e5a878d",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-5d50bbdc631930aa",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-e0caaeffefe745c1",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-fb7f5d41b91e30f7",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-87ff6714b0f215c7",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-5d689623e799fe8e",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-c98a193626b4825d",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-5c385d15e15eaf8e",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-95c2f6a0a59a0ff9",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-cd22732a9a169194",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-e8fbe50f21163011",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-813dafa082364131",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-ff432213b9506070",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-cc10b4077f4722ae",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-04c7df5ef8a2773e",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-0de3dde898e21b57",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-453359d1805fe72b",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-fe44d146c0d02272",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-ad7961602c34946c",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-9cff0e36354d351e",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-33252ab0a6926f06",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-205ea92b5cfb37e6",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-dca019351dd11a54",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-a2dc8dceb5f6bc7b",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-7804abc6a9113d9b",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-58b766260485677a",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-f79943d498339314",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-21cf9e0671ff96d5",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  },
+  {
+    "documentId": "drafts.faq-9f99d2124557cb88",
+    "type": "faqItem",
+    "routeType": "embedded-content",
+    "resolvedPath": null,
+    "hasPublicRoute": false,
+    "excludeFromSitemap": true
+  }
+]

@@ -1,0 +1,359 @@
+[
+  [
+    "/internal/faq-category/sample/",
+    {
+      "id": "drafts.faq-category-sample",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/moq/",
+    {
+      "id": "drafts.faq-category-moq",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/fabric/",
+    {
+      "id": "drafts.faq-category-fabric",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/sizing/",
+    {
+      "id": "drafts.faq-category-sizing",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/customization/",
+    {
+      "id": "drafts.faq-category-customization",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/name-and-number/",
+    {
+      "id": "drafts.faq-category-name-and-number",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/private-label/",
+    {
+      "id": "drafts.faq-category-private-label",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/quality-control/",
+    {
+      "id": "drafts.faq-category-quality-control",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/packaging/",
+    {
+      "id": "drafts.faq-category-packaging",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/shipping/",
+    {
+      "id": "drafts.faq-category-shipping",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/payment/",
+    {
+      "id": "drafts.faq-category-payment",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/basketball/",
+    {
+      "id": "drafts.faq-category-basketball",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/soccer/",
+    {
+      "id": "drafts.faq-category-soccer",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/general-sourcing/",
+    {
+      "id": "drafts.faq-category-general-sourcing",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq-category/technical/",
+    {
+      "id": "drafts.faq-category-technical",
+      "type": "faqCategory"
+    }
+  ],
+  [
+    "/internal/faq/faq-58a237ff48ba5a1e/",
+    {
+      "id": "drafts.faq-58a237ff48ba5a1e",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-b6614f939cc32bc6/",
+    {
+      "id": "drafts.faq-b6614f939cc32bc6",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-d1096f343e5a878d/",
+    {
+      "id": "drafts.faq-d1096f343e5a878d",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-5d50bbdc631930aa/",
+    {
+      "id": "drafts.faq-5d50bbdc631930aa",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-e0caaeffefe745c1/",
+    {
+      "id": "drafts.faq-e0caaeffefe745c1",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-fb7f5d41b91e30f7/",
+    {
+      "id": "drafts.faq-fb7f5d41b91e30f7",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-87ff6714b0f215c7/",
+    {
+      "id": "drafts.faq-87ff6714b0f215c7",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-5d689623e799fe8e/",
+    {
+      "id": "drafts.faq-5d689623e799fe8e",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-c98a193626b4825d/",
+    {
+      "id": "drafts.faq-c98a193626b4825d",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-5c385d15e15eaf8e/",
+    {
+      "id": "drafts.faq-5c385d15e15eaf8e",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-95c2f6a0a59a0ff9/",
+    {
+      "id": "drafts.faq-95c2f6a0a59a0ff9",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-cd22732a9a169194/",
+    {
+      "id": "drafts.faq-cd22732a9a169194",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-e8fbe50f21163011/",
+    {
+      "id": "drafts.faq-e8fbe50f21163011",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-813dafa082364131/",
+    {
+      "id": "drafts.faq-813dafa082364131",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-ff432213b9506070/",
+    {
+      "id": "drafts.faq-ff432213b9506070",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-cc10b4077f4722ae/",
+    {
+      "id": "drafts.faq-cc10b4077f4722ae",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-04c7df5ef8a2773e/",
+    {
+      "id": "drafts.faq-04c7df5ef8a2773e",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-0de3dde898e21b57/",
+    {
+      "id": "drafts.faq-0de3dde898e21b57",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-453359d1805fe72b/",
+    {
+      "id": "drafts.faq-453359d1805fe72b",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-fe44d146c0d02272/",
+    {
+      "id": "drafts.faq-fe44d146c0d02272",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-ad7961602c34946c/",
+    {
+      "id": "drafts.faq-ad7961602c34946c",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-9cff0e36354d351e/",
+    {
+      "id": "drafts.faq-9cff0e36354d351e",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-33252ab0a6926f06/",
+    {
+      "id": "drafts.faq-33252ab0a6926f06",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-205ea92b5cfb37e6/",
+    {
+      "id": "drafts.faq-205ea92b5cfb37e6",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-dca019351dd11a54/",
+    {
+      "id": "drafts.faq-dca019351dd11a54",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-a2dc8dceb5f6bc7b/",
+    {
+      "id": "drafts.faq-a2dc8dceb5f6bc7b",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-7804abc6a9113d9b/",
+    {
+      "id": "drafts.faq-7804abc6a9113d9b",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-58b766260485677a/",
+    {
+      "id": "drafts.faq-58b766260485677a",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-f79943d498339314/",
+    {
+      "id": "drafts.faq-f79943d498339314",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-21cf9e0671ff96d5/",
+    {
+      "id": "drafts.faq-21cf9e0671ff96d5",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/internal/faq/faq-9f99d2124557cb88/",
+    {
+      "id": "drafts.faq-9f99d2124557cb88",
+      "type": "faqItem"
+    }
+  ],
+  [
+    "/projects/usa-basketball-academy-uniform-program/",
+    {
+      "id": "drafts.case-study-case-003",
+      "type": "caseStudy"
+    }
+  ],
+  [
+    "/projects/australia-soccer-club-kit-project/",
+    {
+      "id": "drafts.case-study-case-002",
+      "type": "caseStudy"
+    }
+  ],
+  [
+    "/projects/school-athletics-multi-sport-program/",
+    {
+      "id": "drafts.case-study-case-001",
+      "type": "caseStudy"
+    }
+  ],
+  [
+    "/projects/middle-east-sports-event-program/",
+    {
+      "id": "drafts.case-study-case-005",
+      "type": "caseStudy"
+    }
+  ],
+  [
+    "/projects/distributor-bulk-teamwear-program/",
+    {
+      "id": "drafts.case-study-case-004",
+      "type": "caseStudy"
+    }
+  ]
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "drafts.case-study-case-003",
+    "path": "/projects/case-003/",
+    "missingTitle": true,
+    "missingDesc": true
+  },
+  {
+    "id": "drafts.case-study-case-002",
+    "path": "/projects/case-002/",
+    "missingTitle": true,
+    "missingDesc": true
+  },
+  {
+    "id": "drafts.case-study-case-001",
+    "path": "/projects/case-001/",
+    "missingTitle": true,
+    "missingDesc": true
+  },
+  {
+    "id": "drafts.case-study-case-005",
+    "path": "/projects/case-005/",
+    "missingTitle": true,
+    "missingDesc": true
+  },
+  {
+    "id": "drafts.case-study-case-004",
+    "path": "/projects/case-004/",
+    "missingTitle": true,
+    "missingDesc": true
+  }
+]
