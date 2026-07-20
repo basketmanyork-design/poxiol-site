@@ -68,4 +68,4 @@ jobs:
         working-directory: ${{ runner.temp }}/poxiol-studio
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_STUDIO_DEPLOY_TOKEN }}
-        run: npx --yes sanity@6.5.0 deploy --no-build --yes --url poxiol-cms-admin --schema-required
+        run: npx --yes sanity@6.5.0 deploy --no-build --yes --url poxiol-cms-admin --title "POXIOL Content Admin" --schema-required
