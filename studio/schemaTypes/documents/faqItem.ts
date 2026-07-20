@@ -6,7 +6,7 @@ export const faqItem = defineType({
   name: 'faqItem',
   title: 'FAQ 知识库',
   type: 'document',
-  icon: HelpCircleIcon,
+  icon: QuestionIcon,
   groups: [
     {name: 'basic', title: '问答内容'},
     {name: 'target', title: '适用对象'},
