@@ -21,18 +21,36 @@ import {
   sameDocument,
 } from './mvp-seed-plan'
 
-const client = getCliClient().withConfig({
-  projectId: PROJECT_ID,
-  dataset: DATASET,
-  apiVersion: API_VERSION,
-  useCdn: false,
-})
+function createAuthenticatedClient() {
+  const token = process.env.SANITY_AUTH_TOKEN
+
+  if (!token) {
+    throw new Error('auth-missing')
+  }
+
+  return getCliClient().withConfig({
+    projectId: PROJECT_ID,
+    dataset: DATASET,
+    apiVersion: API_VERSION,
+    useCdn: false,
+    token,
+  })
+}
+
+const PERMISSION_CHECK_DOCUMENT: SeedDocument = {
+  _id: 'drafts.poxiol-mvp-permission-check',
+  _type: 'faqItem',
+  question: 'POXIOL MVP write permission check',
+  answer: [],
+}
 
 interface SeedResult {
   runAt: string
   projectId: string
   dataset: string
   authMode: 'repository-secret'
+  authenticatedClientConfigured: boolean
+  writePermissionDryRunPassed: boolean
   requestTotal: number
   createdTotal: number
   updatedTotal: number
@@ -90,6 +108,8 @@ function initialResult(): SeedResult {
     projectId: PROJECT_ID,
     dataset: DATASET,
     authMode: 'repository-secret',
+    authenticatedClientConfigured: false,
+    writePermissionDryRunPassed: false,
     requestTotal: SEED_DOCS.length,
     createdTotal: 0,
     updatedTotal: 0,
@@ -118,11 +138,19 @@ async function seed(): Promise<void> {
   const rootIds = getRootIds()
 
   try {
-    if (!process.env.SANITY_AUTH_TOKEN) throw new Error('auth-missing')
     if (SEED_DOCS.some((doc) => !doc._id.startsWith('drafts.'))) throw new Error('non-draft-id')
     if (result.duplicateIds || result.invalidReferences || result.piiMatches || result.secretMatches || result.blockedRiskWords) {
       throw new Error('static-preflight-failed')
     }
+
+    const client = createAuthenticatedClient()
+    result.authenticatedClientConfigured = true
+
+    await client
+      .transaction()
+      .createIfNotExists(PERMISSION_CHECK_DOCUMENT)
+      .commit({dryRun: true})
+    result.writePermissionDryRunPassed = true
 
     const published = await client.fetch<SeedDocument[]>(`*[_id in $rootIds]`, {rootIds})
     result.publishedDocumentsFound = published.length
