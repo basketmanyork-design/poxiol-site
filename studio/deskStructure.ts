@@ -1,4 +1,4 @@
-import {ListItemBuilder, StructureResolver} from 'sanity/structure'
+import {StructureResolver} from 'sanity/structure'
 import {
   CogIcon, EarthGlobeIcon, DocumentsIcon, TagIcon, PackageIcon,
   CaseIcon, QuestionIcon, DocumentIcon, UserIcon,
@@ -8,7 +8,6 @@ export const deskStructure: StructureResolver = (S) =>
   S.list()
     .title('POXIOL CMS')
     .items([
-      // --- Dashboard ---
       S.listItem()
         .title('Dashboard')
         .icon(DocumentsIcon)
@@ -16,7 +15,6 @@ export const deskStructure: StructureResolver = (S) =>
 
       S.divider(),
 
-      // --- 单例：全局设置 & 采购标准 ---
       S.listItem()
         .title('网站全局设置')
         .icon(EarthGlobeIcon)
@@ -27,7 +25,6 @@ export const deskStructure: StructureResolver = (S) =>
         .icon(CogIcon)
         .child(S.document().schemaType('procurementStandards').documentId('procurementStandards')),
 
-      // --- 单例：导航与Footer（占位，待后续完善） ---
       S.listItem()
         .title('导航与Footer')
         .icon(DocumentsIcon)
@@ -35,7 +32,6 @@ export const deskStructure: StructureResolver = (S) =>
 
       S.divider(),
 
-      // --- 内容管理 ---
       S.listItem()
         .title('产品分类')
         .icon(TagIcon)
@@ -53,7 +49,7 @@ export const deskStructure: StructureResolver = (S) =>
 
       S.listItem()
         .title('FAQ 知识库')
-        .icon(HelpCircleIcon)
+        .icon(QuestionIcon)
         .child(S.documentTypeList('faqItem').title('FAQ')),
 
       S.listItem()
@@ -63,7 +59,6 @@ export const deskStructure: StructureResolver = (S) =>
 
       S.divider(),
 
-      // --- 系统 ---
       S.listItem()
         .title('作者管理')
         .icon(UserIcon)
