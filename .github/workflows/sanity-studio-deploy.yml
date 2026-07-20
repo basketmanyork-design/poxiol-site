@@ -64,34 +64,8 @@ jobs:
         working-directory: ${{ runner.temp }}/poxiol-studio
         run: ./node_modules/.bin/sanity build
 
-      - name: Ensure dedicated Studio hostname
-        env:
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_STUDIO_DEPLOY_TOKEN }}
-          SANITY_STUDIO_HOSTNAME: poxiol-cms-admin
-        run: |
-          project_url="https://api.sanity.io/v2021-06-07/projects/oqpv1xbc"
-          current_host="$(curl --fail --silent --show-error \
-            -H "Authorization: Bearer ${SANITY_AUTH_TOKEN}" \
-            "$project_url" | jq -r '.studioHost // empty')"
-
-          if [ -n "$current_host" ] && \
-             [ "$current_host" != "$SANITY_STUDIO_HOSTNAME" ] && \
-             [ "$current_host" != "https://${SANITY_STUDIO_HOSTNAME}.sanity.studio" ]; then
-            echo "::error::A different Studio hostname is already assigned; refusing to replace it"
-            exit 1
-          fi
-
-          if [ -z "$current_host" ]; then
-            curl --fail --silent --show-error \
-              -X PATCH \
-              -H "Authorization: Bearer ${SANITY_AUTH_TOKEN}" \
-              -H 'Content-Type: application/json' \
-              --data "{\"studioHost\":\"${SANITY_STUDIO_HOSTNAME}\"}" \
-              "$project_url" > /dev/null
-          fi
-
       - name: Deploy POXIOL admin Studio
         working-directory: ${{ runner.temp }}/poxiol-studio
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_STUDIO_DEPLOY_TOKEN }}
-        run: ./node_modules/.bin/sanity deploy --no-build
+        run: npx --yes sanity@6.5.0 deploy --no-build --yes --url poxiol-cms-admin --schema-required
