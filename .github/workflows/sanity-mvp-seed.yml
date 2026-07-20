@@ -25,8 +25,11 @@ jobs:
       SANITY_AUTH_TOKEN: ${{ secrets.SANITY_MVP_SEED_TOKEN }}
 
     steps:
-      - name: Checkout
+      - name: Checkout (sanity-admin-mvp branch)
         uses: actions/checkout@v4
+        with:
+          ref: sanity-admin-mvp
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -39,9 +42,6 @@ jobs:
             echo "::error::SANITY_MVP_SEED_TOKEN is not configured"
             exit 1
           fi
-
-      - name: Install root dependencies
-        run: npm install --legacy-peer-deps
 
       - name: Install Studio dependencies
         working-directory: studio
