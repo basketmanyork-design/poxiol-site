@@ -17,12 +17,21 @@ import {
   sameDocument,
 } from './mvp-seed-plan'
 
-const client = getCliClient().withConfig({
-  projectId: PROJECT_ID,
-  dataset: DATASET,
-  apiVersion: API_VERSION,
-  useCdn: false,
-})
+function createAuthenticatedClient() {
+  const token = process.env.SANITY_AUTH_TOKEN
+
+  if (!token) {
+    throw new Error('auth-missing')
+  }
+
+  return getCliClient().withConfig({
+    projectId: PROJECT_ID,
+    dataset: DATASET,
+    apiVersion: API_VERSION,
+    useCdn: false,
+    token,
+  })
+}
 
 interface PreflightResult {
   runAt: string
@@ -30,6 +39,7 @@ interface PreflightResult {
   projectId: string
   dataset: string
   authMode: 'repository-secret'
+  authenticatedClientConfigured: boolean
   queryOnly: true
   mutationAttempted: false
   requestTotal: number
@@ -59,6 +69,7 @@ function initialResult(): PreflightResult {
     projectId: PROJECT_ID,
     dataset: DATASET,
     authMode: 'repository-secret',
+    authenticatedClientConfigured: false,
     queryOnly: true,
     mutationAttempted: false,
     requestTotal: SEED_DOCS.length,
@@ -91,11 +102,13 @@ async function preflight(): Promise<void> {
   const rootIds = getRootIds()
 
   try {
-    if (!process.env.SANITY_AUTH_TOKEN) throw new Error('auth-missing')
     if (SEED_DOCS.some((doc) => !doc._id.startsWith('drafts.'))) throw new Error('non-draft-id')
     if (result.duplicateIds || result.invalidReferences || result.piiMatches || result.secretMatches || result.blockedRiskWords) {
       throw new Error('static-plan-failed')
     }
+
+    const client = createAuthenticatedClient()
+    result.authenticatedClientConfigured = true
 
     result.publishedRootCollisionIds = await client.fetch<string[]>(`*[_id in $rootIds]._id`, {rootIds})
     const existing = await client.fetch<SeedDocument[]>(`*[_id in $draftIds]`, {draftIds})
