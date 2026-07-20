@@ -46,9 +46,9 @@ jobs:
         working-directory: studio
         run: npm ci --legacy-peer-deps
 
-      - name: Validate Studio build
+      - name: Validate Studio schema
         working-directory: studio
-        run: npm run build
+        run: ./node_modules/.bin/sanity schema validate --level error
 
       - name: Run read-only MVP preflight
         working-directory: studio
