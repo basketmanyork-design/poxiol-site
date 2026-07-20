@@ -1,7 +1,7 @@
 import {StructureResolver} from 'sanity/structure'
 import {
   CogIcon, EarthGlobeIcon, DocumentsIcon, TagIcon, PackageIcon,
-  CaseIcon, QuestionIcon, DocumentIcon, UserIcon,
+  CaseIcon, HelpCircleIcon, DocumentIcon, UserIcon,
 } from '@sanity/icons'
 
 export const deskStructure: StructureResolver = (S) =>
@@ -49,7 +49,7 @@ export const deskStructure: StructureResolver = (S) =>
 
       S.listItem()
         .title('FAQ 知识库')
-        .icon(QuestionIcon)
+        .icon(HelpCircleIcon)
         .child(S.documentTypeList('faqItem').title('FAQ')),
 
       S.listItem()

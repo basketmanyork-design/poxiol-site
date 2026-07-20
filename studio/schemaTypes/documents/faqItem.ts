@@ -1,12 +1,12 @@
 import {defineField, defineType} from 'sanity'
-import {QuestionIcon} from '@sanity/icons'
+import {HelpCircleIcon} from '@sanity/icons'
 import {createRiskValidation} from '../validation'
 
 export const faqItem = defineType({
   name: 'faqItem',
   title: 'FAQ 知识库',
   type: 'document',
-  icon: QuestionIcon,
+  icon: HelpCircleIcon,
   groups: [
     {name: 'basic', title: '问答内容'},
     {name: 'target', title: '适用对象'},
