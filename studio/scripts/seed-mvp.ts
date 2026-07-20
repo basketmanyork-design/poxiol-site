@@ -49,6 +49,39 @@ interface SeedResult {
   transactionCommitted: boolean
   seedPassed: boolean
   failureCode?: string
+  failureStatus?: number
+}
+
+const LOCAL_FAILURE_CODES = new Set([
+  'auth-missing',
+  'non-draft-id',
+  'static-preflight-failed',
+  'published-root-collision',
+  'draft-content-collision',
+])
+
+function getFailureStatus(error: unknown): number | undefined {
+  if (!error || typeof error !== 'object') return undefined
+  const record = error as Record<string, unknown>
+  const response = record.response && typeof record.response === 'object'
+    ? record.response as Record<string, unknown>
+    : undefined
+  const candidates = [record.statusCode, record.status, response?.statusCode, response?.status]
+  return candidates.find((value): value is number => Number.isInteger(value) && Number(value) >= 400 && Number(value) <= 599)
+}
+
+function classifyFailure(error: unknown): {code: string; status?: number} {
+  const localCode = error instanceof Error ? error.message : undefined
+  if (localCode && LOCAL_FAILURE_CODES.has(localCode)) return {code: localCode}
+
+  const status = getFailureStatus(error)
+  if (status === 401) return {code: 'auth-unauthorized', status}
+  if (status === 403) return {code: 'write-permission-denied', status}
+  if (status === 409) return {code: 'mutation-conflict', status}
+  if (status === 429) return {code: 'rate-limited', status}
+  if (status && status >= 500) return {code: 'sanity-service-error', status}
+  if (status === 400 || status === 422) return {code: 'mutation-validation-failed', status}
+  return {code: 'seed-transaction-failed'}
 }
 
 function initialResult(): SeedResult {
@@ -128,12 +161,12 @@ async function seed(): Promise<void> {
       result.publishedDocumentsFound === 0 &&
       result.createdTotal + result.unchangedTotal === result.requestTotal
   } catch (error) {
-    const code = error instanceof Error ? error.message : 'unknown-failure'
-    const allowedCodes = new Set(['auth-missing', 'non-draft-id', 'static-preflight-failed', 'published-root-collision', 'draft-content-collision'])
-    result.failureCode = allowedCodes.has(code) ? code : 'seed-transaction-failed'
+    const failure = classifyFailure(error)
+    result.failureCode = failure.code
+    result.failureStatus = failure.status
     result.failedTotal = result.requestTotal
     result.seedPassed = false
-    console.error(`MVP seed stopped: ${result.failureCode}`)
+    console.error(`MVP seed stopped: ${result.failureCode}${result.failureStatus ? ` (${result.failureStatus})` : ''}`)
   }
 
   writeResult(result)
