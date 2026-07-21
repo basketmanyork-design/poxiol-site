@@ -9,9 +9,18 @@ export const deskStructure: StructureResolver = (S) =>
     .title('POXIOL CMS')
     .items([
       S.listItem()
+        .id('dashboard')
         .title('Dashboard')
         .icon(DocumentsIcon)
-        .child(S.documentList().title('最近更新的内容').filter('_type match "product" || _type match "article" || _type match "caseStudy"')),
+        .child(
+          S.documentList()
+            .id('dashboardRecentContent')
+            .title('最近更新的内容')
+            .filter('_type in ["product", "article", "caseStudy"]')
+            .defaultOrdering([
+              {field: '_updatedAt', direction: 'desc'},
+            ])
+        ),
 
       S.divider(),
 
