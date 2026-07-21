@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMockupHref, getQuoteHref, sampleOrderHref, whatsAppHref } from "@/components/ui";
 import { sportsCategories, uspCards, homeFaqs } from "@/lib/home-data";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
+import { getHomeBrandContent } from "@/lib/sanity/content";
 
 const ContactForm = dynamic(() => import("@/components/forms/ContactForm"), {
   loading: () => <div className="rounded-[2rem] bg-white p-6 shadow-xl md:p-9 min-h-[600px] flex flex-col items-center justify-center text-neutral-400">
@@ -14,13 +15,19 @@ const ContactForm = dynamic(() => import("@/components/forms/ContactForm"), {
   ssr: false,
 });
 
-export const metadata: Metadata = {
-  title: "Custom Teamwear Manufacturer | OEM Sports Uniform Supplier | POXIOL",
-  description: "Elite B2B custom teamwear manufacturer offering basketball uniforms, soccer kits and OEM sportswear with free mockup, MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const brand = await getHomeBrandContent();
 
-export default function HomePage() {
-  const baseUrl = "https://www.poxiol.com";
+  return {
+    title: brand.seoTitle,
+    description: brand.metaDescription,
+    alternates: { canonical: brand.canonicalUrl },
+  };
+}
+
+export default async function HomePage() {
+  const brand = await getHomeBrandContent();
+  const baseUrl = brand.siteUrl;
 
   return (
     <main id="main-content" className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
@@ -37,7 +44,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sr-only">
             <h1>Custom Teamwear Manufacturer for Clubs, Schools and Sportswear Brands</h1>
-            <p>POXIOL is a factory-direct teamwear manufacturer in China providing custom basketball, soccer and sports uniforms with MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation for global B2B buyers.</p>
+            <p>{brand.brandName} is a factory-direct teamwear manufacturer in China providing custom basketball, soccer and sports uniforms with MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation for global B2B buyers.</p>
           </div>
           <div>
             <span className="mb-6 inline-block text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00]">
@@ -71,7 +78,7 @@ export default function HomePage() {
               sizes="(max-width: 768px) 100vw, 50vw"
               width="900" 
               height="1125"
-              alt="POXIOL Custom Teamwear Uniforms Factory" 
+              alt={`${brand.brandName} Custom Teamwear Uniforms Factory`} 
               fetchPriority="high"
               loading="eager"
               decoding="sync"
@@ -230,3 +237,4 @@ export default function HomePage() {
     </main>
   );
 }
+

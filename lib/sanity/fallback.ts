@@ -1,38 +1,31 @@
-import { contentSource } from './client';
+import 'server-only'
 
-/**
- * Content resolution helper.
- *
- * Priority:
- *   sanity / sanity-preview → attempt Sanity fetch
- *   Sanity fails or missing  → fall back to legacy data
- *   legacy                   → always use legacy data
- */
+import {contentSource} from './client'
+
+function hasContent(value: unknown): boolean {
+  if (value == null) return false
+  if (Array.isArray(value)) return value.length > 0
+  if (typeof value === 'string') return value.trim().length > 0
+  return true
+}
 
 export async function resolveContent<T>(
   fetchSanity: () => Promise<T | null>,
   legacyData: T,
-  debugLabel?: string,
+  isUsable: (value: T) => boolean = hasContent,
 ): Promise<T> {
-  if (contentSource === 'legacy') {
-    if (process.env.NODE_ENV === 'development') console.log(`[CMS:legacy] ${debugLabel || 'content'}`);
-    return legacyData;
-  }
+  if (contentSource !== 'sanity-preview') return legacyData
 
   try {
-    const result = await fetchSanity();
-    if (result != null) {
-      if (process.env.NODE_ENV === 'development') console.log(`[CMS:sanity] ${debugLabel || 'content'}`);
-      return result;
-    }
-  } catch (err) {
-    if (process.env.NODE_ENV === 'development') console.warn(`[CMS:fallback] ${debugLabel || 'content'} – reverting to legacy`, (err as Error).message);
+    const result = await fetchSanity()
+    if (result != null && isUsable(result)) return result
+  } catch {
+    // Preview is optional. Any Sanity failure must preserve the legacy page.
   }
 
-  return legacyData;
+  return legacyData
 }
 
-export function useLegacy(explicitly = false): boolean {
-  if (explicitly) return true;
-  return contentSource === 'legacy';
+export function useLegacy(): boolean {
+  return contentSource === 'legacy'
 }
