@@ -1,3 +1,5 @@
+import type {DocumentRule, SanityDocument} from 'sanity'
+
 // 高风险品牌/组织词（第三方商标）- 发布时阻止
 const HIGH_RISK_BRANDS = [
   'Nike', 'Adidas', 'Jordan', 'Puma', 'Under Armour', 'New Balance',
@@ -19,23 +21,24 @@ export function checkRiskWords(text: string): {brandRisks: string[], claimRisks:
 }
 
 export function createRiskValidation(fields: string[]) {
-  return (doc: any) => {
-    const issues: string[] = []
-    for (const field of fields) {
-      const val = doc?.[field]
-      if (!val) continue
-      const text = typeof val === 'string' ? val : JSON.stringify(val)
-      const {brandRisks, claimRisks} = checkRiskWords(text)
-      if (brandRisks.length) {
-        issues.push(`[高风险] 字段 "${field}" 包含第三方品牌/组织词: ${brandRisks.join(', ')}。请确认拥有授权，否则应删除。`)
+  return (rule: DocumentRule) =>
+    rule.custom((doc: SanityDocument | undefined) => {
+      const issues: string[] = []
+      for (const field of fields) {
+        const val = doc?.[field]
+        if (!val) continue
+        const text = typeof val === 'string' ? val : JSON.stringify(val)
+        const {brandRisks, claimRisks} = checkRiskWords(text)
+        if (brandRisks.length) {
+          issues.push(`[高风险] 字段 "${field}" 包含第三方品牌/组织词: ${brandRisks.join(', ')}。请确认拥有授权，否则应删除。`)
+        }
+        if (claimRisks.length) {
+          issues.push(`[警告] 字段 "${field}" 包含绝对化承诺: ${claimRisks.join(', ')}。建议改为稳妥可验证表述。`)
+        }
       }
-      if (claimRisks.length) {
-        issues.push(`[警告] 字段 "${field}" 包含绝对化承诺: ${claimRisks.join(', ')}。建议改为稳妥可验证表述。`)
+      if (issues.length) {
+        return issues.join('\n')
       }
-    }
-    if (issues.length) {
-      return issues.join('\n')
-    }
-    return true
-  }
+      return true
+    })
 }
