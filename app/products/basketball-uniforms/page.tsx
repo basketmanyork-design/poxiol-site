@@ -1,16 +1,26 @@
-import type { Metadata } from "next";
-import SportsLandingPage from "@/components/sports/SportsLandingPage";
-import { getSportsPageBySlug } from "@/lib/sports-pages";
+import type {Metadata} from 'next'
+import SportsLandingPage from '@/components/sports/SportsLandingPage'
+import {getBasketballPreviewPage} from '@/lib/sanity/content'
+import {getSportsPageBySlug} from '@/lib/sports-pages'
 
-const slug = "products/basketball-uniforms";
-const pageData = getSportsPageBySlug(slug);
+const slug = 'products/basketball-uniforms'
+const legacyPageData = getSportsPageBySlug(slug)
 
-export const metadata: Metadata = {
-  title: pageData?.metaTitle,
-  description: pageData?.metaDescription,
-};
+async function loadPageData() {
+  if (!legacyPageData) return null
+  return getBasketballPreviewPage(legacyPageData)
+}
 
-export default function Page() {
-  if (!pageData) return null;
-  return <SportsLandingPage data={pageData} />;
+export async function generateMetadata(): Promise<Metadata> {
+  const pageData = await loadPageData()
+  return {
+    title: pageData?.metaTitle,
+    description: pageData?.metaDescription,
+  }
+}
+
+export default async function Page() {
+  const pageData = await loadPageData()
+  if (!pageData) return null
+  return <SportsLandingPage data={pageData} />
 }
