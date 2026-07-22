@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { whatsAppHref } from "@/components/ui";
 
 type ContactFormState = {
   fullName: string;
@@ -54,6 +53,8 @@ interface ContactFormProps {
   formType?: string;
   ctaText?: string;
   successUrl?: string;
+  publicEmail?: string;
+  whatsappHref?: string;
 }
 
 function ContactFormInner({
@@ -66,7 +67,7 @@ function ContactFormInner({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [form, setForm] = useState<ContactFormState>(initialState);
-  
+
   useEffect(() => {
     const style = searchParams.get("style");
     if (style) {
@@ -281,9 +282,9 @@ function ContactFormInner({
               >
                 <option value="">Select quantity</option>
                 <option value="1 Sample">1 Sample MOQ</option>
-                <option value="10–29 Sets">10–29 Sets (Team Order)</option>
-                <option value="30–99 Sets">30–99 Sets</option>
-                <option value="100–299 Sets">100–299 Sets</option>
+                <option value="10鈥?9 Sets">10鈥?9 Sets (Team Order)</option>
+                <option value="30鈥?9 Sets">30鈥?9 Sets</option>
+                <option value="100鈥?99 Sets">100鈥?99 Sets</option>
                 <option value="300+ Sets">300+ Sets (Volume Order)</option>
                 <option value="Not Sure Yet">Not Sure Yet</option>
               </select>
@@ -347,13 +348,13 @@ function ContactFormInner({
               <p className="mt-2 text-xs leading-relaxed text-neutral-500">
                 Upload your logo, reference design or size chart if available. If you do not have a design yet, POXIOL can help create a mockup based on your sport category, colors and team name.
               </p>
-              
+
               {/* File Inputs Grid */}
               <div className="mt-5 grid gap-4 md:grid-cols-3">
                 <div>
                   <FieldLabel>Logo File</FieldLabel>
-                  <input 
-                    type="file" 
+                  <input
+                    type="file"
                     accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
                     onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
@@ -361,8 +362,8 @@ function ContactFormInner({
                 </div>
                 <div>
                   <FieldLabel>Reference Design</FieldLabel>
-                  <input 
-                    type="file" 
+                  <input
+                    type="file"
                     accept=".png,.jpg,.jpeg,.pdf,.webp"
                     onChange={(e) => setReferenceFile(e.target.files?.[0] || null)}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
@@ -370,8 +371,8 @@ function ContactFormInner({
                 </div>
                 <div>
                   <FieldLabel>Size Chart / Tech Pack</FieldLabel>
-                  <input 
-                    type="file" 
+                  <input
+                    type="file"
                     accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg"
                     onChange={(e) => setSizeChartFile(e.target.files?.[0] || null)}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
@@ -424,11 +425,11 @@ export default function ContactForm(props: ContactFormProps) {
         <div className="py-10">
           <p className="text-neutral-950 font-black text-xl mb-4">Inquiry System Initializing...</p>
           <p className="text-neutral-500 text-sm mb-10">Please wait or use the alternative contact methods below.</p>
-          
+
           <div className="flex flex-col gap-4">
-            <a href="mailto:york@basketman.cn" className="h-[52px] flex items-center justify-center rounded-full bg-neutral-950 text-white text-xs font-black uppercase tracking-widest hover:bg-lime-400 hover:text-neutral-950 transition">Email Inquiry ↗</a>
-            <a href={whatsAppHref} target="_blank" rel="noreferrer" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">WhatsApp Chat ↗</a>
-            <a href="/get-quote/" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">Get Factory Quote ↗</a>
+            <a href={props.publicEmail ? `mailto:${props.publicEmail}` : "/contact/"} className="h-[52px] flex items-center justify-center rounded-full bg-neutral-950 text-white text-xs font-black uppercase tracking-widest hover:bg-lime-400 hover:text-neutral-950 transition">Email Inquiry →</a>
+            <a href={props.whatsappHref || "/contact/"} target="_blank" rel="noreferrer" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">WhatsApp Chat →</a>
+            <a href="/get-quote/" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">Get Factory Quote →</a>
           </div>
         </div>
       </div>

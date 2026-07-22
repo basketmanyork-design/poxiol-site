@@ -19,10 +19,10 @@ Custom Teamwear, Sports Uniforms, Basketball Uniforms, Soccer Kits, Baseball Uni
 ---
 
 ## Instagram Bio
-Custom Teamwear Manufacturer  
-Basketball · Soccer · Baseball · Running · Training  
-Free Mockup · MOQ 1 · OEM/ODM  
-Build your team identity ↓
+Custom Teamwear Manufacturer
+Basketball 路 Soccer 路 Baseball 路 Running 路 Training
+Free Mockup 路 MOQ 1 路 OEM/ODM
+Build your team identity 鈫?
 
 ---
 
@@ -47,6 +47,6 @@ POXIOL is a custom teamwear manufacturer focused on sports uniforms, sublimation
 ---
 
 ## TikTok Bio
-Custom sports uniforms & teamwear  
-Free mockup · MOQ 1 · OEM/ODM  
-Basketball · Soccer · Running · Training
+Custom sports uniforms & teamwear
+Free mockup 路 MOQ 1 路 OEM/ODM
+Basketball 路 Soccer 路 Running 路 Training

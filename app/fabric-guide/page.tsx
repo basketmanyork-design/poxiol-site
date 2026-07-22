@@ -26,18 +26,18 @@ export default function FabricGuidePage() {
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <StructuredData data={[fabricGuideSchema]} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20 border-b border-white/5">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading 
-            eyebrow="Technical Database" 
-            title="Sportswear Fabric Guide For Custom Teamwear" 
+          <SectionHeading
+            eyebrow="Technical Database"
+            title="Sportswear Fabric Guide For Custom Teamwear"
             subtitle="Performance starts with the right material. Our comprehensive guide helps you select the perfect fabric for your custom sports project based on breathability, durability, and printing needs."
             dark
             center
           />
-          
+
           <div className="mt-20 prose prose-invert prose-lime max-w-none text-lg leading-relaxed text-neutral-400">
             <h2 className="text-2xl font-black uppercase tracking-tight text-white">Why Fabric Selection Matters</h2>
             <p>
@@ -63,7 +63,7 @@ export default function FabricGuidePage() {
             {fabricDatabase.map((fabric) => (
               <div key={fabric.name} className="flex flex-col rounded-3xl border border-white/10 bg-white/5 p-8 transition hover:border-lime-400/30">
                 <h3 className="text-2xl font-black uppercase tracking-tight text-white">{fabric.name}</h3>
-                
+
                 <div className="mt-8">
                   <h4 className="text-[10px] font-black uppercase tracking-widest text-neutral-500">Technical Specs</h4>
                   <div className="mt-4 grid grid-cols-2 gap-y-4 text-xs font-bold">
@@ -143,7 +143,7 @@ export default function FabricGuidePage() {
               </div>
             ))}
           </div>
-          
+
           <div className="mt-24 rounded-3xl bg-lime-400 p-10 text-center text-black md:p-20">
             <h2 className="text-4xl font-black uppercase tracking-tight md:text-5xl">Select Your Performance Fabric</h2>
             <p className="mt-6 text-xl font-bold">Need help choosing? Our experts can recommend the right material based on your sport and climate.</p>

@@ -13,7 +13,7 @@ export default function LogoNameNumberPage() {
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">
           <SectionHeading eyebrow="Branding" title="Logo, Name & Number Customization" subtitle="We use high-color sublimation technology to integrate your branding directly into the fabric fibers." dark center />
-          
+
           <div className="mt-20 grid gap-12 text-left md:grid-cols-2">
             <div className="space-y-6">
               <h3 className="text-2xl font-black uppercase text-[#B6FF00]">High-Def Logos</h3>

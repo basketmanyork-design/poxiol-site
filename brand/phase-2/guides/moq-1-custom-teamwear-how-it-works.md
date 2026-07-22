@@ -77,5 +77,5 @@ Yes. POXIOL supports OEM/ODM teamwear development for sportswear brands, distrib
 ## CTA
 Ready to start your custom teamwear project?
 
-CTA: Request a Free POXIOL Mockup  
+CTA: Request a Free POXIOL Mockup
 CTA Link: /free-mockup/

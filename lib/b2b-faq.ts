@@ -14,11 +14,11 @@ export const b2bFaqData: B2BFAQCategory[] = [
     items: [
       {
         question: "How do I know if a teamwear supplier is a real factory?",
-        answer: "Professional B2B buyers should look for manufacturers that provide live factory video tours, check for B2B verification badges (like Alibaba Verified), and review their specific production equipment for sublimation and sewing. Real factories typically offer faster sampling (2–3 days) and direct technical advice on fabric specifications."
+        answer: "Professional B2B buyers should look for manufacturers that provide live factory video tours, check for B2B verification badges (like Alibaba Verified), and review their specific production equipment for sublimation and sewing. Real factories typically offer faster sampling (2鈥? days) and direct technical advice on fabric specifications."
       },
       {
         question: "What is the standard sample production time for B2B orders?",
-        answer: "For professional custom teamwear, sample production can usually be arranged in 2–3 days after mockup confirmation. If a supplier takes more than 7-10 days for a sample, they may be sub-contracting the work to another facility."
+        answer: "For professional custom teamwear, sample production can usually be arranged in 2鈥? days after mockup confirmation. If a supplier takes more than 7-10 days for a sample, they may be sub-contracting the work to another facility."
       },
       {
         question: "Does POXIOL provide factory audit reports?",
@@ -31,11 +31,11 @@ export const b2bFaqData: B2BFAQCategory[] = [
     items: [
       {
         question: "What fabric GSM is recommended for professional basketball uniforms?",
-        answer: "For professional competition, we recommend 160–180 GSM fabrics for maximum durability. For youth academies and schools, 150–165 GSM offers a balanced athletic feel, while 140–150 GSM is reserved for hot-weather training kits where breathability is the priority."
+        answer: "For professional competition, we recommend 160鈥?80 GSM fabrics for maximum durability. For youth academies and schools, 150鈥?65 GSM offers a balanced athletic feel, while 140鈥?50 GSM is reserved for hot-weather training kits where breathability is the priority."
       },
       {
         question: "What is the acceptable size tolerance for custom sportswear?",
-        answer: "In the custom teamwear industry, a size tolerance of ±2 cm (approx. 0.8 inches) is the standard for manual cutting and sewing. This variation is normal across different batches and is not considered a manufacturing defect."
+        answer: "In the custom teamwear industry, a size tolerance of 卤2 cm (approx. 0.8 inches) is the standard for manual cutting and sewing. This variation is normal across different batches and is not considered a manufacturing defect."
       },
       {
         question: "What ink technology is used for POXIOL sublimation?",

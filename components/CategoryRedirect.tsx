@@ -25,7 +25,7 @@ export default function CategoryRedirect() {
 
     const path = window.location.pathname.split("/").filter(Boolean).pop();
     const newPath = mapping[path || ""] || "/products/";
-    
+
     router.replace(newPath);
   }, [router]);
 

@@ -1,4 +1,4 @@
-# POXIOL Teamwear — Cloudflare Pages Static Website
+# POXIOL Teamwear 鈥?Cloudflare Pages Static Website
 
 This package is a Next.js + Tailwind static export website for POXIOL Teamwear.
 
@@ -46,7 +46,7 @@ Root directory: /
 
 ## Environment variables
 
-In Cloudflare Pages → Settings → Environment variables, add:
+In Cloudflare Pages 鈫?Settings 鈫?Environment variables, add:
 
 ```bash
 NEXT_PUBLIC_FORMSPREE_FREE_MOCKUP_ENDPOINT=https://formspree.io/f/your_free_mockup_id
@@ -55,13 +55,13 @@ NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT=https://formspree.io/f/your_contact_id
 
 If you do not configure these, forms will show an endpoint error when submitted.
 
-## Namecheap → Cloudflare DNS
+## Namecheap 鈫?Cloudflare DNS
 
 1. Add your domain to Cloudflare.
 2. Copy Cloudflare nameservers.
-3. In Namecheap: Domain List → Manage → Nameservers → Custom DNS.
+3. In Namecheap: Domain List 鈫?Manage 鈫?Nameservers 鈫?Custom DNS.
 4. Paste the two Cloudflare nameservers.
-5. In Cloudflare Pages → Custom domains, add `poxiol.com` and `www.poxiol.com`.
+5. In Cloudflare Pages 鈫?Custom domains, add `poxiol.com` and `www.poxiol.com`.
 
 ## Important
 

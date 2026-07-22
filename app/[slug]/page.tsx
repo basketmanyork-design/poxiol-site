@@ -68,17 +68,17 @@ export default async function PSEOPage({ params }: Props) {
       <StructuredData data={articleSchema ? [faqSchema, articleSchema] : faqSchema} />
       <Header />
 
-      
+
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading 
-            eyebrow="Specialized Teamwear Solutions" 
-            title={page.h1} 
+          <SectionHeading
+            eyebrow="Specialized Teamwear Solutions"
+            title={page.h1}
             subtitle={page.intro}
             dark
             center
           />
-          
+
           <div className="mt-20 space-y-12">
             <div className="prose prose-invert prose-lime max-w-none text-lg leading-relaxed text-neutral-400">
               <p>{page.content}</p>
@@ -115,7 +115,7 @@ export default async function PSEOPage({ params }: Props) {
               <h2 className="text-3xl font-black uppercase tracking-tight text-white">Ready to Start Your Project?</h2>
               <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <PrimaryButton>Contact Our Experts</PrimaryButton>
-                <Link 
+                <Link
                   href="/free-mockup/"
                   className="flex h-[60px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-10 text-base font-black uppercase transition hover:bg-white/10"
                 >

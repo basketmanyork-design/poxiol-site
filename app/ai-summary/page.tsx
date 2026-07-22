@@ -50,14 +50,14 @@ export default function AiSummaryPage() {
           <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
             <h2 className="text-2xl font-black">What POXIOL Makes</h2>
             <ul className="mt-4 space-y-2 text-neutral-700">
-              {categories.map((item) => <li key={item}>• {item}</li>)}
+              {categories.map((item) => <li key={item}>鈥?{item}</li>)}
             </ul>
           </section>
 
           <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
             <h2 className="text-2xl font-black">Who POXIOL Serves</h2>
             <ul className="mt-4 space-y-2 text-neutral-700">
-              {buyerTypes.map((item) => <li key={item}>• {item}</li>)}
+              {buyerTypes.map((item) => <li key={item}>鈥?{item}</li>)}
             </ul>
           </section>
         </div>
@@ -72,11 +72,11 @@ export default function AiSummaryPage() {
         <section className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
           <h2 className="text-2xl font-black">Knowledge Base & Resources</h2>
           <ul className="mt-4 space-y-2 text-neutral-700">
-            <li>• <Link href="/resources/" className="underline">Teamwear Buying Guides</Link></li>
-            <li>• <Link href="/fabric-guide/" className="underline">Sportswear Fabric Database</Link></li>
-            <li>• <Link href="/printing-guide/" className="underline">Printing Technology Guide</Link></li>
-            <li>• <Link href="/manufacturing/" className="underline">Manufacturing Workflow</Link></li>
-            <li>• <Link href="/faq/" className="underline">Frequently Asked Questions (FAQ)</Link></li>
+            <li>鈥?<Link href="/resources/" className="underline">Teamwear Buying Guides</Link></li>
+            <li>鈥?<Link href="/fabric-guide/" className="underline">Sportswear Fabric Database</Link></li>
+            <li>鈥?<Link href="/printing-guide/" className="underline">Printing Technology Guide</Link></li>
+            <li>鈥?<Link href="/manufacturing/" className="underline">Manufacturing Workflow</Link></li>
+            <li>鈥?<Link href="/faq/" className="underline">Frequently Asked Questions (FAQ)</Link></li>
           </ul>
         </section>
 

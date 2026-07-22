@@ -11,7 +11,7 @@ export const faqData: FAQCategory[] = [
       { question: "Who does POXIOL work with?", answer: "POXIOL works with sports clubs, schools, academies, amateur teams, sportswear brands, distributors, custom retailers and event organizers worldwide." },
       { question: "What products can POXIOL manufacture?", answer: "POXIOL can manufacture custom basketball uniforms, soccer kits, baseball uniforms, training wear, warm-up sets, team hoodies, jackets, accessories and private label teamwear collections." },
       { question: "Does POXIOL support MOQ 1 set?", answer: "Yes. POXIOL supports 1 set sample orders for design and quality confirmation before bulk production." },
-      { question: "How fast can POXIOL make a sample?", answer: "For standard custom teamwear projects, sample production can usually be arranged in 2–3 days after mockup confirmation." },
+      { question: "How fast can POXIOL make a sample?", answer: "For standard custom teamwear projects, sample production can usually be arranged in 2鈥? days after mockup confirmation." },
       { question: "Can POXIOL provide a free mockup?", answer: "Yes. Buyers can send sport category, logo, colors, quantity and reference design. POXIOL can prepare a free visual mockup before sampling or bulk production." },
     ],
   },
@@ -53,7 +53,7 @@ export const faqData: FAQCategory[] = [
       { question: "What information should I send for a quote?", answer: "Send sport category, product type, logo, colors, quantity, size list, reference design and target delivery date." },
       { question: "What happens after I submit a free mockup request?", answer: "POXIOL reviews your project details, prepares a visual mockup or sourcing recommendation, confirms sample requirements, and then provides a quotation and production plan." },
       { question: "Can distributors reorder the same design later?", answer: "Yes. POXIOL can support repeat orders when design files, size breakdowns and production records are kept for future reference." },
-      { question: "How long is international delivery?", answer: "Express international delivery usually takes 3–7 business days depending on country." },
+      { question: "How long is international delivery?", answer: "Express international delivery usually takes 3鈥? business days depending on country." },
     ],
   },
 ];

@@ -49,7 +49,7 @@ Root directory: /
 In Namecheap:
 
 ```txt
-Domain List → Manage → Nameservers → Custom DNS
+Domain List 鈫?Manage 鈫?Nameservers 鈫?Custom DNS
 ```
 
 Paste the 2 Cloudflare nameservers.
@@ -59,7 +59,7 @@ Paste the 2 Cloudflare nameservers.
 In Cloudflare Pages:
 
 ```txt
-Workers & Pages → your project → Custom domains
+Workers & Pages 鈫?your project 鈫?Custom domains
 ```
 
 Add:

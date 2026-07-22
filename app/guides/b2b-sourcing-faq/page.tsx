@@ -18,14 +18,14 @@ export default function B2BSourcingFAQPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading 
-            eyebrow="For Professionals" 
-            title="B2B Sourcing & Manufacturing FAQ" 
+          <SectionHeading
+            eyebrow="For Professionals"
+            title="B2B Sourcing & Manufacturing FAQ"
             subtitle="Deep technical insights and procurement advice for sports organizations, brand owners, and sportswear distributors."
             dark
             center
           />
-          
+
           <div className="mt-20 space-y-20">
             {b2bFaqData.map((category) => (
               <div key={category.category}>
@@ -57,7 +57,7 @@ export default function B2BSourcingFAQPage() {
             Get direct factory pricing and technical support for your sports brand or large-scale team project.
           </p>
           <div className="mt-10">
-            <a 
+            <a
               href="/get-quote/"
               className="inline-flex h-[70px] items-center justify-center rounded-full bg-lime-400 px-12 text-lg font-black uppercase text-black transition hover:bg-white"
             >

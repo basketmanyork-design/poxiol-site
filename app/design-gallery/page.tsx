@@ -14,7 +14,7 @@ export default function DesignGalleryPage() {
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Gallery" title="Custom Teamwear Design Inspiration" subtitle="Professional sublimation design concepts developed by the POXIOL creative team." dark center />
-          
+
           <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredDesigns.map(design => (
               <div key={design.title} className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 aspect-square">

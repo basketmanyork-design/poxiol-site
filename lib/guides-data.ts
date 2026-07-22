@@ -24,7 +24,7 @@ export const guidePages: GuidePage[] = [
     intro: "A teamwear sample is the final safeguard before bulk production. Approving a physical sample ensures that fabric hand-feel, color vibrancy, logo positioning, and sizing match your organization's exact requirements. This technical guide outlines the 9 critical checks every B2B buyer should perform before signing off on production.",
     keyTakeaways: [
       "Physical sample approval is mandatory for high-volume B2B orders to minimize production risk.",
-      "Industry standard size tolerance is ±2 cm; anything beyond this requires factory adjustment.",
+      "Industry standard size tolerance is 卤2 cm; anything beyond this requires factory adjustment.",
       "Review sublimation colors under both natural and stadium lighting for true brand alignment."
     ],
     sections: [
@@ -62,11 +62,11 @@ export const guidePages: GuidePage[] = [
     faqs: [
       {
         question: "What should buyers check before approving a teamwear sample?",
-        answer: "Buyers should verify fabric GSM, color matching, logo positioning, stitching quality, size measurements (allowing ±2 cm tolerance), and the accuracy of player names and numbers."
+        answer: "Buyers should verify fabric GSM, color matching, logo positioning, stitching quality, size measurements (allowing 卤2 cm tolerance), and the accuracy of player names and numbers."
       },
       {
         question: "How long does sample production take?",
-        answer: "Sample Production: 2–3 Days After Mockup Confirmation. Express international delivery usually takes 3–7 business days depending on country."
+        answer: "Sample Production: 2鈥? Days After Mockup Confirmation. Express international delivery usually takes 3鈥? business days depending on country."
       }
     ],
     cta: { text: "Request Technical Sample", href: "/sample-order/" },
@@ -86,12 +86,12 @@ export const guidePages: GuidePage[] = [
   },
   {
     slug: "custom-basketball-uniform-fabric-gsm",
-    metaTitle: "Basketball Uniform Fabric GSM Guide: 140–180 GSM Specs | POXIOL",
+    metaTitle: "Basketball Uniform Fabric GSM Guide: 140鈥?80 GSM Specs | POXIOL",
     metaDescription: "Technical comparison of basketball uniform fabric weights. Choose between 140gsm lightweight mesh and 180gsm professional competition interlock.",
     h1: "Technical Guide: Choosing the Correct Fabric GSM for Basketball Uniforms",
     intro: "In basketball teamwear manufacturing, GSM (Grams per Square Meter) determines the weight, durability, and breathability of the garment. Selecting the wrong weight can lead to poor on-court performance or premature wear. This guide breaks down the technical differences between mesh and interlock weights.",
     keyTakeaways: [
-      "160–165 GSM is the standard for high-performance club and school basketball jerseys.",
+      "160鈥?65 GSM is the standard for high-performance club and school basketball jerseys.",
       "140 GSM is reserved for hot-weather training or lightweight youth academy kits.",
       "180 GSM provides the premium 'pro' feel required for reversible and elite game-day uniforms."
     ],
@@ -102,9 +102,9 @@ export const guidePages: GuidePage[] = [
         table: {
           headers: ["GSM Range", "Best Use Case", "Key Benefit"],
           rows: [
-            ["140–150 GSM", "Youth Academies & Training", "Extreme breathability, ultra-lightweight"],
-            ["160–165 GSM", "Club & School Competition", "Optimal durability and moisture-wicking"],
-            ["170–180 GSM", "Professional & Reversible", "Premium hand-feel, superior strength"]
+            ["140鈥?50 GSM", "Youth Academies & Training", "Extreme breathability, ultra-lightweight"],
+            ["160鈥?65 GSM", "Club & School Competition", "Optimal durability and moisture-wicking"],
+            ["170鈥?80 GSM", "Professional & Reversible", "Premium hand-feel, superior strength"]
           ]
         }
       },
@@ -121,7 +121,7 @@ export const guidePages: GuidePage[] = [
     faqs: [
       {
         question: "What is the best fabric for basketball uniforms?",
-        answer: "For professional games, 160–180 GSM is preferred for durability. For youth and schools, 150–165 GSM offers the best balance of weight and performance."
+        answer: "For professional games, 160鈥?80 GSM is preferred for durability. For youth and schools, 150鈥?65 GSM offers the best balance of weight and performance."
       }
     ],
     cta: { text: "View Fabric Database", href: "/manufacturing/" },
@@ -157,7 +157,7 @@ export const guidePages: GuidePage[] = [
         table: {
           headers: ["Feature", "Direct Factory", "Middleman / Trading Co"],
           rows: [
-            ["Sampling Lead Time", "2–3 Days", "7–10 Days"],
+            ["Sampling Lead Time", "2鈥? Days", "7鈥?0 Days"],
             ["Technical Advice", "Direct and precise", "Vague or delayed"],
             ["Customization MOQ", "Highly flexible", "Restricted by sub-contractors"],
             ["QC Control", "Internal/100% Manual", "Third-party or random spot-checks"]
@@ -200,7 +200,7 @@ export const guidePages: GuidePage[] = [
     metaTitle: "Private Label Teamwear Manufacturing: B2B Brand Guide | POXIOL",
     metaDescription: "Learn how to build a sportswear brand with private label teamwear manufacturing. Covers neck labels, hangtags, and branded packaging.",
     h1: "The B2B Guide to Private Label Teamwear Manufacturing",
-    intro: "Private label manufacturing allows sports brands, distributors, and influencers to build original collections without investing in their own factory. This guide explains the integration of custom branding elements—from neck tags to retail-ready packaging—directly into the production line.",
+    intro: "Private label manufacturing allows sports brands, distributors, and influencers to build original collections without investing in their own factory. This guide explains the integration of custom branding elements鈥攆rom neck tags to retail-ready packaging鈥攄irectly into the production line.",
     keyTakeaways: [
       "OEM support allows for original pattern development and custom sizing templates.",
       "Private labeling includes neck transfers, woven hem tags, and branded care labels.",

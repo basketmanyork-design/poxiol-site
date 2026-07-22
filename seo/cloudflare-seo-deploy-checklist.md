@@ -1,21 +1,21 @@
-# Cloudflare Pages SEO 部署检查清单
+# Cloudflare Pages SEO 閮ㄧ讲妫€鏌ユ竻鍗?
 
-## 部署前
+## 閮ㄧ讲鍓?
 
 ```bash
 npm install
 npm run build
 ```
 
-确认生成：
+纭鐢熸垚锛?
 
 ```txt
 out/
 ```
 
-## 文件检查
+## 鏂囦欢妫€鏌?
 
-确认以下文件存在于 `public/`：
+纭浠ヤ笅鏂囦欢瀛樺湪浜?`public/`锛?
 
 - `robots.txt`
 - `sitemap.xml`
@@ -23,40 +23,40 @@ out/
 - `_headers`
 - `_redirects`
 
-## Cloudflare Pages 设置
+## Cloudflare Pages 璁剧疆
 
 ```txt
 Build command: npm run build
 Build output directory: out
 ```
 
-## 部署后检查
+## 閮ㄧ讲鍚庢鏌?
 
-打开：
+鎵撳紑锛?
 
 - `https://poxiol.com/robots.txt`
 - `https://poxiol.com/sitemap.xml`
 - `https://poxiol.com/llms.txt`
 
-确认：
+纭锛?
 
 - HTTP status 200
-- Sitemap 内容完整
-- robots.txt 包含 Sitemap 地址
-- www 是否 301 到 apex domain
-- 主要页面没有 404
-- Free Mockup 表单仍然可提交
+- Sitemap 鍐呭瀹屾暣
+- robots.txt 鍖呭惈 Sitemap 鍦板潃
+- www 鏄惁 301 鍒?apex domain
+- 涓昏椤甸潰娌℃湁 404
+- Free Mockup 琛ㄥ崟浠嶇劧鍙彁浜?
 
-## 域名规范
+## 鍩熷悕瑙勮寖
 
-推荐：
+鎺ㄨ崘锛?
 
 ```txt
-https://poxiol.com/ 为主域名
-https://www.poxiol.com/ 301 到 https://poxiol.com/
+https://poxiol.com/ 涓轰富鍩熷悕
+https://www.poxiol.com/ 301 鍒?https://poxiol.com/
 ```
 
-## 提交搜索引擎
+## 鎻愪氦鎼滅储寮曟搸
 
 - Google Search Console: `https://poxiol.com/sitemap.xml`
 - Bing Webmaster Tools: `https://poxiol.com/sitemap.xml`

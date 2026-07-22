@@ -13,7 +13,7 @@ export default function PrivateLabelPage() {
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">
           <SectionHeading eyebrow="OEM Support" title="Private Label Solutions" subtitle="Everything you need to launch and scale your own sportswear collection." dark center />
-          
+
           <div className="mt-20 space-y-16 text-left">
             <div className="grid gap-12 md:grid-cols-2 items-center">
                <div>

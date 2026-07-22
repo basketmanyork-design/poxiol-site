@@ -65,7 +65,7 @@ export const websiteSchema = {
 export const fullFaqPageSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqData.flatMap(category => 
+  "mainEntity": faqData.flatMap(category =>
     category.items.map(item => ({
       "@type": "Question",
       "name": item.question,

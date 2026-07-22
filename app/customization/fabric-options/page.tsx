@@ -20,7 +20,7 @@ export default function FabricOptionsPage() {
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">
           <SectionHeading eyebrow="Materials" title="Engineered Performance Fabrics" subtitle="We select only the highest grade polyester fibers to ensure your team stays cool, dry, and comfortable." dark center />
-          
+
           <div className="mt-20 grid gap-6 md:grid-cols-2 text-left">
             {fabrics.map(f => (
               <div key={f.name} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8">

@@ -611,5 +611,3 @@ export const basketballGuideSchema = {
     "name": "POXIOL"
   }
 };
-
-

@@ -1,77 +1,77 @@
-# POXIOL V6 网站图片素材使用说明
+# POXIOL V6 缃戠珯鍥剧墖绱犳潗浣跨敤璇存槑
 
-## 1. 使用原则
+## 1. 浣跨敤鍘熷垯
 
-这些图片不是普通图库图，而是用于替换 POXIOL 独立站中存在版权风险、B2B 信任不足、工厂感不足的页面视觉。
+杩欎簺鍥剧墖涓嶆槸鏅€氬浘搴撳浘锛岃€屾槸鐢ㄤ簬鏇挎崲 POXIOL 鐙珛绔欎腑瀛樺湪鐗堟潈椋庨櫓銆丅2B 淇′换涓嶈冻銆佸伐鍘傛劅涓嶈冻鐨勯〉闈㈣瑙夈€?
 
-使用时请遵守：
+浣跨敤鏃惰閬靛畧锛?
 
-- 不要再叠加 Nike、Adidas、NBA、职业球队、国家队等任何第三方元素。
-- 页面展示中统一使用 POXIOL 品牌。
-- 图片文件建议上传到网站 `/public/images/poxiol-v6/` 目录。
-- 如果网站是 Next.js 项目，建议使用 `next/image` 调用图片。
-- 页面文字尽量用 HTML 文本，不要全部写死在图片里，利于移动端和 SEO。
-- 图片上传前建议压缩成 WebP，同时保留 PNG 原图备份。
+- 涓嶈鍐嶅彔鍔?Nike銆丄didas銆丯BA銆佽亴涓氱悆闃熴€佸浗瀹堕槦绛変换浣曠涓夋柟鍏冪礌銆?
+- 椤甸潰灞曠ず涓粺涓€浣跨敤 POXIOL 鍝佺墝銆?
+- 鍥剧墖鏂囦欢寤鸿涓婁紶鍒扮綉绔?`/public/images/poxiol-v6/` 鐩綍銆?
+- 濡傛灉缃戠珯鏄?Next.js 椤圭洰锛屽缓璁娇鐢?`next/image` 璋冪敤鍥剧墖銆?
+- 椤甸潰鏂囧瓧灏介噺鐢?HTML 鏂囨湰锛屼笉瑕佸叏閮ㄥ啓姝诲湪鍥剧墖閲岋紝鍒╀簬绉诲姩绔拰 SEO銆?
+- 鍥剧墖涓婁紶鍓嶅缓璁帇缂╂垚 WebP锛屽悓鏃朵繚鐣?PNG 鍘熷浘澶囦唤銆?
 
 ---
 
-## 2. 推荐上传目录
+## 2. 鎺ㄨ崘涓婁紶鐩綍
 
-建议放到：
+寤鸿鏀惧埌锛?
 
 ```text
 /public/images/poxiol-v6/
 ```
 
-前端调用路径：
+鍓嶇璋冪敤璺緞锛?
 
 ```text
-/images/poxiol-v6/文件名.png
+/images/poxiol-v6/鏂囦欢鍚?png
 ```
 
 ---
 
-## 3. 图片对应页面使用位置
+## 3. 鍥剧墖瀵瑰簲椤甸潰浣跨敤浣嶇疆
 
-| 文件名 | 页面 | 模块 | 用法 |
+| 鏂囦欢鍚?| 椤甸潰 | 妯″潡 | 鐢ㄦ硶 |
 |---|---|---|---|
-| home_hero_custom_teamwear_manufacturer.png | Home 首页 | Hero Banner | 首页首屏主视觉 |
-| home_oem_odm_solutions.png | Home / OEM ODM | OEM / ODM Solutions | 替换原有有风险 OEM/ODM 图片 |
-| home_club_partnership_program.png | Home 首页 | Club Partnership Program | 替换原有有风险合作项目图片 |
-| projects_basketball_academy_uniform_program.png | Projects 案例页 | Basketball Academy Case | 篮球学院案例图 |
-| projects_soccer_club_kit_launch.png | Projects 案例页 | Soccer Club Kit Launch | 足球俱乐部案例图 |
-| manufacturing_quality_control.png | Manufacturing / Home | Quality Control | 质检流程信任图 |
-| manufacturing_sublimation_printing.png | Manufacturing | Sublimation Printing | 热升华印花工艺图 |
-| manufacturing_cutting_sewing.png | Manufacturing | Cutting & Sewing | 裁剪缝制工厂图 |
-| manufacturing_packing_global_delivery.png | Manufacturing / Contact | Packing & Global Delivery | 包装发货信任图 |
+| home_hero_custom_teamwear_manufacturer.png | Home 棣栭〉 | Hero Banner | 棣栭〉棣栧睆涓昏瑙?|
+| home_oem_odm_solutions.png | Home / OEM ODM | OEM / ODM Solutions | 鏇挎崲鍘熸湁鏈夐闄?OEM/ODM 鍥剧墖 |
+| home_club_partnership_program.png | Home 棣栭〉 | Club Partnership Program | 鏇挎崲鍘熸湁鏈夐闄╁悎浣滈」鐩浘鐗?|
+| projects_basketball_academy_uniform_program.png | Projects 妗堜緥椤?| Basketball Academy Case | 绡悆瀛﹂櫌妗堜緥鍥?|
+| projects_soccer_club_kit_launch.png | Projects 妗堜緥椤?| Soccer Club Kit Launch | 瓒崇悆淇变箰閮ㄦ渚嬪浘 |
+| manufacturing_quality_control.png | Manufacturing / Home | Quality Control | 璐ㄦ娴佺▼淇′换鍥?|
+| manufacturing_sublimation_printing.png | Manufacturing | Sublimation Printing | 鐑崌鍗庡嵃鑺卞伐鑹哄浘 |
+| manufacturing_cutting_sewing.png | Manufacturing | Cutting & Sewing | 瑁佸壀缂濆埗宸ュ巶鍥?|
+| manufacturing_packing_global_delivery.png | Manufacturing / Contact | Packing & Global Delivery | 鍖呰鍙戣揣淇′换鍥?|
 
 ---
 
-## 4. 首页替换建议
+## 4. 棣栭〉鏇挎崲寤鸿
 
 ### Hero Banner
 
-使用：
+浣跨敤锛?
 
 ```text
 home_hero_custom_teamwear_manufacturer.png
 ```
 
-建议页面文字：
+寤鸿椤甸潰鏂囧瓧锛?
 
 ```text
 Custom Teamwear Manufacturer for Clubs, Schools & Sports Brands
 Free Mockup | OEM / ODM | Quality Control | Global Delivery
 ```
 
-CTA：
+CTA锛?
 
 ```text
 Get Free Mockup
 Request OEM / Bulk Quote
 ```
 
-Alt Text：
+Alt Text锛?
 
 ```text
 POXIOL custom teamwear manufacturer for clubs schools and sports brands
@@ -81,19 +81,19 @@ POXIOL custom teamwear manufacturer for clubs schools and sports brands
 
 ### OEM / ODM Solutions
 
-使用：
+浣跨敤锛?
 
 ```text
 home_oem_odm_solutions.png
 ```
 
-建议替换原图：
+寤鸿鏇挎崲鍘熷浘锛?
 
 ```text
 /images/homepage-v3/06_v4_oem_odm_solutions.png
 ```
 
-Alt Text：
+Alt Text锛?
 
 ```text
 POXIOL OEM ODM custom teamwear solutions
@@ -103,19 +103,19 @@ POXIOL OEM ODM custom teamwear solutions
 
 ### Club Partnership Program
 
-使用：
+浣跨敤锛?
 
 ```text
 home_club_partnership_program.png
 ```
 
-建议替换原图：
+寤鸿鏇挎崲鍘熷浘锛?
 
 ```text
 /images/homepage-v3/09_v4_club_partnership_program.png
 ```
 
-Alt Text：
+Alt Text锛?
 
 ```text
 POXIOL club partnership program for custom teamwear
@@ -123,23 +123,23 @@ POXIOL club partnership program for custom teamwear
 
 ---
 
-## 5. Projects 页面替换建议
+## 5. Projects 椤甸潰鏇挎崲寤鸿
 
 ### Basketball Academy
 
-使用：
+浣跨敤锛?
 
 ```text
 projects_basketball_academy_uniform_program.png
 ```
 
-案例标题：
+妗堜緥鏍囬锛?
 
 ```text
 Basketball Academy Uniform Program
 ```
 
-案例信息：
+妗堜緥淇℃伅锛?
 
 ```text
 Buyer Type: Basketball Academy
@@ -152,19 +152,19 @@ Timeline: 21 Days
 
 ### Soccer Club
 
-使用：
+浣跨敤锛?
 
 ```text
 projects_soccer_club_kit_launch.png
 ```
 
-案例标题：
+妗堜緥鏍囬锛?
 
 ```text
 Soccer Club Kit Launch
 ```
 
-案例信息：
+妗堜緥淇℃伅锛?
 
 ```text
 Buyer Type: Soccer Club
@@ -175,16 +175,16 @@ Timeline: 25 Days
 
 ---
 
-## 6. Manufacturing 页面替换建议
+## 6. Manufacturing 椤甸潰鏇挎崲寤鸿
 
-使用这 4 张图组成完整工厂信任链路：
+浣跨敤杩?4 寮犲浘缁勬垚瀹屾暣宸ュ巶淇′换閾捐矾锛?
 
 1. `manufacturing_sublimation_printing.png`
 2. `manufacturing_cutting_sewing.png`
 3. `manufacturing_quality_control.png`
 4. `manufacturing_packing_global_delivery.png`
 
-建议模块顺序：
+寤鸿妯″潡椤哄簭锛?
 
 ```text
 Mockup & Design Confirmation
@@ -196,7 +196,7 @@ Packing & Global Delivery
 
 ---
 
-## 7. Next.js 图片调用示例
+## 7. Next.js 鍥剧墖璋冪敤绀轰緥
 
 ```tsx
 import Image from "next/image";
@@ -213,40 +213,40 @@ import Image from "next/image";
 
 ---
 
-## 8. 建议图片压缩规格
+## 8. 寤鸿鍥剧墖鍘嬬缉瑙勬牸
 
-原图：PNG，适合备份和再次编辑。  
-上线图：建议转成 WebP。
+鍘熷浘锛歅NG锛岄€傚悎澶囦唤鍜屽啀娆＄紪杈戙€?
+涓婄嚎鍥撅細寤鸿杞垚 WebP銆?
 
-推荐尺寸：
+鎺ㄨ崘灏哄锛?
 
-- Hero Banner: 1920 x 1080 或保持 16:9
-- 普通模块图: 1600 x 900
-- Projects 案例图: 1200 x 675 或 1200 x 900
-- 移动端可另外裁切 1080 x 1350
-
----
-
-## 9. 上线前检查
-
-上传前请逐张检查：
-
-- 衣服上是否只有 POXIOL
-- 鞋子上是否没有第三方 Logo
-- 背景是否没有品牌广告牌
-- 是否没有职业球队队徽
-- 是否没有国家队、联盟、赛事标志
-- 人脸是否清晰自然
-- 图片是否和 POXIOL 黑白绿风格统一
-- Alt Text 是否填写
-- 移动端裁切是否正常
+- Hero Banner: 1920 x 1080 鎴栦繚鎸?16:9
+- 鏅€氭ā鍧楀浘: 1600 x 900
+- Projects 妗堜緥鍥? 1200 x 675 鎴?1200 x 900
+- 绉诲姩绔彲鍙﹀瑁佸垏 1080 x 1350
 
 ---
 
-## 10. 推荐执行顺序
+## 9. 涓婄嚎鍓嶆鏌?
 
-第一步：替换首页 Hero、OEM/ODM、Club Partnership 三张图。  
-第二步：替换 Projects 页面篮球和足球案例图。  
-第三步：更新 Manufacturing 页面四张工厂流程图。  
-第四步：压缩 WebP 并检查移动端。  
-第五步：重新检查首页和 Projects 页面是否还存在第三方商标风险。
+涓婁紶鍓嶈閫愬紶妫€鏌ワ細
+
+- 琛ｆ湇涓婃槸鍚﹀彧鏈?POXIOL
+- 闉嬪瓙涓婃槸鍚︽病鏈夌涓夋柟 Logo
+- 鑳屾櫙鏄惁娌℃湁鍝佺墝骞垮憡鐗?
+- 鏄惁娌℃湁鑱屼笟鐞冮槦闃熷窘
+- 鏄惁娌℃湁鍥藉闃熴€佽仈鐩熴€佽禌浜嬫爣蹇?
+- 浜鸿劯鏄惁娓呮櫚鑷劧
+- 鍥剧墖鏄惁鍜?POXIOL 榛戠櫧缁块鏍肩粺涓€
+- Alt Text 鏄惁濉啓
+- 绉诲姩绔鍒囨槸鍚︽甯?
+
+---
+
+## 10. 鎺ㄨ崘鎵ц椤哄簭
+
+绗竴姝ワ細鏇挎崲棣栭〉 Hero銆丱EM/ODM銆丆lub Partnership 涓夊紶鍥俱€?
+绗簩姝ワ細鏇挎崲 Projects 椤甸潰绡悆鍜岃冻鐞冩渚嬪浘銆?
+绗笁姝ワ細鏇存柊 Manufacturing 椤甸潰鍥涘紶宸ュ巶娴佺▼鍥俱€?
+绗洓姝ワ細鍘嬬缉 WebP 骞舵鏌ョЩ鍔ㄧ銆?
+绗簲姝ワ細閲嶆柊妫€鏌ラ椤靛拰 Projects 椤甸潰鏄惁杩樺瓨鍦ㄧ涓夋柟鍟嗘爣椋庨櫓銆?

@@ -111,5 +111,5 @@ Yes. POXIOL supports distributors with multi-sport categories such as basketball
 ## CTA
 Ready to develop your own teamwear collection?
 
-CTA: Start OEM/ODM Project  
+CTA: Start OEM/ODM Project
 CTA: Request Free Mockup

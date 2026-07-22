@@ -1,35 +1,35 @@
-# Google Search Console 提交流程
+# Google Search Console 鎻愪氦娴佺▼
 
-## 1. 添加资源
+## 1. 娣诲姞璧勬簮
 
-进入 Google Search Console，选择：
+杩涘叆 Google Search Console锛岄€夋嫨锛?
 
 - Property type: Domain
 - Domain: `poxiol.com`
 
-## 2. 验证域名
+## 2. 楠岃瘉鍩熷悕
 
-推荐使用 DNS TXT 验证。
+鎺ㄨ崘浣跨敤 DNS TXT 楠岃瘉銆?
 
-在 Cloudflare DNS 添加 Google 给出的 TXT 记录，等待验证通过。
+鍦?Cloudflare DNS 娣诲姞 Google 缁欏嚭鐨?TXT 璁板綍锛岀瓑寰呴獙璇侀€氳繃銆?
 
-## 3. 提交 Sitemap
+## 3. 鎻愪氦 Sitemap
 
-验证通过后进入：
+楠岃瘉閫氳繃鍚庤繘鍏ワ細
 
 ```txt
-Indexing → Sitemaps
+Indexing 鈫?Sitemaps
 ```
 
-提交：
+鎻愪氦锛?
 
 ```txt
 https://poxiol.com/sitemap.xml
 ```
 
-## 4. 手动请求收录核心页面
+## 4. 鎵嬪姩璇锋眰鏀跺綍鏍稿績椤甸潰
 
-优先检查并请求收录：
+浼樺厛妫€鏌ュ苟璇锋眰鏀跺綍锛?
 
 1. `https://poxiol.com/`
 2. `https://poxiol.com/free-mockup/`
@@ -38,14 +38,14 @@ https://poxiol.com/sitemap.xml
 5. `https://poxiol.com/factory/`
 6. `https://poxiol.com/oem-odm/`
 
-## 5. 上线后一周检查
+## 5. 涓婄嚎鍚庝竴鍛ㄦ鏌?
 
-- Page indexing 是否有未收录页面
-- Sitemap 是否成功读取
-- Core Web Vitals 是否异常
-- Mobile usability 是否异常
-- 页面是否出现 Duplicate without user-selected canonical
+- Page indexing 鏄惁鏈夋湭鏀跺綍椤甸潰
+- Sitemap 鏄惁鎴愬姛璇诲彇
+- Core Web Vitals 鏄惁寮傚父
+- Mobile usability 鏄惁寮傚父
+- 椤甸潰鏄惁鍑虹幇 Duplicate without user-selected canonical
 
-## 6. 每次新增页面后
+## 6. 姣忔鏂板椤甸潰鍚?
 
-更新 `public/sitemap.xml`，重新部署 Cloudflare Pages，然后在 Search Console 重新提交 sitemap。
+鏇存柊 `public/sitemap.xml`锛岄噸鏂伴儴缃?Cloudflare Pages锛岀劧鍚庡湪 Search Console 閲嶆柊鎻愪氦 sitemap銆?

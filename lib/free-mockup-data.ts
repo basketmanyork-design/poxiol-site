@@ -2,7 +2,7 @@ export const sportOptions = ["Basketball", "Soccer", "Baseball / Softball", "Run
 export const buyerTypeOptions = ["Club / Team", "School / Academy", "Tournament / Event", "Sportswear Brand", "Wholesaler / Distributor", "Corporate / Organization", "Custom Retailer", "Other"];
 export const quantityOptions = ["1-10 pcs", "11-50 pcs", "51-100 pcs", "101-500 pcs", "500+ pcs", "Not sure yet"];
 export const productOptions = ["Jersey", "Shorts", "Pants", "Socks", "Tracksuit", "Polo Shirt", "Running Singlet", "Jacket", "Full Set", "Other"];
-export const trustItems = ["MOQ 1", "1-2H Design Support", "Sample Production: 2–3 Days", "3-5 Day Production", "OEM/ODM Ready", "Quality Support"];
+export const trustItems = ["MOQ 1", "1-2H Design Support", "Sample Production: 2鈥? Days", "3-5 Day Production", "OEM/ODM Ready", "Quality Support"];
 export const requestTypes = [
   { title: "Team Uniforms", description: "Basketball, soccer, baseball, volleyball, hockey and more." },
   { title: "Running & Event Apparel", description: "Marathon vests, race shirts, staff uniforms and event teamwear." },

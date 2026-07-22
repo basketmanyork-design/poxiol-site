@@ -53,7 +53,7 @@ Inspection points may include:
 - Print compatibility
 - Fabric weight and hand feel
 
-This helps ensure the selected material matches the customer’s sport category and product requirements.
+This helps ensure the selected material matches the customer鈥檚 sport category and product requirements.
 
 ## Section 5: Cutting, Sewing and Assembly
 After fabric and print confirmation, garment panels are cut and assembled according to product specifications. Different sports require different fits and construction details. Basketball jerseys, soccer kits, baseball uniforms, running singlets and tracksuits each have unique construction needs.

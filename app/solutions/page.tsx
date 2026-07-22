@@ -58,7 +58,7 @@ export default function SolutionsPage() {
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="B2B Solutions" title="Custom Teamwear Programs Built for Your Needs" subtitle="POXIOL understands the different requirements for clubs, schools, and professional sportswear brands." dark center />
-          
+
           <div className="mt-24 space-y-32 text-left">
             {solutions.map((sol, i) => (
               <div key={sol.title} className={`grid gap-16 lg:grid-cols-2 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>

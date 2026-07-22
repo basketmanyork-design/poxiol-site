@@ -15,7 +15,7 @@ export const pseoPages: PSEOPage[] = [
     title: "How To Order Custom Basketball Uniforms | Complete Buying Guide | POXIOL",
     h1: "How To Order Custom Basketball Uniforms",
     intro: "Ordering custom basketball uniforms doesn't have to be complicated. This complete guide covers everything from selecting the right fabrics to final delivery, helping clubs, schools, and academies navigate the manufacturing process with ease.",
-    content: "The process starts with choosing the right fabric weight and type—typically a lightweight mesh or a smooth interlock polyester for maximum performance. Next, our design team works with you to create a professional 3D mockup, incorporating your team logos, colors, and player numbers. Once the design is approved, we move into sublimation printing, where your graphics are permanently infused into the fabric. After passing strict quality control, your uniforms are packed and shipped directly to your door. At POXIOL, we specialize in making this process fast, reliable, and affordable for teams worldwide.",
+    content: "The process starts with choosing the right fabric weight and type鈥攖ypically a lightweight mesh or a smooth interlock polyester for maximum performance. Next, our design team works with you to create a professional 3D mockup, incorporating your team logos, colors, and player numbers. Once the design is approved, we move into sublimation printing, where your graphics are permanently infused into the fabric. After passing strict quality control, your uniforms are packed and shipped directly to your door. At POXIOL, we specialize in making this process fast, reliable, and affordable for teams worldwide.",
     author: {
       name: "David Zhang",
       role: "Lead Manufacturing Specialist",
@@ -100,7 +100,7 @@ export const pseoPages: PSEOPage[] = [
     title: "How To Choose A Teamwear Manufacturer | Complete Buyer Guide | POXIOL",
     h1: "How To Choose A Teamwear Manufacturer",
     intro: "Finding the right manufacturing partner can be the difference between a successful season and a branding disaster. Use this checklist to evaluate potential suppliers for your team or brand.",
-    content: "When evaluating a manufacturer, look for direct-factory communication to avoid middleman costs and delays. Check their track record with similar sports—do they specialize in basketball, soccer, or baseball? Ask about their quality control process and whether they provide 3D mockups for design verification. It's also vital to confirm their shipping capabilities and turnaround times. POXIOL prides itself on transparency, technical expertise, and a global logistics network that serves clubs and brands in over 30 countries. Choosing a specialist manufacturer ensures your teamwear meets the highest standards of performance and style.",
+    content: "When evaluating a manufacturer, look for direct-factory communication to avoid middleman costs and delays. Check their track record with similar sports鈥攄o they specialize in basketball, soccer, or baseball? Ask about their quality control process and whether they provide 3D mockups for design verification. It's also vital to confirm their shipping capabilities and turnaround times. POXIOL prides itself on transparency, technical expertise, and a global logistics network that serves clubs and brands in over 30 countries. Choosing a specialist manufacturer ensures your teamwear meets the highest standards of performance and style.",
     author: {
       name: "David Zhang",
       role: "Lead Manufacturing Specialist",

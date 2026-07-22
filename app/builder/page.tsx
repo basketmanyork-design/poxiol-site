@@ -17,34 +17,34 @@ export default function BuilderPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl">
-          <SectionHeading 
-            eyebrow="Phase 3 Evolution" 
-            title="Interactive 3D Teamwear Builder" 
+          <SectionHeading
+            eyebrow="Phase 3 Evolution"
+            title="Interactive 3D Teamwear Builder"
             subtitle="The future of custom sportswear design is almost here. Our high-fidelity 3D customization engine is currently in final testing."
             dark
             center
           />
-          
+
           <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-12 backdrop-blur-xl">
             <h2 className="text-2xl font-black uppercase tracking-tight text-white">Upcoming Features</h2>
             <div className="mt-10 grid gap-8 md:grid-cols-3">
               <div>
-                <div className="text-3xl">🎨</div>
+                <div className="text-3xl">馃帹</div>
                 <h3 className="mt-4 font-black uppercase tracking-widest text-lime-400">Real-time Color</h3>
                 <p className="mt-2 text-sm text-neutral-400">Instant color changes on high-poly models.</p>
               </div>
               <div>
-                <div className="text-3xl">📐</div>
+                <div className="text-3xl">馃搻</div>
                 <h3 className="mt-4 font-black uppercase tracking-widest text-lime-400">Logo Placement</h3>
                 <p className="mt-2 text-sm text-neutral-400">Drag and drop your sponsor and team logos.</p>
               </div>
               <div>
-                <div className="text-3xl">☁️</div>
+                <div className="text-3xl">鈽侊笍</div>
                 <h3 className="mt-4 font-black uppercase tracking-widest text-lime-400">Cloud Roster</h3>
                 <p className="mt-2 text-sm text-neutral-400">Manage names and sizes directly in the builder.</p>
               </div>
             </div>
-            
+
             <div className="mt-16 border-t border-white/10 pt-10">
               <p className="text-lg font-bold text-white">Want to be the first to test it?</p>
               <div className="mt-8 flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">

@@ -13,7 +13,7 @@ export default function CustomPackagingPage() {
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">
           <SectionHeading eyebrow="Logistics" title="Custom Packaging Solutions" subtitle="We ensure your custom uniforms arrive in perfect condition and ready for distribution." dark center />
-          
+
           <div className="mt-20 grid gap-12 text-left md:grid-cols-2">
             <div className="p-8 rounded-[2.5rem] border border-white/10 bg-white/[0.03]">
               <h3 className="text-2xl font-black uppercase text-[#B6FF00]">Eco-Friendly Polybags</h3>

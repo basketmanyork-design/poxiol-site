@@ -34,7 +34,7 @@ Event suppliers can develop race apparel, staff uniforms, tournament shirts and 
 ## Section 3: OEM vs ODM Support
 
 ### OEM Support
-OEM is suitable when the buyer already has brand identity, product direction, artwork or specifications. POXIOL helps produce the teamwear according to the buyer’s design, customization and order requirements.
+OEM is suitable when the buyer already has brand identity, product direction, artwork or specifications. POXIOL helps produce the teamwear according to the buyer鈥檚 design, customization and order requirements.
 
 ### ODM Support
 ODM is suitable when the buyer needs product and design development support. POXIOL can help with original teamwear concepts, color direction, mockups, fabric suggestions, sample development and production planning.
@@ -90,7 +90,7 @@ Key advantages:
 - Multi-sport product capability
 - Free mockup support
 - MOQ 1 flexible custom orders
-- 2–3 Days Sample Production support
+- 2鈥? Days Sample Production support
 - 3-5 day production support for many custom orders
 - Sublimation printing experience
 - Private label and custom branding support

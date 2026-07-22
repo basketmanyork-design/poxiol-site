@@ -67,7 +67,7 @@ export default function TeamwearKnowledgeCenter() {
               {card.description}
             </p>
             <span className="mt-6 inline-flex text-sm font-bold tracking-wide text-neutral-950 group-hover:underline">
-              {card.button} →
+              {card.button} 鈫?
             </span>
           </Link>
         ))}

@@ -45,10 +45,10 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL prepared front and back mockups based on the academy's colors and number layout. After sample confirmation, bulk production was arranged with size-grouped packing.",
     fabricPrinting: "The project used lightweight performance fabric with sublimation printing for long-lasting color and clear number graphics.",
     productionTimeline: [
-      "Day 1–3: Design mockup and layout confirmation",
-      "Day 4–8: Sample preparation and review",
-      "Day 9–18: Bulk production",
-      "Day 19–21: QC, packing and shipment preparation"
+      "Day 1鈥?: Design mockup and layout confirmation",
+      "Day 4鈥?: Sample preparation and review",
+      "Day 9鈥?8: Bulk production",
+      "Day 19鈥?1: QC, packing and shipment preparation"
     ],
     qualityControl: "The QC process checked fabric surface, sublimation print clarity, number alignment, stitching strength, size measurement and packing labels.",
     packingDelivery: "Uniforms were sorted by size and packed for easier team distribution after delivery.",
@@ -88,10 +88,10 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL prepared mockups for both kit versions and helped the buyer review color balance, logo placement and number visibility.",
     fabricPrinting: "The kits used breathable performance fabric and sublimation printing for durable team graphics.",
     productionTimeline: [
-      "Day 1–3: Mockup development",
-      "Day 4–7: Sample confirmation",
-      "Day 8–21: Bulk production",
-      "Day 22–25: Inspection, packing and shipping preparation"
+      "Day 1鈥?: Mockup development",
+      "Day 4鈥?: Sample confirmation",
+      "Day 8鈥?1: Bulk production",
+      "Day 22鈥?5: Inspection, packing and shipping preparation"
     ],
     qualityControl: "Checks included color consistency, sponsor placement, number visibility, stitching, size measurement and carton packing list.",
     packingDelivery: "The order was packed by size and kit type to support easier club distribution.",
@@ -131,10 +131,10 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL created a unified design system and adapted it across basketball, volleyball and training wear. Packing was organized by sport, size and team group.",
     fabricPrinting: "Different fabric options were matched to each product category, with sublimation printing used for clear graphics and color consistency.",
     productionTimeline: [
-      "Day 1–5: Multi-sport design mockup",
-      "Day 6–10: Sample and size confirmation",
-      "Day 11–24: Bulk production",
-      "Day 25–28: QC, packing and delivery preparation"
+      "Day 1鈥?: Multi-sport design mockup",
+      "Day 6鈥?0: Sample and size confirmation",
+      "Day 11鈥?4: Bulk production",
+      "Day 25鈥?8: QC, packing and delivery preparation"
     ],
     qualityControl: "QC checked color consistency across sports, print position, stitching, size measurement, quantity by team and packing separation.",
     packingDelivery: "Items were sorted by sport category, size and team group for easier distribution.",
@@ -172,9 +172,9 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL confirmed branding and color layout for event staff and participants.",
     fabricPrinting: "Lightweight mesh for staff and training performance fabric for participants.",
     productionTimeline: [
-      "Day 1–5: Prep and design confirmation",
-      "Day 6–25: Bulk production",
-      "Day 26–30: QC and export packing"
+      "Day 1鈥?: Prep and design confirmation",
+      "Day 6鈥?5: Bulk production",
+      "Day 26鈥?0: QC and export packing"
     ],
     qualityControl: "Checking print quality, size breakdown and event-day distribution labels.",
     packingDelivery: "Packed by staff/participant category and size.",
@@ -212,9 +212,9 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL created design templates for the distributor's catalog.",
     fabricPrinting: "Durable sublimation inks on mesh and interlock fabrics.",
     productionTimeline: [
-      "Day 1–5: Catalog prep",
-      "Day 6–30: Continuous production cycles",
-      "Day 31–35: QC and consolidated shipping"
+      "Day 1鈥?: Catalog prep",
+      "Day 6鈥?0: Continuous production cycles",
+      "Day 31鈥?5: QC and consolidated shipping"
     ],
     qualityControl: "Batch-level QC for color consistency and stitching durability.",
     packingDelivery: "Bulk packing for ocean or air freight.",

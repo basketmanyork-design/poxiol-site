@@ -1,46 +1,46 @@
-# POXIOL On-Page SEO 检查清单
+# POXIOL On-Page SEO 妫€鏌ユ竻鍗?
 
-## 每个页面必须检查
+## 姣忎釜椤甸潰蹇呴』妫€鏌?
 
-- [ ] 只有一个 H1
-- [ ] Meta Title 不超过约 60 字符
-- [ ] Meta Description 清楚说明页面价值
-- [ ] URL 使用英文小写和连字符
-- [ ] 页面首屏出现主要关键词
-- [ ] 图片有描述性 alt
-- [ ] 页面内至少有 2-4 个相关内链
-- [ ] 页面有指向 `/free-mockup/` 的 CTA
-- [ ] FAQ 不要完全重复，分类页可微调
-- [ ] 不出现未经授权的球队、联赛、品牌名称
+- [ ] 鍙湁涓€涓?H1
+- [ ] Meta Title 涓嶈秴杩囩害 60 瀛楃
+- [ ] Meta Description 娓呮璇存槑椤甸潰浠峰€?
+- [ ] URL 浣跨敤鑻辨枃灏忓啓鍜岃繛瀛楃
+- [ ] 椤甸潰棣栧睆鍑虹幇涓昏鍏抽敭璇?
+- [ ] 鍥剧墖鏈夋弿杩版€?alt
+- [ ] 椤甸潰鍐呰嚦灏戞湁 2-4 涓浉鍏冲唴閾?
+- [ ] 椤甸潰鏈夋寚鍚?`/free-mockup/` 鐨?CTA
+- [ ] FAQ 涓嶈瀹屽叏閲嶅锛屽垎绫婚〉鍙井璋?
+- [ ] 涓嶅嚭鐜版湭缁忔巿鏉冪殑鐞冮槦銆佽仈璧涖€佸搧鐗屽悕绉?
 
-## 首页优化重点
+## 棣栭〉浼樺寲閲嶇偣
 
-- [ ] 首页首屏清楚说明 POXIOL 是 custom teamwear manufacturer
-- [ ] Hero CTA 指向 `/free-mockup/`
-- [ ] 运动分类都能点击到对应页面
-- [ ] Footer 链接核心分类页
+- [ ] 棣栭〉棣栧睆娓呮璇存槑 POXIOL 鏄?custom teamwear manufacturer
+- [ ] Hero CTA 鎸囧悜 `/free-mockup/`
+- [ ] 杩愬姩鍒嗙被閮借兘鐐瑰嚮鍒板搴旈〉闈?
+- [ ] Footer 閾炬帴鏍稿績鍒嗙被椤?
 
-## 分类页优化重点
+## 鍒嗙被椤典紭鍖栭噸鐐?
 
-- [ ] H1 包含主关键词
-- [ ] Product Types 至少 4-6 个
-- [ ] Custom Options 至少 4 项
-- [ ] Buyer Types 至少 4 类
-- [ ] FAQ 至少 6 个
-- [ ] 关联分类页内链至少 3 个
+- [ ] H1 鍖呭惈涓诲叧閿瘝
+- [ ] Product Types 鑷冲皯 4-6 涓?
+- [ ] Custom Options 鑷冲皯 4 椤?
+- [ ] Buyer Types 鑷冲皯 4 绫?
+- [ ] FAQ 鑷冲皯 6 涓?
+- [ ] 鍏宠仈鍒嗙被椤靛唴閾捐嚦灏?3 涓?
 
-## Free Mockup 页面优化重点
+## Free Mockup 椤甸潰浼樺寲閲嶇偣
 
-- [ ] 表单可提交
-- [ ] 表单成功提示清楚
-- [ ] 说明客户会收到什么
-- [ ] 说明适合哪些买家
-- [ ] 有替代联系方式：Email / WhatsApp
+- [ ] 琛ㄥ崟鍙彁浜?
+- [ ] 琛ㄥ崟鎴愬姛鎻愮ず娓呮
+- [ ] 璇存槑瀹㈡埛浼氭敹鍒颁粈涔?
+- [ ] 璇存槑閫傚悎鍝簺涔板
+- [ ] 鏈夋浛浠ｈ仈绯绘柟寮忥細Email / WhatsApp
 
-## 品牌安全检查
+## 鍝佺墝瀹夊叏妫€鏌?
 
-- [ ] 全站使用 POXIOL
-- [ ] 无 Basketman 残留
-- [ ] 无 NBA / NFL / NHL / FIFA / UEFA 等未经授权暗示
-- [ ] 无 Nike / Adidas / Puma 等第三方品牌标识
-- [ ] AI 图片无明显拼写错误或异常文字
+- [ ] 鍏ㄧ珯浣跨敤 POXIOL
+- [ ] 鏃?Basketman 娈嬬暀
+- [ ] 鏃?NBA / NFL / NHL / FIFA / UEFA 绛夋湭缁忔巿鏉冩殫绀?
+- [ ] 鏃?Nike / Adidas / Puma 绛夌涓夋柟鍝佺墝鏍囪瘑
+- [ ] AI 鍥剧墖鏃犳槑鏄炬嫾鍐欓敊璇垨寮傚父鏂囧瓧

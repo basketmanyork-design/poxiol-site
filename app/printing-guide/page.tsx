@@ -58,18 +58,18 @@ export default function PrintingGuidePage() {
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <StructuredData data={[printingGuideSchema]} />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20 border-b border-white/5">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading 
-            eyebrow="Decoration Technology" 
-            title="Sportswear Printing Guide For Custom Teamwear" 
+          <SectionHeading
+            eyebrow="Decoration Technology"
+            title="Sportswear Printing Guide For Custom Teamwear"
             subtitle="Choosing the right printing method is essential for performance, durability, branding and appearance. Explore how we bring your custom designs to life."
             dark
             center
           />
-          
+
           <div className="mt-20 prose prose-invert prose-lime max-w-none text-lg leading-relaxed text-neutral-400">
             <p>
               This guide explains the most common printing methods used in custom teamwear manufacturing and helps buyers select the best option for their project. Whether you need full-color sublimation for basketball jerseys or premium embroidery for club polos, POXIOL provides high-fidelity results that last.
@@ -89,7 +89,7 @@ export default function PrintingGuidePage() {
                 <p className="mt-4 text-sm text-neutral-400 leading-relaxed">
                   {method.description}
                 </p>
-                
+
                 <div className="mt-8">
                   <h4 className="text-[10px] font-black uppercase tracking-widest text-neutral-500">Advantages</h4>
                   <ul className="mt-4 space-y-2">
@@ -157,7 +157,7 @@ export default function PrintingGuidePage() {
               </div>
             ))}
           </div>
-          
+
           <div className="mt-24 rounded-3xl bg-lime-400 p-10 text-center text-black md:p-20">
             <h2 className="text-4xl font-black uppercase tracking-tight md:text-5xl">Bring Your Design to Life</h2>
             <p className="mt-6 text-xl font-bold">Not sure which method is right for your team? Our production experts can guide you based on your design and budget.</p>

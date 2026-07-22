@@ -98,5 +98,5 @@ POXIOL checks key details such as print quality, stitching, sizing, quantity, pa
 ## CTA
 Ready to evaluate POXIOL as your custom teamwear production partner?
 
-CTA: Request a Free Mockup  
+CTA: Request a Free Mockup
 CTA: Contact Factory Support

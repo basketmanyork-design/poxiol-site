@@ -100,5 +100,5 @@ A great uniform is more than a jersey. It represents the team, the school, the e
 ## CTA
 Whether you are preparing for a new season, launching a teamwear brand, expanding a wholesale catalog or planning an event apparel program, POXIOL can help you start with a clear custom teamwear solution.
 
-CTA: Get Free Mockup  
+CTA: Get Free Mockup
 CTA: Contact POXIOL

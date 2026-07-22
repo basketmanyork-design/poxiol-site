@@ -1,16 +1,16 @@
-# Bing Webmaster Tools 提交流程
+# Bing Webmaster Tools 鎻愪氦娴佺▼
 
-## 1. 进入 Bing Webmaster Tools
+## 1. 杩涘叆 Bing Webmaster Tools
 
-使用 Microsoft 账号登录。
+浣跨敤 Microsoft 璐﹀彿鐧诲綍銆?
 
-## 2. 导入 Google Search Console 或手动添加
+## 2. 瀵煎叆 Google Search Console 鎴栨墜鍔ㄦ坊鍔?
 
-推荐直接从 Google Search Console 导入 `poxiol.com`。
+鎺ㄨ崘鐩存帴浠?Google Search Console 瀵煎叆 `poxiol.com`銆?
 
-## 3. 提交 Sitemap
+## 3. 鎻愪氦 Sitemap
 
-提交：
+鎻愪氦锛?
 
 ```txt
 https://poxiol.com/sitemap.xml
@@ -18,7 +18,7 @@ https://poxiol.com/sitemap.xml
 
 ## 4. URL Inspection
 
-优先检查：
+浼樺厛妫€鏌ワ細
 
 - `https://poxiol.com/`
 - `https://poxiol.com/free-mockup/`
@@ -26,6 +26,6 @@ https://poxiol.com/sitemap.xml
 - `https://poxiol.com/custom-soccer-kits/`
 - `https://poxiol.com/oem-odm/`
 
-## 5. 为什么要做 Bing
+## 5. 涓轰粈涔堣鍋?Bing
 
-Bing 会影响 Microsoft Edge、Copilot、部分海外 B2B 搜索场景，对 POXIOL 的英文 B2B 站有价值。
+Bing 浼氬奖鍝?Microsoft Edge銆丆opilot銆侀儴鍒嗘捣澶?B2B 鎼滅储鍦烘櫙锛屽 POXIOL 鐨勮嫳鏂?B2B 绔欐湁浠峰€笺€?

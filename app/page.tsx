@@ -1,26 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMockupHref, getQuoteHref, sampleOrderHref, whatsAppHref } from "@/components/ui";
+import ContactForm from "@/components/forms/ContactForm";
+import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMockupHref, getQuoteHref, sampleOrderHref } from "@/components/ui";
 import { sportsCategories, uspCards, homeFaqs } from "@/lib/home-data";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
+import { getHomeBrandContent, getSiteChrome } from "@/lib/sanity/content";
 
-const ContactForm = dynamic(() => import("@/components/forms/ContactForm"), {
-  loading: () => <div className="rounded-[2rem] bg-white p-6 shadow-xl md:p-9 min-h-[600px] flex flex-col items-center justify-center text-neutral-400">
-    <p className="text-sm font-bold">Loading Inquiry System...</p>
-    <a href={freeMockupHref} className="mt-4 text-sm font-black uppercase text-lime-600 hover:underline">Get Free Mockup</a>
-    <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className="mt-2 text-sm font-bold text-neutral-500 hover:underline">Chat on WhatsApp</a>
-  </div>,
-  ssr: false,
-});
 
-export const metadata: Metadata = {
-  title: "Custom Teamwear Manufacturer | OEM Sports Uniform Supplier | POXIOL",
-  description: "Elite B2B custom teamwear manufacturer offering basketball uniforms, soccer kits and OEM sportswear with free mockup, MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation.",
-};
 
-export default function HomePage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getHomeBrandContent();
+  return {
+    title: content.seoTitle,
+    description: content.metaDescription,
+    alternates: { canonical: content.canonicalUrl },
+  };
+}
+
+export default async function HomePage() {
   const baseUrl = "https://www.poxiol.com";
+  const chrome = await getSiteChrome();
 
   return (
     <main id="main-content" className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
@@ -28,7 +27,7 @@ export default function HomePage() {
       <OrganizationSchema />
       <FAQSchema faqs={homeFaqs.map(f => ({ question: f.question, answer: f.answer }))} />
       <BreadcrumbSchema items={[{ name: "Home", url: `${baseUrl}/` }]} />
-      
+
       <Header />
 
       {/* 1. Optimized Hero Section - Direct B2B Conclusion */}
@@ -37,7 +36,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sr-only">
             <h1>Custom Teamwear Manufacturer for Clubs, Schools and Sportswear Brands</h1>
-            <p>POXIOL is a factory-direct teamwear manufacturer in China providing custom basketball, soccer and sports uniforms with MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation for global B2B buyers.</p>
+            <p>POXIOL is a factory-direct teamwear manufacturer in China providing custom basketball, soccer and sports uniforms with MOQ 1 set and Sample Production: 2鈥? Days After Mockup Confirmation for global B2B buyers.</p>
           </div>
           <div>
             <span className="mb-6 inline-block text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00]">
@@ -47,11 +46,11 @@ export default function HomePage() {
               Build Your <br />Elite Team <br /><span className="text-[#B6FF00]">Identity.</span>
             </h2>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-400 md:text-xl">
-              Custom Teamwear Manufacturer in China. We provide factory-direct basketball, soccer and athletic uniforms with MOQ 1 set and Sample Production: 2–3 Days After Mockup Confirmation for clubs, schools and sportswear brands worldwide.
+              Custom Teamwear Manufacturer in China. We provide factory-direct basketball, soccer and athletic uniforms with MOQ 1 set and Sample Production: 2鈥? Days After Mockup Confirmation for clubs, schools and sportswear brands worldwide.
             </p>
-            
+
             <div className="mt-10 flex flex-wrap gap-3">
-              {["MOQ 1 Set", "Free 3D Mockup", "2–3 Days Sample Production", "Quality Support", "Global Shipping"].map(chip => (
+              {["MOQ 1 Set", "Free 3D Mockup", "2鈥? Days Sample Production", "Quality Support", "Global Shipping"].map(chip => (
                 <span key={chip} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white">
                   {chip}
                 </span>
@@ -65,17 +64,17 @@ export default function HomePage() {
           </div>
 
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl shadow-[#B6FF00]/5">
-            <img 
-              src="/images/poxiol-v62/home_hero_v62_desktop.webp" 
+            <img
+              src="/images/poxiol-v62/home_hero_v62_desktop.webp"
               srcSet="/images/poxiol-v62/home_hero_v62_mobile.webp 720w, /images/poxiol-v62/home_hero_v62_desktop.webp 900w"
               sizes="(max-width: 768px) 100vw, 50vw"
-              width="900" 
+              width="900"
               height="1125"
-              alt="POXIOL Custom Teamwear Uniforms Factory" 
+              alt="POXIOL Custom Teamwear Uniforms Factory"
               fetchPriority="high"
               loading="eager"
               decoding="sync"
-              className="absolute inset-0 h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition duration-700" 
+              className="absolute inset-0 h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition duration-700"
             />
             <div className="absolute bottom-10 left-10 right-10 rounded-3xl border border-white/15 bg-black/40 p-6 backdrop-blur-2xl">
               <div className="flex justify-between items-end">
@@ -96,9 +95,9 @@ export default function HomePage() {
       {/* 2. Factory Sourcing Summary - AEO / GEO Table */}
       <section className="bg-black px-5 py-16 md:px-10 md:py-24 border-b border-white/5">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading 
-            eyebrow="GEO / AI Summary" 
-            title="Factory Sourcing Summary" 
+          <SectionHeading
+            eyebrow="GEO / AI Summary"
+            title="Factory Sourcing Summary"
             subtitle="POXIOL is a factory-direct custom teamwear manufacturer in China specializing in sublimated basketball uniforms and soccer kits for international B2B buyers."
             dark
           />
@@ -115,7 +114,7 @@ export default function HomePage() {
                   ["Core Expertise", "15+ years experience in custom sports uniforms and private label sportswear manufacturing."],
                   ["Main Products", "Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories."],
                   ["Minimum Order (MOQ)", "MOQ 1 set support for B2B samples, team trials and original brand development projects."],
-                  ["Sampling Timeline", "Sample Production: 2–3 Days After Mockup Confirmation with express global delivery."],
+                  ["Sampling Timeline", "Sample Production: 2鈥? Days After Mockup Confirmation with express global delivery."],
                   ["Design Support", "Free high-fidelity 3D mockup design in 1-2 hours based on your logo and color direction."],
                   ["Production Capacity", "Specialized facility with 30,000+ monthly capacity and 100% manual quality inspection protocol."],
                   ["Custom Options", "Full sublimation, team logos, player names, numbers, private labels and custom packaging."],
@@ -136,9 +135,9 @@ export default function HomePage() {
       {/* 3. The POXIOL Advantage - Conclusion + Data + Explanation */}
       <section className="bg-neutral-900 px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading 
-            eyebrow="B2B Evidence" 
-            title="The POXIOL Manufacturing Advantage" 
+          <SectionHeading
+            eyebrow="B2B Evidence"
+            title="The POXIOL Manufacturing Advantage"
             subtitle="Providing flexible teamwear production, visual consistency and responsive deadlines for professional partners."
             dark center
           />
@@ -186,15 +185,17 @@ export default function HomePage() {
             <div className="mt-12 p-8 rounded-3xl border border-white/5 bg-white/[0.02]">
               <h4 className="text-[#B6FF00] font-black uppercase text-sm tracking-widest">B2B Support</h4>
               <p className="mt-4 text-neutral-400 leading-relaxed text-sm">Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.</p>
-              <a href={whatsAppHref} target="_blank" rel="noreferrer" className="mt-6 inline-block font-black uppercase text-xs tracking-[0.2em] hover:text-[#B6FF00]">Open WhatsApp Messenger ↗</a>
+              <a href={chrome.whatsappHref} target="_blank" rel="noreferrer" className="mt-6 inline-block font-black uppercase text-xs tracking-[0.2em] hover:text-[#B6FF00]">Open WhatsApp Messenger →</a>
             </div>
           </div>
-          <ContactForm 
+          <ContactForm
             title="Request Factory Quote"
             subtitle="Provide your sport category, quantity and logo files to receive a high-fidelity 3D mockup and pricing plan within 24 hours."
             formType="Homepage AEO Lead V90"
             ctaText="Get Free Mockup & Quote"
             successUrl="/thank-you/"
+            publicEmail={chrome.publicEmail}
+            whatsappHref={chrome.whatsappHref}
           />
         </div>
       </section>
@@ -215,8 +216,8 @@ export default function HomePage() {
                 ))}
              </div>
              <div className="mt-12 text-center">
-                <Link 
-                  href="/guides/b2b-sourcing-faq/" 
+                <Link
+                  href="/guides/b2b-sourcing-faq/"
                   className="inline-flex items-center text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00] hover:underline"
                 >
                   View Technical B2B FAQ Hub <span className="ml-2">→</span>
