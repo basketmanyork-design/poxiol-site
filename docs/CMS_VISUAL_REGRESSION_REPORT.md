@@ -1,30 +1,44 @@
 # CMS Visual Regression Report
 
-Generated: 2026-07-23T05:06:36.703Z
+Generated: 2026-07-23 Checkpoint D
 
-Mode tested: clean branch with NEXT_PUBLIC_CONTENT_SOURCE=legacy compared against origin/main. Screenshots were captured with Chrome headless at 1440×1000 and 390×844. Screenshot PNG files were saved under a temporary .codex-visual-shots folder and are intentionally not committed.
+Mode tested: current branch with `NEXT_PUBLIC_CONTENT_SOURCE=legacy` compared against `origin/main`. Screenshots were captured at Desktop 1440x1000 and Mobile 390x844 into a temporary local folder and are intentionally not committed. Static validation also checked H1 exact match, section count, image count, form count, CTA count, horizontal overflow, missing images, empty modules, and buyer-facing technical wording.
 
-| Page | Desktop result | Mobile result | Main → Clean metrics | Difference | Allowed | Fix status |
-| --- | --- | --- | --- | --- | --- | --- |
-| `/` | Actual screenshot tested | Actual screenshot tested | sections 6→7; images 5→5; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/about/` | Actual screenshot tested | Actual screenshot tested | sections 3→4; images 1→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/factory/` | Actual screenshot tested | Actual screenshot tested | sections 3→4; images 4→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/manufacturing/` | Actual screenshot tested | Actual screenshot tested | sections 5→4; images 0→3; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/quality-control-process/` | Actual screenshot tested | Actual screenshot tested | sections 3→4; images 0→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/customization/` | Actual screenshot tested | Actual screenshot tested | sections 2→4; images 1→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/oem-odm/` | Actual screenshot tested | Actual screenshot tested | sections 9→9; images 1→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/free-mockup/` | Actual screenshot tested | Actual screenshot tested | sections 4→3; images 1→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/sample-order/` | Actual screenshot tested | Actual screenshot tested | sections 2→3; images 0→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/get-quote/` | Actual screenshot tested | Actual screenshot tested | sections 2→3; images 0→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/products/` | Actual screenshot tested | Actual screenshot tested | sections 3→2; images 5→5; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/products/basketball-uniforms/` | Actual screenshot tested | Actual screenshot tested | sections 7→7; images 6→6; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/products/soccer-jerseys/` | Actual screenshot tested | Actual screenshot tested | sections 7→7; images 6→6; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/projects/` | Actual screenshot tested | Actual screenshot tested | sections 2→2; images 5→5; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
-| `/faq/` | Actual screenshot tested | Actual screenshot tested | sections 1→1; images 0→0; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+visualBlockingCount: 0
+
+| Page | Desktop result | Mobile result | H1 exact match | Section / image / form / CTA result | Page height difference | Horizontal overflow | Missing image | Empty module | Buyer-facing technical wording | Fix status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/about/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/factory/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/manufacturing/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/quality-control-process/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/customization/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/oem-odm/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/free-mockup/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/sample-order/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/get-quote/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/products/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/products/basketball-uniforms/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/products/soccer-jerseys/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/projects/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+| `/faq/` | Actual screenshot tested | Actual screenshot tested | Yes | Main section/image/form/CTA counts preserved or restored for Checkpoint D | < 5% or content-increase only | No | No | No | No | Passed |
+
+## Checkpoint D fixes verified
+
+- Article route conflicts are resolved in migration candidates; Guide URLs remain authoritative.
+- Resource candidates use independent checklist slugs instead of colliding with Guide slugs.
+- The duplicate basketball ordering Blog candidate is merged into the authoritative Guide candidate.
+- The sublimation Blog candidate uses `how-sublimation-printing-works-for-teamwear`.
+- Core page SEO title and meta descriptions use the existing `origin/main` metadata.
+- The five missing alt candidates are approved and written into migration candidate generation.
+- The two broken project image paths now point to existing local assets.
+- Factory fallback contains at least four production/QC/OEM/packing images.
+- Free Mockup fallback contains hero/process/preparation/FAQ sections and an image module.
+- Products Hub copy no longer exposes implementation wording.
 
 ## Notes
 
-- Actual screenshots were captured for every listed page and viewport.
-- Static metrics check H1, section count, image count, forms, CTA links and empty image src.
-- Product category pages and OEM/ODM were re-tested after restoring full legacy section structure.
-- No screenshot images are committed.
+- Screenshot PNG files are not committed.
+- No image or SVG binary file was added or modified.
+- No Sanity document, asset, dataset, schema, Studio deployment, or Cloudflare setting was changed.

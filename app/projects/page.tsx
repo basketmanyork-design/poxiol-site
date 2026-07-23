@@ -12,7 +12,7 @@ export default async function ProjectsPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Success Stories" title="Featured Projects & Case Studies" subtitle="Case studies are managed in Sanity CMS with country, product, QC, packaging and solution fields." dark center />
+          <SectionHeading eyebrow="Success Stories" title="Featured Projects & Case Studies" subtitle="Review POXIOL teamwear programs for clubs, academies, schools, events and distributors, including QC, packing and production solutions." dark center />
           <div className="mt-20 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
               <Link key={project.slug} href={`/projects/${project.slug}/`} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition hover:border-lime-400/30">

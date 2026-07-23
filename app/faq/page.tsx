@@ -16,7 +16,7 @@ export default async function FAQPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading eyebrow="FAQ Center" title="Frequently Asked Questions" subtitle="FAQ categories and answers are managed in Sanity CMS with legacy fallback." dark center />
+          <SectionHeading eyebrow="FAQ Center" title="Frequently Asked Questions" subtitle="Practical answers for custom teamwear sourcing, samples, MOQ, production, QC and global delivery." dark center />
           <div className="mt-20 space-y-16">
             {faqGroups.map((category) => (
               <div key={category.category}>

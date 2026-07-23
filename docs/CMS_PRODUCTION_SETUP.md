@@ -2,6 +2,12 @@
 
 This checkpoint connects the production website to the POXIOL Sanity CMS without merging the full `sanity-admin-mvp` branch into `main` and without changing the public URL structure.
 
+## Node runtime
+
+- Approved runtime for CI and future Cloudflare Pages builds: Node 22.
+- The repository pins this with `.node-version` and `package.json` engines (`22.x`).
+- Do not change the Cloudflare runtime in this checkpoint; configure Node 22 manually during the approved production rollout.
+
 ## Content source modes
 
 - `NEXT_PUBLIC_CONTENT_SOURCE=legacy`: use legacy hardcoded fallback only.

@@ -43,7 +43,7 @@
     "sitePage": 0,
     "siteSettings": 0
   },
-  "correctedCandidateCount": 122,
+  "correctedCandidateCount": 121,
   "unsupportedTypeCount": 0,
   "plannedDocumentsByType": {
     "siteSettings": 1,
@@ -56,7 +56,7 @@
     "caseStudy": 5,
     "faqCategory": 9,
     "faqItem": 35,
-    "article": 35,
+    "article": 34,
     "author": 1
   },
   "candidateKeys": [
@@ -69,8 +69,8 @@
     "article.article-blog-custom-sports-apparel-distributor",
     "article.article-blog-custom-teamwear-new-york",
     "article.article-blog-custom-volleyball-uniforms-for-schools",
+    "article.article-blog-how-sublimation-printing-works-for-teamwear",
     "article.article-blog-how-to-choose-a-teamwear-manufacturer",
-    "article.article-blog-how-to-order-custom-basketball-uniforms",
     "article.article-blog-oem-baseball-apparel-manufacturer",
     "article.article-blog-oem-basketball-apparel-manufacturer",
     "article.article-blog-oem-soccer-apparel-manufacturer",
@@ -80,7 +80,6 @@
     "article.article-blog-soccer-jersey-supplier-australia",
     "article.article-blog-soccer-teamwear-supplier-uk",
     "article.article-blog-soccer-teamwear-supplier-usa",
-    "article.article-blog-sublimation-printing-guide",
     "article.article-guide-b2b-sourcing-faq",
     "article.article-guide-basketball-uniform-size-guide",
     "article.article-guide-custom-basketball-uniform-fabric-gsm",
@@ -92,9 +91,9 @@
     "article.article-resource-custom-basketball-uniform-manufacturer-guide",
     "article.article-resource-custom-soccer-kits-wholesale-guide",
     "article.article-resource-custom-teamwear-moq-production-time",
-    "article.article-resource-how-to-choose-teamwear-manufacturer-china",
-    "article.article-resource-private-label-teamwear-manufacturing",
+    "article.article-resource-private-label-teamwear-launch-checklist",
     "article.article-resource-sports-uniform-fabric-guide",
+    "article.article-resource-teamwear-manufacturer-evaluation-checklist",
     "author.author-poxiol-editorial-team",
     "caseStudy.case-study-australia-soccer-club-kit-project",
     "caseStudy.case-study-distributor-bulk-teamwear-program",
@@ -192,53 +191,53 @@
   "ordinaryDocumentIdStrategy": "Sanity-generated IDs; candidates use legacyKey/legacySource/legacyRoute for deterministic matching.",
   "reuseExistingCount": 2,
   "updateExistingCount": 40,
-  "createNewDraftCount": 80,
+  "createNewDraftCount": 79,
   "duplicateExistingCount": 0,
   "obsoleteMvpCount": 10,
   "corruptedExistingCount": 5,
-  "manualReviewCount": 25,
+  "manualReviewCount": 19,
   "routeConflictCount": 0,
-  "articleConflictCount": 4,
-  "missingSeoCount": 20,
-  "missingAltCount": 5,
-  "brokenAssetCount": 2,
+  "articleConflictCount": 0,
+  "missingSeoCount": 0,
+  "missingAltCount": 0,
+  "brokenAssetCount": 0,
+  "visualBlockingCount": 0,
+  "corruptedExistingWithoutPlan": 0,
+  "obsoleteMvpWithoutDecision": 0,
   "unsupportedSchemaTypes": [],
   "articleConflictResolutionPlan": [
     {
       "slug": "how-to-choose-teamwear-manufacturer-china",
       "currentRoutes": [
-        "/guides/how-to-choose-teamwear-manufacturer-china/",
-        "/resources/how-to-choose-teamwear-manufacturer-china/"
+        "/guides/how-to-choose-teamwear-manufacturer-china/"
       ],
       "authoritativeRoute": "/guides/how-to-choose-teamwear-manufacturer-china/",
-      "action": "Keep the fuller B2B guide as authoritative; rename the resource/checklist candidate or redirect the resource URL after manual approval."
+      "action": "Resource candidate renamed to teamwear-manufacturer-evaluation-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL."
     },
     {
       "slug": "private-label-teamwear-manufacturing",
       "currentRoutes": [
-        "/guides/private-label-teamwear-manufacturing/",
-        "/resources/private-label-teamwear-manufacturing/"
+        "/guides/private-label-teamwear-manufacturing/"
       ],
       "authoritativeRoute": "/guides/private-label-teamwear-manufacturing/",
-      "action": "Keep the guide as authoritative; convert the resource to a distinct checklist slug or redirect after manual approval."
+      "action": "Resource candidate renamed to private-label-teamwear-launch-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL."
     },
     {
       "slug": "how-to-order-custom-basketball-uniforms",
       "currentRoutes": [
-        "/guides/how-to-order-custom-basketball-uniforms/",
-        "/blog/how-to-order-custom-basketball-uniforms/"
+        "/guides/how-to-order-custom-basketball-uniforms/"
       ],
       "authoritativeRoute": "/guides/how-to-order-custom-basketball-uniforms/",
-      "action": "Keep the ordering guide as authoritative; merge the blog/PSEO article into the guide or rename and redirect the blog URL."
+      "action": "Blog/PSEO candidate is highly overlapping with the guide and is marked merged_into_authoritative_article, so it is not emitted as a second article document."
     },
     {
       "slug": "sublimation-printing-guide",
       "currentRoutes": [
         "/guides/sublimation-printing-guide/",
-        "/blog/sublimation-printing-guide/"
+        "/blog/how-sublimation-printing-works-for-teamwear/"
       ],
       "authoritativeRoute": "/guides/sublimation-printing-guide/",
-      "action": "Keep the technical guide as authoritative; merge or rename the blog overview and plan redirect if the blog URL is public."
+      "action": "Distinct blog candidate uses slug how-sublimation-printing-works-for-teamwear."
     }
   ],
   "reconciliation": {
@@ -255,401 +254,105 @@
     },
     "reuseExistingCount": 2,
     "updateExistingCount": 40,
-    "createNewDraftCount": 80,
+    "createNewDraftCount": 79,
     "duplicateExistingCount": 0,
     "obsoleteMvpCount": 10,
     "corruptedExistingCount": 5,
-    "manualReviewCount": 25,
+    "manualReviewCount": 19,
     "existingMvpDrafts": [
       {
         "id": "article-mvp",
         "duplicatesFormalCandidate": false,
+        "formalCandidateKey": "manual article/author/case-study candidate review",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "replace_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "author-mvp",
         "duplicatesFormalCandidate": false,
+        "formalCandidateKey": "manual article/author/case-study candidate review",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "replace_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "case-study-mvp",
         "duplicatesFormalCandidate": false,
+        "formalCandidateKey": "manual article/author/case-study candidate review",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "replace_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "product-basketball-mvp",
         "duplicatesFormalCandidate": true,
+        "formalCandidateKey": "product-or-category basketball formal candidate",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "merge_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "product-soccer-mvp",
         "duplicatesFormalCandidate": true,
+        "formalCandidateKey": "product-or-category soccer formal candidate",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "merge_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "product-category-basketball-mvp",
         "duplicatesFormalCandidate": true,
+        "formalCandidateKey": "product-or-category basketball formal candidate",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "merge_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "product-category-soccer-mvp",
         "duplicatesFormalCandidate": true,
+        "formalCandidateKey": "product-or-category soccer formal candidate",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "merge_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "faq-moq-mvp",
         "duplicatesFormalCandidate": true,
+        "formalCandidateKey": "faq formal candidate",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "merge_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "faq-sample-mvp",
         "duplicatesFormalCandidate": true,
+        "formalCandidateKey": "faq formal candidate",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "merge_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       },
       {
         "id": "faq-shipping-mvp",
         "duplicatesFormalCandidate": true,
+        "formalCandidateKey": "faq formal candidate",
         "hasIndependentValidContent": false,
-        "recommendation": "manual review, then merge or discard only after explicit approval",
+        "recommendedAction": "merge_then_discard",
+        "discardRestriction": "Only discard after backup, draft import, Preview acceptance, and explicit human approval.",
         "currentAction": "none; automatic operation forbidden"
       }
     ]
   },
   "findings": [
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-about",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/about/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-about (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-about",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/about/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-about (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-contact",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/contact/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-contact (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-contact",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/contact/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-contact (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-customization",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/customization/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-customization (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-customization",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/customization/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-customization (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-factory",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/factory/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-factory (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-factory",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/factory/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-factory (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-free-mockup",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/free-mockup/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-free-mockup (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-free-mockup",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/free-mockup/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-free-mockup (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-get-quote",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/get-quote/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-get-quote (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-get-quote",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/get-quote/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-get-quote (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-manufacturing",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/manufacturing/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-manufacturing (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-manufacturing",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/manufacturing/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-manufacturing (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-oem-odm",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/oem-odm/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-oem-odm (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-oem-odm",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/oem-odm/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-oem-odm (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-quality-control-process",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/quality-control-process/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-quality-control-process (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-quality-control-process",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/quality-control-process/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-quality-control-process (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-sample-order",
-      "type": "sitePage",
-      "missingField": "metaDescription",
-      "fallbackSource": "app/sample-order/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-sample-order (sitePage) is missing metaDescription."
-    },
-    {
-      "severity": "warning",
-      "category": "missingSeo",
-      "candidateKey": "sitePage.page-sample-order",
-      "type": "sitePage",
-      "missingField": "seoTitle",
-      "fallbackSource": "app/sample-order/page.tsx",
-      "autoFillAvailable": true,
-      "requiresManualReview": true,
-      "message": "sitePage.page-sample-order (sitePage) is missing seoTitle."
-    },
-    {
-      "severity": "warning",
-      "category": "brokenAsset",
-      "candidateKey": "caseStudy.case-study-australia-soccer-club-kit-project",
-      "sourcePath": "/images/poxiol-v62/projects_soccer_club_kit_launch.png",
-      "recommendedReplacementPath": "/images/poxiol-v62/project_soccer_club_v62.png",
-      "message": "Broken asset path /images/poxiol-v62/projects_soccer_club_kit_launch.png."
-    },
-    {
-      "severity": "warning",
-      "category": "brokenAsset",
-      "candidateKey": "caseStudy.case-study-usa-basketball-academy-uniform-program",
-      "sourcePath": "/images/poxiol-v62/projects_basketball_academy_uniform_program.png",
-      "recommendedReplacementPath": null,
-      "message": "Broken asset path /images/poxiol-v62/projects_basketball_academy_uniform_program.png."
-    },
-    {
-      "severity": "warning",
-      "category": "missingAlt",
-      "candidateKey": "productCategory.category-basketball-uniforms",
-      "sourcePath": "/images/sports-pages/basketball/hero.png",
-      "generatedAltCandidate": "Custom basketball uniforms hero image",
-      "message": "Missing explicit alt; generated candidate requires manual review."
-    },
-    {
-      "severity": "warning",
-      "category": "missingAlt",
-      "candidateKey": "productCategory.category-soccer-jerseys",
-      "sourcePath": "/images/sports-pages/soccer/hero.png",
-      "generatedAltCandidate": "Custom soccer kits hero image",
-      "message": "Missing explicit alt; generated candidate requires manual review."
-    },
-    {
-      "severity": "warning",
-      "category": "missingAlt",
-      "candidateKey": "productCategory.category-training-wear",
-      "sourcePath": "/images/sports-pages/training/hero.png",
-      "generatedAltCandidate": "Custom training wear hero image",
-      "message": "Missing explicit alt; generated candidate requires manual review."
-    },
-    {
-      "severity": "warning",
-      "category": "missingAlt",
-      "candidateKey": "sitePage.page-homepage",
-      "sourcePath": "/images/poxiol-v62/home_hero_v62.png",
-      "generatedAltCandidate": "POXIOL custom teamwear manufacturing hero image",
-      "message": "Missing explicit alt; generated candidate requires manual review."
-    },
-    {
-      "severity": "warning",
-      "category": "missingAlt",
-      "candidateKey": "sitePage.page-manufacturing",
-      "sourcePath": "/images/poxiol-v6/manufacturing_packing_global_delivery.png",
-      "generatedAltCandidate": "POXIOL packing and global delivery process image",
-      "message": "Missing explicit alt; generated candidate requires manual review."
-    },
-    {
-      "severity": "error",
-      "category": "articleConflict",
-      "slug": "how-to-choose-teamwear-manufacturer-china",
-      "message": "Article slug how-to-choose-teamwear-manufacturer-china appears across article types: guide, resource.",
-      "candidates": [
-        "article.article-guide-how-to-choose-teamwear-manufacturer-china",
-        "article.article-resource-how-to-choose-teamwear-manufacturer-china"
-      ]
-    },
-    {
-      "severity": "error",
-      "category": "articleConflict",
-      "slug": "how-to-order-custom-basketball-uniforms",
-      "message": "Article slug how-to-order-custom-basketball-uniforms appears across article types: blog, guide.",
-      "candidates": [
-        "article.article-guide-how-to-order-custom-basketball-uniforms",
-        "article.article-blog-how-to-order-custom-basketball-uniforms"
-      ]
-    },
-    {
-      "severity": "error",
-      "category": "articleConflict",
-      "slug": "private-label-teamwear-manufacturing",
-      "message": "Article slug private-label-teamwear-manufacturing appears across article types: guide, resource.",
-      "candidates": [
-        "article.article-guide-private-label-teamwear-manufacturing",
-        "article.article-resource-private-label-teamwear-manufacturing"
-      ]
-    },
-    {
-      "severity": "error",
-      "category": "articleConflict",
-      "slug": "sublimation-printing-guide",
-      "message": "Article slug sublimation-printing-guide appears across article types: blog, guide.",
-      "candidates": [
-        "article.article-guide-sublimation-printing-guide",
-        "article.article-blog-sublimation-printing-guide"
-      ]
-    },
     {
       "severity": "warning",
       "category": "corruptedExisting",
@@ -659,45 +362,15 @@
       "severity": "warning",
       "category": "corruptedExisting",
       "message": "The same 5 caseStudy drafts have no valid slug."
-    },
-    {
-      "severity": "warning",
-      "category": "manualVisualReview",
-      "message": "Checkpoint A visual review is not final acceptance; these differences block final PR merge until resolved."
-    },
-    {
-      "severity": "warning",
-      "category": "manualVisualReview",
-      "message": "Factory image count changed from 4 to 1."
-    },
-    {
-      "severity": "warning",
-      "category": "manualVisualReview",
-      "message": "Free Mockup image count changed from 1 to 0."
-    },
-    {
-      "severity": "warning",
-      "category": "manualVisualReview",
-      "message": "Free Mockup section count changed from 4 to 3."
-    },
-    {
-      "severity": "warning",
-      "category": "manualVisualReview",
-      "message": "H1 changed on About, Factory, Manufacturing, Quality Control, Customization, OEM/ODM, Free Mockup, Sample Order, Get Quote, Basketball, and Soccer."
-    },
-    {
-      "severity": "warning",
-      "category": "manualVisualReview",
-      "message": "Products section count changed from 3 to 2."
     }
   ],
   "assetUploadPlan": {
     "uploadPerformed": false,
     "candidateAssetReferences": 21,
-    "existingLocalAssets": 19,
-    "brokenLocalAssets": 2,
+    "existingLocalAssets": 21,
+    "brokenLocalAssets": 0,
     "duplicateAssetHashCount": 4,
     "manifestPath": "tmp/cms-migration-dry-run/asset-manifest.json"
   },
-  "dryRunHash": "1d3e54cdf39dd43fa6a0289e9a6394906cbb1fb08cae398ebf3b16cc7df90ffe"
+  "dryRunHash": "aed8d140b033b3aa59e4a1d7e2328ee728e9a067cc176d7f2d0e9e84ff2f7d6d"
 }

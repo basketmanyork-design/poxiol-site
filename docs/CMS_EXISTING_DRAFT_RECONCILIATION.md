@@ -40,11 +40,13 @@ Published business document count: 0
 
 - reuse_existing_draft: 2
 - update_existing_draft: 40
-- create_new_draft: 80
+- create_new_draft: 79
 - duplicate_existing: 0
 - obsolete_mvp_candidate: 10
 - corrupted_existing: 5
-- manual_review: 25
+- corruptedExistingWithoutPlan: 0
+- obsoleteMvpWithoutDecision: 0
+- manual_review: 19
 
 ## Existing Data Problems
 
@@ -52,18 +54,28 @@ Published business document count: 0
 - The same 5 caseStudy drafts are missing valid slug values.
 - These are marked only. No draft was discarded, patched, deleted, or published.
 
+## Corrupted Case Study Draft Plan
+
+- Corrupted draft group 1: formal candidate `caseStudy.usa-basketball-academy-uniform-program`; correct title `USA Basketball Academy Uniform Program`; correct slug `usa-basketball-academy-uniform-program`; classification `update_existing_draft`; future action: fix mojibake title and missing slug during approved draft migration only; current action: no Patch.
+- Corrupted draft group 2: formal candidate `caseStudy.australia-soccer-club-home-away-kit-launch`; correct title `Australia Soccer Club Home and Away Kit Launch`; correct slug `australia-soccer-club-home-away-kit-launch`; classification `update_existing_draft`; future action: fix mojibake title and missing slug during approved draft migration only; current action: no Patch.
+- Corrupted draft group 3: formal candidate `caseStudy.canada-school-multi-sport-teamwear-rollout`; correct title `Canada School Multi-sport Teamwear Rollout`; correct slug `canada-school-multi-sport-teamwear-rollout`; classification `update_existing_draft`; future action: fix mojibake title and missing slug during approved draft migration only; current action: no Patch.
+- Corrupted draft group 4: formal candidate `caseStudy.middle-east-club-event-fast-turnaround-program`; correct title `Middle East Club Event Fast-turnaround Program`; correct slug `middle-east-club-event-fast-turnaround-program`; classification `update_existing_draft`; future action: fix mojibake title and missing slug during approved draft migration only; current action: no Patch.
+- Corrupted draft group 5: formal candidate `caseStudy.distributor-private-label-teamwear-supply-program`; correct title `Distributor Private Label Teamwear Supply Program`; correct slug `distributor-private-label-teamwear-supply-program`; classification `update_existing_draft`; future action: fix mojibake title and missing slug during approved draft migration only; current action: no Patch.
+
+corruptedExistingWithoutPlan: 0
+
 ## MVP Draft Review
 
-- `article-mvp`: duplicates formal candidate: false; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `author-mvp`: duplicates formal candidate: false; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `case-study-mvp`: duplicates formal candidate: false; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `product-basketball-mvp`: duplicates formal candidate: true; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `product-soccer-mvp`: duplicates formal candidate: true; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `product-category-basketball-mvp`: duplicates formal candidate: true; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `product-category-soccer-mvp`: duplicates formal candidate: true; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `faq-moq-mvp`: duplicates formal candidate: true; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `faq-sample-mvp`: duplicates formal candidate: true; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
-- `faq-shipping-mvp`: duplicates formal candidate: true; independent valid content: false; recommendation: manual review, then merge or discard only after explicit approval; current action: none; automatic operation forbidden
+- `article-mvp`: replaced by formal candidate key: manual article/author/case-study candidate review; duplicates formal candidate: false; independent valid content: false; recommended action: replace_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `author-mvp`: replaced by formal candidate key: manual article/author/case-study candidate review; duplicates formal candidate: false; independent valid content: false; recommended action: replace_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `case-study-mvp`: replaced by formal candidate key: manual article/author/case-study candidate review; duplicates formal candidate: false; independent valid content: false; recommended action: replace_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `product-basketball-mvp`: replaced by formal candidate key: product-or-category basketball formal candidate; duplicates formal candidate: true; independent valid content: false; recommended action: merge_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `product-soccer-mvp`: replaced by formal candidate key: product-or-category soccer formal candidate; duplicates formal candidate: true; independent valid content: false; recommended action: merge_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `product-category-basketball-mvp`: replaced by formal candidate key: product-or-category basketball formal candidate; duplicates formal candidate: true; independent valid content: false; recommended action: merge_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `product-category-soccer-mvp`: replaced by formal candidate key: product-or-category soccer formal candidate; duplicates formal candidate: true; independent valid content: false; recommended action: merge_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `faq-moq-mvp`: replaced by formal candidate key: faq formal candidate; duplicates formal candidate: true; independent valid content: false; recommended action: merge_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `faq-sample-mvp`: replaced by formal candidate key: faq formal candidate; duplicates formal candidate: true; independent valid content: false; recommended action: merge_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
+- `faq-shipping-mvp`: replaced by formal candidate key: faq formal candidate; duplicates formal candidate: true; independent valid content: false; recommended action: merge_then_discard; restriction: Only discard after backup, draft import, Preview acceptance, and explicit human approval.; current action: none; automatic operation forbidden
 
 ## Schema Registry Status
 

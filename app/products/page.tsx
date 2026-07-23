@@ -6,7 +6,7 @@ import { getProductCategories } from "@/lib/sanity/content";
 
 export const metadata: Metadata = {
   title: "Performance Teamwear Products | Custom Sports Uniforms | POXIOL",
-  description: "Explore POXIOL's full range of custom teamwear products managed through Sanity CMS with legacy fallback.",
+  description: "Explore POXIOL's full range of custom teamwear products. Factory-direct basketball uniforms, soccer kits and training wear with high-color sublimation and 2-3 days sample production.",
 };
 
 const productsFaqs = [
@@ -33,7 +33,7 @@ export default async function ProductsPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Products Matrix" title="Performance Teamwear Categories" subtitle="Manage product categories, images, SEO, sorting and publish status from Sanity CMS." dark center />
+          <SectionHeading eyebrow="Products Matrix" title="Performance Teamwear Categories" subtitle="Custom Teamwear Products Factory Direct. We provide high-color sublimated uniforms for sport categories with MOQ 1 set and global B2B logistics support." dark center />
           <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
               <Link key={category.slug} href={`/products/${category.slug}/`} className="group relative aspect-square overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 shadow-2xl">
@@ -51,7 +51,7 @@ export default async function ProductsPage() {
       </section>
       <section className="bg-neutral-950 px-5 py-24 md:px-10 text-center">
         <h2 className="text-3xl font-black uppercase md:text-5xl">Wholesale & Team Packages</h2>
-        <p className="mt-6 text-neutral-400 max-w-2xl mx-auto text-lg leading-relaxed">Product names, category images, SEO and publish status now resolve through CMS with legacy fallback.</p>
+        <p className="mt-6 text-neutral-400 max-w-2xl mx-auto text-lg leading-relaxed">Custom Teamwear Wholesale for Brands. We provide tiered pricing and dedicated B2B project management for large-scale team uniform programs and private label collections.</p>
         <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
           <SecondaryButton href="/get-quote/">Get Wholesale Quote</SecondaryButton>
           <SecondaryButton href="/free-mockup/">Request Free Mockup</SecondaryButton>

@@ -59,6 +59,9 @@ jobs:
       - name: Schema coverage validation
         run: node scripts/check-cms-schema-coverage.mjs
 
+      - name: Content blocker validation
+        run: node scripts/check-cms-content-blockers.mjs
+
       - name: Legacy static build
         run: npm run build
         env:

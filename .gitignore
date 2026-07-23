@@ -15,3 +15,4 @@ migration-output
 .codex-cms-migration-dry-run/
 tmp/cms-migration-dry-run/
 .npm-cache/
+tmp/
