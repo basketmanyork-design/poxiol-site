@@ -8,18 +8,18 @@ type Props = {params: {slug: string}}
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  const articles = await getArticles()
+  const articles = await getArticles('blog')
   return articles.map((article) => ({slug: article.slug}))
 }
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const article = await getArticle(params.slug)
-  if (!article) return {title: 'Not Found'}
-  return metadataFromArticle({...article, articleType: 'blog'})
+  if (!article || article.articleType !== 'blog') return {title: 'Not Found'}
+  return metadataFromArticle(article)
 }
 
 export default async function BlogArticlePage({params}: Props) {
   const article = await getArticle(params.slug)
-  if (!article) notFound()
-  return <ArticleTemplate article={{...article, articleType: 'blog'}} />
+  if (!article || article.articleType !== 'blog') notFound()
+  return <ArticleTemplate article={article} />
 }

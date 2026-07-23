@@ -1,6 +1,7 @@
 import 'server-only'
 
 import type {SportsPageData} from '@/lib/sports-pages'
+import {sportsCategories, uspCards, homeFaqs} from '@/lib/home-data'
 import {
   legacyArticles,
   legacyFaqGroups,
@@ -14,6 +15,8 @@ import type {
   CmsArticle,
   CmsCta,
   CmsFaqGroup,
+  CmsHomeContent,
+  CmsHomeCategory,
   CmsImage,
   CmsLink,
   CmsPage,
@@ -25,7 +28,8 @@ import type {
   CmsSeo,
   CmsSiteChrome,
 } from '@/lib/cms/types'
-import {sanityFetch} from './client'
+import {contentSource, sanityFetch} from './client'
+import {isDocumentVisible} from '@/lib/cms/visibility'
 import {resolveContent} from './fallback'
 import {cardImageUrl, heroImageUrl} from './image'
 import {
@@ -36,6 +40,8 @@ import {
   faqItemsQuery,
   footerQuery,
   navigationQuery,
+  procurementStandardsQuery,
+  productBySlugQuery,
   productCategoriesQuery,
   productCategoryBySlugQuery,
   productsByCategoryQuery,
@@ -69,6 +75,15 @@ type SanitySiteSettings = {
 
 type SanityNav = {headerNavigation?: SanityLink[]}
 type SanityFooter = {footerColumns?: Array<{title?: string; links?: SanityLink[]}>; copyright?: string}
+
+type SanityProcurementStandards = {
+  defaultMOQ?: string
+  sampleTime?: string
+  bulkProductionTime?: string
+  mockupTime?: string
+  shippingNotes?: string
+  qualityPromise?: string
+}
 
 type SanityPageSection = {
   sectionType?: CmsPageSectionType
@@ -117,9 +132,19 @@ type SanityProduct = {
   productName?: string
   slug?: string
   categorySlug?: string
+  categoryTitle?: string
   shortDescription?: string
   fullDescription?: string
   primaryImage?: SanityImage
+  detailImages?: SanityImage[]
+  productionImages?: SanityImage[]
+  qcImages?: SanityImage[]
+  packagingImages?: SanityImage[]
+  fabricOptions?: string[]
+  customizationOptions?: string[]
+  procurementOverride?: {overriddenMOQ?: string; overriddenSampleTime?: string; overrideReason?: string}
+  relatedFaqs?: SanityFaq[]
+  featured?: boolean
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
@@ -175,9 +200,6 @@ type SanityArticle = {
   seo?: Seo
 }
 
-function isActive(status?: string) {
-  return status !== 'unpublished'
-}
 
 function textFromPortable(value: PortableTextBlock[] | string | undefined): string {
   if (!value) return ''
@@ -205,6 +227,45 @@ function optionalImage(source: SanityImage | undefined, fallback?: CmsImage, siz
   return imageFrom(source, fallback || {url: '', alt: ''}, size)
 }
 
+
+function imageListFrom(sources: SanityImage[] | undefined, fallbacks: CmsImage[] = []): CmsImage[] {
+  return (sources || [])
+    .map((image, index) => optionalImage(image, fallbacks[index], 'card'))
+    .filter(Boolean) as CmsImage[]
+}
+
+function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, index = 0): CmsProduct | null {
+  if (!product.slug || !product.productName || !isDocumentVisible(product.publishStatus, contentSource)) return null
+  const primaryImage = optionalImage(product.primaryImage, fallback?.image, 'hero')
+  const fallbackDetailImages = fallback?.detailImages?.length ? fallback.detailImages : fallback?.image ? [fallback.image] : []
+  return {
+    slug: product.slug,
+    title: product.productName,
+    categorySlug: product.categorySlug || fallback?.categorySlug,
+    categoryTitle: product.categoryTitle || fallback?.categoryTitle,
+    description: product.shortDescription || fallback?.description || product.fullDescription || product.productName,
+    fullDescription: product.fullDescription || fallback?.fullDescription || product.shortDescription || fallback?.description || '',
+    image: primaryImage,
+    detailImages: imageListFrom(product.detailImages, fallbackDetailImages),
+    productionImages: imageListFrom(product.productionImages, fallback?.productionImages),
+    qcImages: imageListFrom(product.qcImages, fallback?.qcImages),
+    packagingImages: imageListFrom(product.packagingImages, fallback?.packagingImages),
+    fabricOptions: product.fabricOptions?.length ? product.fabricOptions : fallback?.fabricOptions || [],
+    customizationOptions: product.customizationOptions?.length ? product.customizationOptions : fallback?.customizationOptions || [],
+    procurementOverride: product.procurementOverride
+      ? {
+          moq: product.procurementOverride.overriddenMOQ || fallback?.procurementOverride?.moq,
+          sampleTime: product.procurementOverride.overriddenSampleTime || fallback?.procurementOverride?.sampleTime,
+          reason: product.procurementOverride.overrideReason || fallback?.procurementOverride?.reason,
+        }
+      : fallback?.procurementOverride,
+    relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: textFromPortable(faq.answer)})) : fallback?.relatedFaqs || [],
+    featured: product.featured ?? fallback?.featured ?? false,
+    seo: seoFrom(product.seo, fallback?.seo || {title: `${product.productName} | POXIOL`, description: product.shortDescription || product.fullDescription || product.productName}),
+    displayOrder: product.displayOrder ?? fallback?.displayOrder ?? index,
+    active: true,
+  }
+}
 function seoFrom(seo: Seo | undefined, fallback: CmsSeo): CmsSeo {
   return {
     title: seo?.seoTitle || fallback.title,
@@ -335,7 +396,7 @@ export async function getSitePage(key: string): Promise<CmsPage> {
   const legacy = legacyPages.find((page) => page.key === key) || legacyPages[0]
   return resolveContent(async () => {
     const page = await sanityFetch<SanityPage>(sitePageByKeyQuery, {key})
-    if (!page || !isActive(page.publishStatus)) return null
+    if (!page || !isDocumentVisible(page.publishStatus, contentSource)) return null
     return {
       key,
       slug: page.slug || legacy.slug,
@@ -356,7 +417,7 @@ export async function getProductCategories(): Promise<CmsProductCategory[]> {
   return resolveContent(async () => {
     const categories = await sanityFetch<SanityCategory[]>(productCategoriesQuery)
     const mapped = (categories || [])
-      .filter((category) => category.slug && category.categoryName && isActive(category.publishStatus))
+      .filter((category) => category.slug && category.categoryName && isDocumentVisible(category.publishStatus, contentSource))
       .map((category, index) => {
         const legacy = legacyProductCategories.find((item) => item.slug === category.slug) || legacyProductCategories[index] || legacyProductCategories[0]
         return {
@@ -378,7 +439,7 @@ export async function getProductCategory(slug: string): Promise<CmsProductCatego
   const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
   return resolveContent(async () => {
     const category = await sanityFetch<SanityCategory>(productCategoryBySlugQuery, {slug})
-    if (!category?.slug || !category.categoryName || !isActive(category.publishStatus)) return null
+    if (!category?.slug || !category.categoryName || !isDocumentVisible(category.publishStatus, contentSource)) return null
     return {
       slug: category.slug,
       title: category.categoryName,
@@ -397,26 +458,25 @@ export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> 
   return resolveContent(async () => {
     const products = await sanityFetch<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
     const mapped = (products || [])
-      .filter((product) => product.slug && product.productName && isActive(product.publishStatus))
-      .map((product, index) => ({
-        slug: product.slug as string,
-        title: product.productName as string,
-        categorySlug: product.categorySlug,
-        description: product.shortDescription || product.fullDescription || '',
-        image: product.primaryImage ? imageFrom(product.primaryImage, {url: '/images/poxiol-v62/products_teamwear_matrix.png', alt: product.productName as string}) : undefined,
-        seo: seoFrom(product.seo, {title: `${product.productName} | POXIOL`, description: product.shortDescription || product.fullDescription || product.productName as string}),
-        displayOrder: product.displayOrder ?? index,
-        active: true,
-      }))
+      .map((product, index) => mapProduct(product, legacyProducts.find((item) => item.slug === product.slug), index))
+      .filter(Boolean) as CmsProduct[]
     return mapped.length ? mapped : null
   }, legacy)
+}
+
+export async function getProduct(slug: string): Promise<CmsProduct | null> {
+  const fallback = legacyProducts.find((product) => product.slug === slug) || null
+  return resolveContent(async () => {
+    const product = await sanityFetch<SanityProduct>(productBySlugQuery, {slug})
+    return product ? mapProduct(product, fallback || undefined) : null
+  }, fallback)
 }
 
 export async function getProjects(): Promise<CmsProject[]> {
   return resolveContent(async () => {
     const projects = await sanityFetch<SanityCaseStudy[]>(caseStudiesQuery)
     const mapped = (projects || [])
-      .filter((project) => project.slug && (project.projectTitle || project.title) && isActive(project.publishStatus))
+      .filter((project) => project.slug && (project.projectTitle || project.title) && isDocumentVisible(project.publishStatus, contentSource))
       .map((project, index) => {
         const title = project.projectTitle || project.title || 'POXIOL Project'
         const fallback = legacyProjects.find((item) => item.slug === project.slug) || legacyProjects[index] || legacyProjects[0]
@@ -442,7 +502,7 @@ export async function getProject(slug: string): Promise<CmsProject | null> {
   const fallback = legacyProjects.find((project) => project.slug === slug) || null
   return resolveContent(async () => {
     const project = await sanityFetch<SanityCaseStudy>(caseStudyBySlugQuery, {slug})
-    if (!project?.slug || !isActive(project.publishStatus)) return null
+    if (!project?.slug || !isDocumentVisible(project.publishStatus, contentSource)) return null
     const title = project.projectTitle || project.title || fallback?.title || 'POXIOL Project'
     return {
       slug: project.slug,
@@ -465,7 +525,7 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
     const faqs = await sanityFetch<SanityFaq[]>(faqItemsQuery)
     const groups = new Map<string, CmsFaqGroup>()
     for (const faq of faqs || []) {
-      if (!faq.question || !isActive(faq.publishStatus)) continue
+      if (!faq.question || !isDocumentVisible(faq.publishStatus, contentSource)) continue
       const category = faq.category || 'General'
       const group = groups.get(category) || {category, items: []}
       group.items.push({question: faq.question, answer: textFromPortable(faq.answer)})
@@ -477,7 +537,7 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
 }
 
 function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, index = 0): CmsArticle | null {
-  if (!article.slug || !article.title || !isActive(article.publishStatus)) return null
+  if (!article.slug || !article.title || !isDocumentVisible(article.publishStatus, contentSource)) return null
   const articleType = article.articleType === 'blog' || article.articleType === 'resource' ? article.articleType : 'guide'
   const body = textFromPortable(article.body)
   return {
@@ -528,17 +588,17 @@ export async function getArticle(slug: string): Promise<CmsArticle | null> {
   }, fallback)
 }
 
-export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData> {
-  const category = await getProductCategory('basketball-uniforms')
-  const products = await getProducts('basketball-uniforms')
-  const faqs = await getFaqGroups()
+export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData> {
+  const categorySlug = legacyData.slug.replace(/^products\//, '')
+  const [category, products, faqs] = await Promise.all([getProductCategory(categorySlug), getProducts(categorySlug), getFaqGroups()])
   const flatFaqs = faqs.flatMap((group) => group.items).slice(0, 8)
 
   if (!category) return legacyData
+  const productCards = products.map((product) => ({title: product.title, description: product.description}))
   const designs = products
     .filter((product) => product.image)
     .slice(0, 3)
-    .map((product) => ({title: product.title, description: product.description, image: product.image?.url || legacyData.heroImage}))
+    .map((product) => ({title: product.title, description: product.description, image: product.image?.url || legacyData.heroImage, href: `/products/${product.slug}/`}))
 
   return {
     ...legacyData,
@@ -549,9 +609,87 @@ export async function getBasketballPreviewPage(legacyData: SportsPageData): Prom
     heroText: category.description || legacyData.heroText,
     heroImage: category.image.url || legacyData.heroImage,
     primaryKeyword: category.title || legacyData.primaryKeyword,
-    productTypes: products.length ? products.map((product) => ({title: product.title, description: product.description})) : legacyData.productTypes,
-    features: products.length ? products.slice(0, 4).map((product) => ({title: product.title, description: product.description})) : legacyData.features,
+    productTypes: productCards.length ? productCards : legacyData.productTypes,
+    features: productCards.length ? productCards.slice(0, 4) : legacyData.features,
     designs: designs.length ? designs : legacyData.designs,
     faqs: flatFaqs.length ? flatFaqs : legacyData.faqs,
+  }
+}
+
+export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData> {
+  return getCmsSportsPageBySlug(legacyData)
+}
+
+function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
+  return [
+    {item: 'Core Expertise', capability: '15+ years experience in custom sports uniforms and private label sportswear manufacturing.'},
+    {item: 'Main Products', capability: 'Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories.'},
+    {item: 'Minimum Order (MOQ)', capability: 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
+    {item: 'Sampling Timeline', capability: 'Sample Production: 2–5 Days After Mockup Confirmation with express global delivery.'},
+    {item: 'Design Support', capability: 'Free high-fidelity 3D mockup design in 1-2 hours based on your logo and color direction.'},
+    {item: 'Production Capacity', capability: 'Specialized facility with 30,000+ monthly capacity and 100% manual quality inspection protocol.'},
+    {item: 'Custom Options', capability: 'Full sublimation, team logos, player names, numbers, private labels and custom packaging.'},
+    {item: 'Compliance & QC', capability: 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
+    {item: 'Export Markets', capability: 'Reliable door-to-door logistics serving clubs and brands in 50+ countries including USA, EU, AU.'},
+  ]
+}
+
+function homeCategoriesFromLegacy(): CmsHomeCategory[] {
+  return sportsCategories.map((sport) => ({
+    title: sport.title,
+    description: sport.description,
+    cta: sport.cta,
+    href: sport.href,
+    image: {url: sport.image, alt: `POXIOL ${sport.title} Custom Manufacturer`},
+  }))
+}
+
+export async function getHomepageContent(): Promise<CmsHomeContent> {
+  const [chrome, page, categories, faqGroups, procurement] = await Promise.all([
+    getSiteChrome(),
+    getSitePage('homepage'),
+    getProductCategories(),
+    getFaqGroups(),
+    sanityFetch<SanityProcurementStandards>(procurementStandardsQuery),
+  ])
+  const cmsCategories = categories.slice(0, 12).map((category) => ({
+    title: category.title,
+    description: category.description,
+    cta: `View ${category.title}`,
+    href: `/products/${category.slug}/`,
+    image: category.image,
+  }))
+  const faqs = faqGroups.flatMap((group) => group.items).slice(0, 7)
+  const procurementRows = procurement
+    ? [
+        {item: 'Minimum Order (MOQ)', capability: procurement.defaultMOQ || 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
+        {item: 'Sampling Timeline', capability: procurement.sampleTime || 'Sample Production: 2–5 Days After Mockup Confirmation with express global delivery.'},
+        {item: 'Mockup Time', capability: procurement.mockupTime || 'Free high-fidelity 3D mockup design based on your logo and color direction.'},
+        {item: 'Bulk Production', capability: procurement.bulkProductionTime || 'Production capacity and timing are confirmed against quantity, deadline and customization complexity.'},
+        {item: 'Compliance & QC', capability: procurement.qualityPromise || 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
+        {item: 'Shipping Notes', capability: procurement.shippingNotes || 'Reliable door-to-door logistics serving global clubs, schools and brands.'},
+      ]
+    : legacyHomeRows()
+
+  return {
+    brandName: chrome.brandName,
+    siteUrl: chrome.siteUrl,
+    heroEyebrow: page.eyebrow || 'Elite B2B Teamwear Partner',
+    heroHeading: page.heading || 'Build Your Elite Team Identity.',
+    heroDescription: page.description,
+    heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
+    heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
+    heroSecondaryCta: {label: 'Get Factory Quote', href: '/get-quote/'},
+    trustChips: page.sections.find((section) => section.type === 'evidenceGrid')?.facts?.length ? page.sections.find((section) => section.type === 'evidenceGrid')?.facts || [] : ['MOQ 1 Set', 'Free 3D Mockup', '2–5 Days Sample Production', 'Quality Support', 'Global Shipping'],
+    sourcingRows: procurementRows,
+    uspCards,
+    categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),
+    inquiryTitle: page.sections.find((section) => section.type === 'cta')?.title || 'Build Your Teamwear Project',
+    inquiryDescription: page.sections.find((section) => section.type === 'cta')?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
+    inquirySupportTitle: 'B2B Support',
+    inquirySupportDescription: 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
+    faqs: faqs.length ? faqs : homeFaqs,
+    bottomCta: page.bottomCta,
+    seo: page.seo,
   }
 }

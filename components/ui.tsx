@@ -56,7 +56,7 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/95 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-10 xl:px-20">
-        <Link href="/" className="inline-flex items-center gap-3 text-2xl font-black tracking-tight text-white uppercase">{chrome.logo ? <img src={chrome.logo.url} alt={chrome.logo.alt} className="h-9 w-auto" /> : null}<span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span></Link>
+        <Link href="/" className="inline-flex min-w-[112px] items-center gap-3 text-2xl font-black tracking-tight text-white uppercase">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="128" height="36" className="h-9 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
         <nav className="hidden items-center gap-7 lg:flex">
           {chrome.headerNavigation.map((item) => (
             <Link key={`${item.label}-${item.href}`} href={item.href} className="text-sm font-bold text-white/80 transition hover:text-[#B6FF00]">
@@ -79,7 +79,7 @@ export async function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
-            <Link href="/" className="text-3xl font-black uppercase tracking-tight">{chrome.brandName}<span className="text-[#B6FF00]">.</span></Link>
+            <Link href="/" className="inline-flex min-h-10 items-center text-3xl font-black uppercase tracking-tight">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="150" height="42" className="h-10 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
             <p className="mt-6 max-w-xs leading-8 text-neutral-400">Elite custom teamwear manufacturer specializing in high-performance uniforms for clubs, schools, brands and events worldwide.</p>
             <div className="mt-8 flex flex-col gap-3">
               <Link href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</Link>

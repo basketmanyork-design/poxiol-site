@@ -105,8 +105,23 @@ export type CmsProduct = {
   slug: string
   title: string
   categorySlug?: string
+  categoryTitle?: string
   description: string
+  fullDescription?: string
   image?: CmsImage
+  detailImages: CmsImage[]
+  productionImages: CmsImage[]
+  qcImages: CmsImage[]
+  packagingImages: CmsImage[]
+  fabricOptions: string[]
+  customizationOptions: string[]
+  procurementOverride?: {
+    moq?: string
+    sampleTime?: string
+    reason?: string
+  }
+  relatedFaqs: CmsFaqItem[]
+  featured: boolean
   seo: CmsSeo
   displayOrder: number
   active: boolean
@@ -155,4 +170,34 @@ export type CmsArticle = {
   sections: Array<{title: string; content: string | string[]}>
   seo: CmsSeo
   displayOrder: number
+}
+
+export type CmsHomeCategory = {
+  title: string
+  description: string
+  cta: string
+  href: string
+  image: CmsImage
+}
+
+export type CmsHomeContent = {
+  brandName: string
+  siteUrl: string
+  heroEyebrow: string
+  heroHeading: string
+  heroDescription: string
+  heroImage: CmsImage
+  heroPrimaryCta: CmsCta
+  heroSecondaryCta: CmsCta
+  trustChips: string[]
+  sourcingRows: Array<{item: string; capability: string}>
+  uspCards: Array<{metric: string; title: string; description: string; label?: string}>
+  categories: CmsHomeCategory[]
+  inquiryTitle: string
+  inquiryDescription: string
+  inquirySupportTitle: string
+  inquirySupportDescription: string
+  faqs: CmsFaqItem[]
+  bottomCta?: CmsCta
+  seo: CmsSeo
 }

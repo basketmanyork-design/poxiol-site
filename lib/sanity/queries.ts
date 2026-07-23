@@ -140,34 +140,37 @@ export const productCategoryBySlugQuery = `*[_type == "productCategory" && slug.
   ${seoProjection}
 }`
 
-export const productsQuery = `*[_type == "product"] | order(displayOrder asc, _updatedAt desc){
+const productProjection = `{
   _id,
   productName,
   "slug": slug.current,
   "categorySlug": category->slug.current,
+  "categoryTitle": category->categoryName,
   shortDescription,
   fullDescription,
   primaryImage${imageProjection},
+  detailImages[]${imageProjection},
+  productionImages[]${imageProjection},
+  qcImages[]${imageProjection},
+  packagingImages[]${imageProjection},
+  fabricOptions,
+  customizationOptions,
+  procurementOverride,
+  "relatedFaqs": relatedFaqs[] | order(displayOrder asc){"question": faq->question, "answer": faq->answer},
+  featured,
   displayOrder,
   publishStatus,
   ${seoProjection}
 }`
 
+export const productsQuery = `*[_type == "product"] | order(displayOrder asc, _updatedAt desc)${productProjection}`
+
+export const productBySlugQuery = `*[_type == "product" && slug.current == $slug][0]${productProjection}`
+
 export const productsByCategoryQuery = `*[
   _type == "product" &&
   category->slug.current == $categorySlug
-] | order(displayOrder asc, _updatedAt desc){
-  _id,
-  productName,
-  "slug": slug.current,
-  "categorySlug": category->slug.current,
-  shortDescription,
-  fullDescription,
-  primaryImage${imageProjection},
-  displayOrder,
-  publishStatus,
-  ${seoProjection}
-}`
+] | order(displayOrder asc, _updatedAt desc)${productProjection}`
 
 export const caseStudiesQuery = `*[_type == "caseStudy"] | order(displayOrder asc, _updatedAt desc){
   _id,
@@ -257,4 +260,13 @@ export const redirectRulesQuery = `*[_type == "redirectRule" && active == true] 
   sourcePath,
   destinationPath,
   redirectType
+}`
+
+export const procurementStandardsQuery = `*[_type == "procurementStandards"][0]{
+  defaultMOQ,
+  sampleTime,
+  bulkProductionTime,
+  mockupTime,
+  shippingNotes,
+  qualityPromise
 }`

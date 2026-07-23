@@ -124,7 +124,7 @@ function pageSections(key: string, title: string): CmsPageSection[] {
     ],
   }
   return pages[key as keyof typeof pages] || [
-    {type: 'richText', eyebrow: title, title: title + ' overview', body: title + ' content remains available through legacy fallback and can be managed in Sanity once published.', facts: ['SEO metadata', 'Hero content', 'Body modules', 'Bottom CTA'], cta: commonCta},
+    {type: 'richText', eyebrow: title, title: title + ' overview', body: 'POXIOL provides practical custom teamwear support for buyers who need clear production details, responsive quotation and reliable delivery planning.', facts: ['Factory-direct support', 'Project-specific quotation', 'Design and sample coordination', 'Export delivery planning'], cta: commonCta},
   ]
 }
 
@@ -195,7 +195,16 @@ export const legacyProducts: CmsProduct[] = sportsPages.flatMap((page) =>
     title: product.title,
     categorySlug: page.slug.replace(/^products\//, ''),
     description: product.description,
+    fullDescription: product.description,
     image: {url: page.heroImage, alt: product.title},
+    detailImages: [{url: page.heroImage, alt: product.title}],
+    productionImages: [],
+    qcImages: [],
+    packagingImages: [],
+    fabricOptions: [],
+    customizationOptions: [],
+    relatedFaqs: page.faqs,
+    featured: index < 2,
     seo: {
       title: `${product.title} | POXIOL`,
       description: product.description,
@@ -254,6 +263,28 @@ function articleDefaults(article: Partial<CmsArticle>): CmsArticle {
 }
 
 export const legacyArticles: CmsArticle[] = [
+  articleDefaults({
+    slug: 'custom-teamwear-production-notes',
+    title: 'Custom Teamwear Production Notes for B2B Buyers',
+    excerpt: 'Practical POXIOL production notes covering custom teamwear sampling, quality checks and export-ready ordering details.',
+    intro: 'Practical POXIOL production notes covering custom teamwear sampling, quality checks and export-ready ordering details.',
+    eyebrow: 'POXIOL Blog',
+    body: 'Custom teamwear buyers should confirm sport category, quantity, logo files, size breakdown, deadline and packaging needs before sampling. POXIOL uses these details to prepare mockup, sample and production guidance.',
+    articleType: 'blog',
+    sections: [
+      {title: 'What to prepare before requesting a quote', content: ['Sport category and product type', 'Logo files and color references', 'Quantity and size breakdown', 'Delivery country and deadline']},
+      {title: 'How POXIOL keeps production practical', content: 'The team reviews mockup feasibility, fabric options, customization areas and QC requirements before confirming sample or bulk production steps.'},
+    ],
+    faqs: [
+      {question: 'Can blog guidance be replaced from Sanity?', answer: 'Yes. Published CMS blog articles are used as the primary data source when available.'},
+    ],
+    seo: {
+      title: 'Custom Teamwear Production Notes | POXIOL Blog',
+      description: 'B2B production notes for custom teamwear buyers planning mockup, sample, QC and export delivery with POXIOL.',
+      canonicalUrl: 'https://www.poxiol.com/blog/custom-teamwear-production-notes/',
+    },
+    displayOrder: 0,
+  }),
   ...buyingGuides.map((guide, index) => articleDefaults({
     slug: guide.slug,
     title: guide.title,
