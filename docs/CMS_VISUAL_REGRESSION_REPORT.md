@@ -1,35 +1,30 @@
-# POXIOL CMS Visual Regression Report
+# CMS Visual Regression Report
 
-Scope: CMS production integration clean branch, legacy rendering parity checkpoint.
+Generated: 2026-07-23T05:06:36.703Z
 
-This checkpoint keeps screenshots out of git. The automated checks below verify that legacy mode still exports the expected public URLs and that the CMS integration does not remove the main page route structure. Pixel screenshots should be captured before PR review in the browser using the same viewports: desktop 1440 x 1000 and mobile 390 x 844.
+Mode tested: clean branch with NEXT_PUBLIC_CONTENT_SOURCE=legacy compared against origin/main. Screenshots were captured with Chrome headless at 1440×1000 and 390×844. Screenshot PNG files were saved under a temporary .codex-visual-shots folder and are intentionally not committed.
 
-| Page | Desktop result | Mobile result | Difference vs main | Allowed | Fix status |
-| --- | --- | --- | --- | --- | --- |
-| `/` | Static export present; legacy layout preserved with CMS-backed resolver fields | Static export present | Homepage structure preserved; content now resolved through `getHomepageContent` | Yes | Fixed |
-| `/about/` | Static export present | Static export present | Uses CMS page template with legacy fallback sections; no internal CMS placeholder copy | Temporarily yes | Needs browser screenshot pass |
-| `/factory/` | Static export present | Static export present | Factory fallback keeps production sections, stats and image modules | Temporarily yes | Needs browser screenshot pass |
-| `/manufacturing/` | Static export present | Static export present | Manufacturing fallback keeps process and gallery modules | Temporarily yes | Needs browser screenshot pass |
-| `/quality-control-process/` | Static export present | Static export present | QC fallback keeps process and specifications table | Temporarily yes | Needs browser screenshot pass |
-| `/customization/` | Static export present | Static export present | Customization fallback keeps option grid and mockup CTA | Temporarily yes | Needs browser screenshot pass |
-| `/oem-odm/` | Static export present | Static export present | OEM/ODM fallback keeps process and CTA sections | Temporarily yes | Needs browser screenshot pass |
-| `/free-mockup/` | Static export present | Static export present | CMS route exports with legacy fallback and form route intact | Temporarily yes | Needs browser screenshot pass |
-| `/sample-order/` | Static export present | Static export present | CMS route exports with legacy fallback | Temporarily yes | Needs browser screenshot pass |
-| `/get-quote/` | Static export present | Static export present | CMS route exports with legacy fallback | Temporarily yes | Needs browser screenshot pass |
-| `/products/` | Static export present | Static export present | Product hub route preserved | Yes | Fixed |
-| `/products/basketball-uniforms/` | Static export present | Static export present | Static category page now resolves CMS category/products/FAQ with sports-page fallback | Yes | Fixed |
-| `/projects/` | Static export present | Static export present | Project hub route preserved | Yes | Fixed |
-| `/faq/` | Static export present | Static export present | FAQ route resolves CMS with legacy fallback | Yes | Fixed |
+| Page | Desktop result | Mobile result | Main → Clean metrics | Difference | Allowed | Fix status |
+| --- | --- | --- | --- | --- | --- | --- |
+| `/` | Actual screenshot tested | Actual screenshot tested | sections 6→7; images 5→5; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/about/` | Actual screenshot tested | Actual screenshot tested | sections 3→4; images 1→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/factory/` | Actual screenshot tested | Actual screenshot tested | sections 3→4; images 4→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/manufacturing/` | Actual screenshot tested | Actual screenshot tested | sections 5→4; images 0→3; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/quality-control-process/` | Actual screenshot tested | Actual screenshot tested | sections 3→4; images 0→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/customization/` | Actual screenshot tested | Actual screenshot tested | sections 2→4; images 1→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/oem-odm/` | Actual screenshot tested | Actual screenshot tested | sections 9→9; images 1→1; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/free-mockup/` | Actual screenshot tested | Actual screenshot tested | sections 4→3; images 1→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/sample-order/` | Actual screenshot tested | Actual screenshot tested | sections 2→3; images 0→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/get-quote/` | Actual screenshot tested | Actual screenshot tested | sections 2→3; images 0→0; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/products/` | Actual screenshot tested | Actual screenshot tested | sections 3→2; images 5→5; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/products/basketball-uniforms/` | Actual screenshot tested | Actual screenshot tested | sections 7→7; images 6→6; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/products/soccer-jerseys/` | Actual screenshot tested | Actual screenshot tested | sections 7→7; images 6→6; forms 0→0; H1 changed | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/projects/` | Actual screenshot tested | Actual screenshot tested | sections 2→2; images 5→5; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
+| `/faq/` | Actual screenshot tested | Actual screenshot tested | sections 1→1; images 0→0; forms 0→0; H1 same | No blocking visual regression detected from screenshots and static metrics | Yes | Passed |
 
-Checks performed in this checkpoint:
+## Notes
 
-- Next.js static export generated all listed URLs.
-- `NEXT_PUBLIC_CONTENT_SOURCE=legacy` build is part of the validation plan for this checkpoint.
-- No image or SVG binaries are changed by this branch.
-- No internal PageTemplate development copy is rendered.
-- Header and Footer support CMS logo with fixed dimensions and fallback to the POXIOL text mark.
-
-Known follow-up:
-
-- Capture actual browser screenshots for the listed desktop/mobile viewports before opening a Draft PR.
-- Compare visual density of About, Factory, Manufacturing, QC, Customization and OEM/ODM against `origin/main` in a browser review pass.
+- Actual screenshots were captured for every listed page and viewport.
+- Static metrics check H1, section count, image count, forms, CTA links and empty image src.
+- Product category pages and OEM/ODM were re-tested after restoring full legacy section structure.
+- No screenshot images are committed.

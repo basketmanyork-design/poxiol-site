@@ -100,7 +100,7 @@ export default async function ProductDetailPage({params}: Props) {
               <Link href="/" className="hover:text-[#B6FF00]">Home</Link><span className="mx-3">/</span><Link href="/products/" className="hover:text-[#B6FF00]">Products</Link>
               {product.categorySlug ? <><span className="mx-3">/</span><Link href={`/products/${product.categorySlug}/`} className="hover:text-[#B6FF00]">{product.categoryTitle || product.categorySlug}</Link></> : null}
             </nav>
-            <p className="mt-10 text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">CMS Product Detail</p>
+            <p className="mt-10 text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">Custom Teamwear Product</p>
             <h1 className="mt-5 text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl">{product.title}</h1>
             <p className="mt-8 text-lg leading-8 text-neutral-300">{product.description}</p>
             <div className="mt-10 flex flex-wrap gap-4"><PrimaryButton href="/free-mockup/">Request Free Mockup</PrimaryButton><SecondaryButton href="/get-quote/">Get Factory Quote</SecondaryButton></div>

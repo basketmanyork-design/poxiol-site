@@ -191,6 +191,12 @@ export type CmsHomeContent = {
   heroSecondaryCta: CmsCta
   trustChips: string[]
   sourcingRows: Array<{item: string; capability: string}>
+  sectionHeadings: {
+    sourcing: {eyebrow: string; title: string; subtitle?: string}
+    usp: {eyebrow: string; title: string; subtitle?: string}
+    matrix: {eyebrow: string; title: string}
+    faq: {eyebrow: string; title: string}
+  }
   uspCards: Array<{metric: string; title: string; description: string; label?: string}>
   categories: CmsHomeCategory[]
   inquiryTitle: string

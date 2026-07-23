@@ -28,8 +28,9 @@ import type {
   CmsSeo,
   CmsSiteChrome,
 } from '@/lib/cms/types'
-import {contentSource, sanityFetch} from './client'
+import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
+import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
 import {resolveContent} from './fallback'
 import {cardImageUrl, heroImageUrl} from './image'
 import {
@@ -100,6 +101,21 @@ type SanityPageSection = {
   cta?: SanityCta
 }
 
+type SanityHomepageUspCard = {metric?: string; title?: string; description?: string; displayOrder?: number}
+type SanityHomepageSectionHeadings = {
+  sourcingEyebrow?: string
+  sourcingTitle?: string
+  sourcingSubtitle?: string
+  uspEyebrow?: string
+  uspTitle?: string
+  uspSubtitle?: string
+  matrixEyebrow?: string
+  matrixTitle?: string
+  faqEyebrow?: string
+  faqTitle?: string
+}
+type SanityInquirySupport = {title?: string; description?: string}
+
 type SanityPage = {
   pageKey?: string
   internalName?: string
@@ -109,7 +125,11 @@ type SanityPage = {
   heroSubheading?: string
   heroImage?: SanityImage
   heroCTA?: SanityCta
+  heroSecondaryCTA?: SanityCta
   contentSections?: SanityPageSection[]
+  homepageUspCards?: SanityHomepageUspCard[]
+  homepageSectionHeadings?: SanityHomepageSectionHeadings
+  inquirySupport?: SanityInquirySupport
   bottomCTA?: SanityCta
   seo?: Seo
   publishStatus?: string
@@ -227,6 +247,14 @@ function optionalImage(source: SanityImage | undefined, fallback?: CmsImage, siz
   return imageFrom(source, fallback || {url: '', alt: ''}, size)
 }
 
+function queryState<T>(response: {ok: true; result: T | null} | {ok: false}): SourceState {
+  return response.ok ? 'ok' : 'failed'
+}
+
+function sortByDisplayOrder<T extends {displayOrder?: number}>(items: T[]): T[] {
+  return [...items].sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+}
+
 
 function imageListFrom(sources: SanityImage[] | undefined, fallbacks: CmsImage[] = []): CmsImage[] {
   return (sources || [])
@@ -234,8 +262,40 @@ function imageListFrom(sources: SanityImage[] | undefined, fallbacks: CmsImage[]
     .filter(Boolean) as CmsImage[]
 }
 
+function mapCategory(category: SanityCategory, fallback: CmsProductCategory | undefined, index = 0): CmsProductCategory | null {
+  if (!category.slug || !category.categoryName) return null
+  return {
+    slug: category.slug,
+    title: category.categoryName,
+    shortName: category.shortName,
+    description: category.heroDescription || category.introduction || fallback?.description || category.categoryName,
+    image: imageFrom(category.heroImage, fallback?.image || {url: '/images/poxiol-v62/products_teamwear_matrix.png', alt: category.categoryName}, 'card'),
+    seo: seoFrom(category.seo, fallback?.seo || {title: category.categoryName + ' | POXIOL', description: category.heroDescription || category.introduction || category.categoryName}),
+    displayOrder: category.displayOrder ?? fallback?.displayOrder ?? index,
+    active: true,
+  }
+}
+
+function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, index = 0): CmsProject | null {
+  if (!project.slug || !(project.projectTitle || project.title)) return null
+  const title = project.projectTitle || project.title || fallback?.title || 'POXIOL Project'
+  return {
+    slug: project.slug,
+    title,
+    country: project.country || project.countryOrRegion || fallback?.country || '',
+    product: project.product || project.productType || fallback?.product || '',
+    image: imageFrom(project.heroImage, fallback?.image || {url: '/images/poxiol-v62/projects_basketball_academy_uniform_program.png', alt: title}, 'card'),
+    qualityControl: project.qualityControl || project.qcProcess || fallback?.qualityControl || '',
+    packaging: project.packingDelivery || project.packaging || fallback?.packaging || '',
+    solution: project.solution || fallback?.solution || '',
+    overview: project.overview || project.projectBackground || fallback?.overview || '',
+    seo: seoFrom(project.seo, fallback?.seo || {title: title + ' | POXIOL', description: project.overview || project.projectBackground || title}),
+    displayOrder: project.displayOrder ?? fallback?.displayOrder ?? index,
+  }
+}
+
 function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, index = 0): CmsProduct | null {
-  if (!product.slug || !product.productName || !isDocumentVisible(product.publishStatus, contentSource)) return null
+  if (!product.slug || !product.productName) return null
   const primaryImage = optionalImage(product.primaryImage, fallback?.image, 'hero')
   const fallbackDetailImages = fallback?.detailImages?.length ? fallback.detailImages : fallback?.image ? [fallback.image] : []
   return {
@@ -340,44 +400,46 @@ function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
 }
 
 export async function getSiteChrome(): Promise<CmsSiteChrome> {
-  return resolveContent(async () => {
-    const [settings, nav, footer] = await Promise.all([
-      sanityFetch<SanitySiteSettings>(siteSettingsQuery),
-      sanityFetch<SanityNav>(navigationQuery),
-      sanityFetch<SanityFooter>(footerQuery),
-    ])
+  if (contentSource === 'legacy') return legacySiteChrome
+  const [settingsResponse, navResponse, footerResponse] = await Promise.all([
+    sanityQuery<SanitySiteSettings>(siteSettingsQuery),
+    sanityQuery<SanityNav>(navigationQuery),
+    sanityQuery<SanityFooter>(footerQuery),
+  ])
 
-    if (!settings && !nav && !footer) return null
+  if (!settingsResponse.ok && !navResponse.ok && !footerResponse.ok) return legacySiteChrome
 
-    const siteUrl = cleanSiteUrl(settings?.siteUrl)
-    const whatsappNumber = settings?.contactInfo?.whatsappNumber || legacySiteChrome.whatsappNumber
-    const whatsappMessage = settings?.contactInfo?.whatsappMessage || legacySiteChrome.whatsappMessage
-    const digits = whatsappNumber.replace(/\D/g, '')
+  const settings = settingsResponse.ok ? settingsResponse.result : null
+  const nav = navResponse.ok ? navResponse.result : null
+  const footer = footerResponse.ok ? footerResponse.result : null
+  const siteUrl = cleanSiteUrl(settings?.siteUrl)
+  const whatsappNumber = settings?.contactInfo?.whatsappNumber || legacySiteChrome.whatsappNumber
+  const whatsappMessage = settings?.contactInfo?.whatsappMessage || legacySiteChrome.whatsappMessage
+  const digits = whatsappNumber.replace(/\D/g, '')
 
-    return {
-      ...legacySiteChrome,
-      brandName: settings?.brandName || legacySiteChrome.brandName,
-      logo: optionalImage(settings?.logo, legacySiteChrome.logo, 'card'),
-      siteUrl,
-      publicEmail: settings?.contactInfo?.publicEmail || legacySiteChrome.publicEmail,
-      salesEmail: settings?.contactInfo?.salesEmail || legacySiteChrome.salesEmail,
-      whatsappNumber,
-      whatsappMessage,
-      whatsappHref: digits ? `https://wa.me/${digits}?text=${encodeURIComponent(whatsappMessage)}` : legacySiteChrome.whatsappHref,
-      alibabaStoreUrl: settings?.contactInfo?.alibabaStoreUrl || legacySiteChrome.alibabaStoreUrl,
-      headerNavigation: nav?.headerNavigation?.length
-        ? nav.headerNavigation.map(mapLink).filter(Boolean) as CmsLink[]
-        : legacySiteChrome.headerNavigation,
-      footerColumns: footer?.footerColumns?.length
-        ? footer.footerColumns.map((column) => ({
-            title: column.title || 'Links',
-            links: (column.links || []).map(mapLink).filter(Boolean) as CmsLink[],
-          }))
-        : legacySiteChrome.footerColumns,
-      copyright: footer?.copyright || settings?.footer?.copyright || legacySiteChrome.copyright,
-      address: settings?.contactInfo?.companyAddress || settings?.footer?.address || legacySiteChrome.address,
-    }
-  }, legacySiteChrome)
+  return {
+    ...legacySiteChrome,
+    brandName: settings?.brandName || legacySiteChrome.brandName,
+    logo: optionalImage(settings?.logo, legacySiteChrome.logo, 'card'),
+    siteUrl,
+    publicEmail: settings?.contactInfo?.publicEmail || legacySiteChrome.publicEmail,
+    salesEmail: settings?.contactInfo?.salesEmail || legacySiteChrome.salesEmail,
+    whatsappNumber,
+    whatsappMessage,
+    whatsappHref: digits ? 'https://wa.me/' + digits + '?text=' + encodeURIComponent(whatsappMessage) : legacySiteChrome.whatsappHref,
+    alibabaStoreUrl: settings?.contactInfo?.alibabaStoreUrl || legacySiteChrome.alibabaStoreUrl,
+    headerNavigation: nav?.headerNavigation?.length
+      ? nav.headerNavigation.map(mapLink).filter(Boolean) as CmsLink[]
+      : legacySiteChrome.headerNavigation,
+    footerColumns: footer?.footerColumns?.length
+      ? footer.footerColumns.map((column) => ({
+          title: column.title || 'Links',
+          links: (column.links || []).map(mapLink).filter(Boolean) as CmsLink[],
+        }))
+      : legacySiteChrome.footerColumns,
+    copyright: footer?.copyright || settings?.footer?.copyright || legacySiteChrome.copyright,
+    address: settings?.contactInfo?.companyAddress || settings?.footer?.address || legacySiteChrome.address,
+  }
 }
 
 export async function getHomeBrandContent() {
@@ -394,146 +456,153 @@ export async function getHomeBrandContent() {
 
 export async function getSitePage(key: string): Promise<CmsPage> {
   const legacy = legacyPages.find((page) => page.key === key) || legacyPages[0]
-  return resolveContent(async () => {
-    const page = await sanityFetch<SanityPage>(sitePageByKeyQuery, {key})
-    if (!page || !isDocumentVisible(page.publishStatus, contentSource)) return null
-    return {
-      key,
-      slug: page.slug || legacy.slug,
-      title: page.internalName || legacy.title,
-      eyebrow: page.heroEyebrow || legacy.eyebrow,
-      heading: page.heroHeading || legacy.heading,
-      description: page.heroSubheading || legacy.description,
-      image: optionalImage(page.heroImage, legacy.image || {url: '/images/poxiol-v62/about_hero.png', alt: page.internalName || legacy.title}, 'hero'),
-      heroCta: mapCta(page.heroCTA, legacy.heroCta),
-      sections: mapPageSections(page.contentSections, legacy.sections),
-      bottomCta: mapCta(page.bottomCTA, legacy.bottomCta),
-      seo: seoFrom(page.seo, legacy.seo),
-    }
-  }, legacy)
+  if (contentSource === 'legacy') return legacy
+  const response = await sanityQuery<SanityPage>(sitePageByKeyQuery, {key})
+  const page = response.ok ? response.result : null
+  if (!response.ok) return legacy
+  if (!page || !isDocumentVisible(page.publishStatus, contentSource)) return legacy
+  return {
+    key,
+    slug: page.slug || legacy.slug,
+    title: page.internalName || legacy.title,
+    eyebrow: page.heroEyebrow || legacy.eyebrow,
+    heading: page.heroHeading || legacy.heading,
+    description: page.heroSubheading || legacy.description,
+    image: optionalImage(page.heroImage, legacy.image || {url: '/images/poxiol-v62/about_hero.png', alt: page.internalName || legacy.title}, 'hero'),
+    heroCta: mapCta(page.heroCTA, legacy.heroCta),
+    heroSecondaryCta: mapCta(page.heroSecondaryCTA),
+    homepageUspCards: page.homepageUspCards?.filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric || '', title: card.title || '', description: card.description || '', displayOrder: card.displayOrder})),
+    homepageSectionHeadings: page.homepageSectionHeadings ? {
+      sourcing: {eyebrow: page.homepageSectionHeadings.sourcingEyebrow || 'Factory Specs', title: page.homepageSectionHeadings.sourcingTitle || 'Factory Sourcing Summary', subtitle: page.homepageSectionHeadings.sourcingSubtitle},
+      usp: {eyebrow: page.homepageSectionHeadings.uspEyebrow || 'Why POXIOL', title: page.homepageSectionHeadings.uspTitle || 'POXIOL Manufacturing Advantage', subtitle: page.homepageSectionHeadings.uspSubtitle},
+      matrix: {eyebrow: page.homepageSectionHeadings.matrixEyebrow || 'Products', title: page.homepageSectionHeadings.matrixTitle || 'Custom Teamwear Matrix'},
+      faq: {eyebrow: page.homepageSectionHeadings.faqEyebrow || 'FAQ', title: page.homepageSectionHeadings.faqTitle || 'Custom Teamwear Sourcing Guide'},
+    } : undefined,
+    inquirySupport: page.inquirySupport,
+    sections: mapPageSections(page.contentSections, legacy.sections),
+    bottomCta: mapCta(page.bottomCTA, legacy.bottomCta),
+    seo: seoFrom(page.seo, legacy.seo),
+  } as CmsPage
 }
 
 export async function getProductCategories(): Promise<CmsProductCategory[]> {
-  return resolveContent(async () => {
-    const categories = await sanityFetch<SanityCategory[]>(productCategoriesQuery)
-    const mapped = (categories || [])
-      .filter((category) => category.slug && category.categoryName && isDocumentVisible(category.publishStatus, contentSource))
-      .map((category, index) => {
-        const legacy = legacyProductCategories.find((item) => item.slug === category.slug) || legacyProductCategories[index] || legacyProductCategories[0]
-        return {
-          slug: category.slug as string,
-          title: category.categoryName as string,
-          shortName: category.shortName,
-          description: category.heroDescription || category.introduction || legacy.description,
-          image: imageFrom(category.heroImage, legacy.image, 'card'),
-          seo: seoFrom(category.seo, legacy.seo),
-          displayOrder: category.displayOrder ?? index,
-          active: true,
-        }
-      })
-    return mapped.length ? mapped : null
-  }, legacyProductCategories)
+  const response = await sanityQuery<SanityCategory[]>(productCategoriesQuery)
+  return mergeCmsList({
+    legacy: legacyProductCategories,
+    cms: response.ok ? response.result || [] : [],
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (category, fallback, index) => mapCategory(category, fallback, index),
+  }).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
 
 export async function getProductCategory(slug: string): Promise<CmsProductCategory | null> {
   const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
-  return resolveContent(async () => {
-    const category = await sanityFetch<SanityCategory>(productCategoryBySlugQuery, {slug})
-    if (!category?.slug || !category.categoryName || !isDocumentVisible(category.publishStatus, contentSource)) return null
-    return {
-      slug: category.slug,
-      title: category.categoryName,
-      shortName: category.shortName,
-      description: category.heroDescription || category.introduction || fallback?.description || '',
-      image: imageFrom(category.heroImage, fallback?.image || {url: '/images/poxiol-v62/products_teamwear_matrix.png', alt: category.categoryName}, 'hero'),
-      seo: seoFrom(category.seo, fallback?.seo || {title: `${category.categoryName} | POXIOL`, description: category.heroDescription || category.categoryName}),
-      displayOrder: category.displayOrder ?? 0,
-      active: true,
-    }
-  }, fallback)
+  const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug})
+  return resolveSingle({
+    slug,
+    legacy: fallback,
+    cms: response.ok ? response.result : null,
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (category, itemFallback) => mapCategory(category, itemFallback),
+  })
 }
 
 export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> {
   const legacy = categorySlug ? legacyProducts.filter((product) => product.categorySlug === categorySlug) : legacyProducts
-  return resolveContent(async () => {
-    const products = await sanityFetch<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
-    const mapped = (products || [])
-      .map((product, index) => mapProduct(product, legacyProducts.find((item) => item.slug === product.slug), index))
-      .filter(Boolean) as CmsProduct[]
-    return mapped.length ? mapped : null
-  }, legacy)
+  const response = await sanityQuery<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
+  return mergeCmsList({
+    legacy,
+    cms: response.ok ? response.result || [] : [],
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (product, fallback, index) => mapProduct(product, fallback || legacyProducts.find((item) => item.slug === product.slug), index),
+  }).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
 
 export async function getProduct(slug: string): Promise<CmsProduct | null> {
   const fallback = legacyProducts.find((product) => product.slug === slug) || null
-  return resolveContent(async () => {
-    const product = await sanityFetch<SanityProduct>(productBySlugQuery, {slug})
-    return product ? mapProduct(product, fallback || undefined) : null
-  }, fallback)
+  const response = await sanityQuery<SanityProduct>(productBySlugQuery, {slug})
+  return resolveSingle({
+    slug,
+    legacy: fallback,
+    cms: response.ok ? response.result : null,
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (product, itemFallback) => mapProduct(product, itemFallback),
+  })
 }
 
 export async function getProjects(): Promise<CmsProject[]> {
-  return resolveContent(async () => {
-    const projects = await sanityFetch<SanityCaseStudy[]>(caseStudiesQuery)
-    const mapped = (projects || [])
-      .filter((project) => project.slug && (project.projectTitle || project.title) && isDocumentVisible(project.publishStatus, contentSource))
-      .map((project, index) => {
-        const title = project.projectTitle || project.title || 'POXIOL Project'
-        const fallback = legacyProjects.find((item) => item.slug === project.slug) || legacyProjects[index] || legacyProjects[0]
-        return {
-          slug: project.slug as string,
-          title,
-          country: project.country || project.countryOrRegion || fallback.country,
-          product: project.product || project.productType || fallback.product,
-          image: imageFrom(project.heroImage, fallback.image, 'card'),
-          qualityControl: project.qualityControl || project.qcProcess || fallback.qualityControl,
-          packaging: project.packingDelivery || project.packaging || fallback.packaging,
-          solution: project.solution || fallback.solution,
-          overview: project.overview || project.projectBackground || fallback.overview,
-          seo: seoFrom(project.seo, fallback.seo),
-          displayOrder: project.displayOrder ?? index,
-        }
-      })
-    return mapped.length ? mapped : null
-  }, legacyProjects)
+  const response = await sanityQuery<SanityCaseStudy[]>(caseStudiesQuery)
+  return mergeCmsList({
+    legacy: legacyProjects,
+    cms: response.ok ? response.result || [] : [],
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (project, fallback, index) => mapProject(project, fallback, index),
+  }).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
 
 export async function getProject(slug: string): Promise<CmsProject | null> {
   const fallback = legacyProjects.find((project) => project.slug === slug) || null
-  return resolveContent(async () => {
-    const project = await sanityFetch<SanityCaseStudy>(caseStudyBySlugQuery, {slug})
-    if (!project?.slug || !isDocumentVisible(project.publishStatus, contentSource)) return null
-    const title = project.projectTitle || project.title || fallback?.title || 'POXIOL Project'
-    return {
-      slug: project.slug,
-      title,
-      country: project.country || project.countryOrRegion || fallback?.country || '',
-      product: project.product || project.productType || fallback?.product || '',
-      image: imageFrom(project.heroImage, fallback?.image || {url: '/images/poxiol-v62/projects_basketball_academy_uniform_program.png', alt: title}, 'hero'),
-      qualityControl: project.qualityControl || project.qcProcess || fallback?.qualityControl || '',
-      packaging: project.packingDelivery || project.packaging || fallback?.packaging || '',
-      solution: project.solution || fallback?.solution || '',
-      overview: project.overview || project.projectBackground || fallback?.overview || '',
-      seo: seoFrom(project.seo, fallback?.seo || {title: `${title} | POXIOL`, description: project.overview || title}),
-      displayOrder: project.displayOrder ?? fallback?.displayOrder ?? 0,
-    }
-  }, fallback)
+  const response = await sanityQuery<SanityCaseStudy>(caseStudyBySlugQuery, {slug})
+  return resolveSingle({
+    slug,
+    legacy: fallback,
+    cms: response.ok ? response.result : null,
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (project, itemFallback) => mapProject(project, itemFallback),
+  })
+}
+
+function faqKey(question: string, category?: string) {
+  return (category || 'General') + '::' + question
+}
+
+function groupsFromFaqItems(items: Array<{category?: string; question: string; answer: string}>): CmsFaqGroup[] {
+  const groups = new Map<string, CmsFaqGroup>()
+  for (const faq of items) {
+    const category = faq.category || 'General'
+    const group = groups.get(category) || {category, items: []}
+    group.items.push({question: faq.question, answer: faq.answer})
+    groups.set(category, group)
+  }
+  return Array.from(groups.values()).filter((group) => group.items.length)
 }
 
 export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
-  return resolveContent(async () => {
-    const faqs = await sanityFetch<SanityFaq[]>(faqItemsQuery)
-    const groups = new Map<string, CmsFaqGroup>()
-    for (const faq of faqs || []) {
-      if (!faq.question || !isDocumentVisible(faq.publishStatus, contentSource)) continue
-      const category = faq.category || 'General'
-      const group = groups.get(category) || {category, items: []}
-      group.items.push({question: faq.question, answer: textFromPortable(faq.answer)})
-      groups.set(category, group)
-    }
-    const mapped = Array.from(groups.values()).filter((group) => group.items.length)
-    return mapped.length ? mapped : null
-  }, legacyFaqGroups)
+  if (contentSource === 'legacy') return legacyFaqGroups
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  if (!response.ok) return legacyFaqGroups
+
+  const cms = response.result || []
+  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item})))
+  const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(faq.question as string, faq.category)))
+  const visibleCms = cms
+    .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
+    .map((faq) => ({category: faq.category || 'General', question: faq.question as string, answer: textFromPortable(faq.answer)}))
+
+  if (getCmsListMode() === 'strict') return groupsFromFaqItems(visibleCms)
+
+  const cmsByKey = new Map(visibleCms.map((faq) => [faqKey(faq.question, faq.category), faq]))
+  const merged: Array<{category?: string; question: string; answer: string}> = []
+  for (const legacy of legacyItems) {
+    const key = faqKey(legacy.question, legacy.category)
+    if (suppressed.has(key)) continue
+    merged.push(cmsByKey.get(key) || legacy)
+    cmsByKey.delete(key)
+  }
+  merged.push(...Array.from(cmsByKey.values()))
+  return groupsFromFaqItems(merged)
 }
 
 function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, index = 0): CmsArticle | null {
@@ -569,23 +638,30 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
 
 export async function getArticles(type?: CmsArticle['articleType']): Promise<CmsArticle[]> {
   const legacy = type ? legacyArticles.filter((article) => article.articleType === type) : legacyArticles
-  return resolveContent(async () => {
-    const articles = await sanityFetch<SanityArticle[]>(articlesQuery)
-    const mapped = (articles || [])
-      .map((article, index) => mapArticle(article, legacyArticles.find((item) => item.slug === article.slug), index))
-      .filter(Boolean) as CmsArticle[]
-    const filtered = type ? mapped.filter((article) => article.articleType === type) : mapped
-    return filtered.length ? filtered : null
-  }, legacy)
+  const response = await sanityQuery<SanityArticle[]>(articlesQuery)
+  const merged = mergeCmsList({
+    legacy,
+    cms: response.ok ? response.result || [] : [],
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (article, fallback, index) => mapArticle(article, fallback || legacyArticles.find((item) => item.slug === article.slug), index),
+  })
+  return (type ? merged.filter((article) => article.articleType === type) : merged).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
 
 export async function getArticle(slug: string): Promise<CmsArticle | null> {
   const fallback = legacyArticles.find((article) => article.slug === slug) || null
-  return resolveContent(async () => {
-    const article = await sanityFetch<SanityArticle>(articleBySlugQuery, {slug})
-    const mapped = article ? mapArticle(article, fallback || undefined) : null
-    return mapped
-  }, fallback)
+  const response = await sanityQuery<SanityArticle>(articleBySlugQuery, {slug})
+  return resolveSingle({
+    slug,
+    legacy: fallback,
+    cms: response.ok ? response.result : null,
+    sourceState: queryState(response),
+    mode: getCmsListMode(),
+    contentSource,
+    mapCms: (article, itemFallback) => mapArticle(article, itemFallback),
+  })
 }
 
 export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData> {
@@ -650,7 +726,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     getSitePage('homepage'),
     getProductCategories(),
     getFaqGroups(),
-    sanityFetch<SanityProcurementStandards>(procurementStandardsQuery),
+    sanityQuery<SanityProcurementStandards>(procurementStandardsQuery),
   ])
   const cmsCategories = categories.slice(0, 12).map((category) => ({
     title: category.title,
@@ -660,16 +736,26 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     image: category.image,
   }))
   const faqs = faqGroups.flatMap((group) => group.items).slice(0, 7)
-  const procurementRows = procurement
+  const procurementData = procurement.ok ? procurement.result : null
+  const procurementRows = procurementData
     ? [
-        {item: 'Minimum Order (MOQ)', capability: procurement.defaultMOQ || 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
-        {item: 'Sampling Timeline', capability: procurement.sampleTime || 'Sample Production: 2–5 Days After Mockup Confirmation with express global delivery.'},
-        {item: 'Mockup Time', capability: procurement.mockupTime || 'Free high-fidelity 3D mockup design based on your logo and color direction.'},
-        {item: 'Bulk Production', capability: procurement.bulkProductionTime || 'Production capacity and timing are confirmed against quantity, deadline and customization complexity.'},
-        {item: 'Compliance & QC', capability: procurement.qualityPromise || 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
-        {item: 'Shipping Notes', capability: procurement.shippingNotes || 'Reliable door-to-door logistics serving global clubs, schools and brands.'},
+        {item: 'Minimum Order (MOQ)', capability: procurementData.defaultMOQ || 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
+        {item: 'Sampling Timeline', capability: procurementData.sampleTime || 'Sample Production: 2–5 Days After Mockup Confirmation with express global delivery.'},
+        {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free high-fidelity 3D mockup design based on your logo and color direction.'},
+        {item: 'Bulk Production', capability: procurementData.bulkProductionTime || 'Production capacity and timing are confirmed against quantity, deadline and customization complexity.'},
+        {item: 'Compliance & QC', capability: procurementData.qualityPromise || 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
+        {item: 'Shipping Notes', capability: procurementData.shippingNotes || 'Reliable door-to-door logistics serving global clubs, schools and brands.'},
       ]
     : legacyHomeRows()
+
+  const pageAny = page as CmsPage & {
+    heroSecondaryCta?: CmsCta
+    homepageUspCards?: Array<{metric: string; title: string; description: string; displayOrder?: number}>
+    homepageSectionHeadings?: CmsHomeContent['sectionHeadings']
+    inquirySupport?: {title?: string; description?: string}
+  }
+  const ctaSection = page.sections.find((section) => section.type === 'cta')
+  const evidenceSection = page.sections.find((section) => section.type === 'evidenceGrid')
 
   return {
     brandName: chrome.brandName,
@@ -679,15 +765,21 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     heroDescription: page.description,
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
-    heroSecondaryCta: {label: 'Get Factory Quote', href: '/get-quote/'},
-    trustChips: page.sections.find((section) => section.type === 'evidenceGrid')?.facts?.length ? page.sections.find((section) => section.type === 'evidenceGrid')?.facts || [] : ['MOQ 1 Set', 'Free 3D Mockup', '2–5 Days Sample Production', 'Quality Support', 'Global Shipping'],
+    heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Get Factory Quote', href: '/get-quote/'},
+    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['MOQ 1 Set', 'Free 3D Mockup', '2–5 Days Sample Production', 'Quality Support', 'Global Shipping'],
     sourcingRows: procurementRows,
-    uspCards,
+    uspCards: pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards,
     categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),
-    inquiryTitle: page.sections.find((section) => section.type === 'cta')?.title || 'Build Your Teamwear Project',
-    inquiryDescription: page.sections.find((section) => section.type === 'cta')?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
-    inquirySupportTitle: 'B2B Support',
-    inquirySupportDescription: 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
+    sectionHeadings: pageAny.homepageSectionHeadings || {
+      sourcing: {eyebrow: 'Factory Specs', title: 'Factory Sourcing Summary'},
+      usp: {eyebrow: 'Why POXIOL', title: 'POXIOL Manufacturing Advantage'},
+      matrix: {eyebrow: 'Products', title: 'Custom Teamwear Matrix'},
+      faq: {eyebrow: 'FAQ', title: 'Custom Teamwear Sourcing Guide'},
+    },
+    inquiryTitle: ctaSection?.title || 'Build Your Teamwear Project',
+    inquiryDescription: ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
+    inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
+    inquirySupportDescription: pageAny.inquirySupport?.description || 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
     faqs: faqs.length ? faqs : homeFaqs,
     bottomCta: page.bottomCta,
     seo: page.seo,

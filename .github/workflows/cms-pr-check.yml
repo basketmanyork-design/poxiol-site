@@ -1,0 +1,85 @@
+name: CMS Production Integration Check
+
+on:
+  push:
+    branches:
+      - codex/poxiol-cms-production-clean
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  cms-pr-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Visibility tests
+        run: node scripts/check-cms-visibility.mjs
+
+      - name: Fallback merge and strict tests
+        run: node scripts/check-cms-list-mode.mjs
+
+      - name: Article route conflict test
+        run: node scripts/check-article-route-conflicts.mjs
+
+      - name: Redirect generator fixture test
+        run: node scripts/check-cms-redirects.mjs
+
+      - name: Legacy static build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_CONTENT_SOURCE: legacy
+          CMS_LEGACY_LIST_MODE: merge
+
+      - name: Default sanity static build
+        run: |
+          rm -rf .next out
+          npm run build
+        env:
+          CMS_LEGACY_LIST_MODE: merge
+
+      - name: Safety scan
+        run: node scripts/check-cms-safety.mjs
+
+      - name: Binary diff guard
+        run: |
+          git fetch origin main
+          if git diff --numstat origin/main...HEAD | awk '$1 == "-" || $2 == "-" {print; found=1} END {exit found ? 1 : 0}'; then
+            echo "No binary file changes detected"
+          else
+            echo "Binary file changes are not allowed in this branch"
+            exit 1
+          fi
+
+      - name: Studio install
+        working-directory: studio
+        run: npm ci --legacy-peer-deps
+
+      - name: Sanity schema validate
+        working-directory: studio
+        run: npx sanity schema validate --level error
+
+      - name: Studio build
+        working-directory: studio
+        run: npm run build

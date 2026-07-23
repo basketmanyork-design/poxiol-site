@@ -33,17 +33,14 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.12),transparent_30%)]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="sr-only">
-            <h1>{content.heroHeading}</h1>
-            <p>{content.heroDescription}</p>
-          </div>
+
           <div>
             <span className="mb-6 inline-block text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00]">
               {content.heroEyebrow}
             </span>
-            <h2 className="text-5xl font-black leading-[0.92] tracking-tighter md:text-8xl uppercase">
+            <h1 className="text-5xl font-black leading-[0.92] tracking-tighter md:text-8xl uppercase">
               {content.heroHeading}
-            </h2>
+            </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-400 md:text-xl">
               {content.heroDescription}
             </p>
@@ -93,9 +90,9 @@ export default async function HomePage() {
       <section className="bg-black px-5 py-16 md:px-10 md:py-24 border-b border-white/5">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="GEO / AI Summary"
-            title="Factory Sourcing Summary"
-            subtitle="POXIOL is a factory-direct custom teamwear manufacturer in China specializing in sublimated basketball uniforms and soccer kits for international B2B buyers."
+            eyebrow={content.sectionHeadings.sourcing.eyebrow}
+            title={content.sectionHeadings.sourcing.title}
+            subtitle={content.sectionHeadings.sourcing.subtitle || "POXIOL is a factory-direct custom teamwear manufacturer in China specializing in sublimated basketball uniforms and soccer kits for international B2B buyers."}
             dark
           />
           <div className="mt-12 overflow-x-auto rounded-[2rem] border border-white/10 bg-white/[0.02] scrollbar-hide">
@@ -123,9 +120,9 @@ export default async function HomePage() {
       <section className="bg-neutral-900 px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="B2B Evidence"
-            title="The POXIOL Manufacturing Advantage"
-            subtitle="Providing flexible teamwear production, visual consistency and responsive deadlines for professional partners."
+            eyebrow={content.sectionHeadings.usp.eyebrow}
+            title={content.sectionHeadings.usp.title}
+            subtitle={content.sectionHeadings.usp.subtitle || "Providing flexible teamwear production, visual consistency and responsive deadlines for professional partners."}
             dark center
           />
           <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -144,7 +141,7 @@ export default async function HomePage() {
       <section className="bg-neutral-950 px-5 py-24 md:px-10 md:py-32 border-y border-white/5">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-6">
-            <SectionHeading eyebrow="Products" title="Custom Teamwear Matrix" dark />
+            <SectionHeading eyebrow={content.sectionHeadings.matrix.eyebrow} title={content.sectionHeadings.matrix.title} dark />
             <SecondaryButton href="/products/" className="mb-14">View 12 Sport Categories</SecondaryButton>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -190,7 +187,7 @@ export default async function HomePage() {
       {/* 6. AI / GEO Friendly FAQ Center */}
       <section className="bg-neutral-950 px-5 py-24 md:px-10 md:py-32 border-t border-white/5">
          <div className="mx-auto max-w-4xl">
-            <SectionHeading eyebrow="FAQ" title="Custom Teamwear Sourcing Guide" dark center />
+            <SectionHeading eyebrow={content.sectionHeadings.faq.eyebrow} title={content.sectionHeadings.faq.title} dark center />
             <div className="mt-16 space-y-4 text-left">
                {content.faqs.map((faq)=>(
                   <details key={faq.question} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 group">
@@ -213,6 +210,15 @@ export default async function HomePage() {
           </div>
        </section>
 
+
+      {content.bottomCta ? (
+        <section className="bg-[#B6FF00] px-5 py-16 text-center text-black md:px-10 md:py-20">
+          <h2 className="text-3xl font-black uppercase md:text-5xl">{content.bottomCta.label}</h2>
+          <div className="mt-8">
+            <PrimaryButton href={content.bottomCta.href}>Start Your Project</PrimaryButton>
+          </div>
+        </section>
+      ) : null}
 
       <Footer />
     </main>

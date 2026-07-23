@@ -5,7 +5,7 @@ import { getArticles } from "@/lib/sanity/content";
 
 export const metadata: Metadata = {
   title: "POXIOL Blog | Teamwear SEO Articles",
-  description: "CMS-managed blog and SEO article hub for POXIOL custom teamwear.",
+  description: "Teamwear sourcing articles, manufacturing notes and buyer education from POXIOL.",
 };
 
 export default async function BlogPage() {
@@ -16,7 +16,7 @@ export default async function BlogPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Blog" title="Teamwear SEO Articles" subtitle="Blog articles are managed in Sanity. Until blog posts are published, relevant guide content is used as fallback." dark center />
+          <SectionHeading eyebrow="Blog" title="Teamwear SEO Articles" subtitle="Sourcing notes, manufacturing insights and buyer education for custom teamwear programs." dark center />
           <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {fallbackGuides.map((post) => (
               <Link key={post.slug} href={`/${post.articleType === "blog" ? "blog" : "guides"}/${post.slug}/`} className="group rounded-3xl border border-white/10 bg-white/5 p-8 transition hover:border-lime-400/30">

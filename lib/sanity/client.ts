@@ -19,7 +19,12 @@ type ClientConfig = {
   perspective: 'published' | 'drafts'
   useCdn: boolean
   token?: string
+  cache: RequestCache
 }
+
+export type SanityQueryResult<T> =
+  | {ok: true; result: T | null}
+  | {ok: false; errorType: 'legacy-mode' | 'missing-preview-token' | 'http-error' | 'network-error'}
 
 function createClientConfig(): ClientConfig | null {
   if (contentSource === 'legacy') return null
@@ -32,12 +37,14 @@ function createClientConfig(): ClientConfig | null {
       perspective: 'drafts',
       useCdn: false,
       token,
+      cache: 'no-store',
     }
   }
 
   return {
     perspective: 'published',
     useCdn: true,
+    cache: 'force-cache',
   }
 }
 
@@ -45,12 +52,14 @@ export function isSanityMode() {
   return contentSource !== 'legacy'
 }
 
-export async function sanityFetch<T>(
+export async function sanityQuery<T>(
   query: string,
   params: QueryParams = {},
-): Promise<T | null> {
+): Promise<SanityQueryResult<T>> {
   const config = createClientConfig()
-  if (!config) return null
+  if (!config) {
+    return {ok: false, errorType: contentSource === 'legacy' ? 'legacy-mode' : 'missing-preview-token'}
+  }
 
   const host = config.useCdn ? `${PROJECT}.apicdn.sanity.io` : `${PROJECT}.api.sanity.io`
   const apiBase = process.env.SANITY_API_BASE_URL || `https://${host}`
@@ -70,14 +79,22 @@ export async function sanityFetch<T>(
     const response = await fetch(url, {
       method: 'GET',
       headers,
-      cache: 'force-cache',
+      cache: config.cache,
     })
 
-    if (!response.ok) return null
+    if (!response.ok) return {ok: false, errorType: 'http-error'}
 
-    const payload = await response.json() as {result?: T}
-    return payload.result ?? null
+    const payload = await response.json() as {result?: T | null}
+    return {ok: true, result: payload.result ?? null}
   } catch {
-    return null
+    return {ok: false, errorType: 'network-error'}
   }
+}
+
+export async function sanityFetch<T>(
+  query: string,
+  params: QueryParams = {},
+): Promise<T | null> {
+  const response = await sanityQuery<T>(query, params)
+  return response.ok ? response.result : null
 }
