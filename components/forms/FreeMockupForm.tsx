@@ -25,7 +25,14 @@ export default function FreeMockupForm() {
       setSubmitted(true); setForm(initialState);
     } catch (error) { setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again."); } finally { setLoading(false); }
   }
-  if (submitted) return <div className="rounded-[2rem] bg-white p-8 shadow-2xl md:p-10"><div className="flex h-14 w-14 items-center justify-center rounded-full bg-lime-400 text-2xl font-black text-neutral-950">✓</div><h2 className="mt-6 text-3xl font-black text-neutral-950">Request Received</h2><p className="mt-4 leading-7 text-neutral-600">Thank you. Your request has been received. The POXIOL team will review your project details and contact you with the next steps.</p><button type="button" onClick={() => setSubmitted(false)} className="mt-8 h-[52px] rounded-full bg-neutral-950 px-7 text-sm font-black uppercase text-white transition hover:bg-lime-400 hover:text-neutral-950">Submit Another Request</button></div>;
+  if (submitted) return (
+    <div className="rounded-[2rem] bg-white p-8 shadow-2xl md:p-10">
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-lime-400 text-2xl font-black text-neutral-950">✓</div>
+      <h2 className="mt-6 text-3xl font-black text-neutral-950">Request Received</h2>
+      <p className="mt-4 leading-7 text-neutral-600">Thank you. Your request has been received. The POXIOL team will review your project details and contact you with the next steps.</p>
+      <button type="button" onClick={() => setSubmitted(false)} className="mt-8 h-[52px] rounded-full bg-neutral-950 px-7 text-sm font-black uppercase text-white transition hover:bg-lime-400 hover:text-neutral-950">Submit Another Request</button>
+    </div>
+  );
   return (
     <form onSubmit={handleSubmit} className="rounded-[2rem] bg-white p-6 shadow-2xl md:p-9">
       <div className="mb-8"><p className="text-sm font-black uppercase tracking-[0.14em] text-lime-600">Free Mockup Form</p><h2 className="mt-3 text-3xl font-black text-neutral-950">Tell Us About Your Project</h2><p className="mt-3 text-sm leading-6 text-neutral-600">Fields marked with * are required. More details help us prepare a better design preview.</p></div>
@@ -52,9 +59,9 @@ export default function FreeMockupForm() {
               Submit the form first. After submission, you can immediately send your high-resolution logos (.AI, .PDF, .PNG) or reference photos directly to our design team via **WhatsApp** or **Email**.
             </p>
             <div className="mt-5 flex flex-wrap justify-center gap-4">
-              <a 
-                href="https://wa.me/8613055646888" 
-                target="_blank" 
+              <a
+                href="https://wa.me/8613055646888"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-xs font-black text-white transition hover:scale-105"
               >

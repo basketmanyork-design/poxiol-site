@@ -4,3 +4,11 @@ out
 .env.local
 .env*.local
 .DS_Store
+*.tsbuildinfo
+studio/dist
+studio/.sanity
+migration-output
+
+
+
+.sanity-cli-config/
