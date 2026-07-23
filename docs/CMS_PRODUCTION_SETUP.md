@@ -62,3 +62,21 @@ No webhook, deploy hook, secret, token, Dataset Import, or Seed was executed by 
 11. Roll back by reverting `NEXT_PUBLIC_CONTENT_SOURCE` to `legacy`, restoring the previous Cloudflare deployment, and unpublishing or correcting problematic CMS documents only after a Sanity backup/export is available.
 
 Never publish migration output directly as Published content. The dry run is not an import tool and does not write to Sanity.
+## Schema deployment status
+
+Sanity project `oqpv1xbc` / dataset `production` already has a hosted Studio, but Schema Registry has not been confirmed as deployed for this local Studio schema. This branch must not use MCP schema deployment.
+
+After explicit future approval, schema deployment should be performed from the approved local Studio commit:
+
+```bash
+cd studio
+npx sanity@latest schema deploy
+```
+
+Before any content import or publish step, confirm:
+
+- Schema Registry can read the deployed schema.
+- Studio is built from the approved commit.
+- Every planned migration type is registered in `studio/schemaTypes/index.ts`.
+- Studio fields, GROQ queries, and frontend resolver fields match.
+- Migration output is imported as Draft only, never directly as Published content.

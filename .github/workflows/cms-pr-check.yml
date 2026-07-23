@@ -14,7 +14,7 @@ permissions:
 jobs:
   cms-pr-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,13 +25,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: TypeScript check
+      - name: Frontend TypeScript check
         run: npx tsc --noEmit
 
       - name: Visibility tests
@@ -46,6 +46,19 @@ jobs:
       - name: Redirect generator fixture test
         run: node scripts/check-cms-redirects.mjs
 
+      - name: Migration dry run determinism
+        run: |
+          node scripts/cms-migration-dry-run.ts
+          cp docs/CMS_MIGRATION_DRY_RUN_SUMMARY.json /tmp/cms-migration-dry-run-first.json
+          node scripts/cms-migration-dry-run.ts
+          node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('/tmp/cms-migration-dry-run-first.json','utf8')); const b=JSON.parse(fs.readFileSync('docs/CMS_MIGRATION_DRY_RUN_SUMMARY.json','utf8')); if (a.dryRunHash !== b.dryRunHash || a.correctedCandidateCount !== b.correctedCandidateCount || a.candidateKeys.join('|') !== b.candidateKeys.join('|')) { throw new Error('Migration dry run is not deterministic') } console.log('migration dry run determinism passed')"
+
+      - name: Reconciliation report validation
+        run: node scripts/check-cms-reconciliation.mjs
+
+      - name: Schema coverage validation
+        run: node scripts/check-cms-schema-coverage.mjs
+
       - name: Legacy static build
         run: npm run build
         env:
@@ -57,6 +70,14 @@ jobs:
           rm -rf .next out
           npm run build
         env:
+          CMS_LEGACY_LIST_MODE: merge
+
+      - name: Sanity preview static build
+        run: |
+          rm -rf .next out
+          npm run build
+        env:
+          NEXT_PUBLIC_CONTENT_SOURCE: sanity-preview
           CMS_LEGACY_LIST_MODE: merge
 
       - name: Safety scan
@@ -75,6 +96,10 @@ jobs:
       - name: Studio install
         working-directory: studio
         run: npm ci --legacy-peer-deps
+
+      - name: Studio TypeScript check
+        working-directory: studio
+        run: npx tsc --noEmit -p tsconfig.check.json
 
       - name: Sanity schema validate
         working-directory: studio

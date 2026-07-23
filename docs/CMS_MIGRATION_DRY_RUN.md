@@ -1,196 +1,160 @@
 # POXIOL CMS Migration Dry Run
 
-This is a deterministic, non-destructive dry run. It reads local legacy source files only, builds in-memory Sanity document candidates, validates the plan, and writes report artifacts. It does not contact Sanity, read tokens, upload assets, modify datasets, run Seed, run Dataset Import, or modify Cloudflare.
+This deterministic dry run is read-only. It reads local legacy source files, compares planned document types against the registered local Studio schema, writes ignored temporary artifacts, and produces summary reports. It does not query Sanity, read tokens, write Sanity documents, upload assets, run Seed, run Dataset Import, modify Cloudflare, deploy schema, or deploy Studio.
 
-Dry run hash: `11bd3b730c0fd0d4daf23b585d3624c248214fd893525dc87e18bdeaead2f2c1`
+Dry run hash: `1d3e54cdf39dd43fa6a0289e9a6394906cbb1fb08cae398ebf3b16cc7df90ffe`
 
-## Source inventory
+## Local Candidate Inventory
 
 | Source | Count |
 | --- | ---: |
 | homepageSportCategoryCards | 12 |
 | productCategories | 5 |
-| customSportLandingPages | 21 |
 | productsOrProductTypes | 17 |
 | caseStudies | 5 |
-| faqGroupsFromFaq | 6 |
-| faqItemsFromFaq | 22 |
-| faqGroupsFromB2bFaq | 3 |
-| faqItemsFromB2bFaq | 9 |
-| contactFaqItems | 4 |
-| guidesFromGuidesData | 4 |
-| buyingGuides | 4 |
-| resources | 6 |
-| pseoSeoArticles | 21 |
-| authors | 1 |
+| faqItems | 35 |
+| articles | 35 |
 | coreSitePages | 11 |
-| navigationDocuments | 1 |
-| footerDocuments | 1 |
-| redirectRulesFromPublicRedirects | 0 |
+| contactCardsEmbeddedIntoSitePage | 4 |
+| inquiryTypesEmbeddedIntoSitePages | 7 |
 
-## Planned documents by type
+## Existing Sanity Draft Inventory
+
+| Type | Count |
+| --- | ---: |
+| article | 1 |
+| author | 1 |
+| caseStudy | 6 |
+| faqCategory | 9 |
+| faqItem | 34 |
+| procurementStandards | 1 |
+| product | 2 |
+| productCategory | 2 |
+| siteSettings | 1 |
+
+## Existing Published Inventory
+
+| Type | Count |
+| --- | ---: |
+| article | 0 |
+| author | 0 |
+| caseStudy | 0 |
+| faqCategory | 0 |
+| faqItem | 0 |
+| footerSettings | 0 |
+| navigationSettings | 0 |
+| procurementStandards | 0 |
+| product | 0 |
+| productCategory | 0 |
+| redirectRule | 0 |
+| sitePage | 0 |
+| siteSettings | 0 |
+
+Published business document count is currently 0.
+
+## Corrected Planned Documents by Type
 
 | Sanity type | Candidate count |
 | --- | ---: |
 | article | 35 |
 | author | 1 |
 | caseStudy | 5 |
-| contactCard | 4 |
 | faqCategory | 9 |
 | faqItem | 35 |
 | footerSettings | 1 |
-| homepageSportCategoryCard | 12 |
-| inquiryType | 7 |
 | navigationSettings | 1 |
+| procurementStandards | 1 |
 | product | 17 |
 | productCategory | 5 |
 | sitePage | 11 |
 | siteSettings | 1 |
 
-## Validation summary
+Corrected candidate count: 122
+Unsupported schema type count: 0
+Unsupported schema types: none
 
-- Created candidate count: 144
-- Skipped count: 0
-- Conflict count: 10
-- Invalid count: 10
-- Duplicate slug count: 4
-- Missing SEO count: 88
-- Missing image count: 35
+## ID Strategy Correction
+
+- Stable dry-run key: `candidateKey`
+- Singleton final IDs: `footerSettings`, `navigationSettings`, `procurementStandards`, `siteSettings`
+- Ordinary document final IDs: Sanity-generated IDs; candidates use legacyKey/legacySource/legacyRoute for deterministic matching.
+- Relationship references must not use predicted refs. A future real import must first match or create target drafts, capture real IDs, then attach references.
+- Migratable documents include `legacyKey`, `legacySource`, and `legacyRoute` for matching and audit; these are not buyer-facing fields.
+
+## Reconciliation Summary
+
+- Reuse existing drafts: 2
+- Update existing drafts: 40
+- Create new drafts: 80
+- Duplicate existing: 0
+- Obsolete MVP candidates: 10
+- Corrupted existing: 5
+- Manual review count: 25
+
+## Conflict Summary
+
+- Route conflict count: 0
+- Article conflict count: 4
+
+### Article conflict plan
+
+- `how-to-choose-teamwear-manufacturer-china`: authoritative `/guides/how-to-choose-teamwear-manufacturer-china/`; Keep the fuller B2B guide as authoritative; rename the resource/checklist candidate or redirect the resource URL after manual approval.
+- `private-label-teamwear-manufacturing`: authoritative `/guides/private-label-teamwear-manufacturing/`; Keep the guide as authoritative; convert the resource to a distinct checklist slug or redirect after manual approval.
+- `how-to-order-custom-basketball-uniforms`: authoritative `/guides/how-to-order-custom-basketball-uniforms/`; Keep the ordering guide as authoritative; merge the blog/PSEO article into the guide or rename and redirect the blog URL.
+- `sublimation-printing-guide`: authoritative `/guides/sublimation-printing-guide/`; Keep the technical guide as authoritative; merge or rename the blog overview and plan redirect if the blog URL is public.
+
+## Content Quality Findings
+
+- Missing SEO count: 20
 - Missing alt count: 5
-- Broken asset path count: 2
-- Canonical conflicts: 0
-- Route conflicts: 2
+- Broken asset count: 2
 
-## Reference validation
+### Missing SEO
 
-- Product category references: planned via deterministic category.<slug> IDs
-- FAQ category references: planned via deterministic faq-category.<slug> IDs
-- Article author references: planned via author.poxiol-editorial-team fallback
-- Unresolved references: 0
+- sitePage.page-about (sitePage) missing metaDescription; fallback source: app/about/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-about (sitePage) missing seoTitle; fallback source: app/about/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-contact (sitePage) missing metaDescription; fallback source: app/contact/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-contact (sitePage) missing seoTitle; fallback source: app/contact/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-customization (sitePage) missing metaDescription; fallback source: app/customization/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-customization (sitePage) missing seoTitle; fallback source: app/customization/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-factory (sitePage) missing metaDescription; fallback source: app/factory/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-factory (sitePage) missing seoTitle; fallback source: app/factory/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-free-mockup (sitePage) missing metaDescription; fallback source: app/free-mockup/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-free-mockup (sitePage) missing seoTitle; fallback source: app/free-mockup/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-get-quote (sitePage) missing metaDescription; fallback source: app/get-quote/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-get-quote (sitePage) missing seoTitle; fallback source: app/get-quote/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-manufacturing (sitePage) missing metaDescription; fallback source: app/manufacturing/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-manufacturing (sitePage) missing seoTitle; fallback source: app/manufacturing/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-oem-odm (sitePage) missing metaDescription; fallback source: app/oem-odm/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-oem-odm (sitePage) missing seoTitle; fallback source: app/oem-odm/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-quality-control-process (sitePage) missing metaDescription; fallback source: app/quality-control-process/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-quality-control-process (sitePage) missing seoTitle; fallback source: app/quality-control-process/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-sample-order (sitePage) missing metaDescription; fallback source: app/sample-order/page.tsx; auto-fill available: true; manual review: true
+- sitePage.page-sample-order (sitePage) missing seoTitle; fallback source: app/sample-order/page.tsx; auto-fill available: true; manual review: true
 
-## Asset upload plan
+### Missing Alt
 
-- Upload performed: false
-- Candidate asset references: 33
-- Existing local assets: 31
-- Broken local assets: 2
-- Duplicate asset hash groups: 4
+- /images/sports-pages/basketball/hero.png (productCategory.category-basketball-uniforms); candidate alt: Custom basketball uniforms hero image
+- /images/sports-pages/soccer/hero.png (productCategory.category-soccer-jerseys); candidate alt: Custom soccer kits hero image
+- /images/sports-pages/training/hero.png (productCategory.category-training-wear); candidate alt: Custom training wear hero image
+- /images/poxiol-v62/home_hero_v62.png (sitePage.page-homepage); candidate alt: POXIOL custom teamwear manufacturing hero image
+- /images/poxiol-v6/manufacturing_packing_global_delivery.png (sitePage.page-manufacturing); candidate alt: POXIOL packing and global delivery process image
 
-Detailed NDJSON and asset manifest files are generated under `tmp/cms-migration-dry-run/` and are intentionally ignored by Git.
+### Broken Asset Paths
 
-## Manual review items
+- /images/poxiol-v62/projects_soccer_club_kit_launch.png (caseStudy.case-study-australia-soccer-club-kit-project); recommended: /images/poxiol-v62/project_soccer_club_v62.png
+- /images/poxiol-v62/projects_basketball_academy_uniform_program.png (caseStudy.case-study-usa-basketball-academy-uniform-program); recommended: manual search required
 
-- Article slug how-to-choose-teamwear-manufacturer-china appears across article types: guide, resource.
-- Article slug how-to-order-custom-basketball-uniforms appears across article types: blog, guide.
-- Article slug private-label-teamwear-manufacturing appears across article types: guide, resource.
-- Article slug sublimation-printing-guide appears across article types: blog, guide.
-- 2 candidate documents share the deterministic ID article.how-to-choose-teamwear-manufacturer-china.
-- 2 candidate documents share the deterministic ID article.how-to-order-custom-basketball-uniforms.
-- 2 candidate documents share the deterministic ID article.private-label-teamwear-manufacturing.
-- 2 candidate documents share the deterministic ID article.sublimation-printing-guide.
-- 9 candidate documents resolve to route /products/.
-- 2 candidate documents resolve to route /products/soccer-jerseys/.
-- Referenced local asset does not exist: /images/poxiol-v62/projects_soccer_club_kit_launch.png.
-- Referenced local asset does not exist: /images/poxiol-v62/projects_basketball_academy_uniform_program.png.
+## Manual Review Items
+
 - Checkpoint A visual review is not final acceptance; these differences block final PR merge until resolved.
+- H1 changed on About, Factory, Manufacturing, Quality Control, Customization, OEM/ODM, Free Mockup, Sample Order, Get Quote, Basketball, and Soccer.
 - Factory image count changed from 4 to 1.
 - Free Mockup image count changed from 1 to 0.
-- Free Mockup section count changed from 4 to 3.
-- H1 changed on About, Factory, Manufacturing, Quality Control, Customization, OEM/ODM, Free Mockup, Sample Order, Get Quote, Basketball, and Soccer.
 - Products section count changed from 3 to 2.
-- Image candidate has no usable alt text: /images/sports-pages/basketball/hero.png.
-- Image candidate has no usable alt text: /images/poxiol-v62/home_hero_v62.png.
-- Image candidate has no usable alt text: /images/sports-pages/soccer/hero.png.
-- Image candidate has no usable alt text: /images/poxiol-v6/manufacturing_packing_global_delivery.png.
-- Image candidate has no usable alt text: /images/sports-pages/training/hero.png.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
-- Document does not have a usable meta description candidate.
+- Free Mockup section count changed from 4 to 3.
+- Existing corrupted case studies: 5 titles contain mojibake and 5 lack valid slugs.
+- Existing MVP drafts must be reviewed manually; automatic discard/publish/update is forbidden.
 
 ## Read-only guarantees
 
@@ -198,4 +162,5 @@ Detailed NDJSON and asset manifest files are generated under `tmp/cms-migration-
 - Token access: false
 - Sanity dataset modified: false
 - Cloudflare modified: false
+- Schema deployed: false
 - Asset upload performed: false
