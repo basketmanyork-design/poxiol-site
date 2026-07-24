@@ -1,5 +1,26 @@
 {
-  "result": "passed",
   "generatedAt": "static",
-  "checks": 21
+  "headCommit": "3beec3ef0dcf6282ccb273faa7e87e3da34ffcdc",
+  "commitCount": 15,
+  "changedFileCount": 104,
+  "additions": 17105,
+  "deletions": 2102,
+  "binaryChangeCount": 0,
+  "correctedCandidateCount": 121,
+  "articleConflictCount": 0,
+  "routeConflictCount": 0,
+  "missingSeoCount": 0,
+  "missingAltCount": 0,
+  "brokenAssetCount": 0,
+  "visualBlockingCount": 0,
+  "corruptedExistingWithoutPlan": 0,
+  "obsoleteMvpWithoutDecision": 0,
+  "registeredSchemaTypeCount": 22,
+  "missingRegisteredTypeCount": 0,
+  "duplicateRegisteredTypeCount": 0,
+  "executableSanityWriteCallCount": 0,
+  "executableCloudflareWriteCallCount": 0,
+  "committedSecretCount": 0,
+  "unsafeWorkflowPermissionCount": 0,
+  "result": "passed"
 }
