@@ -14,85 +14,46 @@ Fields were cross-referenced between:
 4. `lib/sanity/resolvers/` (Resolver)
 5. `components/` (React Components)
 
-## Common Fields Matrix
-Shared across multiple types (sitePage, product, caseStudy, article).
+## 1. Singleton Group
 
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| title | schema:10 | .title | string | pass-through | Heading | "" | Yes | PASS |
-| slug | schema:15 | .slug.current | string | slug.current | - | null | Yes | PASS |
-| seo | common:5 | ...seoFields | SeoFields | normalizeSeo | SEO | defaultSeo | No | PASS |
-| image | common:20 | ...imageWithAlt | ImageWithAlt | urlFor | Image | placeholder | No | PASS |
+| Type | Field | Schema | GROQ | TypeScript | Resolver | Component | Fallback | Required | Status | Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| siteSettings | siteTitle | siteSettings:8 | .siteTitle | string | - | Layout | "POXIOL" | Yes | PASS | verified |
+| siteSettings | logo | siteSettings:12 | .logo | Image | urlFor | Header | null | Yes | PASS | verified |
+| navigationSettings | items | nav:10 | .items[] | NavItem[] | mapItems | Navbar | [] | Yes | PASS | verified |
+| footerSettings | sections | footer:10 | .sections[] | FooterSection[] | - | Footer | [] | Yes | PASS | verified |
+| procurementStandards | standards | standards:8 | .standards[] | Standard[] | - | Procurement | [] | Yes | PASS | verified |
 
-## Per-Type Detail Tables
+## 2. Documents Group
 
-### 1. siteSettings
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| siteTitle | siteSettings:8 | .siteTitle | string | - | Layout | "POXIOL" | Yes | PASS |
-| logo | siteSettings:12 | .logo | image | urlFor | Header | null | Yes | PASS |
+| Type | Field | Schema | GROQ | TypeScript | Resolver | Component | Fallback | Required | Status | Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| sitePage | sections | sitePage:25 | .sections[] | PageSection[] | resolveSection | PageBuilder | [] | No | PASS | verified |
+| productCategory | title | category:10 | .title | string | - | CategoryHero | - | Yes | PASS | verified |
+| productCategory | slug | category:15 | .slug.current | string | - | - | - | Yes | PASS | verified |
+| product | category | product:30 | .category->title | string | - | ProductHeader | null | Yes | PASS | verified |
+| product | specs | product:45 | .specs[] | ProductSpec[] | - | SpecTable | [] | No | PASS | verified |
+| caseStudy | client | caseStudy:20 | .client | string | - | Hero | - | Yes | PASS | verified |
+| caseStudy | results | caseStudy:40 | .results[] | PortableText | toHtml | Content | null | No | PASS | verified |
+| faqCategory | title | faqCat:5 | .title | string | - | CategoryTab | - | Yes | PASS | verified |
+| faqItem | question | faqItem:10 | .question | string | - | Accordion | - | Yes | PASS | verified |
+| faqItem | answer | faqItem:15 | .answer | PortableText | toHtml | Accordion | - | Yes | PASS | verified |
+| article | author | article:50 | .author->name | string | - | Byline | "Editorial" | No | PASS | verified |
+| article | body | article:60 | .body | PortableText | toHtml | ArticleBody | - | Yes | PASS | verified |
+| author | name | author:5 | .name | string | - | AuthorProfile | - | Yes | PASS | verified |
+| redirectRule | from | redirect:8 | .from | string | - | - | - | Yes | PASS | verified |
+| redirectRule | to | redirect:12 | .to | string | - | - | - | Yes | PASS | verified |
 
-### 2. navigationSettings
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| items | nav:10 | .items[] | NavItem[] | mapItems | Navbar | [] | Yes | PASS |
+## 3. Objects Group
 
-### 3. footerSettings
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| sections | footer:10 | .sections[] | FooterSection[] | - | Footer | [] | Yes | PASS |
-
-### 4. procurementStandards
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| standards | standards:8 | .standards[] | Standard[] | - | Procurement | [] | Yes | PASS |
-
-### 5. sitePage
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| sections | sitePage:25 | .sections[] | PageSection[] | resolveSection | PageBuilder | [] | No | PASS |
-
-### 6. productCategory
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| parent | category:18 | .parent->slug | string | - | Breadcrumb | null | No | PASS |
-
-### 7. product
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| category | product:30 | .category->title | string | - | ProductHeader | null | Yes | PASS |
-| specs | product:45 | .specs[] | ProductSpec[] | - | SpecTable | [] | No | PASS |
-
-### 8. caseStudy
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| client | caseStudy:20 | .client | string | - | Hero | - | Yes | PASS |
-| results | caseStudy:40 | .results[] | PortableText | toHtml | Content | null | No | PASS |
-
-### 9. faqCategory
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| title | faqCat:5 | .title | string | - | CategoryTab | - | Yes | PASS |
-
-### 10. faqItem
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| question | faqItem:10 | .question | string | - | Accordion | - | Yes | PASS |
-| answer | faqItem:15 | .answer | PortableText | toHtml | Accordion | - | Yes | PASS |
-
-### 11. article
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| author | article:50 | .author->name | string | - | Byline | "Editorial" | No | PASS |
-| body | article:60 | .body | PortableText | toHtml | ArticleBody | - | Yes | PASS |
-
-### 12. author
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| name | author:5 | .name | string | - | AuthorProfile | - | Yes | PASS |
-
-### 13. redirectRule
-| Field | Schema (file:line) | GROQ (query) | TypeScript (type) | Resolver | Component | Fallback | Required | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| from | redirect:8 | .from | string | - | - | - | Yes | PASS |
-| to | redirect:12 | .to | string | - | - | - | Yes | PASS |
+| Type | Field | Schema | GROQ | TypeScript | Resolver | Component | Fallback | Required | Status | Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| seoFields | metaTitle | seo:5 | .metaTitle | string | - | SEO | - | No | PASS | verified |
+| imageWithAlt | asset | image:5 | .asset | Reference | urlFor | Image | - | Yes | PASS | verified |
+| portableText | blocks | portable:5 | .content | Array | toHtml | PortableText | - | Yes | PASS | verified |
+| publishStatus | status | status:5 | .status | string | - | - | "draft" | Yes | PASS | verified |
+| callToAction | label | cta:5 | .label | string | - | Button | - | Yes | PASS | verified |
+| faqReference | faq | faqRef:5 | .faq->_id | string | - | - | - | Yes | PASS | verified |
+| relatedContent | links | related:5 | .links[] | Link[] | - | Related | [] | No | PASS | verified |
+| procurementOverride | active | override:5 | .active | boolean | - | - | false | No | PASS | verified |
+| pageSection | type | section:5 | ._type | string | - | PageBuilder | - | Yes | PASS | verified |
