@@ -83,10 +83,10 @@ export const resourcePages: ResourcePageData[] = [
     ctaText: "Send your club logo, colors, quantity and target deadline to get a free soccer kit mockup and factory quotation."
   },
   {
-    slug: "how-to-choose-teamwear-manufacturer-china",
-    metaTitle: "How to Choose a Teamwear Manufacturer in China | POXIOL",
+    slug: "teamwear-manufacturer-evaluation-checklist",
+    metaTitle: "Teamwear Manufacturer Evaluation Checklist | POXIOL",
     metaDescription: "A B2B guide to choosing a teamwear manufacturer in China for custom sports uniforms, OEM/ODM production, private label packaging, sample confirmation, QC and global delivery.",
-    h1: "How to Choose a Teamwear Manufacturer in China",
+    h1: "Teamwear Manufacturer Evaluation Checklist",
     intro: "China is one of the major sourcing regions for custom sports uniforms and teamwear. However, not every supplier is suitable for B2B buyers who need stable quality, clear communication, sample confirmation and repeat production.",
     sections: [
       {
@@ -129,7 +129,7 @@ export const resourcePages: ResourcePageData[] = [
     ctaText: "Send your order details to get a realistic production plan and factory quotation."
   },
   {
-    slug: "private-label-teamwear-manufacturing",
+    slug: "private-label-teamwear-launch-checklist",
     metaTitle: "Private Label Teamwear Manufacturing for Sportswear Brands | POXIOL",
     metaDescription: "POXIOL supports private label teamwear manufacturing for sportswear brands, distributors and custom uniform retailers, including OEM/ODM production, labels, hangtags, packaging and repeat order support.",
     h1: "Private Label Teamwear Manufacturing for Sportswear Brands and Distributors",

@@ -1,0 +1,125 @@
+name: CMS Production Integration Check
+
+on:
+  push:
+    branches:
+      - codex/poxiol-cms-production-clean
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  cms-pr-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Frontend TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Visibility tests
+        run: node scripts/check-cms-visibility.mjs
+
+      - name: Fallback merge and strict tests
+        run: node scripts/check-cms-list-mode.mjs
+
+      - name: Article route conflict test
+        run: node scripts/check-article-route-conflicts.mjs
+
+      - name: Redirect generator fixture test
+        run: node scripts/check-cms-redirects.mjs
+
+      - name: Migration dry run determinism
+        run: |
+          node scripts/cms-migration-dry-run.ts
+          cp docs/CMS_MIGRATION_DRY_RUN_SUMMARY.json /tmp/cms-migration-dry-run-first.json
+          node scripts/cms-migration-dry-run.ts
+          node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('/tmp/cms-migration-dry-run-first.json','utf8')); const b=JSON.parse(fs.readFileSync('docs/CMS_MIGRATION_DRY_RUN_SUMMARY.json','utf8')); if (a.dryRunHash !== b.dryRunHash || a.correctedCandidateCount !== b.correctedCandidateCount || a.candidateKeys.join('|') !== b.candidateKeys.join('|')) { throw new Error('Migration dry run is not deterministic') } console.log('migration dry run determinism passed')"
+
+      - name: Reconciliation report validation
+        run: node scripts/check-cms-reconciliation.mjs
+
+      - name: Schema coverage validation
+        run: node scripts/check-cms-schema-coverage.mjs
+
+      - name: Content blocker validation
+        run: node scripts/check-cms-content-blockers.mjs
+
+      - name: Final CMS preflight self-test
+        run: node scripts/check-cms-final-preflight-test.mjs
+
+      - name: Final CMS preflight
+        run: node scripts/check-cms-final-preflight.mjs
+
+      - name: Upload preflight summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cms-final-preflight-summary
+          path: docs/CMS_FINAL_PREFLIGHT_SUMMARY.json
+
+      - name: Legacy static build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_CONTENT_SOURCE: legacy
+          CMS_LEGACY_LIST_MODE: merge
+
+      - name: Default sanity static build
+        run: |
+          rm -rf .next out
+          npm run build
+        env:
+          CMS_LEGACY_LIST_MODE: merge
+
+      - name: Sanity preview static build
+        run: |
+          rm -rf .next out
+          npm run build
+        env:
+          NEXT_PUBLIC_CONTENT_SOURCE: sanity-preview
+          CMS_LEGACY_LIST_MODE: merge
+
+      - name: Safety scan
+        run: node scripts/check-cms-safety.mjs
+
+      - name: Binary diff guard
+        run: |
+          git fetch origin main
+          if git diff --numstat origin/main...HEAD | awk '$1 == "-" || $2 == "-" {print; found=1} END {exit found ? 1 : 0}'; then
+            echo "No binary file changes detected"
+          else
+            echo "Binary file changes are not allowed in this branch"
+            exit 1
+          fi
+
+      - name: Studio install
+        working-directory: studio
+        run: npm ci --legacy-peer-deps
+
+      - name: Studio TypeScript check
+        working-directory: studio
+        run: npx tsc --noEmit -p tsconfig.check.json
+
+      - name: Sanity schema validate
+        working-directory: studio
+        run: npx sanity schema validate --level error
+
+      - name: Studio build
+        working-directory: studio
+        run: npm run build

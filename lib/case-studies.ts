@@ -55,7 +55,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The academy required reversible uniforms with clear number visibility and consistent team colors. The order also needed size grouping for easier distribution after delivery.",
     solution: "We engineered a dual-layer lightweight polyester mesh system, rendered full visual mocks, and did custom sorting by size prior to air shipping.",
     result: "The academy received a complete reversible uniform program with consistent color, clear numbers and organized packing.",
-    image: "/images/poxiol-v62/projects_basketball_academy_uniform_program.png",
+    image: "/images/poxiol-v6/projects_basketball_academy_uniform_program.png",
     snapshot: [
       { item: "Buyer Type", details: "Basketball Academy" },
       { item: "Region", details: "North America" },
@@ -98,7 +98,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "The project required two kit colorways, number visibility and packing separated by kit type and size.",
     solution: "POXIOL prepared mockups for both home and away kits, helped review number visibility and sponsor placement, then arranged sample confirmation and bulk production.",
     result: "The club completed its kit launch with a unified home and away kit system.",
-    image: "/images/poxiol-v62/projects_soccer_club_kit_launch.png",
+    image: "/images/poxiol-v62/project_soccer_club_v62.png",
     snapshot: [
       { item: "Buyer Type", details: "Soccer Club" },
       { item: "Region", details: "Australia" },
