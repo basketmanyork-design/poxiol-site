@@ -18,3 +18,5 @@ tmp/cms-migration-dry-run/
 tmp/
 
 docs/CMS_FINAL_PREFLIGHT_SUMMARY.json
+
+tmp_artifact/
