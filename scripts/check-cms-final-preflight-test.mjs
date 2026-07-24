@@ -178,24 +178,39 @@ async function run() {
         execSync('git commit -m "initial"', { cwd: tmpDir });
         execSync('git branch -M main', { cwd: tmpDir });
         execSync('git branch -f origin/main main', { cwd: tmpDir });
+        
+        // Ensure feature branch for divergence
+        execSync('git checkout -b feature', { cwd: tmpDir });
 
         if (test.triggerBinary) {
           const binFile = join(tmpDir, 'image.png');
-          writeFileSync(binFile, Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]));
+          // Use a more complex buffer to ensure git treats it as binary
+          const buffer = Buffer.alloc(1024);
+          for (let i = 0; i < 1024; i++) buffer[i] = Math.floor(Math.random() * 256);
+          writeFileSync(binFile, buffer);
           execSync('git add image.png', { cwd: tmpDir });
           execSync('git commit -m "add binary"', { cwd: tmpDir });
         }
-      } catch (e) {}
+      } catch (e) {
+        // console.error(`  Git setup failed: ${e.message}`);
+      }
 
       let exitCode = 0;
+      let stdout = '';
+      let stderr = '';
       try {
-        execSync(`node scripts/check-cms-final-preflight.mjs`, { cwd: tmpDir, stdio: 'pipe' });
+        const output = execSync(`node scripts/check-cms-final-preflight.mjs`, { cwd: tmpDir, stdio: 'pipe' });
+        stdout = output.toString();
       } catch (err) {
         exitCode = err.status || 1;
+        stdout = err.stdout ? err.stdout.toString() : '';
+        stderr = err.stderr ? err.stderr.toString() : '';
       }
 
       if (exitCode !== test.expectedExitCode) {
         console.error(`  FAILED: expected ${test.expectedExitCode}, got ${exitCode}`);
+        console.error(`  STDOUT: ${stdout}`);
+        console.error(`  STDERR: ${stderr}`);
       } else {
         console.log(`  PASSED`);
         passed++;

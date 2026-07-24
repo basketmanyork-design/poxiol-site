@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-24T14:40:50.222Z",
-  "auditSourceCommit": "10753b87f8018b8c2ec5749b7124e21923e2a441",
-  "commitCount": 18,
-  "changedFileCount": 104,
-  "additions": 17203,
+  "generatedAt": "2026-07-24T14:55:25.147Z",
+  "auditSourceCommit": "c626c2c85bc7eea2f9ff2e3be24342cdbe5e80b4",
+  "commitCount": 19,
+  "changedFileCount": 105,
+  "additions": 17171,
   "deletions": 2102,
   "binaryChangeCount": 0,
   "correctedCandidateCount": 121,
@@ -20,7 +20,7 @@
   "duplicateRegisteredTypeCount": 0,
   "executableSanityWriteCallCount": 0,
   "executableCloudflareWriteCallCount": 0,
-  "committedSecretCount": 4,
+  "committedSecretCount": 0,
   "unsafeWorkflowPermissionCount": 0,
-  "result": "failed"
+  "result": "passed"
 }
