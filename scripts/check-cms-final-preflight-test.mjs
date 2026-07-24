@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
-const BASE_DIR = 'D:\\Users\\baske\\Documents\\项目名称： POXIOL Content Admin\\.codex-cms-production-work';
+const BASE_DIR = process.cwd();
 const SUMMARY_PATH = path.join(BASE_DIR, 'docs/CMS_MIGRATION_DRY_RUN_SUMMARY.json');
 const SCHEMA_PATH = path.join(BASE_DIR, 'studio/schemaTypes/index.ts');
 
