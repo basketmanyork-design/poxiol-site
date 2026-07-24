@@ -63,7 +63,7 @@ for (const script of scriptsToRun) {
 let commitCount, changedFileCount, additions, deletions, binaryChangeCount, auditSourceCommit;
 try {
   commitCount = parseInt(execSync('git rev-list --count origin/main..HEAD', { cwd: ROOT }).toString().trim());
-  
+
   const changedFiles = execSync('git diff --name-only origin/main...HEAD', { cwd: ROOT }).toString().trim().split('\n').filter(Boolean);
   changedFileCount = changedFiles.length;
 
@@ -113,7 +113,7 @@ const duplicateRegisteredTypeCount = registeredSchemaTypes.length - uniqueTypes.
 // Check for missing (just an example check based on expectation of 23 types in the read output)
 // In the read output there were 22 entries:
 // seoFields, imageWithAlt, portableText, publishStatus, callToAction, faqReference, relatedContent, procurementOverride, pageSection, siteSettings, navigationSettings, footerSettings, procurementStandards, sitePage, productCategory, product, caseStudy, faqCategory, faqItem, article, author, redirectRule
-const expectedTypeCount = 22; 
+const expectedTypeCount = 22;
 const missingRegisteredTypeCount = Math.max(0, expectedTypeCount - registeredSchemaTypeCount);
 
 // ===== 5. Security: Sanity/Cloudflare write calls =====
@@ -141,11 +141,11 @@ function scanFiles(dirs, patterns, skipExts = ['.md']) {
     for (const line of lines) {
       const trimmed = line.trim();
       if (!trimmed || trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*') || trimmed.startsWith('#')) continue;
-      
+
       for (const pattern of patterns) {
         if (trimmed.includes(pattern)) {
           count++;
-          break; 
+          break;
         }
       }
     }
@@ -171,7 +171,7 @@ function scanForSecrets() {
   let count = 0;
   const dirs = [join(ROOT, '.github', 'workflows'), join(ROOT, 'scripts'), join(ROOT, 'lib', 'sanity'), join(ROOT, 'studio')];
   const filesToScan = [];
-  
+
   function collect(dir) {
     if (!existsSync(dir)) return;
     const entries = readdirSync(dir, { withFileTypes: true });
@@ -201,7 +201,7 @@ function scanForSecrets() {
     for (const line of lines) {
       const trimmed = line.trim();
       if (!trimmed || trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*') || trimmed.startsWith('#')) continue;
-      
+
       // Skip placeholders
       if (trimmed.includes('sk_xxxxxxxxxxxxxxxx')) continue;
 

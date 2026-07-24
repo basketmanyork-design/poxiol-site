@@ -128,7 +128,7 @@ const tests = [
     setup: (tmpDir) => {
         // No base setup here to intentionally fail git
     },
-    expectedExitCode: 1 
+    expectedExitCode: 1
   },
   {
     name: "committedSecretCount > 0",
@@ -189,13 +189,13 @@ for (const test of tests) {
   console.log(`Running test: ${test.name}`);
   const tmpDir = join(ROOT, 'tmp', `test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
   mkdirSync(tmpDir, { recursive: true });
-  
+
   // Create minimal package.json so git commands don't fail too early if they check for it
   writeFileSync(join(tmpDir, 'package.json'), '{}');
 
   try {
     test.setup(tmpDir);
-    
+
     // We need to run the preflight script in the context of the tmpDir
     // But the script imports 'fs' and uses ROOT based on its location.
     // We'll copy the script to the tmpDir/scripts/ and run it.
