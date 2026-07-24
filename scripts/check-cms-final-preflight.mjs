@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
+let totalFail = 0;
+
 // ===== 1. Read migration summary =====
 const summaryPath = join(ROOT, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json');
 let migrationSummary = {};
@@ -13,15 +15,46 @@ if (existsSync(summaryPath)) {
   migrationSummary = JSON.parse(readFileSync(summaryPath, 'utf8'));
 }
 
-const correctedCandidateCount = migrationSummary.correctedCandidateCount || 0;
-const articleConflictCount = migrationSummary.articleConflictCount || 0;
-const routeConflictCount = migrationSummary.routeConflictCount || 0;
-const missingSeoCount = migrationSummary.missingSeoCount || 0;
-const missingAltCount = migrationSummary.missingAltCount || 0;
-const brokenAssetCount = migrationSummary.brokenAssetCount || 0;
-const visualBlockingCount = migrationSummary.visualBlockingCount || 0;
-const corruptedExistingWithoutPlan = migrationSummary.corruptedExistingWithoutPlan || 0;
-const obsoleteMvpWithoutDecision = migrationSummary.obsoleteMvpWithoutDecision || 0;
+function validateMetric(summary, key, expectedValue) {
+  if (!Object.prototype.hasOwnProperty.call(summary, key)) {
+    console.error(`FATAL: Missing migration metric: ${key}`);
+    return { valid: false, value: null };
+  }
+  const val = summary[key];
+  if (typeof val !== 'number' || !Number.isFinite(val) || !Number.isInteger(val)) {
+    console.error(`FATAL: Invalid migration metric type for ${key}: ${typeof val} = ${val}`);
+    return { valid: false, value: null };
+  }
+  if (val !== expectedValue) {
+    console.error(`FATAL: Migration metric ${key} expected ${expectedValue}, got ${val}`);
+    return { valid: false, value: val };
+  }
+  return { valid: true, value: val };
+}
+
+const metrics = [
+  { key: 'correctedCandidateCount', expected: 121 },
+  { key: 'articleConflictCount', expected: 0 },
+  { key: 'routeConflictCount', expected: 0 },
+  { key: 'missingSeoCount', expected: 0 },
+  { key: 'missingAltCount', expected: 0 },
+  { key: 'brokenAssetCount', expected: 0 },
+  { key: 'visualBlockingCount', expected: 0 },
+  { key: 'corruptedExistingWithoutPlan', expected: 0 },
+  { key: 'obsoleteMvpWithoutDecision', expected: 0 },
+];
+
+let migrationValid = true;
+const metricVars = {};
+for (const { key, expected } of metrics) {
+  const result = validateMetric(migrationSummary, key, expected);
+  if (!result.valid) {
+    migrationValid = false;
+  }
+  metricVars[key] = result.value;
+}
+
+totalFail += migrationValid ? 0 : 1;
 
 // ===== 2. Run sub-scripts =====
 const scriptsToRun = [
@@ -43,6 +76,7 @@ for (const script of scriptsToRun) {
     subScriptFailure = true;
   }
 }
+if (subScriptFailure) totalFail++;
 
 // ===== 3. Real git stats =====
 let commitCount = 0;
@@ -51,32 +85,53 @@ let additions = 0;
 let deletions = 0;
 let binaryChangeCount = 0;
 let auditSourceCommit = 'unknown';
+let gitCheckFailure = false;
 
 try {
-  commitCount = parseInt(execSync('git rev-list --count origin/main..HEAD', { cwd: ROOT }).toString().trim()) || 0;
-  const changedFiles = execSync('git diff --name-only origin/main..HEAD', { cwd: ROOT }).toString().trim().split('\n').filter(Boolean);
-  changedFileCount = changedFiles.length;
-
-  const numstat = execSync('git diff --numstat origin/main..HEAD', { cwd: ROOT }).toString().trim();
-  if (numstat) {
-    numstat.split('\n').forEach(line => {
-      const parts = line.split('\t');
-      if (parts.length >= 3) {
-        const [add, del, file] = parts;
-        if (add === '-' || del === '-') {
-          if (basename(file) !== 'current_body.txt' && basename(file) !== 'tsconfig.tsbuildinfo') {
-            binaryChangeCount++;
-          }
-        } else {
-          additions += parseInt(add) || 0;
-          deletions += parseInt(del) || 0;
-        }
-      }
-    });
+  let gitOutput;
+  try {
+    gitOutput = execSync('git rev-list --count origin/main..HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim();
+    commitCount = parseInt(gitOutput, 10);
+  } catch (err) {
+    console.error('FATAL: git rev-list failed:', err.message);
+    gitCheckFailure = true;
   }
-  auditSourceCommit = execSync('git rev-parse HEAD', { cwd: ROOT }).toString().trim();
+
+  if (!gitCheckFailure) {
+    try {
+      const changedFiles = execSync('git diff --name-only origin/main..HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim().split('\n').filter(Boolean);
+      changedFileCount = changedFiles.length;
+
+      const numstat = execSync('git diff --numstat origin/main..HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim();
+      if (numstat) {
+        numstat.split('\n').forEach(line => {
+          const parts = line.split('\t');
+          if (parts.length >= 3) {
+            const [add, del, file] = parts;
+            if (add === '-' || del === '-') {
+              if (basename(file) !== 'current_body.txt' && basename(file) !== 'tsconfig.tsbuildinfo') {
+                binaryChangeCount++;
+              }
+            } else {
+              additions += parseInt(add) || 0;
+              deletions += parseInt(del) || 0;
+            }
+          }
+        });
+      }
+      auditSourceCommit = execSync('git rev-parse HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim();
+    } catch (err) {
+      console.error('FATAL: git diff or rev-parse failed:', err.message);
+      gitCheckFailure = true;
+    }
+  }
 } catch (err) {
-  // Git might not be available
+  console.error('FATAL: Unexpected git section error:', err.message);
+  gitCheckFailure = true;
+}
+
+if (gitCheckFailure) {
+  totalFail++;
 }
 
 // ===== 4. Schema types =====
@@ -121,6 +176,7 @@ if (existsSync(schemaPath)) {
 } else {
   missingRegisteredTypeCount = expectedTypes.length;
 }
+if (missingRegisteredTypeCount > 0 || duplicateRegisteredTypeCount > 0) totalFail++;
 
 // ===== 5. Security Scanning Helper =====
 function getFilesToScan(dirs, excludeFiles = []) {
@@ -176,6 +232,7 @@ for (const file of writeScanFiles) {
     }
   }
 }
+if (executableSanityWriteCallCount > 0) totalFail++;
 
 // ===== 7. Security: Cloudflare write calls =====
 let executableCloudflareWriteCallCount = 0;
@@ -194,6 +251,7 @@ for (const file of writeScanFiles) {
     }
   }
 }
+if (executableCloudflareWriteCallCount > 0) totalFail++;
 
 // ===== 8. Security: committed secrets =====
 const secretPatterns = [
@@ -233,6 +291,7 @@ for (const file of secretScanFiles) {
     }
   }
 }
+if (committedSecretCount > 0) totalFail++;
 
 // ===== 9. Security: workflow permissions =====
 let unsafeWorkflowPermissionCount = 0;
@@ -250,42 +309,33 @@ if (existsSync(workflowDir)) {
     }
   }
 }
+if (unsafeWorkflowPermissionCount > 0) totalFail++;
+
+// Binary changes from original
+if (binaryChangeCount !== 0) totalFail++;
 
 // ===== 10. Build final summary =====
-const securityMetrics = [
-  executableSanityWriteCallCount, executableCloudflareWriteCallCount,
-  committedSecretCount, unsafeWorkflowPermissionCount,
-  duplicateRegisteredTypeCount, missingRegisteredTypeCount
-];
-
-const migrationMetrics = [
-  articleConflictCount, routeConflictCount, missingSeoCount, missingAltCount,
-  brokenAssetCount, visualBlockingCount, corruptedExistingWithoutPlan, obsoleteMvpWithoutDecision
-];
-
-const anySecurityFail = securityMetrics.some(m => m > 0);
-const anyMigrationFail = migrationMetrics.some(m => m > 0);
-const totalFail = anySecurityFail || anyMigrationFail || subScriptFailure || correctedCandidateCount !== 121 || binaryChangeCount !== 0;
+const passed = totalFail === 0 && !gitCheckFailure && migrationValid;
 
 const finalSummary = {
   generatedAt: new Date().toISOString(),
   auditSourceCommit, commitCount, changedFileCount, additions, deletions, binaryChangeCount,
-  correctedCandidateCount, articleConflictCount, routeConflictCount, missingSeoCount, missingAltCount,
-  brokenAssetCount, visualBlockingCount, corruptedExistingWithoutPlan, obsoleteMvpWithoutDecision,
+  gitCheckFailure,
+  ...metricVars,
   registeredSchemaTypeCount, missingRegisteredTypeCount, duplicateRegisteredTypeCount,
   executableSanityWriteCallCount, executableCloudflareWriteCallCount, committedSecretCount, unsafeWorkflowPermissionCount,
-  result: totalFail ? "failed" : "passed"
+  result: passed ? "passed" : "failed"
 };
 
 writeFileSync(join(ROOT, 'docs', 'CMS_FINAL_PREFLIGHT_SUMMARY.json'), JSON.stringify(finalSummary, null, 2));
 
-if (totalFail) {
+if (!passed) {
   console.error("CMS final preflight FAILED");
-  if (correctedCandidateCount !== 121) console.error(`- Invalid correctedCandidateCount: ${correctedCandidateCount}`);
-  if (anyMigrationFail) console.error("- Unresolved migration conflicts or errors");
-  if (anySecurityFail) console.error("- Security or integrity metrics > 0");
+  if (!migrationValid) console.error("- Migration metrics validation failed");
+  if (metricVars.correctedCandidateCount !== 121) console.error(`- Invalid correctedCandidateCount: ${metricVars.correctedCandidateCount}`);
   if (subScriptFailure) console.error("- One or more sub-scripts failed");
   if (binaryChangeCount !== 0) console.error(`- Binary changes detected: ${binaryChangeCount}`);
+  if (gitCheckFailure) console.error("- Git audit failed");
   process.exit(1);
 }
 

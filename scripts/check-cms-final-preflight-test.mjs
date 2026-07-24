@@ -153,6 +153,26 @@ const tests = [
       writeFileSync(join(tmpDir, 'scripts', 'check-cms-safety.mjs'), 'process.exit(0); // client.create() sk_12345678901234567890123456789012');
     },
     expectedExitCode: 0
+  },
+  {
+    name: "15. Missing migration metric field",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      const summary = JSON.parse(readFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), 'utf8'));
+      delete summary.routeConflictCount;
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify(summary));
+    },
+    expectedExitCode: 1
+  },
+  {
+    name: "16. Git audit command failure",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      // To make git rev-list fail, we can just not have origin/main
+      // But baseSetup doesn't init git. git init happens in run()
+    },
+    triggerGitFail: true,
+    expectedExitCode: 1
   }
 ];
 
@@ -177,14 +197,15 @@ async function run() {
         execSync('git add .', { cwd: tmpDir });
         execSync('git commit -m "initial"', { cwd: tmpDir });
         execSync('git branch -M main', { cwd: tmpDir });
-        execSync('git branch -f origin/main main', { cwd: tmpDir });
+        if (!test.triggerGitFail) {
+          execSync('git branch -f origin/main main', { cwd: tmpDir });
+        }
         
         // Ensure feature branch for divergence
         execSync('git checkout -b feature', { cwd: tmpDir });
 
         if (test.triggerBinary) {
           const binFile = join(tmpDir, 'image.png');
-          // Use a more complex buffer to ensure git treats it as binary
           const buffer = Buffer.alloc(1024);
           for (let i = 0; i < 1024; i++) buffer[i] = Math.floor(Math.random() * 256);
           writeFileSync(binFile, buffer);
