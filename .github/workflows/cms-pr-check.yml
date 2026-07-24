@@ -68,6 +68,12 @@ jobs:
       - name: Final CMS preflight
         run: node scripts/check-cms-final-preflight.mjs
 
+      - name: Upload preflight summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cms-final-preflight-summary
+          path: docs/CMS_FINAL_PREFLIGHT_SUMMARY.json
+
       - name: Legacy static build
         run: npm run build
         env:
