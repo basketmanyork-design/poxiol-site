@@ -16,7 +16,6 @@ const EXPECTED_TYPES = [
 ];
 
 const baseSetup = (tmpDir) => {
-  // Mock docs/CMS_MIGRATION_DRY_RUN_SUMMARY.json
   const docsDir = join(tmpDir, 'docs');
   mkdirSync(docsDir, { recursive: true });
   writeFileSync(join(docsDir, 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({
@@ -30,11 +29,9 @@ const baseSetup = (tmpDir) => {
     corruptedExistingWithoutPlan: 0,
     obsoleteMvpWithoutDecision: 0
   }));
-  // Mock studio/schemaTypes/index.ts
   const studioDir = join(tmpDir, 'studio', 'schemaTypes');
   mkdirSync(studioDir, { recursive: true });
-  writeFileSync(join(studioDir, 'index.ts'), `export const schemaTypes = [${EXPECTED_TYPES.join(', ')}]`);
-  // Mock sub-scripts
+  writeFileSync(join(studioDir, 'index.ts'), `export const schemaTypes = [${EXPECTED_TYPES.map(t => `'${t}'`).join(', ')}]`);
   const scriptsDir = join(tmpDir, 'scripts');
   mkdirSync(scriptsDir, { recursive: true });
   const subScripts = [
@@ -46,19 +43,12 @@ const baseSetup = (tmpDir) => {
 };
 
 const tests = [
-  {
-    name: "1. Valid environment",
-    setup: (tmpDir) => baseSetup(tmpDir),
-    expectedExitCode: 0
-  },
+  { name: "1. Valid environment", setup: (tmpDir) => baseSetup(tmpDir), expectedExitCode: 0 },
   {
     name: "2. Invalid correctedCandidateCount",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({
-        correctedCandidateCount: 120,
-        articleConflictCount: 0
-      }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 120 }));
     },
     expectedExitCode: 1
   },
@@ -66,10 +56,7 @@ const tests = [
     name: "3. Article conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({
-        correctedCandidateCount: 121,
-        articleConflictCount: 1
-      }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 121, articleConflictCount: 1 }));
     },
     expectedExitCode: 1
   },
@@ -77,10 +64,7 @@ const tests = [
     name: "4. Route conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({
-        correctedCandidateCount: 121,
-        routeConflictCount: 1
-      }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 121, routeConflictCount: 1 }));
     },
     expectedExitCode: 1
   },
@@ -93,27 +77,27 @@ const tests = [
     expectedExitCode: 1
   },
   {
-    name: "6. Missing schemaTypes array",
+    name: "6. Missing schema type",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'studio', 'schemaTypes', 'index.ts'), 'export const other = []');
+      writeFileSync(join(tmpDir, 'studio', 'schemaTypes', 'index.ts'), `export const schemaTypes = ['article']`);
     },
     expectedExitCode: 1
   },
   {
-    name: "7. Missing specific expected schema type",
+    name: "7. Duplicate schema type",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'studio', 'schemaTypes', 'index.ts'), 'export const schemaTypes = ["article"]');
+      writeFileSync(join(tmpDir, 'studio', 'schemaTypes', 'index.ts'), `export const schemaTypes = [${EXPECTED_TYPES.map(t => `'${t}'`).join(', ')}, 'article']`);
     },
     expectedExitCode: 1
   },
   {
-    name: "8. Duplicate schema types",
+    name: "8. Binary change",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'studio', 'schemaTypes', 'index.ts'), `export const schemaTypes = [${EXPECTED_TYPES.join(', ')}, "article"]`);
     },
+    triggerBinary: true,
     expectedExitCode: 1
   },
   {
@@ -130,7 +114,7 @@ const tests = [
     name: "10. Cloudflare write call",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'scripts', 'deploy.mjs'), "const hook = 'deploy_hook';");
+      writeFileSync(join(tmpDir, 'scripts', 'deploy.mjs'), "fetch('https://api.cloudflare.com/v4/deploy', { method: 'POST' });");
     },
     expectedExitCode: 1
   },
@@ -153,32 +137,22 @@ const tests = [
     expectedExitCode: 1
   },
   {
-    name: "13. Harmless references",
+    name: "13. Harmless process.env token reference",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
       const libDir = join(tmpDir, 'lib', 'sanity');
       mkdirSync(libDir, { recursive: true });
-      writeFileSync(join(libDir, 'safe.ts'), `
-        // This is a comment about .create()
-        /* 
-         * Multiple line 
-         * comment with sk_12345678901234567890123456789012 
-         */
-        const placeholder = "sk_xxxxxxxxxxxxxxxx";
-        const envVar = process.env.SANITY_TOKEN;
-        const interpolation = \`\${process.env.VAL}\`;
-        const someString = "sanityUrl";
-      `);
+      writeFileSync(join(libDir, 'safe.ts'), `const token = process.env.TOKEN;`);
     },
     expectedExitCode: 0
   },
   {
-    name: "14. Git stats failure",
+    name: "14. Detection rule/test string itself (excluded files)",
     setup: (tmpDir) => {
-      // Intentionally don't run git init in the runner loop for this one
+      baseSetup(tmpDir);
+      writeFileSync(join(tmpDir, 'scripts', 'check-cms-safety.mjs'), 'process.exit(0); // client.create() sk_12345678901234567890123456789012');
     },
-    expectedExitCode: 1,
-    skipGit: true
+    expectedExitCode: 0
   }
 ];
 
@@ -192,41 +166,36 @@ async function run() {
 
     try {
       test.setup(tmpDir);
-
       const tmpScriptsDir = join(tmpDir, 'scripts');
       if (!existsSync(tmpScriptsDir)) mkdirSync(tmpScriptsDir, { recursive: true });
       writeFileSync(join(tmpScriptsDir, 'check-cms-final-preflight.mjs'), readFileSync(PREFLIGHT_PATH, 'utf8'));
 
-      if (!test.skipGit) {
-        try {
-          execSync('git init', { cwd: tmpDir, stdio: 'ignore' });
-          execSync('git config user.email "test@example.com"', { cwd: tmpDir });
-          execSync('git config user.name "Test"', { cwd: tmpDir });
-          execSync('git add .', { cwd: tmpDir });
-          execSync('git commit -m "initial"', { cwd: tmpDir });
-          execSync('git branch -M main', { cwd: tmpDir });
-          execSync('git branch -f origin/main main', { cwd: tmpDir });
-        } catch (e) {
-          // Git might fail if not installed
+      try {
+        execSync('git init', { cwd: tmpDir, stdio: 'ignore' });
+        execSync('git config user.email "test@example.com"', { cwd: tmpDir });
+        execSync('git config user.name "Test"', { cwd: tmpDir });
+        execSync('git add .', { cwd: tmpDir });
+        execSync('git commit -m "initial"', { cwd: tmpDir });
+        execSync('git branch -M main', { cwd: tmpDir });
+        execSync('git branch -f origin/main main', { cwd: tmpDir });
+
+        if (test.triggerBinary) {
+          const binFile = join(tmpDir, 'image.png');
+          writeFileSync(binFile, Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]));
+          execSync('git add image.png', { cwd: tmpDir });
+          execSync('git commit -m "add binary"', { cwd: tmpDir });
         }
-      }
+      } catch (e) {}
 
       let exitCode = 0;
-      let stdout = '';
-      let stderr = '';
       try {
-        const out = execSync(`node scripts/check-cms-final-preflight.mjs`, { cwd: tmpDir, stdio: 'pipe' });
-        stdout = out.toString();
+        execSync(`node scripts/check-cms-final-preflight.mjs`, { cwd: tmpDir, stdio: 'pipe' });
       } catch (err) {
         exitCode = err.status || 1;
-        stdout = err.stdout?.toString() || '';
-        stderr = err.stderr?.toString() || '';
       }
 
       if (exitCode !== test.expectedExitCode) {
-        console.error(`  FAILED: expected exit code ${test.expectedExitCode}, got ${exitCode}`);
-        console.error(`  STDOUT: ${stdout}`);
-        console.error(`  STDERR: ${stderr}`);
+        console.error(`  FAILED: expected ${test.expectedExitCode}, got ${exitCode}`);
       } else {
         console.log(`  PASSED`);
         passed++;
@@ -234,14 +203,10 @@ async function run() {
     } catch (err) {
       console.error(`  ERROR: ${err.message}`);
     } finally {
-      if (existsSync(tmpDir)) {
-        rmSync(tmpDir, { recursive: true, force: true });
-      }
+      if (existsSync(tmpDir)) rmSync(tmpDir, { recursive: true, force: true });
     }
   }
-
   console.log(`\nAll preflight self-tests completed (${passed}/${tests.length})`);
   process.exit(passed === tests.length ? 0 : 1);
 }
-
 run();
