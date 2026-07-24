@@ -22,7 +22,7 @@ export default async function GuidesPage() {
                 <div className="text-[10px] font-black uppercase tracking-widest text-lime-400">{guide.eyebrow}</div>
                 <h2 className="mt-4 text-2xl font-black uppercase tracking-tight text-white transition group-hover:text-lime-400">{guide.title}</h2>
                 <p className="mt-4 line-clamp-2 text-sm text-neutral-400 leading-relaxed">{guide.intro}</p>
-                <div className="mt-8 flex items-center text-xs font-black uppercase tracking-widest text-white/40 group-hover:text-white">Read Guide <span className="ml-2 transition-transform group-hover:translate-x-1">â†?/span></div>
+                <div className="mt-8 flex items-center text-xs font-black uppercase tracking-widest text-white/40 group-hover:text-white">Read Guide <span className="ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true">&rarr;</span></div>
               </Link>
             ))}
           </div>
@@ -32,3 +32,4 @@ export default async function GuidesPage() {
     </main>
   );
 }
+

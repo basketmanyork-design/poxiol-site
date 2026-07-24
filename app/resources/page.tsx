@@ -24,7 +24,7 @@ export default async function ResourcesPage() {
               <Link key={item.title} href={item.href} className="group flex flex-col items-center rounded-3xl border border-lime-400/20 bg-lime-400/5 p-8 text-center transition hover:bg-lime-400/10">
                 <h3 className="text-xl font-black uppercase text-lime-400">{item.title}</h3>
                 <p className="mt-2 text-sm text-neutral-400">{item.desc}</p>
-                <span className="mt-4 text-xs font-black uppercase tracking-widest text-white underline underline-offset-4 decoration-lime-400/50">Explore Hub â†?/span>
+                <span className="mt-4 text-xs font-black uppercase tracking-widest text-white underline underline-offset-4 decoration-lime-400/50">Explore Hub &rarr;</span>
               </Link>
             ))}
           </div>
@@ -42,3 +42,4 @@ export default async function ResourcesPage() {
     </main>
   );
 }
+
