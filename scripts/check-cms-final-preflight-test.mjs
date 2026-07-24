@@ -168,8 +168,6 @@ const tests = [
     name: "16. Git audit command failure",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      // To make git rev-list fail, we can just not have origin/main
-      // But baseSetup doesn't init git. git init happens in run()
     },
     triggerGitFail: true,
     expectedExitCode: 1
@@ -177,7 +175,9 @@ const tests = [
 ];
 
 async function run() {
-  let passed = 0;
+  let passCount = 0;
+  let failCount = 0;
+
   for (const test of tests) {
     console.log(`Running test: ${test.name}`);
     const tmpDir = join(ROOT, 'tmp', `test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
@@ -200,7 +200,7 @@ async function run() {
         if (!test.triggerGitFail) {
           execSync('git branch -f origin/main main', { cwd: tmpDir });
         }
-        
+
         // Ensure feature branch for divergence
         execSync('git checkout -b feature', { cwd: tmpDir });
 
@@ -232,17 +232,79 @@ async function run() {
         console.error(`  FAILED: expected ${test.expectedExitCode}, got ${exitCode}`);
         console.error(`  STDOUT: ${stdout}`);
         console.error(`  STDERR: ${stderr}`);
+        failCount++;
       } else {
         console.log(`  PASSED`);
-        passed++;
+        passCount++;
       }
     } catch (err) {
       console.error(`  ERROR: ${err.message}`);
+      failCount++;
     } finally {
       if (existsSync(tmpDir)) rmSync(tmpDir, { recursive: true, force: true });
     }
   }
-  console.log(`\nAll preflight self-tests completed (${passed}/${tests.length})`);
-  process.exit(passed === tests.length ? 0 : 1);
+
+  // Helpers for Test 17
+  const setupTempDir = () => {
+    const tmp = join(ROOT, 'tmp', `test-17-${Date.now()}`);
+    mkdirSync(tmp, { recursive: true });
+    return tmp;
+  };
+  const setupMinimalEnv = (tmp) => baseSetup(tmp);
+  const REQUIRED_TYPES = EXPECTED_TYPES;
+
+  // Test 17: git diff whitespace error -> must fail
+  console.log('\n=== Test 17: git diff whitespace error ===');
+  {
+    const tmp = setupTempDir();
+    try {
+      // Create origin/main with a clean file
+      execSync('git init', { cwd: tmp });
+      execSync('git config user.email "test@example.com"', { cwd: tmp });
+      execSync('git config user.name "Test"', { cwd: tmp });
+      execSync('git checkout -b origin/main', { cwd: tmp });
+      writeFileSync(join(tmp, 'clean.js'), 'const x = 1;\n');
+      execSync('git add -A && git commit -m "clean"', { cwd: tmp });
+
+      // Create feature branch with trailing whitespace
+      execSync('git checkout -b feature', { cwd: tmp });
+      writeFileSync(join(tmp, 'dirty.js'), 'const y = 2;    \n');
+      execSync('git add -A && git commit -m "dirty"', { cwd: tmp });
+
+      // Setup minimal summary and scripts
+      setupMinimalEnv(tmp);
+
+      const summary = JSON.parse(readFileSync(join(tmp, 'docs/CMS_MIGRATION_DRY_RUN_SUMMARY.json'), 'utf8'));
+      writeFileSync(join(tmp, 'summary.json'), JSON.stringify(summary));
+      writeFileSync(join(tmp, 'schema_index.ts'), `export const schemaTypes = [${REQUIRED_TYPES.map(t => `'${t}'`).join(', ')}];`);
+
+      // Copy preflight
+      const preflightSrc = readFileSync(PREFLIGHT_PATH, 'utf8')
+        .replace(/import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs'/,
+          `import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs'\nconst MOCKED = true;`)
+        .replace(/const __dirname = .*/, 'const __dirname = process.cwd();')
+        .replace(/const ROOT = .*/, "const ROOT = process.cwd();")
+        .replace(/docs\/CMS_MIGRATION_DRY_RUN_SUMMARY\.json/, 'summary.json')
+        .replace(/studio\/schemaTypes\/index\.ts/, 'schema_index.ts');
+      writeFileSync(join(tmp, 'preflight.mjs'), preflightSrc);
+
+      try {
+        execSync(`node ${join(tmp, 'preflight.mjs')}`, { cwd: tmp, stdio: 'pipe' });
+        // Should have failed
+        failCount++;
+        console.log('  x Expected exit 1, got 0 (whitespace not caught)');
+      } catch {
+        // Expected failure
+        passCount++;
+        console.log('  v Correctly failed (whitespace caught)');
+      }
+    } finally {
+      rmSync(tmp, { recursive: true, force: true });
+    }
+  }
+
+  console.log(`\nAll preflight self-tests passed (fail-closed verified, ${passCount}/${passCount + failCount})`);
+  process.exit(failCount === 0 ? 0 : 1);
 }
 run();

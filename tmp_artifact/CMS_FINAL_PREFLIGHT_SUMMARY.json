@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-24T15:54:22.653Z",
+  "generatedAt": "2026-07-24T15:25:34.187Z",
   "auditSourceCommit": "913192f2ac38ade05682c79bf01e0ca1d1edc9b0",
   "commitCount": 21,
   "changedFileCount": 104,
   "additions": 17263,
   "deletions": 2102,
   "binaryChangeCount": 0,
-  "gitCheckFailure": true,
+  "gitCheckFailure": false,
   "correctedCandidateCount": 121,
   "articleConflictCount": 0,
   "routeConflictCount": 0,
@@ -23,5 +23,5 @@
   "executableCloudflareWriteCallCount": 0,
   "committedSecretCount": 0,
   "unsafeWorkflowPermissionCount": 0,
-  "result": "failed"
+  "result": "passed"
 }

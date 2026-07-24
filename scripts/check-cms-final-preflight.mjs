@@ -99,10 +99,10 @@ try {
 
   if (!gitCheckFailure) {
     try {
-      const changedFiles = execSync('git diff --name-only origin/main..HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim().split('\n').filter(Boolean);
+      const changedFiles = execSync('git diff --name-only origin/main...HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim().split('\n').filter(Boolean);
       changedFileCount = changedFiles.length;
 
-      const numstat = execSync('git diff --numstat origin/main..HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim();
+      const numstat = execSync('git diff --numstat origin/main...HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim();
       if (numstat) {
         numstat.split('\n').forEach(line => {
           const parts = line.split('\t');
@@ -119,6 +119,20 @@ try {
           }
         });
       }
+
+      // git diff --check must pass (no whitespace/trailing issues)
+      try {
+        execSync('git diff --check origin/main...HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] });
+        // Success = no whitespace issues
+      } catch (err) {
+        console.error('FATAL: git diff --check failed (whitespace or formatting issues):');
+        const stdout = err.stdout?.toString() || '';
+        const stderr = err.stderr?.toString() || '';
+        if (stdout) console.error(stdout);
+        if (stderr) console.error(stderr);
+        gitCheckFailure = true;
+      }
+
       auditSourceCommit = execSync('git rev-parse HEAD', { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'] }).toString().trim();
     } catch (err) {
       console.error('FATAL: git diff or rev-parse failed:', err.message);
@@ -156,11 +170,11 @@ if (existsSync(schemaPath)) {
       .split(',')
       .map(t => t.trim().replace(/^['"]|['"]$/g, '').split('/').pop()) // Handle potential path imports if any
       .filter(t => t && !t.startsWith('//') && !t.startsWith('/*'));
-    
+
     registeredSchemaTypeCount = registeredSchemaTypes.length;
     const uniqueTypes = new Set(registeredSchemaTypes);
     duplicateRegisteredTypeCount = registeredSchemaTypes.length - uniqueTypes.size;
-    
+
     expectedTypes.forEach(type => {
       if (!uniqueTypes.has(type)) {
         missingRegisteredTypeCount++;
@@ -281,7 +295,7 @@ for (const file of secretScanFiles) {
 
     if (trimmed.match(/secrets\..*TOKEN/) || trimmed.match(/env\..*TOKEN/) || trimmed.includes('${') || trimmed.includes('{{')) continue;
     if (trimmed.includes('sk_xxxxxxxxxxxxxxxx') || trimmed.includes('process.env.') || trimmed.includes('::error::') || trimmed.includes('echo ')) continue;
-    if (trimmed.match(/\/.*\/[gimuy]*/) || trimmed.match(/^(if|then|else|fi|case|esac|for|do|done)\b/)) continue; 
+    if (trimmed.match(/\/.*\/[gimuy]*/) || trimmed.match(/^(if|then|else|fi|case|esac|for|do|done)\b/)) continue;
 
     for (const pattern of secretPatterns) {
       if (pattern.test(trimmed)) {
