@@ -16,3 +16,5 @@ migration-output
 tmp/cms-migration-dry-run/
 .npm-cache/
 tmp/
+
+docs/CMS_FINAL_PREFLIGHT_SUMMARY.json
