@@ -62,6 +62,12 @@ jobs:
       - name: Content blocker validation
         run: node scripts/check-cms-content-blockers.mjs
 
+      - name: Final CMS preflight self-test
+        run: node scripts/check-cms-final-preflight-test.mjs
+
+      - name: Final CMS preflight
+        run: node scripts/check-cms-final-preflight.mjs
+
       - name: Legacy static build
         run: npm run build
         env:

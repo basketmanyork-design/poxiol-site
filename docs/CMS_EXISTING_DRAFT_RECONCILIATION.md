@@ -86,3 +86,25 @@ npx sanity@latest schema deploy
 ```
 
 Before importing content, confirm Schema Registry can read the schema, Studio is built from the approved commit, every planned type is registered, and Studio/GROQ/frontend fields match.
+
+## Checkpoint E Current Read-only Snapshot
+
+- Query Date: 2026-07-24
+- Project ID: oqpv1xbc
+- Dataset: production
+- Perspective: raw
+- Query Purpose: read-only verification
+
+### Current Counts
+- Business Draft Count: 57
+- Published Business Count: 0
+- Asset Count: unchanged
+- Duplicate Singleton Count: 0
+- Duplicate Slug Count: 0
+- Draft/Published Pair Count: 0
+
+### Delta from Previous Snapshot
+- unexpectedDatasetDeltaCount: 0
+- No new documents since last audit
+- 5 corrupted Case Study Drafts still present (as expected, pending future fix)
+- 10 MVP Drafts still present (as expected, pending future processing)

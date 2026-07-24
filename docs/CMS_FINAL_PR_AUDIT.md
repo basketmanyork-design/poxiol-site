@@ -1,39 +1,33 @@
 # CMS Final PR Audit
 
-## Overview
-- **Files Changed**: 96
-- **Lines Added**: +16347
-- **Lines Removed**: -2100
-- **Commits Since Main**: 9
-- **Binary Files**: 0
-- **Hardcoded Tokens/Secrets**: 0
-- **Sanity Write Calls in Frontend/Scripts**: 0
-- **Cloudflare Write Calls**: 0
-- **Debugging Output**: 0
-- **Corrupted Markup**: 0
-- **Public Tech Language (CMS/Legacy/Sanity)**: 0
-- **Workflow Permissions**: Read-only (no write-all)
-- **Auto-deploy Triggers**: None
+- Audit Base SHA: origin/main (latest)
+- Audit Head SHA: ab64df9392eaac7402c4a5c91695d9034ad673c1
+- Commit Count: 12
+- Changed File Count: 102
+- Additions: 16590
+- Deletions: 2100
+- Binary Change Count: 0
+- Workflow Permissions: read-only
+- Executable Sanity Write Calls: 0
+- Executable Cloudflare Write Calls: 0
+- Committed Secret Count: 0
 
 ## Audit Checklist
 
-| Check # | Audit Criterion | Status | Findings |
-| :--- | :--- | :--- | :--- |
-| 1 | Hardcoded Sanity project ID / Dataset | Pass | 0 found |
-| 2 | Exposed Sanity API Write Token | Pass | 0 found |
-| 3 | Executable Sanity write calls in frontend | Pass | 0 found |
-| 4 | Executable Cloudflare write calls | Pass | 0 found |
-| 5 | Debugging console.log / TODOs in production | Pass | 0 found |
-| 6 | Buyer-facing technical jargon (CMS/Sanity/Legacy) | Pass | 0 found |
-| 7 | Broken HTML / React markup in migration components | Pass | 0 found |
-| 8 | Unauthorized auto-deploy GitHub Action triggers | Pass | 0 found |
-| 9 | GitHub Action permissions (Write-All) | Pass | Read-only verified |
-| 10 | Unprotected Sanity config in client-side bundles | Pass | 0 found |
-| 11 | Presence of development secrets in .env.example | Pass | 0 found |
-| 12 | Corrupted asset references in static fallbacks | Pass | 0 found |
-| 13 | Cross-origin resource sharing (CORS) leaks | Pass | 0 found |
-| 14 | Hardcoded localhost URLs in production paths | Pass | 0 found |
-| 15 | Unresolved merge conflicts | Pass | 0 found |
+1. [PASS] Dry run candidate count matches (121)
+2. [PASS] No route conflicts (0)
+3. [PASS] No SEO field omissions (0)
+4. [PASS] No image alt omissions (0)
+5. [PASS] No broken asset references (0)
+6. [PASS] No visual blocking content (0)
+7. [PASS] Schema type registration coverage (22/22)
+8. [PASS] Read-only safety (no write calls found in executable paths)
+9. [PASS] Workflow permission restriction (read-only)
+10. [PASS] Binary file guard (0 changes)
+11. [PASS] Reconciliation snapshot matches production baseline
+12. [PASS] Article conflict resolution plan validated
+13. [PASS] Redirect rule generator fixture parity
+14. [PASS] Content blocker validation passed
+15. [PASS] CMS final preflight script success
 
-## Summary
-The audit was completed successfully. All 15 checks passed with zero violations. The codebase is clean of hardcoded secrets, debugging output, and technical language on public-facing pages. Workflow permissions are restricted to read-only where appropriate.
+**auditDataSource**: "generated from git diff --shortstat and executable code scan"
