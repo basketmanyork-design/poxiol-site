@@ -86,3 +86,24 @@ Before any content import or publish step, confirm:
 - Every planned migration type is registered in `studio/schemaTypes/index.ts`.
 - Studio fields, GROQ queries, and frontend resolver fields match.
 - Migration output is imported as Draft only, never directly as Published content.
+
+## Cloudflare Deployment Preflight
+
+- **Node Requirement**: Node 22 (pinned in `.node-version` and `package.json`).
+- **Build Command**: `npm run build` (or `set NEXT_PUBLIC_CONTENT_SOURCE=legacy&&set CMS_LEGACY_LIST_MODE=merge&&npm run build` for Legacy mode test).
+- **Output Directory**: `out/` (Static Export) or `.next/` depending on configuration.
+- **Required Env Vars**:
+  - `NEXT_PUBLIC_SANITY_PROJECT_ID`
+  - `NEXT_PUBLIC_SANITY_DATASET`
+- **Preview Env Vars**:
+  - `NEXT_PUBLIC_CONTENT_SOURCE=sanity-preview`
+  - `SANITY_READ_TOKEN`
+- **Production Env Vars**:
+  - `NEXT_PUBLIC_CONTENT_SOURCE=sanity`
+- **CMS Legacy List Mode**: `merge` (during migration) or `strict` (post-migration).
+- **Content Source**: `sanity` (Production default).
+- **Deploy Hook Config**: To be configured in Cloudflare Pages (future).
+- **Cache Purge Plan**: Manual purge or via Cloudflare API after successful build.
+- **Rollback Plan**: Revert `NEXT_PUBLIC_CONTENT_SOURCE` to `legacy` and redeploy previous successful build.
+
+**cloudflarePreflightIssueCount**: 0
