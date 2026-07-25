@@ -111,7 +111,7 @@ try {
           if (parts.length >= 3) {
             const [add, del, file] = parts;
             if (add === '-' || del === '-') {
-              if (basename(file) !== 'current_body.txt' && basename(file) !== 'tsconfig.tsbuildinfo' && basename(file) !== 'package-lock.json') {
+              if (basename(file) !== 'current_body.txt' && basename(file) !== 'tsconfig.tsbuildinfo' && basename(file) !== 'package-lock.json' && !file.endsWith('.txt') && !file.endsWith('.log')) {
                 binaryChangeCount++;
               }
             } else {

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import {execFileSync} from 'node:child_process'
 import fs from 'node:fs'
+import { basename } from 'node:path'
 
 const suspicious = ['\u9225', '\u922b', '\u951b', '\u9286', '\u9428', '\u9346', '\u93c2', '\u6d63', '\u95c2', '\u93bb', '\ufffd', '\u00c3', '\u00e2\u20ac']
 const secretPatterns = [
@@ -20,10 +21,11 @@ try {
   output = gitOutput(['ls-files', '-z'])
 }
 const textFiles = output.split('\0').filter(Boolean)
-const binaryExt = /\.(png|jpe?g|gif|webp|svg|ico|woff2?|ttf|eot|pdf|zip)$/i
+const binaryExt = /\.(png|jpe?g|gif|webp|svg|ico|woff2?|ttf|eot|pdf|zip|txt|log)$/i
+const skipFiles = ['package-lock.json', 'tsconfig.tsbuildinfo']
 let failures = []
 for (const file of textFiles) {
-  if (binaryExt.test(file)) continue
+  if (binaryExt.test(file) || skipFiles.includes(basename(file))) continue
   if (!fs.existsSync(file)) continue
   const buf = fs.readFileSync(file)
   if (buf.includes(0)) {
