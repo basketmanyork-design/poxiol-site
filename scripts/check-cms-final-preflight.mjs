@@ -285,7 +285,7 @@ function scanForSecrets() {
   const dirsToScan = ['.github/workflows', 'scripts', 'lib/sanity', 'studio'];
   const trackedFiles = execSync('git ls-files', {cwd: ROOT, stdio: ['pipe','pipe','pipe']}).toString().trim().split('\n')
     .filter(f => dirsToScan.some(d => f.startsWith(d)));
-  
+
   for (const file of trackedFiles) {
     if (!file) continue;
     const isSelf = selfScripts.some(s => file.includes(s));
@@ -359,4 +359,3 @@ if (!passed) {
 
 console.log("CMS final preflight passed");
 process.exit(0);
-

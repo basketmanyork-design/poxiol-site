@@ -1,7 +1,0 @@
-{
-  "faqItem": count(*[_id in path("drafts.**") && _type=="faqItem"]),
-  "article": count(*[_id in path("drafts.**") && _type=="article"]),
-  "product": count(*[_id in path("drafts.**") && _type=="product"]),
-  "caseStudy": count(*[_id in path("drafts.**") && _type=="caseStudy"]),
-  "sitePage": count(*[_id in path("drafts.**") && _type=="sitePage"])
-}
