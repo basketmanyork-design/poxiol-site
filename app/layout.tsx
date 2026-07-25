@@ -48,9 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             okkiAdd("analytics", { siteId: "395585-32576", gId: "" });
           `}
         </Script>
-        <Script 
-          src="//tfile.xiaoman.cn/okki/analyze.js?id=395585-32576-" 
-          strategy="lazyOnload" 
+        <Script
+          src="//tfile.xiaoman.cn/okki/analyze.js?id=395585-32576-"
+          strategy="lazyOnload"
         />
         <div id="main-content">{children}</div>
         <WhatsAppButton />

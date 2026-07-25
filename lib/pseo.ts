@@ -79,9 +79,9 @@ export const pseoPages: PSEOPage[] = [
     ],
   },
   {
-    slug: "sublimation-printing-guide",
-    title: "Sublimation Printing Guide | Complete Teamwear Printing Guide | POXIOL",
-    h1: "Complete Sublimation Printing Guide",
+    slug: "how-sublimation-printing-works-for-teamwear",
+    title: "How Sublimation Printing Works for Teamwear | Complete Teamwear Printing Guide | POXIOL",
+    h1: "Complete How Sublimation Printing Works for Teamwear",
     intro: "Sublimation printing has revolutionized teamwear by allowing for unlimited design creativity without sacrificing performance. Learn why it's the preferred choice for professional sports uniforms.",
     content: "Unlike screen printing or heat transfer, sublimation uses heat to turn ink into a gas that infuses directly into the fabric fibers. This results in a print with high color fastness that is highly resistant to cracking or peeling, and maintains the fabric's full breathability. This process is professional-grade for complex patterns, gradients, and multiple sponsor logos. At POXIOL, we use high-precision Japanese printers and professional-grade inks to ensure vibrant, lasting colors that stand out on the field and the court. Sublimation is a leading solution for durable, high-impact teamwear branding.",
     author: {

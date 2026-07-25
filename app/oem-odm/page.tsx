@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
+import {getSitePage} from "@/lib/sanity/content";
+import {metadataFromCmsPage} from "@/components/cms/PageTemplate";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading } from "@/components/ui";
 import { Layers, Rocket, Users, ShieldCheck, CheckCircle2, Package, Layout, Palette, PenTool, ClipboardCheck, Globe, Trophy, Store, ClipboardList, Ruler, Zap } from "lucide-react";
-
-export const metadata: Metadata = { 
-  title: "OEM/ODM Sportswear Manufacturer for Custom Teamwear Brands | POXIOL", 
-  description: "POXIOL supports OEM/ODM sportswear production for teamwear brands, distributors, wholesalers and custom uniform businesses with design support, sampling, sublimation printing and multi-sport collection development." 
-};
 
 const userGroups = [
   {
@@ -58,7 +55,15 @@ const advantages = [
   { title: "Teamwear Specialization", desc: "Built around the specific use cases of clubs, schools, teams, and sports events." }
 ];
 
-export default function OEMPage() {
+const pageKey = "oem-odm";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getSitePage(pageKey);
+  return metadataFromCmsPage(page);
+}
+
+export default async function OEMPage() {
+  const page = await getSitePage(pageKey);
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <Header />
@@ -68,24 +73,24 @@ export default function OEMPage() {
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-lime-500/10 blur-[160px] rounded-full"></div>
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center relative z-10">
           <div>
-            <p className="mb-6 text-sm font-black uppercase tracking-[0.2em] text-lime-400">Strategic Manufacturing</p>
+            <p className="mb-6 text-sm font-black uppercase tracking-[0.2em] text-lime-400">{page.eyebrow || "Strategic Manufacturing"}</p>
             <h1 className="text-6xl font-black leading-[0.95] tracking-tight md:text-8xl uppercase">
-              OEM/ODM <span className="text-stroke-thin text-stroke-white text-transparent">Partner</span>
+              {page.heading || "OEM/ODM Partner"}
             </h1>
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-neutral-400">
-              POXIOL helps sportswear brands, distributors, custom retailers and wholesalers develop private label teamwear collections across multiple sport categories with clear process support.
+              {page.description || "POXIOL helps sportswear brands, distributors, custom retailers and wholesalers develop private label teamwear collections across multiple sport categories with clear process support."}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <PrimaryButton href="/free-mockup/">Start OEM/ODM Project</PrimaryButton>
+              <PrimaryButton href={page.heroCta?.href || "/free-mockup/"}>{page.heroCta?.label || "Start OEM/ODM Project"}</PrimaryButton>
               <SecondaryButton href="/contact/">Consult with Experts</SecondaryButton>
             </div>
           </div>
           <div className="relative group">
             <div className="absolute -inset-4 rounded-[3rem] bg-lime-400/10 blur-2xl group-hover:bg-lime-400/20 transition"></div>
             <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
-              <img 
-                src="/images/solutions/oem-odm-catalog.jpg" 
-                alt="POXIOL OEM Design Studio" 
+              <img
+                src="/images/solutions/oem-odm-catalog.jpg"
+                alt="POXIOL OEM Design Studio"
                 className="h-full w-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition duration-700"
               />
             </div>

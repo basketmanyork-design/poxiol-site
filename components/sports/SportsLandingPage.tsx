@@ -15,12 +15,12 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black text-left">
       {/* --- AEO / GEO Infrastructure --- */}
-      <ProductSchema 
-        name={data.h1} 
-        description={data.metaDescription} 
-        url={fullUrl} 
+      <ProductSchema
+        name={data.h1}
+        description={data.metaDescription}
+        url={fullUrl}
       />
-      <ServiceSchema 
+      <ServiceSchema
         name={`Custom ${productLabel} Manufacturing`}
         description={`POXIOL provides factory-direct custom ${productLabel.toLowerCase()} production with free mockup and sampling.`}
         url={fullUrl}
@@ -61,9 +61,9 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       {/* 1. Product Procurement Specifications - Data Conclusion Section */}
       <section id="procurement-specs" className="bg-white px-5 py-20 md:px-10 md:py-32 xl:px-20 text-neutral-950 border-b border-neutral-100">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading 
-            eyebrow="AEO Summary" 
-            title={`${productLabel} Procurement Summary`} 
+          <SectionHeading
+            eyebrow="AEO Summary"
+            title={`${productLabel} Procurement Summary`}
             subtitle={`Custom ${productLabel} Manufacturing Summary. Standard B2B parameters for professional teamwear orders and OEM sportswear programs.`}
           />
           <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-start mt-16">
@@ -167,8 +167,8 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                 <div className="p-8 text-left">
                   <h3 className="text-2xl font-black text-neutral-950 uppercase italic tracking-tighter">{item.title}</h3>
                   <p className="mt-3 leading-7 text-neutral-600 text-sm">{item.description}</p>
-                  <Link 
-                    href={item.href || `/free-mockup/?style=${item.title.toLowerCase().replace(/\s+/g, '-')}`} 
+                  <Link
+                    href={item.href || `/free-mockup/?style=${item.title.toLowerCase().replace(/\s+/g, '-')}`}
                     className="mt-6 inline-flex text-sm font-black uppercase tracking-widest text-neutral-950 hover:text-[#B6FF00] hover:underline"
                   >
                     Request This Design →
@@ -201,7 +201,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-neutral-400 mb-8">Related Expert Guides</h3>
               <div className="flex flex-wrap justify-center gap-4">
                 {data.relatedGuides.map((guide) => (
-                  <Link 
+                  <Link
                     key={guide.slug}
                     href={`/guides/${guide.slug}/`}
                     className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:border-lime-500 hover:text-lime-600"
