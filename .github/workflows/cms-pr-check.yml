@@ -118,7 +118,7 @@ jobs:
 
       - name: Sanity schema validate
         working-directory: studio
-        run: npx sanity schema validate --level error
+        run: ./node_modules/.bin/sanity schema validate --level error
 
       - name: Studio build
         working-directory: studio
