@@ -5,6 +5,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
+const selfScripts = ['check-cms-final-preflight.mjs', 'check-cms-final-preflight-test.mjs', 'verify-mvp-seed-result.cjs', 'check-cms-safety.mjs', 'cms-migration-dry-run.ts'];
+
 
 let totalFail = 0;
 
@@ -220,7 +222,7 @@ function getFilesToScan(dirs, excludeFiles = []) {
 const sanityWriteRegex = /\b(client|sanity|cms)\.(create|patch|delete|mutate|transaction|assets\.upload)\(/;
 const excludedFromWrites = [
   'check-cms-final-preflight.mjs',
-  'check-cms-final-preflight-test.mjs',
+  'check-cms-final-preflight-test.mjs', 'verify-mvp-seed-result.cjs',
   'check-cms-safety.mjs',
   'cms-migration-dry-run.ts',
   'verify-mvp-seed-result.cjs',
@@ -268,6 +270,7 @@ for (const file of writeScanFiles) {
 if (executableCloudflareWriteCallCount > 0) totalFail++;
 
 // ===== 8. Security: committed secrets =====
+const BINARY_EXTS = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.woff', '.woff2', '.ttf', '.eot', '.gz', '.svg', '.pack', '.pdf', '.zip', '.mov', '.mp4', '.mp3'];
 const secretPatterns = [
   /\bsk_[a-zA-Z0-9]{32,}\b/,
   /\bNEXT_PUBLIC_.*TOKEN\b/i,
@@ -277,34 +280,35 @@ const secretPatterns = [
   /\bsanity.*token\b/i
 ];
 
-let committedSecretCount = 0;
-const secretScanFiles = getFilesToScan([
-  join(ROOT, '.github', 'workflows'),
-  join(ROOT, 'scripts'),
-  join(ROOT, 'lib', 'sanity'),
-  join(ROOT, 'studio')
-], excludedFromWrites);
-
-for (const file of secretScanFiles) {
-  if (file.endsWith('.cjs')) continue;
-  const content = readFileSync(file, 'utf8');
-  const lines = content.split('\n');
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*') || trimmed.startsWith('#')) continue;
-
-    if (trimmed.match(/secrets\..*TOKEN/) || trimmed.match(/env\..*TOKEN/) || trimmed.includes('${') || trimmed.includes('{{')) continue;
-    if (trimmed.includes('sk_xxxxxxxxxxxxxxxx') || trimmed.includes('process.env.') || trimmed.includes('::error::') || trimmed.includes('echo ')) continue;
-    if (trimmed.match(/\/.*\/[gimuy]*/) || trimmed.match(/^(if|then|else|fi|case|esac|for|do|done)\b/)) continue;
-
-    for (const pattern of secretPatterns) {
-      if (pattern.test(trimmed)) {
-        committedSecretCount++;
-        break;
+function scanForSecrets() {
+  let count = 0;
+  const dirsToScan = ['.github/workflows', 'scripts', 'lib/sanity', 'studio'];
+  const trackedFiles = execSync('git ls-files', {cwd: ROOT, stdio: ['pipe','pipe','pipe']}).toString().trim().split('\n')
+    .filter(f => dirsToScan.some(d => f.startsWith(d)));
+  
+  for (const file of trackedFiles) {
+    if (!file) continue;
+    const isSelf = selfScripts.some(s => file.includes(s));
+    if (isSelf) continue;
+    if (BINARY_EXTS.some(ext => file.endsWith(ext))) continue;
+    const fullPath = join(ROOT, file);
+    if (!existsSync(fullPath)) continue;
+    const content = readFileSync(fullPath, 'utf8');
+    const lines = content.split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('#') || trimmed.startsWith('/*')) continue;
+      if (trimmed.match(/secrets\..*TOKEN/) || trimmed.match(/env\..*TOKEN/) || trimmed.includes('$' + '{') || trimmed.includes('{{')) continue;
+      if (trimmed.includes('sk_xxxxxxxxxxxxxxxx') || trimmed.includes('process.env.') || trimmed.includes('::error::') || trimmed.includes('echo ')) continue;
+      if (trimmed.match(/\/.*\/[gimuy]*/) || trimmed.match(/^(if|then|else|fi|case|esac|for|do|done)\b/)) continue;
+      for (const pattern of secretPatterns) {
+        if (pattern.test(line)) { count++; break; }
       }
     }
   }
+  return count;
 }
+let committedSecretCount = scanForSecrets();
 if (committedSecretCount > 0) totalFail++;
 
 // ===== 9. Security: workflow permissions =====
@@ -355,3 +359,4 @@ if (!passed) {
 
 console.log("CMS final preflight passed");
 process.exit(0);
+

@@ -1,0 +1,1 @@
+*[_id in path("drafts.**")]{_id, _type, _createdAt} | order(_createdAt)

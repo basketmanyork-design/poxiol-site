@@ -20,3 +20,5 @@ tmp/
 docs/CMS_FINAL_PREFLIGHT_SUMMARY.json
 
 tmp_artifact/
+
+.sanity/

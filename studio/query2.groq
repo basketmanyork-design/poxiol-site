@@ -1,0 +1,1 @@
+count(*[_id in path("drafts.**") && !references(*[_id in path("drafts.**")]._id)])

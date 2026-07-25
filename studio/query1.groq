@@ -1,0 +1,1 @@
+*[_id in path("drafts.**")]{_type} | order(_type)
