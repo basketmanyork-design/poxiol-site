@@ -22,7 +22,7 @@ export const pseoPages: PSEOPage[] = [
       bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
     },
     faqs: [
-      { question: "What is the typical production timeline for basketball uniforms?", answer: "Most orders are completed within 10-14 days after final design approval." },
+      { question: "What is the typical production timeline for basketball uniforms?", answer: "Bulk production usually takes 7–12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
       { question: "Can I see a sample before bulk production?", answer: "Yes, we highly recommend ordering a sample to verify fit, color, and fabric quality." },
       { question: "What file formats do I need for logos?", answer: "Vector files like AI, EPS, or SVG are preferred for the sharpest printing results." },
     ],
@@ -41,7 +41,7 @@ export const pseoPages: PSEOPage[] = [
     faqs: [
       { question: "Do you manufacture goalkeeper kits as well?", answer: "Yes, we produce specialized goalkeeper jerseys with padded elbows and matching shorts." },
       { question: "Are soccer socks customizable?", answer: "Yes, we can produce custom knitted socks with your club name or logo." },
-      { question: "What is the minimum order for soccer kits?", answer: "We offer flexible MOQs starting as low as 10-15 sets for many club programs." },
+      { question: "What is the minimum order for soccer kits?", answer: "Sample MOQ is 1 set for sample development. Recommended team order quantity: 10–15 sets or more for efficient bulk pricing. Bulk order quantity is quoted according to sport, design, size mix and order requirements." },
     ],
   },
   {
@@ -124,7 +124,7 @@ export const pseoPages: PSEOPage[] = [
     faqs: [
       { question: "Do you offer youth and adult sizes for schools?", answer: "Yes, we provide a full range of sizes from youth XS to adult 5XL to accommodate all school grade levels." },
       { question: "Can we add school logos and player names?", answer: "Absolutely. Our sublimation process allows for unlimited customization including school logos, player names, and numbers at no extra cost." },
-      { question: "What is the turnaround time for school orders?", answer: "Standard production for school orders is 10-14 days after design approval." },
+      { question: "What is the turnaround time for school orders?", answer: "Bulk production usually takes 7–12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
     ],
   },
   {
@@ -181,7 +181,7 @@ export const pseoPages: PSEOPage[] = [
     content: "Our baseball jersey manufacturing focus is on durability and range of motion. We use high-density, breathable polyester fabrics that withstand the rigors of the game. From full-button traditional jerseys to modern v-neck designs, we offer a variety of styles to suit your club's tradition. Our sublimation process ensures your team graphics and numbers remain sharp and vibrant season after season. With fast turnaround times and reliable global shipping, POXIOL is the preferred partner for baseball clubs looking for elite gear.",
     faqs: [
       { question: "Do you offer full-button baseball jerseys?", answer: "Yes, we manufacture full-button, two-button, and v-neck baseball jerseys." },
-      { question: "What is the typical MOQ for baseball clubs?", answer: "We offer flexible MOQs, usually starting at 10-15 jerseys per design." },
+      { question: "What is the typical MOQ for baseball clubs?", answer: "Sample MOQ is 1 set for sample development. Bulk order quantity is quoted according to sport, design, size mix and order requirements. Recommended team order quantity: 10–15 jerseys or more for more efficient bulk pricing." },
       { question: "Can we include piping and custom sleeves?", answer: "Yes, all design elements including piping, sleeve patterns, and logos are fully customizable." },
     ],
   },
@@ -189,12 +189,12 @@ export const pseoPages: PSEOPage[] = [
     slug: "soccer-teamwear-supplier-usa",
     title: "Soccer Teamwear Supplier USA | Custom Football Kits America | POXIOL",
     h1: "Trusted Soccer Teamwear Supplier for USA Markets",
-    intro: "POXIOL is a premier soccer teamwear supplier for the United States, delivering custom soccer kits to academies, schools, and professional leagues from New York to Los Angeles.",
+    intro: "POXIOL is a premier soccer teamwear supplier for the United States, delivering custom soccer kits to academies, schools, clubs, colleges and sports organizations from New York to Los Angeles.",
     content: "We understand the rapid growth of soccer in the US and provide scalable manufacturing solutions to meet the increasing demand for high-quality teamwear. Our factory specializes in US-standard sizing and performance fabrics that excel in various regional climates. By partnering with POXIOL, US-based sports distributors and soccer organizations gain access to direct factory pricing and expert design support, ensuring their teams look as professional as the pros.",
     faqs: [
       { question: "What are the shipping times to the USA?", answer: "Express shipping to the US typically takes 3-6 business days." },
       { question: "Do you comply with US sizing standards?", answer: "Yes, we use standard US athletic sizing for all our soccer apparel." },
-      { question: "Can you produce jerseys for collegiate programs?", answer: "Absolutely, we work with many colleges and universities to provide NCAA-compliant uniform designs." },
+      { question: "Can you produce jerseys for collegiate programs?", answer: "Yes, POXIOL supports custom uniform designs for schools, colleges, and clubs. Buyers must own or be authorized to use all submitted team names, logos, sponsor marks and artwork. POXIOL does not reproduce unauthorized league, club or third-party trademarks." },
     ],
   },
   {
