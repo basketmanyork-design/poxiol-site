@@ -32,7 +32,7 @@ import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
 import {resolveContent} from './fallback'
-import {cardImageUrl, heroImageUrl} from './image'
+import {cardImageUrl, getImageUrl, heroImageUrl} from './image'
 import {
   articleBySlugQuery,
   articlesQuery,
@@ -53,7 +53,7 @@ import {
 
 type PortableTextChild = {text?: string}
 type PortableTextBlock = {style?: string; children?: PortableTextChild[]}
-type SanityImage = {asset?: {_ref?: string}; altText?: string}
+type SanityImage = {asset?: {_ref?: string}; altText?: string; url?: string}
 type Seo = {seoTitle?: string; metaDescription?: string; canonicalUrl?: string; ogImage?: SanityImage; indexStatus?: string}
 type SanityCta = {label?: string; url?: string; href?: string}
 type SanityLink = {label?: string; externalUrl?: string; url?: string; href?: string; openInNewWindow?: boolean}
@@ -235,9 +235,13 @@ function cleanSiteUrl(url?: string) {
 }
 
 function imageFrom(source: SanityImage | undefined, fallback: CmsImage, size: 'hero' | 'card' = 'card'): CmsImage {
-  const url = size === 'hero' ? heroImageUrl(source) : cardImageUrl(source)
+  // Prefer direct URL from GROQ asset->url dereference (cdn.sanity.io)
+  const directUrl = source?.url || null
+  // Fall back to regex-built URL from asset._ref
+  const builtUrl = size === 'hero' ? heroImageUrl(source) : cardImageUrl(source)
+  const resolvedUrl = directUrl || builtUrl
   return {
-    url: url || fallback.url,
+    url: resolvedUrl || fallback.url,
     alt: source?.altText || fallback.alt,
   }
 }

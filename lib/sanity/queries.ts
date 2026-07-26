@@ -8,7 +8,8 @@ const seoProjection = `seo{
 
 const imageProjection = `{
   asset,
-  altText
+  altText,
+  "url": asset->url
 }`
 
 const ctaProjection = `{
