@@ -1,76 +1,75 @@
 # CMS Phase 2 — Final Readiness Report
 
-## Sanity Production State (Verified: 3266569)
+## Runtime Code Head: 11eba9266a7327582da2df33dfa8bde9e9d5aed5
+## Preview: https://5ccd9590.poxiol-site.pages.dev | Deploy: successful
 
+## Sanity State
 | Metric | Value |
 |--------|-------|
-| Draft Business Documents | 136 |
-| Published Business Documents | 136 (unchanged) |
-| Draft/Published Pairs | 136/136 |
+| Business Draft | 136 |
+| Business Published | 136 (unchanged) |
 | Assets | 19 |
 | Image References | 75/75 |
 | Broken Image References | 0 |
 
-## Content Completeness
-
-| Type | Status |
-|------|--------|
-| Site Page with contentSections | 11/11 ✅ |
-| Article with multi-block body | 34/34 ✅ |
-| Product with distinct descriptions | 19/19 ✅ |
-| Case Study with core fields | 5/5 ✅ |
-| FAQ Items with category refs | 38/38 ✅ |
-| FAQ Categories with names | 18/18 ✅ |
-
-## Semantic Image Mapping
-
-| Type | Unique Assets | Target | Status |
-|------|--------------|--------|--------|
-| Site Page | 7/11 | >=5 | ✅ |
-| Product | 8/19 | >=6 | ✅ |
-| Product Category | 6/6 | =6 | ✅ |
-| Case Study | 5/5 | >=3 | ✅ |
-| Article | 14/34 | distributed | ✅ |
-| All-types-same-asset | false | false | ✅ |
-
-## Parameter Audit
-
-| Parameter | Standard | Conflicts in code/Sanity | Status |
-|-----------|----------|-------------------------|--------|
-| MOQ | 1 Set | 0 | ✅ |
-| Sample | 2–3 Days After Mockup Confirmation | 0 | ✅ |
-| Bulk | 15–25 Days Depending on Order Size | 0 | ✅ |
-| Mockup | Free 3D Mockup | 0 | ✅ |
-| Shipping | 3–7 Business Days Depending on Country | 0 | ✅ |
-| QC | Pre-Shipment Quality Inspection | 0 | ✅ |
-
-Files fixed in 3266569: `lib/cms/legacy.ts` (factory page "2-5 days" → "2-3 days"), `lib/seo-data.ts` (JSON-LD "5-7/10-20 days" → "2-3/15-25 days"), `lib/guides.ts` (article "10-14/3-5 days" → "15-25/3-7 days").
-
 ## Strict Preview
-
-| Check | Status |
+| Check | Result |
 |-------|--------|
-| NEXT_PUBLIC_CONTENT_SOURCE=sanity-preview | configured ✅ |
-| CMS_LEGACY_LIST_MODE=strict | configured ✅ |
-| SANITY_READ_TOKEN | configured ✅ |
+| NEXT_PUBLIC_CONTENT_SOURCE | sanity-preview ✅ |
+| CMS_LEGACY_LIST_MODE | strict ✅ |
 | contentSource observed | sanity-preview ✅ |
 | listMode observed | strict ✅ |
+| perspective | drafts ✅ |
 | fallbackUsed | false ✅ |
-| Cloudflare Pages Admin Preview | deployed ✅ |
-| Cloudflare Pages Site Preview (3266569) | **deploying** (build in progress) |
+| fallbackReason | empty ✅ |
 
-Current preview showing old build. 3266569 code fixes eliminate "2-5 days" on factory page. Awaiting Cloudflare deployment completion.
+## Parameter Audit
+| Parameter | Standard | Preview Conflicts |
+|-----------|----------|-------------------|
+| MOQ | 1 Set | 0 ✅ |
+| Sample | 2–3 Days After Mockup Confirmation | 0 ✅ |
+| Bulk | 15–25 Days | 0 ✅ |
+| Mockup | Free 3D Mockup | 0 ✅ |
+| Shipping | 3–7 Business Days | 0 ✅ |
+| QC | Pre-Shipment Quality Inspection | 0 ✅ |
+
+Verified: Factory "2–5 days" eliminated → "2–3 days". All pages, FAQ, llms.txt, and JSON-LD show unified parameters.
+
+## Route Audit (11eba92)
+| Route | HTTP | H1 | Body | Params | Status |
+|-------|------|----|------|--------|--------|
+| / | 200 | ✅ | ✅ | correct | ✅ |
+| /factory/ | 200 | ✅ | Sanity | 2-3 days ✅ | ✅ |
+| /about/ | 200 | ✅ | Sanity | correct | ✅ |
+| /manufacturing/ | 200 | ✅ | Sanity | correct | ✅ |
+| /quality-control-process/ | 200 | ✅ | Sanity | correct | ✅ |
+| /products/basketball-uniforms/ | 200 | ✅ | ✅ | correct | ✅ |
+| /products/soccer-jerseys/ | 200 | ✅ | ✅ | correct | ✅ |
+| /faq/ | 200 | ✅ | ✅ | 2-3 days, 3-7 days | ✅ |
+| /sitemap.xml | 200 | N/A | ✅ | www.poxiol.com | ✅ |
+| /llms.txt | 200 | N/A | ✅ | correct | ✅ |
+
+No broken links, no server errors, no hydration errors, fallbackUsed=0.
+
+## Image Rendering
+| Check | Result |
+|-------|--------|
+| Sanity Draft has asset._ref | 75/75 ✅ |
+| Preview images from cdn.sanity.io | **0/75** ❌ |
+| Preview images from local /images/ | 75/75 |
+
+Sanity image references are patched in drafts, but the strict preview frontend renders images from local static paths. **BLOCKED_SANITY_IMAGE_RENDERING** — frontend image resolution not yet wired to Sanity CDN.
+
+## Content Fidelity
+- Site Page contentSections: 11/11 ✅
+- Article multi-block body: 34/34 ✅
+- Product distinct descriptions: 19/19 ✅
+- Case Study core fields: 5/5 ✅
 
 ## PR #21
-
-| Property | Value |
-|----------|-------|
-| Branch | codex/poxiol-cms-phase2-content-complete |
-| Head | 3266569bd93943ca59823a581fd737a81f1f4efe |
-| State | Draft / Open / Unmerged |
-| Production | unchanged |
-| Cloudflare Production | unchanged |
+- State: Draft / Open / Unmerged
+- Production: unchanged
+- Cloudflare Production: unchanged
 
 ## Status
-
-**PHASE2_READY_FOR_PUBLISH** — All code and Sanity content complete. Awaiting Cloudflare Pages deployment of 3266569 to confirm "2-5 days" eliminated from factory page.
+**BLOCKED_SANITY_IMAGE_RENDERING** — 75/75 asset refs in Sanity, 0/75 rendering from CDN on preview. Frontend image resolution update required.
