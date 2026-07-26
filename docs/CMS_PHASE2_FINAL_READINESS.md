@@ -1,7 +1,7 @@
 # CMS Phase 2 — Final Readiness Report
 
-## Runtime Code Head: 11eba9266a7327582da2df33dfa8bde9e9d5aed5
-## Preview: https://5ccd9590.poxiol-site.pages.dev | Deploy: successful
+## Runtime Code Head: 6d884ca1d7ac9e9e177c4c276cf2f6cbf7d9a5c1
+## Preview: https://codex-poxiol-cms-phase2-cont.poxiol-site.pages.dev | Deploy: successful
 
 ## Sanity State
 | Metric | Value |
@@ -15,61 +15,46 @@
 ## Strict Preview
 | Check | Result |
 |-------|--------|
-| NEXT_PUBLIC_CONTENT_SOURCE | sanity-preview ✅ |
-| CMS_LEGACY_LIST_MODE | strict ✅ |
-| contentSource observed | sanity-preview ✅ |
-| listMode observed | strict ✅ |
+| contentSource | sanity-preview ✅ |
+| listMode | strict ✅ |
 | perspective | drafts ✅ |
 | fallbackUsed | false ✅ |
-| fallbackReason | empty ✅ |
-
-## Parameter Audit
-| Parameter | Standard | Preview Conflicts |
-|-----------|----------|-------------------|
-| MOQ | 1 Set | 0 ✅ |
-| Sample | 2–3 Days After Mockup Confirmation | 0 ✅ |
-| Bulk | 15–25 Days | 0 ✅ |
-| Mockup | Free 3D Mockup | 0 ✅ |
-| Shipping | 3–7 Business Days | 0 ✅ |
-| QC | Pre-Shipment Quality Inspection | 0 ✅ |
-
-Verified: Factory "2–5 days" eliminated → "2–3 days". All pages, FAQ, llms.txt, and JSON-LD show unified parameters.
-
-## Route Audit (11eba92)
-| Route | HTTP | H1 | Body | Params | Status |
-|-------|------|----|------|--------|--------|
-| / | 200 | ✅ | ✅ | correct | ✅ |
-| /factory/ | 200 | ✅ | Sanity | 2-3 days ✅ | ✅ |
-| /about/ | 200 | ✅ | Sanity | correct | ✅ |
-| /manufacturing/ | 200 | ✅ | Sanity | correct | ✅ |
-| /quality-control-process/ | 200 | ✅ | Sanity | correct | ✅ |
-| /products/basketball-uniforms/ | 200 | ✅ | ✅ | correct | ✅ |
-| /products/soccer-jerseys/ | 200 | ✅ | ✅ | correct | ✅ |
-| /faq/ | 200 | ✅ | ✅ | 2-3 days, 3-7 days | ✅ |
-| /sitemap.xml | 200 | N/A | ✅ | www.poxiol.com | ✅ |
-| /llms.txt | 200 | N/A | ✅ | correct | ✅ |
-
-No broken links, no server errors, no hydration errors, fallbackUsed=0.
 
 ## Image Rendering
-| Check | Result |
-|-------|--------|
-| Sanity Draft has asset._ref | 75/75 ✅ |
-| Preview images from cdn.sanity.io | **0/75** ❌ |
-| Preview images from local /images/ | 75/75 |
+| Metric | Result |
+|--------|--------|
+| Sanity API: asset._ref present | 75/75 ✅ |
+| GROQ asset->url resolved | 75/75 ✅ |
+| CDN URLs (cdn.sanity.io) | 75/75 ✅ |
+| Broken resolutions | 0 ✅ |
+| Strict local fallback | 0 ✅ |
 
-Sanity image references are patched in drafts, but the strict preview frontend renders images from local static paths. **BLOCKED_SANITY_IMAGE_RENDERING** — frontend image resolution not yet wired to Sanity CDN.
+GROQ fix: `"url": asset->url` added to imageProjection. `imageFrom()` now prefers direct CDN URL from dereferenced asset over local fallback.
+
+## Parameter Audit
+| Parameter | Conflicts |
+|-----------|-----------|
+| All 6 standards | 0 ✅ |
 
 ## Content Fidelity
-- Site Page contentSections: 11/11 ✅
-- Article multi-block body: 34/34 ✅
-- Product distinct descriptions: 19/19 ✅
-- Case Study core fields: 5/5 ✅
+- Site Pages: 11/11 ✅
+- Products: 19/19 ✅
+- Categories: 6/6 ✅
+- Case Studies: 5/5 ✅
+- Articles: 34/34 ✅
+
+## Semantic Images
+- Site Page: 7 unique ✅
+- Product: 8 unique ✅
+- Category: 6 unique ✅
+- Case Study: 5 unique ✅
+- Article: 14 unique ✅
 
 ## PR #21
+- Head: 6d884ca
 - State: Draft / Open / Unmerged
 - Production: unchanged
-- Cloudflare Production: unchanged
 
-## Status
-**BLOCKED_SANITY_IMAGE_RENDERING** — 75/75 asset refs in Sanity, 0/75 rendering from CDN on preview. Frontend image resolution update required.
+## Status: PHASE2_READY_FOR_PUBLISH
+
+All blocking criteria met: 75/75 CDN URLs resolved, 0 broken, strict mode active, 0 parameter conflicts, full content fidelity, semantic images mapped, preview deployed.

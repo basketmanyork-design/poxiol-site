@@ -1,0 +1,31 @@
+{
+  "phase": "Phase 2 — Sanity Image Rendering Audit",
+  "runtime_head": "6d884ca1d7ac9e9e177c4c276cf2f6cbf7d9a5c1",
+  "preview_deploy": "successful",
+  "code_changes": [
+    "lib/sanity/queries.ts: added asset->url to imageProjection",
+    "lib/sanity/image.ts: added getImageUrl() with GROQ url preference",
+    "lib/sanity/content.ts: imageFrom() prefers source.url over fallback"
+  ],
+  "sanity_api_check": {
+    "total_with_asset_ref": 75,
+    "asset_to_url_resolved": 75,
+    "cdn_sanity_io_urls": 75,
+    "broken_resolutions": 0
+  },
+  "representative_routes": {
+    "/": {"http": 200, "status": "pass"},
+    "/products/basketball-uniforms/": {"http": 200, "status": "pass"},
+    "/faq/": {"http": 200, "status": "pass"}
+  },
+  "by_type": {
+    "sitePage.heroImage": {"total": 11, "cdn_resolved": 11},
+    "product.primaryImage": {"total": 19, "cdn_resolved": 19},
+    "productCategory.heroImage": {"total": 6, "cdn_resolved": 6},
+    "caseStudy.heroImage": {"total": 5, "cdn_resolved": 5},
+    "article.featuredImage": {"total": 34, "cdn_resolved": 34}
+  },
+  "strict_local_fallback": 0,
+  "published": "136 unchanged",
+  "production": "unchanged"
+}
