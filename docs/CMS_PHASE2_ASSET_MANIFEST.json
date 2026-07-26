@@ -1,0 +1,24 @@
+{
+  "phase": "Phase 2 Asset Migration",
+  "timestamp": "2026-07-26T04:10:55Z",
+  "total_assets": 9,
+  "assets": [
+    {"sourcePath":"public/images/poxiol-v6/home_hero_custom_teamwear_manufacturer.png","sha256":"2c095bc4e276483c423579b314a8db08f1d466f07eeaedd9abd86cb5a593520b","sanityAssetId":"image-752e687cc33c214d844f6ba31ad3ab2d3beae6f3-1672x941-png","mimeType":"image/png","size":2087844,"width":1672,"height":941},
+    {"sourcePath":"public/images/poxiol-v6/mockup-visual.webp","sha256":"(dedup)","sanityAssetId":"image-3c284bf7dacd6c588854e70d851d03dda51fe408-1376x768-png","mimeType":"image/png","size":-1,"width":1376,"height":768},
+    {"sourcePath":"public/images/poxiol-v6/final-cta-uniforms.webp","sha256":"(dedup)","sanityAssetId":"image-bcb5f223883abc85aa9d2d103c55c04aef10689a-1672x941-webp","mimeType":"image/webp","size":-1,"width":1672,"height":941},
+    {"sourcePath":"public/images/poxiol-v6/cyber-league-esports.webp","sha256":"(dedup)","sanityAssetId":"image-e71e1d4850225bf9d7b58a387cb94c6409acec02-1024x1024-png","mimeType":"image/png","size":-1,"width":1024,"height":1024},
+    {"sourcePath":"public/images/poxiol-v6/elite-golf-polo-set.webp","sha256":"(dedup)","sanityAssetId":"image-640daa66104cab60d192a2439f00cc79b5ff5c12-1672x941-webp","mimeType":"image/webp","size":-1,"width":1672,"height":941},
+    {"sourcePath":"public/images/poxiol-v6/falcons-baseball-uniform.webp","sha256":"(dedup)","sanityAssetId":"image-30a56e521bc0b8b7d496804c179c2d4c363b13ba-1672x941-webp","mimeType":"image/webp","size":-1,"width":1672,"height":941},
+    {"sourcePath":"public/images/poxiol-v6/samoa-rugby-jersey.webp","sha256":"(dedup)","sanityAssetId":"image-e8d01c2f997d5ed28f0195d170409051bc927ffa-1024x1024-png","mimeType":"image/png","size":-1,"width":1024,"height":1024},
+    {"sourcePath":"public/images/poxiol-v6/storm-court-basketball.webp","sha256":"(dedup)","sanityAssetId":"image-500a7fd38a47376d3b15d737d4b0ffb76f1f0ffb-1672x941-webp","mimeType":"image/webp","size":-1,"width":1672,"height":941},
+    {"sourcePath":"public/images/poxiol-v6/united-field-soccer-kit.webp","sha256":"(dedup)","sanityAssetId":"image-22b3138b93bebaf819ffc7cb7d07d60b14060d07-1672x941-webp","mimeType":"image/webp","size":-1,"width":1672,"height":941}
+  ],
+  "image_refs_patched": {
+    "product": {"field":"primaryImage","count":19},
+    "productCategory": {"field":"heroImage","count":6},
+    "caseStudy": {"field":"heroImage","count":5},
+    "article": {"field":"featuredImage","count":34},
+    "sitePage": {"field":"heroImage","count":11},
+    "total": 75
+  }
+}

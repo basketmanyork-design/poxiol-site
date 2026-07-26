@@ -701,7 +701,7 @@ function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
     {item: 'Core Expertise', capability: '15+ years experience in custom sports uniforms and private label sportswear manufacturing.'},
     {item: 'Main Products', capability: 'Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories.'},
     {item: 'Minimum Order (MOQ)', capability: 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
-    {item: 'Sampling Timeline', capability: 'Sample Production: 2–5 Days After Mockup Confirmation with express global delivery.'},
+    {item: 'Sampling Timeline', capability: 'Sample Production: 2–3 Days After Mockup Confirmation with express global delivery.'},
     {item: 'Design Support', capability: 'Free high-fidelity 3D mockup design in 1-2 hours based on your logo and color direction.'},
     {item: 'Production Capacity', capability: 'Specialized facility with 30,000+ monthly capacity and 100% manual quality inspection protocol.'},
     {item: 'Custom Options', capability: 'Full sublimation, team logos, player names, numbers, private labels and custom packaging.'},
@@ -740,7 +740,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
   const procurementRows = procurementData
     ? [
         {item: 'Minimum Order (MOQ)', capability: procurementData.defaultMOQ || 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
-        {item: 'Sampling Timeline', capability: procurementData.sampleTime || 'Sample Production: 2–5 Days After Mockup Confirmation with express global delivery.'},
+        {item: 'Sampling Timeline', capability: procurementData.sampleTime || 'Sample Production: 2–3 Days After Mockup Confirmation with express global delivery.'},
         {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free high-fidelity 3D mockup design based on your logo and color direction.'},
         {item: 'Bulk Production', capability: procurementData.bulkProductionTime || 'Production capacity and timing are confirmed against quantity, deadline and customization complexity.'},
         {item: 'Compliance & QC', capability: procurementData.qualityPromise || 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
@@ -766,7 +766,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
     heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Get Factory Quote', href: '/get-quote/'},
-    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['MOQ 1 Set', 'Free 3D Mockup', '2–5 Days Sample Production', 'Quality Support', 'Global Shipping'],
+    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['MOQ 1 Set', 'Free 3D Mockup', '2–3 Days Sample Production', 'Quality Support', 'Global Shipping'],
     sourcingRows: procurementRows,
     uspCards: pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards,
     categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),
