@@ -191,7 +191,13 @@ type SanityCaseStudy = {
   seo?: Seo
 }
 
-type SanityFaq = {question?: string; answer?: PortableTextBlock[] | string; category?: string; publishStatus?: string}
+type SanityFaq = {question?: string; answer?: PortableTextBlock[] | string; category?: unknown; publishStatus?: string}
+
+function faqCategoryName(value: unknown): string {
+  return typeof value === 'string' && value.trim()
+    ? value.trim()
+    : 'General'
+}
 type RelatedDoc = {title?: string; productName?: string; categoryName?: string; projectTitle?: string; slug?: string; articleType?: string}
 
 type SanityArticle = {
@@ -590,17 +596,17 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
 
   const cms = response.result || []
   const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item})))
-  const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(faq.question as string, faq.category)))
+  const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(faq.question as string, faqCategoryName(faq.category))))
   const visibleCms = cms
     .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
-    .map((faq) => ({category: faq.category || 'General', question: faq.question as string, answer: textFromPortable(faq.answer)}))
+    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: textFromPortable(faq.answer)}))
 
   if (getCmsListMode() === 'strict') return groupsFromFaqItems(visibleCms)
 
   const cmsByKey = new Map(visibleCms.map((faq) => [faqKey(faq.question, faq.category), faq]))
   const merged: Array<{category?: string; question: string; answer: string}> = []
   for (const legacy of legacyItems) {
-    const key = faqKey(legacy.question, legacy.category)
+    const key = faqKey(legacy.question, faqCategoryName(legacy.category))
     if (suppressed.has(key)) continue
     merged.push(cmsByKey.get(key) || legacy)
     cmsByKey.delete(key)
