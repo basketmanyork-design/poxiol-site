@@ -2,6 +2,7 @@ const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'oqpv1xbc'
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 
 type SanityImageSource = {
+  url?: string
   asset?: {
     _ref?: string
   }
@@ -26,6 +27,18 @@ function buildImageUrl(
 
 function getRef(source: SanityImageSource | null | undefined): string | null {
   return source?.asset?._ref || null
+}
+
+export function getImageUrl(source: SanityImageSource | null | undefined): string | null {
+  if (!source) return null
+  // Prefer dereferenced URL from GROQ asset->url
+  if (source.url) return source.url
+  // Fall back to building URL from asset._ref
+  const ref = getRef(source)
+  if (ref) {
+    return buildImageUrl(ref, {auto: 'format'})
+  }
+  return null
 }
 
 export function heroImageUrl(

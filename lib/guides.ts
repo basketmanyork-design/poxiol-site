@@ -43,7 +43,7 @@ export const buyingGuides: BuyingGuide[] = [
     ],
     faqs: [
       { question: "Can I order just one sample?", answer: "Yes, we support sample orders to ensure you are 100% satisfied with the quality before committing to a full team order." },
-      { question: "What is the standard turnaround time?", answer: "Our standard production time is 10-14 days after design approval, plus 3-5 days for international express shipping." },
+      { question: "What is the standard turnaround time?", answer: "Bulk production takes 15-25 days depending on order size, plus 3-7 business days for international express shipping (country-dependent)." },
     ],
   },
   {

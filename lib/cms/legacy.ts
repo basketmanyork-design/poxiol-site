@@ -106,7 +106,7 @@ function pageSections(key: string, title: string): CmsPageSection[] {
   const commonCta = {label: 'Get factory quote', href: '/get-quote/'}
   const pages: Record<string, CmsPageSection[]> = {
     homepage: [
-      {type: 'stats', eyebrow: 'Factory proof', title: 'Supplier strength buyers can verify', body: 'A practical teamwear supply system for clubs, schools and sportswear brands.', stats: [{value: 'MOQ 1', label: 'Set for samples and team orders'}, {value: '2–5 days', label: 'Sample production after mockup approval'}, {value: 'OEM/ODM', label: 'Private-label and teamwear programs'}, {value: 'Global', label: 'Export support for B2B buyers'}]},
+      {type: 'stats', eyebrow: 'Factory proof', title: 'Supplier strength buyers can verify', body: 'A practical teamwear supply system for clubs, schools and sportswear brands.', stats: [{value: 'MOQ 1', label: 'Set for samples and team orders'}, {value: '2–3 days', label: 'Sample production after mockup approval'}, {value: 'OEM/ODM', label: 'Private-label and teamwear programs'}, {value: 'Global', label: 'Export support for B2B buyers'}]},
       {type: 'processSteps', eyebrow: 'Start simple', title: 'How custom teamwear projects move forward', steps: [{title: 'Send design needs', description: 'Share sport, quantity, deadline, logo files and reference styles.'}, {title: 'Confirm mockup', description: 'Review design direction, materials and price before production.'}, {title: 'Sample or bulk', description: 'Approve sample details or move into confirmed bulk production.'}, {title: 'QC and delivery', description: 'Check names, numbers, packaging and shipment details before dispatch.'}]},
     ],
     about: [
@@ -115,7 +115,7 @@ function pageSections(key: string, title: string): CmsPageSection[] {
     ],
     factory: [
       {type: 'imageText', eyebrow: 'Factory visibility', title: 'Production capability that can be explained clearly', body: 'Use the CMS to maintain factory overview, workshop imagery, buyer proof points and quote guidance while keeping the original POXIOL URL structure.', image: {url: '/images/factory/factory-main.webp', alt: 'POXIOL factory production area'}, facts: ['Cutting and sewing coordination', 'Sublimation and decoration support', 'Packing and export delivery']},
-      {type: 'stats', title: 'Factory parameters', stats: [{value: 'MOQ 1', label: 'Available for selected custom teamwear orders'}, {value: '2–5 days', label: 'Typical sample production after mockup approval'}, {value: 'QC', label: 'Inspection before shipment'}, {value: 'OEM', label: 'Private-label support'}]},
+      {type: 'stats', title: 'Factory parameters', stats: [{value: 'MOQ 1', label: 'Available for selected custom teamwear orders'}, {value: '2–3 days', label: 'Typical sample production after mockup approval'}, {value: 'QC', label: 'Inspection before shipment'}, {value: 'OEM', label: 'Private-label support'}]},
     ],
     manufacturing: [
       {type: 'processSteps', eyebrow: 'Manufacturing workflow', title: 'From artwork to packed teamwear', steps: [{title: 'Artwork check', description: 'Confirm logo, color, name and number requirements.'}, {title: 'Material selection', description: 'Match fabric, print method and sport use case.'}, {title: 'Production', description: 'Coordinate cutting, printing, sewing and finishing.'}, {title: 'Packing', description: 'Prepare team sets, labels and shipment documentation.'}]},

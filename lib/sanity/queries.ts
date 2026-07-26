@@ -8,7 +8,8 @@ const seoProjection = `seo{
 
 const imageProjection = `{
   asset,
-  altText
+  altText,
+  "url": asset->url
 }`
 
 const ctaProjection = `{
@@ -76,7 +77,7 @@ export const footerQuery = `*[_type == "footerSettings"][0]{
     links[]${linkProjection}
   },
   copyright,
-  policyLinks[]{label, url}
+  policyLinks[]{label, externalUrl, url}
 }`
 
 export const sitePagesQuery = `*[_type == "sitePage"] | order(pageKey asc){

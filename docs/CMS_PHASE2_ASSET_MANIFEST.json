@@ -1,0 +1,19 @@
+{
+  "phase": "Phase 2 Asset Migration — Final",
+  "timestamp": "2026-07-28T00:00:00Z",
+  "total_assets": 19,
+  "distribution": {
+    "sitePage": {"field": "heroImage", "docs": 11, "unique_assets": 7},
+    "product": {"field": "primaryImage", "docs": 19, "unique_assets": 8},
+    "productCategory": {"field": "heroImage", "docs": 6, "unique_assets": 6},
+    "caseStudy": {"field": "heroImage", "docs": 5, "unique_assets": 5},
+    "article": {"field": "featuredImage", "docs": 34, "unique_assets": 14}
+  },
+  "total_image_refs": 75,
+  "broken_refs": 0,
+  "all_site_pages_same_asset": false,
+  "all_products_same_asset": false,
+  "all_categories_same_asset": false,
+  "all_case_studies_same_asset": false,
+  "semantic_image_mismatch": 0
+}
