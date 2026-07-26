@@ -229,7 +229,15 @@ export const faqItemsQuery = `*[_type == "faqItem"] | order(displayOrder asc, _u
   _id,
   question,
   answer,
-  category,
+  "category": select(
+    category._type == "reference" =>
+      coalesce(category->categoryName, "General"),
+    defined(category) && category != "" =>
+      category,
+    defined(categoryRef) =>
+      coalesce(categoryRef->categoryName, "General"),
+    "General"
+  ),
   displayOrder,
   publishStatus
 }`
