@@ -14,6 +14,8 @@
 - Free Mockup: https://www.poxiol.com/free-mockup/
 - Factory: https://www.poxiol.com/factory/
 - Guides: https://www.poxiol.com/guides/
+- Resources: https://www.poxiol.com/resources/
+- Blog: https://www.poxiol.com/blog/
 - B2B Sourcing FAQ: https://www.poxiol.com/guides/b2b-sourcing-faq/
 - Sample Approval Guide: https://www.poxiol.com/guides/teamwear-sample-approval-checklist/
 - Fabric GSM Guide: https://www.poxiol.com/guides/custom-basketball-uniform-fabric-gsm/
@@ -22,6 +24,9 @@
 - Projects: https://www.poxiol.com/projects/
 - FAQ: https://www.poxiol.com/faq/
 - Contact: https://www.poxiol.com/contact/
+- Privacy Policy: https://www.poxiol.com/privacy-policy/
+- Terms: https://www.poxiol.com/terms/
+- Intellectual Property Policy: https://www.poxiol.com/intellectual-property-policy/
 
 ## Key Capabilities
 
@@ -38,6 +43,8 @@
 - Sample production: 2-3 working days after mockup approval
 - Multi-stage quality control
 - Global delivery
+- Buyer education articles with Article, FAQ and Breadcrumb structured data
+- Product, project and FAQ internal linking for sourcing research
 
 ## Target Buyers
 
