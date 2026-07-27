@@ -7,7 +7,10 @@ export const getQuoteHref = "/get-quote/";
 export const sampleOrderHref = "/sample-order/";
 
 export function emailHref(email: string) {
-  return `mailto:${email.replace("@", "%40")}`;
+  const encoded = Array.from(email)
+    .map((char) => `%${char.charCodeAt(0).toString(16).padStart(2, "0")}`)
+    .join("");
+  return `mailto:${encoded}`;
 }
 
 export function EmailAddress({ email }: { email: string }) {

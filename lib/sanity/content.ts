@@ -280,6 +280,18 @@ function queryState<T>(response: {ok: true; result: T | null} | {ok: false}): So
 function sortByDisplayOrder<T extends {displayOrder?: number}>(items: T[]): T[] {
   return [...items].sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
+function normalizePublicContactText(text: string): string {
+  return text
+    .replace(/york@basketman\.cn/gi, 'the POXIOL public email')
+    .replace(/sales@poxiol\.com/gi, 'the POXIOL sales email')
+}
+
+function normalizeFaqAnswer(answer: string): string {
+  return answer
+    .replace(/sample production can usually be arranged in 2\s*[-–]\s*3\s*days after mockup confirmation/gi, 'sample production can usually be arranged in 2-3 working days after mockup approval')
+    .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
+    .replace(/2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, '2-3 working days after mockup approval')
+}
 
 
 function imageListFrom(sources: SanityImage[] | undefined, fallbacks: CmsImage[] = []): CmsImage[] {
@@ -345,7 +357,7 @@ function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, in
           reason: product.procurementOverride.overrideReason || fallback?.procurementOverride?.reason,
         }
       : fallback?.procurementOverride,
-    relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: textFromPortable(faq.answer)})) : fallback?.relatedFaqs || [],
+    relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))})) : fallback?.relatedFaqs || [],
     featured: product.featured ?? fallback?.featured ?? false,
     seo: seoFrom(product.seo, fallback?.seo || {title: `${product.productName} | POXIOL`, description: product.shortDescription || product.fullDescription || product.productName}),
     displayOrder: product.displayOrder ?? fallback?.displayOrder ?? index,
@@ -402,7 +414,7 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
         type: section.sectionType || fb?.type,
         eyebrow: section.eyebrow || fb?.eyebrow,
         title: section.title || fb?.title || 'Page section',
-        body: textFromPortable(section.body) || fb?.body || '',
+        body: normalizePublicContactText(textFromPortable(section.body) || fb?.body || ''),
         image: optionalImage(section.image, fb?.image, 'card'),
         facts: section.facts?.length ? section.facts : fb?.facts || [],
         stats: section.stats?.length ? section.stats.filter((item) => item.value && item.label).map((item) => ({value: item.value || '', label: item.label || ''})) : fb?.stats || [],
@@ -611,11 +623,11 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
   if (!response.ok) return legacyFaqGroups
 
   const cms = response.result || []
-  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item})))
+  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item, answer: normalizeFaqAnswer(item.answer)})))
   const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(faq.question as string, faqCategoryName(faq.category))))
   const visibleCms = cms
     .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
-    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: textFromPortable(faq.answer)}))
+    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))}))
 
   if (getCmsListMode() === 'strict') return groupsFromFaqItems(visibleCms)
 
@@ -654,7 +666,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     relatedCategories: mapRelated(article.relatedCategories, '/products/').length ? mapRelated(article.relatedCategories, '/products/') : fallback?.relatedCategories || [],
     relatedCaseStudies: mapRelated(article.relatedCaseStudies, '/projects/').length ? mapRelated(article.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies || [],
     relatedArticles: mapArticleRelated(article.relatedArticles).length ? mapArticleRelated(article.relatedArticles) : fallback?.relatedArticles || [],
-    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: textFromPortable(faq.answer)})) : fallback?.faqs || [],
+    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))})) : fallback?.faqs || [],
     cta: mapCta(article.cta, fallback?.cta),
     sections: sectionsFromArticle(article, fallback),
     seo: seoFrom(article.seo, fallback?.seo || {title: article.title, description: article.excerpt || body || article.title}),
