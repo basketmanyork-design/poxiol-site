@@ -157,4 +157,3 @@ After merge, Cloudflare production deployment must be for `main` and the merge c
 ## Rollback
 
 Each package is isolated. Rollback is by reverting the package merge commit, not by force pushing or deleting data. Sanity content changes require an external backup and Draft-only strategy before any approved apply step. Cloudflare rollback uses prior production deployment only when source rollback cannot deploy quickly.
-

@@ -461,4 +461,3 @@ Push, PR, checks, merge, production deployment, and live acceptance.
 - [ ] Mobile smoke test passes.
 - [ ] No unauthorized brand/league/official supplier claims.
 - [ ] `docs/P2_P5_MASTER_PROGRESS.md` contains branch, PR, checks, merge commit, production commit, migration status, validation status, and remaining risks for every package.
-
