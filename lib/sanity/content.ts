@@ -15,6 +15,7 @@ import type {
   CmsArticle,
   CmsCta,
   CmsFaqGroup,
+  CmsFaqItem,
   CmsHomeContent,
   CmsHomeCategory,
   CmsImage,
@@ -159,6 +160,17 @@ type SanityCategory = {
   heroDescription?: string
   introduction?: string
   heroImage?: SanityImage
+  buyerTypes?: string[]
+  targetMarkets?: string[]
+  productTypes?: string[]
+  keyFeatures?: string[]
+  coreBenefits?: string[]
+  relatedFaqs?: SanityFaq[]
+  relatedCaseStudies?: RelatedDoc[]
+  relatedGuides?: RelatedDoc[]
+  navigationVisibility?: boolean
+  homepageVisibility?: boolean
+  activeStatus?: string
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
@@ -207,12 +219,57 @@ type SanityCaseStudy = {
   seo?: Seo
 }
 
-type SanityFaq = {question?: string; answer?: PortableTextBlock[] | string; category?: unknown; publishStatus?: string}
+type SanityFaq = {
+  question?: string
+  answer?: PortableTextBlock[] | string
+  shortAnswer?: string
+  fullAnswer?: PortableTextBlock[] | string
+  category?: unknown
+  sports?: string[]
+  products?: RelatedDoc[]
+  productCategories?: RelatedDoc[]
+  pages?: RelatedDoc[]
+  guides?: RelatedDoc[]
+  active?: boolean
+  displayOrder?: number
+  publishStatus?: string
+}
 
 function faqCategoryName(value: unknown): string {
   return typeof value === 'string' && value.trim()
     ? value.trim()
     : 'General'
+}
+
+function mapFaqItem(faq: SanityFaq): CmsFaqItem | null {
+  if (!faq.question || faq.active === false || !isDocumentVisible(faq.publishStatus, contentSource)) return null
+  const answer = textFromPortable(faq.fullAnswer) || faq.shortAnswer || textFromPortable(faq.answer)
+  if (!answer) return null
+  return {question: faq.question, answer: normalizeFaqAnswer(answer)}
+}
+
+function normalizedToken(value?: string) {
+  return (value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')
+}
+
+function relatedSlugSet(docs?: RelatedDoc[]) {
+  return new Set((docs || []).map((doc) => doc.slug).filter(Boolean) as string[])
+}
+
+function faqMatchesCategory(faq: SanityFaq, categorySlug: string, categoryTitle?: string) {
+  const explicitCategorySlugs = relatedSlugSet(faq.productCategories)
+  if (explicitCategorySlugs.has(categorySlug)) return true
+  const categoryToken = normalizedToken(categorySlug)
+  const titleToken = normalizedToken(categoryTitle)
+  if ((faq.sports || []).some((sport) => normalizedToken(sport) === categoryToken || normalizedToken(sport) === titleToken)) return true
+  const categoryName = normalizedToken(faqCategoryName(faq.category))
+  return categoryName === categoryToken || (!!titleToken && categoryName === titleToken)
+}
+
+function faqMatchesProduct(faq: SanityFaq, productSlug: string, categorySlug?: string) {
+  const productSlugs = relatedSlugSet(faq.products)
+  if (productSlugs.has(productSlug)) return true
+  return categorySlug ? faqMatchesCategory(faq, categorySlug) : false
 }
 type RelatedDoc = {title?: string; productName?: string; categoryName?: string; projectTitle?: string; slug?: string; articleType?: string}
 
@@ -308,9 +365,18 @@ function mapCategory(category: SanityCategory, fallback: CmsProductCategory | un
     shortName: category.shortName,
     description: category.heroDescription || category.introduction || fallback?.description || category.categoryName,
     image: imageFrom(category.heroImage, fallback?.image || {url: '/images/poxiol-v62/products_teamwear_matrix.png', alt: category.categoryName}, 'card'),
+    buyerTypes: category.buyerTypes?.length ? category.buyerTypes : fallback?.buyerTypes,
+    targetMarkets: category.targetMarkets?.length ? category.targetMarkets : fallback?.targetMarkets,
+    productTypes: category.productTypes?.length ? category.productTypes : fallback?.productTypes,
+    coreBenefits: category.coreBenefits?.length ? category.coreBenefits : fallback?.coreBenefits,
+    relatedFaqs: category.relatedFaqs?.map(mapFaqItem).filter(Boolean) as CmsFaqItem[] || fallback?.relatedFaqs || [],
+    relatedCaseStudies: mapRelated(category.relatedCaseStudies, '/projects/').length ? mapRelated(category.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies,
+    relatedGuides: mapArticleRelated(category.relatedGuides).length ? mapArticleRelated(category.relatedGuides) : fallback?.relatedGuides,
+    navigationVisibility: category.navigationVisibility ?? fallback?.navigationVisibility,
+    homepageVisibility: category.homepageVisibility ?? fallback?.homepageVisibility,
     seo: seoFrom(category.seo, fallback?.seo || {title: category.categoryName + ' | POXIOL', description: category.heroDescription || category.introduction || category.categoryName}),
     displayOrder: category.displayOrder ?? fallback?.displayOrder ?? index,
-    active: true,
+    active: category.activeStatus !== 'inactive',
   }
 }
 
@@ -357,7 +423,7 @@ function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, in
           reason: product.procurementOverride.overrideReason || fallback?.procurementOverride?.reason,
         }
       : fallback?.procurementOverride,
-    relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))})) : fallback?.relatedFaqs || [],
+    relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.map(mapFaqItem).filter(Boolean) as CmsFaqItem[] : fallback?.relatedFaqs || [],
     featured: product.featured ?? fallback?.featured ?? false,
     seo: seoFrom(product.seo, fallback?.seo || {title: `${product.productName} | POXIOL`, description: product.shortDescription || product.fullDescription || product.productName}),
     displayOrder: product.displayOrder ?? fallback?.displayOrder ?? index,
@@ -702,12 +768,34 @@ export async function getArticle(slug: string): Promise<CmsArticle | null> {
   })
 }
 
+export async function getMatchedFaqsForProductCategory(categorySlug: string, fallback: CmsFaqItem[] = [], categoryTitle?: string): Promise<CmsFaqItem[]> {
+  if (contentSource === 'legacy') return fallback
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  if (!response.ok) return fallback
+  const matched = (response.result || [])
+    .filter((faq) => faqMatchesCategory(faq, categorySlug, categoryTitle))
+    .map(mapFaqItem)
+    .filter(Boolean) as CmsFaqItem[]
+  return matched.length ? matched.slice(0, 8) : fallback
+}
+
+export async function getMatchedFaqsForProduct(productSlug: string, fallback: CmsFaqItem[] = [], categorySlug?: string): Promise<CmsFaqItem[]> {
+  if (contentSource === 'legacy') return fallback
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  if (!response.ok) return fallback
+  const matched = (response.result || [])
+    .filter((faq) => faqMatchesProduct(faq, productSlug, categorySlug))
+    .map(mapFaqItem)
+    .filter(Boolean) as CmsFaqItem[]
+  return matched.length ? matched.slice(0, 8) : fallback
+}
+
 export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData> {
   const categorySlug = legacyData.slug.replace(/^products\//, '')
-  const [category, products, faqs] = await Promise.all([getProductCategory(categorySlug), getProducts(categorySlug), getFaqGroups()])
-  const flatFaqs = faqs.flatMap((group) => group.items).slice(0, 8)
+  const [category, products] = await Promise.all([getProductCategory(categorySlug), getProducts(categorySlug)])
 
   if (!category) return legacyData
+  const matchedFaqs = await getMatchedFaqsForProductCategory(categorySlug, category.relatedFaqs?.length ? category.relatedFaqs : legacyData.faqs, category.title)
   const productCards = products.map((product) => ({title: product.title, description: product.description}))
   const designs = products
     .filter((product) => product.image)
@@ -726,7 +814,7 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
     productTypes: productCards.length ? productCards : legacyData.productTypes,
     features: productCards.length ? productCards.slice(0, 4) : legacyData.features,
     designs: designs.length ? designs : legacyData.designs,
-    faqs: flatFaqs.length ? flatFaqs : legacyData.faqs,
+    faqs: matchedFaqs.length ? matchedFaqs : legacyData.faqs,
   }
 }
 
