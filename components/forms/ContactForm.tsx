@@ -418,7 +418,7 @@ function ContactFormInner({
 }
 
 function ContactFormFallback({ publicEmail, whatsappHref }: ContactFormProps) {
-  const emailHref = publicEmail ? `mailto:${publicEmail}` : '/contact/'
+  const emailHref = publicEmail ? `mailto:${publicEmail.replace("@", "%40")}` : '/contact/'
   const whatsappLink = whatsappHref || '/contact/'
 
   return (
