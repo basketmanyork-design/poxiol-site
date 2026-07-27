@@ -5,6 +5,7 @@ import {pageSection} from './objects/pageSection'
 import {siteSettings} from './singletons/siteSettings'
 import {navigationSettings, footerSettings} from './singletons/navigation'
 import {procurementStandards} from './singletons/procurementStandards'
+import {analyticsSettings} from './singletons/analyticsSettings'
 import {sitePage} from './documents/sitePage'
 import {productCategory} from './documents/productCategory'
 import {product} from './documents/product'
@@ -38,4 +39,5 @@ export const schemaTypes = [
   article,
   author,
   redirectRule,
+  analyticsSettings,
 ]

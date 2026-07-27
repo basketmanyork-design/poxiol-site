@@ -125,6 +125,11 @@ export const deskStructure: StructureResolver = (S) =>
         .icon(CogIcon)
         .child(S.document().id('procurementStandardsEditor').schemaType('procurementStandards').documentId('procurementStandards')),
       S.listItem()
+        .id('analyticsSettings')
+        .title('Analytics Settings')
+        .icon(CogIcon)
+        .child(S.document().id('analyticsSettingsEditor').schemaType('analyticsSettings').documentId('analyticsSettings')),
+      S.listItem()
         .id('sitePages')
         .title('Site Pages')
         .icon(DocumentsIcon)
