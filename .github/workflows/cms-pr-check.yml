@@ -74,6 +74,9 @@ jobs:
       - name: Sanity inventory audit tests
         run: node scripts/check-sanity-inventory-audit.mjs
 
+      - name: Safe content migration contract
+        run: node scripts/check-safe-content-migration.mjs
+
       - name: Content blocker validation
         run: node scripts/check-cms-content-blockers.mjs
 
