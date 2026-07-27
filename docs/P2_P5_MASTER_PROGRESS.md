@@ -13,8 +13,8 @@ Phase 1 status: complete and production-verified.
 | P5-A CMS content foundation | `feature/p5a-cms-content-foundation` | #28 | `715d3e7d5ee93e114a9da27ebd2dbb2239cf362c` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
 | P2 product taxonomy and FAQ matching | `feature/p2-product-taxonomy-content-matching` | #29 | `1c3dd43beb6f79740f2dbb8ff3ee3adbd52b69a9` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
 | P3 trust evidence and conversion | `feature/p3-trust-evidence-conversion` | #30 | `996f729edb0d639803739fb12984a5000d8334a5` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
-| P4 SEO and GEO content system | `feature/p4-seo-geo-content-system` | Not opened | Not merged | Not deployed | Article structured data, GEO surfaces and route hygiene in progress |
-| P5-B admin workflow finalization | `feature/p5b-admin-workflow-finalization` | Not opened | Not merged | Not deployed | Pending P4 |
+| P4 SEO and GEO content system | `feature/p4-seo-geo-content-system-v2` | #31 | `0a88ec21c014bfc618ef80fb1b37b554c987ac0f` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
+| P5-B admin workflow finalization | `feature/p5b-admin-workflow-finalization` | Not opened | Not merged | Not deployed | Review workflow queues and editor SOP in progress |
 
 ## Current Verified Baseline
 
@@ -118,3 +118,11 @@ P4 upgrades the SEO/GEO article system:
 - Blog listing no longer substitutes guides as blog articles.
 - `llms.txt` documents the main buyer research surfaces for AI retrieval.
 - External answer-engine query tests are documented in `docs/P4_GEO_QUERY_TESTS.md` and require later manual execution in approved tools.
+## P5-B Local Validation Scope
+
+P5-B finalizes the CMS administration workflow:
+
+- Studio desk structure includes stable review queues for Draft content, Unpublished content, Missing SEO fields, Missing image alt text and Redirect rules.
+- Singleton editors remain available for Site Settings, Navigation, Footer and Procurement Standards.
+- `docs/POXIOL_CMS_ADMIN_SOP.md` documents editor workflow, SEO/GEO checks, redirect review, rollout gates and rollback.
+- No Sanity writes, Seed, Dataset Import, schema deployment, Studio deployment, asset upload or Cloudflare configuration changes are performed by this package.

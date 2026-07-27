@@ -12,6 +12,10 @@ import {
   MenuIcon,
 } from '@sanity/icons'
 
+const businessTypes = ['sitePage', 'productCategory', 'product', 'caseStudy', 'faqItem', 'article', 'redirectRule']
+const publishableTypes = ['sitePage', 'productCategory', 'product', 'caseStudy', 'faqItem', 'article']
+const seoTypes = ['sitePage', 'productCategory', 'product', 'caseStudy', 'article']
+
 export const deskStructure: StructureResolver = (S) =>
   S.list()
     .id('poxiolCms')
@@ -25,8 +29,79 @@ export const deskStructure: StructureResolver = (S) =>
           S.documentList()
             .id('dashboardRecentContent')
             .title('Recently updated content')
-            .filter('_type in ["product", "article", "caseStudy", "sitePage"]')
+            .filter('_type in $types')
+            .params({types: businessTypes})
             .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
+        ),
+      S.listItem()
+        .id('reviewWorkflow')
+        .title('Review Workflow')
+        .icon(DocumentsIcon)
+        .child(
+          S.list()
+            .id('reviewWorkflowQueues')
+            .title('Review Workflow')
+            .items([
+              S.listItem()
+                .id('reviewDraftContent')
+                .title('Draft content')
+                .icon(DocumentIcon)
+                .child(
+                  S.documentList()
+                    .id('reviewDraftContentList')
+                    .title('Draft content')
+                    .filter('_type in $types && publishStatus == "draft"')
+                    .params({types: publishableTypes})
+                    .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .id('reviewUnpublishedContent')
+                .title('Unpublished content')
+                .icon(DocumentIcon)
+                .child(
+                  S.documentList()
+                    .id('reviewUnpublishedContentList')
+                    .title('Unpublished content')
+                    .filter('_type in $types && publishStatus == "unpublished"')
+                    .params({types: publishableTypes})
+                    .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .id('reviewMissingSeo')
+                .title('Missing SEO fields')
+                .icon(DocumentIcon)
+                .child(
+                  S.documentList()
+                    .id('reviewMissingSeoList')
+                    .title('Missing SEO fields')
+                    .filter('_type in $types && (!defined(seo.seoTitle) || !defined(seo.metaDescription))')
+                    .params({types: seoTypes})
+                    .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .id('reviewMissingImageAlt')
+                .title('Missing image alt text')
+                .icon(DocumentIcon)
+                .child(
+                  S.documentList()
+                    .id('reviewMissingImageAltList')
+                    .title('Missing image alt text')
+                    .filter('_type in $types && ((defined(heroImage.asset) && !defined(heroImage.altText)) || (defined(primaryImage.asset) && !defined(primaryImage.altText)) || (defined(featuredImage.asset) && !defined(featuredImage.altText)))')
+                    .params({types: publishableTypes})
+                    .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .id('reviewRedirectRules')
+                .title('Redirect rules')
+                .icon(DocumentsIcon)
+                .child(
+                  S.documentList()
+                    .id('reviewRedirectRulesList')
+                    .title('Redirect rules')
+                    .filter('_type == "redirectRule"')
+                    .defaultOrdering([{field: '_updatedAt', direction: 'desc'}]),
+                ),
+            ]),
         ),
       S.divider(),
       S.listItem()
