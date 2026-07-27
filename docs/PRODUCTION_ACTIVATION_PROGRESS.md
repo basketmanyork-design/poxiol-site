@@ -87,3 +87,27 @@ The verified export contains 137 published business documents and 137 draft vari
 - A real GA4 Measurement ID has not been provided; production analytics correctly remains disabled.
 - Google Analytics Data API, Search Console and Cloudflare authenticated reporting require approved server-side credentials.
 - Cloudflare Deploy Hook configuration cannot be changed without Cloudflare API/dashboard access.
+
+## Final production validation
+
+- Analytics PR: `#34`; merge commit `3c3505019805c552709c95a225bf99a1d35be298`
+- Migration reconciliation PR: `#35`; merge commit `52094f6452f44230f33c2c4683b82736b7c9b71f`
+- Sitemap integrity hotfix PR: `#36`; merge commit `ccfe3683f47f06b2eb137db98daaa95f51b6d375`
+- Cloudflare Pages `poxiol-site`: production deployment succeeded for `ccfe3683f47f06b2eb137db98daaa95f51b6d375`
+- Cloudflare Pages `poxiol-admin`: deployment succeeded for the same approved source state
+- Production pages: homepage, products, projects, resources, FAQ, contact, get quote, free mockup and legal pages returned HTTP 200
+- Sitemap: 89 canonical production URLs; all returned below HTTP 400; no duplicates, Draft URLs or non-canonical hosts
+- Homepage FAQ: 7 visible questions; visible questions and answers matched the FAQPage JSON-LD
+- Procurement values: Sample MOQ 1 set, sample production 2–3 working days and bulk production 7–12 working days verified in live HTML
+- Static contact fallback: `mailto:` and `wa.me` links verified; Cloudflare email obfuscation markers absent
+- Domain redirects: HTTP and apex-domain variants redirect to `https://www.poxiol.com/`
+- Cloudflare Web Analytics: one beacon is present in production HTML; authenticated dashboard reporting was not available
+- GA4: implementation is production-ready but no real Measurement ID is configured, so no Google tag is loaded and live GA4 data remains unavailable
+- Draft public exposure: no Draft URL appeared in the sitemap or inspected production HTML
+- Migration apply: not executed because the production dataset already contains the prior migration and five FAQ category reconciliation conflicts remain
+- Sanity writes during this activation: none
+- Deploy Hook: not configured or verified because authenticated Cloudflare project access is unavailable
+- Search Console: sitemap is publicly valid, but property verification/submission status could not be authenticated
+- Workers Builds: the known non-required Workers integration still fails; Cloudflare Pages is the verified production delivery path
+
+Production activation is operational for the existing CMS content and static site delivery. Overall closure remains partial until the real GA4 Measurement ID, Search Console access, Cloudflare Deploy Hook and five FAQ category reconciliation decisions are provided.
