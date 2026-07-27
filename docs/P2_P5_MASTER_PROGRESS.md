@@ -10,7 +10,7 @@ Phase 1 status: complete and production-verified.
 
 | Package | Branch | PR | Merge Commit | Production Commit | Status |
 | --- | --- | --- | --- | --- | --- |
-| P5-A CMS content foundation | `feature/p5a-cms-content-foundation` | Not opened | Not merged | Not deployed | Documentation started |
+| P5-A CMS content foundation | `feature/p5a-cms-content-foundation` | Not opened | Not merged | Not deployed | Schema and resolver foundation validated locally |
 | P2 product taxonomy and FAQ matching | `feature/p2-product-taxonomy-content-matching` | Not opened | Not merged | Not deployed | Pending P5-A |
 | P3 trust evidence and conversion | `feature/p3-trust-evidence-conversion` | Not opened | Not merged | Not deployed | Pending P2 |
 | P4 SEO and GEO content system | `feature/p4-seo-geo-content-system` | Not opened | Not merged | Not deployed | Pending P3 |
@@ -45,3 +45,24 @@ Phase 1 status: complete and production-verified.
 
 P5-A begins from latest `main` after this documentation commit. Its first deliverable is a backward-compatible CMS schema and resolver foundation, not a data migration.
 
+
+## P5-A Local Validation
+
+Validated before opening the P5-A PR:
+
+- Root TypeScript: `npx tsc --noEmit` passed.
+- Root static build: `npm run build` passed.
+- CMS visibility tests passed.
+- CMS merge/strict list-mode tests passed.
+- Article route conflict check passed.
+- Redirect generator fixture tests passed.
+- Content blocker checks passed.
+- Reconciliation validation passed.
+- Schema coverage validation passed.
+- Explicit P5-A file safety scan passed for BOM, NUL bytes, mojibake patterns and token/secret patterns.
+- Studio dependency install was verified in a short-path validation copy with `npx --yes npm@10.8.2 ci --legacy-peer-deps` because local npm 10.9.8 exits with its internal `Exit handler never called!` bug on this Windows workspace.
+- Studio TypeScript check passed with `npx tsc --noEmit -p tsconfig.check.json`.
+- Studio schema validation passed with `npx sanity schema validate --level error`.
+- Studio build passed with `npm run build`.
+
+No Sanity writes, Seed, Dataset Import, asset upload, Cloudflare changes or production deployment were performed for P5-A validation.

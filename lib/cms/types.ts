@@ -14,6 +14,8 @@ export type CmsFooterColumn = {
 export type CmsImage = {
   url: string
   alt: string
+  caption?: string
+  usageNotes?: string
 }
 
 export type CmsSiteChrome = {
@@ -37,7 +39,13 @@ export type CmsSeo = {
   description: string
   canonicalUrl?: string
   ogImage?: CmsImage
+  focusKeyword?: string
+  secondaryKeywords?: string[]
+  ogTitle?: string
+  ogDescription?: string
   noIndex?: boolean
+  nofollow?: boolean
+  schemaType?: string
 }
 
 export type CmsCta = {
@@ -46,12 +54,21 @@ export type CmsCta = {
 }
 
 export type CmsPageSectionType =
+  | 'hero'
+  | 'intro'
   | 'richText'
   | 'imageText'
   | 'stats'
+  | 'productGrid'
+  | 'featureGrid'
   | 'evidenceGrid'
   | 'processSteps'
   | 'specificationsTable'
+  | 'comparisonTable'
+  | 'buyerChecklist'
+  | 'factoryEvidence'
+  | 'qcProcess'
+  | 'caseStudies'
   | 'gallery'
   | 'faq'
   | 'cta'
@@ -66,8 +83,13 @@ export type CmsPageSection = {
   title: string
   eyebrow?: string
   body?: string
+  enabled?: boolean
+  displayOrder?: number
   image?: CmsImage
   facts?: string[]
+  productSlugs?: string[]
+  categorySlugs?: string[]
+  caseStudySlugs?: string[]
   stats?: CmsStat[]
   steps?: CmsStep[]
   specifications?: CmsSpec[]
@@ -95,7 +117,17 @@ export type CmsProductCategory = {
   title: string
   shortName?: string
   description: string
+  fullDescription?: string
   image: CmsImage
+  buyerTypes?: string[]
+  targetMarkets?: string[]
+  productTypes?: string[]
+  coreBenefits?: string[]
+  relatedFaqs?: CmsFaqItem[]
+  relatedCaseStudies?: CmsLink[]
+  relatedGuides?: CmsLink[]
+  navigationVisibility?: boolean
+  homepageVisibility?: boolean
   seo: CmsSeo
   displayOrder: number
   active: boolean
@@ -104,6 +136,7 @@ export type CmsProductCategory = {
 export type CmsProduct = {
   slug: string
   title: string
+  productCode?: string
   categorySlug?: string
   categoryTitle?: string
   description: string
@@ -113,14 +146,29 @@ export type CmsProduct = {
   productionImages: CmsImage[]
   qcImages: CmsImage[]
   packagingImages: CmsImage[]
+  gallery?: CmsImage[]
+  keyBenefits?: string[]
   fabricOptions: string[]
+  fabric?: string
+  composition?: string
+  gsm?: string
+  printing?: string
   customizationOptions: string[]
+  customizationAreas?: string[]
+  sizeRange?: string
+  packaging?: string
+  oem?: boolean
+  privateLabel?: boolean
   procurementOverride?: {
     moq?: string
     sampleTime?: string
     reason?: string
   }
+  relatedProducts?: CmsLink[]
+  relatedCases?: CmsLink[]
+  relatedGuides?: CmsLink[]
   relatedFaqs: CmsFaqItem[]
+  cta?: CmsCta
   featured: boolean
   seo: CmsSeo
   displayOrder: number
@@ -132,11 +180,28 @@ export type CmsProject = {
   title: string
   country: string
   product: string
+  caseType?: string
+  realOrExample?: 'real' | 'anonymized' | 'example'
+  buyerType?: string
+  region?: string
+  quantityDisplay?: string
+  projectTimeline?: string
   image: CmsImage
+  images?: CmsImage[]
   qualityControl: string
   packaging: string
   solution: string
   overview: string
+  challenge?: string
+  requirements?: string[]
+  materials?: string
+  customization?: string
+  sampleProcess?: string
+  production?: string
+  delivery?: string
+  result?: string
+  testimonial?: string
+  evidenceStatus?: string
   seo: CmsSeo
   displayOrder: number
 }
