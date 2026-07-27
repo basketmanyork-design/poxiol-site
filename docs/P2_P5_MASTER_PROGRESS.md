@@ -10,8 +10,8 @@ Phase 1 status: complete and production-verified.
 
 | Package | Branch | PR | Merge Commit | Production Commit | Status |
 | --- | --- | --- | --- | --- | --- |
-| P5-A CMS content foundation | `feature/p5a-cms-content-foundation` | Not opened | Not merged | Not deployed | Schema and resolver foundation validated locally |
-| P2 product taxonomy and FAQ matching | `feature/p2-product-taxonomy-content-matching` | Not opened | Not merged | Not deployed | Pending P5-A |
+| P5-A CMS content foundation | `feature/p5a-cms-content-foundation` | #28 | `715d3e7d5ee93e114a9da27ebd2dbb2239cf362c` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
+| P2 product taxonomy and FAQ matching | `feature/p2-product-taxonomy-content-matching` | Not opened | Not merged | Not deployed | Context FAQ matching implemented locally |
 | P3 trust evidence and conversion | `feature/p3-trust-evidence-conversion` | Not opened | Not merged | Not deployed | Pending P2 |
 | P4 SEO and GEO content system | `feature/p4-seo-geo-content-system` | Not opened | Not merged | Not deployed | Pending P3 |
 | P5-B admin workflow finalization | `feature/p5b-admin-workflow-finalization` | Not opened | Not merged | Not deployed | Pending P4 |
@@ -66,3 +66,23 @@ Validated before opening the P5-A PR:
 - Studio build passed with `npm run build`.
 
 No Sanity writes, Seed, Dataset Import, asset upload, Cloudflare changes or production deployment were performed for P5-A validation.
+
+## P2 Local Validation
+
+P2 changes keep the existing product-category visual template and add resolver-level FAQ matching:
+
+- Category pages use explicit category FAQ references first, then category/sport context, then legacy category FAQ fallback.
+- Product detail resolvers expose `getProduct(slug)` and keep product detail static params separate from product category routes.
+- Product-category routes retain their existing static URLs under `/products/<category-slug>/`.
+- Product detail routes remain under `/products/<product-slug>/` and do not generate category slugs as product detail params.
+
+Validated locally:
+
+- Root TypeScript: `npx tsc --noEmit` passed.
+- Root static build: `npm run build` passed with 112 generated routes.
+- CMS visibility tests passed.
+- CMS merge/strict list-mode tests passed.
+- Article route conflict check passed.
+- Content blocker checks passed.
+
+No Sanity writes, Seed, Dataset Import, asset upload, Cloudflare changes or production deployment were performed during local P2 validation.
