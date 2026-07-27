@@ -86,6 +86,9 @@ type SanityProcurementStandards = {
   qualityPromise?: string
 }
 
+const HOMEPAGE_PRODUCTION_TIME_QUESTION = 'What is the standard production time for team orders?'
+const HOMEPAGE_PRODUCTION_TIME_ANSWER = 'Sample production usually takes 2-3 working days after mockup approval. Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'
+
 type SanityPageSection = {
   sectionType?: CmsPageSectionType
   eyebrow?: string
@@ -710,12 +713,12 @@ function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
   return [
     {item: 'Core Expertise', capability: '15+ years experience in custom sports uniforms and private label sportswear manufacturing.'},
     {item: 'Main Products', capability: 'Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories.'},
-    {item: 'Minimum Order (MOQ)', capability: 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
-    {item: 'Sampling Timeline', capability: 'Sample Production: 2–3 Days After Mockup Confirmation with express global delivery.'},
-    {item: 'Design Support', capability: 'Free high-fidelity 3D mockup design in 1-2 hours based on your logo and color direction.'},
-    {item: 'Production Capacity', capability: 'Specialized facility with 30,000+ monthly capacity and 100% manual quality inspection protocol.'},
-    {item: 'Custom Options', capability: 'Full sublimation, team logos, player names, numbers, private labels and custom packaging.'},
-    {item: 'Compliance & QC', capability: 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
+    {item: 'Sample MOQ', capability: 'Sample MOQ: 1 set.'},
+    {item: 'Sample Production', capability: 'Sample production: 2-3 working days after mockup approval.'},
+    {item: 'Bulk Production', capability: 'Bulk production: 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'},
+    {item: 'Quality Control', capability: 'Quality control: Inspection before shipment.'},
+    {item: 'Size Tolerance', capability: 'Size tolerance: +/-2 cm.'},
+    {item: 'Mixed Sizes', capability: 'Mixed adult and youth sizes are supported.'},
     {item: 'Export Markets', capability: 'Reliable door-to-door logistics serving clubs and brands in 50+ countries including USA, EU, AU.'},
   ]
 }
@@ -728,6 +731,35 @@ function homeCategoriesFromLegacy(): CmsHomeCategory[] {
     href: sport.href,
     image: {url: sport.image, alt: `POXIOL ${sport.title} Custom Manufacturer`},
   }))
+}
+
+function normalizeHomepageFaqs(faqs: CmsHomeContent['faqs']): CmsHomeContent['faqs'] {
+  const normalized = faqs.map((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION ? {...faq, answer: HOMEPAGE_PRODUCTION_TIME_ANSWER} : faq)
+  return normalized.some((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION)
+    ? normalized.slice(0, 7)
+    : [...normalized.slice(0, 6), {question: HOMEPAGE_PRODUCTION_TIME_QUESTION, answer: HOMEPAGE_PRODUCTION_TIME_ANSWER}]
+}
+
+function normalizeHomepageUspCards(cards: Array<{metric: string; title: string; description: string}>): Array<{metric: string; title: string; description: string}> {
+  return cards.map((card) => {
+    const text = `${card.metric} ${card.title} ${card.description}`
+    if (/bulk production|7-21|7–21|15-25|15–25/i.test(text)) {
+      return {
+        metric: '7-12 working days',
+        title: 'Bulk Production',
+        description: 'Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.',
+      }
+    }
+    if (/sample production|2-3|2–3/i.test(text)) {
+      return {
+        ...card,
+        metric: card.metric.replace(/2–3/g, '2-3'),
+        title: card.title.replace(/2–3/g, '2-3 working days'),
+        description: card.description.replace(/2–3/g, '2-3'),
+      }
+    }
+    return card
+  })
 }
 
 export async function getHomepageContent(): Promise<CmsHomeContent> {
@@ -745,16 +777,16 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     href: `/products/${category.slug}/`,
     image: category.image,
   }))
-  const faqs = faqGroups.flatMap((group) => group.items).slice(0, 7)
+  const faqs = normalizeHomepageFaqs(faqGroups.flatMap((group) => group.items).slice(0, 7))
   const procurementData = procurement.ok ? procurement.result : null
   const procurementRows = procurementData
     ? [
-        {item: 'Minimum Order (MOQ)', capability: procurementData.defaultMOQ || 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
-        {item: 'Sampling Timeline', capability: procurementData.sampleTime || 'Sample Production: 2–3 Days After Mockup Confirmation with express global delivery.'},
-        {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free high-fidelity 3D mockup design based on your logo and color direction.'},
-        {item: 'Bulk Production', capability: procurementData.bulkProductionTime || 'Production capacity and timing are confirmed against quantity, deadline and customization complexity.'},
-        {item: 'Compliance & QC', capability: procurementData.qualityPromise || 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
-        {item: 'Shipping Notes', capability: procurementData.shippingNotes || 'Reliable door-to-door logistics serving global clubs, schools and brands.'},
+        {item: 'Sample MOQ', capability: procurementData.defaultMOQ || 'Sample MOQ: 1 set.'},
+        {item: 'Sample Production', capability: procurementData.sampleTime || 'Sample production: 2-3 working days after mockup approval.'},
+        {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free mockup: Usually within 2 hours after receiving complete project requirements.'},
+        {item: 'Bulk Production', capability: procurementData.bulkProductionTime || 'Bulk production: 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'},
+        {item: 'Quality Control', capability: procurementData.qualityPromise || 'Quality control: Inspection before shipment. Size tolerance: +/-2 cm.'},
+        {item: 'Shipping Notes', capability: procurementData.shippingNotes || 'Mixed adult and youth sizes are supported. Reliable door-to-door logistics serving global clubs, schools and brands.'},
       ]
     : legacyHomeRows()
 
@@ -776,9 +808,9 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
     heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Get Factory Quote', href: '/get-quote/'},
-    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['MOQ 1 Set', 'Free 3D Mockup', '2–3 Days Sample Production', 'Quality Support', 'Global Shipping'],
+    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['Sample MOQ: 1 set', 'Free 3D Mockup', '2-3 working days sample production', 'QC before shipment', 'Global Shipping'],
     sourcingRows: procurementRows,
-    uspCards: pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards,
+    uspCards: normalizeHomepageUspCards(pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards),
     categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),
     sectionHeadings: pageAny.homepageSectionHeadings || {
       sourcing: {eyebrow: 'Factory Specs', title: 'Factory Sourcing Summary'},
@@ -790,7 +822,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     inquiryDescription: ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
     inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
     inquirySupportDescription: pageAny.inquirySupport?.description || 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
-    faqs: faqs.length ? faqs : homeFaqs,
+    faqs: faqs.length ? faqs : normalizeHomepageFaqs(homeFaqs),
     bottomCta: page.bottomCta,
     seo: page.seo,
   }

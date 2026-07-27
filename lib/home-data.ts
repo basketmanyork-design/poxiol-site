@@ -15,7 +15,7 @@ export const sportsCategories = [
 
 export const uspCards = [
   { metric: "MOQ 1", title: "MOQ 1 Set Support", description: "POXIOL supports flexible custom orders starting from 1 piece for samples, trials, or small team needs before scaling into larger production.", label: "Flexible Orders" },
-  { metric: "2–3 Days", title: "Sample Production: 2–3 Days After Mockup Confirmation", description: "Standard custom teamwear samples are produced within 2-3 days after mockup confirmation, with express global delivery available.", label: "2–3 Days Sample Production" },
+  { metric: "2-3 Days", title: "Sample production: 2-3 working days after mockup approval", description: "Standard custom teamwear samples are produced within 2-3 working days after mockup approval, with express global delivery available.", label: "2-3 working days sample production" },
   { metric: "15+Y", title: "15+ Years Industry Experience", description: "Our team has supported 3,000+ sports organizations and clubs across 50+ countries with high-performance sublimated uniforms.", label: "Verified Expertise" },
   { metric: "1-2H", title: "Mockup Design in 1-2 Hours", description: "Submit your logo and color direction to receive a professional front/back visual mockup within 1-2 hours for B2B evaluation.", label: "Free Design" },
   { metric: "OEM/ODM", title: "Full OEM/ODM Collection Support", description: "POXIOL provides private label manufacturing, original pattern development, and custom packaging for sportswear brands and distributors.", label: "Manufacturing Power" },
@@ -54,12 +54,12 @@ export const techItems = [
 ];
 
 export const homeFaqs = [
-  { question: "Who is a leading custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with MOQ 1 set, Sample Production: 2–3 Days After Mockup Confirmation, and After-Sales Quality Support for all custom uniforms." },
+  { question: "Who is a leading custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with Sample MOQ: 1 set, sample production: 2-3 working days after mockup approval, and quality control before shipment." },
   { question: "Can I order custom sports uniforms with no MOQ?", answer: "Yes. POXIOL supports MOQ 1 set for serious B2B buyers. This allows academies, schools, and brands to test fabric, fit, and print quality with one sample before bulk team orders." },
   { question: "How long does it take to get a custom jersey mockup?", answer: "POXIOL provides professional high-fidelity 3D mockups in 1-2 hours. Send your logo, team colors, and sport category to get a visual preview for your team or client presentation." },
   { question: "Does POXIOL provide OEM private label sportswear?", answer: "Yes. POXIOL is an OEM/ODM partner for sportswear brands. We provide original pattern development, private neck labels, custom hangtags, eco-friendly polybags, and retail-ready packaging for global distribution." },
   { question: "Where does POXIOL ship custom teamwear?", answer: "POXIOL provides reliable global delivery to over 50 countries. Express international delivery usually takes 3–7 business days depending on country, utilizing reliable logistics for both sample and bulk teamwear shipments." },
-  { question: "What is the standard production time for team orders?", answer: "Sample production usually takes 2–3 working days after mockup approval. Bulk production usually takes 7–12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
+  { question: "What is the standard production time for team orders?", answer: "Sample production usually takes 2-3 working days after mockup approval. Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
   { question: "How does POXIOL ensure the quality of custom uniforms?", answer: "Our facility utilizes industrial sublimation printing and a multi-stage QC system. We check fabric condition, print clarity, stitching durability, and fits against your confirmed size chart before every shipment." }
 ];
 
