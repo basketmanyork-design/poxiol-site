@@ -72,6 +72,7 @@ The verified export contains 137 published business documents and 137 draft vari
 | Analytics Settings schema | Implemented and deployed to the Schema Registry |
 | Production schema deployment | Passed via the local Studio workspace |
 | Production content migration | Previously completed; duplicate import skipped |
+| Reconciliation migration dry run | 121 candidates: 116 skip, 5 FAQ category conflicts, 0 create, 0 update; dataset unchanged |
 | Production published inventory | Verified by full export |
 | Analytics audit | Completed |
 | Analytics implementation | Implemented; live collection remains disabled until a real GA4 ID is provided |
@@ -82,6 +83,7 @@ The verified export contains 137 published business documents and 137 draft vari
 
 - Existing published content has 18 missing SEO fields.
 - Nine published FAQ category documents are missing the currently required `title` field.
+- Five logical FAQ category pairs use legacy/current slug variants and require manual merge review before any future migration apply.
 - A real GA4 Measurement ID has not been provided; production analytics correctly remains disabled.
 - Google Analytics Data API, Search Console and Cloudflare authenticated reporting require approved server-side credentials.
 - Cloudflare Deploy Hook configuration cannot be changed without Cloudflare API/dashboard access.
