@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { WhatsAppButton } from "@/components/ui";
-import Script from "next/script";
+import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider";
+import { getAnalyticsRuntimeConfig } from "@/lib/analytics/server";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.poxiol.com"),
@@ -32,7 +34,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const analyticsConfig = await getAnalyticsRuntimeConfig();
+
   return (
     <html lang="en">
       <head>
@@ -41,17 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased selection:bg-lime-400 selection:text-neutral-950">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:rounded-xl focus:bg-lime-400 focus:px-6 focus:py-3 focus:text-sm focus:font-black focus:text-black focus:uppercase">Skip to Content</a>
-        <Script id="okki-analytics-config" strategy="lazyOnload">
-          {`
-            window.okkiConfigs = window.okkiConfigs || [];
-            function okkiAdd() { okkiConfigs.push(arguments); };
-            okkiAdd("analytics", { siteId: "395585-32576", gId: "" });
-          `}
-        </Script>
-        <Script
-          src="//tfile.xiaoman.cn/okki/analyze.js?id=395585-32576-"
-          strategy="lazyOnload"
-        />
+        <Suspense fallback={null}>
+          <AnalyticsProvider config={analyticsConfig} />
+        </Suspense>
         <div id="main-content">{children}</div>
         <WhatsAppButton />
       </body>

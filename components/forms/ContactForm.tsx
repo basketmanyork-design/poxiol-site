@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { trackFileUpload, trackFormStart, trackFormSubmit, trackLead } from "@/lib/analytics/client";
 
 type ContactFormState = {
   fullName: string;
@@ -84,6 +85,7 @@ function ContactFormInner({
   const [errorMessage, setErrorMessage] = useState("");
 
   function updateField(name: keyof ContactFormState, value: string) {
+    trackFormStart(formType || "contact");
     setForm((current) => ({ ...current, [name]: value }));
   }
 
@@ -123,6 +125,9 @@ function ContactFormInner({
         throw new Error("Submit failed. Please try again or contact us by email.");
       }
 
+      const submissionId = crypto.randomUUID();
+      trackFormSubmit(formType || "contact", submissionId);
+      trackLead(formType || "contact", submissionId);
       router.push(successUrl || "/thank-you/");
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
@@ -356,7 +361,11 @@ function ContactFormInner({
                   <input
                     type="file"
                     accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
-                    onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setLogoFile(file);
+                      if (file) trackFileUpload(formType || "contact");
+                    }}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
                 </div>
@@ -365,7 +374,11 @@ function ContactFormInner({
                   <input
                     type="file"
                     accept=".png,.jpg,.jpeg,.pdf,.webp"
-                    onChange={(e) => setReferenceFile(e.target.files?.[0] || null)}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setReferenceFile(file);
+                      if (file) trackFileUpload(formType || "contact");
+                    }}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
                 </div>
@@ -374,7 +387,11 @@ function ContactFormInner({
                   <input
                     type="file"
                     accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg"
-                    onChange={(e) => setSizeChartFile(e.target.files?.[0] || null)}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setSizeChartFile(file);
+                      if (file) trackFileUpload(formType || "contact");
+                    }}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
                 </div>

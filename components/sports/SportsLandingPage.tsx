@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { SportsPageData } from "@/lib/sports-pages";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref, getQuoteHref } from "@/components/ui";
 import { ProductSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
+import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
 
 function titleCaseKeyword(keyword: string) {
   return keyword.replace(/^custom\s+/i, "").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -14,6 +15,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black text-left">
+      <ContentViewTracker event="product_category_view" params={{product_category: data.slug, sport: data.primaryKeyword}} />
       {/* --- AEO / GEO Infrastructure --- */}
       <ProductSchema
         name={data.h1}

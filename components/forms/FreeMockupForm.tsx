@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { sportOptions, buyerTypeOptions, quantityOptions, productOptions } from "@/lib/free-mockup-data";
 import { WHATSAPP_HREF } from "@/lib/contact";
+import { trackFormStart, trackFormSubmit, trackLead } from "@/lib/analytics/client";
 
 type FormState = { fullName: string; email: string; phone: string; country: string; company: string; sportCategory: string; buyerType: string; quantity: string; products: string[]; deliveryDate: string; colors: string; hasLogo: string; notes: string; };
 const initialState: FormState = { fullName: "", email: "", phone: "", country: "", company: "", sportCategory: "", buyerType: "", quantity: "", products: [], deliveryDate: "", colors: "", hasLogo: "", notes: "" };
@@ -14,8 +15,8 @@ export default function FreeMockupForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  function updateField(name: keyof FormState, value: string) { setForm((current) => ({ ...current, [name]: value })); }
-  function toggleProduct(product: string) { setForm((current) => { const exists = current.products.includes(product); return { ...current, products: exists ? current.products.filter((item) => item !== product) : [...current.products, product] }; }); }
+  function updateField(name: keyof FormState, value: string) { trackFormStart("free-mockup"); setForm((current) => ({ ...current, [name]: value })); }
+  function toggleProduct(product: string) { trackFormStart("free-mockup"); setForm((current) => { const exists = current.products.includes(product); return { ...current, products: exists ? current.products.filter((item) => item !== product) : [...current.products, product] }; }); }
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault(); setLoading(true); setErrorMessage("");
     try {
@@ -23,6 +24,7 @@ export default function FreeMockupForm() {
       if (!endpoint) throw new Error("Form endpoint is not configured. Add NEXT_PUBLIC_FORMSPREE_FREE_MOCKUP_ENDPOINT in Cloudflare Pages.");
       const response = await fetch(endpoint, { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify({ formType: "Free Mockup", ...form, products: form.products.join(", "), sourcePage: window.location.href }) });
       if (!response.ok) throw new Error("Submit failed. Please try again or contact us by email.");
+      const submissionId = crypto.randomUUID(); trackFormSubmit("free-mockup", submissionId); trackLead("free-mockup", submissionId);
       setSubmitted(true); setForm(initialState);
     } catch (error) { setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again."); } finally { setLoading(false); }
   }
