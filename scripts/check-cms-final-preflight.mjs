@@ -156,7 +156,7 @@ const expectedTypes = [
   'faqReference', 'relatedContent', 'procurementOverride', 'pageSection',
   'siteSettings', 'navigationSettings', 'footerSettings', 'procurementStandards',
   'sitePage', 'productCategory', 'product', 'caseStudy', 'faqCategory',
-  'faqItem', 'article', 'author', 'redirectRule'
+  'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings'
 ];
 
 const schemaPath = join(ROOT, 'studio', 'schemaTypes', 'index.ts');

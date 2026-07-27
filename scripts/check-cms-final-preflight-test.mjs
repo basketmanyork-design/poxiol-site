@@ -12,7 +12,7 @@ const EXPECTED_TYPES = [
   'faqReference', 'relatedContent', 'procurementOverride', 'pageSection',
   'siteSettings', 'navigationSettings', 'footerSettings', 'procurementStandards',
   'sitePage', 'productCategory', 'product', 'caseStudy', 'faqCategory',
-  'faqItem', 'article', 'author', 'redirectRule'
+  'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings'
 ];
 
 const baseSetup = (tmpDir) => {
