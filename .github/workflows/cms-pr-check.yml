@@ -62,6 +62,15 @@ jobs:
       - name: Analytics settings schema contract
         run: node scripts/check-analytics-schema.mjs
 
+      - name: Analytics core tests
+        run: node scripts/check-analytics-core.mjs
+
+      - name: Analytics integration contract
+        run: node scripts/check-analytics-integration.mjs
+
+      - name: Analytics Studio tool contract
+        run: node scripts/check-analytics-studio-tool.mjs
+
       - name: Sanity inventory audit tests
         run: node scripts/check-sanity-inventory-audit.mjs
 

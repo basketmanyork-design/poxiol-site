@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {Header, Footer, PrimaryButton, SecondaryButton, SectionHeading} from '@/components/ui'
 import {getProduct, getProducts} from '@/lib/sanity/content'
 import type {CmsImage, CmsProduct} from '@/lib/cms/types'
+import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 
 type Props = {params: {slug: string}}
 
@@ -91,6 +92,7 @@ export default async function ProductDetailPage({params}: Props) {
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <ContentViewTracker event="product_view" params={{product_slug: product.slug, product_category: product.categorySlug || ""}} />
       <ProductJsonLd product={product} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">

@@ -1,11 +1,12 @@
 # POXIOL Production Activation Progress
 
-This document records production activation checkpoints without storing tokens, private keys, deploy hooks or customer PII.
+This document records verified production activation checkpoints without storing tokens, private keys, deploy hooks or customer PII.
 
 ## Execution context
 
-- Initial main commit: `9514a27b8def052aa93336785fadb8d63679bbf9`
-- Activation branch: `feature/production-activation-content-analytics`
+- Initial audited main commit: `9514a27b8def052aa93336785fadb8d63679bbf9`
+- Activation PR: `#33`
+- Activation merge commit: `dde6b4fcf98c6badf6f2092ed0595fd09435d133`
 - Sanity project: `oqpv1xbc`
 - Sanity dataset: `production`
 - Studio delivery: Cloudflare Pages project `poxiol-admin`
@@ -18,12 +19,12 @@ This document records production activation checkpoints without storing tokens, 
 - Backup SHA-256: `36097daa9df8bdba67b47a7d37ce61db2d749932bbd2fde652017f1a59fddc89`
 - Documents exported: 274
 - Assets exported: 19
-- Backup verification: passed; archive exists outside the Git repository and is non-empty
-- Existing Phase 1 backup retained: `sanity-procurementStandards-before-phase1-20260727-124500.json`
+- Backup verification: passed; the archive is outside the Git repository and is non-empty
+- Existing Phase 1 procurement backup remains outside the repository and was not modified
 
-## Current production inventory
+## Production content inventory
 
-The verified export contains 137 published business documents and 137 draft variants:
+The verified export contains 137 published business documents and 137 draft variants. Production content migration was already completed by the previously merged CMS migration work, so no duplicate bulk import was performed during activation.
 
 | Type | Published | Drafts |
 | --- | ---: | ---: |
@@ -49,8 +50,6 @@ The verified export contains 137 published business documents and 137 draft vari
 - Missing published image alt fields: 0
 - Missing required FAQ category titles: 9
 
-Because production already contains migrated published and draft content, a new migration apply must reconcile by stable source identity and must not perform an empty-dataset import.
-
 ## Procurement singleton
 
 - Published singleton count: 1
@@ -67,27 +66,22 @@ Because production already contains migrated published and draft content, a new 
 
 | Checkpoint | Status |
 | --- | --- |
-| Root TypeScript baseline | Passed |
-| Root production build baseline | Passed |
-| CMS safety checks baseline | Passed |
-| Studio TypeScript baseline | Passed |
-| Sanity schema validation baseline | Passed |
-| Studio build baseline | Pending rerun with approved local Sanity config access |
-| Analytics Settings schema | Implemented locally; not deployed |
-| Production schema deployment | Not started |
-| Migration dry run | Existing deterministic dry run available; production reconciliation pending |
-| Draft import | Not started |
-| Preview validation | Not started |
-| Controlled publish | Not started |
-| Deploy Hook | Not configured |
-| Analytics audit | Not started |
-| Analytics code | Not started |
-| Cloudflare production verification | Not started |
+| Root TypeScript and production build | Passed |
+| CMS safety checks | Passed |
+| Studio TypeScript, schema validation and build | Passed |
+| Analytics Settings schema | Implemented and deployed to the Schema Registry |
+| Production schema deployment | Passed via the local Studio workspace |
+| Production content migration | Previously completed; duplicate import skipped |
+| Production published inventory | Verified by full export |
+| Analytics audit | Completed |
+| Analytics implementation | Implemented; live collection remains disabled until a real GA4 ID is provided |
+| Search Console API verification | Blocked by unavailable authenticated access |
+| Cloudflare API analytics/deploy-hook operations | Blocked by unavailable Cloudflare API credentials |
 
 ## Remaining risks
 
 - Existing published content has 18 missing SEO fields.
 - Nine published FAQ category documents are missing the currently required `title` field.
-- Existing draft variants must be reconciled before any write.
-- Analytics identifiers and Google API credentials have not been provided; analytics must remain disabled until a real public ID is configured.
-- Search Console and Cloudflare Web Analytics status still require authenticated read-only verification.
+- A real GA4 Measurement ID has not been provided; production analytics correctly remains disabled.
+- Google Analytics Data API, Search Console and Cloudflare authenticated reporting require approved server-side credentials.
+- Cloudflare Deploy Hook configuration cannot be changed without Cloudflare API/dashboard access.

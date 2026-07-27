@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header, Footer, PrimaryButton } from "@/components/ui";
 import { getProject, getProjects } from "@/lib/sanity/content";
 import { CaseStudySchema } from "@/components/seo/GEOStructuredData";
+import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
 
 type Props = { params: { slug: string } };
 
@@ -27,6 +28,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <ContentViewTracker event="case_study_view" params={{content_type: "case-study", content_slug: project.slug}} />
       <CaseStudySchema title={project.title} url={`${baseUrl}/projects/${project.slug}/`} description={project.overview} keywords={[project.country, project.product].filter(Boolean)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`${baseUrl}/`},{"@type":"ListItem",position:2,name:"Projects",item:`${baseUrl}/projects/`},{"@type":"ListItem",position:3,name:project.title,item:`${baseUrl}/projects/${project.slug}/`}]})}} />
       <Header />

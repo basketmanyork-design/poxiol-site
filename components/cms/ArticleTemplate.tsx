@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type {Metadata} from 'next'
 import {Header, Footer, PrimaryButton} from '@/components/ui'
 import type {CmsArticle} from '@/lib/cms/types'
+import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 
 const siteUrl = 'https://www.poxiol.com'
 
@@ -145,6 +146,7 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <ContentViewTracker event="guide_view" params={{content_type: article.articleType, content_slug: article.slug}} />
       <ArticleJsonLd article={article} />
       <Header />
       <article className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-32">
