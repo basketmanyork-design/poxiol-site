@@ -38,7 +38,7 @@ function genericProcurementTable(productName: string, mainProducts: string) {
     { item: "Bulk Production", specification: "Production planning based on quantity, customization and delivery deadline" },
     { item: "Packaging", specification: "Individual polybag, size label, hangtag, custom packaging, carton packing" },
     { item: "Buyer Types", specification: "Clubs, schools, academies, event organizers, brands, distributors and wholesalers" },
-    { item: "Alibaba Link", specification: "Official store: Alibaba.com/basketman" }
+    { item: "Alibaba Link", specification: "Alibaba store: Alibaba.com/basketman" }
   ];
 }
 
@@ -153,7 +153,7 @@ export const sportsPages: SportsPageData[] = [
       { item: "Original Compliance", specification: "Buyer-owned artwork only; no unauthorized trademarked logos" },
       { item: "Sample Process", specification: "Design mockup -> Sample production: 2-3 working days after mockup approval -> Bulk order" },
       { item: "Quality Support", specification: "Strict QC Before Shipment and After-Sales Quality Support" },
-      { item: "Alibaba Link", specification: "Official store: Alibaba.com/basketman" }
+      { item: "Alibaba Link", specification: "Alibaba store: Alibaba.com/basketman" }
     ],
     faqs: [
       { question: "What fabric is suitable for soccer kits in hot weather?", answer: "140gsm interlock polyester with moisture-wicking technology is best for hot weather. It is lightweight, breathable and dries quickly, keeping players cool during matches." },

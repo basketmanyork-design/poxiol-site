@@ -27,9 +27,9 @@ export default async function ContactPage() {
             </div>
           </noscript>
           <ContactForm
-            title="Send an Official Inquiry"
+            title="Send a Project Inquiry"
             subtitle="Please provide as much detail as possible so our specialists can give you a precise answer."
-            formType="Official Contact Page CMS"
+            formType="Contact Page CMS"
             ctaText="Send My Message"
             successUrl="/thank-you/"
             publicEmail={chrome.publicEmail}

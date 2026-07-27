@@ -30,6 +30,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/quality-control-process/",
     "/manufacturing/",
     "/guides/b2b-sourcing-faq/",
+    "/privacy-policy/",
+    "/terms/",
+    "/intellectual-property-policy/",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
