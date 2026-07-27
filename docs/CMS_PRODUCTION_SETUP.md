@@ -53,6 +53,18 @@ No webhook, deploy hook, secret, token, Dataset Import, or Seed was executed by 
 - Use FAQ for `/faq/` and article FAQ references.
 - Use Articles and Guides for `/blog/`, `/guides/`, `/resources/`, and their detail routes.
 - Use Redirect Rules to manage 301 redirect data. Cloudflare/Next redirect hook-up should be enabled after the production deploy hook is configured.
+
+## Admin workflow and editor SOP
+
+The Studio includes a **Review Workflow** desk section with queues for:
+
+- Draft content
+- Unpublished content
+- Missing SEO fields
+- Missing image alt text
+- Redirect rules
+
+Use `docs/POXIOL_CMS_ADMIN_SOP.md` as the editor runbook before any production content batch is published. The SOP covers ownership by document type, SEO/GEO checks, redirect rules, rollout gates and rollback steps.
 ## Migration cutover plan
 
 1. Run the deterministic dry run: `node scripts/cms-migration-dry-run.ts`.
