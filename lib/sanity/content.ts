@@ -79,15 +79,28 @@ type SanityFooter = {footerColumns?: Array<{title?: string; links?: SanityLink[]
 
 type SanityProcurementStandards = {
   defaultMOQ?: string
+  sampleMOQ?: string
   sampleTime?: string
+  sampleProductionTime?: string
   bulkProductionTime?: string
+  bulkProductionNote?: string
   mockupTime?: string
   shippingNotes?: string
   qualityPromise?: string
+  qcStandard?: string
+  sizeTolerance?: string
+  mixedSizes?: string
 }
 
 const HOMEPAGE_PRODUCTION_TIME_QUESTION = 'What is the standard production time for team orders?'
 const HOMEPAGE_PRODUCTION_TIME_ANSWER = 'Sample production usually takes 2-3 working days after mockup approval. Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'
+const STANDARD_SAMPLE_MOQ = 'Sample MOQ: 1 set.'
+const STANDARD_SAMPLE_PRODUCTION = 'Sample production: 2-3 working days after mockup approval.'
+const STANDARD_BULK_PRODUCTION = 'Bulk production: 7-12 working days after sample or artwork approval.'
+const STANDARD_BULK_NOTE = 'Large, complex or peak-season orders require a confirmed production schedule.'
+const STANDARD_QC = 'Quality control: Inspection before shipment.'
+const STANDARD_SIZE_TOLERANCE = 'Size tolerance: +/-2 cm.'
+const STANDARD_MIXED_SIZES = 'Mixed adult and youth sizes are supported.'
 
 type SanityPageSection = {
   sectionType?: CmsPageSectionType
@@ -733,6 +746,34 @@ function homeCategoriesFromLegacy(): CmsHomeCategory[] {
   }))
 }
 
+function normalizeHomepageSeo(seo: CmsSeo): CmsSeo {
+  return {
+    ...seo,
+    description: seo.description
+      .replace(/MOQ\s*1\s*set\s*and\s*Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample MOQ: 1 set and sample production: 2-3 working days after mockup approval')
+      .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
+      .replace(/2\s*[-–]\s*3\s*Days Sample Production/gi, '2-3 working days sample production'),
+  }
+}
+function normalizeSampleMoq(value?: string): string {
+  return value && /1\s*set/i.test(value) ? STANDARD_SAMPLE_MOQ : STANDARD_SAMPLE_MOQ
+}
+
+function normalizeSampleProduction(value?: string): string {
+  return value && /2\s*[-–]\s*3/i.test(value) ? STANDARD_SAMPLE_PRODUCTION : STANDARD_SAMPLE_PRODUCTION
+}
+
+function normalizeBulkProduction(time?: string, note?: string): string {
+  const timeline = time && /7\s*[-–]\s*12/i.test(time) ? STANDARD_BULK_PRODUCTION : STANDARD_BULK_PRODUCTION
+  const scheduleNote = note || STANDARD_BULK_NOTE
+  return `${timeline} ${scheduleNote}`
+}
+
+function normalizeQualityControl(qc?: string, tolerance?: string): string {
+  const qcText = qc && /inspection/i.test(qc) ? STANDARD_QC : STANDARD_QC
+  const toleranceText = tolerance && /2\s*cm/i.test(tolerance) ? STANDARD_SIZE_TOLERANCE : STANDARD_SIZE_TOLERANCE
+  return `${qcText} ${toleranceText}`
+}
 function normalizeHomepageFaqs(faqs: CmsHomeContent['faqs']): CmsHomeContent['faqs'] {
   const normalized = faqs.map((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION ? {...faq, answer: HOMEPAGE_PRODUCTION_TIME_ANSWER} : faq)
   return normalized.some((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION)
@@ -781,13 +822,12 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
   const procurementData = procurement.ok ? procurement.result : null
   const procurementRows = procurementData
     ? [
-        {item: 'Sample MOQ', capability: procurementData.defaultMOQ || 'Sample MOQ: 1 set.'},
-        {item: 'Sample Production', capability: procurementData.sampleTime || 'Sample production: 2-3 working days after mockup approval.'},
+        {item: 'Sample MOQ', capability: normalizeSampleMoq(procurementData.sampleMOQ || procurementData.defaultMOQ)},
+        {item: 'Sample Production', capability: normalizeSampleProduction(procurementData.sampleProductionTime || procurementData.sampleTime)},
         {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free mockup: Usually within 2 hours after receiving complete project requirements.'},
-        {item: 'Bulk Production', capability: procurementData.bulkProductionTime || 'Bulk production: 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'},
-        {item: 'Quality Control', capability: procurementData.qualityPromise || 'Quality control: Inspection before shipment. Size tolerance: +/-2 cm.'},
-        {item: 'Shipping Notes', capability: procurementData.shippingNotes || 'Mixed adult and youth sizes are supported. Reliable door-to-door logistics serving global clubs, schools and brands.'},
-      ]
+        {item: 'Bulk Production', capability: normalizeBulkProduction(procurementData.bulkProductionTime, procurementData.bulkProductionNote)},
+        {item: 'Quality Control', capability: normalizeQualityControl(procurementData.qcStandard || procurementData.qualityPromise, procurementData.sizeTolerance)},
+        {item: 'Shipping Notes', capability: procurementData.mixedSizes || STANDARD_MIXED_SIZES},      ]
     : legacyHomeRows()
 
   const pageAny = page as CmsPage & {
@@ -824,6 +864,6 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     inquirySupportDescription: pageAny.inquirySupport?.description || 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
     faqs: faqs.length ? faqs : normalizeHomepageFaqs(homeFaqs),
     bottomCta: page.bottomCta,
-    seo: page.seo,
+    seo: normalizeHomepageSeo(page.seo),
   }
 }
