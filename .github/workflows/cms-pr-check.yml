@@ -59,6 +59,12 @@ jobs:
       - name: Schema coverage validation
         run: node scripts/check-cms-schema-coverage.mjs
 
+      - name: Analytics settings schema contract
+        run: node scripts/check-analytics-schema.mjs
+
+      - name: Sanity inventory audit tests
+        run: node scripts/check-sanity-inventory-audit.mjs
+
       - name: Content blocker validation
         run: node scripts/check-cms-content-blockers.mjs
 
