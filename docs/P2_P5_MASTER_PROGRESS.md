@@ -12,8 +12,8 @@ Phase 1 status: complete and production-verified.
 | --- | --- | --- | --- | --- | --- |
 | P5-A CMS content foundation | `feature/p5a-cms-content-foundation` | #28 | `715d3e7d5ee93e114a9da27ebd2dbb2239cf362c` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
 | P2 product taxonomy and FAQ matching | `feature/p2-product-taxonomy-content-matching` | #29 | `1c3dd43beb6f79740f2dbb8ff3ee3adbd52b69a9` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
-| P3 trust evidence and conversion | `feature/p3-trust-evidence-conversion` | Not opened | Not merged | Not deployed | Legal pages and evidence labels implemented locally |
-| P4 SEO and GEO content system | `feature/p4-seo-geo-content-system` | Not opened | Not merged | Not deployed | Pending P3 |
+| P3 trust evidence and conversion | `feature/p3-trust-evidence-conversion` | #30 | `996f729edb0d639803739fb12984a5000d8334a5` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
+| P4 SEO and GEO content system | `feature/p4-seo-geo-content-system` | Not opened | Not merged | Not deployed | Article structured data, GEO surfaces and route hygiene in progress |
 | P5-B admin workflow finalization | `feature/p5b-admin-workflow-finalization` | Not opened | Not merged | Not deployed | Pending P4 |
 
 ## Current Verified Baseline
@@ -107,3 +107,14 @@ Validated locally:
 - Compliance phrase scan found no NCAA/NBA/FIFA/professional league/official inquiry/loading placeholder matches in source.
 
 No Sanity writes, Seed, Dataset Import, asset upload, Cloudflare changes or production deployment were performed during local P3 validation.
+
+## P4 Local Validation Scope
+
+P4 upgrades the SEO/GEO article system:
+
+- Article detail pages render Article, BreadcrumbList and FAQPage JSON-LD from the same CMS/legacy resolver data.
+- Blog, Guide and Resource details remain type-isolated; duplicate public slugs are blocked by the route conflict check.
+- Article pages show author, reviewer, publish/update dates, methodology, references, related FAQ, CTA and internal link clusters.
+- Blog listing no longer substitutes guides as blog articles.
+- `llms.txt` documents the main buyer research surfaces for AI retrieval.
+- External answer-engine query tests are documented in `docs/P4_GEO_QUERY_TESTS.md` and require later manual execution in approved tools.

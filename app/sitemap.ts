@@ -4,6 +4,16 @@ import { caseStudies } from "@/lib/case-studies";
 import { resourcePages } from "@/lib/resources-data";
 import { pseoPages } from "@/lib/pseo";
 import { guidePages } from "@/lib/guides-data";
+import { legacyArticles } from "@/lib/cms/legacy";
+
+function uniqueByUrl(routes: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
+  const seen = new Set<string>();
+  return routes.filter((route) => {
+    if (seen.has(route.url)) return false;
+    seen.add(route.url);
+    return true;
+  });
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.poxiol.com";
@@ -23,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sample-order/",
     "/oem-odm/",
     "/resources/",
+    "/blog/",
     "/faq/",
     "/fabric-guide/",
     "/printing-guide/",
@@ -80,5 +91,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...productRoutes, ...projectRoutes, ...resourceRoutes, ...pseoRoutes, ...guideRoutes];
+  const cmsArticleRoutes = legacyArticles.map((article) => {
+    const section = article.articleType === "blog" ? "blog" : article.articleType === "resource" ? "resources" : "guides";
+    return {
+      url: `${baseUrl}/${section}/${article.slug}/`,
+      lastModified: article.updatedAt ? new Date(article.updatedAt) : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: article.articleType === "guide" ? 0.8 : 0.7,
+    };
+  });
+  return uniqueByUrl([...staticPages, ...productRoutes, ...projectRoutes, ...resourceRoutes, ...pseoRoutes, ...guideRoutes, ...cmsArticleRoutes]);
 }
