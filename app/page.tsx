@@ -172,6 +172,13 @@ export default async function HomePage() {
               <a href={chrome.whatsappHref} target="_blank" rel="noreferrer" className="mt-6 inline-block font-black uppercase text-xs tracking-[0.2em] hover:text-[#B6FF00]">Open WhatsApp Messenger →</a>
             </div>
           </div>
+          <noscript>
+            <div className="mx-auto max-w-2xl rounded-lg border border-yellow-400 bg-yellow-50 p-6 dark:bg-yellow-950/20">
+              <p className="font-semibold">If the form does not load, please send your sport, product type, quantity, delivery country, target date and logo files by email or WhatsApp.</p>
+              <p className="mt-2"><a href={`mailto:${chrome.publicEmail}`} className="underline">{chrome.publicEmail}</a></p>
+              <p><a href={chrome.whatsappHref} className="underline" target="_blank" rel="noopener">WhatsApp</a></p>
+            </div>
+          </noscript>
           <ContactForm
             title="Request Factory Quote"
             subtitle="Provide your sport category, quantity and logo files to receive a high-fidelity 3D mockup and pricing plan within 24 hours."
