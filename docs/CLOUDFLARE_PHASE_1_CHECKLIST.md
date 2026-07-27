@@ -38,7 +38,7 @@
 - Both should show same core content
 
 ## 9. Post-Deploy Verification
-- `https://www.poxiol.com/` → 200, no "Loading form..." 
+- `https://www.poxiol.com/` → 200, no "Loading form..."
 - `https://www.poxiol.com/factory/` → 200, "2–3 days"
 - `https://www.poxiol.com/contact/` → 200, mailto: link works
 - `https://www.poxiol.com/faq/` → 200, all categories strings
