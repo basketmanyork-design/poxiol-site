@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { sportOptions, buyerTypeOptions, quantityOptions, productOptions } from "@/lib/free-mockup-data";
+import { WHATSAPP_HREF } from "@/lib/contact";
 
 type FormState = { fullName: string; email: string; phone: string; country: string; company: string; sportCategory: string; buyerType: string; quantity: string; products: string[]; deliveryDate: string; colors: string; hasLogo: string; notes: string; };
 const initialState: FormState = { fullName: "", email: "", phone: "", country: "", company: "", sportCategory: "", buyerType: "", quantity: "", products: [], deliveryDate: "", colors: "", hasLogo: "", notes: "" };
@@ -60,7 +61,7 @@ export default function FreeMockupForm() {
             </p>
             <div className="mt-5 flex flex-wrap justify-center gap-4">
               <a
-                href="https://wa.me/8613055646888"
+                href={WHATSAPP_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2 text-xs font-black text-white transition hover:scale-105"

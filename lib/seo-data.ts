@@ -27,7 +27,7 @@ export const basketballPageSchema = {
           "name": "How long does basketball uniform production take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sample production takes 2-3 days after mockup confirmation and bulk production takes 15-25 days depending on order size."
+            "text": "Sample production usually takes 2–3 working days after mockup approval. Bulk production usually takes 7–12 working days after sample or artwork approval."
           }
         }
       ]
@@ -64,7 +64,7 @@ export const soccerPageSchema = {
           "name": "How long does soccer kit production take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sample production takes 2-3 days after mockup confirmation and bulk production takes 15-25 days depending on order size."
+            "text": "Sample production usually takes 2–3 working days after mockup approval. Bulk production usually takes 7–12 working days after sample or artwork approval."
           }
         }
       ]

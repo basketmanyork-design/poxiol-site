@@ -1,6 +1,7 @@
 import type {Metadata} from 'next'
 import {CmsPageTemplate, metadataFromCmsPage} from '@/components/cms/PageTemplate'
 import {getSitePage} from '@/lib/sanity/content'
+import FormContactFallback from '@/components/forms/FormContactFallback'
 
 const pageKey = 'free-mockup'
 
@@ -11,5 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const page = await getSitePage(pageKey)
-  return <CmsPageTemplate page={page} />
+  return (
+    <>
+      <FormContactFallback context="free-mockup" />
+      <CmsPageTemplate page={page} />
+    </>
+  )
 }

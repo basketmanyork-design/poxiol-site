@@ -34,7 +34,7 @@ export const buyingGuides: BuyingGuide[] = [
       },
       {
         title: "Step 4: Bulk Production",
-        content: "Once the design and roster are finalized, our factory begins the sublimation and sewing process. Most orders are completed in 10-14 days.",
+        content: "Once the design and roster are finalized, our factory begins the sublimation and sewing process. Bulk production usually takes 7–12 working days after sample or artwork approval. Large or peak-season orders require a confirmed production schedule.",
       },
       {
         title: "Step 5: Quality Check & Express Shipping",
@@ -43,7 +43,7 @@ export const buyingGuides: BuyingGuide[] = [
     ],
     faqs: [
       { question: "Can I order just one sample?", answer: "Yes, we support sample orders to ensure you are 100% satisfied with the quality before committing to a full team order." },
-      { question: "What is the standard turnaround time?", answer: "Bulk production takes 15-25 days depending on order size, plus 3-7 business days for international express shipping (country-dependent)." },
+      { question: "What is the standard turnaround time?", answer: "Bulk production usually takes 7–12 working days after sample or artwork approval, plus 3–7 business days for international express shipping (country-dependent). Large, complex or peak-season orders require a confirmed production schedule." },
     ],
   },
   {
