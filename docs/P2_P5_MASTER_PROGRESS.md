@@ -11,8 +11,8 @@ Phase 1 status: complete and production-verified.
 | Package | Branch | PR | Merge Commit | Production Commit | Status |
 | --- | --- | --- | --- | --- | --- |
 | P5-A CMS content foundation | `feature/p5a-cms-content-foundation` | #28 | `715d3e7d5ee93e114a9da27ebd2dbb2239cf362c` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
-| P2 product taxonomy and FAQ matching | `feature/p2-product-taxonomy-content-matching` | Not opened | Not merged | Not deployed | Context FAQ matching implemented locally |
-| P3 trust evidence and conversion | `feature/p3-trust-evidence-conversion` | Not opened | Not merged | Not deployed | Pending P2 |
+| P2 product taxonomy and FAQ matching | `feature/p2-product-taxonomy-content-matching` | #29 | `1c3dd43beb6f79740f2dbb8ff3ee3adbd52b69a9` | Pending production verification | Merged after cms-pr-check and Cloudflare Pages passed; Workers Builds was not required and failed as an existing non-blocking check |
+| P3 trust evidence and conversion | `feature/p3-trust-evidence-conversion` | Not opened | Not merged | Not deployed | Legal pages and evidence labels implemented locally |
 | P4 SEO and GEO content system | `feature/p4-seo-geo-content-system` | Not opened | Not merged | Not deployed | Pending P3 |
 | P5-B admin workflow finalization | `feature/p5b-admin-workflow-finalization` | Not opened | Not merged | Not deployed | Pending P4 |
 
@@ -86,3 +86,24 @@ Validated locally:
 - Content blocker checks passed.
 
 No Sanity writes, Seed, Dataset Import, asset upload, Cloudflare changes or production deployment were performed during local P2 validation.
+
+## P3 Local Validation
+
+P3 adds trust and conversion safeguards without changing Sanity data:
+
+- Added Privacy Policy, Terms and Intellectual Property Policy static pages.
+- Added sitemap entries for legal pages.
+- Added case study evidence labels: Real Project, Anonymized Real Project or Example Project Scenario.
+- Preserved optional case evidence fields and hides empty sections rather than inventing missing details.
+- Replaced buyer-visible "Official Inquiry" and "Official store" wording with neutral project/Alibaba wording.
+- Confirmed contact, quote and mockup pages continue to render static `mailto:` and `wa.me` fallbacks.
+
+Validated locally:
+
+- Root TypeScript: `npx tsc --noEmit` passed.
+- Root static build: `npm run build` passed with 115 generated routes.
+- Content blocker checks passed.
+- Final CMS preflight self-test passed 17/17.
+- Compliance phrase scan found no NCAA/NBA/FIFA/professional league/official inquiry/loading placeholder matches in source.
+
+No Sanity writes, Seed, Dataset Import, asset upload, Cloudflare changes or production deployment were performed during local P3 validation.

@@ -201,19 +201,36 @@ type SanityProduct = {
 type SanityCaseStudy = {
   projectTitle?: string
   title?: string
+  caseType?: string
+  realOrExample?: 'real' | 'anonymized' | 'example'
   slug?: string
   country?: string
   countryOrRegion?: string
+  buyerType?: string
+  region?: string
+  quantityDisplay?: string
+  projectTimeline?: string
   product?: string
   productType?: string
   heroImage?: SanityImage
+  images?: SanityImage[]
   projectBackground?: string
+  challenge?: string
+  requirements?: string[]
   overview?: string
   qualityControl?: string
   qcProcess?: string
   packingDelivery?: string
   packaging?: string
   solution?: string
+  materials?: string
+  customization?: string
+  sampleProcess?: string
+  production?: string
+  delivery?: string
+  result?: string
+  testimonial?: string
+  evidenceStatus?: string
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
@@ -388,11 +405,27 @@ function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, 
     title,
     country: project.country || project.countryOrRegion || fallback?.country || '',
     product: project.product || project.productType || fallback?.product || '',
+    caseType: project.caseType || fallback?.caseType,
+    realOrExample: project.realOrExample || fallback?.realOrExample || 'example',
+    buyerType: project.buyerType || fallback?.buyerType,
+    region: project.region || fallback?.region,
+    quantityDisplay: project.quantityDisplay || fallback?.quantityDisplay,
+    projectTimeline: project.projectTimeline || fallback?.projectTimeline,
     image: imageFrom(project.heroImage, fallback?.image || {url: '/images/poxiol-v62/projects_basketball_academy_uniform_program.png', alt: title}, 'card'),
     qualityControl: project.qualityControl || project.qcProcess || fallback?.qualityControl || '',
     packaging: project.packingDelivery || project.packaging || fallback?.packaging || '',
     solution: project.solution || fallback?.solution || '',
     overview: project.overview || project.projectBackground || fallback?.overview || '',
+    challenge: project.challenge || fallback?.challenge,
+    requirements: project.requirements?.length ? project.requirements : fallback?.requirements,
+    materials: project.materials || fallback?.materials,
+    customization: project.customization || fallback?.customization,
+    sampleProcess: project.sampleProcess || fallback?.sampleProcess,
+    production: project.production || fallback?.production,
+    delivery: project.delivery || fallback?.delivery,
+    result: project.result || fallback?.result,
+    testimonial: project.testimonial || fallback?.testimonial,
+    evidenceStatus: project.evidenceStatus || fallback?.evidenceStatus,
     seo: seoFrom(project.seo, fallback?.seo || {title: title + ' | POXIOL', description: project.overview || project.projectBackground || title}),
     displayOrder: project.displayOrder ?? fallback?.displayOrder ?? index,
   }
