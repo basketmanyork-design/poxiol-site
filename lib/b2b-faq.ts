@@ -14,11 +14,11 @@ export const b2bFaqData: B2BFAQCategory[] = [
     items: [
       {
         question: "How do I know if a teamwear supplier is a real factory?",
-        answer: "Professional B2B buyers should look for manufacturers that provide live factory video tours, check for B2B verification badges (like Alibaba Verified), and review their specific production equipment for sublimation and sewing. Real factories typically offer faster sampling (2–3 days) and direct technical advice on fabric specifications."
+        answer: "Professional B2B buyers should look for manufacturers that provide live factory video tours, check for B2B verification badges (like Alibaba Verified), and review their specific production equipment for sublimation and sewing. Real factories typically offer faster sampling (2-3 working days) and direct technical advice on fabric specifications."
       },
       {
         question: "What is the standard sample production time for B2B orders?",
-        answer: "For professional custom teamwear, sample production can usually be arranged in 2–3 days after mockup confirmation. If a supplier takes more than 7-10 days for a sample, they may be sub-contracting the work to another facility."
+        answer: "For professional custom teamwear, sample production can usually be arranged in 2-3 working days after mockup approval. If a supplier takes more than 7-10 days for a sample, they may be sub-contracting the work to another facility."
       },
       {
         question: "Does POXIOL provide factory audit reports?",

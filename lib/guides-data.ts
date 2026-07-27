@@ -66,7 +66,7 @@ export const guidePages: GuidePage[] = [
       },
       {
         question: "How long does sample production take?",
-        answer: "Sample Production: 2–3 Days After Mockup Confirmation. Express international delivery usually takes 3–7 business days depending on country."
+        answer: "Sample production: 2-3 working days after mockup approval. Express international delivery usually takes 3–7 business days depending on country."
       }
     ],
     cta: { text: "Request Technical Sample", href: "/sample-order/" },
@@ -225,7 +225,7 @@ export const guidePages: GuidePage[] = [
         content: "Choose OEM if you have proprietary designs. Choose ODM to customize proven templates for a faster market launch.",
         checklist: [
           "OEM: Full control over patterns, sizing, and tech packs",
-          "ODM: Faster sampling (2-3 days) using factory-owned fit blocks",
+          "ODM: Faster sampling (2-3 working days) using factory-owned fit blocks",
           "Mixed Model: Customize factory templates with private trims"
         ]
       }
