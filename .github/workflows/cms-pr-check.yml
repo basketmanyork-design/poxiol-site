@@ -98,12 +98,18 @@ jobs:
           NEXT_PUBLIC_CONTENT_SOURCE: legacy
           CMS_LEGACY_LIST_MODE: merge
 
+      - name: Legacy sitemap output integrity
+        run: node scripts/check-sitemap-output.mjs
+
       - name: Default sanity static build
         run: |
           rm -rf .next out
           npm run build
         env:
           CMS_LEGACY_LIST_MODE: merge
+
+      - name: Default sitemap output integrity
+        run: node scripts/check-sitemap-output.mjs
 
       - name: Sanity preview static build
         run: |
@@ -112,6 +118,9 @@ jobs:
         env:
           NEXT_PUBLIC_CONTENT_SOURCE: sanity-preview
           CMS_LEGACY_LIST_MODE: merge
+
+      - name: Preview sitemap output integrity
+        run: node scripts/check-sitemap-output.mjs
 
       - name: Safety scan
         run: node scripts/check-cms-safety.mjs
