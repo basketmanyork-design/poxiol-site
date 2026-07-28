@@ -1,4 +1,5 @@
 import { PUBLIC_EMAIL, WHATSAPP_HREF, WHATSAPP_NUMBER_RAW } from '@/lib/contact'
+import {EmailAddress, emailHref} from '@/components/ui'
 import Link from 'next/link'
 
 type Props = { context: 'quote' | 'free-mockup' }
@@ -18,8 +19,8 @@ export default function FormContactFallback({ context }: Props) {
         <div className="mt-3 space-y-1">
           <p>
             Email:{' '}
-            <a href={`mailto:${PUBLIC_EMAIL}`} className="underline font-medium">
-              {PUBLIC_EMAIL}
+            <a href={emailHref(PUBLIC_EMAIL)} className="underline font-medium">
+              <EmailAddress email={PUBLIC_EMAIL} />
             </a>
           </p>
           <p>

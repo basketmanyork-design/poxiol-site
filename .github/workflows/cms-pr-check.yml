@@ -59,6 +59,24 @@ jobs:
       - name: Schema coverage validation
         run: node scripts/check-cms-schema-coverage.mjs
 
+      - name: Analytics settings schema contract
+        run: node scripts/check-analytics-schema.mjs
+
+      - name: Analytics core tests
+        run: node scripts/check-analytics-core.mjs
+
+      - name: Analytics integration contract
+        run: node scripts/check-analytics-integration.mjs
+
+      - name: Analytics Studio tool contract
+        run: node scripts/check-analytics-studio-tool.mjs
+
+      - name: Sanity inventory audit tests
+        run: node scripts/check-sanity-inventory-audit.mjs
+
+      - name: Safe content migration contract
+        run: node scripts/check-safe-content-migration.mjs
+
       - name: Content blocker validation
         run: node scripts/check-cms-content-blockers.mjs
 
@@ -80,12 +98,18 @@ jobs:
           NEXT_PUBLIC_CONTENT_SOURCE: legacy
           CMS_LEGACY_LIST_MODE: merge
 
+      - name: Legacy sitemap output integrity
+        run: node scripts/check-sitemap-output.mjs
+
       - name: Default sanity static build
         run: |
           rm -rf .next out
           npm run build
         env:
           CMS_LEGACY_LIST_MODE: merge
+
+      - name: Default sitemap output integrity
+        run: node scripts/check-sitemap-output.mjs
 
       - name: Sanity preview static build
         run: |
@@ -94,6 +118,9 @@ jobs:
         env:
           NEXT_PUBLIC_CONTENT_SOURCE: sanity-preview
           CMS_LEGACY_LIST_MODE: merge
+
+      - name: Preview sitemap output integrity
+        run: node scripts/check-sitemap-output.mjs
 
       - name: Safety scan
         run: node scripts/check-cms-safety.mjs

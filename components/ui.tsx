@@ -6,6 +6,25 @@ export const freeMockupHref = "/free-mockup/";
 export const getQuoteHref = "/get-quote/";
 export const sampleOrderHref = "/sample-order/";
 
+export function emailHref(email: string) {
+  const encoded = Array.from(email)
+    .map((char) => `%${char.charCodeAt(0).toString(16).padStart(2, "0")}`)
+    .join("");
+  return `mailto:${encoded}`;
+}
+
+export function EmailAddress({ email }: { email: string }) {
+  const [name, domain] = email.split("@");
+  if (!name || !domain) return <>{email}</>;
+  return (
+    <>
+      <span>{name}</span>
+      <span>@</span>
+      <span>{domain}</span>
+    </>
+  );
+}
+
 export function SectionHeading({ eyebrow, title, subtitle, dark = false, center = false, level = "h2" }: { eyebrow: string; title: string; subtitle?: string; dark?: boolean; center?: boolean; level?: "h1" | "h2" }) {
   const TitleTag = level;
   return (
@@ -85,7 +104,7 @@ export async function Footer() {
               <Link href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</Link>
               <Link href={getQuoteHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</Link>
               <a href={chrome.whatsappHref} target="_blank" rel="noreferrer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">WhatsApp: {chrome.whatsappNumber}</a>
-              <a href={`mailto:${chrome.publicEmail}`} className="text-neutral-400 text-sm hover:text-white">{chrome.publicEmail}</a>
+              <a href={emailHref(chrome.publicEmail)} className="text-neutral-400 text-sm hover:text-white"><EmailAddress email={chrome.publicEmail} /></a>
             </div>
           </div>
           {chrome.footerColumns.map((col) => (

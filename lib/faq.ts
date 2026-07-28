@@ -11,7 +11,7 @@ export const faqData: FAQCategory[] = [
       { question: "Who does POXIOL work with?", answer: "POXIOL works with sports clubs, schools, academies, amateur teams, sportswear brands, distributors, custom retailers and event organizers worldwide." },
       { question: "What products can POXIOL manufacture?", answer: "POXIOL can manufacture custom basketball uniforms, soccer kits, baseball uniforms, training wear, warm-up sets, team hoodies, jackets, accessories and private label teamwear collections." },
       { question: "Does POXIOL support MOQ 1 set?", answer: "Yes. POXIOL supports 1 set sample orders for design and quality confirmation before bulk production." },
-      { question: "How fast can POXIOL make a sample?", answer: "For standard custom teamwear projects, sample production can usually be arranged in 2–3 days after mockup confirmation." },
+      { question: "How fast can POXIOL make a sample?", answer: "For standard custom teamwear projects, sample production can usually be arranged in 2-3 working days after mockup approval." },
       { question: "Can POXIOL provide a free mockup?", answer: "Yes. Buyers can send sport category, logo, colors, quantity and reference design. POXIOL can prepare a free visual mockup before sampling or bulk production." },
     ],
   },

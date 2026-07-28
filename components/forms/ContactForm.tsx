@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { trackFileUpload, trackFormStart, trackFormSubmit, trackLead } from "@/lib/analytics/client";
 
 type ContactFormState = {
   fullName: string;
@@ -84,6 +85,7 @@ function ContactFormInner({
   const [errorMessage, setErrorMessage] = useState("");
 
   function updateField(name: keyof ContactFormState, value: string) {
+    trackFormStart(formType || "contact");
     setForm((current) => ({ ...current, [name]: value }));
   }
 
@@ -123,6 +125,9 @@ function ContactFormInner({
         throw new Error("Submit failed. Please try again or contact us by email.");
       }
 
+      const submissionId = crypto.randomUUID();
+      trackFormSubmit(formType || "contact", submissionId);
+      trackLead(formType || "contact", submissionId);
       router.push(successUrl || "/thank-you/");
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
@@ -356,7 +361,11 @@ function ContactFormInner({
                   <input
                     type="file"
                     accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
-                    onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setLogoFile(file);
+                      if (file) trackFileUpload(formType || "contact");
+                    }}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
                 </div>
@@ -365,7 +374,11 @@ function ContactFormInner({
                   <input
                     type="file"
                     accept=".png,.jpg,.jpeg,.pdf,.webp"
-                    onChange={(e) => setReferenceFile(e.target.files?.[0] || null)}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setReferenceFile(file);
+                      if (file) trackFileUpload(formType || "contact");
+                    }}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
                 </div>
@@ -374,7 +387,11 @@ function ContactFormInner({
                   <input
                     type="file"
                     accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg"
-                    onChange={(e) => setSizeChartFile(e.target.files?.[0] || null)}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setSizeChartFile(file);
+                      if (file) trackFileUpload(formType || "contact");
+                    }}
                     className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
                   />
                 </div>
@@ -417,23 +434,34 @@ function ContactFormInner({
   );
 }
 
+function ContactFormFallback({ publicEmail, whatsappHref }: ContactFormProps) {
+  const emailHref = publicEmail ? `mailto:${Array.from(publicEmail).map((char) => `%${char.charCodeAt(0).toString(16).padStart(2, "0")}`).join("")}` : '/contact/'
+  const whatsappLink = whatsappHref || '/contact/'
+
+  return (
+    <div className="rounded-[2rem] bg-white p-10 shadow-xl text-center">
+      <p className="text-sm font-black uppercase tracking-widest text-lime-600 mb-6">Contact POXIOL</p>
+      <div className="py-6">
+        <h3 className="text-neutral-950 font-black text-2xl mb-4">Send Your Teamwear Project Details</h3>
+        <p className="text-neutral-500 text-sm mb-8">
+          Share your sport, quantity, logo files, delivery country and target date. Use any contact path below while the full inquiry form loads.
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <a href="/free-mockup/" className="h-[52px] flex items-center justify-center rounded-full bg-lime-400 text-neutral-950 text-xs font-black uppercase tracking-widest hover:bg-neutral-950 hover:text-white transition">Get Free Mockup</a>
+          <a href="/get-quote/" className="h-[52px] flex items-center justify-center rounded-full bg-neutral-950 text-white text-xs font-black uppercase tracking-widest hover:bg-lime-400 hover:text-neutral-950 transition">Get Factory Quote</a>
+          <a href={emailHref} className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">Email POXIOL</a>
+          <a href={whatsappLink} target="_blank" rel="noreferrer" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">WhatsApp Chat</a>
+        </div>
+
+        <a href="/contact/" className="mt-6 inline-flex text-xs font-black uppercase tracking-widest text-neutral-500 underline underline-offset-4">Contact Page</a>
+      </div>
+    </div>
+  )
+}
 export default function ContactForm(props: ContactFormProps) {
   return (
-    <Suspense fallback={
-      <div className="rounded-[2rem] bg-white p-10 shadow-xl text-center">
-        <p className="text-sm font-black uppercase tracking-widest text-lime-600 mb-6">Contact POXIOL</p>
-        <div className="py-10">
-          <p className="text-neutral-950 font-black text-xl mb-4">Inquiry System Initializing...</p>
-          <p className="text-neutral-500 text-sm mb-10">Please wait or use the alternative contact methods below.</p>
-
-          <div className="flex flex-col gap-4">
-            <a href={props.publicEmail ? `mailto:${props.publicEmail}` : "/contact/"} className="h-[52px] flex items-center justify-center rounded-full bg-neutral-950 text-white text-xs font-black uppercase tracking-widest hover:bg-lime-400 hover:text-neutral-950 transition">Email Inquiry →</a>
-            <a href={props.whatsappHref || "/contact/"} target="_blank" rel="noreferrer" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">WhatsApp Chat →</a>
-            <a href="/get-quote/" className="h-[52px] flex items-center justify-center rounded-full border border-neutral-200 text-neutral-950 text-xs font-black uppercase tracking-widest hover:border-lime-400 transition">Get Factory Quote →</a>
-          </div>
-        </div>
-      </div>
-    }>
+    <Suspense fallback={<ContactFormFallback {...props} />}>
       <ContactFormInner {...props} />
     </Suspense>
   );

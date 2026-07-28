@@ -15,6 +15,7 @@ import type {
   CmsArticle,
   CmsCta,
   CmsFaqGroup,
+  CmsFaqItem,
   CmsHomeContent,
   CmsHomeCategory,
   CmsImage,
@@ -79,12 +80,28 @@ type SanityFooter = {footerColumns?: Array<{title?: string; links?: SanityLink[]
 
 type SanityProcurementStandards = {
   defaultMOQ?: string
+  sampleMOQ?: string
   sampleTime?: string
+  sampleProductionTime?: string
   bulkProductionTime?: string
+  bulkProductionNote?: string
   mockupTime?: string
   shippingNotes?: string
   qualityPromise?: string
+  qcStandard?: string
+  sizeTolerance?: string
+  mixedSizes?: string
 }
+
+const HOMEPAGE_PRODUCTION_TIME_QUESTION = 'What is the standard production time for team orders?'
+const HOMEPAGE_PRODUCTION_TIME_ANSWER = 'Sample production usually takes 2-3 working days after mockup approval. Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'
+const STANDARD_SAMPLE_MOQ = 'Sample MOQ: 1 set.'
+const STANDARD_SAMPLE_PRODUCTION = 'Sample production: 2-3 working days after mockup approval.'
+const STANDARD_BULK_PRODUCTION = 'Bulk production: 7-12 working days after sample or artwork approval.'
+const STANDARD_BULK_NOTE = 'Large, complex or peak-season orders require a confirmed production schedule.'
+const STANDARD_QC = 'Quality control: Inspection before shipment.'
+const STANDARD_SIZE_TOLERANCE = 'Size tolerance: +/-2 cm.'
+const STANDARD_MIXED_SIZES = 'Mixed adult and youth sizes are supported.'
 
 type SanityPageSection = {
   sectionType?: CmsPageSectionType
@@ -143,6 +160,17 @@ type SanityCategory = {
   heroDescription?: string
   introduction?: string
   heroImage?: SanityImage
+  buyerTypes?: string[]
+  targetMarkets?: string[]
+  productTypes?: string[]
+  keyFeatures?: string[]
+  coreBenefits?: string[]
+  relatedFaqs?: SanityFaq[]
+  relatedCaseStudies?: RelatedDoc[]
+  relatedGuides?: RelatedDoc[]
+  navigationVisibility?: boolean
+  homepageVisibility?: boolean
+  activeStatus?: string
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
@@ -173,30 +201,92 @@ type SanityProduct = {
 type SanityCaseStudy = {
   projectTitle?: string
   title?: string
+  caseType?: string
+  realOrExample?: 'real' | 'anonymized' | 'example'
   slug?: string
   country?: string
   countryOrRegion?: string
+  buyerType?: string
+  region?: string
+  quantityDisplay?: string
+  projectTimeline?: string
   product?: string
   productType?: string
   heroImage?: SanityImage
+  images?: SanityImage[]
   projectBackground?: string
+  challenge?: string
+  requirements?: string[]
   overview?: string
   qualityControl?: string
   qcProcess?: string
   packingDelivery?: string
   packaging?: string
   solution?: string
+  materials?: string
+  customization?: string
+  sampleProcess?: string
+  production?: string
+  delivery?: string
+  result?: string
+  testimonial?: string
+  evidenceStatus?: string
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
 }
 
-type SanityFaq = {question?: string; answer?: PortableTextBlock[] | string; category?: unknown; publishStatus?: string}
+type SanityFaq = {
+  question?: string
+  answer?: PortableTextBlock[] | string
+  shortAnswer?: string
+  fullAnswer?: PortableTextBlock[] | string
+  category?: unknown
+  sports?: string[]
+  products?: RelatedDoc[]
+  productCategories?: RelatedDoc[]
+  pages?: RelatedDoc[]
+  guides?: RelatedDoc[]
+  active?: boolean
+  displayOrder?: number
+  publishStatus?: string
+}
 
 function faqCategoryName(value: unknown): string {
   return typeof value === 'string' && value.trim()
     ? value.trim()
     : 'General'
+}
+
+function mapFaqItem(faq: SanityFaq): CmsFaqItem | null {
+  if (!faq.question || faq.active === false || !isDocumentVisible(faq.publishStatus, contentSource)) return null
+  const answer = textFromPortable(faq.fullAnswer) || faq.shortAnswer || textFromPortable(faq.answer)
+  if (!answer) return null
+  return {question: faq.question, answer: normalizeFaqAnswer(answer)}
+}
+
+function normalizedToken(value?: string) {
+  return (value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')
+}
+
+function relatedSlugSet(docs?: RelatedDoc[]) {
+  return new Set((docs || []).map((doc) => doc.slug).filter(Boolean) as string[])
+}
+
+function faqMatchesCategory(faq: SanityFaq, categorySlug: string, categoryTitle?: string) {
+  const explicitCategorySlugs = relatedSlugSet(faq.productCategories)
+  if (explicitCategorySlugs.has(categorySlug)) return true
+  const categoryToken = normalizedToken(categorySlug)
+  const titleToken = normalizedToken(categoryTitle)
+  if ((faq.sports || []).some((sport) => normalizedToken(sport) === categoryToken || normalizedToken(sport) === titleToken)) return true
+  const categoryName = normalizedToken(faqCategoryName(faq.category))
+  return categoryName === categoryToken || (!!titleToken && categoryName === titleToken)
+}
+
+function faqMatchesProduct(faq: SanityFaq, productSlug: string, categorySlug?: string) {
+  const productSlugs = relatedSlugSet(faq.products)
+  if (productSlugs.has(productSlug)) return true
+  return categorySlug ? faqMatchesCategory(faq, categorySlug) : false
 }
 type RelatedDoc = {title?: string; productName?: string; categoryName?: string; projectTitle?: string; slug?: string; articleType?: string}
 
@@ -264,6 +354,18 @@ function queryState<T>(response: {ok: true; result: T | null} | {ok: false}): So
 function sortByDisplayOrder<T extends {displayOrder?: number}>(items: T[]): T[] {
   return [...items].sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
+function normalizePublicContactText(text: string): string {
+  return text
+    .replace(/york@basketman\.cn/gi, 'the POXIOL public email')
+    .replace(/sales@poxiol\.com/gi, 'the POXIOL sales email')
+}
+
+function normalizeFaqAnswer(answer: string): string {
+  return answer
+    .replace(/sample production can usually be arranged in 2\s*[-–]\s*3\s*days after mockup confirmation/gi, 'sample production can usually be arranged in 2-3 working days after mockup approval')
+    .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
+    .replace(/2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, '2-3 working days after mockup approval')
+}
 
 
 function imageListFrom(sources: SanityImage[] | undefined, fallbacks: CmsImage[] = []): CmsImage[] {
@@ -280,9 +382,18 @@ function mapCategory(category: SanityCategory, fallback: CmsProductCategory | un
     shortName: category.shortName,
     description: category.heroDescription || category.introduction || fallback?.description || category.categoryName,
     image: imageFrom(category.heroImage, fallback?.image || {url: '/images/poxiol-v62/products_teamwear_matrix.png', alt: category.categoryName}, 'card'),
+    buyerTypes: category.buyerTypes?.length ? category.buyerTypes : fallback?.buyerTypes,
+    targetMarkets: category.targetMarkets?.length ? category.targetMarkets : fallback?.targetMarkets,
+    productTypes: category.productTypes?.length ? category.productTypes : fallback?.productTypes,
+    coreBenefits: category.coreBenefits?.length ? category.coreBenefits : fallback?.coreBenefits,
+    relatedFaqs: category.relatedFaqs?.map(mapFaqItem).filter(Boolean) as CmsFaqItem[] || fallback?.relatedFaqs || [],
+    relatedCaseStudies: mapRelated(category.relatedCaseStudies, '/projects/').length ? mapRelated(category.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies,
+    relatedGuides: mapArticleRelated(category.relatedGuides).length ? mapArticleRelated(category.relatedGuides) : fallback?.relatedGuides,
+    navigationVisibility: category.navigationVisibility ?? fallback?.navigationVisibility,
+    homepageVisibility: category.homepageVisibility ?? fallback?.homepageVisibility,
     seo: seoFrom(category.seo, fallback?.seo || {title: category.categoryName + ' | POXIOL', description: category.heroDescription || category.introduction || category.categoryName}),
     displayOrder: category.displayOrder ?? fallback?.displayOrder ?? index,
-    active: true,
+    active: category.activeStatus !== 'inactive',
   }
 }
 
@@ -294,11 +405,27 @@ function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, 
     title,
     country: project.country || project.countryOrRegion || fallback?.country || '',
     product: project.product || project.productType || fallback?.product || '',
+    caseType: project.caseType || fallback?.caseType,
+    realOrExample: project.realOrExample || fallback?.realOrExample || 'example',
+    buyerType: project.buyerType || fallback?.buyerType,
+    region: project.region || fallback?.region,
+    quantityDisplay: project.quantityDisplay || fallback?.quantityDisplay,
+    projectTimeline: project.projectTimeline || fallback?.projectTimeline,
     image: imageFrom(project.heroImage, fallback?.image || {url: '/images/poxiol-v62/projects_basketball_academy_uniform_program.png', alt: title}, 'card'),
     qualityControl: project.qualityControl || project.qcProcess || fallback?.qualityControl || '',
     packaging: project.packingDelivery || project.packaging || fallback?.packaging || '',
     solution: project.solution || fallback?.solution || '',
     overview: project.overview || project.projectBackground || fallback?.overview || '',
+    challenge: project.challenge || fallback?.challenge,
+    requirements: project.requirements?.length ? project.requirements : fallback?.requirements,
+    materials: project.materials || fallback?.materials,
+    customization: project.customization || fallback?.customization,
+    sampleProcess: project.sampleProcess || fallback?.sampleProcess,
+    production: project.production || fallback?.production,
+    delivery: project.delivery || fallback?.delivery,
+    result: project.result || fallback?.result,
+    testimonial: project.testimonial || fallback?.testimonial,
+    evidenceStatus: project.evidenceStatus || fallback?.evidenceStatus,
     seo: seoFrom(project.seo, fallback?.seo || {title: title + ' | POXIOL', description: project.overview || project.projectBackground || title}),
     displayOrder: project.displayOrder ?? fallback?.displayOrder ?? index,
   }
@@ -329,7 +456,7 @@ function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, in
           reason: product.procurementOverride.overrideReason || fallback?.procurementOverride?.reason,
         }
       : fallback?.procurementOverride,
-    relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: textFromPortable(faq.answer)})) : fallback?.relatedFaqs || [],
+    relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.map(mapFaqItem).filter(Boolean) as CmsFaqItem[] : fallback?.relatedFaqs || [],
     featured: product.featured ?? fallback?.featured ?? false,
     seo: seoFrom(product.seo, fallback?.seo || {title: `${product.productName} | POXIOL`, description: product.shortDescription || product.fullDescription || product.productName}),
     displayOrder: product.displayOrder ?? fallback?.displayOrder ?? index,
@@ -386,7 +513,7 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
         type: section.sectionType || fb?.type,
         eyebrow: section.eyebrow || fb?.eyebrow,
         title: section.title || fb?.title || 'Page section',
-        body: textFromPortable(section.body) || fb?.body || '',
+        body: normalizePublicContactText(textFromPortable(section.body) || fb?.body || ''),
         image: optionalImage(section.image, fb?.image, 'card'),
         facts: section.facts?.length ? section.facts : fb?.facts || [],
         stats: section.stats?.length ? section.stats.filter((item) => item.value && item.label).map((item) => ({value: item.value || '', label: item.label || ''})) : fb?.stats || [],
@@ -595,11 +722,11 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
   if (!response.ok) return legacyFaqGroups
 
   const cms = response.result || []
-  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item})))
+  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item, answer: normalizeFaqAnswer(item.answer)})))
   const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(faq.question as string, faqCategoryName(faq.category))))
   const visibleCms = cms
     .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
-    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: textFromPortable(faq.answer)}))
+    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))}))
 
   if (getCmsListMode() === 'strict') return groupsFromFaqItems(visibleCms)
 
@@ -638,7 +765,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     relatedCategories: mapRelated(article.relatedCategories, '/products/').length ? mapRelated(article.relatedCategories, '/products/') : fallback?.relatedCategories || [],
     relatedCaseStudies: mapRelated(article.relatedCaseStudies, '/projects/').length ? mapRelated(article.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies || [],
     relatedArticles: mapArticleRelated(article.relatedArticles).length ? mapArticleRelated(article.relatedArticles) : fallback?.relatedArticles || [],
-    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: textFromPortable(faq.answer)})) : fallback?.faqs || [],
+    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))})) : fallback?.faqs || [],
     cta: mapCta(article.cta, fallback?.cta),
     sections: sectionsFromArticle(article, fallback),
     seo: seoFrom(article.seo, fallback?.seo || {title: article.title, description: article.excerpt || body || article.title}),
@@ -674,12 +801,34 @@ export async function getArticle(slug: string): Promise<CmsArticle | null> {
   })
 }
 
+export async function getMatchedFaqsForProductCategory(categorySlug: string, fallback: CmsFaqItem[] = [], categoryTitle?: string): Promise<CmsFaqItem[]> {
+  if (contentSource === 'legacy') return fallback
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  if (!response.ok) return fallback
+  const matched = (response.result || [])
+    .filter((faq) => faqMatchesCategory(faq, categorySlug, categoryTitle))
+    .map(mapFaqItem)
+    .filter(Boolean) as CmsFaqItem[]
+  return matched.length ? matched.slice(0, 8) : fallback
+}
+
+export async function getMatchedFaqsForProduct(productSlug: string, fallback: CmsFaqItem[] = [], categorySlug?: string): Promise<CmsFaqItem[]> {
+  if (contentSource === 'legacy') return fallback
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  if (!response.ok) return fallback
+  const matched = (response.result || [])
+    .filter((faq) => faqMatchesProduct(faq, productSlug, categorySlug))
+    .map(mapFaqItem)
+    .filter(Boolean) as CmsFaqItem[]
+  return matched.length ? matched.slice(0, 8) : fallback
+}
+
 export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData> {
   const categorySlug = legacyData.slug.replace(/^products\//, '')
-  const [category, products, faqs] = await Promise.all([getProductCategory(categorySlug), getProducts(categorySlug), getFaqGroups()])
-  const flatFaqs = faqs.flatMap((group) => group.items).slice(0, 8)
+  const [category, products] = await Promise.all([getProductCategory(categorySlug), getProducts(categorySlug)])
 
   if (!category) return legacyData
+  const matchedFaqs = await getMatchedFaqsForProductCategory(categorySlug, category.relatedFaqs?.length ? category.relatedFaqs : legacyData.faqs, category.title)
   const productCards = products.map((product) => ({title: product.title, description: product.description}))
   const designs = products
     .filter((product) => product.image)
@@ -698,7 +847,7 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
     productTypes: productCards.length ? productCards : legacyData.productTypes,
     features: productCards.length ? productCards.slice(0, 4) : legacyData.features,
     designs: designs.length ? designs : legacyData.designs,
-    faqs: flatFaqs.length ? flatFaqs : legacyData.faqs,
+    faqs: matchedFaqs.length ? matchedFaqs : legacyData.faqs,
   }
 }
 
@@ -710,12 +859,12 @@ function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
   return [
     {item: 'Core Expertise', capability: '15+ years experience in custom sports uniforms and private label sportswear manufacturing.'},
     {item: 'Main Products', capability: 'Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories.'},
-    {item: 'Minimum Order (MOQ)', capability: 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
-    {item: 'Sampling Timeline', capability: 'Sample Production: 2–3 Days After Mockup Confirmation with express global delivery.'},
-    {item: 'Design Support', capability: 'Free high-fidelity 3D mockup design in 1-2 hours based on your logo and color direction.'},
-    {item: 'Production Capacity', capability: 'Specialized facility with 30,000+ monthly capacity and 100% manual quality inspection protocol.'},
-    {item: 'Custom Options', capability: 'Full sublimation, team logos, player names, numbers, private labels and custom packaging.'},
-    {item: 'Compliance & QC', capability: 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
+    {item: 'Sample MOQ', capability: 'Sample MOQ: 1 set.'},
+    {item: 'Sample Production', capability: 'Sample production: 2-3 working days after mockup approval.'},
+    {item: 'Bulk Production', capability: 'Bulk production: 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'},
+    {item: 'Quality Control', capability: 'Quality control: Inspection before shipment.'},
+    {item: 'Size Tolerance', capability: 'Size tolerance: +/-2 cm.'},
+    {item: 'Mixed Sizes', capability: 'Mixed adult and youth sizes are supported.'},
     {item: 'Export Markets', capability: 'Reliable door-to-door logistics serving clubs and brands in 50+ countries including USA, EU, AU.'},
   ]
 }
@@ -728,6 +877,63 @@ function homeCategoriesFromLegacy(): CmsHomeCategory[] {
     href: sport.href,
     image: {url: sport.image, alt: `POXIOL ${sport.title} Custom Manufacturer`},
   }))
+}
+
+function normalizeHomepageSeo(seo: CmsSeo): CmsSeo {
+  return {
+    ...seo,
+    description: seo.description
+      .replace(/MOQ\s*1\s*set\s*and\s*Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample MOQ: 1 set and sample production: 2-3 working days after mockup approval')
+      .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
+      .replace(/2\s*[-–]\s*3\s*Days Sample Production/gi, '2-3 working days sample production'),
+  }
+}
+function normalizeSampleMoq(value?: string): string {
+  return value && /1\s*set/i.test(value) ? STANDARD_SAMPLE_MOQ : STANDARD_SAMPLE_MOQ
+}
+
+function normalizeSampleProduction(value?: string): string {
+  return value && /2\s*[-–]\s*3/i.test(value) ? STANDARD_SAMPLE_PRODUCTION : STANDARD_SAMPLE_PRODUCTION
+}
+
+function normalizeBulkProduction(time?: string, note?: string): string {
+  const timeline = time && /7\s*[-–]\s*12/i.test(time) ? STANDARD_BULK_PRODUCTION : STANDARD_BULK_PRODUCTION
+  const scheduleNote = note || STANDARD_BULK_NOTE
+  return `${timeline} ${scheduleNote}`
+}
+
+function normalizeQualityControl(qc?: string, tolerance?: string): string {
+  const qcText = qc && /inspection/i.test(qc) ? STANDARD_QC : STANDARD_QC
+  const toleranceText = tolerance && /2\s*cm/i.test(tolerance) ? STANDARD_SIZE_TOLERANCE : STANDARD_SIZE_TOLERANCE
+  return `${qcText} ${toleranceText}`
+}
+function normalizeHomepageFaqs(faqs: CmsHomeContent['faqs']): CmsHomeContent['faqs'] {
+  const normalized = faqs.map((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION ? {...faq, answer: HOMEPAGE_PRODUCTION_TIME_ANSWER} : faq)
+  return normalized.some((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION)
+    ? normalized.slice(0, 7)
+    : [...normalized.slice(0, 6), {question: HOMEPAGE_PRODUCTION_TIME_QUESTION, answer: HOMEPAGE_PRODUCTION_TIME_ANSWER}]
+}
+
+function normalizeHomepageUspCards(cards: Array<{metric: string; title: string; description: string}>): Array<{metric: string; title: string; description: string}> {
+  return cards.map((card) => {
+    const text = `${card.metric} ${card.title} ${card.description}`
+    if (/bulk production|7-21|7–21|15-25|15–25/i.test(text)) {
+      return {
+        metric: '7-12 working days',
+        title: 'Bulk Production',
+        description: 'Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.',
+      }
+    }
+    if (/sample production|2-3|2–3/i.test(text)) {
+      return {
+        ...card,
+        metric: card.metric.replace(/2–3/g, '2-3'),
+        title: card.title.replace(/2–3/g, '2-3 working days'),
+        description: card.description.replace(/2–3/g, '2-3'),
+      }
+    }
+    return card
+  })
 }
 
 export async function getHomepageContent(): Promise<CmsHomeContent> {
@@ -745,17 +951,16 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     href: `/products/${category.slug}/`,
     image: category.image,
   }))
-  const faqs = faqGroups.flatMap((group) => group.items).slice(0, 7)
+  const faqs = normalizeHomepageFaqs(faqGroups.flatMap((group) => group.items).slice(0, 7))
   const procurementData = procurement.ok ? procurement.result : null
   const procurementRows = procurementData
     ? [
-        {item: 'Minimum Order (MOQ)', capability: procurementData.defaultMOQ || 'MOQ 1 set support for B2B samples, team trials and original brand development projects.'},
-        {item: 'Sampling Timeline', capability: procurementData.sampleTime || 'Sample Production: 2–3 Days After Mockup Confirmation with express global delivery.'},
-        {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free high-fidelity 3D mockup design based on your logo and color direction.'},
-        {item: 'Bulk Production', capability: procurementData.bulkProductionTime || 'Production capacity and timing are confirmed against quantity, deadline and customization complexity.'},
-        {item: 'Compliance & QC', capability: procurementData.qualityPromise || 'Strict pre-shipment QC checking for print clarity, stitching durability and size accuracy.'},
-        {item: 'Shipping Notes', capability: procurementData.shippingNotes || 'Reliable door-to-door logistics serving global clubs, schools and brands.'},
-      ]
+        {item: 'Sample MOQ', capability: normalizeSampleMoq(procurementData.sampleMOQ || procurementData.defaultMOQ)},
+        {item: 'Sample Production', capability: normalizeSampleProduction(procurementData.sampleProductionTime || procurementData.sampleTime)},
+        {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free mockup: Usually within 2 hours after receiving complete project requirements.'},
+        {item: 'Bulk Production', capability: normalizeBulkProduction(procurementData.bulkProductionTime, procurementData.bulkProductionNote)},
+        {item: 'Quality Control', capability: normalizeQualityControl(procurementData.qcStandard || procurementData.qualityPromise, procurementData.sizeTolerance)},
+        {item: 'Shipping Notes', capability: procurementData.mixedSizes || STANDARD_MIXED_SIZES},      ]
     : legacyHomeRows()
 
   const pageAny = page as CmsPage & {
@@ -776,9 +981,9 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
     heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Get Factory Quote', href: '/get-quote/'},
-    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['MOQ 1 Set', 'Free 3D Mockup', '2–3 Days Sample Production', 'Quality Support', 'Global Shipping'],
+    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['Sample MOQ: 1 set', 'Free 3D Mockup', '2-3 working days sample production', 'QC before shipment', 'Global Shipping'],
     sourcingRows: procurementRows,
-    uspCards: pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards,
+    uspCards: normalizeHomepageUspCards(pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards),
     categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),
     sectionHeadings: pageAny.homepageSectionHeadings || {
       sourcing: {eyebrow: 'Factory Specs', title: 'Factory Sourcing Summary'},
@@ -790,8 +995,8 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     inquiryDescription: ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
     inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
     inquirySupportDescription: pageAny.inquirySupport?.description || 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
-    faqs: faqs.length ? faqs : homeFaqs,
+    faqs: faqs.length ? faqs : normalizeHomepageFaqs(homeFaqs),
     bottomCta: page.bottomCta,
-    seo: page.seo,
+    seo: normalizeHomepageSeo(page.seo),
   }
 }

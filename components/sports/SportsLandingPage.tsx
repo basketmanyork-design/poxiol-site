@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { SportsPageData } from "@/lib/sports-pages";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref, getQuoteHref } from "@/components/ui";
 import { ProductSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
+import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
 
 function titleCaseKeyword(keyword: string) {
   return keyword.replace(/^custom\s+/i, "").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -14,6 +15,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black text-left">
+      <ContentViewTracker event="product_category_view" params={{product_category: data.slug, sport: data.primaryKeyword}} />
       {/* --- AEO / GEO Infrastructure --- */}
       <ProductSchema
         name={data.h1}
@@ -43,7 +45,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                {data.heroText}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["Sample Support", "Free Mockup", "Sample Production: 2–3 Days", "OEM/ODM Ready", "Quality Support"].map((item)=>(
+              {["Sample Support", "Free Mockup", "Sample production: 2-3 working days", "OEM/ODM Ready", "Quality Support"].map((item)=>(
                 <span key={item} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white">{item}</span>
               ))}
             </div>
