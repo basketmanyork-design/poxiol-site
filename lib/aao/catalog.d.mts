@@ -16,7 +16,18 @@ export type PoxiolCatalog = {
   products: CatalogOption[]
   customization: CatalogOption[]
   serviceRegions: Array<CatalogOption & {qualification: string}>
-  procurement: Record<string, unknown>
+  procurement: {
+    sampleMinimumOrder: {
+      value: number
+      unit: 'set' | 'piece'
+      purpose: string
+      qualification: string
+    }
+    bulkMinimumOrder: {fixedValueAvailable: false; qualification: string}
+    mockupLeadTime: {min: number; max: number; unit: string; qualification: string}
+    sampleLeadTime: {min: number; max: number; unit: string; qualification: string}
+    bulkLeadTime: {min: number; max: number; unit: string; qualification: string}
+  }
   qualityControl: {
     inspectionBeforeShipment: boolean
     sizeTolerance: {min: number; max: number; unit: string}
