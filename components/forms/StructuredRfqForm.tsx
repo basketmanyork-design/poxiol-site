@@ -66,11 +66,6 @@ export default function StructuredRfqForm({publicEmail, whatsappHref}: Props) {
       const payload = toRfqFormData(result.value)
       payload.set("sourcePage", window.location.href)
 
-      for (const name of ["logoFile", "referenceFile", "techPackFile"]) {
-        const file = browserData.get(name)
-        if (file instanceof File && file.size > 0) payload.set(name, file)
-      }
-
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {Accept: "application/json"},
@@ -228,10 +223,23 @@ export default function StructuredRfqForm({publicEmail, whatsappHref}: Props) {
         <textarea id="rfq-notes" name="notes" className={`${inputClass} min-h-28 py-3`} />
       </label>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
-        <FileField name="logoFile" label="Logo file" accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg" />
-        <FileField name="referenceFile" label="Reference design" accept=".pdf,.png,.jpg,.jpeg,.webp" />
-        <FileField name="techPackFile" label="Tech pack / size chart" accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg" />
+      <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
+        <p className="text-sm leading-6 text-neutral-700">
+          Have logo, reference design or size-chart files? Submit your inquiry first. After we reply, send the files by email or WhatsApp with your team or brand name.
+        </p>
+        <div className="mt-3 flex flex-wrap gap-4 text-sm font-bold">
+          <a className="underline underline-offset-4" href={`mailto:${publicEmail}`}>
+            Send files by email
+          </a>
+          <a
+            className="underline underline-offset-4"
+            href={whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Send files by WhatsApp
+          </a>
+        </div>
       </div>
 
       <label
@@ -299,20 +307,6 @@ function SelectField({
         ))}
       </select>
       {error ? <p className="mt-1 text-sm font-semibold text-red-700">{error}</p> : null}
-    </label>
-  )
-}
-
-function FileField({name, label, accept}: {name: string; label: string; accept: string}) {
-  return (
-    <label className={labelClass}>
-      {label}
-      <input
-        name={name}
-        type="file"
-        accept={accept}
-        className="mt-2 block w-full text-xs text-neutral-600 file:mr-3 file:rounded-full file:border-0 file:bg-lime-100 file:px-3 file:py-2 file:font-bold"
-      />
     </label>
   )
 }

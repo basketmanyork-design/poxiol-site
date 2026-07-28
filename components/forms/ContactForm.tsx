@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { trackFileUpload, trackFormStart, trackFormSubmit, trackLead } from "@/lib/analytics/client";
+import { trackFormStart, trackFormSubmit, trackLead } from "@/lib/analytics/client";
 
 type ContactFormState = {
   fullName: string;
@@ -47,6 +47,7 @@ function FieldLabel({ htmlFor, children, required = false }: { htmlFor?: string;
 }
 
 const inputClass = "h-[50px] w-full rounded-2xl border border-neutral-300 bg-white px-4 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-lime-400";
+const fileFollowUpGuidance = "Have logo, reference design or size-chart files? Submit your inquiry first. After we reply, send the files by email or WhatsApp with your team or brand name.";
 
 interface ContactFormProps {
   title?: string;
@@ -64,6 +65,8 @@ function ContactFormInner({
   formType,
   ctaText,
   successUrl,
+  publicEmail,
+  whatsappHref,
 }: ContactFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -76,13 +79,10 @@ function ContactFormInner({
     }
   }, [searchParams]);
 
-  // Real File Upload states
-  const [logoFile, setLogoFile] = useState<File | null>(null);
-  const [referenceFile, setReferenceFile] = useState<File | null>(null);
-  const [sizeChartFile, setSizeChartFile] = useState<File | null>(null);
-
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const emailHref = publicEmail ? `mailto:${Array.from(publicEmail).map((char) => `%${char.charCodeAt(0).toString(16).padStart(2, "0")}`).join("")}` : "/contact/";
+  const whatsappLink = whatsappHref || "/contact/";
 
   function updateField(name: keyof ContactFormState, value: string) {
     trackFormStart(formType || "contact");
@@ -100,7 +100,7 @@ function ContactFormInner({
         throw new Error("Form endpoint is not configured. Add NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT in Cloudflare Pages.");
       }
 
-      // Package everything in FormData to allow native file attachments on Formspree
+      // Package the public text inquiry fields for Formspree.
       const formData = new FormData();
       formData.append("formType", formType || "Contact V8 Optimized");
       formData.append("sourcePage", window.location.href);
@@ -108,10 +108,6 @@ function ContactFormInner({
       Object.entries(form).forEach(([key, value]) => {
         formData.append(key, value);
       });
-
-      if (logoFile) formData.append("logo_file", logoFile);
-      if (referenceFile) formData.append("reference_design_file", referenceFile);
-      if (sizeChartFile) formData.append("size_chart_tech_pack_file", sizeChartFile);
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -344,57 +340,26 @@ function ContactFormInner({
           </div>
         </div>
 
-        {/* Step 3: Logo & Message */}
+        {/* Step 3: Design details */}
         <div>
-          <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">3. Design Details & Attachments</h3>
+          <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">3. Design Details</h3>
           <div className="grid gap-6">
             <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-              <p className="text-sm font-black text-neutral-950 uppercase tracking-wide">Upload Custom Teamwear Documents</p>
-              <p className="mt-2 text-xs leading-relaxed text-neutral-500">
-                Upload your logo, reference design or size chart if available. If you do not have a design yet, POXIOL can help create a mockup based on your sport category, colors and team name.
+              <p className="text-sm leading-6 text-neutral-700">
+                {fileFollowUpGuidance}
               </p>
-
-              {/* File Inputs Grid */}
-              <div className="mt-5 grid gap-4 md:grid-cols-3">
-                <div>
-                  <FieldLabel>Logo File</FieldLabel>
-                  <input
-                    type="file"
-                    accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0] || null;
-                      setLogoFile(file);
-                      if (file) trackFileUpload(formType || "contact");
-                    }}
-                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
-                  />
-                </div>
-                <div>
-                  <FieldLabel>Reference Design</FieldLabel>
-                  <input
-                    type="file"
-                    accept=".png,.jpg,.jpeg,.pdf,.webp"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0] || null;
-                      setReferenceFile(file);
-                      if (file) trackFileUpload(formType || "contact");
-                    }}
-                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
-                  />
-                </div>
-                <div>
-                  <FieldLabel>Size Chart / Tech Pack</FieldLabel>
-                  <input
-                    type="file"
-                    accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0] || null;
-                      setSizeChartFile(file);
-                      if (file) trackFileUpload(formType || "contact");
-                    }}
-                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
-                  />
-                </div>
+              <div className="mt-3 flex flex-wrap gap-4 text-sm font-bold">
+                <a className="underline underline-offset-4" href={emailHref}>
+                  Send files by email
+                </a>
+                <a
+                  className="underline underline-offset-4"
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Send files by WhatsApp
+                </a>
               </div>
             </div>
 
@@ -444,7 +409,7 @@ function ContactFormFallback({ publicEmail, whatsappHref }: ContactFormProps) {
       <div className="py-6">
         <h3 className="text-neutral-950 font-black text-2xl mb-4">Send Your Teamwear Project Details</h3>
         <p className="text-neutral-500 text-sm mb-8">
-          Share your sport, quantity, logo files, delivery country and target date. Use any contact path below while the full inquiry form loads.
+          {fileFollowUpGuidance}
         </p>
 
         <div className="grid gap-3 sm:grid-cols-2">
