@@ -22,6 +22,16 @@
 - Projects: https://www.poxiol.com/projects/
 - FAQ: https://www.poxiol.com/faq/
 - Contact: https://www.poxiol.com/contact/
+- Structured RFQ: https://www.poxiol.com/get-quote/
+
+## Machine-Readable Procurement
+
+- Capability contract: https://www.poxiol.com/.well-known/poxiol-capabilities.json
+- RFQ JSON Schema: https://www.poxiol.com/.well-known/poxiol-rfq-schema.json
+- Agent discovery document: https://www.poxiol.com/.well-known/poxiol-agent.json
+- AI summary: https://www.poxiol.com/ai-summary.json
+
+RFQs are reviewed by a POXIOL sales representative. These resources do not provide automatic quotations, payment, order acceptance or unattended purchasing.
 
 ## Key Capabilities
 

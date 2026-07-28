@@ -53,12 +53,7 @@ export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "POXIOL",
-  "url": "https://www.poxiol.com/",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.poxiol.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "url": "https://www.poxiol.com/"
 };
 
 // Generate full FAQ schema from lib/faq.ts

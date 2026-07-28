@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/oem-odm/",
     "/resources/",
     "/faq/",
+    "/ai-summary/",
     "/fabric-guide/",
     "/printing-guide/",
     "/certificates-testing/",
