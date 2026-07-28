@@ -75,7 +75,7 @@ The verified export contains 137 published business documents and 137 draft vari
 | Reconciliation migration dry run | 121 candidates: 116 skip, 5 FAQ category conflicts, 0 create, 0 update; dataset unchanged |
 | Production published inventory | Verified by full export |
 | Analytics audit | Completed |
-| Analytics implementation | Implemented; live collection remains disabled until a real GA4 ID is provided |
+| Analytics implementation | Real GA4 Measurement ID published in the unique `analyticsSettings` singleton; production rebuild required |
 | Search Console API verification | Blocked by unavailable authenticated access |
 | Cloudflare API analytics/deploy-hook operations | Blocked by unavailable Cloudflare API credentials |
 
@@ -84,7 +84,7 @@ The verified export contains 137 published business documents and 137 draft vari
 - Existing published content has 18 missing SEO fields.
 - Nine published FAQ category documents are missing the currently required `title` field.
 - Five logical FAQ category pairs use legacy/current slug variants and require manual merge review before any future migration apply.
-- A real GA4 Measurement ID has not been provided; production analytics correctly remains disabled.
+- The `poxiol-admin` Cloudflare Pages production alias is still serving an older bundle even though the latest `main` branch preview contains Analytics Settings and Analytics Operations. Set the Pages production branch to `main`.
 - Google Analytics Data API, Search Console and Cloudflare authenticated reporting require approved server-side credentials.
 - Cloudflare Deploy Hook configuration cannot be changed without Cloudflare API/dashboard access.
 
@@ -102,12 +102,12 @@ The verified export contains 137 published business documents and 137 draft vari
 - Static contact fallback: `mailto:` and `wa.me` links verified; Cloudflare email obfuscation markers absent
 - Domain redirects: HTTP and apex-domain variants redirect to `https://www.poxiol.com/`
 - Cloudflare Web Analytics: one beacon is present in production HTML; authenticated dashboard reporting was not available
-- GA4: implementation is production-ready but no real Measurement ID is configured, so no Google tag is loaded and live GA4 data remains unavailable
+- GA4: the unique published `analyticsSettings` singleton is configured for `G-W5YLNQ39X1`; this activation commit triggers a fresh production site build
 - Draft public exposure: no Draft URL appeared in the sitemap or inspected production HTML
 - Migration apply: not executed because the production dataset already contains the prior migration and five FAQ category reconciliation conflicts remain
-- Sanity writes during this activation: none
+- Sanity writes during this activation: created the unique published `analyticsSettings` singleton after a verified external dataset backup
 - Deploy Hook: not configured or verified because authenticated Cloudflare project access is unavailable
 - Search Console: sitemap is publicly valid, but property verification/submission status could not be authenticated
 - Workers Builds: the known non-required Workers integration still fails; Cloudflare Pages is the verified production delivery path
 
-Production activation is operational for the existing CMS content and static site delivery. Overall closure remains partial until the real GA4 Measurement ID, Search Console access, Cloudflare Deploy Hook and five FAQ category reconciliation decisions are provided.
+Production activation is operational for the existing CMS content and static site delivery. GA4 is configured; final closure still requires the `poxiol-admin` Pages production branch to point to `main`, plus the previously recorded Search Console, Deploy Hook and FAQ category follow-up work.

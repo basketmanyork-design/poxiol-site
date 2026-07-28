@@ -206,8 +206,7 @@ async function run() {
 
         if (test.triggerBinary) {
           const binFile = join(tmpDir, 'image.png');
-          const buffer = Buffer.alloc(1024);
-          for (let i = 0; i < 1024; i++) buffer[i] = Math.floor(Math.random() * 256);
+          const buffer = Buffer.alloc(1024, 0);
           writeFileSync(binFile, buffer);
           execSync('git add image.png', { cwd: tmpDir });
           execSync('git commit -m "add binary"', { cwd: tmpDir });
