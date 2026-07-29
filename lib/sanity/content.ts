@@ -652,23 +652,45 @@ export async function getProductCategory(slug: string): Promise<CmsProductCatego
   return category?.active ? category : null
 }
 
+type ProductCategoryResolution = {category: CmsProductCategory | null; suppressed: boolean}
+
+async function resolveProductCategory(slug: string): Promise<ProductCategoryResolution> {
+  const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
+  const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug})
+  if (!response.ok || contentSource === 'legacy') return {category: fallback, suppressed: false}
+
+  const cms = response.result
+  if (cms?.publishStatus === 'unpublished') return {category: null, suppressed: true}
+  if (cms && isDocumentVisible(cms.publishStatus, contentSource)) {
+    const category = mapCategory(cms, fallback || undefined)
+    return category?.active ? {category, suppressed: false} : {category: null, suppressed: true}
+  }
+  if (getCmsListMode() === 'strict') return {category: null, suppressed: false}
+  return {category: fallback, suppressed: false}
+}
+
 export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> {
+  const categories = await getProductCategories()
+  const visibleCategorySlugs = new Set(categories.map((category) => category.slug))
   const legacy = categorySlug ? legacyProducts.filter((product) => product.categorySlug === categorySlug) : legacyProducts
   const response = await sanityQuery<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
   return mergeCmsList({
-    legacy,
+    legacy: legacy.filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug)),
     cms: response.ok ? response.result || [] : [],
     sourceState: queryState(response),
     mode: getCmsListMode(),
     contentSource,
     mapCms: (product, fallback, index) => mapProduct(product, fallback || legacyProducts.find((item) => item.slug === product.slug), index),
-  }).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+  })
+    .filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug))
+    .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
 
 export async function getProduct(slug: string): Promise<CmsProduct | null> {
   const fallback = legacyProducts.find((product) => product.slug === slug) || null
+  const categories = await getProductCategories()
   const response = await sanityQuery<SanityProduct>(productBySlugQuery, {slug})
-  return resolveSingle({
+  const product = resolveSingle({
     slug,
     legacy: fallback,
     cms: response.ok ? response.result : null,
@@ -677,6 +699,8 @@ export async function getProduct(slug: string): Promise<CmsProduct | null> {
     contentSource,
     mapCms: (product, itemFallback) => mapProduct(product, itemFallback),
   })
+  if (product?.categorySlug && !categories.some((category) => category.slug === product.categorySlug)) return null
+  return product
 }
 
 export async function getProjects(): Promise<CmsProject[]> {
@@ -827,9 +851,12 @@ export async function getMatchedFaqsForProduct(productSlug: string, fallback: Cm
   return matched.length ? matched.slice(0, 8) : fallback
 }
 
-export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData> {
+export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData | null> {
   const categorySlug = legacyData.slug.replace(/^products\//, '')
-  const [category, products] = await Promise.all([getProductCategory(categorySlug), getProducts(categorySlug)])
+  const [resolution, products] = await Promise.all([resolveProductCategory(categorySlug), getProducts(categorySlug)])
+  if (resolution.suppressed) return null
+  const {category} = resolution
+
 
   if (!category) return legacyData
   const matchedFaqs = await getMatchedFaqsForProductCategory(categorySlug, category.relatedFaqs?.length ? category.relatedFaqs : legacyData.faqs, category.title)
@@ -852,10 +879,11 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
     features: productCards.length ? productCards.slice(0, 4) : legacyData.features,
     designs: designs.length ? designs : legacyData.designs,
     faqs: matchedFaqs.length ? matchedFaqs : legacyData.faqs,
+    noIndex: category.seo.noIndex,
   }
 }
 
-export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData> {
+export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData | null> {
   return getCmsSportsPageBySlug(legacyData)
 }
 

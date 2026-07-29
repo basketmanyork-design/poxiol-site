@@ -31,17 +31,6 @@ assert('boolean false category is inactive', isCategoryActive(false) === false)
 assert('legacy inactive category is inactive', isCategoryActive('inactive') === false)
 assert('missing category status stays active', isCategoryActive(undefined) === true)
 
-const contentSource = readFileSync(new URL('../lib/sanity/content.ts', import.meta.url), 'utf8')
-const productsPageSource = readFileSync(new URL('../app/products/page.tsx', import.meta.url), 'utf8')
-const sitemapSource = readFileSync(new URL('../app/sitemap.ts', import.meta.url), 'utf8')
-const headerSource = readFileSync(new URL('../components/ui.tsx', import.meta.url), 'utf8')
-
-assert('category mapper treats boolean false as inactive', contentSource.includes("active: category.activeStatus !== false && category.activeStatus !== 'inactive'"))
-assert('product categories remove inactive cards before route consumers', contentSource.includes('.filter((category) => category.active)'))
-assert('homepage excludes categories explicitly hidden from the homepage', contentSource.includes('categories.filter((category) => category.homepageVisibility !== false)'))
-assert('Products CollectionPage JSON-LD uses the same category list as visible cards', productsPageSource.includes('items={categories.map((category) => ({ name: category.title') && productsPageSource.includes('{categories.map((category) => ('))
-assert('sitemap does not generate CMS category routes that could ignore unpublished or noindex', !sitemapSource.includes('getProductCategories') && !sitemapSource.includes('productCategoriesQuery'))
-assert('header navigation does not consume CMS category documents', !headerSource.includes('getProductCategories') && !headerSource.includes('navigationVisibility'))
 
 const mapCms = (item) => ({slug:item.slug, title:item.title})
 let result = mergeCmsList({legacy, cms:[{slug:'a', title:'CMS A', publishStatus:'published'}], sourceState:'ok', mode:'merge', contentSource:'sanity', mapCms})

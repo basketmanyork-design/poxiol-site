@@ -2,6 +2,7 @@ export type SportsPageData = {
   slug: string;
   metaTitle: string;
   metaDescription: string;
+  noIndex?: boolean;
   eyebrow: string;
   h1: string;
   heroText: string;
