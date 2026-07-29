@@ -79,3 +79,48 @@ The latest user-approved execution instruction supersedes the earlier hide-FAQ r
 `product-category-soccer-mvp` is a confirmed test/duplicate: `publishStatus: published`; `activeStatus`, `navigationVisibility`, `homepageVisibility`, `showOnHomepage`, `featured`, and `seo.indexStatus` are null; `displayOrder: 20`. A raw reference query confirmed its two incoming references are the Published/Draft pair `product-soccer-mvp` / `drafts.product-soccer-mvp`, both slugged `custom-soccer-match-kit`. It appears in visible Products cards and CollectionPage JSON-LD. CMS categories do not feed the category sitemap; that comes from legacy `sportsPages`.
 
 Authoritative `2c48bf03e89d4274` / `soccer-jerseys` remains `published`, `featured: true`, and `displayOrder: 1`. The prior manual-review gate is cleared. Plan only the approved Draft fields: `publishStatus: unpublished`, `activeStatus: false`, `navigationVisibility: false`, `homepageVisibility: false`, `showOnHomepage: false`, `featured: false`, and `seo.indexStatus: noindex`; preserve the document ID, slug, title, references, and assets.
+
+## Draft-fix execution
+
+All 38 reviewed corrections were applied to Drafts with one revision-guarded transaction per document. Every Draft reread matched the reviewed after value and every Published revision/value remained unchanged. No document was published, so the remaining Published risk counts above are intentionally unchanged.
+
+| Document | Guard revision | Result revision | Verified at | Published unchanged |
+| --- | --- | --- | --- | --- |
+| `1a4beee0b08c447b` | `eJ7skWqptDvdh6OpbT1Nqs` | `Pc0MgNUA76vLkSK6hoL7ga` | `2026-07-29T13:37:39.061Z` | Yes |
+| `1acc9d32e8864706` | `kqd32DnwMDSkqBnWPyMLoa` | `BtROzTuZsdqYCncKTsMhbx` | `2026-07-29T13:37:53.212Z` | Yes |
+| `2388a6983a6749ad` | `kqd32DnwMDSkqBnWPyMLy1` | `gxHxXVNvdYNX1ew1SGIByc` | `2026-07-29T13:38:06.556Z` | Yes |
+| `2cd8d1d866944b0b` | `C90lXvqhCRFE4tCBdrgfjS` | `BtROzTuZsdqYCncKTsMlDV` | `2026-07-29T13:38:18.459Z` | Yes |
+| `2db6595af05b4e9f` | `C90lXvqhCRFE4tCBdrgg3K` | `BtROzTuZsdqYCncKTsMnYo` | `2026-07-29T13:38:31.527Z` | Yes |
+| `34b07755040843b8` | `eJ7skWqptDvdh6OpbTcoab` | `Pc0MgNUA76vLkSK6hoLLmw` | `2026-07-29T13:38:51.395Z` | Yes |
+| `3900f85e30c74441` | `C90lXvqhCRFE4tCBdrggBq` | `gxHxXVNvdYNX1ew1SGIJV1` | `2026-07-29T13:39:09.778Z` | Yes |
+| `3b755c5ec256421a` | `eJ7skWqptDvdh6OpbT1OJa` | `BtROzTuZsdqYCncKTsMvnF` | `2026-07-29T13:39:25.620Z` | Yes |
+| `3dd3f85d023143d5` | `kqd32DnwMDSkqBnWPyMMKf` | `Pc0MgNUA76vLkSK6hoLXQq` | `2026-07-29T13:39:39.908Z` | Yes |
+| `4a3889e2e6d1405d` | `kqd32DnwMDSkqBnWPyMMXs` | `Pc0MgNUA76vLkSK6hoLaFi` | `2026-07-29T13:39:53.933Z` | Yes |
+| `4ac9e2e2eb6149b0` | `kqd32DnwMDSkqBnWPyMMdX` | `Pc0MgNUA76vLkSK6hoLdI2` | `2026-07-29T13:40:07.016Z` | Yes |
+| `4d1d7e4b47094557` | `kqd32DnwMDSkqBnWPyMMmy` | `Pc0MgNUA76vLkSK6hoLh7g` | `2026-07-29T13:40:21.208Z` | Yes |
+| `4d483268e5a1428e` | `kqd32DnwMDSkqBnWPyMMuW` | `BtROzTuZsdqYCncKTsN7dE` | `2026-07-29T13:40:34.738Z` | Yes |
+| `4d7bbe57713f4522` | `kqd32DnwMDSkqBnWPyMN5q` | `Pc0MgNUA76vLkSK6hoLlXC` | `2026-07-29T13:40:49.332Z` | Yes |
+| `56e5833532ce4262` | `eJ7skWqptDvdh6OpbT1OgY` | `BtROzTuZsdqYCncKTsNBTg` | `2026-07-29T13:41:03.135Z` | Yes |
+| `58cc84bcbce544b9` | `eJ7skWqptDvdh6OpbTcoab` | `Pc0MgNUA76vLkSK6hoLorS` | `2026-07-29T13:41:15.622Z` | Yes |
+| `59dd3d86161c4c96` | `kqd32DnwMDSkqBnWPyMNMp` | `Pc0MgNUA76vLkSK6hoLsTe` | `2026-07-29T13:41:28.158Z` | Yes |
+| `5b8c25a077a24255` | `C90lXvqhCRFE4tCBdrgi74` | `gxHxXVNvdYNX1ew1SGIciw` | `2026-07-29T13:41:41.406Z` | Yes |
+| `5df7417df6e44eb4` | `C90lXvqhCRFE4tCBdrgiQw` | `BtROzTuZsdqYCncKTsNK0k` | `2026-07-29T13:41:55.691Z` | Yes |
+| `69a3eb85420a43b6` | `eJ7skWqptDvdh6OpbTcoab` | `Pc0MgNUA76vLkSK6hoM0wG` | `2026-07-29T13:42:10.021Z` | Yes |
+| `7051bee69c564b25` | `kqd32DnwMDSkqBnWPyMNsu` | `Pc0MgNUA76vLkSK6hoMJEg` | `2026-07-29T13:42:24.003Z` | Yes |
+| `71674287d04f4461` | `eJ7skWqptDvdh6OpbT1P7p` | `BtROzTuZsdqYCncKTsNaEi` | `2026-07-29T13:42:38.202Z` | Yes |
+| `87c9e4a99a064048` | `kqd32DnwMDSkqBnWPyMO2L` | `gxHxXVNvdYNX1ew1SGIrcb` | `2026-07-29T13:42:53.068Z` | Yes |
+| `8acf321171a945f8` | `kqd32DnwMDSkqBnWPyMs18` | `Pc0MgNUA76vLkSK6hoMT4U` | `2026-07-29T13:43:06.036Z` | Yes |
+| `8f9baf0284bd4513` | `kqd32DnwMDSkqBnWPyMO80` | `gxHxXVNvdYNX1ew1SGIwC6` | `2026-07-29T13:43:19.289Z` | Yes |
+| `93770d475f374564` | `eJ7skWqptDvdh6OpbT1PDZ` | `Pc0MgNUA76vLkSK6hoMih0` | `2026-07-29T13:43:33.408Z` | Yes |
+| `96636fb2fea64bad` | `C90lXvqhCRFE4tCBdrgjRO` | `Pc0MgNUA76vLkSK6hoMnB0` | `2026-07-29T13:43:47.372Z` | Yes |
+| `9a8f9472c1484a04` | `eJ7skWqptDvdh6OpbT1PMB` | `Pc0MgNUA76vLkSK6hoMpdS` | `2026-07-29T13:44:03.850Z` | Yes |
+| `9f01531eac5844f8` | `kqd32DnwMDSkqBnWPyMOLD` | `BtROzTuZsdqYCncKTsNrBO` | `2026-07-29T13:44:17.765Z` | Yes |
+| `ac118ecd57c74a80` | `C90lXvqhCRFE4tCBdrgjtm` | `BtROzTuZsdqYCncKTsNuQa` | `2026-07-29T13:44:32.394Z` | Yes |
+| `cb591874158c4428` | `C90lXvqhCRFE4tCBdrgkDe` | `BtROzTuZsdqYCncKTsNx4W` | `2026-07-29T13:44:52.447Z` | Yes |
+| `e65bf3aad1db4481` | `eJ7skWqptDvdh6OpbT1PxV` | `gxHxXVNvdYNX1ew1SGJAS8` | `2026-07-29T13:45:10.302Z` | Yes |
+| `eeddf3fde684446c` | `eJ7skWqptDvdh6OpbT1Q3F` | `gxHxXVNvdYNX1ew1SGJCAp` | `2026-07-29T13:45:25.769Z` | Yes |
+| `f01c3f9ef9d14bc8` | `eJ7skWqptDvdh6OpbT1Q7Y` | `Pc0MgNUA76vLkSK6hoN6Gk` | `2026-07-29T13:45:40.008Z` | Yes |
+| `f1550549e7154f6f` | `eJ7skWqptDvdh6OpbT1QBr` | `BtROzTuZsdqYCncKTsO5U8` | `2026-07-29T13:45:53.554Z` | Yes |
+| `f68d4d8d1cc74350` | `eJ7skWqptDvdh6OpbT1QGA` | `gxHxXVNvdYNX1ew1SGJHNx` | `2026-07-29T13:46:09.387Z` | Yes |
+| `faq-58b766260485677a` | `C90lXvqhCRFE4tCBdqZzqo` | `Pc0MgNUA76vLkSK6hoNIQ2` | `2026-07-29T13:46:22.904Z` | Yes |
+| `product-category-soccer-mvp` | `eJ7skWqptDvdh6OpbTcoab` | `Pc0MgNUA76vLkSK6hoNpyY` | `2026-07-29T13:47:51.473Z` | Yes |

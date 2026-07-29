@@ -30,7 +30,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1Nqs",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoL7ga",
+        "verifiedAt": "2026-07-29T13:37:39.061Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "1acc9d32e8864706",
@@ -50,7 +57,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMLoa",
+        "resultRevision": "BtROzTuZsdqYCncKTsMhbx",
+        "verifiedAt": "2026-07-29T13:37:53.212Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "2388a6983a6749ad",
@@ -70,7 +84,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMLy1",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGIByc",
+        "verifiedAt": "2026-07-29T13:38:06.556Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "2cd8d1d866944b0b",
@@ -90,7 +111,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrgfjS",
+        "resultRevision": "BtROzTuZsdqYCncKTsMlDV",
+        "verifiedAt": "2026-07-29T13:38:18.459Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "2db6595af05b4e9f",
@@ -110,7 +138,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrgg3K",
+        "resultRevision": "BtROzTuZsdqYCncKTsMnYo",
+        "verifiedAt": "2026-07-29T13:38:31.527Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "34b07755040843b8",
@@ -130,7 +165,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLLmw",
+        "verifiedAt": "2026-07-29T13:38:51.395Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "3900f85e30c74441",
@@ -150,7 +192,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrggBq",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGIJV1",
+        "verifiedAt": "2026-07-29T13:39:09.778Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "3b755c5ec256421a",
@@ -170,7 +219,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1OJa",
+        "resultRevision": "BtROzTuZsdqYCncKTsMvnF",
+        "verifiedAt": "2026-07-29T13:39:25.620Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "3dd3f85d023143d5",
@@ -190,7 +246,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMMKf",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLXQq",
+        "verifiedAt": "2026-07-29T13:39:39.908Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "4a3889e2e6d1405d",
@@ -210,7 +273,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMMXs",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLaFi",
+        "verifiedAt": "2026-07-29T13:39:53.933Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "4ac9e2e2eb6149b0",
@@ -230,7 +300,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMMdX",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLdI2",
+        "verifiedAt": "2026-07-29T13:40:07.016Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "4d1d7e4b47094557",
@@ -250,7 +327,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMMmy",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLh7g",
+        "verifiedAt": "2026-07-29T13:40:21.208Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "4d483268e5a1428e",
@@ -270,7 +354,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMMuW",
+        "resultRevision": "BtROzTuZsdqYCncKTsN7dE",
+        "verifiedAt": "2026-07-29T13:40:34.738Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "4d7bbe57713f4522",
@@ -290,7 +381,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMN5q",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLlXC",
+        "verifiedAt": "2026-07-29T13:40:49.332Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "56e5833532ce4262",
@@ -310,7 +408,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1OgY",
+        "resultRevision": "BtROzTuZsdqYCncKTsNBTg",
+        "verifiedAt": "2026-07-29T13:41:03.135Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "58cc84bcbce544b9",
@@ -330,7 +435,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLorS",
+        "verifiedAt": "2026-07-29T13:41:15.622Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "59dd3d86161c4c96",
@@ -350,7 +462,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMNMp",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoLsTe",
+        "verifiedAt": "2026-07-29T13:41:28.158Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "5b8c25a077a24255",
@@ -370,7 +489,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrgi74",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGIciw",
+        "verifiedAt": "2026-07-29T13:41:41.406Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "5df7417df6e44eb4",
@@ -390,7 +516,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrgiQw",
+        "resultRevision": "BtROzTuZsdqYCncKTsNK0k",
+        "verifiedAt": "2026-07-29T13:41:55.691Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "69a3eb85420a43b6",
@@ -410,7 +543,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoM0wG",
+        "verifiedAt": "2026-07-29T13:42:10.021Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "7051bee69c564b25",
@@ -430,7 +570,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMNsu",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoMJEg",
+        "verifiedAt": "2026-07-29T13:42:24.003Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "71674287d04f4461",
@@ -450,7 +597,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1P7p",
+        "resultRevision": "BtROzTuZsdqYCncKTsNaEi",
+        "verifiedAt": "2026-07-29T13:42:38.202Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "87c9e4a99a064048",
@@ -470,7 +624,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMO2L",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGIrcb",
+        "verifiedAt": "2026-07-29T13:42:53.068Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "8f9baf0284bd4513",
@@ -490,7 +651,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMO80",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGIwC6",
+        "verifiedAt": "2026-07-29T13:43:19.289Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "93770d475f374564",
@@ -510,7 +678,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1PDZ",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoMih0",
+        "verifiedAt": "2026-07-29T13:43:33.408Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "96636fb2fea64bad",
@@ -530,7 +705,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrgjRO",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoMnB0",
+        "verifiedAt": "2026-07-29T13:43:47.372Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "9a8f9472c1484a04",
@@ -550,7 +732,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1PMB",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoMpdS",
+        "verifiedAt": "2026-07-29T13:44:03.850Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "9f01531eac5844f8",
@@ -570,7 +759,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMOLD",
+        "resultRevision": "BtROzTuZsdqYCncKTsNrBO",
+        "verifiedAt": "2026-07-29T13:44:17.765Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "ac118ecd57c74a80",
@@ -590,7 +786,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrgjtm",
+        "resultRevision": "BtROzTuZsdqYCncKTsNuQa",
+        "verifiedAt": "2026-07-29T13:44:32.394Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "cb591874158c4428",
@@ -610,7 +813,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdrgkDe",
+        "resultRevision": "BtROzTuZsdqYCncKTsNx4W",
+        "verifiedAt": "2026-07-29T13:44:52.447Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "e65bf3aad1db4481",
@@ -630,7 +840,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1PxV",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGJAS8",
+        "verifiedAt": "2026-07-29T13:45:10.302Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "eeddf3fde684446c",
@@ -650,7 +867,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1Q3F",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGJCAp",
+        "verifiedAt": "2026-07-29T13:45:25.769Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "f01c3f9ef9d14bc8",
@@ -670,7 +894,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1Q7Y",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoN6Gk",
+        "verifiedAt": "2026-07-29T13:45:40.008Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "f1550549e7154f6f",
@@ -690,7 +921,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1QBr",
+        "resultRevision": "BtROzTuZsdqYCncKTsO5U8",
+        "verifiedAt": "2026-07-29T13:45:53.554Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "f68d4d8d1cc74350",
@@ -710,7 +948,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbT1QGA",
+        "resultRevision": "gxHxXVNvdYNX1ew1SGJHNx",
+        "verifiedAt": "2026-07-29T13:46:09.387Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "8acf321171a945f8",
@@ -730,7 +975,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "POXIOL supports scalable teamwear production based on confirmed project requirements and production schedules.",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "kqd32DnwMDSkqBnWPyMs18",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoMT4U",
+        "verifiedAt": "2026-07-29T13:43:06.036Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "faq-58b766260485677a",
@@ -750,7 +1002,14 @@
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
       "approvedReplacement": "Professional sublimation printing processes are used according to project requirements.",
-      "manualReview": false
+      "manualReview": false,
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "C90lXvqhCRFE4tCBdqZzqo",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoNIQ2",
+        "verifiedAt": "2026-07-29T13:46:22.904Z",
+        "publishedUnchanged": true
+      }
     },
     {
       "documentId": "product-category-soccer-mvp",
@@ -802,6 +1061,13 @@
         "publishedDocumentId": "product-soccer-mvp",
         "draftDocumentId": "drafts.product-soccer-mvp",
         "slug": "custom-soccer-match-kit"
+      },
+      "draftFix": {
+        "applied": true,
+        "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+        "resultRevision": "Pc0MgNUA76vLkSK6hoNpyY",
+        "verifiedAt": "2026-07-29T13:47:51.473Z",
+        "publishedUnchanged": true
       }
     }
   ],

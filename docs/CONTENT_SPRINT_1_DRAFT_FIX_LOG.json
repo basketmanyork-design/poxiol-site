@@ -1,35 +1,620 @@
 {
-    "projectId":  "oqpv1xbc",
-    "dataset":  "production",
-    "startedAt":  "2026-07-29T13:31:29.309Z",
-    "completedAt":  "2026-07-29T13:31:29.312Z",
-    "backupSha256":  "41EB90017A7AF31AFC67C9BE45E6AEF4F9DB27B319D7820F3F815D333E0424E0",
-    "status":  "blocked",
-    "stopReason":  "local_pre_read_manifest_path_parser_failure",
-    "documentsAttempted":  1,
-    "documentsPatched":  0,
-    "documentsVerified":  0,
-    "documentsPublished":  0,
-    "revisionConflicts":  0,
-    "failed":  1,
-    "sanityPatchCallsExecuted":  0,
-    "entries":  [
-                    {
-                        "documentId":  "1a4beee0b08c447b",
-                        "draftId":  "drafts.1a4beee0b08c447b",
-                        "type":  "article",
-                        "fieldPaths":  [
-                                           "body[_key==\"e28c06f1dbc9\"].children[0].text"
-                                       ],
-                        "before":  "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
-                        "after":  "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
-                        "guardRevision":  "eJ7skWqptDvdh6OpbT1Nqs",
-                        "resultRevision":  null,
-                        "publishedUnchanged":  null,
-                        "verifiedAt":  "2026-07-29T13:31:29.312Z",
-                        "status":  "failed",
-                        "failureStage":  "pre_read",
-                        "sanityPatchAttempted":  false
-                    }
-                ]
+  "projectId": "oqpv1xbc",
+  "dataset": "production",
+  "startedAt": "2026-07-29T13:37:22.485Z",
+  "completedAt": "2026-07-29T13:47:51.473Z",
+  "backupSha256": "41EB90017A7AF31AFC67C9BE45E6AEF4F9DB27B319D7820F3F815D333E0424E0",
+  "documentsAttempted": 38,
+  "documentsPatched": 38,
+  "documentsVerified": 38,
+  "documentsPublished": 0,
+  "revisionConflicts": 0,
+  "failed": 0,
+  "sanityPatchCallsExecuted": 38,
+  "previousAttempts": [
+    {
+      "commit": "3a14184f94f78d9ea20efc4b228f26b9e9b3ff71",
+      "status": "blocked",
+      "reason": "local_manifest_path_parser_failure",
+      "documentsAttempted": 1,
+      "documentsPatched": 0,
+      "documentsVerified": 0,
+      "documentsPublished": 0,
+      "sanityPatchCallsExecuted": 0
+    }
+  ],
+  "entries": [
+    {
+      "documentId": "1a4beee0b08c447b",
+      "draftId": "drafts.1a4beee0b08c447b",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"e28c06f1dbc9\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1Nqs",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoL7ga",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:37:39.061Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "1acc9d32e8864706",
+      "draftId": "drafts.1acc9d32e8864706",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"5b23301bda99\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMLoa",
+      "resultRevision": "BtROzTuZsdqYCncKTsMhbx",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:37:53.212Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "2388a6983a6749ad",
+      "draftId": "drafts.2388a6983a6749ad",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"32369e2c3472\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMLy1",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGIByc",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:38:06.556Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "2cd8d1d866944b0b",
+      "draftId": "drafts.2cd8d1d866944b0b",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"c1017ddfa641\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrgfjS",
+      "resultRevision": "BtROzTuZsdqYCncKTsMlDV",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:38:18.459Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "2db6595af05b4e9f",
+      "draftId": "drafts.2db6595af05b4e9f",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"4bea04c030d0\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrgg3K",
+      "resultRevision": "BtROzTuZsdqYCncKTsMnYo",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:38:31.527Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "34b07755040843b8",
+      "draftId": "drafts.34b07755040843b8",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"1c8a7728025d\"].children[0].text"
+      ],
+      "before": "Start with the date the uniforms must arrive at the school, not the first game date. Allow time for internal approval, mockup revisions, sample review, bulk production, quality control and shipping. POXIOL's standard planning reference is Sample Production in 2–3 Days After Mockup Confirmation, Bulk Production in 15–25 Days Depending on Order Size, and shipping in 3–7 Business Days Depending on Country.",
+      "after": "Start with the date the uniforms must arrive at the school, not the first game date. Allow time for internal approval, mockup revisions, sample review, bulk production, quality control and shipping. POXIOL's standard planning reference is Sample Production in 2–3 Days After Mockup Confirmation, Bulk Production in 7–12 working days after sample or artwork approval, and shipping in 3–7 Business Days Depending on Country.",
+      "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLLmw",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:38:51.395Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "3900f85e30c74441",
+      "draftId": "drafts.3900f85e30c74441",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"8f296245041b\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrggBq",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGIJV1",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:39:09.778Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "3b755c5ec256421a",
+      "draftId": "drafts.3b755c5ec256421a",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"3910dee0d1c0\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1OJa",
+      "resultRevision": "BtROzTuZsdqYCncKTsMvnF",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:39:25.620Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "3dd3f85d023143d5",
+      "draftId": "drafts.3dd3f85d023143d5",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"daf7c60aab9f\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMMKf",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLXQq",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:39:39.908Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "4a3889e2e6d1405d",
+      "draftId": "drafts.4a3889e2e6d1405d",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"5337f5837aa1\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMMXs",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLaFi",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:39:53.933Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "4ac9e2e2eb6149b0",
+      "draftId": "drafts.4ac9e2e2eb6149b0",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"0254c7034581\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMMdX",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLdI2",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:40:07.016Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "4d1d7e4b47094557",
+      "draftId": "drafts.4d1d7e4b47094557",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"25a8e2ce7d0c\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMMmy",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLh7g",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:40:21.208Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "4d483268e5a1428e",
+      "draftId": "drafts.4d483268e5a1428e",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"f120f14bf2c4\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMMuW",
+      "resultRevision": "BtROzTuZsdqYCncKTsN7dE",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:40:34.738Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "4d7bbe57713f4522",
+      "draftId": "drafts.4d7bbe57713f4522",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"b8c29431c971\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMN5q",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLlXC",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:40:49.332Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "56e5833532ce4262",
+      "draftId": "drafts.56e5833532ce4262",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"8ac1ef1451a1\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1OgY",
+      "resultRevision": "BtROzTuZsdqYCncKTsNBTg",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:41:03.135Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "58cc84bcbce544b9",
+      "draftId": "drafts.58cc84bcbce544b9",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"70bc61cca24d\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLorS",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:41:15.622Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "59dd3d86161c4c96",
+      "draftId": "drafts.59dd3d86161c4c96",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"300c139ee2bb\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMNMp",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoLsTe",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:41:28.158Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "5b8c25a077a24255",
+      "draftId": "drafts.5b8c25a077a24255",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"bb319e5776cc\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrgi74",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGIciw",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:41:41.406Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "5df7417df6e44eb4",
+      "draftId": "drafts.5df7417df6e44eb4",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"d2a57005c8ec\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrgiQw",
+      "resultRevision": "BtROzTuZsdqYCncKTsNK0k",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:41:55.691Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "69a3eb85420a43b6",
+      "draftId": "drafts.69a3eb85420a43b6",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"102ea6138cf3\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoM0wG",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:42:10.021Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "7051bee69c564b25",
+      "draftId": "drafts.7051bee69c564b25",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"f1642ff07788\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMNsu",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoMJEg",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:42:24.003Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "71674287d04f4461",
+      "draftId": "drafts.71674287d04f4461",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"f34b1d15c5f7\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1P7p",
+      "resultRevision": "BtROzTuZsdqYCncKTsNaEi",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:42:38.202Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "87c9e4a99a064048",
+      "draftId": "drafts.87c9e4a99a064048",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"6cfb1236b0f9\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMO2L",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGIrcb",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:42:53.068Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "8acf321171a945f8",
+      "draftId": "drafts.8acf321171a945f8",
+      "type": "sitePage",
+      "fieldPaths": [
+        "seo.metaDescription"
+      ],
+      "before": "Visit the POXIOL teamwear factory. 15+ years experience, 30,000+ monthly capacity.",
+      "after": "POXIOL supports scalable teamwear production based on confirmed project requirements and production schedules.",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMs18",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoMT4U",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:43:06.036Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "8f9baf0284bd4513",
+      "draftId": "drafts.8f9baf0284bd4513",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"f54722df5257\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMO80",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGIwC6",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:43:19.289Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "93770d475f374564",
+      "draftId": "drafts.93770d475f374564",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"8b95fc92f317\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1PDZ",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoMih0",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:43:33.408Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "96636fb2fea64bad",
+      "draftId": "drafts.96636fb2fea64bad",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"06506edd3bbc\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrgjRO",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoMnB0",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:43:47.372Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "9a8f9472c1484a04",
+      "draftId": "drafts.9a8f9472c1484a04",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"aeb6277c2895\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1PMB",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoMpdS",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:44:03.850Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "9f01531eac5844f8",
+      "draftId": "drafts.9f01531eac5844f8",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"dd44cb6a1e1a\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "kqd32DnwMDSkqBnWPyMOLD",
+      "resultRevision": "BtROzTuZsdqYCncKTsNrBO",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:44:17.765Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "ac118ecd57c74a80",
+      "draftId": "drafts.ac118ecd57c74a80",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"0df68cf0c372\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrgjtm",
+      "resultRevision": "BtROzTuZsdqYCncKTsNuQa",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:44:32.394Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "cb591874158c4428",
+      "draftId": "drafts.cb591874158c4428",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"68b9dda4893c\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "C90lXvqhCRFE4tCBdrgkDe",
+      "resultRevision": "BtROzTuZsdqYCncKTsNx4W",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:44:52.447Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "e65bf3aad1db4481",
+      "draftId": "drafts.e65bf3aad1db4481",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"e54955e54b5e\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1PxV",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGJAS8",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:45:10.302Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "eeddf3fde684446c",
+      "draftId": "drafts.eeddf3fde684446c",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"b86cba11ae4e\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1Q3F",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGJCAp",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:45:25.769Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "f01c3f9ef9d14bc8",
+      "draftId": "drafts.f01c3f9ef9d14bc8",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"18e98c15cb6a\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1Q7Y",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoN6Gk",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:45:40.008Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "f1550549e7154f6f",
+      "draftId": "drafts.f1550549e7154f6f",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"4663dad2df95\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1QBr",
+      "resultRevision": "BtROzTuZsdqYCncKTsO5U8",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:45:53.554Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "f68d4d8d1cc74350",
+      "draftId": "drafts.f68d4d8d1cc74350",
+      "type": "article",
+      "fieldPaths": [
+        "body[_key==\"3053978b98a5\"].children[0].text"
+      ],
+      "before": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "after": "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+      "guardRevision": "eJ7skWqptDvdh6OpbT1QGA",
+      "resultRevision": "gxHxXVNvdYNX1ew1SGJHNx",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:46:09.387Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "faq-58b766260485677a",
+      "draftId": "drafts.faq-58b766260485677a",
+      "type": "faqItem",
+      "fieldPaths": [
+        "answer[_key==\"2fb85a67403c\"].children[0].text"
+      ],
+      "before": "We use high-grade Italian KIAN ink and Japanese EPSON print heads. This ensures CMYK color accuracy, high-vibrancy graphics, and high color fastness that is highly resistant to cracking, peeling, or fading, even after intensive washing and high-contact use.",
+      "after": "Professional sublimation printing processes are used according to project requirements.",
+      "guardRevision": "C90lXvqhCRFE4tCBdqZzqo",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoNIQ2",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:46:22.904Z",
+      "status": "patched_verified"
+    },
+    {
+      "documentId": "product-category-soccer-mvp",
+      "draftId": "drafts.product-category-soccer-mvp",
+      "type": "productCategory",
+      "fieldPaths": [
+        "publishStatus",
+        "activeStatus",
+        "navigationVisibility",
+        "homepageVisibility",
+        "showOnHomepage",
+        "featured",
+        "seo.indexStatus"
+      ],
+      "before": {
+        "publishStatus": "published",
+        "activeStatus": null,
+        "navigationVisibility": null,
+        "homepageVisibility": null,
+        "showOnHomepage": null,
+        "featured": null,
+        "seo.indexStatus": null
+      },
+      "after": {
+        "publishStatus": "unpublished",
+        "activeStatus": false,
+        "navigationVisibility": false,
+        "homepageVisibility": false,
+        "showOnHomepage": false,
+        "featured": false,
+        "seo.indexStatus": "noindex"
+      },
+      "guardRevision": "eJ7skWqptDvdh6OpbTcoab",
+      "resultRevision": "Pc0MgNUA76vLkSK6hoNpyY",
+      "publishedUnchanged": true,
+      "verifiedAt": "2026-07-29T13:47:51.473Z",
+      "status": "patched_verified"
+    }
+  ]
 }
