@@ -2,104 +2,103 @@
 
 ## Scope
 
-Read-only architecture audit for branch `feature/content-sprint-1-safe-published-fixes` at commit `90f65281c1d5e1dee7b6985e353097f1ddd24cf2`.
+Architecture and deployment audit for
+`feature/content-sprint-1-safe-published-fixes`.
 
-No Sanity mutation or publish, Cloudflare configuration change, pull request, or production change was performed during this audit.
+The accepted Preview implementation is represented by code commit
+`16a0e092916e48bc81d1e619a54f5c394fe46326` and was revalidated through the
+immutable Cloudflare Pages Preview built from `0978c8d`.
 
-## Production Data Source
+## Production data source
 
-- Default content source: `sanity`.
-- Sanity project: `NEXT_PUBLIC_SANITY_PROJECT_ID` or the code default `oqpv1xbc`.
-- Dataset: `NEXT_PUBLIC_SANITY_DATASET` or the code default `production`.
+- Mode: `sanity` (the default when `NEXT_PUBLIC_CONTENT_SOURCE` is absent).
 - Perspective: `published`.
 - CDN: enabled.
 - Cache: `force-cache`.
 - Token: not required and not used.
-- Rendering model: Next.js static export. Sanity data is read during `next build` and written into `out/`.
+- Rendering: Next.js static export.
 
-Production remains on Published Sanity content when `NEXT_PUBLIC_CONTENT_SOURCE` is absent or equals `sanity`.
+Production remains static and does not use Draft Mode or server rendering.
 
-## Preview Data Source
+## Preview data source
 
-- Preview method: Cloudflare Pages branch static build.
-- Content source: `sanity-preview`.
-- Dataset: Sanity `production`.
+- Method: Cloudflare Pages branch Preview build.
+- Mode: `sanity-preview`.
 - Perspective: `drafts`.
 - CDN: disabled.
-- Cache: `no-store`.
 - Authentication: server-only `SANITY_READ_TOKEN`.
-- Browser token: none.
+- Cache: build-time `force-cache`, required by `output: export`.
+- Freshness: every Preview deployment uses a sanitized Sanity request `tag`
+  derived from the Cloudflare commit identifier, causing a new build to issue
+  a distinct authenticated Draft query.
 
-The repository has no Next.js `draftMode()` implementation, Preview API route, Preview cookie, Sanity Presentation tool, or Studio Preview action. Because the site is a static export, a Draft change requires a new Preview build before it can appear.
+The Preview token is read only by the build-time, server-only client. It is
+not a `NEXT_PUBLIC_` variable and is not emitted into browser output.
 
-## Fallback Data Source
+## Static export compatibility correction
 
-- `legacy` mode does not query Sanity.
-- A failed `sanity` or `sanity-preview` query falls back to repository Legacy data.
-- A missing Preview token is treated as a failed Preview query and therefore also falls back.
-- Legacy sources include `lib/cms/legacy.ts`, `lib/home-data.ts`, `lib/sports-pages.ts`, and related local content modules.
-- `CMS_LEGACY_LIST_MODE` controls merge/strict list behavior. Migration Preview should remain in `merge` unless complete strict coverage is separately approved.
+The first authenticated implementation used `cache: no-store`. That made the
+App Router output dynamic and caused Cloudflare Pages to deploy a 404 shell
+instead of generated HTML.
 
-## Required Environment Variables
+The first static-compatible revision then appended a custom
+`previewBuild` query parameter to Sanity Query API requests. Sanity rejected
+that undocumented parameter with HTTP 400, so resolvers silently used Legacy
+fallback.
+
+The accepted implementation:
+
+1. retains `perspective: drafts`;
+2. retains `useCdn: false`;
+3. retains the server-only read token;
+4. uses static-compatible `force-cache`; and
+5. sends the build identifier through Sanity's supported `tag` parameter.
+
+The immutable Preview at
+`https://00f11f97.poxiol-site.pages.dev` generated and served the Draft-only
+article routes successfully.
+
+## Fallback data source
+
+- `legacy` mode never queries Sanity.
+- Failed `sanity` or `sanity-preview` requests use repository Legacy content.
+- Successful empty Sanity results remain distinguishable from network/API
+  failures according to the existing merge/strict resolver policy.
+- Migration Preview remains in merge mode unless strict cutover is separately
+  approved.
+
+## Required environment variables
 
 ### Cloudflare Preview only
 
 - `NEXT_PUBLIC_CONTENT_SOURCE=sanity-preview`
 - `SANITY_READ_TOKEN` as a server-only read secret
-- Optional existing public configuration:
-  - `NEXT_PUBLIC_SANITY_PROJECT_ID=oqpv1xbc`
-  - `NEXT_PUBLIC_SANITY_DATASET=production`
-
-Do not create `NEXT_PUBLIC_SANITY_READ_TOKEN`.
+- Existing public project and dataset identifiers
 
 ### Cloudflare Production
 
-- `NEXT_PUBLIC_CONTENT_SOURCE=sanity` or leave it unset to use the default.
-- Production does not require and should not receive `SANITY_READ_TOKEN`.
+- `NEXT_PUBLIC_CONTENT_SOURCE=sanity` or the default
+- no `SANITY_READ_TOKEN`
 
-## Initial missing configuration (historical)
+The Cloudflare Preview environment has the required mode and secret. Production
+configuration was not changed.
 
-The initial verified branch deployment at `https://f78487d4.poxiol-site.pages.dev` used Legacy fallback rather than Draft data.
-
-The repository Preview client is already correctly configured. The missing or invalid state is in the Cloudflare Pages Preview build environment:
-
-- `NEXT_PUBLIC_CONTENT_SOURCE=sanity-preview` is not verifiably active, or
-- `SANITY_READ_TOKEN` is absent/invalid for the Preview build.
-
-The public deployment cannot reveal Cloudflare environment values, so these possibilities cannot be distinguished without authenticated Cloudflare project access.
-
-## Authenticated Preview Environment Follow-up
-
-Authenticated Cloudflare project inspection confirmed:
-
-- Project: `poxiol-site`.
-- Production branch: `main`.
-- Preview content source: `sanity-preview`.
-- Preview project and dataset: `oqpv1xbc` / `production`.
-- Preview secret key: `SANITY_READ_TOKEN`, stored as `secret_text`.
-- Production content source: `sanity`.
-- Production `SANITY_READ_TOKEN`: absent.
-
-Sanity token metadata showed no Viewer token existed. A new Viewer-only token labelled `POXIOL Cloudflare Preview Read 2026-07-29` was created and written directly to the existing Cloudflare Preview secret key. Its value was never printed, saved to a file, or committed.
-
-The first Cloudflare retry using the new secret completed all build and deploy stages successfully. Its build processed 158 generation inputs/build routes and included previously absent CMS-only Draft article routes. However, the retry deployment URL returned the Next.js 404 shell and the branch alias remained on the preceding deployment. That retry is historical evidence only and is not accepted as a usable Preview.
-
-A subsequent normal Git-triggered Preview build for commit `01f2bcf230468fa660f0c74b627f466c4932477d` deployed to `https://33b1a0d6.poxiol-site.pages.dev`. Cloudflare reported successful build and deploy stages, but the core HTML routes and `sitemap.xml` returned the Next.js 404 shell. This is the current acceptance target and it failed Draft Preview validation.
-## Client and Bundle Safety
+## Browser and analytics safety
 
 - `lib/sanity/client.ts` imports `server-only`.
-- `SANITY_READ_TOKEN` is read only from `process.env` and used only in the build-time Authorization header.
-- Preview uses `useCdn: false`, `perspective: drafts`, and `cache: no-store`.
-- Production uses `useCdn: true`, `perspective: published`, and `cache: force-cache`.
-- `NEXT_PUBLIC_CONTENT_SOURCE` is a public mode selector, not a credential.
-- A rebuilt Preview must still be scanned to confirm that neither the token value nor a client-side token variable appears in `out/` or `.next/static`.
+- Preview HTML contains zero occurrences of `SANITY_READ_TOKEN`.
+- Preview intentionally does not load GA4, preventing Draft traffic from
+  contaminating Production analytics.
+- Production still loads GA4 `G-W5YLNQ39X1` once and Cloudflare Web Analytics
+  once.
+- Neither environment contains a GTM container or Cloudflare email-protection
+  rewrite.
 
-## Audit Conclusion
+## Current status
 
-- Production Data Source: Published Sanity.
-- Preview Data Source: Authenticated Sanity Drafts during a Cloudflare Preview build.
-- Fallback Data Source: Repository Legacy content.
-- Current Preview Result: Authenticated Draft reads confirmed, but `cache: no-store` makes App Router pages dynamic and incompatible with the static `output: export` deployment.
-- Code change required: Yes, but it requires separate approval because it is outside the resolver-only modification boundary for this stage.
-- Cloudflare Preview configuration required: Completed without changing Production.
-- Controlled Publish ready: No.
+- Production data source: Published Sanity.
+- Preview data source: authenticated Sanity Drafts at static build time.
+- Fallback data source: repository Legacy content.
+- Missing Preview configuration: none.
+- Preview architecture validation: PASS.
+- Production code integration: pending review and merge to `main`.

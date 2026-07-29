@@ -1,111 +1,97 @@
 # Content Sprint 1 Preview Validation
 
-## Initial validation target (historical)
+## Accepted Preview
 
-- Verified at: `2026-07-29 22:29:19 +08:00`
-- Commit: `90f65281c1d5e1dee7b6985e353097f1ddd24cf2`
-- Immutable URL: `https://f78487d4.poxiol-site.pages.dev`
-- Mode evidenced by output: Legacy fallback
-- Sanity writes: `0`
-- Published documents changed: `0`
-## Initial fallback observations (historical)
-
-- Preview Method: Cloudflare Pages branch static export
-- Preview URL: `https://f78487d4.poxiol-site.pages.dev`
-- Authentication: Required for Draft reads, but the deployed output proves the Draft path was unavailable
-- Pages Tested: `/`, `/products/`, `/faq/`, `/manufacturing/`, `/factory/`, all 35 affected article routes, sitemap, robots and llms
-- Homepage: Route availability PASS; Draft rendering NOT VERIFIABLE
-- Products: Route availability PASS; Draft rendering NOT VERIFIABLE
-- FAQ: Fallback visible/JSON-LD consistency PASS; reviewed Draft replacement NOT VERIFIABLE
-- Manufacturing: Route availability PASS; Draft rendering NOT VERIFIABLE
-- `15–25 Days`: NOT VERIFIABLE in Draft Preview
-- `30,000+ units`: NOT VERIFIABLE in Draft Preview
-- KIAN: NOT VERIFIABLE in Draft Preview
-- EPSON: NOT VERIFIABLE in Draft Preview
-- Procurement Standards: PASS in Legacy fallback only
-- MVP Soccer Visibility: NOT VERIFIABLE as a Draft-specific effect
-- JSON-LD: PASS for fallback content; Draft-specific consistency NOT VERIFIABLE
-- Sitemap Impact: PASS for fallback output; Draft-specific impact NOT VERIFIABLE
-- GA4: FAIL on this Pages Preview
-- Remaining Issues: Rebuild with `sanity-preview` and the server-only read token, then repeat validation.
-
-## Authenticated Preview Revalidation
-
-- Revalidated at: `2026-07-29`
-- Commit: `01f2bcf230468fa660f0c74b627f466c4932477d`
-- Preview URL: `https://33b1a0d6.poxiol-site.pages.dev`
 - Environment: Cloudflare Pages Preview
-- Content Source: `sanity-preview`
-- Draft Data Source: Sanity `production` dataset, `drafts` perspective
-- Missing Variable: None
-- Missing Token: No. A Viewer-only secret is configured for Preview only.
-- Production Environment Changed: No
-- Build Log Error: None. Build and deploy stages reported success.
-- Build Evidence: 158 generation inputs/build routes, including previously absent CMS-only Draft article routes.
-- Deployment Result: Core HTML routes return the Next.js 404 shell; public static files such as `robots.txt` and `llms.txt` remain available.
+- Branch: `feature/content-sprint-1-safe-published-fixes`
+- Source commit: `0978c8d`
+- Static Preview implementation commit: `16a0e092916e48bc81d1e619a54f5c394fe46326`
+- Immutable URL: `https://00f11f97.poxiol-site.pages.dev`
+- Content source: `sanity-preview`
+- Sanity perspective: `drafts`
+- Authentication: server-only Viewer token
+- Production environment changed: no
+- Published Sanity documents changed during validation: `0`
 
-The build route table classifies the core App Router pages as dynamic (`ƒ`). The Preview client uses `cache: no-store`, while the project uses Next.js `output: export`. The authenticated Draft reads therefore make the pages dynamic and prevent their HTML from being emitted into the static `out/` deployment.
+## Pages tested
 
-This is an architecture incompatibility, not a missing Cloudflare variable or a failed Sanity authentication. Fixing it requires a separately approved code change to make the build-time Preview path compatible with static export. No such code change was made in this validation stage.
+All returned HTTP 200 and rendered successfully in headless Chrome:
 
-Current Draft Validation: **FAIL**
+- `/`
+- `/products/`
+- `/faq/`
+- `/manufacturing/`
+- `/guides/custom-teamwear-manufacturer-buying-guide/`
+- `/guides/teamwear-quality-control-checklist/`
+- `/guides/how-to-order-custom-basketball-uniforms/`
+- `/blog/soccer-jersey-buying-guide/`
+- `/resources/custom-teamwear-moq-production-time/`
+- `/sitemap.xml`
+- `/robots.txt`
+- `/llms.txt`
 
-Current Ready for Controlled Publish: **NO**
+## Content and risk validation
 
-## Current acceptance result (`33b1a0d6`)
+| Check | Result |
+| --- | --- |
+| `15-25 Days` absent from accepted scope | PASS |
+| `30,000+ units` absent from accepted scope | PASS |
+| `KIAN ink` absent from accepted scope | PASS |
+| `EPSON print heads` absent from accepted scope | PASS |
+| Sample MOQ is 1 set | PASS |
+| Sample production is 2-3 working days after mockup approval | PASS |
+| Bulk production is 7-12 working days after sample or artwork approval | PASS |
+| QC uses inspection before shipment | PASS |
+| Homepage size tolerance is +/-2 cm | PASS |
 
-| Check | Result | Evidence |
-| --- | --- | --- |
-| Immutable deployment identity | PASS | Cloudflare Pages Preview deployment matches commit `01f2bcf230468fa660f0c74b627f466c4932477d` |
-| Authenticated Draft build evidence | PASS | Build processed 158 generation inputs/build routes and discovered CMS-only Draft article routes |
-| `/` route availability | FAIL | HTTP 404; Next.js 404 shell |
-| `/products/` route availability | FAIL | HTTP 404; Next.js 404 shell |
-| `/faq/` route availability | FAIL | HTTP 404; Next.js 404 shell |
-| `/manufacturing/` route availability | FAIL | HTTP 404; Next.js 404 shell |
-| `/factory/` route availability | FAIL | HTTP 404; Next.js 404 shell |
-| Affected article route availability | FAIL | Tested Draft article routes return HTTP 404 |
-| `/sitemap.xml` | FAIL | HTTP 404; no current Preview sitemap can be validated |
-| `robots.txt` | PASS | HTTP 200, canonical sitemap present, no site-wide block |
-| `llms.txt` | PASS | HTTP 200 and non-empty |
-| Draft replacement rendering | NOT VERIFIABLE | Core rendered routes are unavailable |
-| `15–25 Days` risk removed in Draft Preview | NOT VERIFIABLE | Core rendered routes are unavailable |
-| `30,000+ units monthly` replacement | NOT VERIFIABLE | Core rendered routes are unavailable |
-| KIAN / EPSON replacement | NOT VERIFIABLE | Core rendered routes are unavailable |
-| Procurement Standards | NOT VERIFIABLE | Homepage is unavailable |
-| MVP Draft visibility fields effective | NOT VERIFIABLE | Core routes and sitemap are unavailable; 404 is not proof of selective suppression |
-| SEO / canonical / breadcrumb | NOT VERIFIABLE | Core rendered routes are unavailable |
-| FAQ visible/JSON-LD consistency | NOT VERIFIABLE | FAQ route is unavailable |
-| GA4 `G-W5YLNQ39X1` | NOT VERIFIABLE | Core rendered routes are unavailable |
-| Cloudflare Web Analytics | NOT VERIFIABLE | Core rendered routes are unavailable |
+The manufacturing Draft needed one additional revision-guarded correction.
+Only `drafts.67d89e7018894286` was patched; the Published revision was not
+modified.
 
-## Historical fallback deployment result (`f78487d4`)
+## MVP Soccer visibility
 
-The initial immutable Preview deployment returned HTTP 200 for the core routes, but its output was Legacy fallback. It is retained only as historical evidence that the previous Preview build did not consume Draft data. Its route, FAQ/JSON-LD, sitemap, contact-link and analytics observations are not the current acceptance result.
+| Surface | Result |
+| --- | --- |
+| Products list | PASS - test category absent |
+| Homepage | PASS - test category absent |
+| Navigation | PASS - test category absent |
+| Sitemap | PASS - no MVP document ID or MVP title |
+| JSON-LD | PASS - test category absent |
 
-## Historical procurement standards visible on homepage
+Legitimate public URLs containing `soccer-kits` remain in the sitemap; they
+are not the archived MVP category.
 
-The following Legacy-fallback values are present and internally consistent:
+## SEO and structured data
 
-- `Sample MOQ: 1 set.`
-- `Sample production: 2-3 working days after mockup approval.`
-- `Bulk production: 7-12 working days after sample or artwork approval.`
-- `Quality control: Inspection before shipment.`
-- `Size tolerance: +/-2 cm.`
-- `Mixed adult and youth sizes are supported.`
+- All five Batch 1 pages have a unique Title and Meta Description.
+- Existing URLs and Canonicals are preserved for the three upgraded articles.
+- The two new guide Canonicals use their approved new routes.
+- BreadcrumbList and Article JSON-LD are present on all five article pages.
+- Each page renders five visible related FAQs and five matching `FAQPage`
+  entries.
+- Homepage visible FAQ and JSON-LD match: 7 of 7.
+- FAQ page visible FAQ and JSON-LD match: 22 of 22.
+- No Draft-only URL is exposed through the Production sitemap.
+- Preview responses carry `X-Robots-Tag: noindex`.
 
-These checks validate the deployed fallback output only. They do not validate the reviewed Draft documents.
+## Browser and security checks
 
-## Historical affected article coverage
+- Nine page URLs rendered with Chrome Headless exit code 0.
+- No observed `TypeError`, `ReferenceError` or uncaught browser exception.
+- Preview HTML contains no `SANITY_READ_TOKEN` name.
+- Preview loads no GA4 or GTM, by fail-closed design.
+- Production continues to load GA4 `G-W5YLNQ39X1` once.
+- Production continues to load Cloudflare Web Analytics once.
 
-- Blog: `0/20` affected routes returned 200.
-- Guide/Resource: `10/15` affected routes returned 200.
-- Total: `10/35` returned 200; `25/35` returned 404.
-- The 10 successful routes are Legacy-known URLs and cannot prove Draft consumption.
+## Remaining gate
 
-## Decision
+Draft Preview acceptance: **PASS**
 
-**Preview acceptance: FAIL**
+Controlled Publish content gate: **PASS**
 
-**Controlled publish authorized by this validation: NO**
+Controlled Publish execution: **BLOCKED**
 
-The current Preview environment and Viewer-only token are correctly configured, and authenticated Draft reads are evidenced during the build. The remaining blocker is architectural: `cache: no-store` makes the App Router pages dynamic while the deployment requires static `output: export`. A separately approved static-export-compatible Preview implementation is required before repeating Draft-specific checks or publishing any of the 38 reviewed corrections.
+The static Preview implementation, Portable Text table/callout renderer,
+organization author schema handling and category visibility corrections are
+not yet present in `main`. Publishing before those code changes are reviewed,
+checked, merged and deployed could produce degraded Production rendering.

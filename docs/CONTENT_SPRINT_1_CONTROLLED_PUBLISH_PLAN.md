@@ -1,9 +1,9 @@
 # POXIOL Controlled Publish Plan
 
-Status: **PENDING PREVIEW REVALIDATION AND CODE INTEGRATION**
+Status: **PREVIEW PASSED; CODE INTEGRATION REQUIRED BEFORE PUBLISH**
 
 This plan records the exact, reversible publication order for the reviewed
-Draft content. It does not authorize publication by itself.
+Draft content. It does not authorize publication before the code gate.
 
 ## Safety baseline
 
@@ -16,6 +16,8 @@ Draft content. It does not authorize publication by itself.
   `253d07c9bb3303cdce0c0022c0adb30362365130d3b3d45ff4e713b9dcaa68a2`
 - Revision Guard and mutation dry-run: completed for the original Batch 1
   document set.
+- Accepted immutable Preview:
+  `https://00f11f97.poxiol-site.pages.dev`
 - Published documents changed so far: `0`
 
 ## Document plan
@@ -31,30 +33,36 @@ Draft content. It does not authorize publication by itself.
 | 7 | `drafts.article.custom-teamwear-manufacturer-buying-guide` | New article document | No published document | Manufacturer selection guide | Add a broad supplier-evaluation asset without duplicating product-specific intent | Unpublish the new article; no existing URL is replaced |
 | 8 | `drafts.article.teamwear-quality-control-checklist` | New article document | No published document | Teamwear quality-control checklist | Add a quality-assurance asset without unsupported claims | Unpublish the new article; no existing URL is replaced |
 
-## Required gates
+## Passed gates
 
-1. The immutable Cloudflare Pages Preview must render all five article routes.
-2. The Preview must contain no `15-25 Days`, `30,000+ units`, `KIAN ink` or
-   `EPSON print heads` on the validated scope.
-3. Visible FAQ content and `FAQPage` JSON-LD must match.
-4. Title, Meta Description, Canonical, Breadcrumb and Article JSON-LD must
-   pass for each article.
-5. The MVP Soccer category must be absent from Products, homepage
-   recommendations, sitemap and JSON-LD.
-6. The static Preview implementation and Portable Text renderer must be
-   reviewed, checked and integrated into `main` before publication.
-7. Production must remain static export using the Published perspective.
+- Five article routes render from authenticated Draft data.
+- Required procurement values are correct.
+- Risk terms are absent from the accepted Preview scope.
+- Visible FAQ and FAQPage JSON-LD match.
+- Title, Meta Description, Canonical, Breadcrumb and Article JSON-LD pass.
+- The archived MVP Soccer category is absent from Products, homepage,
+  navigation, sitemap and JSON-LD.
+- Preview browser output contains no server token.
+- Production GA4 remains unchanged.
+
+## Remaining gate
+
+Before any publish:
+
+1. review and merge the static Preview, Portable Text, author schema and
+   category visibility code into `main`;
+2. wait for required checks;
+3. deploy that approved Production commit;
+4. re-read every target Draft revision and abort on a mismatch.
 
 ## Publish order and verification
 
-1. Re-read every target revision and abort on any revision mismatch.
-2. Publish the manufacturing safety correction.
-3. Publish the two team author documents.
-4. Publish the three existing URL upgrades one at a time.
-5. Publish the two new guides one at a time.
-6. Trigger the approved Production build only after the corresponding code is
-   present in `main`.
-7. Verify routes, sitemap, JSON-LD, GA4 and contact links after every stage.
+1. Publish the manufacturing safety correction.
+2. Publish the two team author documents.
+3. Publish the three existing URL upgrades one at a time.
+4. Publish the two new guides one at a time.
+5. Trigger the approved Production build.
+6. Verify each public route, sitemap, JSON-LD, GA4 and contact links.
 
 No bulk publish, document deletion, asset upload, Seed or Dataset Import is
 allowed.
