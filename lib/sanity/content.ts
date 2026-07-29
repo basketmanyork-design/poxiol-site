@@ -1,6 +1,6 @@
 import 'server-only'
 
-import type {SportsPageData} from '@/lib/sports-pages'
+import {sportsPages, type SportsPageData} from '@/lib/sports-pages'
 import {sportsCategories, uspCards, homeFaqs} from '@/lib/home-data'
 import {
   legacyArticles,
@@ -32,7 +32,7 @@ import type {
 import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
-import {legacyProductsWhenCategoryVisibilityFails} from '@/lib/cms/category-visibility'
+import {resolveProductsForCategoryVisibility} from '@/lib/cms/category-visibility'
 import {resolveContent} from './fallback'
 import {cardImageUrl, getImageUrl, heroImageUrl} from './image'
 import {
@@ -487,6 +487,26 @@ function mapLink(link: SanityLink | undefined): CmsLink | null {
   return {label: link.label, href, openInNewWindow: link.openInNewWindow}
 }
 
+const exportedCategorySlugs = new Set(sportsPages.map((page) => page.slug.replace(/^products\//, '')))
+
+function categorySlugFromNavigationHref(href: string): string | null {
+  const path = href.split(/[?#]/, 1)[0]
+  return path.match(/^\/products\/([^/]+)\/?$/)?.[1] || null
+}
+
+function filterCategoryNavigationLinks(links: CmsLink[], resolution: ProductCategoriesResolution): CmsLink[] {
+  if (!resolution.visibilityResolved) return links
+  const visibleNavigationSlugs = new Set(
+    resolution.categories
+      .filter((category) => category.navigationVisibility !== false)
+      .map((category) => category.slug),
+  )
+  return links.filter((link) => {
+    const slug = categorySlugFromNavigationHref(link.href)
+    return !slug || (exportedCategorySlugs.has(slug) && visibleNavigationSlugs.has(slug))
+  })
+}
+
 function mapRelated(docs: RelatedDoc[] | undefined, basePath: string): CmsLink[] {
   return (docs || [])
     .map((doc) => {
@@ -540,13 +560,14 @@ function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
 
 export async function getSiteChrome(): Promise<CmsSiteChrome> {
   if (contentSource === 'legacy') return legacySiteChrome
-  const [settingsResponse, navResponse, footerResponse] = await Promise.all([
+  const [settingsResponse, navResponse, footerResponse, categoryResolution] = await Promise.all([
     sanityQuery<SanitySiteSettings>(siteSettingsQuery),
     sanityQuery<SanityNav>(navigationQuery),
     sanityQuery<SanityFooter>(footerQuery),
+    resolveProductCategories(),
   ])
 
-  if (!settingsResponse.ok && !navResponse.ok && !footerResponse.ok) return legacySiteChrome
+  if (!settingsResponse.ok && !navResponse.ok && !footerResponse.ok && !categoryResolution.visibilityResolved) return legacySiteChrome
 
   const settings = settingsResponse.ok ? settingsResponse.result : null
   const nav = navResponse.ok ? navResponse.result : null
@@ -555,6 +576,15 @@ export async function getSiteChrome(): Promise<CmsSiteChrome> {
   const whatsappNumber = settings?.contactInfo?.whatsappNumber || legacySiteChrome.whatsappNumber
   const whatsappMessage = settings?.contactInfo?.whatsappMessage || legacySiteChrome.whatsappMessage
   const digits = whatsappNumber.replace(/\D/g, '')
+  const headerLinks = nav?.headerNavigation?.length
+    ? nav.headerNavigation.map(mapLink).filter(Boolean) as CmsLink[]
+    : legacySiteChrome.headerNavigation
+  const footerColumns = footer?.footerColumns?.length
+    ? footer.footerColumns.map((column) => ({
+        title: column.title || 'Links',
+        links: (column.links || []).map(mapLink).filter(Boolean) as CmsLink[],
+      }))
+    : legacySiteChrome.footerColumns
 
   return {
     ...legacySiteChrome,
@@ -567,15 +597,8 @@ export async function getSiteChrome(): Promise<CmsSiteChrome> {
     whatsappMessage,
     whatsappHref: digits ? 'https://wa.me/' + digits + '?text=' + encodeURIComponent(whatsappMessage) : legacySiteChrome.whatsappHref,
     alibabaStoreUrl: settings?.contactInfo?.alibabaStoreUrl || legacySiteChrome.alibabaStoreUrl,
-    headerNavigation: nav?.headerNavigation?.length
-      ? nav.headerNavigation.map(mapLink).filter(Boolean) as CmsLink[]
-      : legacySiteChrome.headerNavigation,
-    footerColumns: footer?.footerColumns?.length
-      ? footer.footerColumns.map((column) => ({
-          title: column.title || 'Links',
-          links: (column.links || []).map(mapLink).filter(Boolean) as CmsLink[],
-        }))
-      : legacySiteChrome.footerColumns,
+    headerNavigation: filterCategoryNavigationLinks(headerLinks, categoryResolution),
+    footerColumns: footerColumns.map((column) => ({...column, links: filterCategoryNavigationLinks(column.links, categoryResolution)})),
     copyright: footer?.copyright || settings?.footer?.copyright || legacySiteChrome.copyright,
     address: settings?.contactInfo?.companyAddress || settings?.footer?.address || legacySiteChrome.address,
   }
@@ -682,9 +705,7 @@ export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> 
   const visibleCategorySlugs = new Set(categoryResolution.categories.map((category) => category.slug))
   const legacy = categorySlug ? legacyProducts.filter((product) => product.categorySlug === categorySlug) : legacyProducts
   const response = await sanityQuery<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
-  const fallbackProducts = legacyProductsWhenCategoryVisibilityFails(categoryResolution.visibilityResolved, legacy)
-  if (fallbackProducts) return fallbackProducts
-  return mergeCmsList({
+  return resolveProductsForCategoryVisibility(categoryResolution.visibilityResolved, legacy, () => mergeCmsList({
     legacy: legacy.filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug)),
     cms: response.ok ? response.result || [] : [],
     sourceState: queryState(response),
@@ -693,7 +714,7 @@ export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> 
     mapCms: (product, fallback, index) => mapProduct(product, fallback || legacyProducts.find((item) => item.slug === product.slug), index),
   })
     .filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug))
-    .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+    .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999)))
 }
 
 export async function getProduct(slug: string): Promise<CmsProduct | null> {
@@ -872,7 +893,7 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
   const {category} = resolution
 
 
-  if (!category) return legacyData
+  if (!category) return getCmsListMode() === 'strict' ? null : legacyData
   const matchedFaqs = await getMatchedFaqsForProductCategory(categorySlug, category.relatedFaqs?.length ? category.relatedFaqs : legacyData.faqs, category.title)
   const productCards = products.map((product) => ({title: product.title, description: product.description}))
   const designs = products
