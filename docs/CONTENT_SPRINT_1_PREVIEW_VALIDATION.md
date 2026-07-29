@@ -1,6 +1,6 @@
 # Content Sprint 1 Preview Validation
 
-## Validation target
+## Initial validation target (historical)
 
 - Verified at: `2026-07-29 22:29:19 +08:00`
 - Commit: `90f65281c1d5e1dee7b6985e353097f1ddd24cf2`
@@ -8,7 +8,7 @@
 - Mode evidenced by output: Legacy fallback
 - Sanity writes: `0`
 - Published documents changed: `0`
-## Required acceptance fields
+## Initial fallback observations (historical)
 
 - Preview Method: Cloudflare Pages branch static export
 - Preview URL: `https://f78487d4.poxiol-site.pages.dev`
@@ -29,34 +29,60 @@
 - GA4: FAIL on this Pages Preview
 - Remaining Issues: Rebuild with `sanity-preview` and the server-only read token, then repeat validation.
 
-## Result summary
+## Authenticated Preview Revalidation
+
+- Revalidated at: `2026-07-29`
+- Commit: `01f2bcf230468fa660f0c74b627f466c4932477d`
+- Preview URL: `https://33b1a0d6.poxiol-site.pages.dev`
+- Environment: Cloudflare Pages Preview
+- Content Source: `sanity-preview`
+- Draft Data Source: Sanity `production` dataset, `drafts` perspective
+- Missing Variable: None
+- Missing Token: No. A Viewer-only secret is configured for Preview only.
+- Production Environment Changed: No
+- Build Log Error: None. Build and deploy stages reported success.
+- Build Evidence: 158 generation inputs/build routes, including previously absent CMS-only Draft article routes.
+- Deployment Result: Core HTML routes return the Next.js 404 shell; public static files such as `robots.txt` and `llms.txt` remain available.
+
+The build route table classifies the core App Router pages as dynamic (`ƒ`). The Preview client uses `cache: no-store`, while the project uses Next.js `output: export`. The authenticated Draft reads therefore make the pages dynamic and prevent their HTML from being emitted into the static `out/` deployment.
+
+This is an architecture incompatibility, not a missing Cloudflare variable or a failed Sanity authentication. Fixing it requires a separately approved code change to make the build-time Preview path compatible with static export. No such code change was made in this validation stage.
+
+Current Draft Validation: **FAIL**
+
+Current Ready for Controlled Publish: **NO**
+
+## Current acceptance result (`33b1a0d6`)
 
 | Check | Result | Evidence |
 | --- | --- | --- |
-| Immutable deployment identity | PASS | Cloudflare Pages Check Run and exact commit match |
-| `/` route availability | PASS | HTTP 200; Draft rendering remains NOT VERIFIABLE |
-| `/products/` route availability | PASS | HTTP 200; Draft rendering remains NOT VERIFIABLE |
-| `/faq/` route availability | PASS | HTTP 200; Draft rendering remains NOT VERIFIABLE |
-| `/manufacturing/` route availability | PASS | HTTP 200; Draft rendering remains NOT VERIFIABLE |
-| `/factory/` route availability | PASS | HTTP 200; Draft rendering remains NOT VERIFIABLE |
-| MVP Draft visibility fields effective | NOT VERIFIABLE | HTTP 404 is also explained by Legacy fallback |
-| Authoritative `/products/soccer-jerseys/` | PASS | HTTP 200 |
-| Draft article route coverage | FAIL | 25 of 35 affected routes return 404; the remaining 10 are Legacy-known routes |
-| Draft replacement rendering | FAIL | Output follows Legacy fallback; Draft data is not verifiably consumed |
-| `15-25 Days` risk removed in Draft Preview | NOT VERIFIABLE | No old phrase is visible, but Draft content is not loaded |
-| `30,000+ units monthly` replacement | NOT VERIFIABLE | `/factory/` uses Legacy metadata, not the reviewed Draft |
-| KIAN / EPSON replacement | NOT VERIFIABLE | The affected Draft FAQ is not rendered; absence is fallback, not proof |
-| Sitemap excludes Draft/Preview URLs | PASS | 65 URLs; zero `draft`/`preview` URLs |
-| MVP Draft sitemap suppression effective | NOT VERIFIABLE | Zero entries in fallback output does not prove Draft fields were consumed |
+| Immutable deployment identity | PASS | Cloudflare Pages Preview deployment matches commit `01f2bcf230468fa660f0c74b627f466c4932477d` |
+| Authenticated Draft build evidence | PASS | Build processed 158 generation inputs/build routes and discovered CMS-only Draft article routes |
+| `/` route availability | FAIL | HTTP 404; Next.js 404 shell |
+| `/products/` route availability | FAIL | HTTP 404; Next.js 404 shell |
+| `/faq/` route availability | FAIL | HTTP 404; Next.js 404 shell |
+| `/manufacturing/` route availability | FAIL | HTTP 404; Next.js 404 shell |
+| `/factory/` route availability | FAIL | HTTP 404; Next.js 404 shell |
+| Affected article route availability | FAIL | Tested Draft article routes return HTTP 404 |
+| `/sitemap.xml` | FAIL | HTTP 404; no current Preview sitemap can be validated |
 | `robots.txt` | PASS | HTTP 200, canonical sitemap present, no site-wide block |
 | `llms.txt` | PASS | HTTP 200 and non-empty |
-| FAQ visible/JSON-LD consistency | PASS | 22 FAQ entities; every question and answer is present visibly |
-| Homepage FAQ visible/JSON-LD consistency | PASS | 7 FAQ entities; every question and answer is present visibly |
-| Static email and WhatsApp paths | PASS | `mailto:` and `wa.me` present on tested core pages |
-| GA4 `G-W5YLNQ39X1` | FAIL | Headless Chrome after hydration found neither the ID nor the gtag loader |
-| Cloudflare Web Analytics | NOT VERIFIABLE | No beacon found on the Pages Preview; production behavior was not inferred |
+| Draft replacement rendering | NOT VERIFIABLE | Core rendered routes are unavailable |
+| `15–25 Days` risk removed in Draft Preview | NOT VERIFIABLE | Core rendered routes are unavailable |
+| `30,000+ units monthly` replacement | NOT VERIFIABLE | Core rendered routes are unavailable |
+| KIAN / EPSON replacement | NOT VERIFIABLE | Core rendered routes are unavailable |
+| Procurement Standards | NOT VERIFIABLE | Homepage is unavailable |
+| MVP Draft visibility fields effective | NOT VERIFIABLE | Core routes and sitemap are unavailable; 404 is not proof of selective suppression |
+| SEO / canonical / breadcrumb | NOT VERIFIABLE | Core rendered routes are unavailable |
+| FAQ visible/JSON-LD consistency | NOT VERIFIABLE | FAQ route is unavailable |
+| GA4 `G-W5YLNQ39X1` | NOT VERIFIABLE | Core rendered routes are unavailable |
+| Cloudflare Web Analytics | NOT VERIFIABLE | Core rendered routes are unavailable |
 
-## Procurement standards visible on homepage
+## Historical fallback deployment result (`f78487d4`)
+
+The initial immutable Preview deployment returned HTTP 200 for the core routes, but its output was Legacy fallback. It is retained only as historical evidence that the previous Preview build did not consume Draft data. Its route, FAQ/JSON-LD, sitemap, contact-link and analytics observations are not the current acceptance result.
+
+## Historical procurement standards visible on homepage
 
 The following Legacy-fallback values are present and internally consistent:
 
@@ -69,7 +95,7 @@ The following Legacy-fallback values are present and internally consistent:
 
 These checks validate the deployed fallback output only. They do not validate the reviewed Draft documents.
 
-## Affected article coverage
+## Historical affected article coverage
 
 - Blog: `0/20` affected routes returned 200.
 - Guide/Resource: `10/15` affected routes returned 200.
@@ -82,4 +108,4 @@ These checks validate the deployed fallback output only. They do not validate th
 
 **Controlled publish authorized by this validation: NO**
 
-The deployment is healthy as a static Legacy fallback, but it is not a valid Draft Preview. Configure/recheck the branch Preview build environment, rebuild the same branch, and repeat all Draft-specific checks before publishing any of the 38 reviewed corrections.
+The current Preview environment and Viewer-only token are correctly configured, and authenticated Draft reads are evidenced during the build. The remaining blocker is architectural: `cache: no-store` makes the App Router pages dynamic while the deployment requires static `output: export`. A separately approved static-export-compatible Preview implementation is required before repeating Draft-specific checks or publishing any of the 38 reviewed corrections.

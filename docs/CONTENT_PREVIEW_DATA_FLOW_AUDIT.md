@@ -57,9 +57,9 @@ Do not create `NEXT_PUBLIC_SANITY_READ_TOKEN`.
 - `NEXT_PUBLIC_CONTENT_SOURCE=sanity` or leave it unset to use the default.
 - Production does not require and should not receive `SANITY_READ_TOKEN`.
 
-## Current Missing Configuration
+## Initial missing configuration (historical)
 
-The verified branch deployment at `https://f78487d4.poxiol-site.pages.dev` used Legacy fallback rather than Draft data.
+The initial verified branch deployment at `https://f78487d4.poxiol-site.pages.dev` used Legacy fallback rather than Draft data.
 
 The repository Preview client is already correctly configured. The missing or invalid state is in the Cloudflare Pages Preview build environment:
 
@@ -82,7 +82,9 @@ Authenticated Cloudflare project inspection confirmed:
 
 Sanity token metadata showed no Viewer token existed. A new Viewer-only token labelled `POXIOL Cloudflare Preview Read 2026-07-29` was created and written directly to the existing Cloudflare Preview secret key. Its value was never printed, saved to a file, or committed.
 
-The first Cloudflare retry using the new secret completed all build and deploy stages successfully. Its build generated 158 static pages and included previously absent CMS-only Draft article routes. However, the retry deployment URL returned the Next.js 404 shell and the branch alias remained on the preceding deployment. That retry is not accepted as a usable Preview. A normal Git-triggered Preview rebuild is required before Draft validation can continue.
+The first Cloudflare retry using the new secret completed all build and deploy stages successfully. Its build processed 158 generation inputs/build routes and included previously absent CMS-only Draft article routes. However, the retry deployment URL returned the Next.js 404 shell and the branch alias remained on the preceding deployment. That retry is historical evidence only and is not accepted as a usable Preview.
+
+A subsequent normal Git-triggered Preview build for commit `01f2bcf230468fa660f0c74b627f466c4932477d` deployed to `https://33b1a0d6.poxiol-site.pages.dev`. Cloudflare reported successful build and deploy stages, but the core HTML routes and `sitemap.xml` returned the Next.js 404 shell. This is the current acceptance target and it failed Draft Preview validation.
 ## Client and Bundle Safety
 
 - `lib/sanity/client.ts` imports `server-only`.
@@ -97,7 +99,7 @@ The first Cloudflare retry using the new secret completed all build and deploy s
 - Production Data Source: Published Sanity.
 - Preview Data Source: Authenticated Sanity Drafts during a Cloudflare Preview build.
 - Fallback Data Source: Repository Legacy content.
-- Current Preview Result: Draft build generation restored; usable Preview URL still pending.
-- Code change required: No.
+- Current Preview Result: Authenticated Draft reads confirmed, but `cache: no-store` makes App Router pages dynamic and incompatible with the static `output: export` deployment.
+- Code change required: Yes, but it requires separate approval because it is outside the resolver-only modification boundary for this stage.
 - Cloudflare Preview configuration required: Completed without changing Production.
 - Controlled Publish ready: No.
