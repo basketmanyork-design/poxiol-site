@@ -68,6 +68,21 @@ The repository Preview client is already correctly configured. The missing or in
 
 The public deployment cannot reveal Cloudflare environment values, so these possibilities cannot be distinguished without authenticated Cloudflare project access.
 
+## Authenticated Preview Environment Follow-up
+
+Authenticated Cloudflare project inspection confirmed:
+
+- Project: `poxiol-site`.
+- Production branch: `main`.
+- Preview content source: `sanity-preview`.
+- Preview project and dataset: `oqpv1xbc` / `production`.
+- Preview secret key: `SANITY_READ_TOKEN`, stored as `secret_text`.
+- Production content source: `sanity`.
+- Production `SANITY_READ_TOKEN`: absent.
+
+Sanity token metadata showed no Viewer token existed. A new Viewer-only token labelled `POXIOL Cloudflare Preview Read 2026-07-29` was created and written directly to the existing Cloudflare Preview secret key. Its value was never printed, saved to a file, or committed.
+
+The first Cloudflare retry using the new secret completed all build and deploy stages successfully. Its build generated 158 static pages and included previously absent CMS-only Draft article routes. However, the retry deployment URL returned the Next.js 404 shell and the branch alias remained on the preceding deployment. That retry is not accepted as a usable Preview. A normal Git-triggered Preview rebuild is required before Draft validation can continue.
 ## Client and Bundle Safety
 
 - `lib/sanity/client.ts` imports `server-only`.
@@ -82,7 +97,7 @@ The public deployment cannot reveal Cloudflare environment values, so these poss
 - Production Data Source: Published Sanity.
 - Preview Data Source: Authenticated Sanity Drafts during a Cloudflare Preview build.
 - Fallback Data Source: Repository Legacy content.
-- Current Preview Result: Legacy fallback.
+- Current Preview Result: Draft build generation restored; usable Preview URL still pending.
 - Code change required: No.
-- Cloudflare Preview configuration required: Yes.
+- Cloudflare Preview configuration required: Completed without changing Production.
 - Controlled Publish ready: No.
