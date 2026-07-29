@@ -170,7 +170,8 @@ type SanityCategory = {
   relatedGuides?: RelatedDoc[]
   navigationVisibility?: boolean
   homepageVisibility?: boolean
-  activeStatus?: string
+  showOnHomepage?: boolean
+  activeStatus?: boolean | 'inactive'
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
@@ -390,10 +391,10 @@ function mapCategory(category: SanityCategory, fallback: CmsProductCategory | un
     relatedCaseStudies: mapRelated(category.relatedCaseStudies, '/projects/').length ? mapRelated(category.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies,
     relatedGuides: mapArticleRelated(category.relatedGuides).length ? mapArticleRelated(category.relatedGuides) : fallback?.relatedGuides,
     navigationVisibility: category.navigationVisibility ?? fallback?.navigationVisibility,
-    homepageVisibility: category.homepageVisibility ?? fallback?.homepageVisibility,
+    homepageVisibility: category.homepageVisibility ?? category.showOnHomepage ?? fallback?.homepageVisibility,
     seo: seoFrom(category.seo, fallback?.seo || {title: category.categoryName + ' | POXIOL', description: category.heroDescription || category.introduction || category.categoryName}),
     displayOrder: category.displayOrder ?? fallback?.displayOrder ?? index,
-    active: category.activeStatus !== 'inactive',
+    active: category.activeStatus !== false && category.activeStatus !== 'inactive',
   }
 }
 
@@ -631,13 +632,15 @@ export async function getProductCategories(): Promise<CmsProductCategory[]> {
     mode: getCmsListMode(),
     contentSource,
     mapCms: (category, fallback, index) => mapCategory(category, fallback, index),
-  }).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+  })
+    .filter((category) => category.active)
+    .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
 
 export async function getProductCategory(slug: string): Promise<CmsProductCategory | null> {
   const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
   const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug})
-  return resolveSingle({
+  const category = resolveSingle({
     slug,
     legacy: fallback,
     cms: response.ok ? response.result : null,
@@ -646,6 +649,7 @@ export async function getProductCategory(slug: string): Promise<CmsProductCatego
     contentSource,
     mapCms: (category, itemFallback) => mapCategory(category, itemFallback),
   })
+  return category?.active ? category : null
 }
 
 export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> {
@@ -944,7 +948,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     getFaqGroups(),
     sanityQuery<SanityProcurementStandards>(procurementStandardsQuery),
   ])
-  const cmsCategories = categories.slice(0, 12).map((category) => ({
+  const cmsCategories = categories.filter((category) => category.homepageVisibility !== false).slice(0, 12).map((category) => ({
     title: category.title,
     description: category.description,
     cta: `View ${category.title}`,
