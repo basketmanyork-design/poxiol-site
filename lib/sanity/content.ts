@@ -32,6 +32,7 @@ import type {
 import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
+import {legacyProductsWhenCategoryVisibilityFails} from '@/lib/cms/category-visibility'
 import {resolveContent} from './fallback'
 import {cardImageUrl, getImageUrl, heroImageUrl} from './image'
 import {
@@ -623,9 +624,11 @@ export async function getSitePage(key: string): Promise<CmsPage> {
   } as CmsPage
 }
 
-export async function getProductCategories(): Promise<CmsProductCategory[]> {
+type ProductCategoriesResolution = {categories: CmsProductCategory[]; visibilityResolved: boolean}
+
+async function resolveProductCategories(): Promise<ProductCategoriesResolution> {
   const response = await sanityQuery<SanityCategory[]>(productCategoriesQuery)
-  return mergeCmsList({
+  const categories = mergeCmsList({
     legacy: legacyProductCategories,
     cms: response.ok ? response.result || [] : [],
     sourceState: queryState(response),
@@ -635,6 +638,11 @@ export async function getProductCategories(): Promise<CmsProductCategory[]> {
   })
     .filter((category) => category.active)
     .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+  return {categories, visibilityResolved: response.ok || contentSource === 'legacy'}
+}
+
+export async function getProductCategories(): Promise<CmsProductCategory[]> {
+  return (await resolveProductCategories()).categories
 }
 
 export async function getProductCategory(slug: string): Promise<CmsProductCategory | null> {
@@ -670,10 +678,12 @@ async function resolveProductCategory(slug: string): Promise<ProductCategoryReso
 }
 
 export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> {
-  const categories = await getProductCategories()
-  const visibleCategorySlugs = new Set(categories.map((category) => category.slug))
+  const categoryResolution = await resolveProductCategories()
+  const visibleCategorySlugs = new Set(categoryResolution.categories.map((category) => category.slug))
   const legacy = categorySlug ? legacyProducts.filter((product) => product.categorySlug === categorySlug) : legacyProducts
   const response = await sanityQuery<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
+  const fallbackProducts = legacyProductsWhenCategoryVisibilityFails(categoryResolution.visibilityResolved, legacy)
+  if (fallbackProducts) return fallbackProducts
   return mergeCmsList({
     legacy: legacy.filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug)),
     cms: response.ok ? response.result || [] : [],
@@ -688,8 +698,9 @@ export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> 
 
 export async function getProduct(slug: string): Promise<CmsProduct | null> {
   const fallback = legacyProducts.find((product) => product.slug === slug) || null
-  const categories = await getProductCategories()
+  const categoryResolution = await resolveProductCategories()
   const response = await sanityQuery<SanityProduct>(productBySlugQuery, {slug})
+  if (!categoryResolution.visibilityResolved) return fallback
   const product = resolveSingle({
     slug,
     legacy: fallback,
@@ -699,7 +710,7 @@ export async function getProduct(slug: string): Promise<CmsProduct | null> {
     contentSource,
     mapCms: (product, itemFallback) => mapProduct(product, itemFallback),
   })
-  if (product?.categorySlug && !categories.some((category) => category.slug === product.categorySlug)) return null
+  if (product?.categorySlug && !categoryResolution.categories.some((category) => category.slug === product.categorySlug)) return null
   return product
 }
 
@@ -854,7 +865,10 @@ export async function getMatchedFaqsForProduct(productSlug: string, fallback: Cm
 export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData | null> {
   const categorySlug = legacyData.slug.replace(/^products\//, '')
   const [resolution, products] = await Promise.all([resolveProductCategory(categorySlug), getProducts(categorySlug)])
-  if (resolution.suppressed) return null
+  if (resolution.suppressed) {
+    if (getCmsListMode() === 'strict') return null
+    return {...legacyData, noIndex: true}
+  }
   const {category} = resolution
 
 

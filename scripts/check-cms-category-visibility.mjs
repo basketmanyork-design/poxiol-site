@@ -1,26 +1,25 @@
 import assert from 'node:assert/strict'
+import {existsSync, readFileSync, rmSync} from 'node:fs'
+import {fileURLToPath} from 'node:url'
 import {createServer} from 'node:http'
-import {spawn} from 'node:child_process'
 import {once} from 'node:events'
+import {spawn} from 'node:child_process'
+
+const root = fileURLToPath(new URL('..', import.meta.url))
+const output = (path) => new URL(`../out/${path}`, import.meta.url)
 
 const categories = {
-  'basketball-uniforms': {
-    categoryName: 'Hidden Basketball', shortName: 'Basketball', slug: 'basketball-uniforms', heroDescription: 'Hidden category',
-    activeStatus: false, publishStatus: 'unpublished', navigationVisibility: false, homepageVisibility: false, showOnHomepage: false,
-    seo: {seoTitle: 'Hidden Basketball', metaDescription: 'Hidden category', indexStatus: 'noindex'},
-  },
-  'soccer-jerseys': {
-    categoryName: 'Soccer Jerseys', shortName: 'Soccer', slug: 'soccer-jerseys', heroDescription: 'Active category',
-    activeStatus: true, publishStatus: 'published', navigationVisibility: true, homepageVisibility: true,
-    seo: {seoTitle: 'Soccer Jerseys', metaDescription: 'Active category', indexStatus: 'noindex'},
-  },
+  'basketball-uniforms': {categoryName: 'Hidden Basketball', slug: 'basketball-uniforms', activeStatus: false, publishStatus: 'unpublished', navigationVisibility: false, homepageVisibility: false, seo: {seoTitle: 'Hidden Basketball', metaDescription: 'Hidden', indexStatus: 'noindex'}},
+  'soccer-jerseys': {categoryName: 'Soccer Jerseys', slug: 'soccer-jerseys', activeStatus: true, publishStatus: 'published', navigationVisibility: true, homepageVisibility: true, seo: {seoTitle: 'Soccer Jerseys', metaDescription: 'Active', indexStatus: 'index'}},
+  'soccer-kits': {categoryName: 'MVP Soccer Kits', slug: 'soccer-kits', activeStatus: false, publishStatus: 'unpublished', navigationVisibility: false, homepageVisibility: false, seo: {seoTitle: 'MVP Soccer Kits', metaDescription: 'Hidden MVP', indexStatus: 'noindex'}},
 }
-
-const hiddenProduct = {
-  productName: 'Hidden Basketball Jersey', slug: 'basketball-uniforms-1', categorySlug: 'basketball-uniforms', categoryTitle: 'Hidden Basketball',
-  shortDescription: 'Must not render', fullDescription: 'Must not render', publishStatus: 'published', displayOrder: 1,
-  seo: {seoTitle: 'Hidden Basketball Jersey', metaDescription: 'Must not render'},
-}
+const cmsBasketballProduct = {productName: 'Fixture CMS Basketball Product', slug: 'basketball-uniforms-1', categorySlug: 'basketball-uniforms', categoryTitle: 'Hidden Basketball', shortDescription: 'Hidden', fullDescription: 'Hidden', publishStatus: 'published', displayOrder: 1, seo: {seoTitle: 'Hidden', metaDescription: 'Hidden'}}
+const mvpProduct = {productName: 'Fixture MVP Product', slug: 'fixture-mvp-product', categorySlug: 'soccer-kits', categoryTitle: 'MVP Soccer Kits', shortDescription: 'Hidden', fullDescription: 'Hidden', publishStatus: 'published', displayOrder: 2, seo: {seoTitle: 'Hidden', metaDescription: 'Hidden'}}
+const articles = [
+  {title: 'Fixture Blog', slug: 'fixture-blog', excerpt: 'Fixture article', articleType: 'blog', body: [], publishStatus: 'published', displayOrder: 1},
+  {title: 'Fixture Resource', slug: 'fixture-resource', excerpt: 'Fixture article', articleType: 'resource', body: [], publishStatus: 'published', displayOrder: 2},
+  {title: 'Fixture Guide', slug: 'fixture-guide', excerpt: 'Fixture article', articleType: 'guide', body: [], publishStatus: 'published', displayOrder: 3},
+]
 
 const fixture = createServer((request, response) => {
   const url = new URL(request.url, 'http://127.0.0.1')
@@ -28,68 +27,55 @@ const fixture = createServer((request, response) => {
   const slug = JSON.parse(url.searchParams.get('$slug') || 'null')
   const categorySlug = JSON.parse(url.searchParams.get('$categorySlug') || 'null')
   let result = null
-
-  if (query.includes('_type == "productCategory"')) {
-    result = query.includes('slug.current == $slug') ? categories[slug] || null : Object.values(categories)
-  } else if (query.includes('_type == "product"')) {
-    if (query.includes('slug.current == $slug')) result = slug === hiddenProduct.slug ? hiddenProduct : null
-    else if (query.includes('category->slug.current == $categorySlug')) result = categorySlug === 'basketball-uniforms' ? [hiddenProduct] : []
-    else result = [hiddenProduct]
-  }
-
+  if (query.includes('_type == "productCategory"')) result = query.includes('slug.current == $slug') ? categories[slug] || null : Object.values(categories)
+  else if (query.includes('_type == "product"')) {
+    if (query.includes('slug.current == $slug')) result = slug === cmsBasketballProduct.slug ? cmsBasketballProduct : slug === mvpProduct.slug ? mvpProduct : null
+    else if (query.includes('category->slug.current == $categorySlug')) result = categorySlug === 'basketball-uniforms' ? [cmsBasketballProduct] : categorySlug === 'soccer-kits' ? [mvpProduct] : []
+    else result = [cmsBasketballProduct, mvpProduct]
+  } else if (query.includes('_type == "article"')) result = query.includes('slug.current == $slug') ? articles.find((article) => article.slug === slug) || null : articles
   response.setHeader('content-type', 'application/json')
   response.end(JSON.stringify({result}))
 })
 
-await new Promise((resolve) => fixture.listen(0, '127.0.0.1', resolve))
-const fixturePort = fixture.address().port
-const appPort = fixturePort + 1
-const app = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'dev', '-p', String(appPort)], {
-  env: {...process.env, NEXT_PUBLIC_CONTENT_SOURCE: 'sanity', SANITY_API_BASE_URL: `http://127.0.0.1:${fixturePort}`},
-  stdio: ['ignore', 'pipe', 'pipe'],
-})
-let appOutput = ''
-app.stdout.on('data', (chunk) => { appOutput += chunk })
-app.stderr.on('data', (chunk) => { appOutput += chunk })
-
-async function get(pathname) {
-  let lastError
-  for (let attempt = 0; attempt < 80; attempt += 1) {
-    try {
-      const response = await fetch(`http://127.0.0.1:${appPort}${pathname}`)
-      if (response.status < 500) return {status: response.status, body: await response.text()}
-      lastError = new Error(`HTTP ${response.status}`)
-    } catch (error) {
-      lastError = error
-    }
-    await new Promise((resolve) => setTimeout(resolve, 250))
-  }
-  throw new Error(`Next fixture did not respond: ${lastError}\n${appOutput}`)
+function text(path) { return readFileSync(output(path), 'utf8') }
+async function build(mode) {
+  rmSync(new URL('../.next', import.meta.url), {recursive: true, force: true})
+  const isWindows = process.platform === 'win32'
+  const command = isWindows ? process.env.ComSpec : 'npm'
+  const child = spawn(command, isWindows ? ['/d', '/s', '/c', 'npm run build'] : ['run', 'build'], {cwd: root, env: {...process.env, NEXT_PUBLIC_CONTENT_SOURCE: 'sanity', SANITY_API_BASE_URL: `http://127.0.0.1:${fixturePort}`, CMS_LEGACY_LIST_MODE: mode}, stdio: ['ignore', 'pipe', 'pipe']})
+  let log = ''
+  child.stdout.on('data', (chunk) => { log += chunk })
+  child.stderr.on('data', (chunk) => { log += chunk })
+  const [code] = await once(child, 'exit')
+  assert.equal(code, 0, `fixture build failed:\n${log}`)
 }
 
+async function checkCategoryFailureDecision() {
+  const child = spawn(process.execPath, ['--experimental-strip-types', 'scripts/check-category-visibility-decision.ts'], {cwd: root, stdio: ['ignore', 'pipe', 'pipe']})
+  const [code] = await once(child, 'exit')
+  assert.equal(code, 0, 'category-failure decision check failed')
+}
+
+await new Promise((resolve) => fixture.listen(0, '127.0.0.1', resolve))
+const fixturePort = fixture.address().port
 try {
-  const products = await get('/products/')
-  assert.equal(products.status, 200)
-  assert.equal(products.body.includes('Hidden Basketball'), false, 'hidden category must be absent from product cards and CollectionPage JSON-LD')
-
-  const hiddenCategory = await get('/products/basketball-uniforms/')
-  assert.equal(hiddenCategory.status, 404, 'explicitly suppressed CMS category must not revive a static legacy category route')
-
-  const hiddenProductPage = await get('/products/basketball-uniforms-1/')
-  assert.equal(hiddenProductPage.status, 404, 'product in a hidden category must not render Product or Breadcrumb JSON-LD')
-
-  const soccer = await get('/products/soccer-jerseys/')
-  assert.equal(soccer.status, 200, 'active soccer category must continue to render')
-  assert.match(soccer.body, /name="robots" content="noindex,nofollow"/, 'active noindex category must emit robots metadata')
-
-  const sitemap = await get('/sitemap.xml')
-  assert.equal(sitemap.status, 200)
-  assert.equal(sitemap.body.includes('/products/basketball-uniforms/'), false, 'hidden category must be absent from sitemap')
-  assert.equal(sitemap.body.includes('/products/soccer-jerseys/'), false, 'noindex category must be absent from sitemap')
-
+  await checkCategoryFailureDecision()
+  await build('merge')
+  const products = text('products/index.html')
+  const home = text('index.html')
+  const basketball = text('products/basketball-uniforms/index.html')
+  const sitemap = text('sitemap.xml')
+  assert.equal(products.includes('MVP Soccer Kits'), false, 'hidden MVP category must be absent from cards and CollectionPage JSON-LD')
+  assert.equal(products.includes('Fixture CMS Basketball Product'), false, 'hidden category products must be absent from the product collection')
+  assert.equal(home.includes('MVP Soccer Kits'), false, 'hidden MVP category must be absent from homepage and navigation output')
+  assert.equal(sitemap.includes('/products/soccer-kits/'), false, 'hidden MVP category must be absent from sitemap')
+  assert.equal(existsSync(output('products/soccer-kits/index.html')), false, 'CMS-only MVP category must not produce an exported route')
+  assert.equal(existsSync(output('products/fixture-mvp-product/index.html')), false, 'product under hidden MVP category must not produce output')
+  assert.match(basketball, /Custom Basketball Uniform Manufacturer/, 'merge mode must keep the named legacy category route renderable')
+  assert.match(basketball, /name="robots"\s+content="noindex,\s*nofollow"/, 'hidden CMS override of a named legacy route must emit noindex robots')
+  assert.equal(sitemap.includes('/products/basketball-uniforms/'), false, 'hidden category must be absent from sitemap')
+  assert.equal(sitemap.includes('/products/soccer-jerseys/'), true, 'active exported soccer route must remain in sitemap')
   console.log('cms category visibility fixture passed')
 } finally {
-  app.kill('SIGTERM')
-  await Promise.race([once(app, 'exit'), new Promise((resolve) => setTimeout(resolve, 5000))])
   fixture.close()
 }

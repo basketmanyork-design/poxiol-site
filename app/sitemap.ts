@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { caseStudies } from "@/lib/case-studies";
+import { sportsPages } from "@/lib/sports-pages";
 import { pseoPages } from "@/lib/pseo";
 import { getArticles, getProductCategories } from "@/lib/sanity/content";
 
@@ -50,7 +51,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 2. Product Category Pages
-  const productRoutes = categories.filter((category) => !category.seo.noIndex).map((category) => ({
+  const exportedCategorySlugs = new Set(sportsPages.map((page) => page.slug.replace(/^products\//, "")));
+  const productRoutes = categories.filter((category) => exportedCategorySlugs.has(category.slug) && !category.seo.noIndex).map((category) => ({
     url: `${baseUrl}/products/${category.slug}/`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
