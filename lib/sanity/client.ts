@@ -1,6 +1,7 @@
 import 'server-only'
 
 import type {CmsMode} from '@/lib/cms/types'
+import {resolveSanityRequestPolicy} from './requestPolicy'
 
 const PROJECT = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'oqpv1xbc'
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -15,37 +16,19 @@ export const contentSource: CmsMode =
 
 type QueryParams = Record<string, unknown>
 
-type ClientConfig = {
-  perspective: 'published' | 'drafts'
-  useCdn: boolean
-  token?: string
-  cache: RequestCache
-}
 
 export type SanityQueryResult<T> =
   | {ok: true; result: T | null}
   | {ok: false; errorType: 'legacy-mode' | 'missing-preview-token' | 'http-error' | 'network-error'}
 
-function createClientConfig(): ClientConfig | null {
-  if (contentSource === 'legacy') return null
-
-  if (contentSource === 'sanity-preview') {
-    const token = process.env.SANITY_READ_TOKEN
-    if (!token) return null
-
-    return {
-      perspective: 'drafts',
-      useCdn: false,
-      token,
-      cache: 'no-store',
-    }
-  }
-
-  return {
-    perspective: 'published',
-    useCdn: true,
-    cache: 'force-cache',
-  }
+function createClientConfig() {
+  return resolveSanityRequestPolicy(contentSource, {
+    token: process.env.SANITY_READ_TOKEN,
+    previewBuildId:
+      process.env.CONTENT_PREVIEW_BUILD_ID ||
+      process.env.CF_PAGES_URL ||
+      process.env.CF_PAGES_COMMIT_SHA,
+  })
 }
 
 export function isSanityMode() {
@@ -67,6 +50,7 @@ export async function sanityQuery<T>(
   url.searchParams.set('query', query)
   url.searchParams.set('perspective', config.perspective)
   url.searchParams.set('returnQuery', 'false')
+  if (config.cacheBuster) url.searchParams.set('previewBuild', config.cacheBuster)
 
   for (const [key, value] of Object.entries(params)) {
     url.searchParams.set(`$${key}`, JSON.stringify(value))

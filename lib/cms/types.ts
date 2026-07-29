@@ -1,3 +1,5 @@
+import type {CmsPortableTextNode} from './portableText'
+
 export type CmsMode = 'legacy' | 'sanity-preview' | 'sanity'
 
 export type CmsLink = {
@@ -219,6 +221,7 @@ export type CmsArticle = {
   eyebrow: string
   featuredImage?: CmsImage
   body: string
+  bodyBlocks?: CmsPortableTextNode[]
   articleType: 'blog' | 'guide' | 'resource'
   author?: string
   reviewedBy?: string

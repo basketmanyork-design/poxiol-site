@@ -3,6 +3,7 @@ import type {Metadata} from 'next'
 import {Header, Footer, PrimaryButton} from '@/components/ui'
 import type {CmsArticle} from '@/lib/cms/types'
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
+import {normalizePortableText, type CmsPortableContent} from '@/lib/cms/portableText'
 
 const siteUrl = 'https://www.poxiol.com'
 
@@ -68,8 +69,8 @@ export function ArticleJsonLd({article}: {article: CmsArticle}) {
       headline: article.title,
       description: article.seo.description || article.excerpt,
       image: article.featuredImage?.url || article.seo.ogImage?.url,
-      author: article.author ? {'@type': 'Person', name: article.author} : {'@type': 'Organization', name: 'POXIOL'},
-      reviewedBy: article.reviewedBy ? {'@type': 'Person', name: article.reviewedBy} : undefined,
+      author: article.author ? {'@type': 'Organization', name: article.author} : {'@type': 'Organization', name: 'POXIOL'},
+      reviewedBy: article.reviewedBy ? {'@type': 'Organization', name: article.reviewedBy} : undefined,
       datePublished: article.publishedAt,
       dateModified: article.updatedAt || article.publishedAt,
       publisher: {'@type': 'Organization', name: 'POXIOL', url: siteUrl},
@@ -133,6 +134,51 @@ function SectionContent({content}: {content: string | string[]}) {
   return <p className="mt-6 whitespace-pre-line text-lg leading-relaxed text-neutral-400">{content}</p>
 }
 
+function PortableTextContent({content}: {content: CmsPortableContent[]}) {
+  return (
+    <div className="space-y-8">
+      {content.map((node) => {
+        if (node.kind === 'heading') {
+          if (node.level === 3) return <h3 key={node.key} className="text-2xl font-black tracking-tight text-white">{node.text}</h3>
+          if (node.level === 4) return <h4 key={node.key} className="text-xl font-black tracking-tight text-white">{node.text}</h4>
+          return <h2 key={node.key} className="pt-6 text-3xl font-black uppercase tracking-tight text-white">{node.text}</h2>
+        }
+        if (node.kind === 'paragraph') {
+          return <p key={node.key} className="text-lg leading-relaxed text-neutral-300">{node.text}</p>
+        }
+        if (node.kind === 'list') {
+          const List = node.ordered ? 'ol' : 'ul'
+          return (
+            <List key={node.key} className={`${node.ordered ? 'list-decimal' : 'list-disc'} space-y-3 pl-6 text-lg leading-relaxed text-neutral-300`}>
+              {node.items.map((item, index) => <li key={`${node.key}-${index}`}>{item}</li>)}
+            </List>
+          )
+        }
+        if (node.kind === 'table') {
+          const [header = [], ...rows] = node.rows
+          return (
+            <div key={node.key} className="overflow-x-auto rounded-2xl border border-white/10">
+              <table className="min-w-full border-collapse text-left text-sm text-neutral-300">
+                {node.caption ? <caption className="bg-white/[0.04] px-5 py-4 text-left font-bold text-white">{node.caption}</caption> : null}
+                {header.length ? <thead><tr>{header.map((cell, index) => <th key={`${node.key}-head-${index}`} className="border-b border-white/10 px-5 py-4 font-black text-white">{cell}</th>)}</tr></thead> : null}
+                <tbody>{rows.map((row, rowIndex) => <tr key={`${node.key}-row-${rowIndex}`} className="border-b border-white/5 last:border-0">{row.map((cell, cellIndex) => <td key={`${node.key}-${rowIndex}-${cellIndex}`} className="px-5 py-4 align-top">{cell}</td>)}</tr>)}</tbody>
+              </table>
+            </div>
+          )
+        }
+        if (node.kind === 'callout') {
+          return (
+            <aside key={node.key} className="rounded-2xl border border-amber-300/30 bg-amber-300/10 p-6">
+              {node.title ? <h3 className="text-lg font-black text-amber-200">{node.title}</h3> : null}
+              {node.body ? <p className="mt-3 leading-relaxed text-amber-50/90">{node.body}</p> : null}
+            </aside>
+          )
+        }
+        return null
+      })}
+    </div>
+  )
+}
 export function ArticleTemplate({article}: {article: CmsArticle}) {
   const base = basePathFor(article)
   const label = labelFor(article)
@@ -143,6 +189,7 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
     {title: 'Related articles', links: article.relatedArticles},
   ]
   const hasClusters = clusterLinks.some((cluster) => cluster.links.length)
+  const portableContent = article.bodyBlocks?.length ? normalizePortableText(article.bodyBlocks) : []
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
@@ -175,7 +222,9 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
         ) : null}
 
         <div className="mt-16 space-y-14">
-          {article.sections.length ? article.sections.map((section) => (
+          {article.bodyBlocks?.length ? (
+            <PortableTextContent content={portableContent} />
+          ) : article.sections.length ? article.sections.map((section) => (
             <section key={section.title}>
               <h2 className="text-3xl font-black uppercase tracking-tight text-white">{section.title}</h2>
               <SectionContent content={section.content} />

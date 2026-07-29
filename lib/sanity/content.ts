@@ -29,6 +29,7 @@ import type {
   CmsSeo,
   CmsSiteChrome,
 } from '@/lib/cms/types'
+import type {CmsPortableTextNode} from '@/lib/cms/portableText'
 import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
@@ -299,7 +300,7 @@ type SanityArticle = {
   articleType?: string
   featuredImage?: SanityImage
   heroImage?: SanityImage
-  body?: PortableTextBlock[] | string
+  body?: CmsPortableTextNode[] | string
   sections?: Array<{title?: string; content?: string | string[]}>
   authorName?: string
   reviewedByName?: string
@@ -319,11 +320,11 @@ type SanityArticle = {
 }
 
 
-function textFromPortable(value: PortableTextBlock[] | string | undefined): string {
+function textFromPortable(value: Array<PortableTextBlock | CmsPortableTextNode> | string | undefined): string {
   if (!value) return ''
   if (typeof value === 'string') return value
   return value
-    .map((block) => block.children?.map((child) => child.text || '').join('') || '')
+    .map((block) => 'children' in block ? block.children?.map((child) => child.text || '').join('') || '' : '')
     .filter(Boolean)
     .join('\n')
 }
@@ -554,6 +555,7 @@ function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
   if (article.sections?.length) {
     return article.sections.map((section) => ({title: section.title || 'Section', content: section.content || ''}))
   }
+  if (Array.isArray(article.body) && article.body.length) return []
   const body = textFromPortable(article.body)
   if (body) return [{title: 'Article body', content: body}]
   return fallback?.sections || []
@@ -820,6 +822,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     eyebrow: fallback?.eyebrow || (articleType === 'blog' ? 'Blog' : articleType === 'resource' ? 'Resource' : 'Guide'),
     featuredImage: optionalImage(article.featuredImage || article.heroImage, fallback?.featuredImage, 'hero'),
     body: body || fallback?.body || article.excerpt || '',
+    bodyBlocks: Array.isArray(article.body) ? article.body : fallback?.bodyBlocks,
     articleType,
     author: article.authorName || fallback?.author || 'POXIOL Editorial Team',
     reviewedBy: article.reviewedByName || fallback?.reviewedBy,
