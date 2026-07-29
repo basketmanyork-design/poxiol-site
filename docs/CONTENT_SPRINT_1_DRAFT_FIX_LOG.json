@@ -1,0 +1,35 @@
+{
+    "projectId":  "oqpv1xbc",
+    "dataset":  "production",
+    "startedAt":  "2026-07-29T13:31:29.309Z",
+    "completedAt":  "2026-07-29T13:31:29.312Z",
+    "backupSha256":  "41EB90017A7AF31AFC67C9BE45E6AEF4F9DB27B319D7820F3F815D333E0424E0",
+    "status":  "blocked",
+    "stopReason":  "local_pre_read_manifest_path_parser_failure",
+    "documentsAttempted":  1,
+    "documentsPatched":  0,
+    "documentsVerified":  0,
+    "documentsPublished":  0,
+    "revisionConflicts":  0,
+    "failed":  1,
+    "sanityPatchCallsExecuted":  0,
+    "entries":  [
+                    {
+                        "documentId":  "1a4beee0b08c447b",
+                        "draftId":  "drafts.1a4beee0b08c447b",
+                        "type":  "article",
+                        "fieldPaths":  [
+                                           "body[_key==\"e28c06f1dbc9\"].children[0].text"
+                                       ],
+                        "before":  "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (15-25 Days Depending on Order Size) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+                        "after":  "Typical timeline: Mockup (Free, within 24 hours) → Sample Production (2-3 Days After Mockup Confirmation) → Bulk Production (7–12 working days after sample or artwork approval) → Quality Control (Pre-Shipment Quality Inspection) → Shipping (3-7 Business Days).",
+                        "guardRevision":  "eJ7skWqptDvdh6OpbT1Nqs",
+                        "resultRevision":  null,
+                        "publishedUnchanged":  null,
+                        "verifiedAt":  "2026-07-29T13:31:29.312Z",
+                        "status":  "failed",
+                        "failureStage":  "pre_read",
+                        "sanityPatchAttempted":  false
+                    }
+                ]
+}
