@@ -842,12 +842,11 @@
     "f1550549e7154f6f",
     "f68d4d8d1cc74350",
     "8acf321171a945f8",
-    "faq-58b766260485677a"
-  ],
-  "draftOnlyDocumentIds": [],
-  "manualReviewDocumentIds": [
+    "faq-58b766260485677a",
     "product-category-soccer-mvp"
   ],
+  "draftOnlyDocumentIds": [],
+  "manualReviewDocumentIds": [],
   "remainingPublishedRiskCounts": {
     "obsoleteProcurement": 35,
     "unsupportedCapacity": 1,
