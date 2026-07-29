@@ -726,10 +726,10 @@
       "jsonLdImpact": "Route SEO metadata may be structured-data input.",
       "sitemapImpact": "Factory remains indexed; this field does not control sitemap inclusion.",
       "publishedDraftDifference": "same",
-      "recommendedAction": "Remove unsupported capacity phrase in Draft; Preview and publish individually.",
+      "recommendedAction": "Set only Draft seo.metaDescription to the user-approved neutral sentence; Preview and publish individually.",
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
-      "approvedReplacement": "",
+      "approvedReplacement": "POXIOL supports scalable teamwear production based on confirmed project requirements and production schedules.",
       "manualReview": false
     },
     {
@@ -746,10 +746,10 @@
       "jsonLdImpact": "FAQPage JSON-LD can expose the answer while active.",
       "sitemapImpact": "Current document is noindex and excluded from sitemap.",
       "publishedDraftDifference": "same",
-      "recommendedAction": "Set Draft publishStatus to unpublished and active to false; Preview and individually publish that visibility correction.",
+      "recommendedAction": "Set only the exact audited answer span in Draft to the user-approved neutral replacement; Preview and publish individually. This latest execution instruction supersedes the earlier hide-FAQ recommendation.",
       "publiclyVisible": true,
       "decision": "publish_safe_correction",
-      "approvedReplacement": "",
+      "approvedReplacement": "Professional sublimation printing processes are used according to project requirements.",
       "manualReview": false
     },
     {
@@ -759,18 +759,26 @@
       "publishedRev": "C90lXvqhCRFE4tCBdst34w",
       "draftRev": "eJ7skWqptDvdh6OpbTcoab",
       "slug": "soccer-kits",
-      "fieldPath": "heroDescription",
-      "currentValue": "Draft category content for custom soccer jerseys and shorts.",
+      "fieldPath": "publishStatus, activeStatus, navigationVisibility, homepageVisibility, showOnHomepage, featured, seo.indexStatus",
+      "currentValue": "Current visibility and status values are listed in currentVisibility.",
       "riskCode": "mvp_visibility",
       "frontendUsage": "Visible Products cards and category route.",
       "jsonLdImpact": "Visible category appears in Products CollectionPage JSON-LD.",
       "sitemapImpact": "CMS categories do not feed category sitemap; legacy sportsPages do.",
       "publishedDraftDifference": "same",
-      "recommendedAction": "Review two incoming references and list-mode behavior before visibility correction.",
+      "recommendedAction": "Set only the seven approved Draft visibility and index fields; preserve document ID, slug, title, references and assets. The raw reference query confirms the two incoming references are the Published/Draft pair of one MVP product.",
       "publiclyVisible": true,
-      "decision": "keep_draft_manual_review",
-      "approvedReplacement": "",
-      "manualReview": true,
+      "decision": "publish_safe_correction",
+      "approvedReplacement": {
+        "publishStatus": "unpublished",
+        "activeStatus": false,
+        "navigationVisibility": false,
+        "homepageVisibility": false,
+        "showOnHomepage": false,
+        "featured": false,
+        "seo.indexStatus": "noindex"
+      },
+      "manualReview": false,
       "currentVisibility": {
         "publishStatus": "published",
         "activeStatus": null,
@@ -778,7 +786,8 @@
         "homepageVisibility": null,
         "showOnHomepage": null,
         "featured": null,
-        "displayOrder": 20
+        "displayOrder": 20,
+        "seo.indexStatus": null
       },
       "authoritativeSoccer": {
         "documentId": "2c48bf03e89d4274",
@@ -787,6 +796,12 @@
         "featured": true,
         "displayOrder": 1,
         "incomingReferences": 8
+      },
+      "referenceDetermination": {
+        "result": "published_draft_pair_of_same_mvp_product",
+        "publishedDocumentId": "product-soccer-mvp",
+        "draftDocumentId": "drafts.product-soccer-mvp",
+        "slug": "custom-soccer-match-kit"
       }
     }
   ],
