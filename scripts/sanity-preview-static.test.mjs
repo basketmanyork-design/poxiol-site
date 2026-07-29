@@ -21,11 +21,19 @@ test('Preview stays Draft-authenticated but uses a static-export-compatible buil
       useCdn: false,
       cache: 'force-cache',
       token: 'server-only-test-token',
-      cacheBuster: 'preview-build-123',
+      requestTag: 'preview-build-123',
     },
   )
 })
 
+test('Preview converts deployment URLs into valid Sanity request tags', () => {
+  const policy = resolveSanityRequestPolicy('sanity-preview', {
+    token: 'server-only-test-token',
+    previewBuildId: 'https://5721f703.poxiol-site.pages.dev',
+  })
+  assert.equal(policy?.requestTag, 'https-5721f703-poxiol-site-pages-dev')
+  assert.match(policy?.requestTag || '', /^[a-z0-9_-]+$/)
+})
 test('Preview refuses to query without its server-only token and legacy never queries', () => {
   assert.equal(resolveSanityRequestPolicy('sanity-preview', {}), null)
   assert.equal(resolveSanityRequestPolicy('legacy', {token: 'ignored'}), null)

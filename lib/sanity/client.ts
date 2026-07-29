@@ -50,7 +50,7 @@ export async function sanityQuery<T>(
   url.searchParams.set('query', query)
   url.searchParams.set('perspective', config.perspective)
   url.searchParams.set('returnQuery', 'false')
-  if (config.cacheBuster) url.searchParams.set('previewBuild', config.cacheBuster)
+  if (config.requestTag) url.searchParams.set('tag', config.requestTag)
 
   for (const [key, value] of Object.entries(params)) {
     url.searchParams.set(`$${key}`, JSON.stringify(value))

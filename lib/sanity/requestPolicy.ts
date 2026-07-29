@@ -3,7 +3,7 @@ export type SanityRequestPolicy = {
   useCdn: boolean
   cache: RequestCache
   token?: string
-  cacheBuster?: string
+  requestTag?: string
 }
 
 type ContentSource = 'legacy' | 'sanity-preview' | 'sanity'
@@ -11,6 +11,14 @@ type ContentSource = 'legacy' | 'sanity-preview' | 'sanity'
 type PolicyEnvironment = {
   token?: string
   previewBuildId?: string
+}
+
+function normalizeRequestTag(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 75)
 }
 
 export function resolveSanityRequestPolicy(
@@ -26,7 +34,7 @@ export function resolveSanityRequestPolicy(
       useCdn: false,
       cache: 'force-cache',
       token: environment.token,
-      cacheBuster: environment.previewBuildId || 'local-preview-build',
+      requestTag: normalizeRequestTag(environment.previewBuildId || 'local-preview-build'),
     }
   }
 
