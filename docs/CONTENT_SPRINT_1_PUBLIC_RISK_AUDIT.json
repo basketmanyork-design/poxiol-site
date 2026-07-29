@@ -1,0 +1,83 @@
+{
+  "strategy": "A",
+  "projectId": "oqpv1xbc",
+  "dataset": "production",
+  "generatedAt": "2026-07-29T09:05:00.000Z",
+  "backup": {
+    "path": "C:\\Users\\baske\\poxiol-private-backups\\poxiol-production-before-content-sprint-1-20260729-163129.tar.gz",
+    "sizeBytes": 18320418,
+    "sha256": "41EB90017A7AF31AFC67C9BE45E6AEF4F9DB27B319D7820F3F815D333E0424E0",
+    "exportedAt": "2026-07-29T08:31:29.000Z"
+  },
+  "publishedDocumentsScanned": 115,
+  "draftDocumentsScanned": 115,
+  "findings": [
+    {
+      "documentId": "article-set-35-see-markdown-table",
+      "draftId": "35 corresponding drafts; see markdown table",
+      "type": "article",
+      "publishedRev": "varies; recorded in markdown table",
+      "draftRev": "varies; recorded in markdown table",
+      "slug": null,
+      "fieldPath": "body",
+      "riskCode": "obsolete_procurement",
+      "publiclyVisible": true,
+      "publishedDraftDifference": "same risk text; revisions differ",
+      "decision": "keep_draft_manual_review",
+      "approvedReplacement": "Bulk production: 7–12 working days after sample or artwork approval",
+      "manualReview": true,
+      "findingCount": 35,
+      "affectedDocumentIds": ["1a4beee0b08c447b","1acc9d32e8864706","2388a6983a6749ad","2cd8d1d866944b0b","2db6595af05b4e9f","34b07755040843b8","3900f85e30c74441","3b755c5ec256421a","3dd3f85d023143d5","4a3889e2e6d1405d","4ac9e2e2eb6149b0","4d1d7e4b47094557","4d483268e5a1428e","4d7bbe57713f4522","56e5833532ce4262","58cc84bcbce544b9","59dd3d86161c4c96","5b8c25a077a24255","5df7417df6e44eb4","69a3eb85420a43b6","7051bee69c564b25","71674287d04f4461","87c9e4a99a064048","8f9baf0284bd4513","93770d475f374564","96636fb2fea64bad","9a8f9472c1484a04","9f01531eac5844f8","ac118ecd57c74a80","cb591874158c4428","e65bf3aad1db4481","eeddf3fde684446c","f01c3f9ef9d14bc8","f1550549e7154f6f","f68d4d8d1cc74350"]
+    },
+    {
+      "documentId": "8acf321171a945f8",
+      "draftId": "drafts.8acf321171a945f8",
+      "type": "sitePage",
+      "publishedRev": "kqd32DnwMDSkqBnWPyf2fu",
+      "draftRev": "kqd32DnwMDSkqBnWPyMs18",
+      "slug": "factory",
+      "fieldPath": "seo.metaDescription",
+      "riskCode": "unsupported_capacity",
+      "publiclyVisible": true,
+      "publishedDraftDifference": "same",
+      "decision": "publish_safe_correction",
+      "approvedReplacement": "",
+      "manualReview": false
+    },
+    {
+      "documentId": "faq-58b766260485677a",
+      "draftId": "drafts.faq-58b766260485677a",
+      "type": "faqItem",
+      "publishedRev": "C90lXvqhCRFE4tCBds9BKg",
+      "draftRev": "C90lXvqhCRFE4tCBdqZzqo",
+      "slug": "what-ink-technology-is-used-for-poxiol-sublimation",
+      "fieldPath": "answer[0].children[0].text",
+      "riskCode": "unsupported_equipment",
+      "publiclyVisible": true,
+      "publishedDraftDifference": "same",
+      "decision": "publish_safe_correction",
+      "approvedReplacement": "We use a controlled sublimation-printing process and inspect output before shipment.",
+      "manualReview": false
+    },
+    {
+      "documentId": "product-category-soccer-mvp",
+      "draftId": "drafts.product-category-soccer-mvp",
+      "type": "productCategory",
+      "publishedRev": "C90lXvqhCRFE4tCBdst34w",
+      "draftRev": "eJ7skWqptDvdh6OpbTcoab",
+      "slug": "soccer-kits",
+      "fieldPath": "heroDescription",
+      "riskCode": "mvp_visibility",
+      "publiclyVisible": true,
+      "publishedDraftDifference": "same",
+      "decision": "keep_draft_manual_review",
+      "approvedReplacement": "",
+      "manualReview": true
+    }
+  ],
+  "safePublishedDocumentIds": ["8acf321171a945f8", "faq-58b766260485677a"],
+  "draftOnlyDocumentIds": ["1a4beee0b08c447b", "1acc9d32e8864706", "2388a6983a6749ad", "2cd8d1d866944b0b", "2db6595af05b4e9f", "34b07755040843b8", "3900f85e30c74441", "3b755c5ec256421a", "3dd3f85d023143d5", "4a3889e2e6d1405d", "4ac9e2e2eb6149b0", "4d1d7e4b47094557", "4d483268e5a1428e", "4d7bbe57713f4522", "56e5833532ce4262", "58cc84bcbce544b9", "59dd3d86161c4c96", "5b8c25a077a24255", "5df7417df6e44eb4", "69a3eb85420a43b6", "7051bee69c564b25", "71674287d04f4461", "87c9e4a99a064048", "8f9baf0284bd4513", "93770d475f374564", "96636fb2fea64bad", "9a8f9472c1484a04", "9f01531eac5844f8", "ac118ecd57c74a80", "cb591874158c4428", "e65bf3aad1db4481", "eeddf3fde684446c", "f01c3f9ef9d14bc8", "f1550549e7154f6f", "f68d4d8d1cc74350"],
+  "manualReviewDocumentIds": ["product-category-soccer-mvp"],
+  "remainingPublishedRiskCounts": {"obsoleteProcurement": 35, "unsupportedCapacity": 1, "kian": 1, "epson": 1, "mvpSoccerVisible": 1},
+  "validation": {"previewPassed": false, "productionPassed": false, "jsonLdConsistent": false, "ga4Preserved": false, "cloudflareAnalyticsSingle": false, "emailObfuscationDisabled": false}
+}
