@@ -503,7 +503,8 @@ function filterCategoryNavigationLinks(links: CmsLink[], resolution: ProductCate
   )
   return links.filter((link) => {
     const slug = categorySlugFromNavigationHref(link.href)
-    return !slug || (exportedCategorySlugs.has(slug) && visibleNavigationSlugs.has(slug))
+    if (!slug || !resolution.knownCategorySlugs.has(slug)) return true
+    return visibleNavigationSlugs.has(slug)
   })
 }
 
@@ -647,13 +648,18 @@ export async function getSitePage(key: string): Promise<CmsPage> {
   } as CmsPage
 }
 
-type ProductCategoriesResolution = {categories: CmsProductCategory[]; visibilityResolved: boolean}
+type ProductCategoriesResolution = {categories: CmsProductCategory[]; knownCategorySlugs: Set<string>; visibilityResolved: boolean}
 
 async function resolveProductCategories(): Promise<ProductCategoriesResolution> {
   const response = await sanityQuery<SanityCategory[]>(productCategoriesQuery)
+  const cmsCategories = response.ok ? response.result || [] : []
+  const knownCategorySlugs = new Set([
+    ...Array.from(exportedCategorySlugs),
+    ...cmsCategories.flatMap((category) => category.slug ? [category.slug] : []),
+  ])
   const categories = mergeCmsList({
     legacy: legacyProductCategories,
-    cms: response.ok ? response.result || [] : [],
+    cms: cmsCategories,
     sourceState: queryState(response),
     mode: getCmsListMode(),
     contentSource,
@@ -661,7 +667,7 @@ async function resolveProductCategories(): Promise<ProductCategoriesResolution> 
   })
     .filter((category) => category.active)
     .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
-  return {categories, visibilityResolved: response.ok || contentSource === 'legacy'}
+  return {categories, knownCategorySlugs, visibilityResolved: response.ok || contentSource === 'legacy'}
 }
 
 export async function getProductCategories(): Promise<CmsProductCategory[]> {

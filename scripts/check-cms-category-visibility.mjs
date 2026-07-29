@@ -1,12 +1,25 @@
 import assert from 'node:assert/strict'
 import {existsSync, readFileSync, rmSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
+import {isAbsolute, relative, resolve, sep} from 'node:path'
 import {createServer} from 'node:http'
 import {once} from 'node:events'
 import {spawn} from 'node:child_process'
 
-const root = fileURLToPath(new URL('..', import.meta.url))
+const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const output = (path) => new URL(`../out/${path}`, import.meta.url)
+const buildArtifactPaths = ['.next', 'out'].map((name) => resolve(root, name))
+
+function containedBuildArtifactPath(path) {
+  const resolvedPath = resolve(path)
+  const relativePath = relative(root, resolvedPath)
+  assert.equal(relativePath === '' || relativePath === '..' || relativePath.startsWith(`..${sep}`) || isAbsolute(relativePath), false, `build artifact path must stay within fixture root: ${resolvedPath}`)
+  return resolvedPath
+}
+
+function cleanupBuildArtifacts() {
+  for (const path of buildArtifactPaths) rmSync(containedBuildArtifactPath(path), {recursive: true, force: true})
+}
 let failCategoryQueries = false
 
 const categories = {
@@ -23,8 +36,23 @@ const articles = [
   {title: 'Fixture Guide', slug: 'fixture-guide', excerpt: 'Fixture article', articleType: 'guide', body: [], publishStatus: 'published', displayOrder: 3},
 ]
 const projects = [{projectTitle: 'Fixture Project', slug: 'fixture-project', country: 'Fixture Country', product: 'Fixture Product', overview: 'Fixture project', publishStatus: 'published', displayOrder: 1}]
-const headerNavigation = [{label: 'Fixture Contact Header', url: '/contact/'}, {label: 'Hidden Basketball Header', url: '/products/basketball-uniforms/'}, {label: 'Active Soccer Header', url: '/products/soccer-jerseys/'}]
-const footerColumns = [{title: 'Fixture Footer', links: [{label: 'Fixture Contact Footer', url: '/contact/'}, {label: 'Hidden Basketball Footer', url: '/products/basketball-uniforms/'}, {label: 'Active Soccer Footer', url: '/products/soccer-jerseys/'}]}]
+const headerNavigation = [
+  {label: 'Fixture Contact Header', url: '/contact/'},
+  {label: 'Hidden Basketball Header', url: '/products/basketball-uniforms/'},
+  {label: 'Hidden Soccer Kits Header', url: '/products/soccer-kits/'},
+  {label: 'Active Soccer Header', url: '/products/soccer-jerseys/'},
+  {label: 'Basketball Product Header', url: '/products/basketball-uniforms-1/'},
+]
+const footerColumns = [{
+  title: 'Fixture Footer',
+  links: [
+    {label: 'Fixture Contact Footer', url: '/contact/'},
+    {label: 'Hidden Basketball Footer', url: '/products/basketball-uniforms/'},
+    {label: 'Hidden Soccer Kits Footer', url: '/products/soccer-kits/'},
+    {label: 'Active Soccer Footer', url: '/products/soccer-jerseys/'},
+    {label: 'Basketball Product Footer', url: '/products/basketball-uniforms-1/'},
+  ],
+}]
 
 const fixture = createServer((request, response) => {
   const url = new URL(request.url, 'http://127.0.0.1')
@@ -54,8 +82,7 @@ const fixture = createServer((request, response) => {
 
 function text(path) { return readFileSync(output(path), 'utf8') }
 async function build(mode) {
-  rmSync(new URL('../.next', import.meta.url), {recursive: true, force: true})
-  rmSync(new URL('../out', import.meta.url), {recursive: true, force: true})
+  cleanupBuildArtifacts()
   const isWindows = process.platform === 'win32'
   const command = isWindows ? process.env.ComSpec : 'npm'
   const child = spawn(command, isWindows ? ['/d', '/s', '/c', 'npm run build'] : ['run', 'build'], {cwd: root, env: {...process.env, NEXT_PUBLIC_CONTENT_SOURCE: 'sanity', SANITY_API_BASE_URL: `http://127.0.0.1:${fixturePort}`, CMS_LEGACY_LIST_MODE: mode}, stdio: ['ignore', 'pipe', 'pipe']})
@@ -87,8 +114,10 @@ try {
   assert.equal(home.includes('MVP Soccer Kits'), false, 'hidden MVP category must be absent from homepage and navigation output')
   assert.equal(home.includes('Hidden Basketball Header'), false, 'hidden category header link must be absent from actual output')
   assert.equal(home.includes('Hidden Basketball Footer'), false, 'hidden category footer link must be absent from actual output')
+  assert.equal(home.includes('Hidden Soccer Kits Header') || home.includes('Hidden Soccer Kits Footer'), false, 'hidden CMS-only category links must be absent from actual output')
   assert.equal(home.includes('Active Soccer Header'), true, 'active category header link must remain in actual output')
   assert.equal(home.includes('Active Soccer Footer'), true, 'active category footer link must remain in actual output')
+  assert.equal(home.includes('Basketball Product Header') && home.includes('Basketball Product Footer'), true, 'product-detail navigation links must remain in actual output')
   assert.equal(home.includes('Fixture Contact Header') && home.includes('Fixture Contact Footer'), true, 'non-category navigation links must remain')
   assert.equal(sitemap.includes('/products/soccer-kits/'), false, 'hidden MVP category must be absent from sitemap')
   assert.equal(existsSync(output('products/soccer-kits/index.html')), false, 'CMS-only MVP category must not produce an exported route')
@@ -114,7 +143,10 @@ try {
   const failureHome = text('index.html')
   assert.equal(failureHome.includes('Hidden Basketball Header') && failureHome.includes('Hidden Basketball Footer'), true, 'category-query failure must preserve emergency navigation')
   assert.equal(existsSync(output('products/fixture-active-soccer-product/index.html')), false, 'category-query failure must use Legacy-only product generation')
-  console.log('cms category visibility fixture passed')
 } finally {
-  fixture.close()
+  await new Promise((resolve, reject) => fixture.close((error) => error ? reject(error) : resolve()))
+  cleanupBuildArtifacts()
 }
+assert.equal(existsSync(buildArtifactPaths[0]), false, 'fixture must remove .next after assertions and server closure')
+assert.equal(existsSync(buildArtifactPaths[1]), false, 'fixture must remove out after assertions and server closure')
+console.log('cms category visibility fixture passed')
