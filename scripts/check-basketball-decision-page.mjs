@@ -18,6 +18,11 @@ for (const field of ['heroProofPoints', 'decisionSections', 'primaryCta', 'secon
 
 assert.match(queries, /\*\[_id == "procurementStandards"\]\[0\]/, 'procurement must use the singleton ID')
 assert.match(content, /getBasketballDecisionPage/, 'focused Basketball resolver is missing')
+assert.match(
+  content,
+  /h1:\\s*category\\.heroTitle\\s*\\|\\|/,
+  'Basketball Hero H1 must prefer the CMS heroTitle',
+)
 assert.match(page, /getBasketballDecisionPage/, 'Basketball route is not wired to its focused resolver')
 assert.match(types, /heroProofPoints/, 'SportsPageData is missing hero proof points')
 assert.match(types, /decisionSections/, 'SportsPageData is missing decision sections')
