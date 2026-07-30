@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/generate-cms-redirects.mjs",
+    "build": "npm run generate:aao && next build && node scripts/generate-cms-redirects.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:aao": "node scripts/generate-aao-assets.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@types/node": "^20.12.12",

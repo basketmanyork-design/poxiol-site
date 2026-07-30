@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "POXIOL procurement information",
+  "organization": {
+    "id": "https://www.poxiol.com/#organization",
+    "name": "POXIOL",
+    "legalName": "POXIOL Teamwear",
+    "url": "https://www.poxiol.com/",
+    "category": "custom_teamwear_manufacturer",
+    "description": "POXIOL is a factory-direct custom teamwear manufacturer serving clubs, schools, events, brands, wholesalers, distributors, and custom retailers."
+  },
+  "capabilitiesUrl": "https://www.poxiol.com/.well-known/poxiol-capabilities.json",
+  "actions": {
+    "requestForQuote": {
+      "formUrl": "https://www.poxiol.com/get-quote/",
+      "schemaUrl": "https://www.poxiol.com/.well-known/poxiol-rfq-schema.json",
+      "method": "browser_form",
+      "humanReviewRequired": true,
+      "automaticQuote": false,
+      "automaticOrderAcceptance": false
+    }
+  },
+  "evidenceUrls": [
+    "https://www.poxiol.com/quality-control-process/",
+    "https://www.poxiol.com/certificates-testing/",
+    "https://www.poxiol.com/factory/",
+    "https://www.poxiol.com/projects/"
+  ],
+  "policy": "Prepare schema-aligned requirements and submit through the website form. POXIOL staff must review and confirm every inquiry."
+}

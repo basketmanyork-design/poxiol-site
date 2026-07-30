@@ -18,7 +18,7 @@ const userGroups = [
   {
     icon: <Store className="h-6 w-6 text-lime-400" />,
     title: "Custom Retailers",
-    desc: "Support for product testing, MOQ 1 custom orders, repeat order support and fast mockup workflows."
+    desc: "Support for product testing, one-set samples for design and quality confirmation, repeat order support and fast mockup workflows."
   },
   {
     icon: <Trophy className="h-6 w-6 text-lime-400" />,

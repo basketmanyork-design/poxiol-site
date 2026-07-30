@@ -22,7 +22,7 @@ export const organizationSchema = {
   "alternateName": "POXIOL",
   "url": "https://www.poxiol.com/",
   "logo": "https://www.poxiol.com/logo.png",
-  "description": "POXIOL is a custom teamwear manufacturer providing multi-sport sports uniforms, free mockups, MOQ 1 custom orders and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.",
+  "description": "POXIOL is a custom teamwear manufacturer providing multi-sport sports uniforms, free mockups, one-set samples for design and quality confirmation, and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.",
   "knowsAbout": [
     "Custom teamwear",
     "Custom sports uniforms",
@@ -53,12 +53,7 @@ export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "POXIOL",
-  "url": "https://www.poxiol.com/",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.poxiol.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "url": "https://www.poxiol.com/"
 };
 
 // Generate full FAQ schema from lib/faq.ts

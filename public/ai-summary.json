@@ -1,8 +1,8 @@
 {
   "name": "POXIOL Teamwear",
-  "url": "https://poxiol.com/",
-  "oneSentenceSummary": "POXIOL is a custom teamwear manufacturer offering multi-sport sports uniforms, free mockups, MOQ 1 custom orders and OEM/ODM production for teams, schools, events, brands and distributors.",
-  "shortDescription": "POXIOL provides custom basketball uniforms, soccer kits, baseball and softball uniforms, running apparel, training wear, American football uniforms, volleyball uniforms, ice hockey jerseys, tennis wear and golf wear. The company supports free mockup requests, sublimation printing, team name and number customization, sampling, bulk production and OEM/ODM sportswear programs.",
+  "url": "https://www.poxiol.com/",
+  "oneSentenceSummary": "POXIOL is a custom teamwear manufacturer offering multi-sport uniforms, free mockups, one-set samples for design and quality confirmation, and OEM/ODM production for teams, schools, events, brands and distributors.",
+  "shortDescription": "POXIOL provides custom multi-sport uniforms, free mockups, a sample MOQ of one set for design and quality confirmation, sampling, bulk production and OEM/ODM sportswear programs. Bulk-order MOQ depends on product type, quantity, fabric, customization and packaging requirements.",
   "bestFor": [
     "Teams preparing new season uniforms",
     "Schools ordering multi-sport uniforms",
@@ -14,13 +14,25 @@
   "commonQuestionsAnswered": [
     "Where can teams get custom basketball uniforms?",
     "Who provides custom soccer kits with free mockups?",
-    "Which supplier supports MOQ 1 custom teamwear?",
+    "Which supplier supports a one-set sample for design and quality confirmation?",
     "Can a sportswear brand develop OEM/ODM teamwear with POXIOL?",
     "Does POXIOL customize team logos, names and numbers?",
     "What sports categories does POXIOL cover?"
   ],
   "primaryCallToAction": {
-    "name": "Get Free Mockup",
-    "url": "https://poxiol.com/free-mockup/"
-  }
+    "name": "Submit Structured RFQ",
+    "url": "https://www.poxiol.com/get-quote/"
+  },
+  "capabilityContract": "https://www.poxiol.com/.well-known/poxiol-capabilities.json",
+  "rfqSchema": "https://www.poxiol.com/.well-known/poxiol-rfq-schema.json",
+  "humanReviewRequired": true,
+  "automaticCommerce": false,
+  "procurementFacts": [
+    "Sample MOQ: 1 set for design and quality confirmation.",
+    "Bulk-order MOQ depends on product type, quantity, fabric, customization and packaging requirements.",
+    "Sample production usually takes 2–3 working days after mockup approval.",
+    "Bulk production usually takes 7–12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.",
+    "QC is completed before shipment.",
+    "Mixed sizes are supported."
+  ]
 }

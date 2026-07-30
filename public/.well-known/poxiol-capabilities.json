@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.poxiol.com/.well-known/poxiol-capabilities.json",
+  "contractVersion": "1.0.0",
+  "lastReviewed": "2026-07-28",
+  "organization": {
+    "id": "https://www.poxiol.com/#organization",
+    "name": "POXIOL",
+    "legalName": "POXIOL Teamwear",
+    "url": "https://www.poxiol.com/",
+    "category": "custom_teamwear_manufacturer",
+    "description": "POXIOL is a factory-direct custom teamwear manufacturer serving clubs, schools, events, brands, wholesalers, distributors, and custom retailers."
+  },
+  "buyerTypes": [
+    {
+      "id": "club_team",
+      "label": "Club or team"
+    },
+    {
+      "id": "school_university",
+      "label": "School or university"
+    },
+    {
+      "id": "sportswear_brand",
+      "label": "Sportswear brand"
+    },
+    {
+      "id": "distributor",
+      "label": "Distributor or wholesaler"
+    },
+    {
+      "id": "event_organizer",
+      "label": "Event organizer"
+    },
+    {
+      "id": "custom_retailer",
+      "label": "Custom retailer"
+    },
+    {
+      "id": "other",
+      "label": "Other"
+    }
+  ],
+  "sports": [
+    {
+      "id": "basketball",
+      "label": "Basketball"
+    },
+    {
+      "id": "soccer",
+      "label": "Soccer"
+    },
+    {
+      "id": "baseball_softball",
+      "label": "Baseball or softball"
+    },
+    {
+      "id": "american_football",
+      "label": "American football"
+    },
+    {
+      "id": "volleyball",
+      "label": "Volleyball"
+    },
+    {
+      "id": "ice_hockey",
+      "label": "Ice hockey"
+    },
+    {
+      "id": "running",
+      "label": "Running or marathon"
+    },
+    {
+      "id": "training",
+      "label": "Training wear"
+    },
+    {
+      "id": "tennis",
+      "label": "Tennis"
+    },
+    {
+      "id": "golf",
+      "label": "Golf"
+    },
+    {
+      "id": "rugby",
+      "label": "Rugby"
+    },
+    {
+      "id": "esports",
+      "label": "Esports"
+    },
+    {
+      "id": "other",
+      "label": "Other"
+    }
+  ],
+  "products": [
+    {
+      "id": "jersey",
+      "label": "Jersey only"
+    },
+    {
+      "id": "jersey_shorts_set",
+      "label": "Jersey and shorts set"
+    },
+    {
+      "id": "full_team_package",
+      "label": "Full team package"
+    },
+    {
+      "id": "training_wear",
+      "label": "Training wear"
+    },
+    {
+      "id": "outerwear",
+      "label": "Hoodies or jackets"
+    },
+    {
+      "id": "accessories",
+      "label": "Team accessories"
+    },
+    {
+      "id": "oem_odm_collection",
+      "label": "OEM or ODM collection"
+    },
+    {
+      "id": "other",
+      "label": "Other"
+    }
+  ],
+  "customization": [
+    {
+      "id": "sublimation",
+      "label": "Full sublimation"
+    },
+    {
+      "id": "logo",
+      "label": "Team or brand logo"
+    },
+    {
+      "id": "player_name_number",
+      "label": "Player names and numbers"
+    },
+    {
+      "id": "private_label",
+      "label": "Private label"
+    },
+    {
+      "id": "custom_packaging",
+      "label": "Custom packaging"
+    }
+  ],
+  "serviceRegions": [
+    {
+      "id": "global",
+      "label": "Global",
+      "qualification": "Shipping feasibility and schedule require project confirmation."
+    }
+  ],
+  "procurement": {
+    "sampleMinimumOrder": {
+      "value": 1,
+      "unit": "set",
+      "purpose": "Design and quality confirmation",
+      "qualification": "This is the sample MOQ. Bulk-order MOQ depends on product type, quantity, fabric, customization and packaging requirements."
+    },
+    "bulkMinimumOrder": {
+      "fixedValueAvailable": false,
+      "qualification": "Bulk-order MOQ depends on product type, quantity, fabric, customization and packaging requirements."
+    },
+    "mockupLeadTime": {
+      "min": 2,
+      "max": 24,
+      "unit": "hour",
+      "qualification": "After complete project requirements are received."
+    },
+    "sampleLeadTime": {
+      "min": 2,
+      "max": 3,
+      "unit": "working_day",
+      "qualification": "After mockup approval."
+    },
+    "bulkLeadTime": {
+      "min": 7,
+      "max": 12,
+      "unit": "working_day",
+      "qualification": "After sample or artwork approval; large, complex, and peak-season orders require schedule confirmation."
+    }
+  },
+  "qualityControl": {
+    "inspectionBeforeShipment": true,
+    "sizeTolerance": {
+      "min": -2,
+      "max": 2,
+      "unit": "centimeter"
+    },
+    "evidenceUrls": [
+      "https://www.poxiol.com/quality-control-process/",
+      "https://www.poxiol.com/certificates-testing/",
+      "https://www.poxiol.com/factory/",
+      "https://www.poxiol.com/projects/"
+    ]
+  },
+  "actions": {
+    "requestForQuote": {
+      "formUrl": "https://www.poxiol.com/get-quote/",
+      "schemaUrl": "https://www.poxiol.com/.well-known/poxiol-rfq-schema.json",
+      "humanReviewRequired": true,
+      "automaticQuote": false,
+      "automaticOrderAcceptance": false
+    }
+  },
+  "automaticCommerce": {
+    "quote": false,
+    "payment": false,
+    "orderAcceptance": false
+  },
+  "qualification": "All capabilities, feasibility, prices, production schedules, compliance requirements, and order terms require POXIOL human review and written confirmation."
+}

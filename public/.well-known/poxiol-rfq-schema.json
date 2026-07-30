@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.poxiol.com/.well-known/poxiol-rfq-schema.json",
+  "title": "POXIOL Request for Quotation",
+  "description": "A structured inquiry schema. Submission does not create an automatic quote, order, payment, or contractual acceptance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "fullName",
+    "email",
+    "country",
+    "buyerType",
+    "sport",
+    "productType",
+    "quantity",
+    "quantityUnit",
+    "manualReviewAccepted"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "fullName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "country": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "buyerType": {
+      "type": "string",
+      "enum": [
+        "club_team",
+        "school_university",
+        "sportswear_brand",
+        "distributor",
+        "event_organizer",
+        "custom_retailer",
+        "other"
+      ]
+    },
+    "sport": {
+      "type": "string",
+      "enum": [
+        "basketball",
+        "soccer",
+        "baseball_softball",
+        "american_football",
+        "volleyball",
+        "ice_hockey",
+        "running",
+        "training",
+        "tennis",
+        "golf",
+        "rugby",
+        "esports",
+        "other"
+      ]
+    },
+    "productType": {
+      "type": "string",
+      "enum": [
+        "jersey",
+        "jersey_shorts_set",
+        "full_team_package",
+        "training_wear",
+        "outerwear",
+        "accessories",
+        "oem_odm_collection",
+        "other"
+      ]
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "quantityUnit": {
+      "type": "string",
+      "enum": [
+        "piece",
+        "set"
+      ]
+    },
+    "targetDeliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "teamOrBrandName": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "colors": {
+      "type": "string",
+      "maxLength": 240
+    },
+    "customization": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "sublimation",
+          "logo",
+          "player_name_number",
+          "private_label",
+          "custom_packaging"
+        ]
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "manualReviewAccepted": {
+      "const": true
+    }
+  }
+}

@@ -371,6 +371,13 @@ export const redirectRulesQuery = `*[_type == "redirectRule" && active == true] 
 }`
 
 export const procurementStandardsQuery = `*[_id == "procurementStandards"][0]{
+  capabilityVersion,
+  sampleMinimumOrderQuantity,
+  sampleQuantityUnit,
+  sampleLeadTimeMinWorkingDays,
+  sampleLeadTimeMaxWorkingDays,
+  bulkLeadTimeMinWorkingDays,
+  bulkLeadTimeMaxWorkingDays,
   defaultMOQ,
   sampleMOQ,
   sampleTime,
@@ -382,5 +389,6 @@ export const procurementStandardsQuery = `*[_id == "procurementStandards"][0]{
   qualityPromise,
   qcStandard,
   sizeTolerance,
-  mixedSizes
+  mixedSizes,
+  customizationStandard
 }`
