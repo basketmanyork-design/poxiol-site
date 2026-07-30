@@ -15,7 +15,8 @@ export const contentSource: CmsMode =
       : 'sanity'
 
 type QueryParams = Record<string, unknown>
-
+type SanityPerspective = 'published' | 'drafts'
+type StatusedDocument = Record<string, unknown> & {publishStatus?: unknown}
 
 export type SanityQueryResult<T> =
   | {ok: true; result: T | null}
@@ -29,6 +30,21 @@ function createClientConfig() {
       process.env.CF_PAGES_URL ||
       process.env.CF_PAGES_COMMIT_SHA,
   })
+}
+
+function normalizePublishedDocument(value: unknown): unknown {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return value
+  const document = value as StatusedDocument
+  return document.publishStatus === 'draft' ? {...document, publishStatus: 'published'} : value
+}
+
+export function normalizePublishedQueryResult<T>(
+  result: T | null,
+  perspective: SanityPerspective,
+): T | null {
+  if (perspective !== 'published' || result === null) return result
+  if (Array.isArray(result)) return result.map(normalizePublishedDocument) as T
+  return normalizePublishedDocument(result) as T
 }
 
 export function isSanityMode() {
@@ -69,7 +85,10 @@ export async function sanityQuery<T>(
     if (!response.ok) return {ok: false, errorType: 'http-error'}
 
     const payload = await response.json() as {result?: T | null}
-    return {ok: true, result: payload.result ?? null}
+    return {
+      ok: true,
+      result: normalizePublishedQueryResult(payload.result ?? null, config.perspective),
+    }
   } catch {
     return {ok: false, errorType: 'network-error'}
   }

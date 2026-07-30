@@ -6,10 +6,11 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf
 const schema = read('studio/schemaTypes/documents/productCategory.ts')
 const queries = read('lib/sanity/queries.ts')
 const content = read('lib/sanity/content.ts')
+const client = read('lib/sanity/client.ts')
 const types = read('lib/sports-pages.ts')
 const page = read('app/products/basketball-uniforms/page.tsx')
 const view = read('components/sports/SportsLandingPage.tsx')
-const all = [schema, queries, content, types, page, view].join('\n')
+const all = [schema, queries, content, client, types, page, view].join('\n')
 
 for (const field of ['heroProofPoints', 'decisionSections', 'primaryCta', 'secondaryCta', 'bottomCta']) {
   assert.match(schema, new RegExp(`name:\\s*['"]${field}['"]`), `productCategory is missing ${field}`)
@@ -18,6 +19,11 @@ for (const field of ['heroProofPoints', 'decisionSections', 'primaryCta', 'secon
 
 assert.match(queries, /\*\[_id == "procurementStandards"\]\[0\]/, 'procurement must use the singleton ID')
 assert.match(content, /getBasketballDecisionPage/, 'focused Basketball resolver is missing')
+assert.match(
+  client,
+  /normalizePublishedQueryResult/,
+  'Published-perspective query results must normalize a stale draft editorial status before visibility filtering',
+)
 assert.match(
   content,
   /h1:\\s*category\\.heroTitle\\s*\\|\\|/,
