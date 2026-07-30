@@ -977,6 +977,7 @@ export async function getBasketballDecisionPage(legacyData: SportsPageData): Pro
 
   return {
     ...base,
+    h1: category.heroTitle || base.h1,
     heroImageAlt: category.heroImage?.altText || base.heroImageAlt || base.h1,
     heroProofPoints: category.heroProofPoints?.length ? category.heroProofPoints : base.heroProofPoints,
     buyerTypes: category.buyerTypes?.length
