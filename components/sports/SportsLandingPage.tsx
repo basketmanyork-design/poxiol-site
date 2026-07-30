@@ -45,17 +45,17 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                {data.heroText}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["Sample Support", "Free Mockup", "Sample production: 2-3 working days", "OEM/ODM Ready", "Quality Support"].map((item)=>(
+              {(data.heroProofPoints || ["Sample Support", "Free Mockup", "Sample production: 2-3 working days", "OEM/ODM Ready", "Quality Support"]).map((item)=>(
                 <span key={item} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white">{item}</span>
               ))}
             </div>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <PrimaryButton href={freeMockupHref}>Get Free Mockup</PrimaryButton>
-              <SecondaryButton href="#procurement-specs">View Specifications</SecondaryButton>
+              <PrimaryButton href={data.primaryCta?.href || freeMockupHref}>{data.primaryCta?.label || "Get Free Mockup"}</PrimaryButton>
+              <SecondaryButton href={data.secondaryCta?.href || "#procurement-specs"}>{data.secondaryCta?.label || "View Specifications"}</SecondaryButton>
             </div>
           </div>
           <div className="relative min-h-[420px] overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 md:min-h-[560px]">
-            <img src={data.heroImage} alt={`POXIOL ${data.h1} Custom Uniforms`} className="absolute inset-0 h-full w-full object-cover grayscale-[0.2]" />
+            <img src={data.heroImage} alt={data.heroImageAlt || `POXIOL ${data.h1} Custom Uniforms`} className="absolute inset-0 h-full w-full object-cover grayscale-[0.2]" />
           </div>
         </div>
       </section>
@@ -111,6 +111,20 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-5 py-20 text-neutral-950 md:px-10 md:py-28 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="Basketball Solutions" title="Choose the Right Basketball Uniform Format" subtitle="Compare the product format that fits your roster, use case and customization plan."/>
+          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {data.productTypes.map((item) => (
+              <div key={item.title} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-8">
+                <h3 className="text-xl font-black uppercase tracking-tight">{item.title}</h3>
+                <p className="mt-4 text-sm leading-6 text-neutral-600">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -182,6 +196,40 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
         </div>
       </section>
 
+      {data.decisionSections?.map((section) => (
+        <section key={`${section.type || "section"}-${section.title}`} className="bg-white px-5 py-20 text-neutral-950 md:px-10 md:py-28 xl:px-20 border-b border-neutral-100">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading eyebrow={section.eyebrow || "Buyer Decision Support"} title={section.title} subtitle={section.body}/>
+            {section.facts && section.facts.length > 0 && (
+              <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {section.facts.map((fact) => <div key={fact} className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-sm font-bold">{fact}</div>)}
+              </div>
+            )}
+            {section.steps && section.steps.length > 0 && (
+              <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {section.steps.map((step, index) => (
+                  <li key={step.title} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
+                    <span className="text-sm font-black text-lime-600">0{index + 1}</span>
+                    <h3 className="mt-3 text-lg font-black uppercase">{step.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-neutral-600">{step.description}</p>
+                  </li>
+                ))}
+              </ol>
+            )}
+            {section.specifications && section.specifications.length > 0 && (
+              <div className="mt-12 overflow-hidden rounded-3xl border border-neutral-200">
+                {section.specifications.map((item) => (
+                  <div key={item.label} className="grid gap-2 border-b border-neutral-200 p-5 last:border-b-0 md:grid-cols-[0.35fr_1fr]">
+                    <strong>{item.label}</strong><span className="text-neutral-600">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {section.cta && <div className="mt-10"><PrimaryButton href={section.cta.href}>{section.cta.label}</PrimaryButton></div>}
+          </div>
+        </section>
+      ))}
+
       {/* 5. AEO Targeted FAQ Center */}
       <section className="bg-neutral-100 px-5 py-24 md:px-10 md:py-32 xl:px-20 text-neutral-950 border-t border-neutral-200">
         <div className="mx-auto max-w-4xl text-center">
@@ -204,8 +252,8 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
               <div className="flex flex-wrap justify-center gap-4">
                 {data.relatedGuides.map((guide) => (
                   <Link
-                    key={guide.slug}
-                    href={`/guides/${guide.slug}/`}
+                    key={guide.href || guide.slug}
+                    href={guide.href || (guide.slug ? `/guides/${guide.slug}/` : "/guides/")}
                     className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:border-lime-500 hover:text-lime-600"
                   >
                     {guide.title} <span className="ml-2">→</span>
@@ -217,13 +265,28 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
         </div>
       </section>
 
+      {data.relatedCases && data.relatedCases.length > 0 && (
+        <section className="bg-white px-5 py-20 text-neutral-950 md:px-10 md:py-28 xl:px-20">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading eyebrow="Related Projects" title="Basketball and School Teamwear References" subtitle="Review related project formats before defining your roster, artwork and delivery plan."/>
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {data.relatedCases.map((item) => (
+                <Link key={item.href || item.title} href={item.href || "/projects/"} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-8 transition hover:border-lime-500">
+                  <span className="text-lg font-black uppercase">{item.title}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Footer CTA */}
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-24 xl:px-20 border-t border-white/5">
         <div className="mx-auto max-w-7xl rounded-[3rem] border border-white/10 bg-[radial-gradient(circle_at_80%_50%,rgba(182,255,0,0.16),transparent_28%),linear-gradient(135deg,#111,#050505)] p-8 text-center md:p-20">
           <h2 className="text-4xl font-black leading-[1.05] text-white md:text-7xl uppercase tracking-tighter">Ready to Build Your Team Uniforms?</h2>
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-neutral-300">Send your sport, logo, colors and quantity. Get a free POXIOL mockup and move faster with custom teamwear production support.</p>
           <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-            <PrimaryButton href={freeMockupHref} className="h-16 px-10">Get Free Mockup</PrimaryButton>
+            <PrimaryButton href={data.bottomCta?.href || freeMockupHref} className="h-16 px-10">{data.bottomCta?.label || "Get Free Mockup"}</PrimaryButton>
             <SecondaryButton href="/get-quote/" className="h-16 px-10">Request Factory Quote</SecondaryButton>
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-50">

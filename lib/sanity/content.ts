@@ -107,6 +107,8 @@ const STANDARD_MIXED_SIZES = 'Mixed adult and youth sizes are supported.'
 
 type SanityPageSection = {
   sectionType?: CmsPageSectionType
+  enabled?: boolean
+  displayOrder?: number
   eyebrow?: string
   title?: string
   body?: PortableTextBlock[] | string
@@ -162,14 +164,19 @@ type SanityCategory = {
   heroDescription?: string
   introduction?: string
   heroImage?: SanityImage
+  heroProofPoints?: string[]
   buyerTypes?: string[]
   targetMarkets?: string[]
   productTypes?: string[]
   keyFeatures?: string[]
   coreBenefits?: string[]
+  decisionSections?: SanityPageSection[]
   relatedFaqs?: SanityFaq[]
   relatedCaseStudies?: RelatedDoc[]
   relatedGuides?: RelatedDoc[]
+  primaryCta?: SanityCta
+  secondaryCta?: SanityCta
+  bottomCta?: SanityCta
   navigationVisibility?: boolean
   homepageVisibility?: boolean
   showOnHomepage?: boolean
@@ -927,8 +934,75 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
   }
 }
 
+function basketballProcurementTable(
+  fallback: SportsPageData['procurementTable'],
+  standards: SanityProcurementStandards | null,
+): SportsPageData['procurementTable'] {
+  if (!standards) return fallback
+  const approved = [
+    {item: 'Sample MOQ', specification: standards.sampleMOQ || '1 set'},
+    {item: 'Sample production', specification: standards.sampleProductionTime || '2–3 working days after mockup approval'},
+    {
+      item: 'Bulk production',
+      specification: [standards.bulkProductionTime || '7–12 working days after sample or artwork approval', standards.bulkProductionNote]
+        .filter(Boolean)
+        .join(' '),
+    },
+    {item: 'Quality control', specification: standards.qcStandard || 'Inspection before shipment'},
+    {item: 'Size tolerance', specification: standards.sizeTolerance || '±2 cm'},
+    {item: 'Mixed sizes', specification: standards.mixedSizes || 'Mixed adult and youth sizes are supported'},
+  ]
+  const replacementTokens = ['sample support', 'sample moq', 'sample production', 'bulk production', 'quality control', 'size tolerance', 'mixed sizes']
+  return [...fallback.filter((row) => !replacementTokens.includes(row.item.toLowerCase())), ...approved]
+}
+
+export async function getBasketballDecisionPage(legacyData: SportsPageData): Promise<SportsPageData | null> {
+  const base = await getCmsSportsPageBySlug(legacyData)
+  if (!base || contentSource === 'legacy') return base
+
+  const [categoryResponse, procurementResponse] = await Promise.all([
+    sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug: 'basketball-uniforms'}),
+    sanityQuery<SanityProcurementStandards>(procurementStandardsQuery),
+  ])
+  if (!categoryResponse.ok || !categoryResponse.result) return base
+  const category = categoryResponse.result
+  if (!isDocumentVisible(category.publishStatus, contentSource)) return base
+
+  const decisionSections = mapPageSections(
+    sortByDisplayOrder((category.decisionSections || []).filter((section) => section.enabled !== false)),
+    [],
+  )
+  const relatedCases = mapRelated(category.relatedCaseStudies, '/projects/').map((item) => ({title: item.label, href: item.href}))
+  const relatedGuides = mapArticleRelated(category.relatedGuides).map((item) => ({title: item.label, href: item.href}))
+
+  return {
+    ...base,
+    heroImageAlt: category.heroImage?.altText || base.heroImageAlt || base.h1,
+    heroProofPoints: category.heroProofPoints?.length ? category.heroProofPoints : base.heroProofPoints,
+    buyerTypes: category.buyerTypes?.length
+      ? category.buyerTypes.map((title, index) => ({
+          title,
+          description: base.buyerTypes[index]?.description || 'Basketball uniform sourcing support based on the confirmed roster, artwork and delivery plan.',
+        }))
+      : base.buyerTypes,
+    features: category.keyFeatures?.length
+      ? category.keyFeatures.map((title, index) => ({
+          title,
+          description: category.coreBenefits?.[index] || base.features[index]?.description || 'Confirm this specification during artwork and sample review.',
+        }))
+      : base.features,
+    decisionSections: decisionSections.length ? decisionSections : base.decisionSections,
+    relatedCases: relatedCases.length ? relatedCases : base.relatedCases,
+    relatedGuides: relatedGuides.length ? relatedGuides : base.relatedGuides,
+    primaryCta: mapCta(category.primaryCta, base.primaryCta),
+    secondaryCta: mapCta(category.secondaryCta, base.secondaryCta),
+    bottomCta: mapCta(category.bottomCta, base.bottomCta),
+    procurementTable: basketballProcurementTable(base.procurementTable, procurementResponse.ok ? procurementResponse.result : null),
+  }
+}
+
 export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData | null> {
-  return getCmsSportsPageBySlug(legacyData)
+  return getBasketballDecisionPage(legacyData)
 }
 
 function legacyHomeRows(): CmsHomeContent['sourcingRows'] {

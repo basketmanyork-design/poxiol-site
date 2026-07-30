@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build && node scripts/generate-cms-redirects.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs"
   },
   "dependencies": {
     "@types/node": "^20.12.12",
