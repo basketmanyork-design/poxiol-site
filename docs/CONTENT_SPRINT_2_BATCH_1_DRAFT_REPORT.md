@@ -1,7 +1,7 @@
 # Content Sprint 2 — Buyer Knowledge Base Batch 1 Draft Report
 
-Date: 2026-07-30  
-Sanity project: `oqpv1xbc`  
+Date: 2026-07-30
+Sanity project: `oqpv1xbc`
 Dataset: `production`
 
 ## Safety boundary
@@ -137,5 +137,5 @@ The guides link to these existing documents but do not repeat customer, result, 
 4. Case-study evidence metadata and corrupted existing titles need review; the Draft articles intentionally make no claims based on them.
 5. Author references must be strengthened after the two author documents are approved and published first.
 
-Ready for editorial and Preview review: **YES**  
+Ready for editorial and Preview review: **YES**
 Ready for controlled publish: **NO — blocked by the items above**

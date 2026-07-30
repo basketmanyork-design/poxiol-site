@@ -1239,4 +1239,3 @@ Report:
 - remaining risks and the next action: begin the separately reviewed Sprint 1 Draft optimization track.
 
 Do not begin the Draft optimization track automatically.
-
