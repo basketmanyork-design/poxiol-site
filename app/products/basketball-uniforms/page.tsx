@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SportsLandingPage from "@/components/sports/SportsLandingPage";
 import { getSportsPageBySlug } from "@/lib/sports-pages";
-import { getCmsSportsPageBySlug } from "@/lib/sanity/content";
+import { getBasketballDecisionPage } from "@/lib/sanity/content";
 
 const slug = "products/basketball-uniforms";
 const legacyPageData = getSportsPageBySlug(slug);
 
 async function resolvePageData() {
   if (!legacyPageData) return null;
-  return getCmsSportsPageBySlug(legacyPageData);
+  return getBasketballDecisionPage(legacyPageData);
 }
 
 export async function generateMetadata(): Promise<Metadata> {

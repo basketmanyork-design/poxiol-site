@@ -1,3 +1,20 @@
+export type SportsDecisionSection = {
+  type?: 'hero' | 'intro' | 'richText' | 'imageText' | 'stats' | 'productGrid' | 'featureGrid' | 'evidenceGrid' | 'processSteps' | 'specificationsTable' | 'comparisonTable' | 'buyerChecklist' | 'factoryEvidence' | 'qcProcess' | 'caseStudies' | 'gallery' | 'faq' | 'cta';
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  facts?: string[];
+  steps?: {title: string; description: string}[];
+  specifications?: {label: string; value: string}[];
+  cta?: {label: string; href: string};
+};
+
+export type SportsRelatedLink = {
+  title: string;
+  href?: string;
+  slug?: string;
+};
+
 export type SportsPageData = {
   slug: string;
   metaTitle: string;
@@ -7,6 +24,8 @@ export type SportsPageData = {
   h1: string;
   heroText: string;
   heroImage: string;
+  heroImageAlt?: string;
+  heroProofPoints?: string[];
   primaryKeyword: string;
   productTypes: { title: string; description: string }[];
   features: { title: string; description: string }[];
@@ -15,7 +34,12 @@ export type SportsPageData = {
   procurementTable: { item: string; specification: string }[];
   faqs: { question: string; answer: string }[];
   checklist?: { title: string; intro: string; items: string[] };
-  relatedGuides?: { title: string; slug: string }[];
+  decisionSections?: SportsDecisionSection[];
+  relatedCases?: SportsRelatedLink[];
+  relatedGuides?: SportsRelatedLink[];
+  primaryCta?: {label: string; href: string};
+  secondaryCta?: {label: string; href: string};
+  bottomCta?: {label: string; href: string};
 };
 
 const commonFaqs = [
