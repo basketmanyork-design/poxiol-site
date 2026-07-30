@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {resolveSanityRequestPolicy} from '../lib/sanity/requestPolicy.ts'
 
-test('Production Sanity stays published, CDN-backed and force-cached without a token', () => {
+test('Production client stays published, CDN-backed and force-cached without authentication', () => {
   assert.deepEqual(resolveSanityRequestPolicy('sanity', {}), {
     perspective: 'published',
     useCdn: true,
