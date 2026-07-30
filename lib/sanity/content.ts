@@ -519,7 +519,7 @@ function filterCategoryNavigationLinks(links: CmsLink[], resolution: ProductCate
 function mapRelated(docs: RelatedDoc[] | undefined, basePath: string): CmsLink[] {
   return (docs || [])
     .map((doc) => {
-      const title = doc.title || doc.productName || doc.categoryName || doc.projectTitle
+      const title = doc.projectTitle || doc.title || doc.productName || doc.categoryName
       return title && doc.slug ? {label: title, href: `${basePath}${doc.slug}/`} : null
     })
     .filter(Boolean) as CmsLink[]
