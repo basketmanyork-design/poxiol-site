@@ -180,6 +180,10 @@ export const productCategoryBySlugQuery = `*[_type == "productCategory" && slug.
   relatedCaseStudies[]->{projectTitle, title, "slug": slug.current},
   relatedGuides[]->{title, "slug": slug.current, articleType},
   displayOrder,
+  navigationVisibility,
+  homepageVisibility,
+  showOnHomepage,
+  activeStatus,
   publishStatus,
   ${seoProjection}
 }`

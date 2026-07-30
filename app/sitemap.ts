@@ -1,8 +1,8 @@
 import { MetadataRoute } from "next";
-import { sportsPages } from "@/lib/sports-pages";
 import { caseStudies } from "@/lib/case-studies";
+import { sportsPages } from "@/lib/sports-pages";
 import { pseoPages } from "@/lib/pseo";
-import { getArticles } from "@/lib/sanity/content";
+import { getArticles, getProductCategories } from "@/lib/sanity/content";
 
 function uniqueByUrl(routes: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
   const seen = new Set<string>();
@@ -15,7 +15,7 @@ function uniqueByUrl(routes: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.poxiol.com";
-  const articles = await getArticles();
+  const [articles, categories] = await Promise.all([getArticles(), getProductCategories()]);
 
   // 1. Static Core Pages
   const staticPages = [
@@ -51,8 +51,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 2. Product Category Pages
-  const productRoutes = sportsPages.map((sport) => ({
-    url: `${baseUrl}/${sport.slug}/`,
+  const exportedCategorySlugs = new Set(sportsPages.map((page) => page.slug.replace(/^products\//, "")));
+  const productRoutes = categories.filter((category) => exportedCategorySlugs.has(category.slug) && !category.seo.noIndex).map((category) => ({
+    url: `${baseUrl}/products/${category.slug}/`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,

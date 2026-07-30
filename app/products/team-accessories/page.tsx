@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import SportsLandingPage from "@/components/sports/SportsLandingPage";
 import { getSportsPageBySlug } from "@/lib/sports-pages";
 import { getCmsSportsPageBySlug } from "@/lib/sanity/content";
@@ -15,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const pageData = await resolvePageData();
   return {
     title: pageData?.metaTitle,
+    robots: pageData?.noIndex ? {index: false, follow: false} : undefined,
     description: pageData?.metaDescription,
     alternates: { canonical: pageData ? "https://www.poxiol.com/" + pageData.slug + "/" : undefined },
   };
@@ -22,6 +24,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const pageData = await resolvePageData();
-  if (!pageData) return null;
+  if (!pageData) notFound();
   return <SportsLandingPage data={pageData} />;
 }

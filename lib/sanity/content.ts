@@ -1,6 +1,6 @@
 import 'server-only'
 
-import type {SportsPageData} from '@/lib/sports-pages'
+import {sportsPages, type SportsPageData} from '@/lib/sports-pages'
 import {sportsCategories, uspCards, homeFaqs} from '@/lib/home-data'
 import {
   legacyArticles,
@@ -29,9 +29,11 @@ import type {
   CmsSeo,
   CmsSiteChrome,
 } from '@/lib/cms/types'
+import type {CmsPortableTextNode} from '@/lib/cms/portableText'
 import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
+import {resolveProductsForCategoryVisibility} from '@/lib/cms/category-visibility'
 import {resolveContent} from './fallback'
 import {cardImageUrl, getImageUrl, heroImageUrl} from './image'
 import {
@@ -170,7 +172,8 @@ type SanityCategory = {
   relatedGuides?: RelatedDoc[]
   navigationVisibility?: boolean
   homepageVisibility?: boolean
-  activeStatus?: string
+  showOnHomepage?: boolean
+  activeStatus?: boolean | 'inactive'
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
@@ -297,7 +300,7 @@ type SanityArticle = {
   articleType?: string
   featuredImage?: SanityImage
   heroImage?: SanityImage
-  body?: PortableTextBlock[] | string
+  body?: CmsPortableTextNode[] | string
   sections?: Array<{title?: string; content?: string | string[]}>
   authorName?: string
   reviewedByName?: string
@@ -317,11 +320,11 @@ type SanityArticle = {
 }
 
 
-function textFromPortable(value: PortableTextBlock[] | string | undefined): string {
+function textFromPortable(value: Array<PortableTextBlock | CmsPortableTextNode> | string | undefined): string {
   if (!value) return ''
   if (typeof value === 'string') return value
   return value
-    .map((block) => block.children?.map((child) => child.text || '').join('') || '')
+    .map((block) => 'children' in block ? block.children?.map((child) => child.text || '').join('') || '' : '')
     .filter(Boolean)
     .join('\n')
 }
@@ -390,10 +393,10 @@ function mapCategory(category: SanityCategory, fallback: CmsProductCategory | un
     relatedCaseStudies: mapRelated(category.relatedCaseStudies, '/projects/').length ? mapRelated(category.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies,
     relatedGuides: mapArticleRelated(category.relatedGuides).length ? mapArticleRelated(category.relatedGuides) : fallback?.relatedGuides,
     navigationVisibility: category.navigationVisibility ?? fallback?.navigationVisibility,
-    homepageVisibility: category.homepageVisibility ?? fallback?.homepageVisibility,
+    homepageVisibility: category.homepageVisibility ?? category.showOnHomepage ?? fallback?.homepageVisibility,
     seo: seoFrom(category.seo, fallback?.seo || {title: category.categoryName + ' | POXIOL', description: category.heroDescription || category.introduction || category.categoryName}),
     displayOrder: category.displayOrder ?? fallback?.displayOrder ?? index,
-    active: category.activeStatus !== 'inactive',
+    active: category.activeStatus !== false && category.activeStatus !== 'inactive',
   }
 }
 
@@ -485,6 +488,27 @@ function mapLink(link: SanityLink | undefined): CmsLink | null {
   return {label: link.label, href, openInNewWindow: link.openInNewWindow}
 }
 
+const exportedCategorySlugs = new Set(sportsPages.map((page) => page.slug.replace(/^products\//, '')))
+
+function categorySlugFromNavigationHref(href: string): string | null {
+  const path = href.split(/[?#]/, 1)[0]
+  return path.match(/^\/products\/([^/]+)\/?$/)?.[1] || null
+}
+
+function filterCategoryNavigationLinks(links: CmsLink[], resolution: ProductCategoriesResolution): CmsLink[] {
+  if (!resolution.visibilityResolved) return links
+  const visibleNavigationSlugs = new Set(
+    resolution.categories
+      .filter((category) => category.navigationVisibility !== false)
+      .map((category) => category.slug),
+  )
+  return links.filter((link) => {
+    const slug = categorySlugFromNavigationHref(link.href)
+    if (!slug || !resolution.knownCategorySlugs.has(slug)) return true
+    return visibleNavigationSlugs.has(slug)
+  })
+}
+
 function mapRelated(docs: RelatedDoc[] | undefined, basePath: string): CmsLink[] {
   return (docs || [])
     .map((doc) => {
@@ -531,6 +555,7 @@ function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
   if (article.sections?.length) {
     return article.sections.map((section) => ({title: section.title || 'Section', content: section.content || ''}))
   }
+  if (Array.isArray(article.body) && article.body.length) return []
   const body = textFromPortable(article.body)
   if (body) return [{title: 'Article body', content: body}]
   return fallback?.sections || []
@@ -538,13 +563,14 @@ function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
 
 export async function getSiteChrome(): Promise<CmsSiteChrome> {
   if (contentSource === 'legacy') return legacySiteChrome
-  const [settingsResponse, navResponse, footerResponse] = await Promise.all([
+  const [settingsResponse, navResponse, footerResponse, categoryResolution] = await Promise.all([
     sanityQuery<SanitySiteSettings>(siteSettingsQuery),
     sanityQuery<SanityNav>(navigationQuery),
     sanityQuery<SanityFooter>(footerQuery),
+    resolveProductCategories(),
   ])
 
-  if (!settingsResponse.ok && !navResponse.ok && !footerResponse.ok) return legacySiteChrome
+  if (!settingsResponse.ok && !navResponse.ok && !footerResponse.ok && !categoryResolution.visibilityResolved) return legacySiteChrome
 
   const settings = settingsResponse.ok ? settingsResponse.result : null
   const nav = navResponse.ok ? navResponse.result : null
@@ -553,6 +579,15 @@ export async function getSiteChrome(): Promise<CmsSiteChrome> {
   const whatsappNumber = settings?.contactInfo?.whatsappNumber || legacySiteChrome.whatsappNumber
   const whatsappMessage = settings?.contactInfo?.whatsappMessage || legacySiteChrome.whatsappMessage
   const digits = whatsappNumber.replace(/\D/g, '')
+  const headerLinks = nav?.headerNavigation?.length
+    ? nav.headerNavigation.map(mapLink).filter(Boolean) as CmsLink[]
+    : legacySiteChrome.headerNavigation
+  const footerColumns = footer?.footerColumns?.length
+    ? footer.footerColumns.map((column) => ({
+        title: column.title || 'Links',
+        links: (column.links || []).map(mapLink).filter(Boolean) as CmsLink[],
+      }))
+    : legacySiteChrome.footerColumns
 
   return {
     ...legacySiteChrome,
@@ -565,15 +600,8 @@ export async function getSiteChrome(): Promise<CmsSiteChrome> {
     whatsappMessage,
     whatsappHref: digits ? 'https://wa.me/' + digits + '?text=' + encodeURIComponent(whatsappMessage) : legacySiteChrome.whatsappHref,
     alibabaStoreUrl: settings?.contactInfo?.alibabaStoreUrl || legacySiteChrome.alibabaStoreUrl,
-    headerNavigation: nav?.headerNavigation?.length
-      ? nav.headerNavigation.map(mapLink).filter(Boolean) as CmsLink[]
-      : legacySiteChrome.headerNavigation,
-    footerColumns: footer?.footerColumns?.length
-      ? footer.footerColumns.map((column) => ({
-          title: column.title || 'Links',
-          links: (column.links || []).map(mapLink).filter(Boolean) as CmsLink[],
-        }))
-      : legacySiteChrome.footerColumns,
+    headerNavigation: filterCategoryNavigationLinks(headerLinks, categoryResolution),
+    footerColumns: footerColumns.map((column) => ({...column, links: filterCategoryNavigationLinks(column.links, categoryResolution)})),
     copyright: footer?.copyright || settings?.footer?.copyright || legacySiteChrome.copyright,
     address: settings?.contactInfo?.companyAddress || settings?.footer?.address || legacySiteChrome.address,
   }
@@ -622,22 +650,36 @@ export async function getSitePage(key: string): Promise<CmsPage> {
   } as CmsPage
 }
 
-export async function getProductCategories(): Promise<CmsProductCategory[]> {
+type ProductCategoriesResolution = {categories: CmsProductCategory[]; knownCategorySlugs: Set<string>; visibilityResolved: boolean}
+
+async function resolveProductCategories(): Promise<ProductCategoriesResolution> {
   const response = await sanityQuery<SanityCategory[]>(productCategoriesQuery)
-  return mergeCmsList({
+  const cmsCategories = response.ok ? response.result || [] : []
+  const knownCategorySlugs = new Set([
+    ...Array.from(exportedCategorySlugs),
+    ...cmsCategories.flatMap((category) => category.slug ? [category.slug] : []),
+  ])
+  const categories = mergeCmsList({
     legacy: legacyProductCategories,
-    cms: response.ok ? response.result || [] : [],
+    cms: cmsCategories,
     sourceState: queryState(response),
     mode: getCmsListMode(),
     contentSource,
     mapCms: (category, fallback, index) => mapCategory(category, fallback, index),
-  }).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+  })
+    .filter((category) => category.active)
+    .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+  return {categories, knownCategorySlugs, visibilityResolved: response.ok || contentSource === 'legacy'}
+}
+
+export async function getProductCategories(): Promise<CmsProductCategory[]> {
+  return (await resolveProductCategories()).categories
 }
 
 export async function getProductCategory(slug: string): Promise<CmsProductCategory | null> {
   const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
   const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug})
-  return resolveSingle({
+  const category = resolveSingle({
     slug,
     legacy: fallback,
     cms: response.ok ? response.result : null,
@@ -646,25 +688,49 @@ export async function getProductCategory(slug: string): Promise<CmsProductCatego
     contentSource,
     mapCms: (category, itemFallback) => mapCategory(category, itemFallback),
   })
+  return category?.active ? category : null
+}
+
+type ProductCategoryResolution = {category: CmsProductCategory | null; suppressed: boolean}
+
+async function resolveProductCategory(slug: string): Promise<ProductCategoryResolution> {
+  const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
+  const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug})
+  if (!response.ok || contentSource === 'legacy') return {category: fallback, suppressed: false}
+
+  const cms = response.result
+  if (cms?.publishStatus === 'unpublished') return {category: null, suppressed: true}
+  if (cms && isDocumentVisible(cms.publishStatus, contentSource)) {
+    const category = mapCategory(cms, fallback || undefined)
+    return category?.active ? {category, suppressed: false} : {category: null, suppressed: true}
+  }
+  if (getCmsListMode() === 'strict') return {category: null, suppressed: false}
+  return {category: fallback, suppressed: false}
 }
 
 export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> {
+  const categoryResolution = await resolveProductCategories()
+  const visibleCategorySlugs = new Set(categoryResolution.categories.map((category) => category.slug))
   const legacy = categorySlug ? legacyProducts.filter((product) => product.categorySlug === categorySlug) : legacyProducts
   const response = await sanityQuery<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
-  return mergeCmsList({
-    legacy,
+  return resolveProductsForCategoryVisibility(categoryResolution.visibilityResolved, legacy, () => mergeCmsList({
+    legacy: legacy.filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug)),
     cms: response.ok ? response.result || [] : [],
     sourceState: queryState(response),
     mode: getCmsListMode(),
     contentSource,
     mapCms: (product, fallback, index) => mapProduct(product, fallback || legacyProducts.find((item) => item.slug === product.slug), index),
-  }).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+  })
+    .filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug))
+    .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999)))
 }
 
 export async function getProduct(slug: string): Promise<CmsProduct | null> {
   const fallback = legacyProducts.find((product) => product.slug === slug) || null
+  const categoryResolution = await resolveProductCategories()
   const response = await sanityQuery<SanityProduct>(productBySlugQuery, {slug})
-  return resolveSingle({
+  if (!categoryResolution.visibilityResolved) return fallback
+  const product = resolveSingle({
     slug,
     legacy: fallback,
     cms: response.ok ? response.result : null,
@@ -673,6 +739,8 @@ export async function getProduct(slug: string): Promise<CmsProduct | null> {
     contentSource,
     mapCms: (product, itemFallback) => mapProduct(product, itemFallback),
   })
+  if (product?.categorySlug && !categoryResolution.categories.some((category) => category.slug === product.categorySlug)) return null
+  return product
 }
 
 export async function getProjects(): Promise<CmsProject[]> {
@@ -754,6 +822,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     eyebrow: fallback?.eyebrow || (articleType === 'blog' ? 'Blog' : articleType === 'resource' ? 'Resource' : 'Guide'),
     featuredImage: optionalImage(article.featuredImage || article.heroImage, fallback?.featuredImage, 'hero'),
     body: body || fallback?.body || article.excerpt || '',
+    bodyBlocks: Array.isArray(article.body) ? article.body : fallback?.bodyBlocks,
     articleType,
     author: article.authorName || fallback?.author || 'POXIOL Editorial Team',
     reviewedBy: article.reviewedByName || fallback?.reviewedBy,
@@ -823,11 +892,17 @@ export async function getMatchedFaqsForProduct(productSlug: string, fallback: Cm
   return matched.length ? matched.slice(0, 8) : fallback
 }
 
-export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData> {
+export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData | null> {
   const categorySlug = legacyData.slug.replace(/^products\//, '')
-  const [category, products] = await Promise.all([getProductCategory(categorySlug), getProducts(categorySlug)])
+  const [resolution, products] = await Promise.all([resolveProductCategory(categorySlug), getProducts(categorySlug)])
+  if (resolution.suppressed) {
+    if (getCmsListMode() === 'strict') return null
+    return {...legacyData, noIndex: true}
+  }
+  const {category} = resolution
 
-  if (!category) return legacyData
+
+  if (!category) return getCmsListMode() === 'strict' ? null : legacyData
   const matchedFaqs = await getMatchedFaqsForProductCategory(categorySlug, category.relatedFaqs?.length ? category.relatedFaqs : legacyData.faqs, category.title)
   const productCards = products.map((product) => ({title: product.title, description: product.description}))
   const designs = products
@@ -848,10 +923,11 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
     features: productCards.length ? productCards.slice(0, 4) : legacyData.features,
     designs: designs.length ? designs : legacyData.designs,
     faqs: matchedFaqs.length ? matchedFaqs : legacyData.faqs,
+    noIndex: category.seo.noIndex,
   }
 }
 
-export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData> {
+export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData | null> {
   return getCmsSportsPageBySlug(legacyData)
 }
 
@@ -944,7 +1020,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     getFaqGroups(),
     sanityQuery<SanityProcurementStandards>(procurementStandardsQuery),
   ])
-  const cmsCategories = categories.slice(0, 12).map((category) => ({
+  const cmsCategories = categories.filter((category) => category.homepageVisibility !== false).slice(0, 12).map((category) => ({
     title: category.title,
     description: category.description,
     cta: `View ${category.title}`,

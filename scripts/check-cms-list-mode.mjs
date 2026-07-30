@@ -1,3 +1,5 @@
+import {readFileSync} from 'node:fs'
+
 function isDocumentVisible(status, source) {
   if (source === 'legacy') return false
   if (source === 'sanity-preview') return status === 'draft' || status === 'published'
@@ -23,6 +25,13 @@ function assert(name, condition) {
   if (!condition) throw new Error(name)
 }
 const legacy = [{slug:'a', title:'Legacy A'}, {slug:'b', title:'Legacy B'}]
+const isCategoryActive = (activeStatus) => activeStatus !== false && activeStatus !== 'inactive'
+
+assert('boolean false category is inactive', isCategoryActive(false) === false)
+assert('legacy inactive category is inactive', isCategoryActive('inactive') === false)
+assert('missing category status stays active', isCategoryActive(undefined) === true)
+
+
 const mapCms = (item) => ({slug:item.slug, title:item.title})
 let result = mergeCmsList({legacy, cms:[{slug:'a', title:'CMS A', publishStatus:'published'}], sourceState:'ok', mode:'merge', contentSource:'sanity', mapCms})
 assert('merge keeps other legacy routes', result.length === 2 && result.find((x) => x.slug === 'b'))
