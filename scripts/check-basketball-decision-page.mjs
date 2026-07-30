@@ -23,6 +23,11 @@ assert.match(
   /h1:\\s*category\\.heroTitle\\s*\\|\\|/,
   'Basketball Hero H1 must prefer the CMS heroTitle',
 )
+assert.match(
+  content,
+  /doc\.projectTitle\s*\|\|\s*doc\.title/,
+  'Related Case links must prefer the verified projectTitle over the corrupted legacy title',
+)
 assert.match(page, /getBasketballDecisionPage/, 'Basketball route is not wired to its focused resolver')
 assert.match(types, /heroProofPoints/, 'SportsPageData is missing hero proof points')
 assert.match(types, /decisionSections/, 'SportsPageData is missing decision sections')
