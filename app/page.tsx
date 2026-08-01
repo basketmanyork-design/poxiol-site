@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/forms/ContactForm";
+import { SeedTrustConversionSections } from "@/components/sections/SeedTrustConversionSections";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, EmailAddress, emailHref } from "@/components/ui";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 import { getHomepageContent, getSiteChrome } from "@/lib/sanity/content";
@@ -76,15 +77,17 @@ export default async function HomePage() {
                   <p className="text-[10px] font-black uppercase tracking-widest text-[#B6FF00]">B2B Production</p>
                   <h3 className="mt-1 text-2xl font-black uppercase italic">MOQ 1 SET</h3>
                 </div>
-                <div className="text-right">
-                  <p className="text-2xl font-black leading-none">3,000+</p>
-                  <p className="mt-1 text-[10px] font-bold text-neutral-400">Teams Served</p>
+                <div className="max-w-[11rem] text-right">
+                  <p className="text-sm font-black uppercase leading-tight text-white">Quality Checks Before Shipment</p>
+                  <p className="mt-1 text-[10px] font-bold text-neutral-400">Names, numbers, sizing and packing</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <SeedTrustConversionSections sections={content.trustSections} />
 
       {/* 2. Factory Sourcing Summary - AEO / GEO Table */}
       <section className="bg-black px-5 py-16 md:px-10 md:py-24 border-b border-white/5">

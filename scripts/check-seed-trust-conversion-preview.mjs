@@ -12,6 +12,7 @@ const sourceFiles = [
   'app/page.tsx',
   'app/projects/page.tsx',
   'components/cms/PageTemplate.tsx',
+  'components/sections/SeedTrustConversionSections.tsx',
   'components/sports/SportsLandingPage.tsx',
   'lib/home-data.ts',
   'lib/cms/legacy.ts',
@@ -47,6 +48,12 @@ const requiredSourceCopy = [
 for (const phrase of requiredSourceCopy) {
   assert.ok(source.includes(phrase), `Missing required Preview source copy: ${phrase}`)
 }
+
+const homepageSource = read('app/page.tsx')
+assert.ok(homepageSource.includes('<SeedTrustConversionSections sections={content.trustSections}'), 'Homepage does not render CMS trust sections')
+assert.equal((homepageSource.match(/<h1/g) || []).length, 1, 'Homepage must render exactly one h1')
+assert.ok(!homepageSource.includes('Teams Served'), 'Homepage still renders unsupported team-count proof')
+assert.ok(homepageSource.includes('<FAQSchema faqs={content.faqs'), 'Homepage JSON-LD must use the same FAQ resolver data as visible FAQ')
 
 const forbiddenClaims = [
   '3,000+ Teams Served',
