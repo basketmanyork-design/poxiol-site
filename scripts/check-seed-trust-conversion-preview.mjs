@@ -62,6 +62,18 @@ assert.ok(projectListSource.includes('Project imagery pending verification'), 'P
 assert.ok(projectDetailSource.includes('Project imagery pending verification'), 'Project detail needs a safe missing-image state')
 assert.ok(!contentResolverSource.includes("projects_basketball_academy_uniform_program.png', alt: title"), 'Project resolver still fabricates a basketball evidence image')
 
+const ledgerPath = path.join(root, 'docs/POXIOL_SEED_TRUST_CONVERSION_DRAFT_LEDGER.json')
+if (fs.existsSync(ledgerPath)) {
+  const ledger = JSON.parse(fs.readFileSync(ledgerPath, 'utf8'))
+  assert.equal(ledger.drafts.length, 5, 'Draft ledger must contain exactly five approved documents')
+  assert.equal(ledger.publishedWrites, 0, 'Draft ledger must record zero Published writes')
+  assert.equal(ledger.releaseCreated, false, 'Draft ledger must record no Sanity Release')
+  for (const draft of ledger.drafts) {
+    assert.ok(draft.id.startsWith('drafts.'), `Non-Draft ID in ledger: ${draft.id}`)
+    assert.equal(draft.publishedChanged, false, `Published change recorded for ${draft.id}`)
+  }
+}
+
 const forbiddenClaims = [
   '3,000+ Teams Served',
   'KIAN ink',
