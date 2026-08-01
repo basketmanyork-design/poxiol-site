@@ -59,6 +59,7 @@ const projectListSource = read('app/projects/page.tsx')
 const projectDetailSource = read('app/projects/[slug]/page.tsx')
 const contentResolverSource = read('lib/sanity/content.ts')
 assert.ok(projectListSource.includes('Project imagery pending verification'), 'Project cards need a safe missing-image state')
+assert.equal((projectListSource.match(/<h1/g) || []).length, 1, 'Projects page must render one visible h1')
 assert.ok(projectDetailSource.includes('Project imagery pending verification'), 'Project detail needs a safe missing-image state')
 assert.ok(!contentResolverSource.includes("projects_basketball_academy_uniform_program.png', alt: title"), 'Project resolver still fabricates a basketball evidence image')
 
