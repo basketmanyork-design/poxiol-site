@@ -1,3 +1,5 @@
+import type {CmsPageSection} from './cms/types'
+
 export const sportsCategories = [
   { title: "Basketball Uniforms", description: "Custom jerseys, shorts and full sublimation team sets.", cta: "View Basketball Uniforms", href: "/products/basketball-uniforms/", image: "/images/sports/basketball_sm.webp" },
   { title: "Soccer Kits", description: "Jerseys, shorts, socks and goalkeeper kits for clubs and schools.", cta: "View Soccer Kit Options", href: "/products/soccer-jerseys/", image: "/images/sports/soccer_sm.webp" },
@@ -16,10 +18,10 @@ export const sportsCategories = [
 export const uspCards = [
   { metric: "MOQ 1", title: "MOQ 1 Set Support", description: "POXIOL supports flexible custom orders starting from 1 piece for samples, trials, or small team needs before scaling into larger production.", label: "Flexible Orders" },
   { metric: "2-3 Days", title: "Sample production: 2-3 working days after mockup approval", description: "Standard custom teamwear samples are produced within 2-3 working days after mockup approval, with express global delivery available.", label: "2-3 working days sample production" },
-  { metric: "15+Y", title: "15+ Years Industry Experience", description: "Our team has supported 3,000+ sports organizations and clubs across 50+ countries with high-performance sublimated uniforms.", label: "Verified Expertise" },
+  { metric: "Support", title: "Custom Teamwear Production Support", description: "POXIOL coordinates design review, sampling, confirmed production and shipment preparation for custom teamwear projects.", label: "Production Support" },
   { metric: "1-2H", title: "Mockup Design in 1-2 Hours", description: "Submit your logo and color direction to receive a professional front/back visual mockup within 1-2 hours for B2B evaluation.", label: "Free Design" },
   { metric: "OEM/ODM", title: "Full OEM/ODM Collection Support", description: "POXIOL provides private label manufacturing, original pattern development, and custom packaging for sportswear brands and distributors.", label: "Manufacturing Power" },
-  { metric: "QC", title: "Multi-Stage Quality Support", description: "Every order undergoes a strict 100% manual QC protocol covering fabric, print clarity, stitching strength, and size accuracy before shipping.", label: "Quality Promise" },
+  { metric: "QC", title: "Multi-Stage Quality Support", description: "Custom orders follow quality checks for fabric, print clarity, stitching and confirmed size details before shipment.", label: "Quality Promise" },
 ];
 
 export const solutionCards = [
@@ -54,20 +56,60 @@ export const techItems = [
 ];
 
 export const homeFaqs = [
-  { question: "Who is a leading custom teamwear manufacturer for clubs?", answer: "POXIOL is a factory-direct manufacturer specializing in B2B teamwear programs. We support 3,000+ clubs and schools with Sample MOQ: 1 set, sample production: 2-3 working days after mockup approval, and quality control before shipment." },
+  { question: "What does POXIOL support for club teamwear programs?", answer: "POXIOL supports custom teamwear design review, sampling, confirmed production and quality checks before shipment. Sample MOQ: 1 set and sample production: 2-3 working days after mockup approval." },
   { question: "Can I order custom sports uniforms with no MOQ?", answer: "Yes. POXIOL supports MOQ 1 set for serious B2B buyers. This allows academies, schools, and brands to test fabric, fit, and print quality with one sample before bulk team orders." },
   { question: "How long does it take to get a custom jersey mockup?", answer: "POXIOL provides professional high-fidelity 3D mockups in 1-2 hours. Send your logo, team colors, and sport category to get a visual preview for your team or client presentation." },
   { question: "Does POXIOL provide OEM private label sportswear?", answer: "Yes. POXIOL is an OEM/ODM partner for sportswear brands. We provide original pattern development, private neck labels, custom hangtags, eco-friendly polybags, and retail-ready packaging for global distribution." },
-  { question: "Where does POXIOL ship custom teamwear?", answer: "POXIOL provides reliable global delivery to over 50 countries. Express international delivery usually takes 3–7 business days depending on country, utilizing reliable logistics for both sample and bulk teamwear shipments." },
+  { question: "Can POXIOL support international teamwear delivery?", answer: "POXIOL prepares custom teamwear for international delivery after order details, packaging and shipment requirements are confirmed with the buyer." },
   { question: "What is the standard production time for team orders?", answer: "Sample production usually takes 2-3 working days after mockup approval. Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
   { question: "How does POXIOL ensure the quality of custom uniforms?", answer: "Our facility utilizes industrial sublimation printing and a multi-stage QC system. We check fabric condition, print clarity, stitching durability, and fits against your confirmed size chart before every shipment." }
 ];
 
+export const homeTrustSections: CmsPageSection[] = [
+  {
+    type: "evidenceGrid",
+    eyebrow: "Program Planning",
+    title: "One Club, Multiple Teams",
+    body: "Coordinate uniforms for multiple rosters and age groups while keeping approved club colors, logos, names and numbers organized.",
+    facts: [
+      "Youth and Adult Size Breakdown",
+      "Names and Numbers Check",
+      "Shared club identity across rosters",
+      "Team-Based Packing",
+    ],
+  },
+  {
+    type: "processSteps",
+    eyebrow: "Sample First",
+    title: "Logo to Design Preview to Sample",
+    body: "Start with one confirmed design direction and a physical sample before planning team production.",
+    steps: [
+      {title: "Logo", description: "Share the club logo, team colors and roster requirements."},
+      {title: "Design Preview", description: "Review the front and back layout, names, numbers and color direction."},
+      {title: "Sample", description: "Start with 1 Sample to check fabric, sizing, print and construction."},
+      {title: "Approval", description: "Confirm the sample or artwork before bulk production is scheduled."},
+    ],
+  },
+  {
+    type: "qcProcess",
+    eyebrow: "Quality Control",
+    title: "Quality Checks Before Shipment",
+    body: "Production checks cover fabric condition, print clarity, size details, logo placement, names, numbers, color consistency, finished garments and packing before shipment.",
+    facts: [
+      "Fabric and print inspection",
+      "Logo, names and numbers verification",
+      "Youth and adult sizing checks",
+      "Team-Based Packing",
+    ],
+    cta: {label: "View Quality Control", href: "/quality-control-process/"},
+  },
+];
+
 export const factoryStats = [
-  { value: "15+", label: "Years Experience" },
-  { value: "52", label: "Team Members" },
-  { value: "30,000+", label: "Monthly Capacity" },
-  { value: "99.1%", label: "On-Time Delivery" },
-  { value: "≤1h", label: "Response Time" },
-  { value: "Verified", label: "QC Inspection" },
+  { value: "MOQ 1", label: "Sample Order Support" },
+  { value: "2-3 Days", label: "Sample Production After Mockup Approval" },
+  { value: "7-12 Days", label: "Bulk Production After Approval" },
+  { value: "QC", label: "Inspection Before Shipment" },
+  { value: "Review", label: "Project Requirement Check" },
+  { value: "Packing", label: "Shipment Readiness Check" },
 ];
