@@ -188,7 +188,7 @@ export type CmsProject = {
   region?: string
   quantityDisplay?: string
   projectTimeline?: string
-  image: CmsImage
+  image?: CmsImage
   images?: CmsImage[]
   qualityControl: string
   packaging: string

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = params;
   const project = await getProject(slug);
   if (!project) return { title: "Project Not Found" };
-  return { title: project.seo.title, description: project.seo.description, alternates: { canonical: project.seo.canonicalUrl || `https://www.poxiol.com/projects/${project.slug}/` }, openGraph: { title: project.seo.title, description: project.seo.description, images: [{ url: project.image.url, alt: project.image.alt }] }, robots: project.seo.noIndex ? { index: false, follow: false } : undefined };
+  return { title: project.seo.title, description: project.seo.description, alternates: { canonical: project.seo.canonicalUrl || `https://www.poxiol.com/projects/${project.slug}/` }, openGraph: { title: project.seo.title, description: project.seo.description, images: project.image ? [{ url: project.image.url, alt: project.image.alt }] : undefined }, robots: project.seo.noIndex ? { index: false, follow: false } : undefined };
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -59,7 +59,11 @@ export default async function ProjectPage({ params }: Props) {
               <div className="mt-16"><PrimaryButton href="/free-mockup/">Start Similar Project</PrimaryButton></div>
             </div>
             <div className="h-fit lg:sticky lg:top-24">
-              <img src={project.image.url} alt={project.image.alt} className="aspect-[4/3] w-full rounded-[2rem] border border-white/10 object-cover" />
+{project.image ? (
+                <img src={project.image.url} alt={project.image.alt} className="aspect-[4/3] w-full rounded-[2rem] border border-white/10 object-cover" />
+              ) : (
+                <div className="flex aspect-[4/3] w-full items-center justify-center rounded-[2rem] border border-white/10 bg-white/5 p-8 text-center text-sm font-bold uppercase tracking-widest text-neutral-500">Project imagery pending verification</div>
+              )}
             </div>
           </div>
         </div>

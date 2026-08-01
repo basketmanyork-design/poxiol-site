@@ -17,7 +17,11 @@ export default async function ProjectsPage() {
             {projects.map((project) => (
               <Link key={project.slug} href={`/projects/${project.slug}/`} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition hover:border-lime-400/30">
                 <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-900">
-                  <img src={project.image.url} alt={project.image.alt} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+{project.image ? (
+                    <img src={project.image.url} alt={project.image.alt} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center p-8 text-center text-sm font-bold uppercase tracking-widest text-neutral-500">Project imagery pending verification</div>
+                  )}
                 </div>
                 <div className="p-8">
                   <div className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-widest text-lime-400">

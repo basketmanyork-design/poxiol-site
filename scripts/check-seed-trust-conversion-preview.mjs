@@ -55,6 +55,13 @@ assert.equal((homepageSource.match(/<h1/g) || []).length, 1, 'Homepage must rend
 assert.ok(!homepageSource.includes('Teams Served'), 'Homepage still renders unsupported team-count proof')
 assert.ok(homepageSource.includes('<FAQSchema faqs={content.faqs'), 'Homepage JSON-LD must use the same FAQ resolver data as visible FAQ')
 
+const projectListSource = read('app/projects/page.tsx')
+const projectDetailSource = read('app/projects/[slug]/page.tsx')
+const contentResolverSource = read('lib/sanity/content.ts')
+assert.ok(projectListSource.includes('Project imagery pending verification'), 'Project cards need a safe missing-image state')
+assert.ok(projectDetailSource.includes('Project imagery pending verification'), 'Project detail needs a safe missing-image state')
+assert.ok(!contentResolverSource.includes("projects_basketball_academy_uniform_program.png', alt: title"), 'Project resolver still fabricates a basketball evidence image')
+
 const forbiddenClaims = [
   '3,000+ Teams Served',
   'KIAN ink',
