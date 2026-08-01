@@ -7,7 +7,8 @@
     "build": "next build && node scripts/generate-cms-redirects.mjs",
     "start": "next start",
     "lint": "next lint",
-    "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs"
+    "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs",
+    "test": "node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs"
   },
   "dependencies": {
     "@types/node": "^20.12.12",
