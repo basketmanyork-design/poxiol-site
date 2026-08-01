@@ -41,6 +41,7 @@ const requiredSourceCopy = [
   'Logo to Design Preview to Sample',
   'Youth and Adult Size Breakdown',
   'Names and Numbers Check',
+  'Real Sample Evidence',
   'Team-Based Packing',
   'Quality Checks Before Shipment',
 ]

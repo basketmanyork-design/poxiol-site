@@ -1,11 +1,11 @@
 {
   "projectId": "oqpv1xbc",
   "dataset": "production",
-  "timestamp": "2026-08-01T16:38:17Z",
+  "timestamp": "2026-08-01T17:07:58Z",
   "releaseCreated": false,
   "publishedWrites": 0,
   "drafts": [
-    {"id":"drafts.691b156d8e3f49bd","type":"sitePage","beforeRevision":"kqd32DnwMDSkqBnWPyMrpo","afterRevision":"qcaTVTRXzt1TXDF4usb1bd","changedFieldPaths":["heroHeading","heroSubheading","heroCTA","heroSecondaryCTA","homepageUspCards","contentSections"],"publishedChanged":false},
+    {"id":"drafts.691b156d8e3f49bd","type":"sitePage","beforeRevision":"kqd32DnwMDSkqBnWPyMrpo","afterRevision":"qcaTVTRXzt1TXDF4uscNRk","changedFieldPaths":["heroHeading","heroSubheading","heroCTA","heroSecondaryCTA","homepageUspCards","contentSections"],"publishedChanged":false},
     {"id":"drafts.23e722da0b66490c","type":"sitePage","beforeRevision":"eJ7skWqptDvdh6OpbT1ne0","afterRevision":"x4IhIh6n4J6As9mI7VDbh3","changedFieldPaths":["heroSubheading","contentSections"],"publishedChanged":false},
     {"id":"drafts.82ca7167e20342ac","type":"sitePage","beforeRevision":"eJ7skWqptDvdh6OpbT1no3","afterRevision":"x4IhIh6n4J6As9mI7VDee6","changedFieldPaths":["heroSubheading","contentSections"],"publishedChanged":false},
     {"id":"drafts.product-category-basketball-mvp","type":"productCategory","beforeRevision":"z7UkfLUBQqOTgWEGeSHtjQ","afterRevision":"x4IhIh6n4J6As9mI7VDn35","changedFieldPaths":["heroTitle","heroDescription","buyerTypes","relatedProducts","relatedFaqs","decisionSections"],"publishedChanged":false},

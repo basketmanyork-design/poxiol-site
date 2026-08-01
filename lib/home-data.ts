@@ -91,6 +91,18 @@ export const homeTrustSections: CmsPageSection[] = [
     ],
   },
   {
+    type: "evidenceGrid",
+    eyebrow: "Evidence Boundary",
+    title: "Real Sample Evidence",
+    body: "Only buyer-approved sample or project imagery should be shown as evidence. Until verified assets are supplied, the Preview explains the sample review points without inventing a customer, quantity or result.",
+    facts: [
+      "Approved mockup reviewed before sampling",
+      "Physical sample checked for fabric, fit and print",
+      "Buyer-approved imagery required before public display",
+      "No third-party marks or unsupported results",
+    ],
+  },
+  {
     type: "qcProcess",
     eyebrow: "Quality Control",
     title: "Quality Checks Before Shipment",
