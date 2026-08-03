@@ -8,6 +8,7 @@ import { fabricDatabase } from "@/lib/fabrics";
 export const metadata: Metadata = {
   title: "Sportswear Fabric Guide | Teamwear Fabric Database | POXIOL",
   description: "Explore POXIOL sportswear fabric guide for custom teamwear, including mesh fabric, interlock fabric, bird eye fabric, quick-dry polyester, spandex sports fabric and moisture-wicking materials for basketball, soccer, baseball, volleyball and team sports.",
+  alternates: { canonical: "/fabric-guide/" },
 };
 
 const faqs = [
@@ -30,7 +31,7 @@ export default function FabricGuidePage() {
       {/* Hero Section */}
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20 border-b border-white/5">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading 
+          <SectionHeading level="h1"
             eyebrow="Technical Database" 
             title="Sportswear Fabric Guide For Custom Teamwear" 
             subtitle="Performance starts with the right material. Our comprehensive guide helps you select the perfect fabric for your custom sports project based on breathability, durability, and printing needs."

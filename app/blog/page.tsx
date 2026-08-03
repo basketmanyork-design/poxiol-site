@@ -6,6 +6,7 @@ import {getArticles} from '@/lib/sanity/content'
 export const metadata: Metadata = {
   title: 'POXIOL Blog | Teamwear SEO Articles',
   description: 'Teamwear sourcing articles, manufacturing notes and buyer education from POXIOL.',
+  alternates: { canonical: "/blog/" },
 }
 
 export default async function BlogPage() {
@@ -15,7 +16,7 @@ export default async function BlogPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Blog" title="Teamwear SEO Articles" subtitle="Sourcing notes, manufacturing insights and buyer education for custom teamwear programs." dark center />
+          <SectionHeading level="h1" eyebrow="Blog" title="Teamwear SEO Articles" subtitle="Sourcing notes, manufacturing insights and buyer education for custom teamwear programs." dark center />
           {posts.length ? (
             <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (

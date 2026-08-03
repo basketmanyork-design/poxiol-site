@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, PrimaryButton } from "@/components/ui";
 import { getProjects } from "@/lib/sanity/content";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/projects/" },
+};
 
 export default async function ProjectsPage() {
   const projects = await getProjects();

@@ -5,6 +5,7 @@ import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEO
 export const metadata: Metadata = {
   title: "Certificates & Testing | POXIOL Custom Teamwear Quality Documents",
   description: "Review POXIOL custom teamwear quality documents, fabric testing options, inspection records and verified production evidence for B2B sportswear buyers.",
+  alternates: { canonical: "/certificates-testing/" },
 };
 
 const documentCategories = [
@@ -69,7 +70,7 @@ export default function CertificatesTestingPage() {
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(182,255,0,0.12),transparent_30%)]" />
         <div className="relative mx-auto max-w-4xl text-center">
-          <SectionHeading 
+          <SectionHeading level="h1"
             eyebrow="Verification" 
             title="Certificates & Testing for Custom Teamwear Buyers" 
             subtitle="POXIOL supports B2B teamwear buyers with transparent quality control, production documentation and available testing records."

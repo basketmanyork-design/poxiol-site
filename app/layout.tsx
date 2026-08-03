@@ -7,9 +7,6 @@ import { getAnalyticsRuntimeConfig } from "@/lib/analytics/server";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.poxiol.com"),
-  alternates: {
-    canonical: "/",
-  },
   title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
   description:
     "POXIOL provides custom basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and multi-sport teamwear with MOQ 1, free mockup, sample production in 2-3 days and OEM/ODM service.",

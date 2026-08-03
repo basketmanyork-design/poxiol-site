@@ -8,6 +8,7 @@ import { Printer, Zap, Scissors, ShieldCheck, Info } from "lucide-react";
 export const metadata: Metadata = {
   title: "Sportswear Printing Guide | Sublimation, Screen Printing & Embroidery | POXIOL",
   description: "Learn about sublimation printing, screen printing, embroidery and heat transfer methods for custom teamwear, basketball uniforms, soccer kits and sportswear manufacturing.",
+  alternates: { canonical: "/printing-guide/" },
 };
 
 const printingMethods = [
@@ -62,7 +63,7 @@ export default function PrintingGuidePage() {
       {/* Hero Section */}
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20 border-b border-white/5">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading 
+          <SectionHeading level="h1"
             eyebrow="Decoration Technology" 
             title="Sportswear Printing Guide For Custom Teamwear" 
             subtitle="Choosing the right printing method is essential for performance, durability, branding and appearance. Explore how we bring your custom designs to life."
