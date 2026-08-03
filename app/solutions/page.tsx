@@ -6,20 +6,26 @@ export const metadata: Metadata = {
   description: "POXIOL provides specialized teamwear solutions for clubs, schools, brands and distributors. OEM/ODM production with professional design and fast delivery.",
 };
 
-const solutions = [
+type Solution = {
+  title: string;
+  subtitle: string;
+  desc: string;
+  items: string[];
+  image?: string;
+};
+
+const solutions: Solution[] = [
   {
     title: "Basketball Uniform Solution",
     subtitle: "High-Performance Court Gear",
     desc: "Full sublimation reversible sets, game jerseys, and team travel apparel. Consistent colors across youth and adult sizes.",
-    items: ["Custom Reversible Sets", "Shooting Shirts", "Individual Personalization", "Pro-Grade Mesh Fabrics"],
-    image: "/images/poxiol-v62/projects_basketball_academy_uniform_program.png"
+    items: ["Custom Reversible Sets", "Shooting Shirts", "Individual Personalization", "Pro-Grade Mesh Fabrics"]
   },
   {
     title: "Soccer Uniform Solution",
     subtitle: "Elite Club Kit Launch",
     desc: "Home and away kit systems with sponsor integration and pro fit. Reliable delivery for tournament seasons and school events.",
-    items: ["Home & Away Kit Programs", "Goalkeeper Sets", "Sponsor Logo Alignment", "140gsm Breathable Interlock"],
-    image: "/images/poxiol-v62/projects_soccer_club_kit_launch.png"
+    items: ["Home & Away Kit Programs", "Goalkeeper Sets", "Sponsor Logo Alignment", "140gsm Breathable Interlock"]
   },
   {
     title: "Training Wear Solution",
@@ -57,7 +63,7 @@ export default function SolutionsPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="B2B Solutions" title="Custom Teamwear Programs Built for Your Needs" subtitle="POXIOL understands the different requirements for clubs, schools, and professional sportswear brands." dark center />
+          <SectionHeading eyebrow="B2B Solutions" title="Custom Teamwear Programs Built for Your Needs" subtitle="POXIOL understands the different requirements for clubs, schools, and professional sportswear brands." dark center level="h1" />
           
           <div className="mt-24 space-y-32 text-left">
             {solutions.map((sol, i) => (
@@ -78,8 +84,14 @@ export default function SolutionsPage() {
                     <SecondaryButton href={getQuoteHref}>Get Quote</SecondaryButton>
                   </div>
                 </div>
-                <div className={`aspect-[16/10] overflow-hidden rounded-[3rem] border border-white/10 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <img src={sol.image} alt={sol.title} className="h-full w-full object-cover" />
+                <div className={`aspect-[16/10] overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  {sol.image ? (
+                    <img src={sol.image} alt={sol.title} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center p-8 text-center text-sm font-bold uppercase tracking-widest text-neutral-400">
+                      Project imagery pending verification
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
