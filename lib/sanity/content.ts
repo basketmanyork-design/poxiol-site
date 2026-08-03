@@ -1,7 +1,7 @@
 import 'server-only'
 
 import {sportsPages, type SportsPageData} from '@/lib/sports-pages'
-import {sportsCategories, uspCards, homeFaqs} from '@/lib/home-data'
+import {sportsCategories, uspCards, homeFaqs, homeTrustSections} from '@/lib/home-data'
 import {
   legacyArticles,
   legacyFaqGroups,
@@ -421,7 +421,7 @@ function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, 
     region: project.region || fallback?.region,
     quantityDisplay: project.quantityDisplay || fallback?.quantityDisplay,
     projectTimeline: project.projectTimeline || fallback?.projectTimeline,
-    image: imageFrom(project.heroImage, fallback?.image || {url: '/images/poxiol-v62/projects_basketball_academy_uniform_program.png', alt: title}, 'card'),
+    image: optionalImage(project.heroImage, fallback?.image, 'card'),
     qualityControl: project.qualityControl || project.qcProcess || fallback?.qualityControl || '',
     packaging: project.packingDelivery || project.packaging || fallback?.packaging || '',
     solution: project.solution || fallback?.solution || '',
@@ -1131,8 +1131,9 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     heroDescription: page.description,
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
-    heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Get Factory Quote', href: '/get-quote/'},
+    heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Start with 1 Sample', href: '/sample-order/'},
     trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['Sample MOQ: 1 set', 'Free 3D Mockup', '2-3 working days sample production', 'QC before shipment', 'Global Shipping'],
+    trustSections: contentSource === 'legacy' ? homeTrustSections : page.sections.length ? page.sections.filter((section) => section.type !== 'cta') : homeTrustSections,
     sourcingRows: procurementRows,
     uspCards: normalizeHomepageUspCards(pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards),
     categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),

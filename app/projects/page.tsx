@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
+import { Header, Footer, PrimaryButton } from "@/components/ui";
 import { getProjects } from "@/lib/sanity/content";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
 
@@ -12,12 +12,20 @@ export default async function ProjectsPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Success Stories" title="Featured Projects & Case Studies" subtitle="Review POXIOL teamwear programs for clubs, academies, schools, events and distributors, including QC, packing and production solutions." dark center />
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#B6FF00]">Project Evidence</p>
+            <h1 className="mt-4 text-4xl font-black uppercase tracking-tight md:text-6xl">Teamwear Projects and Manufacturing Scenarios</h1>
+            <p className="mt-6 text-lg leading-8 text-neutral-400">Review the available project context, quality-control notes and packing details. Records without buyer-approved imagery show a verification-pending placeholder.</p>
+          </div>
           <div className="mt-20 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
               <Link key={project.slug} href={`/projects/${project.slug}/`} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition hover:border-lime-400/30">
                 <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-900">
-                  <img src={project.image.url} alt={project.image.alt} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+{project.image ? (
+                    <img src={project.image.url} alt={project.image.alt} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center p-8 text-center text-sm font-bold uppercase tracking-widest text-neutral-500">Project imagery pending verification</div>
+                  )}
                 </div>
                 <div className="p-8">
                   <div className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-widest text-lime-400">

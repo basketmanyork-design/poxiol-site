@@ -188,7 +188,7 @@ export type CmsProject = {
   region?: string
   quantityDisplay?: string
   projectTimeline?: string
-  image: CmsImage
+  image?: CmsImage
   images?: CmsImage[]
   qualityControl: string
   packaging: string
@@ -258,6 +258,7 @@ export type CmsHomeContent = {
   heroPrimaryCta: CmsCta
   heroSecondaryCta: CmsCta
   trustChips: string[]
+  trustSections: CmsPageSection[]
   sourcingRows: Array<{item: string; capability: string}>
   sectionHeadings: {
     sourcing: {eyebrow: string; title: string; subtitle?: string}
