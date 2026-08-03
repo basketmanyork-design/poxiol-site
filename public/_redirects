@@ -1,2 +1,3 @@
 # Cloudflare Pages redirects for POXIOL
 # Note: Primary www redirect is handled at the DNS level via Cloudflare
+/googlec5c97eecb7db490b.html /googlec5c97eecb7db490b 200
