@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/generate-cms-redirects.mjs && node scripts/check-solutions-image-integrity.test.mjs && npm run check:canonical",
+    "build": "node scripts/check-guide-route-integrity.test.mjs && next build && node scripts/generate-cms-redirects.mjs && node scripts/check-solutions-image-integrity.test.mjs && npm run check:canonical",
     "check:canonical": "node scripts/check-canonical-integrity.test.mjs",
     "start": "next start",
     "lint": "next lint",
     "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs",
-    "test": "node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs"
+    "test": "node scripts/check-guide-route-integrity.test.mjs && node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs"
   },
   "dependencies": {
     "@types/node": "^20.12.12",
