@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/generate-cms-redirects.mjs && node scripts/check-solutions-image-integrity.test.mjs",
+    "build": "next build && node scripts/generate-cms-redirects.mjs && node scripts/check-solutions-image-integrity.test.mjs && npm run check:canonical",
+    "check:canonical": "node scripts/check-canonical-integrity.test.mjs",
     "start": "next start",
     "lint": "next lint",
     "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs",

@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: page.title,
     description: page.intro,
+    alternates: { canonical: `/${page.slug}/` },
   };
 }
 
@@ -71,7 +72,7 @@ export default async function PSEOPage({ params }: Props) {
       
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading 
+          <SectionHeading level="h1"
             eyebrow="Specialized Teamwear Solutions" 
             title={page.h1} 
             subtitle={page.intro}

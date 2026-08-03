@@ -7,6 +7,7 @@ import { getProductCategories } from "@/lib/sanity/content";
 export const metadata: Metadata = {
   title: "Performance Teamwear Products | Custom Sports Uniforms | POXIOL",
   description: "Explore POXIOL's full range of custom teamwear products. Factory-direct basketball uniforms, soccer kits and training wear with high-color sublimation and 2-3 days sample production.",
+  alternates: { canonical: "/products/" },
 };
 
 const productsFaqs = [
@@ -33,7 +34,7 @@ export default async function ProductsPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Products Matrix" title="Performance Teamwear Categories" subtitle="Custom Teamwear Products Factory Direct. We provide high-color sublimated uniforms for sport categories with MOQ 1 set and global B2B logistics support." dark center />
+          <SectionHeading level="h1" eyebrow="Products Matrix" title="Performance Teamwear Categories" subtitle="Custom Teamwear Products Factory Direct. We provide high-color sublimated uniforms for sport categories with MOQ 1 set and global B2B logistics support." dark center />
           <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
               <Link key={category.slug} href={`/products/${category.slug}/`} className="group relative aspect-square overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 shadow-2xl">

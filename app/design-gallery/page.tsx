@@ -5,6 +5,7 @@ import { featuredDesigns } from "@/lib/home-data";
 export const metadata: Metadata = {
   title: "Custom Teamwear Design Gallery | POXIOL Inspiration",
   description: "Explore our collection of custom basketball uniforms, soccer kits, and training wear designs. Get inspiration for your team's next look with POXIOL.",
+  alternates: { canonical: "/design-gallery/" },
 };
 
 export default function DesignGalleryPage() {
@@ -13,7 +14,7 @@ export default function DesignGalleryPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Gallery" title="Custom Teamwear Design Inspiration" subtitle="Professional sublimation design concepts developed by the POXIOL creative team." dark center />
+          <SectionHeading level="h1" eyebrow="Gallery" title="Custom Teamwear Design Inspiration" subtitle="Professional sublimation design concepts developed by the POXIOL creative team." dark center />
           
           <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredDesigns.map(design => (

@@ -6,6 +6,7 @@ import { getFaqGroups } from "@/lib/sanity/content";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions | Custom Teamwear FAQ | POXIOL",
   description: "Find answers to common questions about custom teamwear manufacturing, MOQ, production times, printing methods and sportswear fabrics at POXIOL.",
+  alternates: { canonical: "/faq/" },
 };
 
 export default async function FAQPage() {
@@ -16,7 +17,7 @@ export default async function FAQPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading eyebrow="FAQ Center" title="Frequently Asked Questions" subtitle="Practical answers for custom teamwear sourcing, samples, MOQ, production, QC and global delivery." dark center />
+          <SectionHeading level="h1" eyebrow="FAQ Center" title="Frequently Asked Questions" subtitle="Practical answers for custom teamwear sourcing, samples, MOQ, production, QC and global delivery." dark center />
           <div className="mt-20 space-y-16">
             {faqGroups.map((category) => (
               <div key={category.category}>
