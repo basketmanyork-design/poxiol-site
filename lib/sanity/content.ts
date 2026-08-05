@@ -366,7 +366,8 @@ function imageFrom(source: SanityImage | undefined, fallback: CmsImage, size: 'h
 
 function optionalImage(source: SanityImage | undefined, fallback?: CmsImage, size: 'hero' | 'card' = 'card'): CmsImage | undefined {
   if (!source && !fallback) return undefined
-  return imageFrom(source, fallback || {url: '', alt: ''}, size)
+  const image = imageFrom(source, fallback || {url: '', alt: ''}, size)
+  return image.url ? image : undefined
 }
 
 function queryState<T>(response: {ok: true; result: T | null} | {ok: false}): SourceState {

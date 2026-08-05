@@ -2,12 +2,13 @@ import assert from 'node:assert/strict'
 import {existsSync, readFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
 import path from 'node:path'
-import {highIntentGuides as buyingGuides} from '../lib/high-intent-guides.ts'
+import {buyingGuides} from '../lib/guides.ts'
 
+import {guidePages} from '../lib/guides-data.ts'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const sourceOnly = process.argv.includes('--source-only')
 const guideRegistrySource = readFileSync(path.join(root, 'lib', 'guides.ts'), 'utf8')
-assert.match(guideRegistrySource, /import \{highIntentGuides\} from '\.\/high-intent-guides'/, 'guide registry must import high-intent records')
+assert.match(guideRegistrySource, /import \{highIntentGuides\} from '\.\/high-intent-guides\.js'/, 'guide registry must import high-intent records')
 assert.match(guideRegistrySource, /\.\.\.highIntentGuides/, 'guide registry must expose high-intent records')
 const siteUrl = 'https://www.poxiol.com'
 const contracts = [
@@ -21,6 +22,8 @@ const targets = new Map(buyingGuides.filter((guide) => contracts.some(({slug}) =
 
 assert.equal(targets.size, 4, 'all four high-intent guide data records must exist')
 assert.equal(buyingGuides.some(({slug}) => slug === 'youth-basketball-uniform-fabric-gsm'), false, 'Fabric/GSM must retain its original URL')
+assert.equal(buyingGuides.filter(({slug}) => slug === 'custom-basketball-uniform-fabric-gsm').length, 1, 'Fabric/GSM must have exactly one data record')
+assert.equal(guidePages.some(({slug}) => slug === 'custom-basketball-uniform-fabric-gsm'), false, 'obsolete Fabric/GSM migration candidate must be removed')
 const titles = new Set()
 const descriptions = new Set()
 for (const contract of contracts) {

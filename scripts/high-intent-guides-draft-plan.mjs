@@ -1,4 +1,4 @@
-import {highIntentGuides} from '../lib/high-intent-guides.ts'
+import {highIntentGuides} from '../lib/high-intent-guides.js'
 
 export const resource = {projectId: 'oqpv1xbc', dataset: 'production'}
 

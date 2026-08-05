@@ -25,7 +25,7 @@ try {
     page.on('pageerror', (error) => consoleErrors.push(error.message))
     for (const route of routes) {
       consoleErrors.length = 0
-      const response = await page.goto(new URL(route, baseUrl).href, {waitUntil: 'networkidle'})
+      const response = await page.goto(new URL(route, baseUrl).href, {waitUntil: 'load'})
       assert.equal(response?.status(), 200, `${viewport.name} ${route} must return 200`)
       const audit = await page.evaluate(() => {
         const h1s = [...document.querySelectorAll('h1')].filter((node) => {

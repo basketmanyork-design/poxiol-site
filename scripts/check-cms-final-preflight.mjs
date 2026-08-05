@@ -35,7 +35,7 @@ function validateMetric(summary, key, expectedValue) {
 }
 
 const metrics = [
-  { key: 'correctedCandidateCount', expected: 121 },
+  { key: 'correctedCandidateCount', expected: 124 },
   { key: 'articleConflictCount', expected: 0 },
   { key: 'routeConflictCount', expected: 0 },
   { key: 'missingSeoCount', expected: 0 },
@@ -350,7 +350,7 @@ writeFileSync(join(ROOT, 'docs', 'CMS_FINAL_PREFLIGHT_SUMMARY.json'), JSON.strin
 if (!passed) {
   console.error("CMS final preflight FAILED");
   if (!migrationValid) console.error("- Migration metrics validation failed");
-  if (metricVars.correctedCandidateCount !== 121) console.error(`- Invalid correctedCandidateCount: ${metricVars.correctedCandidateCount}`);
+  if (metricVars.correctedCandidateCount !== 124) console.error(`- Invalid correctedCandidateCount: ${metricVars.correctedCandidateCount}`);
   if (subScriptFailure) console.error("- One or more sub-scripts failed");
   if (binaryChangeCount !== 0) console.error(`- Binary changes detected: ${binaryChangeCount}`);
   if (gitCheckFailure) console.error("- Git audit failed");

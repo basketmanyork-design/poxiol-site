@@ -1,4 +1,4 @@
-import {highIntentGuides} from './high-intent-guides'
+import {highIntentGuides} from './high-intent-guides.js'
 
 export type BuyingGuide = {
   slug: string;

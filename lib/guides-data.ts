@@ -85,61 +85,6 @@ export const guidePages: GuidePage[] = [
     ]
   },
   {
-    slug: "custom-basketball-uniform-fabric-gsm",
-    metaTitle: "Basketball Uniform Fabric GSM Guide: 140–180 GSM Specs | POXIOL",
-    metaDescription: "Technical comparison of basketball uniform fabric weights. Choose between 140gsm lightweight mesh and 180gsm professional competition interlock.",
-    h1: "Technical Guide: Choosing the Correct Fabric GSM for Basketball Uniforms",
-    intro: "In basketball teamwear manufacturing, GSM (Grams per Square Meter) determines the weight, durability, and breathability of the garment. Selecting the wrong weight can lead to poor on-court performance or premature wear. This guide breaks down the technical differences between mesh and interlock weights.",
-    keyTakeaways: [
-      "160–165 GSM is the standard for high-performance club and school basketball jerseys.",
-      "140 GSM is reserved for hot-weather training or lightweight youth academy kits.",
-      "180 GSM provides the premium 'pro' feel required for reversible and elite game-day uniforms."
-    ],
-    sections: [
-      {
-        title: "1. The GSM Performance Matrix",
-        content: "Understanding how weight affects mobility and moisture management is the first step in B2B fabric selection.",
-        table: {
-          headers: ["GSM Range", "Best Use Case", "Key Benefit"],
-          rows: [
-            ["140–150 GSM", "Youth Academies & Training", "Extreme breathability, ultra-lightweight"],
-            ["160–165 GSM", "Club & School Competition", "Optimal durability and moisture-wicking"],
-            ["170–180 GSM", "Professional & Reversible", "Premium hand-feel, superior strength"]
-          ]
-        }
-      },
-      {
-        title: "2. Mesh vs. Interlock: When to Choose Which?",
-        content: "The fabric structure is just as important as the weight. Mesh offers ventilation; Interlock offers a smooth surface for sharp sublimation.",
-        checklist: [
-          "Choose Mesh for classic basketball ventilation (eyelet or pin-hole mesh)",
-          "Choose Interlock for high-definition graphics and 'Dri-Fit' style comfort",
-          "Use 140gsm Mesh for the inner layer of reversible uniforms to manage bulk"
-        ]
-      }
-    ],
-    faqs: [
-      {
-        question: "What is the best fabric for basketball uniforms?",
-        answer: "For professional games, 160–180 GSM is preferred for durability. For youth and schools, 150–165 GSM offers the best balance of weight and performance."
-      }
-    ],
-    cta: { text: "View Fabric Database", href: "/manufacturing/" },
-    author: {
-      name: "York",
-      role: "Teamwear Export and B2B Sourcing Specialist",
-      brand: "POXIOL",
-      bio: "York works with international clubs, schools, sportswear brands and distributors on custom teamwear sourcing, sample approval and bulk production coordination."
-    },
-    methodology: "Data compiled from technical fabric laboratory tests and long-term performance tracking across professional basketball leagues.",
-    publishedDate: "2026-06-20",
-    lastUpdated: "2026-07-14",
-    relatedGuides: [
-      { title: "Sample Approval Checklist", slug: "teamwear-sample-approval-checklist" },
-      { title: "B2B Sourcing FAQ", slug: "b2b-sourcing-faq" }
-    ]
-  },
-  {
     slug: "how-to-choose-teamwear-manufacturer-china",
     metaTitle: "Evaluating Teamwear Manufacturers in China: B2B Sourcing Guide",
     metaDescription: "Step-by-step guide for B2B buyers to evaluate custom sportswear factories in China. Check capacity, QC protocols, and sampling speed.",

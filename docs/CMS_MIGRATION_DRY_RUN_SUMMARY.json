@@ -12,7 +12,7 @@
     "productsOrProductTypes": 17,
     "caseStudies": 5,
     "faqItems": 35,
-    "articles": 35,
+    "articles": 38,
     "coreSitePages": 11,
     "contactCardsEmbeddedIntoSitePage": 4,
     "inquiryTypesEmbeddedIntoSitePages": 7
@@ -43,7 +43,7 @@
     "sitePage": 0,
     "siteSettings": 0
   },
-  "correctedCandidateCount": 121,
+  "correctedCandidateCount": 124,
   "unsupportedTypeCount": 0,
   "plannedDocumentsByType": {
     "siteSettings": 1,
@@ -56,7 +56,7 @@
     "caseStudy": 5,
     "faqCategory": 9,
     "faqItem": 35,
-    "article": 34,
+    "article": 37,
     "author": 1
   },
   "candidateKeys": [
@@ -82,10 +82,13 @@
     "article.article-blog-soccer-teamwear-supplier-usa",
     "article.article-guide-b2b-sourcing-faq",
     "article.article-guide-basketball-uniform-size-guide",
+    "article.article-guide-custom-basketball-uniform-cost-factors",
     "article.article-guide-custom-basketball-uniform-fabric-gsm",
     "article.article-guide-how-to-choose-teamwear-manufacturer-china",
     "article.article-guide-how-to-order-custom-basketball-uniforms",
     "article.article-guide-private-label-teamwear-manufacturing",
+    "article.article-guide-reversible-vs-single-layer-basketball-uniforms",
+    "article.article-guide-sample-first-vs-bulk-teamwear-order",
     "article.article-guide-sublimation-printing-guide",
     "article.article-guide-teamwear-sample-approval-checklist",
     "article.article-resource-custom-basketball-uniform-manufacturer-guide",
@@ -191,7 +194,7 @@
   "ordinaryDocumentIdStrategy": "Sanity-generated IDs; candidates use legacyKey/legacySource/legacyRoute for deterministic matching.",
   "reuseExistingCount": 2,
   "updateExistingCount": 40,
-  "createNewDraftCount": 79,
+  "createNewDraftCount": 82,
   "duplicateExistingCount": 0,
   "obsoleteMvpCount": 10,
   "corruptedExistingCount": 5,
@@ -254,7 +257,7 @@
     },
     "reuseExistingCount": 2,
     "updateExistingCount": 40,
-    "createNewDraftCount": 79,
+    "createNewDraftCount": 82,
     "duplicateExistingCount": 0,
     "obsoleteMvpCount": 10,
     "corruptedExistingCount": 5,
@@ -372,5 +375,5 @@
     "duplicateAssetHashCount": 4,
     "manifestPath": "tmp/cms-migration-dry-run/asset-manifest.json"
   },
-  "dryRunHash": "aed8d140b033b3aa59e4a1d7e2328ee728e9a067cc176d7f2d0e9e84ff2f7d6d"
+  "dryRunHash": "aa3b41d5a633ec068ef624f7f42bda85611e799b84c2b978a39e8bcfbd310605"
 }
