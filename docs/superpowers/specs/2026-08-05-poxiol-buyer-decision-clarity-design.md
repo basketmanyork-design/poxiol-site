@@ -162,4 +162,3 @@ Then run the existing unit/contracts suite, Published and real Draft Preview bui
 - Written refund, replacement, compensation and claim-window policies.
 - Written customs/duties and Incoterms responsibility policy.
 - Verified brand-domain email; existing `@basketman.cn` address remains in use until operations provides a replacement.
-

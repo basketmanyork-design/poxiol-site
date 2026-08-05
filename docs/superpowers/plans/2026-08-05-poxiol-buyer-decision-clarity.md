@@ -310,4 +310,3 @@ Audit the full sitemap plus key pages for all local gates, browser behavior and 
 - [ ] **Step 7: Finalize journal**
 
 Record branch, commits, PR, CI, deployment IDs, Draft revisions, Published write count, Release count, nine-question before/after matrix, evidence/policy gaps, Production audits and rollback status; validate JSON and calculate SHA-256.
-
