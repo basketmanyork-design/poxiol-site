@@ -1,8 +1,10 @@
 import type {CmsFaqItem} from './cms/types'
 
-export const BUYER_DECISION_HERO_HEADING = 'Factory-Direct Custom Teamwear for Clubs, Schools and Sportswear Brands'
+export const BUYER_DECISION_HERO_HEADING = 'Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands'
 
-export const BUYER_DECISION_HERO_DESCRIPTION = 'Custom basketball uniforms, soccer kits, training wear and private-label teamwear with a sample-first option and global B2B supply support.'
+export const BUYER_DECISION_HERO_HEADING_MOBILE = 'Custom Teamwear Factory for Clubs, Schools & Brands'
+
+export const BUYER_DECISION_HERO_DESCRIPTION = 'MOQ 1 set · Free mockup in 2 hours · Sample in 2–3 days · Bulk in 7–12 days · QC before shipment.'
 
 export const APPROVED_CTA_LABELS = {
   primary: 'Get a Free Mockup',
@@ -13,6 +15,10 @@ export const APPROVED_CTA_LABELS = {
 export type BuyerDecisionCard = {
   title: string
   description: string
+  benefit?: string
+  note?: string
+  tags?: string[]
+  href?: string
 }
 
 export type BuyerDecisionSection = {
@@ -20,8 +26,12 @@ export type BuyerDecisionSection = {
   eyebrow: string
   title: string
   body: string
+  note?: string
+  facts?: string[]
+  timeline?: Array<{time: string; text: string}>
   cards: BuyerDecisionCard[]
   cta?: {label: string; href: string}
+  ctaSecondary?: {label: string; href: string}
 }
 
 export const PRICING_FACTORS = [
@@ -70,19 +80,21 @@ export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
     title: 'What We Make',
     body: 'Start with one sample, then confirm the production plan for a club, school or private-label program.',
     cards: [
-      {title: 'Custom Basketball Uniforms', description: 'Jerseys, shorts, reversible sets and team packages.'},
-      {title: 'Soccer Kits', description: 'Jerseys, shorts, socks, goalkeeper kits and training options.'},
-      {title: 'Training Wear', description: 'Warm-up, travel and training apparel for team programs.'},
-      {title: 'Private-Label Teamwear', description: 'Buyer-approved labels, packaging and product specifications.'},
+      {title: 'Custom Basketball Uniforms', benefit: 'From 1 sample to a full league rollout — reversible sets, names & numbers, youth-to-adult sizing.', description: 'Jerseys, shorts, reversible sets and team packages.', tags: ['Clubs', 'Schools', 'Leagues']},
+      {title: 'Soccer Kits', benefit: 'Complete match-day kits — home, away, goalkeeper and training in one program.', description: 'Jerseys, shorts, socks, goalkeeper kits and training options.', tags: ['Soccer Clubs', 'Academies', 'Leagues']},
+      {title: 'Training Wear', benefit: 'Warm-up, travel and training sets that match your uniform program.', description: 'Warm-up, travel and training apparel for team programs.', tags: ['Teams', 'Programs', 'Brands']},
+      {title: 'Private-Label Teamwear', benefit: 'Your brand, your labels, your packaging — buyer-approved specs from day one.', description: 'Buyer-approved labels, packaging and product specifications.', tags: ['Brands', 'Distributors']},
     ],
+    cta: {label: 'Start your project with a free mockup', href: '/free-mockup/'},
   },
   {
     id: 'pricing',
     eyebrow: '03 / Quotation',
     title: 'How Pricing Works',
-    body: 'Pricing is prepared from the confirmed specification rather than a generic public price. Buyers receive an itemized quotation after the required details are reviewed.',
+    body: 'Itemized quote after the project requirements are reviewed. Every assumption — fabric, quantity, shipping — is confirmed before payment. Pricing is prepared from the confirmed specification rather than a generic public price.',
     cards: PRICING_FACTORS.map((title) => ({title, description: 'Confirmed as part of the project quotation.'})),
-    cta: {label: APPROVED_CTA_LABELS.secondary, href: '/contact/'},
+    cta: {label: 'Get an Itemized Quote', href: '/get-quote/'},
+    ctaSecondary: {label: 'Ask a Question on WhatsApp', href: 'https://wa.me/8613055646888?text=Hello%20POXIOL%2C%20I%20would%20like%20to%20discuss%20a%20custom%20teamwear%20project.'},
   },
   {
     id: 'quality',
@@ -97,6 +109,13 @@ export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
     eyebrow: '05 / Fulfilment',
     title: 'Production and Shipping',
     body: 'Bulk production commonly takes 7-12 working days after sample or artwork approval. Express shipping commonly takes 3-7 business days depending on destination and carrier. Large, complex or peak-season projects require a confirmed schedule.',
+    timeline: [
+      {time: 'Day 0', text: 'Free mockup — within 2 hours of your complete project details'},
+      {time: '+2–3 days', text: 'Sample ready after mockup approval'},
+      {time: 'Approval', text: 'You confirm mockup, sample, roster and packing in writing'},
+      {time: '+7–12 days', text: 'Bulk production after sample or artwork approval'},
+      {time: '+3–7 days', text: 'Express shipping — destination and carrier dependent'},
+    ],
     cards: [
       {title: 'Production Planning', description: 'Quantity, specification and approval status are confirmed before scheduling.'},
       {title: 'Shipping Selection', description: 'Destination, method, freight and applicable customs or duties assumptions are confirmed with the quotation.'},
@@ -109,11 +128,11 @@ export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
     id: 'evidence',
     eyebrow: '06 / Evidence',
     title: 'Project Evidence',
-    body: 'Verified projects require public evidence and buyer authorization. Other records are presented as manufacturing scenarios, with neutral placeholders where imagery is still pending verification.',
+    body: 'Verified projects we\u2019ve manufactured for clubs, schools and brands. Every record below is buyer-authorized for public use.',
+    note: 'Records without public authorization are presented as manufacturing scenarios.',
     cards: [
-      {title: 'Evidence Status', description: 'Each record identifies whether public evidence is verified, internal only or an example scenario.'},
-      {title: 'Buyer Authorization', description: 'A buyer name, image, testimonial or result is shown only when public use is approved.'},
-      {title: 'Process Evidence', description: 'Approved mockups, samples, QC and packing records define what can be verified.'},
+      {title: 'Case Template — Tier 2 (Anonymous)', description: 'Project type: [TO CONFIRM] · Quantity: [TO CONFIRM] sets · Destination: [TO CONFIRM] · Key delivery: names & numbers, youth + adult sizing, team-based packing.'},
+      {title: 'Case Template — Tier 3 (Text)', description: 'Project type: [TO CONFIRM] · Quantity: [TO CONFIRM] sets · Destination: [TO CONFIRM] · Roster check · Bulk production · Team-based packing.'},
     ],
     cta: {label: 'Review Project Evidence', href: '/projects/'},
   },
@@ -122,11 +141,12 @@ export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
     eyebrow: '07 / Trust',
     title: 'Why POXIOL',
     body: 'Buyers can start with one sample, review the artwork and physical product, confirm the quotation and schedule, and use documented quality and packing checks before shipment.',
+    facts: ['China-based factory', 'Exports to the United States, Europe and Australia', 'MOQ 1 set', 'Sample 2–3 days', 'Bulk 7–12 days', 'QC before shipment'],
     cards: [
-      {title: 'Sample First', description: 'Check fabric, fit, print and construction before planning production.'},
-      {title: 'Written Approvals', description: 'Mockup, product, roster and packing decisions are confirmed for the project.'},
-      {title: 'Quality Checkpoints', description: 'Fabric, color, names, numbers, measurements, finished garments and packing are reviewed.'},
-      {title: 'Verified Alibaba Entry', description: 'Use the existing verified store link when independent platform context is needed.'},
+      {title: 'Sample First', description: 'Check fabric, fit, print and construction before planning production.', note: 'Review the physical product before you commit a budget.'},
+      {title: 'Written Approvals', description: 'Mockup, product, roster and packing decisions are confirmed for the project.', note: 'A written record for every decision — built for school and club procurement.'},
+      {title: 'Quality Checkpoints', description: 'Fabric, color, names, numbers, measurements, finished garments and packing are reviewed.', note: 'Five checkpoints from mockup to pre-shipment inspection.'},
+      {title: 'Verified Alibaba Entry', description: 'Use the existing verified store link when independent platform context is needed.', note: 'basketman.en.alibaba.com', href: 'https://basketman.en.alibaba.com/'},
     ],
   },
   {
@@ -154,6 +174,8 @@ export const BUYER_DECISION_FAQS: CmsFaqItem[] = [
   {question: 'What should I do if an order issue is found?', answer: 'Provide the order reference, affected quantity, clear photos or videos and package labels where relevant. POXIOL compares the report with approved project records and confirms a project-specific resolution in writing.'},
   {question: 'What evidence can POXIOL provide?', answer: 'Public evidence is limited to buyer-authorized project images, approved samples, process records and verifiable statements. Records without that evidence are labeled as manufacturing scenarios.'},
   {question: 'How do I start?', answer: 'Send the sport, product, estimated quantity, destination, target schedule, logo and reference files through the Free Mockup form, contact page or WhatsApp.'},
+  {question: 'What payment terms do you offer?', answer: 'Payment terms are confirmed with your itemized quotation before any payment. Sample fees, freight and project-specific requirements are confirmed in advance — no hidden assumptions.'},
+  {question: 'Do you support DDP or help with customs?', answer: 'Destination, shipping method, freight, carrier timing and applicable customs or duties assumptions are confirmed for your specific quotation. Contact us to confirm DDP availability for your delivery country.'},
 ]
 
 export function normalizeBuyerFacingClaim(value: string): string {

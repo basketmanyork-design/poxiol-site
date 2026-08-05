@@ -5,6 +5,7 @@ import { BuyerDecisionSections } from "@/components/sections/BuyerDecisionSectio
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, EmailAddress, emailHref } from "@/components/ui";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 import { getHomepageContent, getSiteChrome } from "@/lib/sanity/content";
+import { BUYER_DECISION_HERO_HEADING_MOBILE } from "@/lib/buyer-decision";
 
 
 
@@ -40,7 +41,8 @@ export default async function HomePage() {
               {content.heroEyebrow}
             </span>
             <h1 className="text-5xl font-black leading-[0.92] tracking-tighter md:text-8xl uppercase">
-              {content.heroHeading}
+              <span className="md:hidden">{BUYER_DECISION_HERO_HEADING_MOBILE}</span>
+              <span className="hidden md:inline">{content.heroHeading}</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-400 md:text-xl">
               {content.heroDescription}
@@ -55,8 +57,14 @@ export default async function HomePage() {
             </div>
 
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-              <PrimaryButton href={content.heroPrimaryCta.href} className="h-16 px-10">{content.heroPrimaryCta.label}</PrimaryButton>
-              <SecondaryButton href={content.heroSecondaryCta.href} className="h-16 px-10">{content.heroSecondaryCta.label}</SecondaryButton>
+              <div className="flex flex-1 flex-col gap-2">
+                <PrimaryButton href={content.heroPrimaryCta.href} className="h-16 px-10">{content.heroPrimaryCta.label}</PrimaryButton>
+                <span className="text-xs font-semibold text-neutral-400">Free within 2 hours of your project details</span>
+              </div>
+              <div className="flex flex-1 flex-col gap-2">
+                <SecondaryButton href={content.heroSecondaryCta.href} className="h-16 px-10">{content.heroSecondaryCta.label}</SecondaryButton>
+                <span className="text-xs font-semibold text-neutral-400">Sample fee confirmed before payment. No hidden costs.</span>
+              </div>
             </div>
           </div>
 

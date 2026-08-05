@@ -30,7 +30,7 @@ const [homeSource, buyerSource, shippingSource, sitemapSource, caseSchema, proje
 ])
 
 assert.match(homeSource, /BuyerDecisionSections/, 'homepage must render the shared buyer decision flow')
-assert.match(buyerSource, /Factory-Direct Custom Teamwear for Clubs, Schools and Sportswear Brands/, 'brand-level homepage conclusion is missing')
+assert.match(buyerSource, /Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands/, 'brand-level homepage conclusion is missing')
 
 for (const heading of [
   'Who We Are',
@@ -133,7 +133,7 @@ if (!sourceOnly) {
     }
   }
 
-  assert.match(htmlByRoute.home, /Factory-Direct Custom Teamwear for Clubs, Schools and Sportswear Brands/, 'built homepage must render the brand-level H1')
+  assert.match(htmlByRoute.home, /Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands/, 'built homepage must render the brand-level H1')
   assert.match(htmlByRoute.shipping, /Production Planning/, 'built shipping page must render production planning guidance')
   assert.match(htmlByRoute.projects, /Manufacturing Scenario|Example Scenario/, 'built projects page must keep unverified records labeled as scenarios')
 
