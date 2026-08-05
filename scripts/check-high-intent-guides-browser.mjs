@@ -19,12 +19,11 @@ const browser = await chromium.launch({headless: true, executablePath: process.e
 const results = []
 try {
   for (const viewport of viewports) {
-    const page = await browser.newPage({viewport})
-    const consoleErrors = []
-    page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()) })
-    page.on('pageerror', (error) => consoleErrors.push(error.message))
     for (const route of routes) {
-      consoleErrors.length = 0
+      const page = await browser.newPage({viewport})
+      const consoleErrors = []
+      page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()) })
+      page.on('pageerror', (error) => consoleErrors.push(error.message))
       const response = await page.goto(new URL(route, baseUrl).href, {waitUntil: 'load'})
       assert.equal(response?.status(), 200, `${viewport.name} ${route} must return 200`)
       const audit = await page.evaluate(() => {
@@ -55,8 +54,8 @@ try {
       assert.ok(audit.actionableCount >= 2, `${viewport.name} ${route} must retain actionable CTA links`)
       assert.deepEqual(consoleErrors, [], `${viewport.name} ${route} has console errors`)
       results.push({viewport: viewport.name, route, ...audit, consoleErrors: 0})
+      await page.close()
     }
-    await page.close()
   }
 } finally {
   await browser.close()
