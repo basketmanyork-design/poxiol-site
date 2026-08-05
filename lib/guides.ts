@@ -1,16 +1,25 @@
+import {highIntentGuides} from './high-intent-guides'
+
 export type BuyingGuide = {
   slug: string;
   title: string;
   metaTitle: string;
   metaDescription: string;
   eyebrow: string;
+  imageStatus?: string;
   h1: string;
   intro: string;
-  sections: { title: string; content: string }[];
+  sections: { title: string; content: string | string[] }[];
   faqs: { question: string; answer: string }[];
+  cta?: {label: string; href: string};
+  secondaryCta?: {label: string; href: string};
+  relatedArticles?: {label: string; href: string}[];
+  methodology?: string;
+  publishedDate?: string;
+  updatedDate?: string;
 };
 
-export const buyingGuides: BuyingGuide[] = [
+const existingBuyingGuides: BuyingGuide[] = [
   {
     slug: "how-to-order-custom-basketball-uniforms",
     title: "How to Order Custom Basketball Uniforms | Ordering Process Guide | POXIOL",
@@ -104,6 +113,8 @@ export const buyingGuides: BuyingGuide[] = [
     faqs: [],
   },
 ];
+
+export const buyingGuides: BuyingGuide[] = [...existingBuyingGuides, ...highIntentGuides]
 
 export function getGuideBySlug(slug: string) {
   return buyingGuides.find((g) => g.slug === slug);

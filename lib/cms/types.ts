@@ -225,6 +225,7 @@ export type CmsArticle = {
   intro: string
   eyebrow: string
   featuredImage?: CmsImage
+  imageStatus?: string
   body: string
   bodyBlocks?: CmsPortableTextNode[]
   articleType: 'blog' | 'guide' | 'resource'
@@ -240,6 +241,7 @@ export type CmsArticle = {
   relatedArticles: CmsLink[]
   faqs: CmsFaqItem[]
   cta?: CmsCta
+  secondaryCta?: CmsCta
   sections: Array<{title: string; content: string | string[]}>
   seo: CmsSeo
   displayOrder: number
