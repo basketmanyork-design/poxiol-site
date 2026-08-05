@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/forms/ContactForm";
-import { SeedTrustConversionSections } from "@/components/sections/SeedTrustConversionSections";
+import { BuyerDecisionSections } from "@/components/sections/BuyerDecisionSections";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, EmailAddress, emailHref } from "@/components/ui";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 import { getHomepageContent, getSiteChrome } from "@/lib/sanity/content";
@@ -87,7 +87,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <SeedTrustConversionSections sections={content.trustSections} />
+      <BuyerDecisionSections />
 
       {/* 2. Factory Sourcing Summary - AEO / GEO Table */}
       <section className="bg-black px-5 py-16 md:px-10 md:py-24 border-b border-white/5">
@@ -184,7 +184,7 @@ export default async function HomePage() {
           </noscript>
           <ContactForm
             title="Request Factory Quote"
-            subtitle="Provide your sport category, quantity and logo files to receive a high-fidelity 3D mockup and pricing plan within 24 hours."
+            subtitle="Provide your sport category, quantity and logo files to receive a high-fidelity 3D mockup and pricing plan after the project requirements are reviewed."
             formType="Homepage AEO Lead V90"
             ctaText="Get Free Mockup & Quote"
             successUrl="/thank-you/"

@@ -1,0 +1,172 @@
+import type {CmsFaqItem} from './cms/types'
+
+export const BUYER_DECISION_HERO_HEADING = 'Factory-Direct Custom Teamwear for Clubs, Schools and Sportswear Brands'
+
+export const BUYER_DECISION_HERO_DESCRIPTION = 'Custom basketball uniforms, soccer kits, training wear and private-label teamwear with a sample-first option and global B2B supply support.'
+
+export const APPROVED_CTA_LABELS = {
+  primary: 'Get a Free Mockup',
+  secondary: 'Talk to a Teamwear Specialist',
+  sample: 'Start with 1 Sample',
+} as const
+
+export type BuyerDecisionCard = {
+  title: string
+  description: string
+}
+
+export type BuyerDecisionSection = {
+  id: string
+  eyebrow: string
+  title: string
+  body: string
+  cards: BuyerDecisionCard[]
+  cta?: {label: string; href: string}
+}
+
+export const PRICING_FACTORS = [
+  'Product format',
+  'Fabric',
+  'Order quantity',
+  'Names, numbers and artwork',
+  'Labels and packaging',
+  'Shipping destination',
+  'Shipping method',
+] as const
+
+export const QUALITY_APPROVAL_STEPS = [
+  'Mockup approval',
+  'Sample-first option',
+  'Fabric and color checks',
+  'Names and numbers check',
+  'Measurement consistency, including the confirmed +/-2 cm tolerance',
+  'Pre-shipment inspection',
+  'Packing confirmation',
+] as const
+
+export const ISSUE_REVIEW_STEPS = [
+  'Provide the order reference',
+  'Identify the affected quantity',
+  'Provide clear photos or videos',
+  'Provide package labels where relevant',
+  'Compare the issue with the approved mockup, sample, size chart and packing records',
+  'Confirm a project-specific resolution in writing',
+] as const
+
+export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
+  {
+    id: 'who-we-are',
+    eyebrow: '01 / Identity',
+    title: 'Who We Are',
+    body: 'POXIOL is a factory-direct custom teamwear manufacturer supporting clubs, schools, academies, distributors and sportswear brands with design review, sampling, production planning and shipment preparation.',
+    cards: [
+      {title: 'B2B Teamwear Experience', description: 'Project requirements are reviewed against the confirmed product, quantity and schedule.'},
+      {title: 'Factory-Direct Coordination', description: 'Design, sample, production and packing details are managed through one project workflow.'},
+    ],
+  },
+  {
+    id: 'what-we-make',
+    eyebrow: '02 / Offer',
+    title: 'What We Make',
+    body: 'Start with one sample, then confirm the production plan for a club, school or private-label program.',
+    cards: [
+      {title: 'Custom Basketball Uniforms', description: 'Jerseys, shorts, reversible sets and team packages.'},
+      {title: 'Soccer Kits', description: 'Jerseys, shorts, socks, goalkeeper kits and training options.'},
+      {title: 'Training Wear', description: 'Warm-up, travel and training apparel for team programs.'},
+      {title: 'Private-Label Teamwear', description: 'Buyer-approved labels, packaging and product specifications.'},
+    ],
+  },
+  {
+    id: 'pricing',
+    eyebrow: '03 / Quotation',
+    title: 'How Pricing Works',
+    body: 'Pricing is prepared from the confirmed specification rather than a generic public price. Buyers receive an itemized quotation after the required details are reviewed.',
+    cards: PRICING_FACTORS.map((title) => ({title, description: 'Confirmed as part of the project quotation.'})),
+    cta: {label: APPROVED_CTA_LABELS.secondary, href: '/contact/'},
+  },
+  {
+    id: 'quality',
+    eyebrow: '04 / Approval',
+    title: 'Sample and Quality Approval',
+    body: 'The approved mockup, sample, size chart, roster details and packing requirements form the reference for production checks.',
+    cards: QUALITY_APPROVAL_STEPS.map((title) => ({title, description: 'Checked against the buyer-confirmed project specification.'})),
+    cta: {label: 'View Quality Control', href: '/quality-control-process/'},
+  },
+  {
+    id: 'shipping',
+    eyebrow: '05 / Fulfilment',
+    title: 'Production and Shipping',
+    body: 'Bulk production commonly takes 7-12 working days after sample or artwork approval. Express shipping commonly takes 3-7 business days depending on destination and carrier. Large, complex or peak-season projects require a confirmed schedule.',
+    cards: [
+      {title: 'Production Planning', description: 'Quantity, specification and approval status are confirmed before scheduling.'},
+      {title: 'Shipping Selection', description: 'Destination, method, freight and applicable customs or duties assumptions are confirmed with the quotation.'},
+      {title: 'Tracking Updates', description: 'Shipment information is shared after dispatch according to the selected carrier.'},
+      {title: 'Issue Reporting', description: 'Order and delivery issues follow a documented review workflow.'},
+    ],
+    cta: {label: 'Review Shipping and After-Sales', href: '/shipping-after-sales/'},
+  },
+  {
+    id: 'evidence',
+    eyebrow: '06 / Evidence',
+    title: 'Project Evidence',
+    body: 'Verified projects require public evidence and buyer authorization. Other records are presented as manufacturing scenarios, with neutral placeholders where imagery is still pending verification.',
+    cards: [
+      {title: 'Evidence Status', description: 'Each record identifies whether public evidence is verified, internal only or an example scenario.'},
+      {title: 'Buyer Authorization', description: 'A buyer name, image, testimonial or result is shown only when public use is approved.'},
+      {title: 'Process Evidence', description: 'Approved mockups, samples, QC and packing records define what can be verified.'},
+    ],
+    cta: {label: 'Review Project Evidence', href: '/projects/'},
+  },
+  {
+    id: 'why-poxiol',
+    eyebrow: '07 / Trust',
+    title: 'Why POXIOL',
+    body: 'Buyers can start with one sample, review the artwork and physical product, confirm the quotation and schedule, and use documented quality and packing checks before shipment.',
+    cards: [
+      {title: 'Sample First', description: 'Check fabric, fit, print and construction before planning production.'},
+      {title: 'Written Approvals', description: 'Mockup, product, roster and packing decisions are confirmed for the project.'},
+      {title: 'Quality Checkpoints', description: 'Fabric, color, names, numbers, measurements, finished garments and packing are reviewed.'},
+      {title: 'Verified Alibaba Entry', description: 'Use the existing verified store link when independent platform context is needed.'},
+    ],
+  },
+  {
+    id: 'start',
+    eyebrow: '08 / Next Step',
+    title: 'Start Your Project',
+    body: 'Send the sport, product, estimated quantity, destination, target schedule, logo and reference files. Sample fees, shipping and all quotation assumptions are confirmed before payment.',
+    cards: [
+      {title: 'What the Quote Includes', description: 'Confirmed product, customization, quantity, labels or packaging, shipping assumptions and payment terms.'},
+      {title: 'What Buyers Need to Send', description: 'Sport, product, quantity, destination, target schedule, logo, artwork and any labeling requirements.'},
+      {title: 'No Hidden Assumptions', description: 'Sample cost, freight and project-specific requirements are confirmed before payment.'},
+    ],
+    cta: {label: APPROVED_CTA_LABELS.primary, href: '/free-mockup/'},
+  },
+]
+
+export const BUYER_DECISION_FAQS: CmsFaqItem[] = [
+  {question: 'What does POXIOL manufacture?', answer: 'POXIOL manufactures custom basketball uniforms, soccer kits, training wear and private-label teamwear for clubs, schools, academies, distributors and sportswear brands.'},
+  {question: 'What affects the quotation?', answer: 'The quotation depends on product format, fabric, quantity, names, numbers, artwork, labels, packaging, shipping destination and shipping method.'},
+  {question: 'Can I start with one sample?', answer: 'Yes. A buyer can start with one sample to review fabric, fit, print and construction before confirming a production plan.'},
+  {question: 'How is artwork approved?', answer: 'The buyer reviews the front and back layout, colors, logos, names and numbers before sample or production scheduling.'},
+  {question: 'How is quality checked?', answer: 'Checks cover fabric, color, names, numbers, measurements, finished garments, pre-shipment inspection and packing against the approved project details.'},
+  {question: 'How long does production take?', answer: 'Bulk production commonly takes 7-12 working days after sample or artwork approval. Large, complex or peak-season projects require a confirmed schedule.'},
+  {question: 'How is shipping arranged?', answer: 'Destination, shipping method, freight, carrier timing and applicable customs or duties assumptions are confirmed for the specific quotation.'},
+  {question: 'What should I do if an order issue is found?', answer: 'Provide the order reference, affected quantity, clear photos or videos and package labels where relevant. POXIOL compares the report with approved project records and confirms a project-specific resolution in writing.'},
+  {question: 'What evidence can POXIOL provide?', answer: 'Public evidence is limited to buyer-authorized project images, approved samples, process records and verifiable statements. Records without that evidence are labeled as manufacturing scenarios.'},
+  {question: 'How do I start?', answer: 'Send the sport, product, estimated quantity, destination, target schedule, logo and reference files through the Free Mockup form, contact page or WhatsApp.'},
+]
+
+export function normalizeBuyerFacingClaim(value: string): string {
+  return value
+    .replace(/15\+ years(?: of apparel experience| of expertise| experience)?/gi, 'B2B teamwear experience')
+    .replace(/(?:(?:production|monthly) capacity:\s*)?30,000\+ units(?: monthly)?\.?/gi, 'Production planning is based on confirmed quantity and schedule.')
+    .replace(/reliable door-to-door logistics serving clubs and brands in 50\+ countries including USA, EU, AU\.?/gi, 'Global shipping support is planned according to the confirmed destination and shipping method.')
+    .replace(/within\s+24\s+hours/gi, 'after the project requirements are reviewed')
+}
+
+export function normalizeCtaLabel(label: string, href: string): string {
+  if (href.startsWith('/free-mockup')) return APPROVED_CTA_LABELS.primary
+  if (href.startsWith('/contact')) return APPROVED_CTA_LABELS.secondary
+  if (href.startsWith('/sample-order')) return APPROVED_CTA_LABELS.sample
+  return label
+}

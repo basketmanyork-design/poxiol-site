@@ -37,7 +37,7 @@ export default async function ProjectPage({ params }: Props) {
           <Link href="/projects/" className="inline-flex items-center text-xs font-black uppercase tracking-widest text-neutral-500 hover:text-[#B6FF00]">← Back to Projects</Link>
           <div className="mt-10 grid gap-16 lg:grid-cols-2">
             <div>
-              <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-widest text-[#B6FF00]"><span>{project.product}</span><span className="h-1 w-1 rounded-full bg-white/20" /><span>{project.country}</span><span className="rounded-full border border-lime-400/30 px-3 py-1 text-[10px] text-lime-300">{project.realOrExample === 'real' ? 'Real Project' : project.realOrExample === 'anonymized' ? 'Anonymized Real Project' : 'Example Project Scenario'}</span></div>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-widest text-[#B6FF00]"><span>{project.product}</span><span className="h-1 w-1 rounded-full bg-white/20" /><span>{project.country}</span><span className="rounded-full border border-lime-400/30 px-3 py-1 text-[10px] text-lime-300">{project.evidenceStatus === 'verified' ? 'Verified Project' : 'Manufacturing Scenario'}</span></div>
               <h1 className="mt-6 text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl">{project.title}</h1>
               <div className="mt-12 space-y-10">
                 {[
@@ -56,7 +56,7 @@ export default async function ProjectPage({ params }: Props) {
                   </div>
                 ))}
               </div>
-              <div className="mt-16"><PrimaryButton href="/free-mockup/">Start Similar Project</PrimaryButton></div>
+              <div className="mt-16"><PrimaryButton href="/free-mockup/">Get a Free Mockup</PrimaryButton></div>
             </div>
             <div className="h-fit lg:sticky lg:top-24">
 {project.image ? (

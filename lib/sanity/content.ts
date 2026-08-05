@@ -3,6 +3,13 @@ import 'server-only'
 import {sportsPages, type SportsPageData} from '@/lib/sports-pages'
 import {sportsCategories, uspCards, homeFaqs, homeTrustSections} from '@/lib/home-data'
 import {
+  BUYER_DECISION_FAQS,
+  BUYER_DECISION_HERO_DESCRIPTION,
+  BUYER_DECISION_HERO_HEADING,
+  normalizeBuyerFacingClaim,
+  normalizeCtaLabel,
+} from '@/lib/buyer-decision'
+import {
   legacyArticles,
   legacyFaqGroups,
   legacyPages,
@@ -241,6 +248,11 @@ type SanityCaseStudy = {
   result?: string
   testimonial?: string
   evidenceStatus?: string
+  buyerAuthorizationStatus?: 'publicApproved' | 'internalOnly' | 'notApproved' | 'unknown'
+  approvedImageStatus?: 'approved' | 'pending' | 'notAvailable'
+  evidenceNote?: string
+  verifiedProcess?: string[]
+  verifiableResultStatement?: string
   displayOrder?: number
   publishStatus?: string
   seo?: Seo
@@ -371,10 +383,11 @@ function normalizePublicContactText(text: string): string {
 }
 
 function normalizeFaqAnswer(answer: string): string {
-  return answer
+  return normalizeBuyerFacingClaim(answer)
     .replace(/sample production can usually be arranged in 2\s*[-–]\s*3\s*days after mockup confirmation/gi, 'sample production can usually be arranged in 2-3 working days after mockup approval')
     .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
     .replace(/2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, '2-3 working days after mockup approval')
+    .replace(/\s*If a supplier takes more than 7\s*[-–]\s*10 days for a sample, they may be sub-?contracting the work to another facility\.?/gi, ' Timing depends on the approved design, confirmed materials and production schedule.')
 }
 
 
@@ -410,18 +423,20 @@ function mapCategory(category: SanityCategory, fallback: CmsProductCategory | un
 function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, index = 0): CmsProject | null {
   if (!project.slug || !(project.projectTitle || project.title)) return null
   const title = project.projectTitle || project.title || fallback?.title || 'POXIOL Project'
+  const evidenceVerified = project.evidenceStatus === 'verified' && project.buyerAuthorizationStatus === 'publicApproved'
+  const imageApproved = evidenceVerified && project.approvedImageStatus === 'approved'
   return {
     slug: project.slug,
     title,
     country: project.country || project.countryOrRegion || fallback?.country || '',
     product: project.product || project.productType || fallback?.product || '',
     caseType: project.caseType || fallback?.caseType,
-    realOrExample: project.realOrExample || fallback?.realOrExample || 'example',
+    realOrExample: evidenceVerified ? (project.realOrExample === 'anonymized' ? 'anonymized' : 'real') : 'example',
     buyerType: project.buyerType || fallback?.buyerType,
     region: project.region || fallback?.region,
     quantityDisplay: project.quantityDisplay || fallback?.quantityDisplay,
     projectTimeline: project.projectTimeline || fallback?.projectTimeline,
-    image: optionalImage(project.heroImage, fallback?.image, 'card'),
+    image: imageApproved ? optionalImage(project.heroImage, undefined, 'card') : undefined,
     qualityControl: project.qualityControl || project.qcProcess || fallback?.qualityControl || '',
     packaging: project.packingDelivery || project.packaging || fallback?.packaging || '',
     solution: project.solution || fallback?.solution || '',
@@ -433,9 +448,14 @@ function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, 
     sampleProcess: project.sampleProcess || fallback?.sampleProcess,
     production: project.production || fallback?.production,
     delivery: project.delivery || fallback?.delivery,
-    result: project.result || fallback?.result,
-    testimonial: project.testimonial || fallback?.testimonial,
-    evidenceStatus: project.evidenceStatus || fallback?.evidenceStatus,
+    result: evidenceVerified ? project.verifiableResultStatement : undefined,
+    testimonial: evidenceVerified ? project.testimonial : undefined,
+    evidenceStatus: evidenceVerified ? 'verified' : (project.evidenceStatus || 'example'),
+    buyerAuthorizationStatus: project.buyerAuthorizationStatus || 'unknown',
+    approvedImageStatus: project.approvedImageStatus || 'pending',
+    evidenceNote: project.evidenceNote,
+    verifiedProcess: evidenceVerified ? project.verifiedProcess : undefined,
+    verifiableResultStatement: evidenceVerified ? project.verifiableResultStatement : undefined,
     seo: seoFrom(project.seo, fallback?.seo || {title: title + ' | POXIOL', description: project.overview || project.projectBackground || title}),
     displayOrder: project.displayOrder ?? fallback?.displayOrder ?? index,
   }
@@ -476,7 +496,7 @@ function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, in
 function seoFrom(seo: Seo | undefined, fallback: CmsSeo): CmsSeo {
   return {
     title: seo?.seoTitle || fallback.title,
-    description: seo?.metaDescription || fallback.description,
+    description: normalizeBuyerFacingClaim(seo?.metaDescription || fallback.description),
     canonicalUrl: seo?.canonicalUrl || fallback.canonicalUrl,
     ogImage: optionalImage(seo?.ogImage, fallback.ogImage),
     noIndex: seo?.indexStatus ? seo.indexStatus === 'noindex' : fallback.noIndex,
@@ -486,7 +506,7 @@ function seoFrom(seo: Seo | undefined, fallback: CmsSeo): CmsSeo {
 function mapCta(cta: SanityCta | undefined, fallback?: CmsCta): CmsCta | undefined {
   const href = cta?.url || cta?.href || fallback?.href
   const label = cta?.label || fallback?.label
-  return href && label ? {label, href} : fallback
+  return href && label ? {label: normalizeCtaLabel(label, href), href} : fallback
 }
 
 function mapLink(link: SanityLink | undefined): CmsLink | null {
@@ -544,7 +564,7 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
         type: section.sectionType || fb?.type,
         eyebrow: section.eyebrow || fb?.eyebrow,
         title: section.title || fb?.title || 'Page section',
-        body: normalizePublicContactText(textFromPortable(section.body) || fb?.body || ''),
+        body: normalizeBuyerFacingClaim(normalizePublicContactText(textFromPortable(section.body) || fb?.body || '')),
         image: optionalImage(section.image, fb?.image, 'card'),
         facts: section.facts?.length ? section.facts : fb?.facts || [],
         stats: section.stats?.length ? section.stats.filter((item) => item.value && item.label).map((item) => ({value: item.value || '', label: item.label || ''})) : fb?.stats || [],
@@ -558,13 +578,21 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
   return mapped.length ? mapped : fallback
 }
 
+function normalizeArticleBlocks(nodes: CmsPortableTextNode[] | undefined): CmsPortableTextNode[] | undefined {
+  return nodes?.map((node) => {
+    if (node._type === 'block') return {...node, children: node.children?.map((child) => ({...child, text: child.text ? normalizeBuyerFacingClaim(child.text) : child.text}))}
+    if (node._type === 'tableBlock') return {...node, caption: node.caption ? normalizeBuyerFacingClaim(node.caption) : node.caption, rows: node.rows?.map((row) => ({...row, cells: row.cells?.map(normalizeBuyerFacingClaim)}))}
+    return {...node, title: node.title ? normalizeBuyerFacingClaim(node.title) : node.title, body: node.body ? normalizeBuyerFacingClaim(node.body) : node.body}
+  })
+}
+
 function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
   if (article.sections?.length) {
-    return article.sections.map((section) => ({title: section.title || 'Section', content: section.content || ''}))
+    return article.sections.map((section) => ({title: section.title || 'Section', content: Array.isArray(section.content) ? section.content.map(normalizeBuyerFacingClaim) : normalizeBuyerFacingClaim(section.content || '')}))
   }
   if (Array.isArray(article.body) && article.body.length) return []
   const body = textFromPortable(article.body)
-  if (body) return [{title: 'Article body', content: body}]
+  if (body) return [{title: 'Article body', content: normalizeBuyerFacingClaim(body)}]
   return fallback?.sections || []
 }
 
@@ -626,20 +654,38 @@ export async function getHomeBrandContent() {
   }
 }
 
+function normalizePageClaims(page: CmsPage): CmsPage {
+  return {
+    ...page,
+    heading: normalizeBuyerFacingClaim(page.heading),
+    description: normalizeBuyerFacingClaim(page.description),
+    sections: page.sections.map((section) => ({
+      ...section,
+      body: section.body ? normalizeBuyerFacingClaim(normalizePublicContactText(section.body)) : section.body,
+      facts: section.facts?.map(normalizeBuyerFacingClaim),
+      stats: section.stats?.map((stat) => ({...stat, value: normalizeBuyerFacingClaim(stat.value)})),
+      steps: section.steps?.map((step) => ({...step, description: normalizeBuyerFacingClaim(step.description)})),
+      specifications: section.specifications?.map((item) => ({...item, value: normalizeBuyerFacingClaim(item.value)})),
+      faqs: section.faqs?.map((faq) => ({...faq, answer: normalizeBuyerFacingClaim(faq.answer)})),
+    })),
+    seo: {...page.seo, description: normalizeBuyerFacingClaim(page.seo.description)},
+  }
+}
+
 export async function getSitePage(key: string): Promise<CmsPage> {
   const legacy = legacyPages.find((page) => page.key === key) || legacyPages[0]
-  if (contentSource === 'legacy') return legacy
+  if (contentSource === 'legacy') return normalizePageClaims(legacy)
   const response = await sanityQuery<SanityPage>(sitePageByKeyQuery, {key})
   const page = response.ok ? response.result : null
-  if (!response.ok) return legacy
-  if (!page || !isDocumentVisible(page.publishStatus, contentSource)) return legacy
+  if (!response.ok) return normalizePageClaims(legacy)
+  if (!page || !isDocumentVisible(page.publishStatus, contentSource)) return normalizePageClaims(legacy)
   return {
     key,
     slug: page.slug || legacy.slug,
     title: page.internalName || legacy.title,
     eyebrow: page.heroEyebrow || legacy.eyebrow,
-    heading: page.heroHeading || legacy.heading,
-    description: page.heroSubheading || legacy.description,
+    heading: key === 'homepage' ? BUYER_DECISION_HERO_HEADING : normalizeBuyerFacingClaim(page.heroHeading || legacy.heading),
+    description: key === 'homepage' ? BUYER_DECISION_HERO_DESCRIPTION : normalizeBuyerFacingClaim(page.heroSubheading || legacy.description),
     image: optionalImage(page.heroImage, legacy.image || {url: '/images/poxiol-v62/about_hero.png', alt: page.internalName || legacy.title}, 'hero'),
     heroCta: mapCta(page.heroCTA, legacy.heroCta),
     heroSecondaryCta: mapCta(page.heroSecondaryCTA),
@@ -791,8 +837,16 @@ function groupsFromFaqItems(items: Array<{category?: string; question: string; a
   return Array.from(groups.values()).filter((group) => group.items.length)
 }
 
+function withBuyerDecisionFaqs(groups: CmsFaqGroup[]): CmsFaqGroup[] {
+  const decisionQuestions = new Set(BUYER_DECISION_FAQS.map((faq) => faq.question))
+  const remaining = groups
+    .map((group) => ({...group, items: group.items.filter((item) => !decisionQuestions.has(item.question))}))
+    .filter((group) => group.items.length)
+  return [{category: 'Buyer Decision Guide', items: BUYER_DECISION_FAQS}, ...remaining]
+}
+
 export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
-  if (contentSource === 'legacy') return legacyFaqGroups
+  if (contentSource === 'legacy') return withBuyerDecisionFaqs(legacyFaqGroups)
   const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
   if (!response.ok) return legacyFaqGroups
 
@@ -801,9 +855,9 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
   const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(faq.question as string, faqCategoryName(faq.category))))
   const visibleCms = cms
     .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
-    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))}))
+    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: normalizeBuyerFacingClaim(normalizeFaqAnswer(textFromPortable(faq.answer)))}))
 
-  if (getCmsListMode() === 'strict') return groupsFromFaqItems(visibleCms)
+  if (getCmsListMode() === 'strict') return withBuyerDecisionFaqs(groupsFromFaqItems(visibleCms))
 
   const cmsByKey = new Map(visibleCms.map((faq) => [faqKey(faq.question, faq.category), faq]))
   const merged: Array<{category?: string; question: string; answer: string}> = []
@@ -814,7 +868,7 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
     cmsByKey.delete(key)
   }
   merged.push(...Array.from(cmsByKey.values()))
-  return groupsFromFaqItems(merged)
+  return withBuyerDecisionFaqs(groupsFromFaqItems(merged))
 }
 
 function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, index = 0): CmsArticle | null {
@@ -824,16 +878,16 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
   return {
     slug: article.slug,
     title: article.title,
-    excerpt: article.excerpt || fallback?.excerpt || body || article.title,
-    intro: article.excerpt || fallback?.intro || body || article.title,
+    excerpt: normalizeBuyerFacingClaim(article.excerpt || fallback?.excerpt || body || article.title),
+    intro: normalizeBuyerFacingClaim(article.excerpt || fallback?.intro || body || article.title),
     eyebrow: fallback?.eyebrow || (articleType === 'blog' ? 'Blog' : articleType === 'resource' ? 'Resource' : 'Guide'),
     featuredImage: optionalImage(article.featuredImage || article.heroImage, fallback?.featuredImage, 'hero'),
-    body: body || fallback?.body || article.excerpt || '',
-    bodyBlocks: Array.isArray(article.body) ? article.body : fallback?.bodyBlocks,
+    body: normalizeBuyerFacingClaim(body || fallback?.body || article.excerpt || ''),
+    bodyBlocks: normalizeArticleBlocks(Array.isArray(article.body) ? article.body : fallback?.bodyBlocks),
     articleType,
     author: article.authorName || fallback?.author || 'POXIOL Editorial Team',
     reviewedBy: article.reviewedByName || fallback?.reviewedBy,
-    methodology: article.methodology || fallback?.methodology || '',
+    methodology: normalizeBuyerFacingClaim(article.methodology || fallback?.methodology || ''),
     references: article.references?.length ? article.references : fallback?.references || [],
     publishedAt: article.publishedAt || fallback?.publishedAt,
     updatedAt: article.updatedAt || fallback?.updatedAt,
@@ -841,7 +895,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     relatedCategories: mapRelated(article.relatedCategories, '/products/').length ? mapRelated(article.relatedCategories, '/products/') : fallback?.relatedCategories || [],
     relatedCaseStudies: mapRelated(article.relatedCaseStudies, '/projects/').length ? mapRelated(article.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies || [],
     relatedArticles: mapArticleRelated(article.relatedArticles).length ? mapArticleRelated(article.relatedArticles) : fallback?.relatedArticles || [],
-    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeFaqAnswer(textFromPortable(faq.answer))})) : fallback?.faqs || [],
+    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeBuyerFacingClaim(normalizeFaqAnswer(textFromPortable(faq.answer)))})) : fallback?.faqs || [],
     cta: mapCta(article.cta, fallback?.cta),
     sections: sectionsFromArticle(article, fallback),
     seo: seoFrom(article.seo, fallback?.seo || {title: article.title, description: article.excerpt || body || article.title}),
@@ -1008,7 +1062,7 @@ export async function getBasketballPreviewPage(legacyData: SportsPageData): Prom
 
 function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
   return [
-    {item: 'Core Expertise', capability: '15+ years experience in custom sports uniforms and private label sportswear manufacturing.'},
+    {item: 'Core Expertise', capability: 'B2B teamwear experience with project planning based on confirmed requirements.'},
     {item: 'Main Products', capability: 'Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories.'},
     {item: 'Sample MOQ', capability: 'Sample MOQ: 1 set.'},
     {item: 'Sample Production', capability: 'Sample production: 2-3 working days after mockup approval.'},
@@ -1016,7 +1070,7 @@ function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
     {item: 'Quality Control', capability: 'Quality control: Inspection before shipment.'},
     {item: 'Size Tolerance', capability: 'Size tolerance: +/-2 cm.'},
     {item: 'Mixed Sizes', capability: 'Mixed adult and youth sizes are supported.'},
-    {item: 'Export Markets', capability: 'Reliable door-to-door logistics serving clubs and brands in 50+ countries including USA, EU, AU.'},
+    {item: 'Shipping Support', capability: 'Global shipping support is planned according to the confirmed destination and shipping method.'},
   ]
 }
 
@@ -1127,14 +1181,14 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     brandName: chrome.brandName,
     siteUrl: chrome.siteUrl,
     heroEyebrow: page.eyebrow || 'Elite B2B Teamwear Partner',
-    heroHeading: page.heading || 'Build Your Elite Team Identity.',
-    heroDescription: page.description,
+    heroHeading: BUYER_DECISION_HERO_HEADING,
+    heroDescription: BUYER_DECISION_HERO_DESCRIPTION,
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
     heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Start with 1 Sample', href: '/sample-order/'},
     trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['Sample MOQ: 1 set', 'Free 3D Mockup', '2-3 working days sample production', 'QC before shipment', 'Global Shipping'],
     trustSections: contentSource === 'legacy' ? homeTrustSections : page.sections.length ? page.sections.filter((section) => section.type !== 'cta') : homeTrustSections,
-    sourcingRows: procurementRows,
+    sourcingRows: procurementRows.map((row) => ({...row, capability: normalizeBuyerFacingClaim(row.capability)})),
     uspCards: normalizeHomepageUspCards(pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards),
     categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),
     sectionHeadings: pageAny.homepageSectionHeadings || {
@@ -1147,7 +1201,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     inquiryDescription: ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
     inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
     inquirySupportDescription: pageAny.inquirySupport?.description || 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
-    faqs: faqs.length ? faqs : normalizeHomepageFaqs(homeFaqs),
+    faqs: BUYER_DECISION_FAQS,
     bottomCta: page.bottomCta,
     seo: normalizeHomepageSeo(page.seo),
   }

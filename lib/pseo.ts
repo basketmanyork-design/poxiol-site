@@ -120,7 +120,7 @@ export const pseoPages: PSEOPage[] = [
     title: "Custom Basketball Uniforms for Schools | High School Basketball Jerseys | POXIOL",
     h1: "Custom Basketball Uniforms for Schools & Academies",
     intro: "POXIOL provides professional-grade custom basketball uniforms specifically designed for school programs and basketball academies. We understand the unique needs of school athletics, from durable performance fabrics to consistent branding across youth and varsity teams.",
-    content: "Our school basketball uniform program features high-performance mesh and interlock fabrics that stand up to daily practice and game-day intensity. As a direct manufacturer, we offer schools flexible ordering, budget-friendly pricing, and fast delivery timelines to ensure your teams are ready for the season opener. Whether you need classic sublimated jerseys or modern reversible sets, our design team provides free mockups within 24 hours to help you visualize your school's unique identity.",
+    content: "Our school basketball uniform program features high-performance mesh and interlock fabrics that stand up to daily practice and game-day intensity. As a direct manufacturer, we offer schools flexible ordering, budget-friendly pricing, and fast delivery timelines to ensure your teams are ready for the season opener. Whether you need classic sublimated jerseys or modern reversible sets, our design team provides free mockups after the project requirements are reviewed to help you visualize your school's unique identity.",
     faqs: [
       { question: "Do you offer youth and adult sizes for schools?", answer: "Yes, we provide a full range of sizes from youth XS to adult 5XL to accommodate all school grade levels." },
       { question: "Can we add school logos and player names?", answer: "Absolutely. Our sublimation process allows for unlimited customization including school logos, player names, and numbers at no extra cost." },
@@ -242,7 +242,7 @@ export const pseoPages: PSEOPage[] = [
     faqs: [
       { question: "What are the shipping times to Melbourne?", answer: "Express shipping to Melbourne typically takes 4-6 business days." },
       { question: "Do you work with local Melbourne sports distributors?", answer: "Yes, we partner with various distributors and club managers across Melbourne." },
-      { question: "Can I get a custom design for my Melbourne academy?", answer: "Absolutely, we provide free 3D mockups within 24 hours to help your academy stand out." },
+      { question: "Can I get a custom design for my Melbourne academy?", answer: "Absolutely, we provide free 3D mockups after the project requirements are reviewed to help your academy stand out." },
     ],
   },
   {
@@ -290,7 +290,7 @@ export const pseoPages: PSEOPage[] = [
     faqs: [
       { question: "What are the shipping times to New York?", answer: "Express shipping to New York typically takes 3-5 business days." },
       { question: "Do you work with New York school athletic departments?", answer: "Yes, we provide custom uniform solutions for many schools and universities in the New York area." },
-      { question: "Can I get a custom design for my NYC club?", answer: "Absolutely, our designers provide free 3D mockups within 24 hours to capture your NYC team's identity." },
+      { question: "Can I get a custom design for my NYC club?", answer: "Absolutely, our designers provide free 3D mockups after the project requirements are reviewed to capture your NYC team's identity." },
     ],
   },
   {

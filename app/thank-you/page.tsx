@@ -18,7 +18,7 @@ export default function ThankYouPage() {
           Thank You!
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-neutral-400 leading-relaxed">
-          Your request has been successfully received. Our design and production team will review your details and logo/files, and we will contact you via email or WhatsApp within 24 hours.
+          Your request has been successfully received. Our design and production team will review your details and logo/files, and we will contact you via email or WhatsApp after the project requirements are reviewed.
         </p>
         <div className="mt-12">
           <PrimaryButton href="/">Return to Home</PrimaryButton>

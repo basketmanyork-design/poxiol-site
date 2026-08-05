@@ -18,7 +18,7 @@ export const b2bFaqData: B2BFAQCategory[] = [
       },
       {
         question: "What is the standard sample production time for B2B orders?",
-        answer: "For professional custom teamwear, sample production can usually be arranged in 2-3 working days after mockup approval. If a supplier takes more than 7-10 days for a sample, they may be sub-contracting the work to another facility."
+        answer: "For standard custom teamwear, sample production can usually be arranged in 2-3 working days after mockup approval. Timing depends on the approved design, confirmed materials and production schedule."
       },
       {
         question: "Does POXIOL provide factory audit reports?",

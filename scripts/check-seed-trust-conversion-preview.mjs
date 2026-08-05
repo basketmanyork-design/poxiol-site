@@ -50,15 +50,27 @@ for (const phrase of requiredSourceCopy) {
   assert.ok(source.includes(phrase), `Missing required Preview source copy: ${phrase}`)
 }
 
+const requiredOutputCopy = [
+  'Factory-Direct Custom Teamwear for Clubs, Schools and Sportswear Brands',
+  'How Pricing Works',
+  'Sample and Quality Approval',
+  'Production and Shipping',
+  'Project Evidence',
+  'Project imagery pending verification',
+  'Start Your Project',
+]
+
+const contentResolverSource = read('lib/sanity/content.ts')
 const homepageSource = read('app/page.tsx')
-assert.ok(homepageSource.includes('<SeedTrustConversionSections sections={content.trustSections}'), 'Homepage does not render CMS trust sections')
+assert.ok(homepageSource.includes('<BuyerDecisionSections'), 'Homepage does not render the shared buyer decision flow')
+assert.ok(contentResolverSource.includes('trustSections:'), 'CMS resolver must continue to resolve trust sections for compatible consumers')
 assert.equal((homepageSource.match(/<h1/g) || []).length, 1, 'Homepage must render exactly one h1')
 assert.ok(!homepageSource.includes('Teams Served'), 'Homepage still renders unsupported team-count proof')
 assert.ok(homepageSource.includes('<FAQSchema faqs={content.faqs'), 'Homepage JSON-LD must use the same FAQ resolver data as visible FAQ')
 
 const projectListSource = read('app/projects/page.tsx')
 const projectDetailSource = read('app/projects/[slug]/page.tsx')
-const contentResolverSource = read('lib/sanity/content.ts')
+
 assert.ok(projectListSource.includes('Project imagery pending verification'), 'Project cards need a safe missing-image state')
 assert.equal((projectListSource.match(/<h1/g) || []).length, 1, 'Projects page must render one visible h1')
 assert.ok(projectDetailSource.includes('Project imagery pending verification'), 'Project detail needs a safe missing-image state')
@@ -81,7 +93,7 @@ const forbiddenClaims = [
   'KIAN ink',
   'EPSON print heads',
   '15-25 Days',
-  '15–25 Days',
+  '15\u201325 Days',
 ]
 
 for (const phrase of forbiddenClaims) {
@@ -103,7 +115,7 @@ if (!sourceOnly) {
   }
 
   const html = collectFiles(outputRoot, '.html').map((file) => fs.readFileSync(file, 'utf8')).join('\n')
-  for (const phrase of requiredSourceCopy) {
+  for (const phrase of requiredOutputCopy) {
     assert.ok(html.includes(phrase), `Missing required Preview HTML copy: ${phrase}`)
   }
 

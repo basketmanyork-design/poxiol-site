@@ -1,0 +1,56 @@
+{
+    "schemaVersion":  1,
+    "projectId":  "oqpv1xbc",
+    "dataset":  "production",
+    "task":  "buyer-decision-clarity-20260805",
+    "recordedAt":  "2026-08-05T07:01:49.4659713Z",
+    "allowedDraftCount":  3,
+    "draftWrites":  3,
+    "publishedWrites":  0,
+    "releaseCreated":  false,
+    "releaseCount":  0,
+    "drafts":  [
+                   {
+                       "id":  "drafts.67d89e7018894286",
+                       "publishedId":  "67d89e7018894286",
+                       "pageKey":  "manufacturing",
+                       "beforeRevision":  "cy0PIHNgypUOR28qMEiVT4",
+                       "afterRevision":  "buyer-decision-clarity-20260805-drafts-only",
+                       "publishedRevision":  "poxiol-published-production-time-fix-20260803",
+                       "publishedChanged":  false,
+                       "fieldPaths":  [
+                                          "heroSubheading",
+                                          "bottomCTA.label"
+                                      ]
+                   },
+                   {
+                       "id":  "drafts.a01d7979a987463a",
+                       "publishedId":  "a01d7979a987463a",
+                       "pageKey":  "about",
+                       "beforeRevision":  "eJ7skWqptDvdh6OpbT1ny6",
+                       "afterRevision":  "buyer-decision-clarity-20260805-drafts-only",
+                       "publishedRevision":  "kqd32DnwMDSkqBnWPyf2fu",
+                       "publishedChanged":  false,
+                       "fieldPaths":  [
+                                          "heroSubheading",
+                                          "contentSections[_key==\"fa07c4d58a04\"].body[0].children[0].text",
+                                          "contentSections[_key==\"d04b09486caa\"].body[0].children[0].text",
+                                          "seo.metaDescription",
+                                          "bottomCTA.label"
+                                      ]
+                   },
+                   {
+                       "id":  "drafts.d17c91e8e04842c4",
+                       "publishedId":  "d17c91e8e04842c4",
+                       "pageKey":  "contact",
+                       "beforeRevision":  "kqd32DnwMDSkqBnWPyMsge",
+                       "afterRevision":  "buyer-decision-clarity-20260805-drafts-only",
+                       "publishedRevision":  "eJ7skWqptDvdh6OpbTFTzZ",
+                       "publishedChanged":  false,
+                       "fieldPaths":  [
+                                          "contentSections[_key==\"985f00f2b3a9\"].body[0].children[0].text",
+                                          "bottomCTA.label"
+                                      ]
+                   }
+               ]
+}

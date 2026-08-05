@@ -39,6 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/certificates-testing/",
     "/quality-control-process/",
     "/manufacturing/",
+    "/shipping-after-sales/",
     "/guides/b2b-sourcing-faq/",
     "/privacy-policy/",
     "/terms/",

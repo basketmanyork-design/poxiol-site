@@ -35,7 +35,7 @@ export default async function ProjectsPage() {
                 <div className="p-8">
                   <div className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-widest text-lime-400">
                     <span>{project.product}</span><span className="h-1 w-1 rounded-full bg-white/20" /><span>{project.country}</span>
-                    <span className="rounded-full border border-lime-400/30 px-2 py-1 text-[9px] text-lime-300">{project.realOrExample === 'real' ? 'Real Project' : project.realOrExample === 'anonymized' ? 'Anonymized Project' : 'Example Scenario'}</span>
+                    <span className="rounded-full border border-lime-400/30 px-2 py-1 text-[9px] text-lime-300">{project.evidenceStatus === 'verified' ? 'Verified Project' : 'Manufacturing Scenario'}</span>
                   </div>
                   <h2 className="mt-4 text-2xl font-black uppercase tracking-tight text-white transition group-hover:text-lime-400">{project.title}</h2>
                   <p className="mt-4 line-clamp-2 text-sm text-neutral-400 leading-relaxed">{project.overview}</p>
@@ -50,7 +50,7 @@ export default async function ProjectsPage() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl font-black uppercase tracking-tight md:text-5xl">Launch Your Team Project</h2>
           <p className="mt-6 text-xl text-neutral-600">Review practical teamwear project scenarios and anonymized manufacturing examples before starting your own order.</p>
-          <div className="mt-10"><PrimaryButton>Start Custom Order</PrimaryButton></div>
+          <div className="mt-10"><PrimaryButton>Get a Free Mockup</PrimaryButton></div>
         </div>
       </section>
       <Footer />

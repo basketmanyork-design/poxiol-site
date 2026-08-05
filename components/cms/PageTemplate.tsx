@@ -194,7 +194,7 @@ export function CmsPageTemplate({page, contactSlot}: {page: CmsPage; contactSlot
             <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-300">{page.description}</p>
             <div className="mt-10 flex flex-wrap gap-4">
               {page.heroCta ? <PrimaryButton href={page.heroCta.href}>{page.heroCta.label}</PrimaryButton> : null}
-              <SecondaryButton href="/contact/">Talk to POXIOL</SecondaryButton>
+              <SecondaryButton href="/contact/">Talk to a Teamwear Specialist</SecondaryButton>
             </div>
           </div>
           {page.image ? <img src={page.image.url} alt={page.image.alt} className="aspect-[4/3] w-full rounded-[2rem] object-cover" /> : null}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading } from "@/components/ui";
-import StructuredData, { fullFaqPageSchema } from "@/components/seo/StructuredData";
+import StructuredData, { faqPageSchemaFromGroups } from "@/components/seo/StructuredData";
 import { getFaqGroups } from "@/lib/sanity/content";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export default async function FAQPage() {
   const faqGroups = await getFaqGroups();
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
-      <StructuredData data={[fullFaqPageSchema]} />
+      <StructuredData data={faqPageSchemaFromGroups(faqGroups)} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">

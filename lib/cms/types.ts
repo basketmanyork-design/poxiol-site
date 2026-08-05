@@ -204,6 +204,11 @@ export type CmsProject = {
   result?: string
   testimonial?: string
   evidenceStatus?: string
+  buyerAuthorizationStatus?: 'publicApproved' | 'internalOnly' | 'notApproved' | 'unknown'
+  approvedImageStatus?: 'approved' | 'pending' | 'notAvailable'
+  evidenceNote?: string
+  verifiedProcess?: string[]
+  verifiableResultStatement?: string
   seo: CmsSeo
   displayOrder: number
 }
