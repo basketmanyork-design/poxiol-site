@@ -51,7 +51,7 @@ for (const phrase of requiredSourceCopy) {
 }
 
 const requiredOutputCopy = [
-  'Factory-Direct Custom Teamwear for Clubs, Schools and Sportswear Brands',
+  'Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands',
   'How Pricing Works',
   'Sample and Quality Approval',
   'Production and Shipping',

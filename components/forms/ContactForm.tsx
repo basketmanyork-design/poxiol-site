@@ -144,6 +144,9 @@ function ContactFormInner({
         <p className="mt-3 text-sm leading-6 text-neutral-600">
           {subtitle}
         </p>
+        <p className="mt-4 rounded-2xl bg-neutral-50 border border-neutral-200 px-4 py-3 text-xs font-bold text-neutral-600">
+          1. Send project details → 2. Free mockup in 2h → 3. Sample option → 4. Production plan
+        </p>
       </div>
 
       {form.selected_style && (
@@ -184,9 +187,8 @@ function ContactFormInner({
               />
             </div>
             <div>
-              <FieldLabel htmlFor="field-phone" required>WhatsApp / Phone</FieldLabel>
+              <FieldLabel htmlFor="field-phone">WhatsApp / Phone</FieldLabel>
               <input
-                required
                 id="field-phone"
                 name="phone"
                 value={form.phone}
@@ -196,21 +198,24 @@ function ContactFormInner({
               />
             </div>
             <div>
-              <FieldLabel htmlFor="field-country" required>Country / Region</FieldLabel>
-              <input
-                required
+              <FieldLabel htmlFor="field-country">Destination</FieldLabel>
+              <select
                 id="field-country"
                 name="country"
                 value={form.country}
                 onChange={(e) => updateField("country", e.target.value)}
                 className={inputClass}
-                placeholder="e.g. United States, Germany..."
-              />
+              >
+                <option value="">Select destination</option>
+                <option value="United States">United States</option>
+                <option value="Europe">Europe</option>
+                <option value="Australia">Australia</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             <div className="md:col-span-2">
-              <FieldLabel htmlFor="field-buyerType" required>Buyer Type</FieldLabel>
+              <FieldLabel htmlFor="field-buyerType">Buyer Type</FieldLabel>
               <select
-                required
                 id="field-buyerType"
                 name="buyerType"
                 value={form.buyerType}
@@ -235,9 +240,8 @@ function ContactFormInner({
           <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">2. Project Details</h3>
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <FieldLabel htmlFor="field-sportCategory" required>Sport Category</FieldLabel>
+              <FieldLabel htmlFor="field-sportCategory">Sport Category</FieldLabel>
               <select
-                required
                 id="field-sportCategory"
                 name="sportCategory"
                 value={form.sportCategory}
@@ -267,11 +271,10 @@ function ContactFormInner({
                 className={inputClass}
               >
                 <option value="">Select product type</option>
-                <option value="Jersey Only">Jersey Only</option>
-                <option value="Jersey + Shorts Set">Jersey + Shorts Set</option>
-                <option value="Full Team Package">Full Team Package</option>
+                <option value="Basketball Uniforms">Basketball Uniforms</option>
+                <option value="Soccer Kits">Soccer Kits</option>
                 <option value="Training Wear">Training Wear</option>
-                <option value="OEM / ODM Collection">OEM / ODM Collection</option>
+                <option value="Private Label">Private Label</option>
                 <option value="Other">Other</option>
               </select>
             </div>
@@ -286,13 +289,12 @@ function ContactFormInner({
                 className={inputClass}
               >
                 <option value="">Select quantity</option>
-                <option value="1 Sample">1 Sample MOQ</option>
-                <option value="10–29 Sets">10–29 Sets (Team Order)</option>
-                <option value="30–99 Sets">30–99 Sets</option>
-                <option value="100–299 Sets">100–299 Sets</option>
-                <option value="300+ Sets">300+ Sets (Volume Order)</option>
-                <option value="Not Sure Yet">Not Sure Yet</option>
+                <option value="1 sample">1 sample</option>
+                <option value="10–50 sets">10–50 sets</option>
+                <option value="51–200 sets">51–200 sets</option>
+                <option value="200+ sets">200+ sets</option>
               </select>
+              <p className="mt-1.5 text-xs text-neutral-500">e.g. 12 sets for a youth club</p>
             </div>
             <div>
               <FieldLabel htmlFor="field-deliveryDate">Target Delivery Date</FieldLabel>
@@ -328,9 +330,8 @@ function ContactFormInner({
               />
             </div>
             <div className="md:col-span-2">
-              <FieldLabel required>Need Player Name & Number?</FieldLabel>
+              <FieldLabel>Need Player Name & Number?</FieldLabel>
               <select
-                required
                 value={form.needNumbers}
                 onChange={(e) => updateField("needNumbers", e.target.value)}
                 className={inputClass}
@@ -396,6 +397,7 @@ function ContactFormInner({
                   />
                 </div>
               </div>
+              <p className="mt-4 text-xs font-semibold text-neutral-500">Your logos and artwork stay confidential.</p>
             </div>
 
             <div>
@@ -427,8 +429,8 @@ function ContactFormInner({
 
       <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3">
         <p>✓ Free mockup before any ordering</p>
-        <p>✓ Response within 1 business day</p>
-        <p>✓ Simple order & sample support</p>
+        <p>✓ Itemized quote after project review</p>
+        <p>✓ No hidden assumptions — all costs confirmed before payment</p>
       </div>
     </form>
   );
