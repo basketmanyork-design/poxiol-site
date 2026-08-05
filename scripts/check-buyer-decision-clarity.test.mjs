@@ -72,6 +72,9 @@ assert.match(faqSource, /faqPageSchemaFromGroups/, 'visible FAQ and FAQPage JSON
 const articleTemplateSource = await readFile(path.join(root, 'components/cms/ArticleTemplate.tsx'), 'utf8')
 assert.match(articleTemplateSource, /References[\s\S]*break-all/, 'article reference URLs must wrap on mobile')
 
+const layoutSource = await readFile(path.join(root, 'app/layout.tsx'), 'utf8')
+assert.match(layoutSource, /rel="icon"[\s\S]*data:image\/svg\+xml/, 'root layout must declare an inline favicon so browsers do not request missing favicon.ico')
+
 const ctaSource = (await Promise.all([
   'components/cms/PageTemplate.tsx',
   'components/sports/SportsLandingPage.tsx',
