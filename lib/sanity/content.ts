@@ -366,7 +366,8 @@ function imageFrom(source: SanityImage | undefined, fallback: CmsImage, size: 'h
 
 function optionalImage(source: SanityImage | undefined, fallback?: CmsImage, size: 'hero' | 'card' = 'card'): CmsImage | undefined {
   if (!source && !fallback) return undefined
-  return imageFrom(source, fallback || {url: '', alt: ''}, size)
+  const image = imageFrom(source, fallback || {url: '', alt: ''}, size)
+  return image.url ? image : undefined
 }
 
 function queryState<T>(response: {ok: true; result: T | null} | {ok: false}): SourceState {
@@ -882,6 +883,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     intro: normalizeBuyerFacingClaim(article.excerpt || fallback?.intro || body || article.title),
     eyebrow: fallback?.eyebrow || (articleType === 'blog' ? 'Blog' : articleType === 'resource' ? 'Resource' : 'Guide'),
     featuredImage: optionalImage(article.featuredImage || article.heroImage, fallback?.featuredImage, 'hero'),
+    imageStatus: fallback?.imageStatus,
     body: normalizeBuyerFacingClaim(body || fallback?.body || article.excerpt || ''),
     bodyBlocks: normalizeArticleBlocks(Array.isArray(article.body) ? article.body : fallback?.bodyBlocks),
     articleType,
@@ -897,6 +899,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     relatedArticles: mapArticleRelated(article.relatedArticles).length ? mapArticleRelated(article.relatedArticles) : fallback?.relatedArticles || [],
     faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeBuyerFacingClaim(normalizeFaqAnswer(textFromPortable(faq.answer)))})) : fallback?.faqs || [],
     cta: mapCta(article.cta, fallback?.cta),
+    secondaryCta: fallback?.secondaryCta,
     sections: sectionsFromArticle(article, fallback),
     seo: seoFrom(article.seo, fallback?.seo || {title: article.title, description: article.excerpt || body || article.title}),
     displayOrder: article.displayOrder ?? fallback?.displayOrder ?? index,

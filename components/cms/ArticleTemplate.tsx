@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type {Metadata} from 'next'
-import {Header, Footer, PrimaryButton} from '@/components/ui'
+import {Header, Footer, PrimaryButton, SecondaryButton} from '@/components/ui'
 import type {CmsArticle} from '@/lib/cms/types'
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 import {normalizePortableText, type CmsPortableContent} from '@/lib/cms/portableText'
@@ -219,6 +219,10 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
             <img src={article.featuredImage.url} alt={article.featuredImage.alt} className="aspect-[16/9] w-full rounded-[2rem] object-cover" />
             {article.featuredImage.caption ? <figcaption className="mt-3 text-sm text-neutral-500">{article.featuredImage.caption}</figcaption> : null}
           </figure>
+        ) : article.imageStatus ? (
+          <div role="img" aria-label={article.imageStatus} className="mt-12 flex aspect-[16/9] w-full items-center justify-center rounded-[2rem] border border-dashed border-white/20 bg-white/[0.03] px-8 text-center text-sm font-bold uppercase tracking-widest text-neutral-500">
+            {article.imageStatus}
+          </div>
         ) : null}
 
         <div className="mt-16 space-y-14">
@@ -271,7 +275,12 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
           </section>
         ) : null}
 
-        {article.cta ? <div className="mt-16"><PrimaryButton href={article.cta.href}>{article.cta.label}</PrimaryButton></div> : null}
+        {article.cta || article.secondaryCta ? (
+          <div className="mt-16 flex flex-wrap gap-4">
+            {article.cta ? <PrimaryButton href={article.cta.href}>{article.cta.label}</PrimaryButton> : null}
+            {article.secondaryCta ? <SecondaryButton href={article.secondaryCta.href}>{article.secondaryCta.label}</SecondaryButton> : null}
+          </div>
+        ) : null}
       </article>
       <Footer />
     </main>

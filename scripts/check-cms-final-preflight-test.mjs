@@ -19,7 +19,7 @@ const baseSetup = (tmpDir) => {
   const docsDir = join(tmpDir, 'docs');
   mkdirSync(docsDir, { recursive: true });
   writeFileSync(join(docsDir, 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({
-    correctedCandidateCount: 121,
+    correctedCandidateCount: 124,
     articleConflictCount: 0,
     routeConflictCount: 0,
     missingSeoCount: 0,
@@ -48,7 +48,7 @@ const tests = [
     name: "2. Invalid correctedCandidateCount",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 120 }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 123 }));
     },
     expectedExitCode: 1
   },
@@ -56,7 +56,7 @@ const tests = [
     name: "3. Article conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 121, articleConflictCount: 1 }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 124, articleConflictCount: 1 }));
     },
     expectedExitCode: 1
   },
@@ -64,7 +64,7 @@ const tests = [
     name: "4. Route conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 121, routeConflictCount: 1 }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 124, routeConflictCount: 1 }));
     },
     expectedExitCode: 1
   },

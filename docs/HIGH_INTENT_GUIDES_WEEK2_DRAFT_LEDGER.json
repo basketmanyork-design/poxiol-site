@@ -1,0 +1,50 @@
+{
+  "mode": "sanity-preview",
+  "perspective": "drafts",
+  "useCdn": false,
+  "publishedWritesBeforePreview": 0,
+  "releaseCountBeforePreview": 0,
+  "releaseCountAfterDraftWrite": 0,
+  "documents": [
+    {
+      "slug": "reversible-vs-single-layer-basketball-uniforms",
+      "draftId": "drafts.article-reversible-vs-single-layer-basketball-uniforms",
+      "publishedId": "article-reversible-vs-single-layer-basketball-uniforms",
+      "type": "article",
+      "publishStatus": "draft",
+      "beforeRevision": null,
+      "lockedRevision": "high-intent-guides-week2-drafts-only-20260805",
+      "publishedRevisionBeforePreview": null
+    },
+    {
+      "slug": "custom-basketball-uniform-fabric-gsm",
+      "draftId": "drafts.5df7417df6e44eb4",
+      "publishedId": "5df7417df6e44eb4",
+      "type": "article",
+      "publishStatus": "draft",
+      "beforeRevision": "BtROzTuZsdqYCncKTsNK0k",
+      "lockedRevision": "high-intent-guides-week2-drafts-only-20260805",
+      "publishedRevisionBeforePreview": "poxiol-published-production-time-fix-20260803"
+    },
+    {
+      "slug": "sample-first-vs-bulk-teamwear-order",
+      "draftId": "drafts.article-sample-first-vs-bulk-teamwear-order",
+      "publishedId": "article-sample-first-vs-bulk-teamwear-order",
+      "type": "article",
+      "publishStatus": "draft",
+      "beforeRevision": null,
+      "lockedRevision": "high-intent-guides-week2-drafts-only-20260805",
+      "publishedRevisionBeforePreview": null
+    },
+    {
+      "slug": "custom-basketball-uniform-cost-factors",
+      "draftId": "drafts.article-custom-basketball-uniform-cost-factors",
+      "publishedId": "article-custom-basketball-uniform-cost-factors",
+      "type": "article",
+      "publishStatus": "draft",
+      "beforeRevision": null,
+      "lockedRevision": "high-intent-guides-week2-drafts-only-20260805",
+      "publishedRevisionBeforePreview": null
+    }
+  ]
+}

@@ -39,3 +39,14 @@ A public project is treated as verified only when the project evidence is verifi
 ## Review ownership
 
 Before changing a scenario to a verified public case, the content owner must attach or reference the evidence above, confirm the exact permitted wording, and re-run the buyer-decision, CMS-safety, JSON-LD, image-integrity, and full-output risk checks.
+
+## High-intent guides evidence gaps (2026-08-05)
+
+| Page | Evidence still required | Safe public treatment |
+| --- | --- | --- |
+| Reversible vs single-layer | Matched finished-garment weight and wear-test records for comparable approved specifications | No numeric weight, lifetime or absolute comfort comparison; validate with a physical sample |
+| Youth basketball fabric and GSM | Current fabric names, measured GSM records, traceable swatches and supply-status confirmation | Describe selection factors only; confirm available references during quotation and sampling |
+| Sample first vs bulk | Approved written reorder criteria and project-specific sampling cost/timeline records | Use specification and approval decision rules without fixed guarantees |
+| Basketball uniform cost factors | Approved itemized quotation examples with commercially releasable values | Explain cost inputs only; publish no fixed price, average or unsupported range |
+
+No customer, team, testimonial, laboratory, certification, equipment-brand or outcome evidence was added for these pages. Product imagery remains omitted until verified material is available; the approved neutral status is **Project imagery pending verification**.
