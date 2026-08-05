@@ -163,7 +163,7 @@ export default function PrintingGuidePage() {
             <h2 className="text-4xl font-black uppercase tracking-tight md:text-5xl">Bring Your Design to Life</h2>
             <p className="mt-6 text-xl font-bold">Not sure which method is right for your team? Our production experts can guide you based on your design and budget.</p>
             <div className="mt-10 flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-              <PrimaryButton className="bg-black text-white hover:bg-neutral-800">Start Custom Order</PrimaryButton>
+              <PrimaryButton className="bg-black text-white hover:bg-neutral-800">Get a Free Mockup</PrimaryButton>
               <Link href="/free-mockup/" className="flex h-[60px] items-center justify-center rounded-full border-2 border-black px-10 text-base font-black uppercase hover:bg-black hover:text-white transition-colors">Request Free Mockup</Link>
             </div>
           </div>

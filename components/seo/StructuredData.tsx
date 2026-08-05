@@ -77,6 +77,10 @@ export const fullFaqPageSchema = {
   )
 };
 
+export function faqPageSchemaFromGroups(groups: {items: {question: string; answer: string}[]}[]) {
+  return generateFaqSchema(groups.flatMap((group) => group.items));
+}
+
 // Generic FAQ Schema Generator
 export function generateFaqSchema(items: { question: string; answer: string }[]) {
   return {

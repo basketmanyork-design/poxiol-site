@@ -69,6 +69,21 @@ assert.match(projectSource + projectDetailSource, /Manufacturing Scenario|Exampl
 assert.match(projectSource + projectDetailSource, /Project imagery pending verification/, 'unverified project imagery must use the neutral placeholder')
 assert.match(faqSource, /faqPageSchemaFromGroups/, 'visible FAQ and FAQPage JSON-LD must share the resolved groups')
 
+const articleTemplateSource = await readFile(path.join(root, 'components/cms/ArticleTemplate.tsx'), 'utf8')
+assert.match(articleTemplateSource, /References[\s\S]*break-all/, 'article reference URLs must wrap on mobile')
+
+const ctaSource = (await Promise.all([
+  'components/cms/PageTemplate.tsx',
+  'components/sports/SportsLandingPage.tsx',
+  'app/products/[slug]/page.tsx',
+  'app/projects/page.tsx',
+  'app/fabric-guide/page.tsx',
+  'app/printing-guide/page.tsx',
+].map((file) => readFile(path.join(root, file), 'utf8')))).join('\\n')
+for (const oldLabel of ['Talk to POXIOL', 'Request Quote', 'Start Custom Order', 'Start My Request', 'Start Free Mockup']) {
+  assert.ok(!ctaSource.includes(`>${oldLabel}<`), `legacy navigational CTA remains: ${oldLabel}`)
+}
+
 const publicSourceFiles = []
 for (const directory of ['app', 'components', 'lib']) {
   const walk = async (folder) => {
@@ -86,6 +101,7 @@ for (const claim of [
   '15+ years experience',
   '30,000+ units monthly',
   '50+ countries',
+  'within 24 hours',
   'they may be sub-contracting',
   'they may be subcontracting',
 ]) {
@@ -126,8 +142,17 @@ if (!sourceOnly) {
   const schemaQuestions = faqSchemas[0].mainEntity.map((entry) => entry.name)
   for (const question of schemaQuestions) assert.ok(htmlByRoute.faq.includes(question), `FAQ schema question is not visible: ${question}`)
 
-  const outputText = Object.values(htmlByRoute).join('\n')
-  for (const claim of ['15+ years', '30,000+ units', '50+ countries', 'they may be sub-contracting']) {
+  const outputHtmlFiles = []
+  const walkOutput = async (folder) => {
+    for (const entry of await readdir(folder, {withFileTypes: true})) {
+      const full = path.join(folder, entry.name)
+      if (entry.isDirectory()) await walkOutput(full)
+      else if (entry.name.endsWith('.html')) outputHtmlFiles.push(full)
+    }
+  }
+  await walkOutput(path.join(root, 'out'))
+  const outputText = (await Promise.all(outputHtmlFiles.map((file) => readFile(file, 'utf8')))).join('\n')
+  for (const claim of ['15+ years', '30,000+ units', '50+ countries', 'within 24 hours', 'they may be sub-contracting']) {
     assert.ok(!outputText.toLowerCase().includes(claim.toLowerCase()), `built output contains unsupported claim: ${claim}`)
   }
 }

@@ -144,7 +144,7 @@ export default async function ProductDetailPage({params}: Props) {
       <section className="bg-neutral-900 px-5 py-16 text-center text-white md:px-10 md:py-24 xl:px-20">
         <h2 className="text-3xl font-black uppercase md:text-5xl">Need this product customized?</h2>
         <p className="mx-auto mt-5 max-w-2xl text-neutral-300">Send logo files, quantity, sizes and deadline. POXIOL will help confirm mockup and production details.</p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4"><PrimaryButton href="/free-mockup/">Start Free Mockup</PrimaryButton><SecondaryButton href="/contact/">Talk to POXIOL</SecondaryButton></div>
+        <div className="mt-8 flex flex-wrap justify-center gap-4"><PrimaryButton href="/free-mockup/">Get a Free Mockup</PrimaryButton><SecondaryButton href="/contact/">Talk to a Teamwear Specialist</SecondaryButton></div>
       </section>
       <Footer />
     </main>

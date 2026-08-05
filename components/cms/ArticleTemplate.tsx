@@ -243,7 +243,7 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
         {article.references.length ? (
           <section className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
             <h2 className="text-2xl font-black uppercase">References</h2>
-            <ul className="mt-5 space-y-2 text-neutral-400">{article.references.map((item) => <li key={item}>• {item}</li>)}</ul>
+            <ul className="mt-5 space-y-2 text-neutral-400">{article.references.map((item) => <li key={item} className="break-all">• {item}</li>)}</ul>
           </section>
         ) : null}
 

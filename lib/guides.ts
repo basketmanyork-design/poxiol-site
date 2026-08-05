@@ -22,7 +22,7 @@ export const buyingGuides: BuyingGuide[] = [
     sections: [
       {
         title: "Step 1: Consultation & Mockup",
-        content: "Share your team's vision, colors, and logos with our design team. We provide a professional 3D mockup within 24 hours for your approval.",
+        content: "Share your team's vision, colors, and logos with our design team. We provide a professional 3D mockup after the project requirements are reviewed for your approval.",
       },
       {
         title: "Step 2: Size & Roster Collection",

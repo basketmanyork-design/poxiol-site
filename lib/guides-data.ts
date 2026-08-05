@@ -76,7 +76,7 @@ export const guidePages: GuidePage[] = [
       brand: "POXIOL",
       bio: "York works with international clubs, schools, sportswear brands and distributors on custom teamwear sourcing, sample approval and bulk production coordination."
     },
-    methodology: "This checklist is based on 15+ years of factory-floor QC experience and international B2B procurement standards for professional athletic apparel.",
+    methodology: "This checklist is based on practical factory-floor QC checkpoints and B2B procurement requirements for professional athletic apparel.",
     publishedDate: "2026-06-15",
     lastUpdated: "2026-07-14",
     relatedGuides: [
@@ -187,7 +187,7 @@ export const guidePages: GuidePage[] = [
       brand: "POXIOL",
       bio: "York works with international clubs, schools, sportswear brands and distributors on custom teamwear sourcing, sample approval and bulk production coordination."
     },
-    methodology: "Developed using B2B procurement data and factory auditing standards from 15+ years of apparel exporting experience.",
+    methodology: "Developed using practical B2B procurement checkpoints and factory-audit considerations for apparel sourcing.",
     publishedDate: "2026-06-25",
     lastUpdated: "2026-07-14",
     relatedGuides: [

@@ -106,8 +106,8 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                   ))}
                 </ul>
                 <div className="mt-10 flex flex-col gap-4">
-                  <PrimaryButton href={freeMockupHref} className="w-full">Start My Request</PrimaryButton>
-                  <SecondaryButton href={getQuoteHref} darkText className="w-full">Request Quote</SecondaryButton>
+                  <PrimaryButton href={freeMockupHref} className="w-full">Get a Free Mockup</PrimaryButton>
+                  <SecondaryButton href={getQuoteHref} darkText className="w-full">Talk to a Teamwear Specialist</SecondaryButton>
                 </div>
               </div>
             )}

@@ -149,7 +149,7 @@ export default function FabricGuidePage() {
             <h2 className="text-4xl font-black uppercase tracking-tight md:text-5xl">Select Your Performance Fabric</h2>
             <p className="mt-6 text-xl font-bold">Need help choosing? Our experts can recommend the right material based on your sport and climate.</p>
             <div className="mt-10 flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-              <PrimaryButton className="bg-black text-white hover:bg-neutral-800">Start Custom Order</PrimaryButton>
+              <PrimaryButton className="bg-black text-white hover:bg-neutral-800">Get a Free Mockup</PrimaryButton>
               <Link href="/free-mockup/" className="flex h-[60px] items-center justify-center rounded-full border-2 border-black px-10 text-base font-black uppercase hover:bg-black hover:text-white transition-colors">Request Fabric Samples</Link>
             </div>
           </div>
