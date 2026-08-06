@@ -10,43 +10,35 @@ export const metadata: Metadata = {
 
 const documentCategories = [
   {
-    title: "1. Company & Factory Documents",
+    title: "Currently verified evidence",
     items: [
-      { name: "Business Registration", status: "Confirmed" },
-      { name: "Export License", status: "Confirmed" },
-      { name: "Factory Capability Profile", status: "Confirmed" },
-      { name: "Alibaba Verified Profile", status: "Available upon request" },
-      { name: "Third-party Audit Report", status: "Pending upload" }
-    ]
+      { name: "Production inspection workflow", status: "Described and reviewable" },
+      { name: "Size measurement and packing checklists", status: "Available per project record" },
+      { name: "Artwork and sample approval record", status: "Created for the approved scope" },
+    ],
   },
   {
-    title: "2. Fabric Testing Options",
+    title: "Project or order confirmation",
     items: [
-      { name: "Color Fastness Test", status: "Available upon request" },
-      { name: "Shrinkage Test", status: "Available upon request" },
-      { name: "Fabric GSM Confirmation", status: "Confirmed" },
-      { name: "Breathability Rating", status: "Confirmed" },
-      { name: "Moisture-Wicking Performance", status: "Confirmed" },
-      { name: "Pilling Resistance Test", status: "Project-based" }
-    ]
+      { name: "Fabric reference and available specification", status: "Confirm for this order" },
+      { name: "Color, print and decoration checks", status: "Confirm for this order" },
+      { name: "Pre-shipment quality inspection record", status: "Request for this order" },
+      { name: "Packaging and labeling checklist", status: "Confirm for this order" },
+    ],
   },
   {
-    title: "3. Production Inspection Records",
+    title: "Buyer requirements before confirmation",
     items: [
-      { name: "Raw Material Inspection Sheet", status: "Standard" },
-      { name: "Print Color Strike-off Approval", status: "Standard" },
-      { name: "Size Measurement Data Sheet", status: "Standard" },
-      { name: "Sewing Quality Inspection Record", status: "Standard" },
-      { name: "Packing Quantity Checklist", status: "Standard" },
-      { name: "Final Pre-shipment QC Report", status: "Standard" }
-    ]
-  }
-];
-
+      { name: "Target-market testing standard", status: "Buyer must specify" },
+      { name: "Product-specific fabric or finished-garment test", status: "Buyer must specify" },
+      { name: "Destination packaging and labeling rules", status: "Buyer must specify" },
+    ],
+  },
+]
 const certificatesFaqs = [
-  { question: "Can POXIOL provide testing reports?", answer: "Testing reports may be available depending on fabric type, order requirements and buyer market. Buyers should confirm required testing standards before production." },
+  { question: "Can POXIOL provide testing reports?", answer: "Testing reports depend on the product, target market and buyer requirements. Share the required standard before production so POXIOL can confirm the appropriate evidence path; availability is not a claim that a report is already held." },
   { question: "Can I request a QC report before shipment?", answer: "Yes. POXIOL can provide project-based QC records including size measurement, print clarity, stitching inspection and packing quantity review." },
-  { question: "Are all documents on this page verified?", answer: "Only verified documents are displayed as confirmed. Any pending or project-based document is clearly marked as pending upload or available upon request." }
+  { question: "Are all documents on this page verified?", answer: "A document is shown in one of three evidence tiers: currently verified evidence, project or order confirmation, or buyer requirements that must be supplied before confirmation. Availability is never presented as proof that a certificate or test has already been issued." }
 ];
 
 export default function CertificatesTestingPage() {

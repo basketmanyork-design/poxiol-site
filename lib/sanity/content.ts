@@ -42,6 +42,7 @@ import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
 import {resolveProductsForCategoryVisibility} from '@/lib/cms/category-visibility'
 import {resolveContent} from './fallback'
+import {getWeek3GuideBySlug, week3Guides} from '@/lib/week3-guides'
 import {cardImageUrl, getImageUrl, heroImageUrl} from './image'
 import {
   articleBySlugQuery,
@@ -917,10 +918,17 @@ export async function getArticles(type?: CmsArticle['articleType']): Promise<Cms
     contentSource,
     mapCms: (article, fallback, index) => mapArticle(article, fallback || legacyArticles.find((item) => item.slug === article.slug), index),
   })
-  return (type ? merged.filter((article) => article.articleType === type) : merged).sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
+  const controlled = type && type !== 'resource' ? [] : week3Guides
+  const bySlug = new Map<string, CmsArticle>()
+  for (const article of [...merged, ...controlled]) bySlug.set(article.slug, article)
+  return Array.from(bySlug.values())
+    .filter((article) => !type || article.articleType === type)
+    .sort((a, b) => (a.displayOrder ?? 9999) - (b.displayOrder ?? 9999))
 }
 
 export async function getArticle(slug: string): Promise<CmsArticle | null> {
+  const controlled = getWeek3GuideBySlug(slug)
+  if (controlled) return controlled
   const fallback = legacyArticles.find((article) => article.slug === slug) || null
   const response = await sanityQuery<SanityArticle>(articleBySlugQuery, {slug})
   return resolveSingle({
