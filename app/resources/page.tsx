@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default async function ResourcesPage() {
-  const resources = await getArticles("resource");
+  const resourceArticles = await getArticles("resource");
+  const resources = Array.from(new Map(resourceArticles.map((article) => [article.slug, article])).values());
   const guides = await getArticles("guide");
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
