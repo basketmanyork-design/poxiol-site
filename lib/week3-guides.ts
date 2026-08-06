@@ -79,7 +79,7 @@ const procurementSections = (sport: string, options: string[], links: CmsLink[])
   },
   {
     title: 'Continue the research',
-    content: links.map((link) => `${link.label}: ${siteUrl}${link.href}`).join('\n'),
+    content: 'Use the related product, FAQ, quality and certificates links below to compare the next procurement step for this project.',
   },
 ]
 
