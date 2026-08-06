@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
+const isOpenNextBuild = process.env.POXIOL_OPENNEXT_BUILD === "1";
+
 const nextConfig = {
-  output: "export",
+  ...(isOpenNextBuild ? {} : { output: "export" }),
   trailingSlash: true,
   images: {
     unoptimized: true,

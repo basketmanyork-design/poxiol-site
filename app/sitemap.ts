@@ -4,6 +4,8 @@ import { sportsPages } from "@/lib/sports-pages";
 import { pseoPages } from "@/lib/pseo";
 import { getArticles, getProductCategories } from "@/lib/sanity/content";
 
+export const dynamic = "force-static";
+
 function uniqueByUrl(routes: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   return routes.filter((route) => {
