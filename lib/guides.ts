@@ -111,6 +111,12 @@ const existingBuyingGuides: BuyingGuide[] = [
     intro: "Deep technical insights and procurement advice for sports organizations, brand owners, and sportswear distributors looking for factory-direct manufacturing excellence.",
     sections: [],
     faqs: [],
+    relatedArticles: [
+      {label: "Reversible vs Single-Layer Basketball Uniforms", href: "/guides/reversible-vs-single-layer-basketball-uniforms/"},
+      {label: "Youth Basketball Uniform Fabric and GSM Guide", href: "/guides/custom-basketball-uniform-fabric-gsm/"},
+      {label: "Sample First vs Bulk Teamwear Order", href: "/guides/sample-first-vs-bulk-teamwear-order/"},
+      {label: "Custom Basketball Uniform Cost Factors", href: "/guides/custom-basketball-uniform-cost-factors/"},
+    ],
   },
 ];
 

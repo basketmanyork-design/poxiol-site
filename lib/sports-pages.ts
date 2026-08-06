@@ -139,7 +139,10 @@ export const sportsPages: SportsPageData[] = [
     },
     relatedGuides: [
       { title: "B2B Sourcing Pro-FAQ", slug: "b2b-sourcing-faq" },
+      { title: "Reversible vs Single-Layer Basketball Uniforms", slug: "reversible-vs-single-layer-basketball-uniforms" },
       { title: "Basketball Uniform Fabric GSM Guide", slug: "custom-basketball-uniform-fabric-gsm" },
+      { title: "Sample First vs Bulk Teamwear Order", slug: "sample-first-vs-bulk-teamwear-order" },
+      { title: "Custom Basketball Uniform Cost Factors", slug: "custom-basketball-uniform-cost-factors" },
       { title: "Teamwear Sample Approval Checklist", slug: "teamwear-sample-approval-checklist" }
     ]
   },
