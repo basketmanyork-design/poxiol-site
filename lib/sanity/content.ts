@@ -1030,7 +1030,11 @@ export async function getBasketballDecisionPage(legacyData: SportsPageData): Pro
     [],
   )
   const relatedCases = mapRelated(category.relatedCaseStudies, '/projects/').map((item) => ({title: item.label, href: item.href}))
-  const relatedGuides = mapArticleRelated(category.relatedGuides).map((item) => ({title: item.label, href: item.href}))
+  const cmsRelatedGuides = mapArticleRelated(category.relatedGuides).map((item) => ({title: item.label, href: item.href}))
+  const relatedGuides = [...cmsRelatedGuides, ...(base.relatedGuides || [])].filter((item, index, list) => {
+    const key = item.href || ("slug" in item ? item.slug : undefined)
+    return list.findIndex((candidate) => (candidate.href || ("slug" in candidate ? candidate.slug : undefined)) === key) === index
+  })
 
   return {
     ...base,

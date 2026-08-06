@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs",
-    "test": "node scripts/check-buyer-decision-clarity.test.mjs --source-only && node scripts/check-high-intent-guides-week2.test.mjs --source-only && node scripts/check-high-intent-guides-draft-plan.test.mjs && node scripts/check-buyer-decision-draft-plan.test.mjs && node scripts/check-guide-route-integrity.test.mjs && node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-gsc-verification.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs"
+    "test": "node scripts/check-high-intent-guides-content-gaps.test.mjs && node scripts/check-buyer-decision-clarity.test.mjs --source-only && node scripts/check-high-intent-guides-week2.test.mjs --source-only && node scripts/check-high-intent-guides-draft-plan.test.mjs && node scripts/check-buyer-decision-draft-plan.test.mjs && node scripts/check-guide-route-integrity.test.mjs && node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-gsc-verification.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs"
   },
   "dependencies": {
     "@types/node": "^20.12.12",

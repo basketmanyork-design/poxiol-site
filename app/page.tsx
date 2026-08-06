@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/forms/ContactForm";
 import { BuyerDecisionSections } from "@/components/sections/BuyerDecisionSections";
+import { FirstWeekBuyingGuides } from "@/components/sections/FirstWeekBuyingGuides";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, EmailAddress, emailHref } from "@/components/ui";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 import { getHomepageContent, getSiteChrome } from "@/lib/sanity/content";
@@ -88,6 +89,8 @@ export default async function HomePage() {
       </section>
 
       <BuyerDecisionSections />
+
+      <FirstWeekBuyingGuides />
 
       {/* 2. Factory Sourcing Summary - AEO / GEO Table */}
       <section className="bg-black px-5 py-16 md:px-10 md:py-24 border-b border-white/5">
