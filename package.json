@@ -10,15 +10,18 @@
     "start": "next start",
     "lint": "next lint",
     "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs",
-    "test": "node scripts/check-high-intent-guides-content-gaps.test.mjs && node scripts/check-buyer-decision-clarity.test.mjs --source-only && node scripts/check-high-intent-guides-week2.test.mjs --source-only && node scripts/check-high-intent-guides-draft-plan.test.mjs && node scripts/check-buyer-decision-draft-plan.test.mjs && node scripts/check-guide-route-integrity.test.mjs && node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-gsc-verification.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs"
+    "test": "node scripts/check-cloudflare-next-compatibility.test.mjs && node scripts/check-high-intent-guides-content-gaps.test.mjs && node scripts/check-buyer-decision-clarity.test.mjs --source-only && node scripts/check-high-intent-guides-week2.test.mjs --source-only && node scripts/check-high-intent-guides-draft-plan.test.mjs && node scripts/check-buyer-decision-draft-plan.test.mjs && node scripts/check-guide-route-integrity.test.mjs && node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-gsc-verification.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs",
+    "cf:build": "node scripts/run-open-next-build.mjs",
+    "cf:preview": "node scripts/run-open-next-build.mjs && opennextjs-cloudflare preview"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "1.20.2",
     "@types/node": "^20.12.12",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "autoprefixer": "^10.4.19",
     "lucide-react": "^0.378.0",
-    "next": "^14.2.5",
+    "next": "15.5.21",
     "postcss": "^8.4.38",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,7 +32,8 @@
     "@types/prop-types": "^15.7.15",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.35",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.3",
+    "wrangler": "4.119.0"
   },
   "engines": {
     "node": "22.x"

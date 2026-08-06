@@ -24,3 +24,5 @@ tmp_artifact/
 .sanity/
 
 *_log.txt
+
+.open-next
