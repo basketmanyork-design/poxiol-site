@@ -28,6 +28,14 @@ export const metadata: Metadata = {
       "Custom sports uniforms for clubs, schools, events, brands and teams worldwide.",
     type: "website",
     siteName: "POXIOL Teamwear",
+    images: [
+      {
+        url: "https://www.poxiol.com/images/poxiol-v62/home_hero_v62_desktop.webp",
+        width: 1672,
+        height: 941,
+        alt: "POXIOL custom teamwear manufacturer — basketball uniforms, soccer kits and OEM sportswear",
+      },
+    ],
   },
 };
 
@@ -46,7 +54,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Suspense fallback={null}>
           <AnalyticsProvider config={analyticsConfig} />
         </Suspense>
-        <div id="main-content">{children}</div>
+        <div id="main-content" className="pb-24 md:pb-0">{children}</div>
         <WhatsAppButton />
       </body>
     </html>

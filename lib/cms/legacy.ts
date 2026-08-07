@@ -25,13 +25,12 @@ const whatsappDigits = '8613055646888'
 const alibabaStoreUrl = 'https://basketman.en.alibaba.com/'
 
 export const legacyHeaderNavigation: CmsLink[] = [
-  {label: 'Solutions', href: '/solutions/'},
   {label: 'Products', href: '/products/'},
-  {label: 'Gallery', href: '/design-gallery/'},
   {label: 'Factory', href: '/factory/'},
   {label: 'Customization', href: '/customization/'},
-  {label: 'About', href: '/about/'},
-  {label: 'Contact', href: '/contact/'},
+  {label: 'Quality Control', href: '/quality-control-process/'},
+  {label: 'Resources', href: '/resources/'},
+  {label: 'Get Quote', href: '/get-quote/'},
 ]
 
 export const legacyFooterColumns: CmsFooterColumn[] = [
@@ -90,7 +89,7 @@ export const legacySiteChrome: CmsSiteChrome = {
 
 
 const corePageFallbacks: Record<string, {title: string; eyebrow: string; heading: string; description: string; seoTitle: string; metaDescription: string; image?: {url: string; alt: string}}> = {
-  about: {title: 'About POXIOL', eyebrow: 'Our Identity', heading: 'Elite Custom Teamwear Manufacturing', description: 'POXIOL provides factory-direct custom teamwear support for B2B buyers, coordinating design review, sampling, confirmed production and shipment preparation.', seoTitle: 'About POXIOL | Professional Custom Teamwear Manufacturer', metaDescription: "Learn how POXIOL supports B2B custom teamwear projects through design review, sampling, production coordination and quality checks before shipment.", image: {url: '/images/poxiol-v6/home_hero_custom_teamwear_manufacturer.png', alt: 'POXIOL Teamwear Manufacturing Expertise'}},
+  about: {title: 'About POXIOL', eyebrow: 'Our Identity', heading: 'Custom Teamwear Manufacturing', description: 'POXIOL provides factory-direct custom teamwear support for B2B buyers, coordinating design review, sampling, confirmed production and shipment preparation.', seoTitle: 'About POXIOL | Professional Custom Teamwear Manufacturer', metaDescription: "Learn how POXIOL supports B2B custom teamwear projects through design review, sampling, production coordination and quality checks before shipment.", image: {url: '/images/poxiol-v6/home_hero_custom_teamwear_manufacturer.png', alt: 'POXIOL Teamwear Manufacturing Expertise'}},
   factory: {title: 'Factory', eyebrow: 'Direct Manufacturer', heading: 'Custom Teamwear Factory in China for B2B Sportswear Buyers', description: 'POXIOL coordinates custom teamwear production from digital mockup and material confirmation through sewing, quality checks, packing and export shipment preparation.', seoTitle: 'Custom Teamwear Factory in China | POXIOL Sportswear Manufacturing', metaDescription: 'Explore the POXIOL custom teamwear workflow, including sublimation printing, sewing coordination, quality checks, packing and export shipment preparation.', image: {url: '/images/poxiol-v6/manufacturing_sublimation_printing.png', alt: 'POXIOL production line for sublimated teamwear'}},
   manufacturing: {title: 'Manufacturing', eyebrow: 'Manufacturing Excellence', heading: 'Professional OEM & ODM Teamwear Manufacturing', description: 'POXIOL is a custom teamwear manufacturing platform specializing in OEM and ODM sports uniforms for clubs, schools, academies, distributors and sports brands worldwide.', seoTitle: 'OEM Sportswear Manufacturing | Custom Teamwear Factory | POXIOL', metaDescription: 'POXIOL is a professional OEM and ODM sportswear manufacturer specializing in custom basketball uniforms, soccer kits, baseball jerseys, volleyball apparel and private label teamwear.', image: {url: '/images/poxiol-v6/manufacturing_packing_global_delivery.png', alt: 'POXIOL teamwear packing inspection and global delivery preparation'}},
   'quality-control-process': {title: 'Quality Control Process', eyebrow: 'Quality Control', heading: 'Custom Teamwear Quality Control Process', description: 'POXIOL uses a multi-stage quality control workflow to help B2B buyers reduce production risk and ensure repeatable quality.', seoTitle: 'Custom Teamwear Quality Control Process | POXIOL Sports Uniform QC', metaDescription: 'Learn how POXIOL controls fabric, printing, sewing, sizing, packing and final inspection for custom basketball uniforms, soccer kits and OEM teamwear orders.', image: {url: '/images/poxiol-v6/manufacturing_quality_control.png', alt: 'POXIOL quality control inspection for custom sports uniforms'}},

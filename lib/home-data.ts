@@ -16,17 +16,16 @@ export const sportsCategories = [
 ];
 
 export const uspCards = [
-  { metric: "MOQ 1", title: "MOQ 1 Set Support", description: "POXIOL supports flexible custom orders starting from 1 piece for samples, trials, or small team needs before scaling into larger production.", label: "Flexible Orders" },
-  { metric: "2-3 Days", title: "Sample production: 2-3 working days after mockup approval", description: "Standard custom teamwear samples are produced within 2-3 working days after mockup approval, with express global delivery available.", label: "2-3 working days sample production" },
-  { metric: "Support", title: "Custom Teamwear Production Support", description: "POXIOL coordinates design review, sampling, confirmed production and shipment preparation for custom teamwear projects.", label: "Production Support" },
-  { metric: "1-2H", title: "Mockup Design in 1-2 Hours", description: "Submit your logo and color direction to receive a professional front/back visual mockup within 1-2 hours for B2B evaluation.", label: "Free Design" },
-  { metric: "OEM/ODM", title: "Full OEM/ODM Collection Support", description: "POXIOL provides private label manufacturing, original pattern development, and custom packaging for sportswear brands and distributors.", label: "Manufacturing Power" },
-  { metric: "QC", title: "Multi-Stage Quality Support", description: "Custom orders follow quality checks for fabric, print clarity, stitching and confirmed size details before shipment.", label: "Quality Promise" },
+  { metric: "MOQ 1", title: "MOQ From 1 Set", description: "Start with one sample set before confirming bulk production. Sample MOQ: 1 set for B2B buyers.", label: "Low MOQ" },
+  { metric: "Free", title: "Free Design Mockup", description: "Send your logo, colors and sport category. Receive a front/back design mockup for review, usually within 2 hours of complete project details.", label: "Design" },
+  { metric: "2-3 Days", title: "Sample Support", description: "Sample production usually takes 2-3 working days after mockup approval, with express global delivery available.", label: "Sample" },
+  { metric: "QC", title: "QC Before Shipment", description: "Fabric, print, sizing, logo placement, names, numbers and packing are checked against the approved project details before shipment.", label: "Quality" },
+  { metric: "OEM", title: "OEM Production Support", description: "Private-label manufacturing with buyer-approved labels, packaging and product specifications for sportswear brands and distributors.", label: "OEM/ODM" },
 ];
 
 export const solutionCards = [
   { title: "Basketball Uniform Solution", subtitle: "Pro-Grade Court Gear", description: "Full sublimation reversible sets and team packages for academies and elite clubs.", cta: "Build Basketball Uniforms", href: "/free-mockup/?style=basketball-solution", image: "/images/solutions/club-teamwear.webp" },
-  { title: "Soccer Uniform Solution", subtitle: "Elite Club Kit Launch", description: "Home/Away kits with sponsor integration and high-performance breathable fabrics.", cta: "Create Soccer Kits", href: "/free-mockup/?style=soccer-solution", image: "/images/solutions/school-teamwear.webp" },
+  { title: "Soccer Uniform Solution", subtitle: "Club Kit Program", description: "Home/Away kits with sponsor integration and high-performance breathable fabrics.", cta: "Create Soccer Kits", href: "/free-mockup/?style=soccer-solution", image: "/images/solutions/school-teamwear.webp" },
   { title: "Training Wear Solution", subtitle: "Off-Court Excellence", description: "Modern tracksuits and warm-up jackets for unified team travel and sessions.", cta: "Plan Training Wear", href: "/free-mockup/?style=training-solution", image: "/images/solutions/tournament-apparel.webp" },
   { title: "Hoodie & Jacket Solution", subtitle: "Team Outerwear Support", description: "Build your team brand with custom hoodies and outerwear engineered for comfort.", cta: "Start Outerwear Project", href: "/free-mockup/?style=outerwear-solution", image: "/images/solutions/brand-oem.webp" },
   { title: "Teamwear Package Solution", subtitle: "Complete Unified Identity", description: "Coordinated uniforms across multiple sports with one shared team or school identity.", cta: "Explore Team Packages", href: "/free-mockup/?style=package-solution", image: "/images/solutions/wholesale.png" },

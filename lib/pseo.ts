@@ -212,7 +212,7 @@ export const pseoPages: PSEOPage[] = [
   {
     slug: "oem-soccer-apparel-manufacturer",
     title: "OEM Soccer Apparel Manufacturer | Private Label Soccer Kits | POXIOL",
-    h1: "Elite OEM Soccer Apparel Manufacturer",
+    h1: "OEM Soccer Apparel Manufacturer",
     intro: "Scale your soccer brand with POXIOL's expert OEM manufacturing services. We provide professional-grade soccer apparel production with custom branding and technical specifications.",
     content: "As a specialist soccer apparel manufacturer, we support brands and distributors in developing comprehensive soccer kit lines. Our OEM services include advanced fabric sourcing, high-precision sublimation printing, and meticulous QC standards. We help you create unique soccer gear that sets your brand apart in a competitive market. From match-day jerseys to training wear and accessories, POXIOL is your reliable partner for soccer apparel excellence.",
     faqs: [

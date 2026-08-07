@@ -3,7 +3,7 @@ import { Header, Footer, SectionHeading, PrimaryButton, freeMockupHref } from "@
 
 export const metadata: Metadata = {
   title: "Custom Logos, Names & Numbers | POXIOL Teamwear",
-  description: "Elite sublimation printing for custom team logos, player names, and numbers. High-definition graphics with zero fading or peeling for your sports uniforms.",
+  description: "Full-color sublimation printing for custom team logos, player names, and numbers. High-definition graphics with zero fading or peeling for your sports uniforms.",
 };
 
 export default function LogoNameNumberPage() {

@@ -1,15 +1,17 @@
 import type {CmsFaqItem} from './cms/types'
 
-export const BUYER_DECISION_HERO_HEADING = 'Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands'
+export const BUYER_DECISION_HERO_HEADING = 'Custom Teamwear Manufacturer for Clubs, Schools & Sports Brands'
 
-export const BUYER_DECISION_HERO_HEADING_MOBILE = 'Custom Teamwear Factory for Clubs, Schools & Brands'
+export const BUYER_DECISION_HERO_HEADING_MOBILE = 'Custom Teamwear Manufacturer for Clubs & Schools'
 
-export const BUYER_DECISION_HERO_DESCRIPTION = 'MOQ 1 set · Free mockup in 2 hours · Sample in 2–3 days · Bulk in 7–12 days · QC before shipment.'
+export const BUYER_DECISION_HERO_DESCRIPTION =
+  'Factory-direct basketball uniforms, soccer kits and custom sportswear with free mockup, low MOQ and reliable production support.'
 
 export const APPROVED_CTA_LABELS = {
-  primary: 'Get a Free Mockup',
+  primary: 'Get Free Design Mockup',
   secondary: 'Talk to a Teamwear Specialist',
   sample: 'Start with 1 Sample',
+  quote: 'Request Factory Quote',
 } as const
 
 export type BuyerDecisionCard = {
@@ -184,10 +186,16 @@ export function normalizeBuyerFacingClaim(value: string): string {
     .replace(/(?:(?:production|monthly) capacity:\s*)?30,000\+ units(?: monthly)?\.?/gi, 'Production planning is based on confirmed quantity and schedule.')
     .replace(/reliable door-to-door logistics serving clubs and brands in 50\+ countries including USA, EU, AU\.?/gi, 'Global shipping support is planned according to the confirmed destination and shipping method.')
     .replace(/within\s+24\s+hours/gi, 'after the project requirements are reviewed')
+    .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'factory-direct custom teamwear manufacturer')
+    .replace(/Elite\s+Custom\s+Teamwear\s+Manufacturing/gi, 'Custom Teamwear Manufacturing')
+    .replace(/Elite\s+OEM\s+Soccer\s+Apparel\s+Manufacturer/gi, 'OEM Soccer Apparel Manufacturer')
+    .replace(/Elite\s+Custom\s+Teamwear\s+Manufacturer/gi, 'Custom teamwear manufacturer')
+    .replace(/Elite\s+sublimation\s+printing/gi, 'Full-color sublimation printing')
 }
 
 export function normalizeCtaLabel(label: string, href: string): string {
   if (href.startsWith('/free-mockup')) return APPROVED_CTA_LABELS.primary
+  if (href.startsWith('/get-quote')) return APPROVED_CTA_LABELS.quote
   if (href.startsWith('/contact')) return APPROVED_CTA_LABELS.secondary
   if (href.startsWith('/sample-order')) return APPROVED_CTA_LABELS.sample
   return label

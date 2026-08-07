@@ -2,21 +2,15 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { trackFileUpload, trackFormStart, trackFormSubmit, trackLead } from "@/lib/analytics/client";
+import { trackFormStart, trackFormSubmit, trackLead } from "@/lib/analytics/client";
 
 type ContactFormState = {
   fullName: string;
   email: string;
-  phone: string;
+  company: string;
   country: string;
-  buyerType: string;
-  sportCategory: string;
-  productType: string;
+  product: string;
   quantity: string;
-  deliveryDate: string;
-  teamName: string;
-  colors: string;
-  needNumbers: string;
   message: string;
   selected_style: string;
 };
@@ -24,16 +18,10 @@ type ContactFormState = {
 const initialState: ContactFormState = {
   fullName: "",
   email: "",
-  phone: "",
+  company: "",
   country: "",
-  buyerType: "",
-  sportCategory: "",
-  productType: "",
+  product: "",
   quantity: "",
-  deliveryDate: "",
-  teamName: "",
-  colors: "",
-  needNumbers: "",
   message: "",
   selected_style: "",
 };
@@ -76,11 +64,6 @@ function ContactFormInner({
     }
   }, [searchParams]);
 
-  // Real File Upload states
-  const [logoFile, setLogoFile] = useState<File | null>(null);
-  const [referenceFile, setReferenceFile] = useState<File | null>(null);
-  const [sizeChartFile, setSizeChartFile] = useState<File | null>(null);
-
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -108,10 +91,6 @@ function ContactFormInner({
       Object.entries(form).forEach(([key, value]) => {
         formData.append(key, value);
       });
-
-      if (logoFile) formData.append("logo_file", logoFile);
-      if (referenceFile) formData.append("reference_design_file", referenceFile);
-      if (sizeChartFile) formData.append("size_chart_tech_pack_file", sizeChartFile);
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -157,259 +136,104 @@ function ContactFormInner({
       )}
 
       <div className="space-y-6">
-        {/* Step 1: Buyer Information */}
-        <div>
-          <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">1. Buyer Information</h3>
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <FieldLabel htmlFor="field-fullName" required>Full Name</FieldLabel>
-              <input
-                required
-                id="field-fullName"
-                name="fullName"
-                value={form.fullName}
-                onChange={(e) => updateField("fullName", e.target.value)}
-                className={inputClass}
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-email" required>Email Address</FieldLabel>
-              <input
-                required
-                type="email"
-                id="field-email"
-                name="email"
-                value={form.email}
-                onChange={(e) => updateField("email", e.target.value)}
-                className={inputClass}
-                placeholder="your@email.com"
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-phone">WhatsApp / Phone</FieldLabel>
-              <input
-                id="field-phone"
-                name="phone"
-                value={form.phone}
-                onChange={(e) => updateField("phone", e.target.value)}
-                className={inputClass}
-                placeholder="Country code + phone"
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-country">Destination</FieldLabel>
-              <select
-                id="field-country"
-                name="country"
-                value={form.country}
-                onChange={(e) => updateField("country", e.target.value)}
-                className={inputClass}
-              >
-                <option value="">Select destination</option>
-                <option value="United States">United States</option>
-                <option value="Europe">Europe</option>
-                <option value="Australia">Australia</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div className="md:col-span-2">
-              <FieldLabel htmlFor="field-buyerType">Buyer Type</FieldLabel>
-              <select
-                id="field-buyerType"
-                name="buyerType"
-                value={form.buyerType}
-                onChange={(e) => updateField("buyerType", e.target.value)}
-                className={inputClass}
-              >
-                <option value="">Select buyer type</option>
-                <option value="Club / Team">Club / Team</option>
-                <option value="School / University">School / University</option>
-                <option value="Sportswear Brand">Sportswear Brand</option>
-                <option value="Distributor / Wholesaler">Distributor / Wholesaler</option>
-                <option value="Event Organizer">Event Organizer</option>
-                <option value="Custom Retailer">Custom Retailer</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <FieldLabel htmlFor="field-fullName" required>Full Name</FieldLabel>
+            <input
+              required
+              id="field-fullName"
+              name="fullName"
+              value={form.fullName}
+              onChange={(e) => updateField("fullName", e.target.value)}
+              className={inputClass}
+              placeholder="Your name"
+            />
+          </div>
+          <div>
+            <FieldLabel htmlFor="field-email" required>Email Address</FieldLabel>
+            <input
+              required
+              type="email"
+              id="field-email"
+              name="email"
+              value={form.email}
+              onChange={(e) => updateField("email", e.target.value)}
+              className={inputClass}
+              placeholder="your@email.com"
+            />
+          </div>
+          <div>
+            <FieldLabel htmlFor="field-company">Company / Team</FieldLabel>
+            <input
+              id="field-company"
+              name="company"
+              value={form.company}
+              onChange={(e) => updateField("company", e.target.value)}
+              className={inputClass}
+              placeholder="e.g. POXIOL Academy"
+            />
+          </div>
+          <div>
+            <FieldLabel htmlFor="field-country" required>Country / Region</FieldLabel>
+            <input
+              required
+              id="field-country"
+              name="country"
+              value={form.country}
+              onChange={(e) => updateField("country", e.target.value)}
+              className={inputClass}
+              placeholder="e.g. United States"
+            />
+          </div>
+          <div>
+            <FieldLabel htmlFor="field-product" required>Product</FieldLabel>
+            <select
+              required
+              id="field-product"
+              name="product"
+              value={form.product}
+              onChange={(e) => updateField("product", e.target.value)}
+              className={inputClass}
+            >
+              <option value="">Select product</option>
+              <option value="Basketball Uniforms">Basketball Uniforms</option>
+              <option value="Soccer Kits">Soccer Kits</option>
+              <option value="Training Wear">Training Wear</option>
+              <option value="OEM / Private Label">OEM / Private Label</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <FieldLabel htmlFor="field-quantity" required>Estimated Quantity</FieldLabel>
+            <select
+              required
+              id="field-quantity"
+              name="quantity"
+              value={form.quantity}
+              onChange={(e) => updateField("quantity", e.target.value)}
+              className={inputClass}
+            >
+              <option value="">Select quantity</option>
+              <option value="1 Sample MOQ">1 Sample MOQ</option>
+              <option value="10-29 Sets">10-29 Sets (Team Order)</option>
+              <option value="30-99 Sets">30-99 Sets</option>
+              <option value="100-299 Sets">100-299 Sets</option>
+              <option value="300+ Sets">300+ Sets (Volume Order)</option>
+              <option value="Not Sure Yet">Not Sure Yet</option>
+            </select>
           </div>
         </div>
 
-        {/* Step 2: Project Information */}
         <div>
-          <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">2. Project Details</h3>
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <FieldLabel htmlFor="field-sportCategory">Sport Category</FieldLabel>
-              <select
-                id="field-sportCategory"
-                name="sportCategory"
-                value={form.sportCategory}
-                onChange={(e) => updateField("sportCategory", e.target.value)}
-                className={inputClass}
-              >
-                <option value="">Select sport</option>
-                <option value="Basketball">Basketball</option>
-                <option value="Soccer">Soccer</option>
-                <option value="Baseball">Baseball</option>
-                <option value="American Football">American Football</option>
-                <option value="Volleyball">Volleyball</option>
-                <option value="Hockey">Hockey</option>
-                <option value="Running">Running</option>
-                <option value="Training Wear">Training Wear</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-productType" required>Product Type</FieldLabel>
-              <select
-                required
-                id="field-productType"
-                name="productType"
-                value={form.productType}
-                onChange={(e) => updateField("productType", e.target.value)}
-                className={inputClass}
-              >
-                <option value="">Select product type</option>
-                <option value="Basketball Uniforms">Basketball Uniforms</option>
-                <option value="Soccer Kits">Soccer Kits</option>
-                <option value="Training Wear">Training Wear</option>
-                <option value="Private Label">Private Label</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-quantity" required>Estimated Quantity</FieldLabel>
-              <select
-                required
-                id="field-quantity"
-                name="quantity"
-                value={form.quantity}
-                onChange={(e) => updateField("quantity", e.target.value)}
-                className={inputClass}
-              >
-                <option value="">Select quantity</option>
-                <option value="1 sample">1 sample</option>
-                <option value="10–50 sets">10–50 sets</option>
-                <option value="51–200 sets">51–200 sets</option>
-                <option value="200+ sets">200+ sets</option>
-              </select>
-              <p className="mt-1.5 text-xs text-neutral-500">e.g. 12 sets for a youth club</p>
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-deliveryDate">Target Delivery Date</FieldLabel>
-              <input
-                type="date"
-                id="field-deliveryDate"
-                name="deliveryDate"
-                value={form.deliveryDate}
-                onChange={(e) => updateField("deliveryDate", e.target.value)}
-                className={inputClass}
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-teamName">Team / Brand Name</FieldLabel>
-              <input
-                id="field-teamName"
-                name="teamName"
-                value={form.teamName}
-                onChange={(e) => updateField("teamName", e.target.value)}
-                className={inputClass}
-                placeholder="e.g. POXIOL Academy"
-              />
-            </div>
-            <div>
-              <FieldLabel htmlFor="field-colors">Main Colors</FieldLabel>
-              <input
-                id="field-colors"
-                name="colors"
-                value={form.colors}
-                onChange={(e) => updateField("colors", e.target.value)}
-                className={inputClass}
-                placeholder="e.g. Black + Lime, Blue + White"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <FieldLabel>Need Player Name & Number?</FieldLabel>
-              <select
-                value={form.needNumbers}
-                onChange={(e) => updateField("needNumbers", e.target.value)}
-                className={inputClass}
-              >
-                <option value="">Select option</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-                <option value="Not Sure Yet">Not Sure Yet</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Step 3: Logo & Message */}
-        <div>
-          <h3 className="mb-4 text-base font-black uppercase tracking-wider text-neutral-400">3. Design Details & Attachments</h3>
-          <div className="grid gap-6">
-            <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-              <p className="text-sm font-black text-neutral-950 uppercase tracking-wide">Upload Custom Teamwear Documents</p>
-              <p className="mt-2 text-xs leading-relaxed text-neutral-500">
-                Upload your logo, reference design or size chart if available. If you do not have a design yet, POXIOL can help create a mockup based on your sport category, colors and team name.
-              </p>
-
-              {/* File Inputs Grid */}
-              <div className="mt-5 grid gap-4 md:grid-cols-3">
-                <div>
-                  <FieldLabel>Logo File</FieldLabel>
-                  <input
-                    type="file"
-                    accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0] || null;
-                      setLogoFile(file);
-                      if (file) trackFileUpload(formType || "contact");
-                    }}
-                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
-                  />
-                </div>
-                <div>
-                  <FieldLabel>Reference Design</FieldLabel>
-                  <input
-                    type="file"
-                    accept=".png,.jpg,.jpeg,.pdf,.webp"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0] || null;
-                      setReferenceFile(file);
-                      if (file) trackFileUpload(formType || "contact");
-                    }}
-                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
-                  />
-                </div>
-                <div>
-                  <FieldLabel>Size Chart / Tech Pack</FieldLabel>
-                  <input
-                    type="file"
-                    accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0] || null;
-                      setSizeChartFile(file);
-                      if (file) trackFileUpload(formType || "contact");
-                    }}
-                    className="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-lime-100 file:text-lime-700 hover:file:bg-lime-200 cursor-pointer"
-                  />
-                </div>
-              </div>
-              <p className="mt-4 text-xs font-semibold text-neutral-500">Your logos and artwork stay confidential.</p>
-            </div>
-
-            <div>
-              <FieldLabel>Tell us your design idea or special requests</FieldLabel>
-              <textarea
-                value={form.message}
-                onChange={(e) => updateField("message", e.target.value)}
-                className="min-h-[120px] w-full rounded-2xl border border-neutral-300 bg-white p-4 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-lime-400"
-                placeholder="Tell us your design ideas, fabric preferences, packaging requirements or specific questions..."
-              />
-            </div>
-          </div>
+          <FieldLabel htmlFor="field-message">Message</FieldLabel>
+          <textarea
+            id="field-message"
+            name="message"
+            value={form.message}
+            onChange={(e) => updateField("message", e.target.value)}
+            className="min-h-[110px] w-full rounded-2xl border border-neutral-300 bg-white p-4 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-lime-400"
+            placeholder="Tell us about your project — design ideas, colors, deadline or any questions..."
+          />
         </div>
       </div>
 

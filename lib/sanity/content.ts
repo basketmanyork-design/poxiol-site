@@ -3,6 +3,7 @@ import 'server-only'
 import {sportsPages, type SportsPageData} from '@/lib/sports-pages'
 import {sportsCategories, uspCards, homeFaqs, homeTrustSections} from '@/lib/home-data'
 import {
+  APPROVED_CTA_LABELS,
   BUYER_DECISION_FAQS,
   BUYER_DECISION_HERO_DESCRIPTION,
   BUYER_DECISION_HERO_HEADING,
@@ -1105,7 +1106,8 @@ function normalizeHomepageSeo(seo: CmsSeo): CmsSeo {
     description: seo.description
       .replace(/MOQ\s*1\s*set\s*and\s*Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample MOQ: 1 set and sample production: 2-3 working days after mockup approval')
       .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
-      .replace(/2\s*[-–]\s*3\s*Days Sample Production/gi, '2-3 working days sample production'),
+      .replace(/2\s*[-–]\s*3\s*Days Sample Production/gi, '2-3 working days sample production')
+      .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'POXIOL is a factory-direct custom teamwear manufacturer'),
   }
 }
 function normalizeSampleMoq(value?: string): string {
@@ -1195,12 +1197,12 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
   return {
     brandName: chrome.brandName,
     siteUrl: chrome.siteUrl,
-    heroEyebrow: page.eyebrow || 'Elite B2B Teamwear Partner',
+    heroEyebrow: page.eyebrow || 'Factory-Direct Teamwear Manufacturer',
     heroHeading: BUYER_DECISION_HERO_HEADING,
     heroDescription: BUYER_DECISION_HERO_DESCRIPTION,
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
-    heroPrimaryCta: page.heroCta || {label: 'Get Free Mockup', href: '/free-mockup/'},
-    heroSecondaryCta: pageAny.heroSecondaryCta || {label: 'Start with 1 Sample', href: '/sample-order/'},
+    heroPrimaryCta: {label: APPROVED_CTA_LABELS.primary, href: '/free-mockup/'},
+    heroSecondaryCta: {label: APPROVED_CTA_LABELS.quote, href: '/get-quote/'},
     trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['MOQ 1 Set', 'Free Mockup in 2h', 'QC Before Shipment'],
     trustSections: contentSource === 'legacy' ? homeTrustSections : page.sections.length ? page.sections.filter((section) => section.type !== 'cta') : homeTrustSections,
     sourcingRows: procurementRows.map((row) => ({...row, capability: normalizeBuyerFacingClaim(row.capability)})),
@@ -1208,8 +1210,8 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     categories: cmsCategories.length ? cmsCategories : homeCategoriesFromLegacy(),
     sectionHeadings: pageAny.homepageSectionHeadings || {
       sourcing: {eyebrow: 'Factory Specs', title: 'Factory Sourcing Summary'},
-      usp: {eyebrow: 'Why POXIOL', title: 'POXIOL Manufacturing Advantage'},
-      matrix: {eyebrow: 'Products', title: 'Custom Teamwear Matrix'},
+      usp: {eyebrow: 'Trust', title: 'Why Buyers Choose POXIOL'},
+      matrix: {eyebrow: 'Products', title: 'Custom Teamwear Products'},
       faq: {eyebrow: 'FAQ', title: 'Custom Teamwear Sourcing Guide'},
     },
     inquiryTitle: ctaSection?.title || 'Build Your Teamwear Project',

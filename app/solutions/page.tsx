@@ -24,7 +24,7 @@ const solutions: Solution[] = [
   },
   {
     title: "Soccer Uniform Solution",
-    subtitle: "Elite Club Kit Launch",
+    subtitle: "Club Kit Program",
     desc: "Home and away kit systems with sponsor integration and pro fit. Reliable delivery for tournament seasons and school events.",
     items: ["Home & Away Kit Programs", "Goalkeeper Sets", "Sponsor Logo Alignment", "140gsm Breathable Interlock"]
   },
@@ -37,7 +37,7 @@ const solutions: Solution[] = [
   },
   {
     title: "Hoodie & Jacket Solution",
-    subtitle: "Premium Team Outerwear",
+    subtitle: "Team Outerwear",
     desc: "Build your team outerwear with custom hoodies, zip-ups, and jackets. Engineered for comfort and professional appearance.",
     items: ["Pullover Hoodies", "Zip-up Jackets", "Fleece Outerwear", "Vibrant Team Accents"],
     image: "/images/poxiol-v62/home_hero_v62.png"

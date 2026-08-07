@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton, freeMockupHref } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Premium Performance Fabric Options | POXIOL Sportswear",
-  description: "Explore our range of high-performance moisture-wicking fabrics for custom basketball, soccer, and training uniforms. Engineered for elite athletes.",
+  title: "Performance Fabric Options | POXIOL Sportswear",
+  description: "Explore our range of high-performance moisture-wicking fabrics for custom basketball, soccer, and training uniforms. Engineered for athletes.",
 };
 
 const fabrics = [
