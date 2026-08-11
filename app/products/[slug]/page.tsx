@@ -5,6 +5,8 @@ import {Header, Footer, PrimaryButton, SecondaryButton, SectionHeading} from '@/
 import {getProduct, getProducts} from '@/lib/sanity/content'
 import type {CmsImage, CmsProduct} from '@/lib/cms/types'
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
+import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
+import {buildCmsProductGeoDetails} from '@/lib/geo-v1'
 
 type Props = {params: {slug: string}}
 
@@ -89,6 +91,7 @@ function OptionList({title, items}: {title: string; items: string[]}) {
 export default async function ProductDetailPage({params}: Props) {
   const product = await getProduct(params.slug)
   if (!product) notFound()
+  const geoDetails = buildCmsProductGeoDetails(product)
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
@@ -124,6 +127,8 @@ export default async function ProductDetailPage({params}: Props) {
           </div>
         </div>
       </section>
+
+      <ProductGeoSections details={geoDetails} />
 
       <ImageGrid title="Product detail gallery" images={product.detailImages} />
       <ImageGrid title="Production images" images={product.productionImages} />

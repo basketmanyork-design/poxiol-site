@@ -3,6 +3,8 @@ import type { SportsPageData } from "@/lib/sports-pages";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref, getQuoteHref } from "@/components/ui";
 import { ProductSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
 import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
+import { ProductGeoSections } from "@/components/sections/GeoV1Sections";
+import { buildSportsProductGeoDetails, resolveSportsFaqs } from "@/lib/geo-v1";
 
 function titleCaseKeyword(keyword: string) {
   return keyword.replace(/^custom\s+/i, "").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -12,6 +14,8 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
   const productLabel = titleCaseKeyword(data.primaryKeyword);
   const baseUrl = "https://www.poxiol.com";
   const fullUrl = `${baseUrl}/${data.slug}/`;
+  const resolvedFaqs = resolveSportsFaqs(data);
+  const geoDetails = buildSportsProductGeoDetails(data);
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black text-left">
@@ -27,7 +31,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
         description={`POXIOL provides factory-direct custom ${productLabel.toLowerCase()} production with free mockup and sampling.`}
         url={fullUrl}
       />
-      <FAQSchema faqs={data.faqs} />
+      <FAQSchema faqs={resolvedFaqs} />
       <BreadcrumbSchema items={[
         { name: "Home", url: `${baseUrl}/` },
         { name: "Products", url: `${baseUrl}/products/` },
@@ -114,6 +118,8 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
           </div>
         </div>
       </section>
+
+      <ProductGeoSections details={geoDetails} />
 
       <section className="bg-white px-5 py-20 text-neutral-950 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
@@ -235,7 +241,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
         <div className="mx-auto max-w-4xl text-center">
           <SectionHeading eyebrow="Expert Answers" title="Custom Teamwear Buying Guide" subtitle={`Answers to professional sourcing questions about POXIOL ${productLabel.toLowerCase()} orders.`} center/>
           <div className="mt-16 space-y-4 text-left">
-            {data.faqs.map((faq)=>(
+            {resolvedFaqs.map((faq)=>(
               <details key={faq.question} className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm group">
                 <summary className="cursor-pointer text-lg font-black text-neutral-950 list-none flex justify-between items-center group-open:text-lime-600 transition">
                   {faq.question}

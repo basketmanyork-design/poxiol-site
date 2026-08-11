@@ -10,7 +10,8 @@ const rewrite = `/${filename} /googlec5c97eecb7db490b 200`;
 
 const readExact = async (filePath, label) => {
   const content = await readFile(filePath, 'utf8');
-  assert.equal(content, expected, `${label} content must match the locked GSC verification line exactly`);
+  const normalizedContent = content.replace(/\r\n/g, '\n');
+  assert.equal(normalizedContent, expected, `${label} content must match the locked GSC verification line exactly`);
   assert.doesNotMatch(content, /(?:CLOUDFLARE|SANITY|TOKEN|SECRET|PASSWORD|API[_-]?KEY)/i,
     `${label} must not contain environment-variable or credential names`);
 };

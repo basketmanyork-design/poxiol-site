@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/check-guide-route-integrity.test.mjs && next build && node scripts/generate-cms-redirects.mjs && node scripts/check-solutions-image-integrity.test.mjs && node scripts/check-gsc-verification.test.mjs && npm run check:canonical",
+    "build": "node --experimental-strip-types scripts/check-guide-route-integrity.test.mjs && next build && node scripts/generate-cms-redirects.mjs && node scripts/check-solutions-image-integrity.test.mjs && node scripts/check-gsc-verification.test.mjs && npm run check:canonical",
     "check:canonical": "node scripts/check-canonical-integrity.test.mjs",
+    "check:geo-v1": "node --experimental-strip-types scripts/check-geo-v1.test.mts",
+    "check:geo-v1:output": "node scripts/check-geo-v1-output.mjs",
     "check:buyer-decision": "node scripts/check-buyer-decision-clarity.test.mjs",
     "start": "next start",
     "lint": "next lint",
     "check:basketball-decision-page": "node scripts/check-basketball-decision-page.mjs",
-    "test": "node scripts/check-week3-guide-contracts.test.mjs && node scripts/check-cloudflare-next-compatibility.test.mjs && node scripts/check-high-intent-guides-content-gaps.test.mjs && node scripts/check-buyer-decision-clarity.test.mjs --source-only && node scripts/check-high-intent-guides-week2.test.mjs --source-only && node scripts/check-high-intent-guides-draft-plan.test.mjs && node scripts/check-buyer-decision-draft-plan.test.mjs && node scripts/check-guide-route-integrity.test.mjs && node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-gsc-verification.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs",
+    "test": "npm run check:geo-v1 && node scripts/check-week3-guide-contracts.test.mjs && node scripts/check-cloudflare-next-compatibility.test.mjs && node --experimental-strip-types scripts/check-high-intent-guides-content-gaps.test.mjs && node scripts/check-buyer-decision-clarity.test.mjs --source-only && node --experimental-strip-types scripts/check-high-intent-guides-week2.test.mjs --source-only && node scripts/check-high-intent-guides-draft-plan.test.mjs && node scripts/check-buyer-decision-draft-plan.test.mjs && node --experimental-strip-types scripts/check-guide-route-integrity.test.mjs && node scripts/check-seed-trust-conversion-preview.mjs --source-only && node scripts/check-solutions-image-integrity.test.mjs --source-only && node scripts/check-gsc-verification.test.mjs --source-only && node scripts/check-public-inquiry-integrity.mjs && node --experimental-strip-types scripts/check-analytics-core.mjs && node scripts/check-analytics-integration.mjs && node scripts/check-cms-safety.mjs",
     "cf:build": "node scripts/run-open-next-build.mjs",
     "cf:preview": "node scripts/run-open-next-build.mjs && opennextjs-cloudflare preview"
   },

@@ -187,14 +187,14 @@ export function CmsPageTemplate({page, contactSlot}: {page: CmsPage; contactSlot
       <Header />
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.12),transparent_30%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:items-center">
-          <div>
+        <div className="relative mx-auto grid grid-cols-1 max-w-7xl gap-14 lg:grid-cols-2 lg:items-center">
+          <div className="min-w-0">
             <p className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">{page.eyebrow}</p>
-            <h1 className="text-5xl font-black uppercase leading-[0.98] tracking-tight md:text-7xl">{page.heading}</h1>
+            <h1 className="break-words text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-7xl">{page.heading}</h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-300">{page.description}</p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              {page.heroCta ? <PrimaryButton href={page.heroCta.href}>{page.heroCta.label}</PrimaryButton> : null}
-              <SecondaryButton href="/contact/">Talk to a Teamwear Specialist</SecondaryButton>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              {page.heroCta ? <PrimaryButton href={page.heroCta.href} className="w-full sm:w-auto">{page.heroCta.label}</PrimaryButton> : null}
+              <SecondaryButton href="/contact/" className="w-full sm:w-auto">Talk to a Teamwear Specialist</SecondaryButton>
             </div>
           </div>
           {page.image ? <img src={page.image.url} alt={page.image.alt} className="aspect-[4/3] w-full rounded-[2rem] object-cover" /> : null}

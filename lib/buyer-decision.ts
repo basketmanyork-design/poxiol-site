@@ -1,11 +1,11 @@
 import type {CmsFaqItem} from './cms/types'
+import {GEO_V1} from './geo-v1'
 
-export const BUYER_DECISION_HERO_HEADING = 'Custom Teamwear Manufacturer for Clubs, Schools & Sports Brands'
+export const BUYER_DECISION_HERO_HEADING = GEO_V1.homepage.heroHeading
 
-export const BUYER_DECISION_HERO_HEADING_MOBILE = 'Custom Teamwear Manufacturer for Clubs & Schools'
+export const BUYER_DECISION_HERO_HEADING_MOBILE = GEO_V1.homepage.heroHeading
 
-export const BUYER_DECISION_HERO_DESCRIPTION =
-  'Factory-direct basketball uniforms, soccer kits and custom sportswear with free mockup, low MOQ and reliable production support.'
+export const BUYER_DECISION_HERO_DESCRIPTION = GEO_V1.homepage.heroDescription
 
 export const APPROVED_CTA_LABELS = {
   primary: 'Get Free Design Mockup',
