@@ -1,6 +1,7 @@
 import React from "react";
+import { GEO_V1 } from "@/lib/geo-v1";
 
-const baseUrl = "https://www.poxiol.com";
+const baseUrl = GEO_V1.canonicalBaseUrl;
 
 export function OrganizationSchema() {
   const schema = {
@@ -8,31 +9,11 @@ export function OrganizationSchema() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": `${baseUrl}/#organization`,
-        "name": "POXIOL",
-        "url": `${baseUrl}/`,
-        "logo": `${baseUrl}/logo.png`,
-        "description": "POXIOL is a factory-direct custom teamwear manufacturer specializing in basketball uniforms, soccer kits, training wear, team hoodies, accessories and OEM/ODM sportswear programs for clubs, schools, academies, brands, distributors and event organizers worldwide.",
-        "sameAs": [
-          "https://basketman.en.alibaba.com/",
-          "https://chinabingli.en.alibaba.com/"
-        ],
-        "areaServed": ["United States", "Europe", "Australia", "Middle East", "Global"],
-        "knowsAbout": [
-          "Custom Teamwear",
-          "Basketball Uniforms",
-          "Soccer Kits",
-          "OEM Sportswear Manufacturing",
-          "Private Label Teamwear",
-          "Sublimation Printing"
-        ],
-        "contactPoint": [{
-          "@type": "ContactPoint",
-          "telephone": "+86-13055646888",
-          "contactType": "sales",
-          "availableLanguage": ["English"],
-          "url": `${baseUrl}/contact/`
-        }]
+        "@id": GEO_V1.organization.id,
+        "name": GEO_V1.organization.name,
+        "url": GEO_V1.organization.url,
+        "description": GEO_V1.organization.description,
+        "industry": GEO_V1.organization.industry
       },
       {
         "@type": "WebSite",
@@ -40,7 +21,7 @@ export function OrganizationSchema() {
         "url": `${baseUrl}/`,
         "name": "POXIOL Custom Teamwear Manufacturer",
         "publisher": {
-          "@id": `${baseUrl}/#organization`
+          "@id": GEO_V1.organization.id
         }
       }
     ]

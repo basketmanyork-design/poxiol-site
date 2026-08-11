@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContactForm from "@/components/forms/ContactForm";
 import { BuyerDecisionSections } from "@/components/sections/BuyerDecisionSections";
 import { FirstWeekBuyingGuides } from "@/components/sections/FirstWeekBuyingGuides";
+import { HomepageGeoEntitySections } from "@/components/sections/GeoV1Sections";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, EmailAddress, emailHref } from "@/components/ui";
 import { OrganizationSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 import { getHomepageContent, getSiteChrome } from "@/lib/sanity/content";
@@ -71,22 +72,22 @@ export default async function HomePage() {
       {/* 1. Optimized Hero Section - Direct B2B Conclusion */}
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-14 md:px-10 md:py-32 xl:px-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.12),transparent_30%)]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div className="relative mx-auto grid grid-cols-1 max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
 
-          <div>
-            <span className="mb-6 inline-block text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00]">
+          <div className="min-w-0">
+            <span className="mb-4 inline-block text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00] md:mb-6">
               {content.heroEyebrow}
             </span>
-            <h1 className="text-[2.75rem] font-black leading-[0.95] tracking-tighter md:text-8xl uppercase">
+            <h1 className="break-words text-4xl font-black leading-[0.95] tracking-tighter uppercase md:text-8xl">
               <span className="md:hidden">{BUYER_DECISION_HERO_HEADING_MOBILE}</span>
               <span className="hidden md:inline">{content.heroHeading}</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-400 md:mt-8 md:text-xl">
+            <p className="mt-4 max-w-xl md:mt-8 text-lg leading-relaxed text-neutral-400 md:text-xl">
               {content.heroDescription}
             </p>
 
             {/* CTAs render before trust chips on mobile so they stay within the first screen */}
-            <div className="order-2 mt-8 flex flex-col gap-3 sm:flex-row lg:order-3 lg:mt-12">
+            <div className="order-2 mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row lg:order-3 lg:mt-12">
               <div className="flex flex-1 flex-col gap-2">
                 <PrimaryButton href={content.heroPrimaryCta.href} className="h-16 px-10">{content.heroPrimaryCta.label}</PrimaryButton>
                 <span className="text-xs font-semibold text-neutral-400">Free within 2 hours of your project details</span>
@@ -144,6 +145,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomepageGeoEntitySections />
 
       {/* 1b. Production Quick Facts - structured B2B summary for buyers and AI retrieval */}
       <section className="border-b border-white/5 bg-[#0d0d0d] px-5 py-14 md:px-10 md:py-16 xl:px-20">

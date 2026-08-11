@@ -18,9 +18,10 @@ for (const file of requiredSourceFiles) {
   )
 }
 
-const [homeSource, buyerSource, shippingSource, sitemapSource, caseSchema, projectSource, projectDetailSource, faqSource] = await Promise.all([
+const [homeSource, buyerSource, geoSource, shippingSource, sitemapSource, caseSchema, projectSource, projectDetailSource, faqSource] = await Promise.all([
   readFile(path.join(root, 'app/page.tsx'), 'utf8'),
   readFile(path.join(root, 'lib/buyer-decision.ts'), 'utf8'),
+  readFile(path.join(root, 'lib/geo-v1.ts'), 'utf8'),
   readFile(path.join(root, 'app/shipping-after-sales/page.tsx'), 'utf8'),
   readFile(path.join(root, 'app/sitemap.ts'), 'utf8'),
   readFile(path.join(root, 'studio/schemaTypes/documents/caseStudy.ts'), 'utf8'),
@@ -30,7 +31,8 @@ const [homeSource, buyerSource, shippingSource, sitemapSource, caseSchema, proje
 ])
 
 assert.match(homeSource, /BuyerDecisionSections/, 'homepage must render the shared buyer decision flow')
-assert.match(buyerSource, /Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands/, 'brand-level homepage conclusion is missing')
+assert.match(buyerSource, /GEO_V1\.homepage\.heroHeading/, 'homepage heading must use the shared GEO V1 entity conclusion')
+assert.match(geoSource, /Custom Teamwear Manufacturer for Basketball, Soccer & Multi-Sport Teams/, 'shared GEO V1 brand-level homepage conclusion is missing')
 
 for (const heading of [
   'Who We Are',
