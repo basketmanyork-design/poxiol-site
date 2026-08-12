@@ -95,6 +95,7 @@ export const sitePage = defineType({
       ],
     }),
     defineField({name: 'contentSections', title: 'Main content modules', type: 'array', group: 'content', of: [{type: 'pageSection'}]}),
+    defineField({name: 'productionMedia', title: 'Verified production media', type: 'productionMediaSet', group: 'content', description: 'Optional V8 media slots. Unverified assets remain hidden on the website.'}),
     defineField({name: 'bottomCTA', title: 'Bottom CTA', type: 'callToAction', group: 'content'}),
     defineField({name: 'relatedProducts', title: 'Related products', type: 'array', of: [{type: 'reference', to: [{type: 'product'}]}], group: 'content'}),
     defineField({name: 'relatedCases', title: 'Related case studies', type: 'array', of: [{type: 'reference', to: [{type: 'caseStudy'}]}], group: 'content'}),

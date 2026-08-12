@@ -2,13 +2,16 @@ import { PUBLIC_EMAIL, WHATSAPP_HREF, WHATSAPP_NUMBER_RAW } from '@/lib/contact'
 import {EmailAddress, emailHref} from '@/components/ui'
 import Link from 'next/link'
 
-type Props = { context: 'quote' | 'free-mockup' }
+type Props = { context: 'quote' | 'free-mockup' | 'sample' }
 
 export default function FormContactFallback({ context }: Props) {
   const isQuote = context === 'quote'
-  const heading = isQuote ? 'Request a Factory Quote' : 'Request a Free Mockup'
+  const isSample = context === 'sample'
+  const heading = isQuote ? 'Request a Factory Quote' : isSample ? 'Request a Production Sample' : 'Request a Free Mockup'
   const desc = isQuote
     ? 'To request a quote, send your sport, product type, quantity, delivery country, target date and logo files by email or WhatsApp.'
+    : isSample
+      ? 'To request a sample, send the approved design direction, product type, quantity, target date and available project files by email or WhatsApp.'
     : 'To request a free mockup, send your sport, design idea, reference images and quantity requirements by email or WhatsApp.'
 
   return (

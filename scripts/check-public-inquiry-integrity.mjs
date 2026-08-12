@@ -3,12 +3,14 @@ import fs from 'node:fs'
 
 const contact = fs.readFileSync('components/forms/ContactForm.tsx', 'utf8')
 const freeMockup = fs.readFileSync('components/forms/FreeMockupForm.tsx', 'utf8')
+const leadPipeline = fs.readFileSync('lib/v8/leads.ts', 'utf8')
 const analyticsClient = fs.readFileSync('lib/analytics/client.ts', 'utf8')
 const analyticsCore = fs.readFileSync('lib/analytics/core.ts', 'utf8')
 
 assert.equal((contact.match(/type="file"/g) || []).length, 3, 'ContactForm must retain exactly three file inputs')
 for (const attachment of ['logo_file', 'reference_design_file', 'size_chart_tech_pack_file']) {
-  assert.ok(contact.includes(`formData.append("${attachment}"`), `Missing Formspree attachment: ${attachment}`)
+  assert.ok(contact.includes(`name="${attachment}"`), `Missing ContactForm file input: ${attachment}`)
+  assert.ok(leadPipeline.includes(attachment), `Missing Formspree attachment mapping: ${attachment}`)
 }
 
 for (const contract of [
@@ -22,7 +24,7 @@ for (const contract of [
   'whatsappHref',
   'publicEmail',
 ]) {
-  assert.ok(contact.includes(contract), `ContactForm contract missing: ${contract}`)
+  assert.ok(contact.includes(contract) || leadPipeline.includes(contract), `ContactForm pipeline contract missing: ${contract}`)
 }
 
 for (const contract of [

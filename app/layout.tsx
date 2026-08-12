@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.poxiol.com"),
   title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
   description:
-    "POXIOL provides custom basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and multi-sport teamwear with MOQ 1, free mockup, sample production in 2-3 days and OEM/ODM service.",
+    "POXIOL provides custom basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and multi-sport teamwear with project-specific mockup, sample and OEM/ODM support.",
   keywords: [
     "custom teamwear",
     "custom sports uniforms",
@@ -28,14 +28,6 @@ export const metadata: Metadata = {
       "Custom sports uniforms for clubs, schools, events, brands and teams worldwide.",
     type: "website",
     siteName: "POXIOL Teamwear",
-    images: [
-      {
-        url: "https://www.poxiol.com/images/poxiol-v62/home_hero_v62_desktop.webp",
-        width: 1672,
-        height: 941,
-        alt: "POXIOL custom teamwear manufacturer — basketball uniforms, soccer kits and OEM sportswear",
-      },
-    ],
   },
 };
 
@@ -46,8 +38,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en">
       <head>
         <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0A0A'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' font-weight='900' fill='%23B6FF00'%3EP%3C/text%3E%3C/svg%3E" />
-        <link rel="preload" as="image" href="/images/poxiol-v62/home_hero_v62_desktop.webp" fetchPriority="high" />
-        <link rel="preload" as="image" href="/images/poxiol-v62/home_hero_v62_mobile.webp" fetchPriority="high" media="(max-width: 768px)" />
       </head>
       <body className="antialiased selection:bg-lime-400 selection:text-neutral-950">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:rounded-xl focus:bg-lime-400 focus:px-6 focus:py-3 focus:text-sm focus:font-black focus:text-black focus:uppercase">Skip to Content</a>

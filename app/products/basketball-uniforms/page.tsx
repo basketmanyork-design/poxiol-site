@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import SportsLandingPage from "@/components/sports/SportsLandingPage";
+import { BasketballV8LandingPage } from "@/components/v8/BasketballV8LandingPage";
 import { getSportsPageBySlug } from "@/lib/sports-pages";
 import { getBasketballDecisionPage } from "@/lib/sanity/content";
 
@@ -25,5 +25,5 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const pageData = await resolvePageData();
   if (!pageData) notFound();
-  return <SportsLandingPage data={pageData} />;
+  return <BasketballV8LandingPage data={pageData} />;
 }

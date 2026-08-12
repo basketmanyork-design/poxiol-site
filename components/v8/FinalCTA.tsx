@@ -1,0 +1,6 @@
+import {PrimaryButton, SecondaryButton} from '@/components/ui'
+import type {V8Cta} from '@/lib/v8/types.ts'
+
+export function FinalCTA({eyebrow = 'Start a Project', title, description, primary, secondary}: {eyebrow?: string; title: string; description: string; primary: V8Cta; secondary?: V8Cta}) {
+  return <section className="bg-neutral-950 px-5 py-16 text-white md:px-10 md:py-24 xl:px-20" aria-labelledby="v8-final-cta-title"><div className="mx-auto max-w-4xl text-center"><p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#B6FF00]">{eyebrow}</p><h2 id="v8-final-cta-title" className="mt-5 text-4xl font-black uppercase md:text-5xl">{title}</h2><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-300">{description}</p><div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"><PrimaryButton href={primary.href} className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B6FF00]">{primary.label}</PrimaryButton>{secondary ? <SecondaryButton href={secondary.href} className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">{secondary.label}</SecondaryButton> : null}</div></div></section>
+}

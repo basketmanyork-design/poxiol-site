@@ -31,6 +31,8 @@ import type {
   CmsPage,
   CmsPageSection,
   CmsPageSectionType,
+  CmsProductionMediaSet,
+  CmsVerifiedMediaAsset,
   CmsProduct,
   CmsProductCategory,
   CmsProject,
@@ -66,6 +68,27 @@ import {
 type PortableTextChild = {text?: string}
 type PortableTextBlock = {style?: string; children?: PortableTextChild[]}
 type SanityImage = {asset?: {_ref?: string}; altText?: string; url?: string}
+type SanityVerifiedMediaAsset = {
+  mediaType?: 'image' | 'video'
+  stage?: string
+  image?: SanityImage
+  video?: {url?: string}
+  url?: string
+  altText?: string
+  caption?: string
+  verified?: boolean
+}
+type SanityProductionMediaSet = {
+  fabricInspection?: SanityVerifiedMediaAsset
+  printing?: SanityVerifiedMediaAsset
+  cutting?: SanityVerifiedMediaAsset
+  sewing?: SanityVerifiedMediaAsset
+  qc?: SanityVerifiedMediaAsset
+  packing?: SanityVerifiedMediaAsset
+  factoryOverviewVideo?: SanityVerifiedMediaAsset
+  productionWorkflowVideo?: SanityVerifiedMediaAsset
+  qualityInspectionVideo?: SanityVerifiedMediaAsset
+}
 type Seo = {seoTitle?: string; metaDescription?: string; canonicalUrl?: string; ogImage?: SanityImage; indexStatus?: string}
 type SanityCta = {label?: string; url?: string; href?: string}
 type SanityLink = {label?: string; externalUrl?: string; url?: string; href?: string; openInNewWindow?: boolean}
@@ -122,6 +145,7 @@ type SanityPageSection = {
   title?: string
   body?: PortableTextBlock[] | string
   image?: SanityImage
+  productionMedia?: SanityProductionMediaSet
   facts?: string[]
   stats?: Array<{value?: string; label?: string}>
   steps?: Array<{title?: string; description?: string}>
@@ -154,6 +178,7 @@ type SanityPage = {
   heroHeading?: string
   heroSubheading?: string
   heroImage?: SanityImage
+  productionMedia?: SanityProductionMediaSet
   heroCTA?: SanityCta
   heroSecondaryCTA?: SanityCta
   contentSections?: SanityPageSection[]
@@ -558,6 +583,31 @@ function mapArticleRelated(docs: RelatedDoc[] | undefined): CmsLink[] {
     .filter(Boolean) as CmsLink[]
 }
 
+function mapVerifiedProductionMedia(asset?: SanityVerifiedMediaAsset): CmsVerifiedMediaAsset | undefined {
+  const kind = asset?.mediaType
+  const url = asset?.url || (kind === 'video' ? asset?.video?.url : asset?.image?.url)
+  const alt = asset?.altText || asset?.image?.altText
+  if (asset?.verified !== true || !kind || !asset.stage || !url) return undefined
+  if (kind === 'image' && !alt) return undefined
+  return {kind, stage: asset.stage, url, alt, caption: asset.caption, verified: true}
+}
+
+function mapProductionMediaSet(media?: SanityProductionMediaSet): CmsProductionMediaSet | undefined {
+  if (!media) return undefined
+  const mapped: CmsProductionMediaSet = {
+    fabricInspection: mapVerifiedProductionMedia(media.fabricInspection),
+    printing: mapVerifiedProductionMedia(media.printing),
+    cutting: mapVerifiedProductionMedia(media.cutting),
+    sewing: mapVerifiedProductionMedia(media.sewing),
+    qc: mapVerifiedProductionMedia(media.qc),
+    packing: mapVerifiedProductionMedia(media.packing),
+    factoryOverviewVideo: mapVerifiedProductionMedia(media.factoryOverviewVideo),
+    productionWorkflowVideo: mapVerifiedProductionMedia(media.productionWorkflowVideo),
+    qualityInspectionVideo: mapVerifiedProductionMedia(media.qualityInspectionVideo),
+  }
+  return Object.values(mapped).some(Boolean) ? mapped : undefined
+}
+
 function mapPageSections(sections: SanityPageSection[] | undefined, fallback: CmsPageSection[]): CmsPageSection[] {
   const mapped = (sections || [])
     .filter((section) => section.title || section.body || section.image || section.facts?.length)
@@ -569,6 +619,7 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
         title: section.title || fb?.title || 'Page section',
         body: normalizeBuyerFacingClaim(normalizePublicContactText(textFromPortable(section.body) || fb?.body || '')),
         image: optionalImage(section.image, fb?.image, 'card'),
+        productionMedia: mapProductionMediaSet(section.productionMedia) || fb?.productionMedia,
         facts: section.facts?.length ? section.facts : fb?.facts || [],
         stats: section.stats?.length ? section.stats.filter((item) => item.value && item.label).map((item) => ({value: item.value || '', label: item.label || ''})) : fb?.stats || [],
         steps: section.steps?.length ? section.steps.filter((item) => item.title && item.description).map((item) => ({title: item.title || '', description: item.description || ''})) : fb?.steps || [],
@@ -690,6 +741,7 @@ export async function getSitePage(key: string): Promise<CmsPage> {
     heading: key === 'homepage' ? BUYER_DECISION_HERO_HEADING : normalizeBuyerFacingClaim(page.heroHeading || legacy.heading),
     description: key === 'homepage' ? BUYER_DECISION_HERO_DESCRIPTION : normalizeBuyerFacingClaim(page.heroSubheading || legacy.description),
     image: optionalImage(page.heroImage, legacy.image || {url: '/images/poxiol-v62/about_hero.png', alt: page.internalName || legacy.title}, 'hero'),
+    productionMedia: mapProductionMediaSet(page.productionMedia) || legacy.productionMedia,
     heroCta: mapCta(page.heroCTA, legacy.heroCta),
     heroSecondaryCta: mapCta(page.heroSecondaryCTA),
     homepageUspCards: page.homepageUspCards?.filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric || '', title: card.title || '', description: card.description || '', displayOrder: card.displayOrder})),
@@ -1006,16 +1058,11 @@ function basketballProcurementTable(
 ): SportsPageData['procurementTable'] {
   if (!standards) return fallback
   const approved = [
-    {item: 'Sample MOQ', specification: standards.sampleMOQ || '1 set'},
-    {item: 'Sample production', specification: standards.sampleProductionTime || '2–3 working days after mockup approval'},
-    {
-      item: 'Bulk production',
-      specification: [standards.bulkProductionTime || '7–12 working days after sample or artwork approval', standards.bulkProductionNote]
-        .filter(Boolean)
-        .join(' '),
-    },
+    {item: 'Sample MOQ', specification: 'Confirmed during project consultation'},
+    {item: 'Sample production', specification: 'Confirmed during project consultation'},
+    {item: 'Bulk production', specification: 'Confirmed according to quantity, customization and the current production schedule'},
     {item: 'Quality control', specification: standards.qcStandard || 'Inspection before shipment'},
-    {item: 'Size tolerance', specification: standards.sizeTolerance || '±2 cm'},
+    {item: 'Size tolerance', specification: 'Confirmed against the approved project size specification'},
     {item: 'Mixed sizes', specification: standards.mixedSizes || 'Mixed adult and youth sizes are supported'},
   ]
   const replacementTokens = ['sample support', 'sample moq', 'sample production', 'bulk production', 'quality control', 'size tolerance', 'mixed sizes']
@@ -1080,9 +1127,9 @@ function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
   return [
     {item: 'Core Expertise', capability: 'B2B teamwear experience with project planning based on confirmed requirements.'},
     {item: 'Main Products', capability: 'Sublimated basketball uniforms, soccer kits, training wear, hoodies and sports team accessories.'},
-    {item: 'Sample MOQ', capability: 'Sample MOQ: 1 set.'},
-    {item: 'Sample Production', capability: 'Sample production: 2-3 working days after mockup approval.'},
-    {item: 'Bulk Production', capability: 'Bulk production: 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'},
+    {item: 'Sample MOQ', capability: 'Confirmed during project consultation.'},
+    {item: 'Sample Production', capability: 'Confirmed during project consultation.'},
+    {item: 'Bulk Production', capability: 'Confirmed according to quantity, customization and the current production schedule.'},
     {item: 'Quality Control', capability: 'Quality control: Inspection before shipment.'},
     {item: 'Size Tolerance', capability: 'Size tolerance: +/-2 cm.'},
     {item: 'Mixed Sizes', capability: 'Mixed adult and youth sizes are supported.'},
@@ -1177,10 +1224,10 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
   const procurementData = procurement.ok ? procurement.result : null
   const procurementRows = procurementData
     ? [
-        {item: 'Sample MOQ', capability: normalizeSampleMoq(procurementData.sampleMOQ || procurementData.defaultMOQ)},
-        {item: 'Sample Production', capability: normalizeSampleProduction(procurementData.sampleProductionTime || procurementData.sampleTime)},
-        {item: 'Mockup Time', capability: procurementData.mockupTime || 'Free mockup: Usually within 2 hours after receiving complete project requirements.'},
-        {item: 'Bulk Production', capability: normalizeBulkProduction(procurementData.bulkProductionTime, procurementData.bulkProductionNote)},
+        {item: 'Sample MOQ', capability: 'Confirmed during project consultation.'},
+        {item: 'Sample Production', capability: 'Confirmed during project consultation.'},
+        {item: 'Mockup Time', capability: 'Confirmed after complete project requirements are reviewed.'},
+        {item: 'Bulk Production', capability: 'Confirmed according to quantity, customization and the current production schedule.'},
         {item: 'Quality Control', capability: normalizeQualityControl(procurementData.qcStandard || procurementData.qualityPromise, procurementData.sizeTolerance)},
         {item: 'Shipping Notes', capability: procurementData.mixedSizes || STANDARD_MIXED_SIZES},      ]
     : legacyHomeRows()
@@ -1197,13 +1244,14 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
   return {
     brandName: chrome.brandName,
     siteUrl: chrome.siteUrl,
+    productionMedia: page.productionMedia,
     heroEyebrow: page.eyebrow || 'Factory-Direct Teamwear Manufacturer',
     heroHeading: BUYER_DECISION_HERO_HEADING,
     heroDescription: BUYER_DECISION_HERO_DESCRIPTION,
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: {label: APPROVED_CTA_LABELS.primary, href: '/free-mockup/'},
     heroSecondaryCta: {label: APPROVED_CTA_LABELS.quote, href: '/get-quote/'},
-    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['MOQ 1 Set', 'Free Mockup in 2h', 'QC Before Shipment'],
+    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['Project MOQ Confirmed by Consultation', 'Mockup Plan Confirmed by Project', 'QC Before Shipment'],
     trustSections: contentSource === 'legacy' ? homeTrustSections : page.sections.length ? page.sections.filter((section) => section.type !== 'cta') : homeTrustSections,
     sourcingRows: procurementRows.map((row) => ({...row, capability: normalizeBuyerFacingClaim(row.capability)})),
     uspCards: normalizeHomepageUspCards(pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards),
@@ -1217,7 +1265,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     inquiryTitle: ctaSection?.title || 'Build Your Teamwear Project',
     inquiryDescription: ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
     inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
-    inquirySupportDescription: pageAny.inquirySupport?.description || 'Facing a tight tournament deadline? Chat with our production manager via WhatsApp for fast-track sample and production scheduling.',
+    inquirySupportDescription: pageAny.inquirySupport?.description || 'Share the tournament date and project requirements by WhatsApp so the available sample and production schedule can be confirmed.',
     faqs: BUYER_DECISION_FAQS,
     bottomCta: page.bottomCta,
     seo: normalizeHomepageSeo(page.seo),

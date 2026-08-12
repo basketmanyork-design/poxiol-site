@@ -107,14 +107,6 @@ export function ProductSchema({ name, description, url, image }: { name: string;
         "manufacturer": {
           "@id": `${baseUrl}/#organization`
         },
-        "offers": {
-          "@type": "Offer",
-          "url": `${baseUrl}/free-mockup/`,
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "eligibleQuantity": { "@type": "QuantitativeValue", "minValue": 1, "unitText": "set" },
-          "description": "Sample support available. Bulk quotation is based on quantity and customization."
-        }
       }
     ]
   };

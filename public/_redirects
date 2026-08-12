@@ -1,3 +1,4 @@
 # Cloudflare Pages redirects for POXIOL
 # Note: Primary www redirect is handled at the DNS level via Cloudflare
+/custom-basketball-uniforms/ /products/basketball-uniforms/ 301
 /googlec5c97eecb7db490b.html /googlec5c97eecb7db490b 200

@@ -2,6 +2,8 @@ import {seoFields, imageWithAlt} from './objects/common'
 import {publishStatus, callToAction, faqReference, relatedContent, procurementOverride} from './objects/reusable'
 import {portableText} from './objects/portableText'
 import {pageSection} from './objects/pageSection'
+import {verifiedMediaAsset} from './objects/verifiedMediaAsset'
+import {productionMediaSet} from './objects/productionMediaSet'
 import {siteSettings} from './singletons/siteSettings'
 import {navigationSettings, footerSettings} from './singletons/navigation'
 import {procurementStandards} from './singletons/procurementStandards'
@@ -25,6 +27,8 @@ export const schemaTypes = [
   faqReference,
   relatedContent,
   procurementOverride,
+  verifiedMediaAsset,
+  productionMediaSet,
   pageSection,
   siteSettings,
   navigationSettings,

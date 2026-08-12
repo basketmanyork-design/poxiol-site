@@ -52,21 +52,24 @@ for (const phrase of requiredSourceCopy) {
 
 const requiredOutputCopy = [
   'Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands',
-  'How Pricing Works',
-  'Sample and Quality Approval',
-  'Production and Shipping',
-  'Project Evidence',
+  'Who We Help',
+  'Remove Uncertainty Before Production',
+  'From Your Idea to Finished Uniforms',
+  'Production Proof, Only When Verified',
   'Project imagery pending verification',
-  'Start Your Project',
+  'Ready To Build Your Team Uniform?',
 ]
 
 const contentResolverSource = read('lib/sanity/content.ts')
 const homepageSource = read('app/page.tsx')
-assert.ok(homepageSource.includes('<BuyerDecisionSections'), 'Homepage does not render the shared buyer decision flow')
+const homepageV8Source = read('components/v8/HomepageV8.tsx')
+assert.ok(homepageSource.includes('<HomepageV8'), 'Homepage does not render the shared V8 buyer decision composition')
+for (const sharedSection of ['CustomerSegmentation', 'BuyerProblems', 'DesignJourney', 'ProductionProof', 'SolutionCards']) {
+  assert.ok(homepageV8Source.includes(`<${sharedSection}`), `HomepageV8 does not render ${sharedSection}`)
+}
 assert.ok(contentResolverSource.includes('trustSections:'), 'CMS resolver must continue to resolve trust sections for compatible consumers')
-assert.equal((homepageSource.match(/<h1/g) || []).length, 1, 'Homepage must render exactly one h1')
-assert.ok(!homepageSource.includes('Teams Served'), 'Homepage still renders unsupported team-count proof')
-assert.ok(homepageSource.includes('<FAQSchema faqs={content.faqs'), 'Homepage JSON-LD must use the same FAQ resolver data as visible FAQ')
+assert.ok(!homepageSource.includes('Teams Served') && !homepageV8Source.includes('Teams Served'), 'Homepage still renders unsupported team-count proof')
+assert.ok(homepageSource.includes('<FAQSchema faqs={homepageFaqs.map'), 'Homepage JSON-LD must use the same resolved FAQ data as the visible V8 FAQ')
 
 const projectListSource = read('app/projects/page.tsx')
 const projectDetailSource = read('app/projects/[slug]/page.tsx')

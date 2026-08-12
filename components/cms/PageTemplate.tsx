@@ -3,15 +3,18 @@ import type React from 'react'
 import type {Metadata} from 'next'
 import {Header, Footer, PrimaryButton, SecondaryButton, SectionHeading} from '@/components/ui'
 import type {CmsPage, CmsPageSection} from '@/lib/cms/types'
+import {FAQSchema} from '@/components/seo/GEOStructuredData'
 
-export function metadataFromCmsPage(page: CmsPage): Metadata {
+export function metadataFromCmsPage(page: CmsPage, override?: Pick<CmsPage['seo'], 'title' | 'description'>): Metadata {
+  const title = override?.title ?? page.seo.title
+  const description = override?.description ?? page.seo.description
   return {
-    title: page.seo.title,
-    description: page.seo.description,
+    title,
+    description,
     alternates: page.seo.canonicalUrl ? {canonical: page.seo.canonicalUrl} : undefined,
     openGraph: {
-      title: page.seo.title,
-      description: page.seo.description,
+      title,
+      description,
       url: page.seo.canonicalUrl,
       images: page.seo.ogImage ? [{url: page.seo.ogImage.url, alt: page.seo.ogImage.alt}] : undefined,
     },
@@ -180,10 +183,12 @@ function CmsSection({section, index}: {section: CmsPageSection; index: number}) 
   )
 }
 
-export function CmsPageTemplate({page, contactSlot}: {page: CmsPage; contactSlot?: React.ReactNode}) {
+export function CmsPageTemplate({page, contactSlot, beforeFooterSlot}: {page: CmsPage; contactSlot?: React.ReactNode; beforeFooterSlot?: React.ReactNode}) {
+  const faqItems = page.sections.flatMap((section) => section.faqs || [])
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <PageJsonLd page={page} />
+      {faqItems.length ? <FAQSchema faqs={faqItems} /> : null}
       <Header />
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.12),transparent_30%)]" />
@@ -214,6 +219,7 @@ export function CmsPageTemplate({page, contactSlot}: {page: CmsPage; contactSlot
           </div>
         </section>
       ) : null}
+      {beforeFooterSlot}
       <Footer />
     </main>
   )
