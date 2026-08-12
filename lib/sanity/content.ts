@@ -128,11 +128,11 @@ type SanityProcurementStandards = {
 }
 
 const HOMEPAGE_PRODUCTION_TIME_QUESTION = 'What is the standard production time for team orders?'
-const HOMEPAGE_PRODUCTION_TIME_ANSWER = 'Sample production usually takes 2-3 working days after mockup approval. Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.'
-const STANDARD_SAMPLE_MOQ = 'Sample MOQ: 1 set.'
-const STANDARD_SAMPLE_PRODUCTION = 'Sample production: 2-3 working days after mockup approval.'
-const STANDARD_BULK_PRODUCTION = 'Bulk production: 7-12 working days after sample or artwork approval.'
-const STANDARD_BULK_NOTE = 'Large, complex or peak-season orders require a confirmed production schedule.'
+const HOMEPAGE_PRODUCTION_TIME_ANSWER = 'Sample and bulk production timing are confirmed for each project after the product specification, quantity, customization and current production schedule are reviewed.'
+const STANDARD_SAMPLE_MOQ = 'Sample plan: Confirmed during project consultation.'
+const STANDARD_SAMPLE_PRODUCTION = 'Sample timing: Confirmed during project consultation.'
+const STANDARD_BULK_PRODUCTION = 'Bulk production timing: Confirmed according to quantity, customization and the current production schedule.'
+const STANDARD_BULK_NOTE = 'Large, complex or peak-season projects require a confirmed production schedule.'
 const STANDARD_QC = 'Quality control: Inspection before shipment.'
 const STANDARD_SIZE_TOLERANCE = 'Size tolerance: +/-2 cm.'
 const STANDARD_MIXED_SIZES = 'Mixed adult and youth sizes are supported.'
@@ -412,9 +412,9 @@ function normalizePublicContactText(text: string): string {
 
 function normalizeFaqAnswer(answer: string): string {
   return normalizeBuyerFacingClaim(answer)
-    .replace(/sample production can usually be arranged in 2\s*[-–]\s*3\s*days after mockup confirmation/gi, 'sample production can usually be arranged in 2-3 working days after mockup approval')
-    .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
-    .replace(/2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, '2-3 working days after mockup approval')
+    .replace(/sample production can usually be arranged in 2\s*[-–]\s*3\s*days after mockup confirmation/gi, 'sample timing is confirmed during project consultation')
+    .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample timing is confirmed during project consultation')
+    .replace(/2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'a project-specific sample schedule')
     .replace(/\s*If a supplier takes more than 7\s*[-–]\s*10 days for a sample, they may be sub-?contracting the work to another facility\.?/gi, ' Timing depends on the approved design, confirmed materials and production schedule.')
 }
 
@@ -1150,12 +1150,18 @@ function homeCategoriesFromLegacy(): CmsHomeCategory[] {
 function normalizeHomepageSeo(seo: CmsSeo): CmsSeo {
   return {
     ...seo,
-    description: seo.description
-      .replace(/MOQ\s*1\s*set\s*and\s*Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample MOQ: 1 set and sample production: 2-3 working days after mockup approval')
-      .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample production: 2-3 working days after mockup approval')
-      .replace(/2\s*[-–]\s*3\s*Days Sample Production/gi, '2-3 working days sample production')
+    description: normalizeHomepageClaim(seo.description)
       .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'POXIOL is a factory-direct custom teamwear manufacturer'),
   }
+}
+
+function normalizeHomepageClaim(value: string): string {
+  return value
+    .replace(/MOQ\s*:?\s*1\s*set/gi, 'Project MOQ confirmed during consultation')
+    .replace(/Sample\s*(?:Production|Time|Timing)?\s*:?\s*2\s*[-–]\s*3\s*(?:working\s*)?days(?:\s*after\s*mockup\s*(?:approval|confirmation))?/gi, 'Sample timing confirmed during project consultation')
+    .replace(/Bulk\s*(?:Production|Time|Timing)?\s*:?\s*7\s*[-–]\s*12\s*(?:working\s*)?days(?:\s*after\s*(?:sample|artwork)\s*approval)?/gi, 'Bulk production timing confirmed by project')
+    .replace(/(?:Free\s*)?Mockup\s*(?:in|within)?\s*2\s*(?:h|hours)/gi, 'Mockup support after project requirements are reviewed')
+    .replace(/within\s*2\s*hours/gi, 'after project requirements are reviewed')
 }
 function normalizeSampleMoq(value?: string): string {
   return value && /1\s*set/i.test(value) ? STANDARD_SAMPLE_MOQ : STANDARD_SAMPLE_MOQ
@@ -1177,7 +1183,12 @@ function normalizeQualityControl(qc?: string, tolerance?: string): string {
   return `${qcText} ${toleranceText}`
 }
 function normalizeHomepageFaqs(faqs: CmsHomeContent['faqs']): CmsHomeContent['faqs'] {
-  const normalized = faqs.map((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION ? {...faq, answer: HOMEPAGE_PRODUCTION_TIME_ANSWER} : faq)
+  const normalized = faqs.map((faq) => ({
+    ...faq,
+    answer: faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION
+      ? HOMEPAGE_PRODUCTION_TIME_ANSWER
+      : normalizeHomepageClaim(faq.answer),
+  }))
   return normalized.some((faq) => faq.question === HOMEPAGE_PRODUCTION_TIME_QUESTION)
     ? normalized.slice(0, 7)
     : [...normalized.slice(0, 6), {question: HOMEPAGE_PRODUCTION_TIME_QUESTION, answer: HOMEPAGE_PRODUCTION_TIME_ANSWER}]
@@ -1188,20 +1199,24 @@ function normalizeHomepageUspCards(cards: Array<{metric: string; title: string; 
     const text = `${card.metric} ${card.title} ${card.description}`
     if (/bulk production|7-21|7–21|15-25|15–25/i.test(text)) {
       return {
-        metric: '7-12 working days',
+        metric: 'Project Schedule',
         title: 'Bulk Production',
-        description: 'Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule.',
+        description: STANDARD_BULK_PRODUCTION,
       }
     }
-    if (/sample production|2-3|2–3/i.test(text)) {
+    if (/sample production|sample time|2-3|2–3/i.test(text)) {
       return {
-        ...card,
-        metric: card.metric.replace(/2–3/g, '2-3'),
-        title: card.title.replace(/2–3/g, '2-3 working days'),
-        description: card.description.replace(/2–3/g, '2-3'),
+        metric: 'Project Review',
+        title: 'Sample Planning',
+        description: STANDARD_SAMPLE_PRODUCTION,
       }
     }
-    return card
+    return {
+      ...card,
+      metric: normalizeHomepageClaim(card.metric),
+      title: normalizeHomepageClaim(card.title),
+      description: normalizeHomepageClaim(card.description),
+    }
   })
 }
 
@@ -1251,7 +1266,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
     heroPrimaryCta: {label: APPROVED_CTA_LABELS.primary, href: '/free-mockup/'},
     heroSecondaryCta: {label: APPROVED_CTA_LABELS.quote, href: '/get-quote/'},
-    trustChips: evidenceSection?.facts?.length ? evidenceSection.facts : ['Project MOQ Confirmed by Consultation', 'Mockup Plan Confirmed by Project', 'QC Before Shipment'],
+    trustChips: (evidenceSection?.facts?.length ? evidenceSection.facts : ['Project MOQ Confirmed by Consultation', 'Mockup Plan Confirmed by Project', 'QC Before Shipment']).map(normalizeHomepageClaim),
     trustSections: contentSource === 'legacy' ? homeTrustSections : page.sections.length ? page.sections.filter((section) => section.type !== 'cta') : homeTrustSections,
     sourcingRows: procurementRows.map((row) => ({...row, capability: normalizeBuyerFacingClaim(row.capability)})),
     uspCards: normalizeHomepageUspCards(pageAny.homepageUspCards?.length ? sortByDisplayOrder(pageAny.homepageUspCards).filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric, title: card.title, description: card.description})) : uspCards),
@@ -1262,10 +1277,10 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
       matrix: {eyebrow: 'Products', title: 'Custom Teamwear Products'},
       faq: {eyebrow: 'FAQ', title: 'Custom Teamwear Sourcing Guide'},
     },
-    inquiryTitle: ctaSection?.title || 'Build Your Teamwear Project',
-    inquiryDescription: ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.',
+    inquiryTitle: normalizeHomepageClaim(ctaSection?.title || 'Build Your Teamwear Project'),
+    inquiryDescription: normalizeHomepageClaim(ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.'),
     inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
-    inquirySupportDescription: pageAny.inquirySupport?.description || 'Share the tournament date and project requirements by WhatsApp so the available sample and production schedule can be confirmed.',
+    inquirySupportDescription: normalizeHomepageClaim(pageAny.inquirySupport?.description || 'Share the tournament date and project requirements by WhatsApp so the available sample and production schedule can be confirmed.'),
     faqs: BUYER_DECISION_FAQS,
     bottomCta: page.bottomCta,
     seo: normalizeHomepageSeo(page.seo),
