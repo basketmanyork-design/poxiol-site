@@ -38,6 +38,25 @@ export const GET_QUOTE_FAQS = [
   },
 ] as const satisfies readonly CmsFaqItem[]
 
+export const SAMPLE_ORDER_FAQS = [
+  {
+    question: 'What information is needed for a sample request?',
+    answer: 'Share the product or sport, intended use, customization requirements, size information, estimated bulk quantity, target date and shipping destination. Sample requirements are reviewed according to the project before preparation is discussed.',
+  },
+  {
+    question: 'Can I provide my logo, artwork or reference files for the sample?',
+    answer: 'Yes. Buyers can provide available logos, artwork or reference files with the request. Artwork, fabric, construction and customization details are then confirmed for the project before sample preparation.',
+  },
+  {
+    question: 'What should I review when the sample is received?',
+    answer: 'Review the agreed design, fit, measurements, fabric, print details, logo placement, names or numbers, sewing and other construction details against the confirmed sample requirements.',
+  },
+  {
+    question: 'What happens after the sample is approved?',
+    answer: 'Bulk production planning begins only after the sample feedback and project specifications are confirmed. Quantity, sizes, customization, packaging, timing and shipping requirements are reviewed for the bulk project.',
+  },
+] as const satisfies readonly CmsFaqItem[]
+
 function withConversionFaqs(page: CmsPage, faqs: readonly CmsFaqItem[], section: Pick<CmsPageSection, 'eyebrow' | 'title' | 'body'>): CmsPage {
   const sectionsWithoutFaqs = page.sections.filter((section) => section.type !== 'faq' && !section.faqs?.length)
   const faqSection: CmsPageSection = {
@@ -64,5 +83,31 @@ export function withGetQuoteFaqs(page: CmsPage, faqs: readonly CmsFaqItem[]): Cm
     eyebrow: 'Quote Request FAQ',
     title: 'Before You Request a Quote',
     body: 'Review the project details that help define a custom teamwear quotation and its next steps.',
+  })
+}
+
+export function withSampleOrderFaqs(page: CmsPage, faqs: readonly CmsFaqItem[]): CmsPage {
+  const normalizeSampleOrderText = (value: string) => value
+    .replace(/Sample Production:\s*\d+\s*[-–]\s*\d+\s*(?:working\s*)?Days? After Mockup (?:Confirmation|Approval)\.?/gi, 'Sample timing is confirmed after the project requirements are reviewed.')
+    .replace(/Sample shipping:\s*\d+\s*[-–]\s*\d+\s*Business Days? depending on country\.?/gi, 'Sample shipping timing is confirmed after the destination and project requirements are reviewed.')
+    .replace(/\b(?:a\s+)?1[-\s]piece custom jersey sample order\b/gi, 'a custom jersey sample order')
+  const pageWithSafeClaims: CmsPage = {
+    ...page,
+    description: normalizeSampleOrderText(page.description),
+    sections: page.sections.map((section) => ({
+      ...section,
+      body: section.body ? normalizeSampleOrderText(section.body) : section.body,
+      facts: section.facts?.map(normalizeSampleOrderText),
+      stats: section.stats?.map((stat) => ({...stat, value: normalizeSampleOrderText(stat.value)})),
+      steps: section.steps?.map((step) => ({...step, description: normalizeSampleOrderText(step.description)})),
+      specifications: section.specifications?.map((item) => ({...item, value: normalizeSampleOrderText(item.value)})),
+      faqs: section.faqs?.map((faq) => ({...faq, answer: normalizeSampleOrderText(faq.answer)})),
+    })),
+    seo: {...page.seo, description: normalizeSampleOrderText(page.seo.description)},
+  }
+  return withConversionFaqs(pageWithSafeClaims, faqs, {
+    eyebrow: 'Sample Request FAQ',
+    title: 'Before You Request a Sample',
+    body: 'Review the project information, sample checks and confirmation steps used before bulk production planning.',
   })
 }
