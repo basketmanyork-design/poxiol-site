@@ -71,11 +71,15 @@ assert.doesNotMatch(pageTemplateSource, /<img[^>]+(?:page\.image|section\.image|
 
 const blockedPublicClaims = [
   /MOQ 1 set/i,
+  /\b1[- ]set sample\b/i,
   /2-3 working days/i,
   /7-12 working days/i,
   /within 2 hours/i,
   /Free Mockup in 2h/i,
 ] as const
+
+assert.doesNotMatch(schemaSource, /\b1[- ]set sample\b/i, 'Service schema must not publish an unverified fixed sample quantity.')
+assert.match('1-Set Sample Production', blockedPublicClaims[1], 'The fixed-claim guard must reject the previously missed hyphenated sample claim.')
 
 if (outputMode) {
   const homepageHtml = read('out/index.html')

@@ -43,7 +43,7 @@
     "sitePage": 0,
     "siteSettings": 0
   },
-  "correctedCandidateCount": 124,
+  "correctedCandidateCount": 125,
   "unsupportedTypeCount": 0,
   "plannedDocumentsByType": {
     "siteSettings": 1,
@@ -57,7 +57,8 @@
     "faqCategory": 9,
     "faqItem": 35,
     "article": 37,
-    "author": 1
+    "author": 1,
+    "redirectRule": 1
   },
   "candidateKeys": [
     "article.article-blog-best-sportswear-fabrics",
@@ -172,6 +173,7 @@
     "productCategory.category-soccer-jerseys",
     "productCategory.category-team-accessories",
     "productCategory.category-training-wear",
+    "redirectRule.redirect-2494c1e68511ad18",
     "sitePage.page-about",
     "sitePage.page-contact",
     "sitePage.page-customization",
@@ -194,7 +196,7 @@
   "ordinaryDocumentIdStrategy": "Sanity-generated IDs; candidates use legacyKey/legacySource/legacyRoute for deterministic matching.",
   "reuseExistingCount": 2,
   "updateExistingCount": 40,
-  "createNewDraftCount": 82,
+  "createNewDraftCount": 83,
   "duplicateExistingCount": 0,
   "obsoleteMvpCount": 10,
   "corruptedExistingCount": 5,
@@ -257,7 +259,7 @@
     },
     "reuseExistingCount": 2,
     "updateExistingCount": 40,
-    "createNewDraftCount": 82,
+    "createNewDraftCount": 83,
     "duplicateExistingCount": 0,
     "obsoleteMvpCount": 10,
     "corruptedExistingCount": 5,
@@ -375,5 +377,5 @@
     "duplicateAssetHashCount": 4,
     "manifestPath": "tmp/cms-migration-dry-run/asset-manifest.json"
   },
-  "dryRunHash": "aa3b41d5a633ec068ef624f7f42bda85611e799b84c2b978a39e8bcfbd310605"
+  "dryRunHash": "279f3133b44ae3c9a83c959833d7f0c31c6e1e438fd59896be4a337f8dc5d641"
 }

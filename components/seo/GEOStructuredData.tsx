@@ -128,7 +128,7 @@ export function ServiceSchema({ name, description, url }: { name: string; descri
       "itemListElement": [
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free 3D Mockup" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "B2B Factory Quote" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "1-Set Sample Production" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project-Specific Sample Planning" } }
       ]
     }
   };

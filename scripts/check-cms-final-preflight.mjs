@@ -1,11 +1,15 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
 import { execSync } from 'child_process';
+import { createHash } from 'crypto';
 import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const selfScripts = ['check-cms-final-preflight.mjs', 'check-cms-final-preflight-test.mjs', 'verify-mvp-seed-result.cjs', 'check-cms-safety.mjs', 'cms-migration-dry-run.ts'];
+const EXPECTED_CORRECTED_CANDIDATE_COUNT = 125;
+const EXPECTED_REDIRECT_CANDIDATE = 'redirectRule.redirect-2494c1e68511ad18';
+const EXPECTED_CANDIDATE_KEYS_SHA256 = '3ae014c9199d03472ad9351a3ed21aab6b7783ebc6205cd29eae120e3f8bc0c5';
 
 
 let totalFail = 0;
@@ -35,7 +39,7 @@ function validateMetric(summary, key, expectedValue) {
 }
 
 const metrics = [
-  { key: 'correctedCandidateCount', expected: 124 },
+  { key: 'correctedCandidateCount', expected: EXPECTED_CORRECTED_CANDIDATE_COUNT },
   { key: 'articleConflictCount', expected: 0 },
   { key: 'routeConflictCount', expected: 0 },
   { key: 'missingSeoCount', expected: 0 },
@@ -57,6 +61,17 @@ for (const { key, expected } of metrics) {
 }
 
 totalFail += migrationValid ? 0 : 1;
+
+const candidateKeys = Array.isArray(migrationSummary.candidateKeys) ? migrationSummary.candidateKeys : [];
+const candidateKeysHash = createHash('sha256').update([...candidateKeys].sort().join('\n')).digest('hex');
+const candidateKeysValid =
+  candidateKeys.length === EXPECTED_CORRECTED_CANDIDATE_COUNT &&
+  candidateKeys.includes(EXPECTED_REDIRECT_CANDIDATE) &&
+  candidateKeysHash === EXPECTED_CANDIDATE_KEYS_SHA256;
+if (!candidateKeysValid) {
+  console.error(`FATAL: Migration candidate set does not match the approved ${EXPECTED_CORRECTED_CANDIDATE_COUNT}-candidate baseline.`);
+  totalFail++;
+}
 
 // ===== 2. Run sub-scripts =====
 const scriptsToRun = [
@@ -154,6 +169,7 @@ if (gitCheckFailure) {
 const expectedTypes = [
   'seoFields', 'imageWithAlt', 'portableText', 'publishStatus', 'callToAction',
   'faqReference', 'relatedContent', 'procurementOverride', 'pageSection',
+  'verifiedMediaAsset', 'productionMediaSet',
   'siteSettings', 'navigationSettings', 'footerSettings', 'procurementStandards',
   'sitePage', 'productCategory', 'product', 'caseStudy', 'faqCategory',
   'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings'
@@ -340,6 +356,7 @@ const finalSummary = {
   auditSourceCommit, commitCount, changedFileCount, additions, deletions, binaryChangeCount,
   gitCheckFailure,
   ...metricVars,
+  candidateKeysHash, candidateKeysValid,
   registeredSchemaTypeCount, missingRegisteredTypeCount, duplicateRegisteredTypeCount,
   executableSanityWriteCallCount, executableCloudflareWriteCallCount, committedSecretCount, unsafeWorkflowPermissionCount,
   result: passed ? "passed" : "failed"
@@ -350,7 +367,8 @@ writeFileSync(join(ROOT, 'docs', 'CMS_FINAL_PREFLIGHT_SUMMARY.json'), JSON.strin
 if (!passed) {
   console.error("CMS final preflight FAILED");
   if (!migrationValid) console.error("- Migration metrics validation failed");
-  if (metricVars.correctedCandidateCount !== 124) console.error(`- Invalid correctedCandidateCount: ${metricVars.correctedCandidateCount}`);
+  if (metricVars.correctedCandidateCount !== EXPECTED_CORRECTED_CANDIDATE_COUNT) console.error(`- Invalid correctedCandidateCount: ${metricVars.correctedCandidateCount}`);
+  if (!candidateKeysValid) console.error('- Migration candidate key set changed unexpectedly');
   if (subScriptFailure) console.error("- One or more sub-scripts failed");
   if (binaryChangeCount !== 0) console.error(`- Binary changes detected: ${binaryChangeCount}`);
   if (gitCheckFailure) console.error("- Git audit failed");

@@ -6,10 +6,14 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const PREFLIGHT_PATH = join(ROOT, 'scripts', 'check-cms-final-preflight.mjs');
+const EXPECTED_CANDIDATE_KEYS = JSON.parse(
+  readFileSync(join(ROOT, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), 'utf8')
+).candidateKeys;
 
 const EXPECTED_TYPES = [
   'seoFields', 'imageWithAlt', 'portableText', 'publishStatus', 'callToAction',
   'faqReference', 'relatedContent', 'procurementOverride', 'pageSection',
+  'verifiedMediaAsset', 'productionMediaSet',
   'siteSettings', 'navigationSettings', 'footerSettings', 'procurementStandards',
   'sitePage', 'productCategory', 'product', 'caseStudy', 'faqCategory',
   'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings'
@@ -19,7 +23,8 @@ const baseSetup = (tmpDir) => {
   const docsDir = join(tmpDir, 'docs');
   mkdirSync(docsDir, { recursive: true });
   writeFileSync(join(docsDir, 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({
-    correctedCandidateCount: 124,
+    correctedCandidateCount: 125,
+    candidateKeys: EXPECTED_CANDIDATE_KEYS,
     articleConflictCount: 0,
     routeConflictCount: 0,
     missingSeoCount: 0,
@@ -56,7 +61,7 @@ const tests = [
     name: "3. Article conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 124, articleConflictCount: 1 }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 125, candidateKeys: EXPECTED_CANDIDATE_KEYS, articleConflictCount: 1 }));
     },
     expectedExitCode: 1
   },
@@ -64,7 +69,7 @@ const tests = [
     name: "4. Route conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 124, routeConflictCount: 1 }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 125, candidateKeys: EXPECTED_CANDIDATE_KEYS, routeConflictCount: 1 }));
     },
     expectedExitCode: 1
   },
@@ -171,6 +176,18 @@ const tests = [
     },
     triggerGitFail: true,
     expectedExitCode: 1
+  },
+  {
+    name: "17. Candidate set drift",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      const summaryPath = join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json');
+      const summary = JSON.parse(readFileSync(summaryPath, 'utf8'));
+      summary.candidateKeys = [...summary.candidateKeys];
+      summary.candidateKeys[0] = 'unexpected.candidate';
+      writeFileSync(summaryPath, JSON.stringify(summary));
+    },
+    expectedExitCode: 1
   }
 ];
 
@@ -244,7 +261,7 @@ async function run() {
     }
   }
 
-  // Helpers for Test 17
+  // Helpers for Test 18
   const setupTempDir = () => {
     const tmp = join(ROOT, 'tmp', `test-17-${Date.now()}`);
     mkdirSync(tmp, { recursive: true });
@@ -253,8 +270,8 @@ async function run() {
   const setupMinimalEnv = (tmp) => baseSetup(tmp);
   const REQUIRED_TYPES = EXPECTED_TYPES;
 
-  // Test 17: git diff whitespace error -> must fail
-  console.log('\n=== Test 17: git diff whitespace error ===');
+  // Test 18: git diff whitespace error -> must fail
+  console.log('\n=== Test 18: git diff whitespace error ===');
   {
     const tmp = setupTempDir();
     try {
