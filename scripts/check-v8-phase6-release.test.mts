@@ -66,11 +66,46 @@ assert.doesNotMatch(schemaSource, /"minValue":\s*1/, 'Product schema must not pu
 
 const pageTemplateSource = read('components/cms/PageTemplate.tsx')
 assert.match(pageTemplateSource, /<FAQSchema\b/, 'Visible CMS FAQ sections must publish FAQPage schema from the same page data.')
+assert.match(pageTemplateSource, /VerifiedMediaPlaceholder/, 'Legacy CMS pages must use the verified-media rendering gate.')
+assert.doesNotMatch(pageTemplateSource, /<img[^>]+(?:page\.image|section\.image|section\.gallery)/, 'Unverified legacy CMS images must not render directly.')
+
+const blockedPublicClaims = [
+  /MOQ 1 set/i,
+  /2-3 working days/i,
+  /7-12 working days/i,
+  /within 2 hours/i,
+  /Free Mockup in 2h/i,
+] as const
 
 if (outputMode) {
   const homepageHtml = read('out/index.html')
-  for (const claim of [/MOQ 1 set/i, /2-3 working days/i, /7-12 working days/i, /within 2 hours/i, /Free Mockup in 2h/i]) {
+  for (const claim of blockedPublicClaims) {
     assert.doesNotMatch(homepageHtml, claim, `Homepage output contains an unverified fixed claim: ${claim}`)
+  }
+
+  const guardedOutputs = [
+    {route: '/', file: 'out/index.html'},
+    {route: '/products/', file: 'out/products/index.html'},
+    {route: '/llms.txt', file: 'out/llms.txt'},
+    {route: '/products/basketball-uniforms/', file: 'out/products/basketball-uniforms/index.html'},
+    {route: '/free-mockup/', file: 'out/free-mockup/index.html'},
+    {route: '/get-quote/', file: 'out/get-quote/index.html'},
+    {route: '/sample-order/', file: 'out/sample-order/index.html'},
+    {route: '/contact/', file: 'out/contact/index.html'},
+    {route: '/customization/', file: 'out/customization/index.html'},
+    {route: '/youth-team-uniforms/', file: 'out/youth-team-uniforms/index.html'},
+    {route: '/school-teamwear/', file: 'out/school-teamwear/index.html'},
+    {route: '/club-teamwear-program/', file: 'out/club-teamwear-program/index.html'},
+    {route: '/private-label-teamwear/', file: 'out/private-label-teamwear/index.html'},
+    {route: '/factory/', file: 'out/factory/index.html'},
+    {route: '/manufacturing/', file: 'out/manufacturing/index.html'},
+    {route: '/quality-control-process/', file: 'out/quality-control-process/index.html'},
+  ] as const
+  for (const output of guardedOutputs) {
+    const content = read(output.file)
+    for (const claim of blockedPublicClaims) {
+      assert.doesNotMatch(content, claim, `${output.route} output contains an unverified fixed claim: ${claim}`)
+    }
   }
 
   for (const page of authorityMetadata) {
@@ -88,9 +123,10 @@ if (outputMode) {
     assert.match(formTag, /method=["']post["']/i, `${route} form must use POST without JavaScript.`)
   }
 
-  for (const route of ['/customization/', '/free-mockup/']) {
+  for (const route of ['/customization/', '/free-mockup/', '/get-quote/', '/sample-order/', '/contact/']) {
     const html = read(`out${route}index.html`)
-    assert.doesNotMatch(html, /mockup-process\.webp/, `${route} must not output the unverified legacy mockup visual.`)
+    assert.doesNotMatch(html, /<img[^>]+cdn\.sanity\.io/i, `${route} must not render unverified Sanity images.`)
+    assert.match(html, /Verified production visual pending/i, `${route} must show the safe media placeholder when no verified asset is available.`)
   }
 
   for (const route of ['/free-mockup/', '/get-quote/', '/sample-order/']) {

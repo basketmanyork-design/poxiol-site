@@ -4,10 +4,17 @@ import type {Metadata} from 'next'
 import {Header, Footer, PrimaryButton, SecondaryButton, SectionHeading} from '@/components/ui'
 import type {CmsPage, CmsPageSection} from '@/lib/cms/types'
 import {FAQSchema} from '@/components/seo/GEOStructuredData'
+import {VerifiedMediaPlaceholder} from '@/components/v8/VerifiedMediaPlaceholder'
+import {cmsProductionMediaToV8Assets} from '@/lib/v8/media'
+
+function verifiedMedia(media: CmsPage['productionMedia']) {
+  return cmsProductionMediaToV8Assets(media)
+}
 
 export function metadataFromCmsPage(page: CmsPage, override?: Pick<CmsPage['seo'], 'title' | 'description'>): Metadata {
   const title = override?.title ?? page.seo.title
   const description = override?.description ?? page.seo.description
+  const socialImage = verifiedMedia(page.productionMedia).find((asset) => asset.kind === 'image')
   return {
     title,
     description,
@@ -16,7 +23,7 @@ export function metadataFromCmsPage(page: CmsPage, override?: Pick<CmsPage['seo'
       title,
       description,
       url: page.seo.canonicalUrl,
-      images: page.seo.ogImage ? [{url: page.seo.ogImage.url, alt: page.seo.ogImage.alt}] : undefined,
+      images: socialImage ? [{url: socialImage.url, alt: socialImage.alt || ''}] : undefined,
     },
     robots: page.seo.noIndex ? {index: false, follow: false} : undefined,
   }
@@ -24,6 +31,7 @@ export function metadataFromCmsPage(page: CmsPage, override?: Pick<CmsPage['seo'
 
 export function PageJsonLd({page}: {page: CmsPage}) {
   const canonical = page.seo.canonicalUrl || `https://www.poxiol.com/${page.slug ? `${page.slug}/` : ''}`
+  const primaryImage = verifiedMedia(page.productionMedia).find((asset) => asset.kind === 'image')
   const data = [
     {
       '@context': 'https://schema.org',
@@ -31,7 +39,7 @@ export function PageJsonLd({page}: {page: CmsPage}) {
       name: page.heading,
       description: page.description,
       url: canonical,
-      primaryImageOfPage: page.image?.url,
+      ...(primaryImage ? {primaryImageOfPage: primaryImage.url} : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -71,6 +79,7 @@ function resolveType(section: CmsPageSection) {
 
 function CmsSection({section, index}: {section: CmsPageSection; index: number}) {
   const type = resolveType(section)
+  const sectionMedia = cmsProductionMediaToV8Assets(section.productionMedia)
 
   if (type === 'imageText') {
     return (
@@ -85,7 +94,7 @@ function CmsSection({section, index}: {section: CmsPageSection; index: number}) 
             ) : null}
             {section.cta ? <Link href={section.cta.href} className="mt-8 inline-block text-sm font-black uppercase tracking-widest text-lime-600 hover:underline">{section.cta.label} →</Link> : null}
           </div>
-          {section.image ? <img src={section.image.url} alt={section.image.alt} className="aspect-[4/3] w-full rounded-[2rem] object-cover" /> : null}
+          <VerifiedMediaPlaceholder asset={sectionMedia[0]} />
         </div>
       </section>
     )
@@ -136,7 +145,9 @@ function CmsSection({section, index}: {section: CmsPageSection; index: number}) 
         <div className="mx-auto max-w-7xl">
           <SectionIntro section={section} />
           <div className="grid gap-5 md:grid-cols-3">
-            {(section.gallery || []).map((image) => <img key={`${image.url}-${image.alt}`} src={image.url} alt={image.alt} className="aspect-[4/3] w-full rounded-[2rem] object-cover" />)}
+            {sectionMedia.length
+              ? sectionMedia.map((asset) => <VerifiedMediaPlaceholder key={asset.id} asset={asset} />)
+              : <VerifiedMediaPlaceholder />}
           </div>
         </div>
       </section>
@@ -185,24 +196,25 @@ function CmsSection({section, index}: {section: CmsPageSection; index: number}) 
 
 export function CmsPageTemplate({page, contactSlot, beforeFooterSlot}: {page: CmsPage; contactSlot?: React.ReactNode; beforeFooterSlot?: React.ReactNode}) {
   const faqItems = page.sections.flatMap((section) => section.faqs || [])
+  const heroMedia = verifiedMedia(page.productionMedia)[0]
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <PageJsonLd page={page} />
       {faqItems.length ? <FAQSchema faqs={faqItems} /> : null}
       <Header />
-      <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
+      <section className="relative bg-neutral-950 px-5 pb-28 pt-16 md:px-10 md:py-32 xl:px-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.12),transparent_30%)]" />
-        <div className="relative mx-auto grid grid-cols-1 max-w-7xl gap-14 lg:grid-cols-2 lg:items-center">
+        <div className="relative mx-auto grid w-full min-w-0 max-w-7xl grid-cols-1 gap-14 lg:grid-cols-2 lg:items-center">
           <div className="min-w-0">
             <p className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">{page.eyebrow}</p>
-            <h1 className="break-words text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-7xl">{page.heading}</h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-300">{page.description}</p>
+            <h1 className="max-w-full break-words [overflow-wrap:anywhere] text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-7xl">{page.heading}</h1>
+            <p className="mt-8 max-w-full break-words [overflow-wrap:anywhere] text-lg leading-8 text-neutral-300 sm:max-w-2xl">{page.description}</p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               {page.heroCta ? <PrimaryButton href={page.heroCta.href} className="w-full sm:w-auto">{page.heroCta.label}</PrimaryButton> : null}
               <SecondaryButton href="/contact/" className="w-full sm:w-auto">Talk to a Teamwear Specialist</SecondaryButton>
             </div>
           </div>
-          {page.image ? <img src={page.image.url} alt={page.image.alt} className="aspect-[4/3] w-full rounded-[2rem] object-cover" /> : null}
+          <VerifiedMediaPlaceholder asset={heroMedia} />
         </div>
       </section>
 

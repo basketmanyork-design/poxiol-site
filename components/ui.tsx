@@ -40,7 +40,7 @@ export function SectionHeading({ eyebrow, title, subtitle, dark = false, center 
 
 export function PrimaryButton({ href = freeMockupHref, children, className = "" }: { href?: string; children: React.ReactNode; className?: string }) {
   return (
-    <Link href={href} className={`inline-flex items-center justify-center rounded-full bg-[#B6FF00] text-black font-black uppercase tracking-wide transition hover:bg-white px-8 py-4 ${className}`}>
+    <Link href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full bg-[#B6FF00] px-8 py-4 text-center font-black uppercase tracking-wide text-black transition hover:bg-white ${className}`}>
       {children}
     </Link>
   );
@@ -48,7 +48,7 @@ export function PrimaryButton({ href = freeMockupHref, children, className = "" 
 
 export function SecondaryButton({ href, children, darkText = false, className = "" }: { href: string; children: React.ReactNode; darkText?: boolean; className?: string }) {
   return (
-    <Link href={href} className={`inline-flex items-center justify-center rounded-full border transition px-8 py-4 ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
+    <Link href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full border px-8 py-4 text-center transition ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
       {children}
     </Link>
   );
