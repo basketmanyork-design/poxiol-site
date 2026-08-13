@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import {existsSync, readFileSync} from 'node:fs'
 import path from 'node:path'
 import {V8_CONVERSION_ENTRIES} from '../lib/v8/leads.ts'
-import {FREE_MOCKUP_FAQS, withFreeMockupFaqs} from '../lib/v8/conversion-faqs.ts'
+import {FREE_MOCKUP_FAQS, GET_QUOTE_FAQS, withFreeMockupFaqs, withGetQuoteFaqs} from '../lib/v8/conversion-faqs.ts'
 import type {CmsPage} from '../lib/cms/types.ts'
 
 const root = process.cwd()
@@ -13,6 +13,12 @@ const freeMockupFaqQuestions = [
   'Can buyers upload logos or references?',
   'What happens after receiving a mockup?',
   'What information is needed before production discussion?',
+] as const
+const getQuoteFaqQuestions = [
+  'What information is needed to prepare a quote?',
+  'What affects the final quotation?',
+  'Can I include custom names, numbers, labels or packaging in the quote?',
+  'What happens after I submit a quote request?',
 ] as const
 
 assert.deepEqual(V8_CONVERSION_ENTRIES.map((entry) => [entry.intent, entry.path]), [
@@ -35,6 +41,18 @@ const pageWithFreeMockupFaqs = withFreeMockupFaqs({sections: [
 ]} as CmsPage, FREE_MOCKUP_FAQS)
 assert.deepEqual(pageWithFreeMockupFaqs.sections.filter((section) => section.type === 'faq').flatMap((section) => section.faqs || []), FREE_MOCKUP_FAQS, 'The approved FAQ set must replace CMS FAQ content without duplication.')
 assert.ok(pageWithFreeMockupFaqs.sections.some((section) => section.title === 'Keep this section'), 'Non-FAQ CMS sections must remain intact.')
+
+const getQuoteSource = read('app/get-quote/page.tsx')
+assert.match(getQuoteSource, /GET_QUOTE_FAQS/, 'Get Quote must use its page-specific shared FAQ data.')
+assert.match(getQuoteSource, /withGetQuoteFaqs\(page, GET_QUOTE_FAQS\)/, 'Get Quote must safely override CMS FAQ sections with its approved FAQ set.')
+assert.deepEqual(GET_QUOTE_FAQS.map((faq) => faq.question), [...getQuoteFaqQuestions])
+assert.doesNotMatch(JSON.stringify(GET_QUOTE_FAQS), /\b(?:\d+\s*(?:hours?|days?)|MOQ\s*\d+|guarantee(?:d|s)?|guaranteed\s+(?:pricing|shipping|discounts?))\b/i, 'Get Quote FAQs must not publish fixed timing, MOQ, pricing, shipping or discount guarantees.')
+const pageWithGetQuoteFaqs = withGetQuoteFaqs({sections: [
+  {type: 'richText', title: 'Keep this quote section'},
+  {type: 'faq', title: 'CMS Quote FAQ', faqs: [{question: 'Old quote question', answer: 'Old quote answer'}]},
+]} as CmsPage, GET_QUOTE_FAQS)
+assert.deepEqual(pageWithGetQuoteFaqs.sections.filter((section) => section.type === 'faq').flatMap((section) => section.faqs || []), GET_QUOTE_FAQS, 'The approved Get Quote FAQ set must replace CMS FAQ content without duplication.')
+assert.ok(pageWithGetQuoteFaqs.sections.some((section) => section.title === 'Keep this quote section'), 'Non-FAQ Get Quote CMS sections must remain intact.')
 
 if (outputMode) {
   const requiredFields = [
@@ -96,6 +114,19 @@ if (outputMode) {
   assert.deepEqual(visibleFreeMockupQuestions, [...freeMockupFaqQuestions], 'Free Mockup must show exactly its four page-specific FAQs.')
   assert.equal(freeMockupFaqSchemas.length, 1, 'Free Mockup must publish one FAQPage schema.')
   assert.deepEqual(freeMockupFaqSchemas[0].mainEntity.map((item: {name: string}) => item.name), visibleFreeMockupQuestions, 'Free Mockup FAQPage schema must match the visible FAQ data.')
+
+  const getQuoteHtml = read('out/get-quote/index.html')
+  const visibleGetQuoteFaqs = [...getQuoteHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
+    .map((match) => ({
+      question: match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),
+      answer: match[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),
+    }))
+  const getQuoteFaqSchemas = [...getQuoteHtml.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
+    .map((match) => JSON.parse(match[1]))
+    .filter((schema) => schema['@type'] === 'FAQPage')
+  assert.deepEqual(visibleGetQuoteFaqs, GET_QUOTE_FAQS.map(({question, answer}) => ({question, answer})), 'Get Quote must show exactly its four page-specific FAQ questions and answers.')
+  assert.equal(getQuoteFaqSchemas.length, 1, 'Get Quote must publish exactly one FAQPage schema.')
+  assert.deepEqual(getQuoteFaqSchemas[0].mainEntity.map((item: {name: string; acceptedAnswer: {text: string}}) => ({question: item.name, answer: item.acceptedAnswer.text})), visibleGetQuoteFaqs, 'Get Quote FAQPage schema must match visible questions, answers and order.')
 }
 
 console.log(`POXIOL V8 Phase 5 ${outputMode ? 'output' : 'source'} checks passed.`)

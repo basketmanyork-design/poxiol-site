@@ -19,17 +19,50 @@ export const FREE_MOCKUP_FAQS = [
   },
 ] as const satisfies readonly CmsFaqItem[]
 
-export function withFreeMockupFaqs(page: CmsPage, faqs: readonly CmsFaqItem[]): CmsPage {
+export const GET_QUOTE_FAQS = [
+  {
+    question: 'What information is needed to prepare a quote?',
+    answer: 'Share the product or sport, buyer role, estimated quantity, customization requirements, target date, shipping destination and any available logo or reference files. These details help define the project before quotation items are confirmed.',
+  },
+  {
+    question: 'What affects the final quotation?',
+    answer: 'The quotation depends on the product format, quantity, materials, customization, size requirements, labels, packaging and shipping requirements confirmed for the project.',
+  },
+  {
+    question: 'Can I include custom names, numbers, labels or packaging in the quote?',
+    answer: 'Yes. Names, numbers, labels and packaging can be discussed as part of the project specification. Include the required options in the request so their availability and quotation details can be reviewed.',
+  },
+  {
+    question: 'What happens after I submit a quote request?',
+    answer: 'The project information is reviewed before quotation details are confirmed. If specifications are incomplete, the next discussion can clarify the product, customization, quantity, timing and shipping requirements.',
+  },
+] as const satisfies readonly CmsFaqItem[]
+
+function withConversionFaqs(page: CmsPage, faqs: readonly CmsFaqItem[], section: Pick<CmsPageSection, 'eyebrow' | 'title' | 'body'>): CmsPage {
   const sectionsWithoutFaqs = page.sections.filter((section) => section.type !== 'faq' && !section.faqs?.length)
   const faqSection: CmsPageSection = {
     type: 'faq',
-    eyebrow: 'Mockup Request FAQ',
-    title: 'Before You Request a Mockup',
-    body: 'Review the project information, file uploads and next steps used for a custom teamwear mockup request.',
+    ...section,
     faqs: faqs.map((faq) => ({...faq})),
   }
   return {
     ...page,
     sections: [...sectionsWithoutFaqs, faqSection],
   }
+}
+
+export function withFreeMockupFaqs(page: CmsPage, faqs: readonly CmsFaqItem[]): CmsPage {
+  return withConversionFaqs(page, faqs, {
+    eyebrow: 'Mockup Request FAQ',
+    title: 'Before You Request a Mockup',
+    body: 'Review the project information, file uploads and next steps used for a custom teamwear mockup request.',
+  })
+}
+
+export function withGetQuoteFaqs(page: CmsPage, faqs: readonly CmsFaqItem[]): CmsPage {
+  return withConversionFaqs(page, faqs, {
+    eyebrow: 'Quote Request FAQ',
+    title: 'Before You Request a Quote',
+    body: 'Review the project details that help define a custom teamwear quotation and its next steps.',
+  })
 }
