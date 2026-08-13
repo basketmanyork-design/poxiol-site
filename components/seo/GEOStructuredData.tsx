@@ -107,14 +107,6 @@ export function ProductSchema({ name, description, url, image }: { name: string;
         "manufacturer": {
           "@id": `${baseUrl}/#organization`
         },
-        "offers": {
-          "@type": "Offer",
-          "url": `${baseUrl}/free-mockup/`,
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "eligibleQuantity": { "@type": "QuantitativeValue", "minValue": 1, "unitText": "set" },
-          "description": "Sample support available. Bulk quotation is based on quantity and customization."
-        }
       }
     ]
   };
@@ -136,7 +128,7 @@ export function ServiceSchema({ name, description, url }: { name: string; descri
       "itemListElement": [
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free 3D Mockup" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "B2B Factory Quote" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "1-Set Sample Production" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project-Specific Sample Planning" } }
       ]
     }
   };

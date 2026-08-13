@@ -20,6 +20,27 @@ export type CmsImage = {
   usageNotes?: string
 }
 
+export type CmsVerifiedMediaAsset = {
+  kind: 'image' | 'video'
+  stage: string
+  url: string
+  alt?: string
+  caption?: string
+  verified: true
+}
+
+export type CmsProductionMediaSet = {
+  fabricInspection?: CmsVerifiedMediaAsset
+  printing?: CmsVerifiedMediaAsset
+  cutting?: CmsVerifiedMediaAsset
+  sewing?: CmsVerifiedMediaAsset
+  qc?: CmsVerifiedMediaAsset
+  packing?: CmsVerifiedMediaAsset
+  factoryOverviewVideo?: CmsVerifiedMediaAsset
+  productionWorkflowVideo?: CmsVerifiedMediaAsset
+  qualityInspectionVideo?: CmsVerifiedMediaAsset
+}
+
 export type CmsSiteChrome = {
   brandName: string
   logo?: CmsImage
@@ -88,6 +109,7 @@ export type CmsPageSection = {
   enabled?: boolean
   displayOrder?: number
   image?: CmsImage
+  productionMedia?: CmsProductionMediaSet
   facts?: string[]
   productSlugs?: string[]
   categorySlugs?: string[]
@@ -108,6 +130,7 @@ export type CmsPage = {
   heading: string
   description: string
   image?: CmsImage
+  productionMedia?: CmsProductionMediaSet
   heroCta?: CmsCta
   sections: CmsPageSection[]
   bottomCta?: CmsCta
@@ -258,6 +281,7 @@ export type CmsHomeCategory = {
 export type CmsHomeContent = {
   brandName: string
   siteUrl: string
+  productionMedia?: CmsProductionMediaSet
   heroEyebrow: string
   heroHeading: string
   heroDescription: string

@@ -20,6 +20,30 @@ const imageProjection = `{
   "url": asset->url
 }`
 
+const verifiedMediaProjection = `{
+  mediaType,
+  stage,
+  image${imageProjection},
+  video{asset, "url": asset->url},
+  altText,
+  caption,
+  verified,
+  verificationNote,
+  "url": coalesce(image.asset->url, video.asset->url)
+}`
+
+const productionMediaProjection = `{
+  fabricInspection${verifiedMediaProjection},
+  printing${verifiedMediaProjection},
+  cutting${verifiedMediaProjection},
+  sewing${verifiedMediaProjection},
+  qc${verifiedMediaProjection},
+  packing${verifiedMediaProjection},
+  factoryOverviewVideo${verifiedMediaProjection},
+  productionWorkflowVideo${verifiedMediaProjection},
+  qualityInspectionVideo${verifiedMediaProjection}
+}`
+
 const ctaProjection = `{
   label,
   url,
@@ -34,6 +58,7 @@ const pageSectionProjection = `contentSections[]{
   title,
   body,
   image${imageProjection},
+  productionMedia${productionMediaProjection},
   facts,
   products[]->{productName, "slug": slug.current},
   productCategories[]->{categoryName, "slug": slug.current},
@@ -115,6 +140,7 @@ export const sitePagesQuery = `*[_type == "sitePage"] | order(pageKey asc){
   homepageUspCards[]{metric, title, description, displayOrder},
   homepageSectionHeadings,
   inquirySupport,
+  productionMedia${productionMediaProjection},
   ${pageSectionProjection},
   bottomCTA${ctaProjection},
   ${seoProjection},
@@ -135,6 +161,7 @@ export const sitePageByKeyQuery = `*[_type == "sitePage" && pageKey == $key][0]{
   homepageUspCards[]{metric, title, description, displayOrder},
   homepageSectionHeadings,
   inquirySupport,
+  productionMedia${productionMediaProjection},
   ${pageSectionProjection},
   bottomCTA${ctaProjection},
   ${seoProjection},

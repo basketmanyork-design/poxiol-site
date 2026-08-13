@@ -138,7 +138,7 @@ export const week3Guides: CmsArticle[] = [
     ['Single-layer, reversible or other approved construction should be compared through a representative sample.', 'Decoration, names, numbers, trims and labels must be specified before quotations are compared.', 'Size charts, roster control, packaging and destination assumptions affect the final order scope.'],
     guideLinks([
       {label: 'Basketball Uniforms', href: '/products/basketball-uniforms/'},
-      {label: 'Basketball Product Range', href: '/products/basketball-uniforms-1/'},
+      {label: 'Basketball Product Range', href: '/products/basketball-uniforms/'},
     ]),
     guideLinks([{label: 'Basketball manufacturing FAQ', href: '/faq/'}]),
   ),

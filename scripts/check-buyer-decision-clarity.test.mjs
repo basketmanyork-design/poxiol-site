@@ -18,8 +18,9 @@ for (const file of requiredSourceFiles) {
   )
 }
 
-const [homeSource, buyerSource, geoSource, shippingSource, sitemapSource, caseSchema, projectSource, projectDetailSource, faqSource] = await Promise.all([
+const [homeSource, homepageV8Source, buyerSource, geoSource, shippingSource, sitemapSource, caseSchema, projectSource, projectDetailSource, faqSource] = await Promise.all([
   readFile(path.join(root, 'app/page.tsx'), 'utf8'),
+  readFile(path.join(root, 'components/v8/HomepageV8.tsx'), 'utf8'),
   readFile(path.join(root, 'lib/buyer-decision.ts'), 'utf8'),
   readFile(path.join(root, 'lib/geo-v1.ts'), 'utf8'),
   readFile(path.join(root, 'app/shipping-after-sales/page.tsx'), 'utf8'),
@@ -30,7 +31,10 @@ const [homeSource, buyerSource, geoSource, shippingSource, sitemapSource, caseSc
   readFile(path.join(root, 'app/faq/page.tsx'), 'utf8'),
 ])
 
-assert.match(homeSource, /BuyerDecisionSections/, 'homepage must render the shared buyer decision flow')
+assert.match(homeSource, /HomepageV8/, 'homepage must render the shared V8 buyer decision composition')
+for (const sharedSection of ['CustomerSegmentation', 'BuyerProblems', 'DesignJourney', 'ProductionProof', 'SolutionCards']) {
+  assert.ok(homepageV8Source.includes(`<${sharedSection}`), `HomepageV8 must render ${sharedSection}`)
+}
 assert.match(buyerSource, /GEO_V1\.homepage\.heroHeading/, 'homepage heading must use the shared GEO V1 entity conclusion')
 assert.match(geoSource, /Custom Teamwear Manufacturer for Basketball, Soccer & Multi-Sport Teams/, 'shared GEO V1 brand-level homepage conclusion is missing')
 
@@ -135,7 +139,7 @@ if (!sourceOnly) {
     }
   }
 
-  assert.match(htmlByRoute.home, /Custom Teamwear Manufacturer — Factory-Direct for Clubs, Schools & Brands/, 'built homepage must render the brand-level H1')
+  assert.match(htmlByRoute.home, /Custom Teamwear Manufacturer For Clubs, Schools &amp; Sports Brands/, 'built homepage must render the approved V8 brand-level H1')
   assert.match(htmlByRoute.shipping, /Production Planning/, 'built shipping page must render production planning guidance')
   assert.match(htmlByRoute.projects, /Manufacturing Scenario|Example Scenario/, 'built projects page must keep unverified records labeled as scenarios')
 

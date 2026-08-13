@@ -32,7 +32,7 @@ export function SectionHeading({ eyebrow, title, subtitle, dark = false, center 
   return (
     <div className={`mx-auto mb-12 max-w-3xl ${center ? "text-center" : "text-left md:text-center"} md:mb-14`}>
       <p className={`mb-4 text-sm font-extrabold uppercase tracking-[0.16em] ${dark ? "text-[#B6FF00]" : "text-lime-600"}`}>{eyebrow}</p>
-      <TitleTag className={`text-4xl font-black leading-[1.05] md:text-5xl ${dark ? "text-white" : "text-neutral-950"} uppercase`}>{title}</TitleTag>
+      <TitleTag className={`break-words text-3xl font-black leading-[1.05] min-[390px]:text-4xl md:text-5xl ${dark ? "text-white" : "text-neutral-950"} uppercase`}>{title}</TitleTag>
       {subtitle ? <p className={`mt-5 text-base leading-7 md:text-lg ${dark ? "text-neutral-300" : "text-neutral-600"}`}>{subtitle}</p> : null}
     </div>
   );
@@ -40,7 +40,7 @@ export function SectionHeading({ eyebrow, title, subtitle, dark = false, center 
 
 export function PrimaryButton({ href = freeMockupHref, children, className = "" }: { href?: string; children: React.ReactNode; className?: string }) {
   return (
-    <Link href={href} className={`inline-flex items-center justify-center rounded-full bg-[#B6FF00] text-black font-black uppercase tracking-wide transition hover:bg-white px-8 py-4 ${className}`}>
+    <Link href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full bg-[#B6FF00] px-8 py-4 text-center font-black uppercase tracking-wide text-black transition hover:bg-white ${className}`}>
       {children}
     </Link>
   );
@@ -48,7 +48,7 @@ export function PrimaryButton({ href = freeMockupHref, children, className = "" 
 
 export function SecondaryButton({ href, children, darkText = false, className = "" }: { href: string; children: React.ReactNode; darkText?: boolean; className?: string }) {
   return (
-    <Link href={href} className={`inline-flex items-center justify-center rounded-full border transition px-8 py-4 ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
+    <Link href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full border px-8 py-4 text-center transition ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
       {children}
     </Link>
   );
@@ -167,10 +167,10 @@ export async function Footer() {
         <div className="mt-20 flex flex-col gap-6 border-t border-white/10 pt-10 text-xs font-bold uppercase tracking-widest text-neutral-500 md:flex-row md:items-center md:justify-between">
           <p>{chrome.copyright}</p>
           <div className="flex flex-wrap gap-x-8 gap-y-2">
-            <span>MOQ 1 Set</span>
-            <span>Fast Sample</span>
-            <span>Global Delivery</span>
-            {chrome.alibabaStoreUrl ? <a href={chrome.alibabaStoreUrl} target="_blank" rel="noreferrer" className="text-white hover:text-[#B6FF00]">Verified Alibaba Store</a> : null}
+            <span>Project MOQ Confirmed by Consultation</span>
+            <span>Sample Plan Confirmed by Project</span>
+            <span>International Shipping Support</span>
+            {chrome.alibabaStoreUrl ? <a href={chrome.alibabaStoreUrl} target="_blank" rel="noreferrer" className="text-white hover:text-[#B6FF00]">Alibaba Store</a> : null}
           </div>
         </div>
       </div>

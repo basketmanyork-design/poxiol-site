@@ -40,7 +40,7 @@ Published business document count: 0
 
 - reuse_existing_draft: 2
 - update_existing_draft: 40
-- create_new_draft: 82
+- create_new_draft: 83
 - duplicate_existing: 0
 - obsolete_mvp_candidate: 10
 - corrupted_existing: 5

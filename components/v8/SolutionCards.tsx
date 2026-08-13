@@ -1,0 +1,7 @@
+import {SectionHeading} from '@/components/ui'
+import type {V8ContentCard} from '@/lib/v8/types.ts'
+import Link from 'next/link'
+
+export function SolutionCards({items, eyebrow = 'Solutions', title = 'A Clearer Custom Teamwear Workflow', description, headingId = 'v8-solutions-title'}: {items: readonly V8ContentCard[]; eyebrow?: string; title?: string; description?: string; headingId?: string}) {
+  return <section className="px-5 py-16 md:px-10 md:py-24 xl:px-20" aria-labelledby={headingId}><div className="mx-auto max-w-7xl"><div id={headingId}><SectionHeading eyebrow={eyebrow} title={title} subtitle={description} /></div><div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" role="list">{items.map((item) => <article key={item.id} className="flex flex-col rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm" role="listitem">{item.audience ? <p className="text-xs font-black uppercase tracking-[0.14em] text-lime-700">{item.audience}</p> : null}<h3 className="mt-3 text-xl font-black text-neutral-950">{item.title}</h3><p className="mt-3 flex-1 leading-7 text-neutral-600">{item.description}</p>{item.href ? <Link href={item.href} className="mt-5 inline-flex min-h-11 items-center text-sm font-black uppercase tracking-wide text-neutral-950 underline decoration-lime-500 decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime-600">{item.ctaLabel || `Explore ${item.title}`}</Link> : null}</article>)}</div></div></section>
+}

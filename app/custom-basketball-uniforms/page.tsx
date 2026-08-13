@@ -6,4 +6,4 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.poxiol.com/products/basketball-uniforms/" }
 };
 
-export default function Page() { return <CategoryRedirect />; }
+export default function Page() { return <CategoryRedirect fallbackHref="/products/basketball-uniforms/" />; }

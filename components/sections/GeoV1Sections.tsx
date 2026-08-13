@@ -1,7 +1,7 @@
 import {SectionHeading} from '@/components/ui'
 import {GEO_V1, type GeoProductDetails} from '@/lib/geo-v1'
 
-export function HomepageGeoEntitySections() {
+export function HomepageGeoEntitySections({showCustomerSegments = true}: {showCustomerSegments?: boolean} = {}) {
   return (
     <>
       <section className="border-b border-white/5 bg-neutral-950 px-5 py-16 text-white md:px-10 md:py-24 xl:px-20">
@@ -17,7 +17,7 @@ export function HomepageGeoEntitySections() {
         </div>
       </section>
 
-      <section className="border-b border-neutral-200 bg-white px-5 py-16 text-neutral-950 md:px-10 md:py-24 xl:px-20">
+      {showCustomerSegments ? <section className="border-b border-neutral-200 bg-white px-5 py-16 text-neutral-950 md:px-10 md:py-24 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Customer Segments"
@@ -33,7 +33,7 @@ export function HomepageGeoEntitySections() {
             ))}
           </div>
         </div>
-      </section>
+      </section> : null}
     </>
   )
 }
