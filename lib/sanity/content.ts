@@ -73,10 +73,28 @@ type SanityVerifiedMediaAsset = {
   stage?: string
   image?: SanityImage
   video?: {url?: string}
+  posterImage?: SanityImage
   url?: string
   altText?: string
   caption?: string
   verified?: boolean
+  verificationStatus?: 'VERIFIED_POXIOL' | 'VERIFIED_BUYER_AUTHORIZED' | 'PRODUCT_ONLY_VERIFIED' | 'REQUIRES_HUMAN_REVIEW' | 'REJECTED'
+  publicUseApproved?: boolean
+  source?: string
+  photographerOrOwner?: string
+  productRelationship?: string
+  peopleVisible?: boolean
+  peopleAuthorization?: string
+  thirdPartyLogoVisible?: boolean
+  thirdPartyLogoAuthorization?: string
+  customerArtworkVisible?: boolean
+  customerArtworkAuthorization?: string
+  buyerAuthorization?: string
+  privateInformationVisible?: boolean
+  intendedCategory?: string
+  verificationNote?: string
+  verifiedAt?: string
+  verifiedBy?: string
 }
 type SanityProductionMediaSet = {
   fabricInspection?: SanityVerifiedMediaAsset
@@ -583,13 +601,46 @@ function mapArticleRelated(docs: RelatedDoc[] | undefined): CmsLink[] {
     .filter(Boolean) as CmsLink[]
 }
 
+function canPublishCmsProductionMedia(asset?: SanityVerifiedMediaAsset): asset is SanityVerifiedMediaAsset & {
+  verificationStatus: 'VERIFIED_POXIOL' | 'VERIFIED_BUYER_AUTHORIZED' | 'PRODUCT_ONLY_VERIFIED'
+  publicUseApproved: true
+  source: string
+  photographerOrOwner: string
+  productRelationship: string
+  verificationNote: string
+  verifiedAt: string
+  verifiedBy: string
+} {
+  if (!asset || asset.verified !== true || asset.publicUseApproved !== true) return false
+  if (!['VERIFIED_POXIOL', 'VERIFIED_BUYER_AUTHORIZED', 'PRODUCT_ONLY_VERIFIED'].includes(asset.verificationStatus || '')) return false
+  if (!asset.source?.trim() || !asset.photographerOrOwner?.trim() || !asset.productRelationship?.trim()) return false
+  if (!asset.verificationNote?.trim() || !asset.verifiedAt?.trim() || !asset.verifiedBy?.trim()) return false
+  if (asset.privateInformationVisible === true) return false
+  if (asset.peopleVisible && asset.peopleAuthorization !== 'APPROVED') return false
+  if (asset.thirdPartyLogoVisible && asset.thirdPartyLogoAuthorization !== 'APPROVED') return false
+  if (asset.customerArtworkVisible && asset.customerArtworkAuthorization !== 'APPROVED') return false
+  if (asset.verificationStatus === 'VERIFIED_BUYER_AUTHORIZED' && asset.buyerAuthorization !== 'APPROVED') return false
+  return true
+}
+
 function mapVerifiedProductionMedia(asset?: SanityVerifiedMediaAsset): CmsVerifiedMediaAsset | undefined {
   const kind = asset?.mediaType
   const url = asset?.url || (kind === 'video' ? asset?.video?.url : asset?.image?.url)
+  const poster = asset?.posterImage?.url
   const alt = asset?.altText || asset?.image?.altText
-  if (asset?.verified !== true || !kind || !asset.stage || !url) return undefined
+  if (!canPublishCmsProductionMedia(asset) || !kind || !asset.stage || !url) return undefined
   if (kind === 'image' && !alt) return undefined
-  return {kind, stage: asset.stage, url, alt, caption: asset.caption, verified: true}
+  if (kind === 'video' && !poster) return undefined
+  return {
+    kind, stage: asset.stage, url, poster, alt, caption: asset.caption, verified: true,
+    verificationStatus: asset.verificationStatus, publicUseApproved: true, source: asset.source,
+    photographerOrOwner: asset.photographerOrOwner, productRelationship: asset.productRelationship,
+    peopleVisible: Boolean(asset.peopleVisible), peopleAuthorization: asset.peopleAuthorization,
+    thirdPartyLogoVisible: Boolean(asset.thirdPartyLogoVisible), thirdPartyLogoAuthorization: asset.thirdPartyLogoAuthorization,
+    customerArtworkVisible: Boolean(asset.customerArtworkVisible), customerArtworkAuthorization: asset.customerArtworkAuthorization,
+    buyerAuthorization: asset.buyerAuthorization, privateInformationVisible: false, intendedCategory: asset.intendedCategory,
+    verificationNote: asset.verificationNote, verifiedAt: asset.verifiedAt, verifiedBy: asset.verifiedBy,
+  }
 }
 
 function mapProductionMediaSet(media?: SanityProductionMediaSet): CmsProductionMediaSet | undefined {

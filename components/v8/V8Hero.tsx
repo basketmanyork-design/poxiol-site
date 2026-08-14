@@ -20,7 +20,7 @@ export function V8Hero({config, media, headingId = 'v8-hero-title', primary: pri
             {secondary ? <SecondaryButton href={secondary.href} className="min-h-14 w-full min-w-0 sm:flex-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">{secondary.label}</SecondaryButton> : null}
           </div>
         </div>
-        <VerifiedMediaPlaceholder asset={media} />
+        <VerifiedMediaPlaceholder asset={media} priority />
       </div>
     </section>
   )

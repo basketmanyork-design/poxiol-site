@@ -19,6 +19,12 @@ import {QualityControl} from './QualityControl'
 import {SampleApproval} from './SampleApproval'
 import {SolutionCards} from './SolutionCards'
 import {V8Hero} from './V8Hero'
+import {getV8ProductionAssetsForSample} from '@/lib/real-production/registry.ts'
+import {RealProductGallery} from './RealProductGallery'
+import {MockupToFinished} from './MockupToFinished'
+import {SampleInspectionProof} from './SampleInspectionProof'
+import {QCProofGallery} from './QCProofGallery'
+import {PackingProof} from './PackingProof'
 
 export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   const config = getV8PageConfig('basketball')
@@ -26,6 +32,7 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   const faqs = getPhase4BasketballFaqs(data.faqs)
   const schemaFaqs = faqs.map(({question, answer}) => ({question, answer}))
   const geoDetails = buildSportsProductGeoDetails(data)
+  const realProofMedia = getV8ProductionAssetsForSample('POXIOL-RP-001')
 
   return (
     <main className="bg-white text-neutral-950">
@@ -37,6 +44,8 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
       <V8Hero config={config.hero} primary={PHASE4_BASKETBALL.primaryCta} secondary={PHASE4_BASKETBALL.secondaryCta} />
 
       <ProductGeoSections details={geoDetails} />
+
+      <RealProductGallery assets={realProofMedia} />
 
       <BuyerProblems
         items={PHASE4_BASKETBALL.problems}
@@ -58,11 +67,15 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
         description="Follow the approved workflow from the first idea through mockup, sample, production, quality control and shipment."
       />
 
+      <MockupToFinished assets={realProofMedia} />
+
       <SampleApproval
         steps={PHASE4_BASKETBALL.sampleSteps}
         title="Approve the Sample Before Bulk Production"
         description="Confirm the agreed basketball uniform specification before the bulk production plan proceeds."
       />
+
+      <SampleInspectionProof assets={realProofMedia} />
 
       <ManufacturingTimeline
         steps={V8_PROCESSES.manufacturing}
@@ -75,6 +88,10 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
         title="Basketball Uniform Quality Checks"
         description="Checks are based on the roster, artwork, sizing and product details confirmed for the project."
       />
+
+      <QCProofGallery assets={realProofMedia} />
+
+      <PackingProof assets={realProofMedia} />
 
       <SolutionCards
         items={PHASE4_BASKETBALL.authorityLinks}

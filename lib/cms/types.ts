@@ -24,9 +24,27 @@ export type CmsVerifiedMediaAsset = {
   kind: 'image' | 'video'
   stage: string
   url: string
+  poster?: string
   alt?: string
   caption?: string
   verified: true
+  verificationStatus: 'VERIFIED_POXIOL' | 'VERIFIED_BUYER_AUTHORIZED' | 'PRODUCT_ONLY_VERIFIED'
+  publicUseApproved: true
+  source: string
+  photographerOrOwner: string
+  productRelationship: string
+  peopleVisible: boolean
+  peopleAuthorization?: string
+  thirdPartyLogoVisible: boolean
+  thirdPartyLogoAuthorization?: string
+  customerArtworkVisible: boolean
+  customerArtworkAuthorization?: string
+  buyerAuthorization?: string
+  privateInformationVisible: false
+  intendedCategory?: string
+  verificationNote: string
+  verifiedAt: string
+  verifiedBy: string
 }
 
 export type CmsProductionMediaSet = {
