@@ -1,9 +1,11 @@
 import {PrimaryButton, SecondaryButton} from '@/components/ui'
 import {getV8Cta} from '@/lib/v8/ctas.ts'
 import type {V8Cta, V8HeroConfig, V8MediaAsset} from '@/lib/v8/types.ts'
+import type {ProductVisualizationAsset} from '@/lib/product-visualization/types.ts'
+import {ProductVisualizationMedia} from './ProductVisualizationMedia'
 import {VerifiedMediaPlaceholder} from './VerifiedMediaPlaceholder'
 
-export function V8Hero({config, media, headingId = 'v8-hero-title', primary: primaryOverride, secondary: secondaryOverride}: {config: V8HeroConfig; media?: V8MediaAsset | null; headingId?: string; primary?: V8Cta; secondary?: V8Cta | null}) {
+export function V8Hero({config, media, visualization, visualizationPage, headingId = 'v8-hero-title', primary: primaryOverride, secondary: secondaryOverride}: {config: V8HeroConfig; media?: V8MediaAsset | null; visualization?: ProductVisualizationAsset; visualizationPage?: string; headingId?: string; primary?: V8Cta; secondary?: V8Cta | null}) {
   const primary = primaryOverride || getV8Cta(config.primaryCtaId)
   const secondary = secondaryOverride === undefined
     ? (config.secondaryCtaId ? getV8Cta(config.secondaryCtaId) : null)
@@ -20,7 +22,9 @@ export function V8Hero({config, media, headingId = 'v8-hero-title', primary: pri
             {secondary ? <SecondaryButton href={secondary.href} className="min-h-14 w-full min-w-0 sm:flex-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">{secondary.label}</SecondaryButton> : null}
           </div>
         </div>
-        <VerifiedMediaPlaceholder asset={media} priority />
+        {visualization
+          ? <ProductVisualizationMedia asset={visualization} page={visualizationPage} priority />
+          : <VerifiedMediaPlaceholder asset={media} priority />}
       </div>
     </section>
   )

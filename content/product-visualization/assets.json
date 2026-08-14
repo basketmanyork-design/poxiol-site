@@ -1,0 +1,380 @@
+[
+  {
+    "assetId": "PV-HOME-001",
+    "publicFile": "POXIOL_HOME_BasketballHero.webp",
+    "packagePath": "01_HOMEPAGE/POXIOL_HOME_BasketballHero.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "homepage-hero",
+    "recommendedPages": [
+      "/"
+    ],
+    "alt": "POXIOL black and neon green basketball uniform with jersey and matching shorts",
+    "caption": "POXIOL basketball uniform concept shown as a coordinated jersey and shorts set."
+  },
+  {
+    "assetId": "PV-BASK-001",
+    "publicFile": "POXIOL_BASK_FullSet.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_FullSet.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "basketball-full-set",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "POXIOL black basketball jersey and shorts set with neon green lightning graphics and number 23",
+    "caption": "Basketball uniform visualization showing the matching jersey and shorts set."
+  },
+  {
+    "assetId": "PV-BASK-002",
+    "publicFile": "POXIOL_BASK_JerseyFront.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_JerseyFront.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "basketball-front",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Front view of black POXIOL basketball jersey with neon green lightning graphics and number 23",
+    "caption": "Front-view basketball jersey visualization."
+  },
+  {
+    "assetId": "PV-BASK-003",
+    "publicFile": "POXIOL_BASK_JerseyBack.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_JerseyBack.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "basketball-back",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Back view of black basketball jersey with neon green lightning graphics and number 23",
+    "caption": "Back-view basketball jersey visualization."
+  },
+  {
+    "assetId": "PV-BASK-004",
+    "publicFile": "POXIOL_BASK_Shorts.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_Shorts.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "basketball-shorts",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Black POXIOL basketball shorts with neon green lightning side graphics",
+    "caption": "Matching basketball shorts visualization."
+  },
+  {
+    "assetId": "PV-BASK-005",
+    "publicFile": "POXIOL_BASK_RibbedCollar.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_RibbedCollar.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "collar-detail",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Close-up visualization of black ribbed V-neck basketball jersey collar",
+    "caption": "Close-up visualization of the ribbed V-neck construction."
+  },
+  {
+    "assetId": "PV-BASK-006",
+    "publicFile": "POXIOL_BASK_RibbedArmhole.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_RibbedArmhole.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "armhole-detail",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Close-up visualization of ribbed basketball jersey armhole and mesh surface",
+    "caption": "Close-up visualization of the ribbed armhole and mesh surface."
+  },
+  {
+    "assetId": "PV-BASK-007",
+    "publicFile": "POXIOL_BASK_NumberDetail.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_NumberDetail.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "number-detail",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Macro visualization of white number 23 on black basketball jersey fabric",
+    "caption": "Macro visualization of number placement on the jersey."
+  },
+  {
+    "assetId": "PV-BASK-008",
+    "publicFile": "POXIOL_BASK_FrontBackComparison.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_FrontBackComparison.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "front-back-comparison",
+    "recommendedPages": [
+      "/products/basketball-uniforms/",
+      "/sample-order/"
+    ],
+    "alt": "Front and back comparison of matching POXIOL basketball uniform set",
+    "caption": "Front-and-back comparison visualization for the same basketball uniform concept."
+  },
+  {
+    "assetId": "PV-CUSTOM-001",
+    "publicFile": "POXIOL_CUSTOM_MockupToFinished.webp",
+    "packagePath": "05_CUSTOMIZATION/POXIOL_CUSTOM_MockupToFinished.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "mockup-to-finished",
+    "recommendedPages": [
+      "/customization/",
+      "/free-mockup/"
+    ],
+    "alt": "Basketball jersey design visualization transitioning from mockup to finished presentation",
+    "caption": "Concept-to-finished visualization for POXIOL customization."
+  },
+  {
+    "assetId": "PV-SOCCER-001",
+    "publicFile": "POXIOL_SOCCER_FullSet.webp",
+    "packagePath": "03_SOCCER/POXIOL_SOCCER_FullSet.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "soccer-full-set",
+    "recommendedPages": [
+      "/",
+      "/school-teamwear/",
+      "/club-teamwear-program/"
+    ],
+    "alt": "POXIOL black and neon green soccer kit with jersey shorts and socks",
+    "caption": "POXIOL soccer kit visualization showing jersey, shorts and socks."
+  },
+  {
+    "assetId": "PV-BASEBALL-001",
+    "publicFile": "POXIOL_BASEBALL_FullSet.webp",
+    "packagePath": "04_BASEBALL/POXIOL_BASEBALL_FullSet.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product presentation",
+      "category visual",
+      "landing-page supporting visual",
+      "design inspiration"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof",
+      "certification proof"
+    ],
+    "category": "baseball-full-set",
+    "recommendedPages": [
+      "/",
+      "/school-teamwear/",
+      "/club-teamwear-program/"
+    ],
+    "alt": "POXIOL black white and neon green baseball uniform set",
+    "caption": "POXIOL baseball uniform visualization showing jersey and matching pants."
+  },
+  {
+    "assetId": "PV-BASK-009",
+    "publicFile": "POXIOL_BASK_MeshFabric.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_MeshFabric.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product detail visualization",
+      "landing-page supporting visual"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof"
+    ],
+    "category": "fabric-detail",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Macro visualization of black perforated basketball jersey mesh fabric",
+    "caption": "Mesh fabric visualization for the basketball product detail section."
+  },
+  {
+    "assetId": "PV-BASK-010",
+    "publicFile": "POXIOL_BASK_Waistband.webp",
+    "packagePath": "02_BASKETBALL/POXIOL_BASK_Waistband.webp",
+    "classification": "PRODUCT_VISUALIZATION",
+    "generatedByAI": true,
+    "thirdPartyLogoAudit": "PASS_MANUAL_VISUAL_REVIEW",
+    "allowedUse": [
+      "product detail visualization",
+      "landing-page supporting visual"
+    ],
+    "prohibitedUse": [
+      "real production proof",
+      "real factory proof",
+      "real QC proof",
+      "real customer project proof"
+    ],
+    "category": "waistband-detail",
+    "recommendedPages": [
+      "/products/basketball-uniforms/"
+    ],
+    "alt": "Close-up visualization of elastic waistband on black basketball shorts",
+    "caption": "Elastic waistband visualization for the basketball product detail section."
+  }
+]
