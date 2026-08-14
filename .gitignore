@@ -26,3 +26,21 @@ tmp_artifact/
 *_log.txt
 
 .open-next
+
+# Real Production originals/review files are local intake material.
+content/real-production/inbox/*
+!content/real-production/inbox/.gitkeep
+content/real-production/approved/*
+!content/real-production/approved/.gitkeep
+content/real-production/rejected/*
+!content/real-production/rejected/.gitkeep
+
+# Complete Real Production source audits stay on this workstation only.
+content/real-production/manifest/source-inventory.json
+content/real-production/manifest/sample-groups.json
+content/real-production/manifest/manual-decisions.json
+scripts/ingest-real-production-rp001.mts
+POXIOL_REAL_PRODUCTION_ASSET_MANIFEST.md
+POXIOL_REAL_PRODUCTION_PROOF_V1_REPORT.md
+docs/superpowers/plans/2026-08-13-real-production-proof-v1.md
+docs/superpowers/plans/2026-08-14-real-asset-ingestion.md

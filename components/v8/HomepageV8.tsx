@@ -13,6 +13,7 @@ import {
   getV8PageConfig,
 } from '@/lib/v8'
 import type {V8FaqItem} from '@/lib/v8/types.ts'
+import {getHeroProductionAsset, getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
 import {BuyerProblems} from './BuyerProblems'
 import {CustomerSegmentation} from './CustomerSegmentation'
 import {DesignJourney} from './DesignJourney'
@@ -22,12 +23,17 @@ import {ProductionProof} from './ProductionProof'
 import {ProjectQualificationForm} from './ProjectQualificationForm'
 import {SolutionCards} from './SolutionCards'
 import {V8Hero} from './V8Hero'
+import {MockupToFinished} from './MockupToFinished'
+import {SampleInspectionProof} from './SampleInspectionProof'
+import {PackingProof} from './PackingProof'
+import {RealProductGallery} from './RealProductGallery'
 
 export function HomepageV8({content, chrome, faqs}: {content: CmsHomeContent; chrome: CmsSiteChrome; faqs: readonly V8FaqItem[]}) {
   const page = getV8PageConfig('home')
   const buyers = V8_HOMEPAGE_BUYER_IDS.map((id) => V8_BUYERS.find((buyer) => buyer.id === id)).filter((buyer): buyer is (typeof V8_BUYERS)[number] => Boolean(buyer))
   const media = cmsProductionMediaToV8Assets(content.productionMedia)
-  const heroMedia = media.find((asset) => asset.stage === 'factory-overview-video')
+  const realProofMedia = [...media, ...getV8ProductionAssetsForPage('home')]
+  const heroMedia = getHeroProductionAsset('home') || media.find((asset) => asset.stage === 'factory-overview-video')
   const startDesign = getV8Cta('start-design')
   const freeMockup = getV8Cta('free-mockup')
   const requestSample = getV8Cta('request-sample')
@@ -37,6 +43,13 @@ export function HomepageV8({content, chrome, faqs}: {content: CmsHomeContent; ch
       <V8Hero config={page.hero} media={heroMedia} />
 
       <HomepageGeoEntitySections showCustomerSegments={false} />
+
+      <RealProductGallery
+        assets={realProofMedia}
+        eyebrow="Real Product Proof"
+        title="A Finished POXIOL Basketball Sample"
+        description="Review original product photographs of the same POXIOL jersey and shorts set, including front, back and construction details."
+      />
 
       <CustomerSegmentation
         buyers={buyers}
@@ -58,12 +71,18 @@ export function HomepageV8({content, chrome, faqs}: {content: CmsHomeContent; ch
         description="A clear custom teamwear journey from the first reference through sample review, production, quality control and shipment."
       />
 
+      <MockupToFinished assets={realProofMedia} />
+
+      <SampleInspectionProof assets={realProofMedia} />
+
       <ProductionProof
         steps={V8_HOMEPAGE_PRODUCTION_STEPS}
         media={media}
         title="Production Proof, Only When Verified"
         description="CMS media appears here only after it is approved as authentic POXIOL production evidence."
       />
+
+      <PackingProof assets={realProofMedia} />
 
       <SolutionCards
         items={V8_HOMEPAGE_SOLUTIONS}

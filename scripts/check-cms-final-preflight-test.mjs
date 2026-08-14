@@ -6,6 +6,12 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const PREFLIGHT_PATH = join(ROOT, 'scripts', 'check-cms-final-preflight.mjs');
+const BINARY_ALLOWLIST_PATH = join(ROOT, 'scripts', 'check-cms-binary-allowlist.mts');
+const REAL_PRODUCTION_POLICY_PATH = join(ROOT, 'lib', 'real-production', 'policy.ts');
+const REAL_PRODUCTION_TYPES_PATH = join(ROOT, 'lib', 'real-production', 'types.ts');
+const REAL_PRODUCTION_MANIFEST_PATH = join(ROOT, 'content', 'real-production', 'manifest', 'assets.json');
+const APPROVED_ASSET_PATHS = JSON.parse(readFileSync(REAL_PRODUCTION_MANIFEST_PATH, 'utf8')).assets
+  .map((asset) => `public${asset.publicPath}`);
 const EXPECTED_CANDIDATE_KEYS = JSON.parse(
   readFileSync(join(ROOT, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), 'utf8')
 ).candidateKeys;
@@ -45,6 +51,31 @@ const baseSetup = (tmpDir) => {
     'check-cms-content-blockers.mjs', 'check-cms-safety.mjs'
   ];
   subScripts.forEach(s => writeFileSync(join(scriptsDir, s), 'process.exit(0)'));
+
+  const policyDir = join(tmpDir, 'lib', 'real-production');
+  mkdirSync(policyDir, { recursive: true });
+  writeFileSync(join(policyDir, 'policy.ts'), readFileSync(REAL_PRODUCTION_POLICY_PATH, 'utf8'));
+  writeFileSync(join(policyDir, 'types.ts'), readFileSync(REAL_PRODUCTION_TYPES_PATH, 'utf8'));
+  const manifestDir = join(tmpDir, 'content', 'real-production', 'manifest');
+  mkdirSync(manifestDir, { recursive: true });
+  writeFileSync(join(manifestDir, 'assets.json'), readFileSync(REAL_PRODUCTION_MANIFEST_PATH, 'utf8'));
+};
+
+const writeBinary = (tmpDir, repoPath) => {
+  const fullPath = join(tmpDir, ...repoPath.split('/'));
+  mkdirSync(dirname(fullPath), { recursive: true });
+  writeFileSync(fullPath, Buffer.concat([Buffer.from([0]), Buffer.alloc(1023, 1)]));
+};
+
+const addApprovedWebps = (tmpDir) => {
+  APPROVED_ASSET_PATHS.forEach((repoPath) => writeBinary(tmpDir, repoPath));
+};
+
+const updateManifest = (tmpDir, update) => {
+  const manifestPath = join(tmpDir, 'content', 'real-production', 'manifest', 'assets.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  update(manifest);
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 };
 
 const tests = [
@@ -98,11 +129,11 @@ const tests = [
     expectedExitCode: 1
   },
   {
-    name: "8. Binary change",
+    name: "8. Binary change outside the approved directory",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
     },
-    triggerBinary: true,
+    binaryScenario: 'other-directory',
     expectedExitCode: 1
   },
   {
@@ -188,6 +219,57 @@ const tests = [
       writeFileSync(summaryPath, JSON.stringify(summary));
     },
     expectedExitCode: 1
+  },
+  {
+    name: "18. Nine approved real-production WebPs",
+    setup: (tmpDir) => baseSetup(tmpDir),
+    binaryScenario: 'approved-nine',
+    expectedExitCode: 0
+  },
+  {
+    name: "19. Tenth unregistered real-production WebP",
+    setup: (tmpDir) => baseSetup(tmpDir),
+    binaryScenario: 'unregistered-tenth',
+    expectedExitCode: 1
+  },
+  {
+    name: "20. Registered WebP with disallowed verification status",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      updateManifest(tmpDir, (manifest) => {
+        manifest.assets[0].verificationStatus = 'REQUIRES_HUMAN_REVIEW';
+      });
+    },
+    binaryScenario: 'approved-nine',
+    expectedExitCode: 1
+  },
+  {
+    name: "21. Manifest missing an approved WebP record",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      updateManifest(tmpDir, (manifest) => {
+        manifest.assets.shift();
+      });
+    },
+    binaryScenario: 'approved-nine',
+    expectedExitCode: 1
+  },
+  {
+    name: "22. Unapproved extension inside real-production",
+    setup: (tmpDir) => baseSetup(tmpDir),
+    binaryScenario: 'unapproved-extension',
+    expectedExitCode: 1
+  },
+  {
+    name: "23. Incomplete verification metadata",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      updateManifest(tmpDir, (manifest) => {
+        manifest.assets[0].verifiedBy = '';
+      });
+    },
+    binaryScenario: 'approved-nine',
+    expectedExitCode: 1
   }
 ];
 
@@ -206,6 +288,9 @@ async function run() {
       const tmpScriptsDir = join(tmpDir, 'scripts');
       if (!existsSync(tmpScriptsDir)) mkdirSync(tmpScriptsDir, { recursive: true });
       writeFileSync(join(tmpScriptsDir, 'check-cms-final-preflight.mjs'), readFileSync(PREFLIGHT_PATH, 'utf8'));
+      if (existsSync(BINARY_ALLOWLIST_PATH)) {
+        writeFileSync(join(tmpScriptsDir, 'check-cms-binary-allowlist.mts'), readFileSync(BINARY_ALLOWLIST_PATH, 'utf8'));
+      }
 
       try {
         execSync('git init', { cwd: tmpDir, stdio: 'ignore' });
@@ -221,11 +306,19 @@ async function run() {
         // Ensure feature branch for divergence
         execSync('git checkout -b feature', { cwd: tmpDir });
 
-        if (test.triggerBinary) {
-          const binFile = join(tmpDir, 'image.png');
-          const buffer = Buffer.alloc(1024, 0);
-          writeFileSync(binFile, buffer);
-          execSync('git add image.png', { cwd: tmpDir });
+        if (test.binaryScenario) {
+          if (test.binaryScenario === 'other-directory') {
+            writeBinary(tmpDir, 'public/images/unapproved.png');
+          } else {
+            addApprovedWebps(tmpDir);
+            if (test.binaryScenario === 'unregistered-tenth') {
+              writeBinary(tmpDir, 'public/real-production/POXIOL-RP-001/unregistered-tenth.webp');
+            }
+            if (test.binaryScenario === 'unapproved-extension') {
+              writeBinary(tmpDir, 'public/real-production/POXIOL-RP-001/unapproved.png');
+            }
+          }
+          execSync('git add .', { cwd: tmpDir });
           execSync('git commit -m "add binary"', { cwd: tmpDir });
         }
       } catch (e) {
@@ -261,7 +354,7 @@ async function run() {
     }
   }
 
-  // Helpers for Test 18
+  // Helpers for whitespace regression test
   const setupTempDir = () => {
     const tmp = join(ROOT, 'tmp', `test-17-${Date.now()}`);
     mkdirSync(tmp, { recursive: true });
@@ -270,8 +363,8 @@ async function run() {
   const setupMinimalEnv = (tmp) => baseSetup(tmp);
   const REQUIRED_TYPES = EXPECTED_TYPES;
 
-  // Test 18: git diff whitespace error -> must fail
-  console.log('\n=== Test 18: git diff whitespace error ===');
+  // Test 24: git diff whitespace error -> must fail
+  console.log('\n=== Test 24: git diff whitespace error ===');
   {
     const tmp = setupTempDir();
     try {

@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
-import { execSync } from 'child_process';
+import { execFileSync, execSync } from 'child_process';
 import { createHash } from 'crypto';
 import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
@@ -101,6 +101,9 @@ let changedFileCount = 0;
 let additions = 0;
 let deletions = 0;
 let binaryChangeCount = 0;
+let approvedBinaryChangeCount = 0;
+let binaryAllowlistFailure = false;
+let binaryAllowlistErrors = [];
 let auditSourceCommit = 'unknown';
 let gitCheckFailure = false;
 
@@ -126,9 +129,7 @@ try {
           if (parts.length >= 3) {
             const [add, del, file] = parts;
             if (add === '-' || del === '-') {
-              if (basename(file) !== 'current_body.txt' && basename(file) !== 'tsconfig.tsbuildinfo' && basename(file) !== 'package-lock.json' && !file.endsWith('.txt') && !file.endsWith('.log')) {
-                binaryChangeCount++;
-              }
+              binaryChangeCount++;
             } else {
               additions += parseInt(add) || 0;
               deletions += parseInt(del) || 0;
@@ -163,6 +164,34 @@ try {
 
 if (gitCheckFailure) {
   totalFail++;
+}
+
+if (!gitCheckFailure && binaryChangeCount > 0) {
+  try {
+    const result = JSON.parse(execFileSync(
+      process.execPath,
+      ['--no-warnings', '--experimental-strip-types', join(ROOT, 'scripts', 'check-cms-binary-allowlist.mts'), '--json'],
+      {cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe']},
+    ));
+    approvedBinaryChangeCount = result.approvedBinaryChangeCount || 0;
+    binaryAllowlistErrors = Array.isArray(result.errors) ? result.errors : [];
+    binaryAllowlistFailure = result.passed !== true;
+  } catch (err) {
+    binaryAllowlistFailure = true;
+    const stdout = err.stdout?.toString().trim();
+    if (stdout) {
+      try {
+        const result = JSON.parse(stdout);
+        approvedBinaryChangeCount = result.approvedBinaryChangeCount || 0;
+        binaryAllowlistErrors = Array.isArray(result.errors) ? result.errors : [];
+      } catch {
+        binaryAllowlistErrors = ['Binary allowlist returned invalid output'];
+      }
+    } else {
+      binaryAllowlistErrors = ['Binary allowlist could not be executed'];
+    }
+  }
+  if (binaryAllowlistFailure) totalFail++;
 }
 
 // ===== 4. Schema types =====
@@ -345,15 +374,13 @@ if (existsSync(workflowDir)) {
 }
 if (unsafeWorkflowPermissionCount > 0) totalFail++;
 
-// Binary changes from original
-if (binaryChangeCount !== 0) totalFail++;
-
 // ===== 10. Build final summary =====
 const passed = totalFail === 0 && !gitCheckFailure && migrationValid;
 
 const finalSummary = {
   generatedAt: new Date().toISOString(),
-  auditSourceCommit, commitCount, changedFileCount, additions, deletions, binaryChangeCount,
+  auditSourceCommit, commitCount, changedFileCount, additions, deletions, binaryChangeCount, approvedBinaryChangeCount,
+  binaryAllowlistFailure, binaryAllowlistErrors,
   gitCheckFailure,
   ...metricVars,
   candidateKeysHash, candidateKeysValid,
@@ -370,7 +397,10 @@ if (!passed) {
   if (metricVars.correctedCandidateCount !== EXPECTED_CORRECTED_CANDIDATE_COUNT) console.error(`- Invalid correctedCandidateCount: ${metricVars.correctedCandidateCount}`);
   if (!candidateKeysValid) console.error('- Migration candidate key set changed unexpectedly');
   if (subScriptFailure) console.error("- One or more sub-scripts failed");
-  if (binaryChangeCount !== 0) console.error(`- Binary changes detected: ${binaryChangeCount}`);
+  if (binaryAllowlistFailure) {
+    console.error(`- Binary allowlist validation failed: ${approvedBinaryChangeCount}/${binaryChangeCount} approved`);
+    binaryAllowlistErrors.forEach((error) => console.error(`  - ${error}`));
+  }
   if (gitCheckFailure) console.error("- Git audit failed");
   process.exit(1);
 }

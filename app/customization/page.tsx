@@ -4,6 +4,9 @@ import {SolutionCards} from '@/components/v8/SolutionCards'
 import {FAQSection} from '@/components/v8/FAQSection'
 import {getSitePage} from '@/lib/sanity/content'
 import {getV8Faqs} from '@/lib/v8/faqs'
+import {cmsProductionMediaToV8Assets} from '@/lib/v8/media'
+import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
+import {MockupToFinished} from '@/components/v8/MockupToFinished'
 
 const customizationNextSteps = [
   {id: 'customization-mockup', title: 'Confirm the Design Direction', audience: 'Early design stage', description: 'Share the logo, colors and reference available for a project mockup.', href: '/free-mockup/', ctaLabel: 'Get Free Mockup'},
@@ -21,5 +24,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const page = await getSitePage(pageKey)
   const faqs = getV8Faqs({pageId: 'customization'})
-  return <CmsPageTemplate page={page} beforeFooterSlot={<><SolutionCards items={customizationNextSteps} eyebrow="Next Step" title="Move from Design to Production" description="Choose the next step that matches the current project stage." /><FAQSection faqs={faqs} title="Customization Project Questions" /></>} />
+  const realProofMedia = [
+    ...cmsProductionMediaToV8Assets(page.productionMedia),
+    ...getV8ProductionAssetsForPage('customization'),
+  ]
+  return <CmsPageTemplate page={page} beforeFooterSlot={<><MockupToFinished assets={realProofMedia} /><SolutionCards items={customizationNextSteps} eyebrow="Next Step" title="Move from Design to Production" description="Choose the next step that matches the current project stage." /><FAQSection faqs={faqs} title="Customization Project Questions" /></>} />
 }

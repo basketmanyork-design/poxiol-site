@@ -18,6 +18,7 @@ export const V8_MEDIA_SLOTS: readonly V8MediaSlot[] = [
 export function resolveVerifiedMedia(asset?: V8MediaAsset | null): V8MediaAsset | null {
   if (!asset?.verified || !asset.url.trim()) return null
   if (asset.kind === 'image' && !asset.alt?.trim()) return null
+  if (asset.kind === 'video' && !asset.poster?.trim()) return null
   return asset
 }
 
@@ -30,6 +31,7 @@ function cmsMediaAsset(id: string, asset?: CmsVerifiedMediaAsset): V8MediaAsset 
     kind: asset.kind,
     stage: slot.id,
     url: asset.url,
+    poster: asset.poster,
     alt: asset.alt,
     caption: asset.caption,
     verified: asset.verified,

@@ -15,6 +15,10 @@ import {ProductionProof} from './ProductionProof'
 import {QualityControl} from './QualityControl'
 import {SolutionCards} from './SolutionCards'
 import {V8Hero} from './V8Hero'
+import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
+import {ManufacturingProof} from './ManufacturingProof'
+import {QCProofGallery} from './QCProofGallery'
+import {RealProductGallery} from './RealProductGallery'
 
 type AuthorityPageId = Extract<V8PageId, 'factory' | 'manufacturing' | 'quality-control'>
 
@@ -22,6 +26,7 @@ export function V8AuthorityPage({pageId, page}: {pageId: AuthorityPageId; page: 
   const config = getV8PageConfig(pageId)
   const content = getPhase4AuthorityPage(pageId)
   const media = cmsProductionMediaToV8Assets(page.productionMedia)
+  const realProofMedia = [...media, ...getV8ProductionAssetsForPage(pageId)]
   const heroMedia = media.find((asset) => asset.stage === 'factory-overview-video')
   const schemaPage = {...page, heading: config.hero.title, description: config.hero.description}
   const fullUrl = `https://www.poxiol.com${config.canonicalPath}`
@@ -69,6 +74,8 @@ export function V8AuthorityPage({pageId, page}: {pageId: AuthorityPageId; page: 
         />
       ) : null}
 
+      {pageId === 'manufacturing' ? <ManufacturingProof assets={realProofMedia} /> : null}
+
       {pageId === 'quality-control' ? (
         <QualityControl
           steps={content.processSteps}
@@ -76,6 +83,10 @@ export function V8AuthorityPage({pageId, page}: {pageId: AuthorityPageId; page: 
           description="How POXIOL reviews confirmed material, printing, sewing, size, final product and packing requirements."
         />
       ) : null}
+
+      {pageId === 'quality-control' ? <QCProofGallery assets={realProofMedia} /> : null}
+
+      {pageId === 'factory' ? <RealProductGallery assets={realProofMedia} /> : null}
 
       <SolutionCards
         items={content.authorityLinks}

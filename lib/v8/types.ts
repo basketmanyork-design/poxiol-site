@@ -24,6 +24,30 @@ export type V8MediaStage =
   | 'factory-overview-video'
   | 'production-workflow-video'
   | 'quality-inspection-video'
+  | 'idea'
+  | 'mockup'
+  | 'front'
+  | 'back'
+  | 'shorts'
+  | 'shorts-front'
+  | 'shorts-back'
+  | 'full-set'
+  | 'fabric'
+  | 'collar'
+  | 'stitching'
+  | 'print'
+  | 'number'
+  | 'waistband'
+  | 'reversible'
+  | 'sample-review'
+  | 'measurement'
+  | 'artwork-placement'
+  | 'finished-garment'
+  | 'individual-packaging'
+  | 'grouped-order'
+  | 'carton-preparation'
+  | 'inspection'
+  | 'factory-overview'
 
 export type V8Buyer = {
   id: V8BuyerId
@@ -63,6 +87,9 @@ export type V8MediaAsset = {
   caption?: string
   verified: boolean
   verificationNote?: string
+  width?: number
+  height?: number
+  poster?: string
 }
 
 export type V8MediaSlot = {
