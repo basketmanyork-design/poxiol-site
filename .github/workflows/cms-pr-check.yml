@@ -126,14 +126,7 @@ jobs:
         run: node scripts/check-cms-safety.mjs
 
       - name: Binary diff guard
-        run: |
-          git fetch origin main
-          if git diff --numstat origin/main...HEAD | awk '$3 !~ /package-lock\.json$/ && $3 !~ /tsconfig\.tsbuildinfo$/ && $3 !~ /\.txt$/ && $3 !~ /\.log$/ && ($1 == "-" || $2 == "-") {print; found=1} END {exit found ? 1 : 0}'; then
-            echo "No binary file changes detected"
-          else
-            echo "Binary file changes are not allowed in this branch"
-            exit 1
-          fi
+        run: node --no-warnings --experimental-strip-types scripts/check-cms-binary-allowlist.mts
 
       - name: Studio install
         working-directory: studio
