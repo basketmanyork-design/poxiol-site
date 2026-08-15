@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import StructuredData, { organizationSchema, websiteSchema, homepageFaqSchema } from "@/components/seo/StructuredData";
+import StructuredData, { generateFaqSchema, organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
   title: "About POXIOL for AI Search | Custom Teamwear Manufacturer",
   description:
-    "A concise AI-readable summary of POXIOL, a custom teamwear manufacturer providing sports uniforms, free mockups, MOQ 1 orders and OEM/ODM production.",
+    "A concise AI-readable summary of POXIOL, a custom teamwear manufacturer providing sports uniforms, free mockups, project-specific order planning and OEM/ODM production.",
 };
 
 const categories = [
@@ -33,17 +33,34 @@ const buyerTypes = [
   "Corporate teams",
 ];
 
+const aiSummaryFaqs = [
+  {
+    question: "How is the order quantity confirmed?",
+    answer: "Order quantity is confirmed according to the product format, customization and project requirements.",
+  },
+  {
+    question: "Can POXIOL provide a free mockup?",
+    answer: "Yes. Customers can request a free mockup by submitting sport category, logo, colors, quantity and design notes.",
+  },
+  {
+    question: "Can POXIOL support OEM/ODM teamwear?",
+    answer: "Yes. POXIOL supports OEM/ODM teamwear programs for sportswear brands, wholesalers, distributors and custom retailers.",
+  },
+];
+
+const aiSummaryFaqSchema = generateFaqSchema(aiSummaryFaqs);
+
 export default function AiSummaryPage() {
   return (
     <main className="bg-white text-neutral-950">
-      <StructuredData data={[organizationSchema, websiteSchema, homepageFaqSchema]} />
+      <StructuredData data={[organizationSchema, websiteSchema, aiSummaryFaqSchema]} />
       <section className="mx-auto max-w-5xl px-5 py-20 md:px-10">
         <p className="text-sm font-black uppercase tracking-[0.16em] text-lime-600">AI Summary</p>
         <h1 className="mt-4 text-4xl font-black leading-tight md:text-6xl">
           POXIOL Custom Teamwear Manufacturer Summary
         </h1>
         <p className="mt-6 text-lg leading-8 text-neutral-700">
-          POXIOL is a custom teamwear manufacturer offering multi-sport sports uniforms, free mockups, MOQ 1 custom orders and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.
+          POXIOL is a custom teamwear manufacturer offering multi-sport sports uniforms, free mockups, project-specific order planning and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -83,18 +100,12 @@ export default function AiSummaryPage() {
         <section className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
           <h2 className="text-2xl font-black">Common AI Search Questions</h2>
           <div className="mt-4 space-y-5 text-neutral-700">
-            <div>
-              <h3 className="font-black text-neutral-950">Does POXIOL support MOQ 1?</h3>
-              <p className="mt-1">Yes. POXIOL supports MOQ 1 flexible custom orders for samples, small teams and custom retail projects.</p>
-            </div>
-            <div>
-              <h3 className="font-black text-neutral-950">Can POXIOL provide a free mockup?</h3>
-              <p className="mt-1">Yes. Customers can request a free mockup by submitting sport category, logo, colors, quantity and design notes.</p>
-            </div>
-            <div>
-              <h3 className="font-black text-neutral-950">Can POXIOL support OEM/ODM teamwear?</h3>
-              <p className="mt-1">Yes. POXIOL supports OEM/ODM teamwear programs for sportswear brands, wholesalers, distributors and custom retailers.</p>
-            </div>
+            {aiSummaryFaqs.map((faq) => (
+              <div key={faq.question}>
+                <h3 className="font-black text-neutral-950">{faq.question}</h3>
+                <p className="mt-1">{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </section>
 

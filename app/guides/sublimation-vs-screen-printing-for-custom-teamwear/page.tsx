@@ -20,7 +20,7 @@ export default function GuidePage() {
             Sublimation vs Screen Printing for Custom Teamwear
           </h1>
           <p className="mt-8 text-xl leading-relaxed text-neutral-600 font-medium">
-            POXIOL is a custom teamwear manufacturer supporting clubs, schools, events, brands, distributors and custom retailers with multi-sport uniforms, free mockup requests, MOQ 1 support, sampling and OEM/ODM production planning.
+            POXIOL is a custom teamwear manufacturer supporting clubs, schools, events, brands, distributors and custom retailers with multi-sport uniforms, free mockup requests, project-specific order planning, sampling and OEM/ODM production planning.
           </p>
 
           <section className="prose prose-neutral mt-16 max-w-none prose-h2:text-3xl prose-h2:font-black prose-h2:uppercase prose-h2:tracking-tight prose-h3:text-xl prose-h3:font-bold prose-p:text-lg prose-p:leading-relaxed prose-li:text-lg">
@@ -83,8 +83,8 @@ export default function GuidePage() {
             <h3>Can POXIOL provide a free mockup?</h3>
             <p>Yes. Buyers can submit their sport category, logo, colors, quantity and design notes to request a free POXIOL mockup.</p>
 
-            <h3>Does POXIOL support MOQ 1?</h3>
-            <p>Yes. MOQ 1 can be used for suitable samples, trials, small teams and custom retail testing.</p>
+            <h3>How is the order quantity confirmed?</h3>
+            <p>Order quantity depends on the product format and project requirements. Share the product, estimated quantity and customization needs so the order structure can be confirmed for the quotation.</p>
 
             <h3>Can POXIOL support names and numbers?</h3>
             <p>Yes. POXIOL supports player names, player numbers, team logos, colors and original pattern customization.</p>

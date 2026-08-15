@@ -16,9 +16,9 @@ export const sportsCategories = [
 ];
 
 export const uspCards = [
-  { metric: "MOQ 1", title: "MOQ From 1 Set", description: "Start with one sample set before confirming bulk production. Sample MOQ: 1 set for B2B buyers.", label: "Low MOQ" },
-  { metric: "Free", title: "Free Design Mockup", description: "Send your logo, colors and sport category. Receive a front/back design mockup for review, usually within 2 hours of complete project details.", label: "Design" },
-  { metric: "2-3 Days", title: "Sample Support", description: "Sample production usually takes 2-3 working days after mockup approval, with express global delivery available.", label: "Sample" },
+  { metric: "Project", title: "Project-Based Quantity", description: "Order quantity is confirmed according to the garment format, customization and project requirements.", label: "Quantity" },
+  { metric: "Free", title: "Free Design Mockup", description: "Send your logo, colors and sport category. POXIOL can prepare a front/back design mockup after the project brief and reference files are reviewed.", label: "Design" },
+  { metric: "Review", title: "Sample Support", description: "Sample availability and timing are confirmed after the approved design, materials, construction and project requirements are reviewed.", label: "Sample" },
   { metric: "QC", title: "QC Before Shipment", description: "Fabric, print, sizing, logo placement, names, numbers and packing are checked against the approved project details before shipment.", label: "Quality" },
   { metric: "OEM", title: "OEM Production Support", description: "Private-label manufacturing with buyer-approved labels, packaging and product specifications for sportswear brands and distributors.", label: "OEM/ODM" },
 ];
@@ -55,12 +55,12 @@ export const techItems = [
 ];
 
 export const homeFaqs = [
-  { question: "What does POXIOL support for club teamwear programs?", answer: "POXIOL supports custom teamwear design review, sampling, confirmed production and quality checks before shipment. Sample MOQ: 1 set and sample production: 2-3 working days after mockup approval." },
-  { question: "Can I order custom sports uniforms with no MOQ?", answer: "Yes. POXIOL supports MOQ 1 set for serious B2B buyers. This allows academies, schools, and brands to test fabric, fit, and print quality with one sample before bulk team orders." },
-  { question: "How long does it take to get a custom jersey mockup?", answer: "POXIOL provides professional high-fidelity 3D mockups in 1-2 hours. Send your logo, team colors, and sport category to get a visual preview for your team or client presentation." },
+  { question: "What does POXIOL support for club teamwear programs?", answer: "POXIOL supports custom teamwear design review, sample planning, confirmed production scheduling and quality checks before shipment. Order quantity and sample availability are confirmed for the club project." },
+  { question: "How is the order quantity for custom sports uniforms confirmed?", answer: "Order quantity depends on the product format and project requirements. Academies, schools and brands can share the sport, estimated quantity, size breakdown and customization needs for a project-specific quotation." },
+  { question: "How do I request a custom jersey mockup?", answer: "Send your logo, team colors, sport category and reference files. POXIOL can prepare a design mockup after the project brief is reviewed." },
   { question: "Does POXIOL provide OEM private label sportswear?", answer: "Yes. POXIOL is an OEM/ODM partner for sportswear brands. We provide original pattern development, private neck labels, custom hangtags, eco-friendly polybags, and retail-ready packaging for global distribution." },
   { question: "Can POXIOL support international teamwear delivery?", answer: "POXIOL prepares custom teamwear for international delivery after order details, packaging and shipment requirements are confirmed with the buyer." },
-  { question: "What is the standard production time for team orders?", answer: "Sample production usually takes 2-3 working days after mockup approval. Bulk production usually takes 7-12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
+  { question: "How is the schedule for team orders confirmed?", answer: "Sample availability and production scheduling are confirmed after the design, materials, quantity, size breakdown, customization and project requirements are reviewed." },
   { question: "How does POXIOL ensure the quality of custom uniforms?", answer: "Our facility utilizes industrial sublimation printing and a multi-stage QC system. We check fabric condition, print clarity, stitching durability, and fits against your confirmed size chart before every shipment." }
 ];
 
@@ -117,9 +117,9 @@ export const homeTrustSections: CmsPageSection[] = [
 ];
 
 export const factoryStats = [
-  { value: "MOQ 1", label: "Sample Order Support" },
-  { value: "2-3 Days", label: "Sample Production After Mockup Approval" },
-  { value: "7-12 Days", label: "Bulk Production After Approval" },
+  { value: "Project", label: "Project-Based Order Planning" },
+  { value: "Review", label: "Sample Availability Confirmation" },
+  { value: "Plan", label: "Production Scheduling After Approval" },
   { value: "QC", label: "Inspection Before Shipment" },
   { value: "Review", label: "Project Requirement Check" },
   { value: "Packing", label: "Shipment Readiness Check" },

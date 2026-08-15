@@ -40,7 +40,7 @@ export default function ShippingAfterSalesPage() {
       <section className="bg-white px-5 py-20 text-neutral-950 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-3xl font-black uppercase md:text-5xl">Production and Shipping Workflow</h2>
-          <p className="mt-5 max-w-3xl leading-8 text-neutral-600">Bulk production commonly takes 7–12 working days after sample or artwork approval. Express shipping commonly takes 3–7 business days depending on destination and carrier. Large, complex or peak-season projects require a confirmed schedule.</p>
+          <p className="mt-5 max-w-3xl leading-8 text-neutral-600">Production scheduling is confirmed after the design, quantity, size breakdown and project requirements are approved. Shipping method, freight assumptions and delivery timing are confirmed according to the destination and project requirements.</p>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{shippingSteps.map((step, index) => <article key={step.title} className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-7"><p className="text-sm font-black text-lime-600">{String(index + 1).padStart(2, '0')}</p><h3 className="mt-4 text-xl font-black uppercase">{step.title}</h3><p className="mt-3 text-sm leading-7 text-neutral-600">{step.description}</p></article>)}</div>
         </div>
       </section>

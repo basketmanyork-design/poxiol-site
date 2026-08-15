@@ -2,7 +2,7 @@
 
 This deterministic dry run is read-only. It reads local legacy source files, compares planned document types against the registered local Studio schema, writes ignored temporary artifacts, and produces summary reports. It does not query Sanity, read tokens, write Sanity documents, upload assets, run Seed, run Dataset Import, modify Cloudflare, deploy schema, or deploy Studio.
 
-Dry run hash: `279f3133b44ae3c9a83c959833d7f0c31c6e1e438fd59896be4a337f8dc5d641`
+Dry run hash: `085b8009e4deb0b89a02e648e9371b2bc0d6552a0569f70532ed68db61f791fa`
 
 ## Local Candidate Inventory
 
