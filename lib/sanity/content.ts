@@ -8,6 +8,7 @@ import {
   BUYER_DECISION_HERO_DESCRIPTION,
   BUYER_DECISION_HERO_HEADING,
   normalizeBuyerFacingClaim,
+  normalizeBuyerFacingQuestion,
   normalizeCtaLabel,
 } from '@/lib/buyer-decision'
 import {
@@ -329,7 +330,7 @@ function mapFaqItem(faq: SanityFaq): CmsFaqItem | null {
   if (!faq.question || faq.active === false || !isDocumentVisible(faq.publishStatus, contentSource)) return null
   const answer = textFromPortable(faq.fullAnswer) || faq.shortAnswer || textFromPortable(faq.answer)
   if (!answer) return null
-  return {question: faq.question, answer: normalizeFaqAnswer(answer)}
+  return {question: normalizeBuyerFacingQuestion(faq.question), answer: normalizeFaqAnswer(answer)}
 }
 
 function normalizedToken(value?: string) {
@@ -516,22 +517,28 @@ function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, in
     title: product.productName,
     categorySlug: product.categorySlug || fallback?.categorySlug,
     categoryTitle: product.categoryTitle || fallback?.categoryTitle,
-    description: product.shortDescription || fallback?.description || product.fullDescription || product.productName,
-    fullDescription: product.fullDescription || fallback?.fullDescription || product.shortDescription || fallback?.description || '',
+    description: normalizeBuyerFacingClaim(product.shortDescription || fallback?.description || product.fullDescription || product.productName),
+    fullDescription: normalizeBuyerFacingClaim(product.fullDescription || fallback?.fullDescription || product.shortDescription || fallback?.description || ''),
     image: primaryImage,
     detailImages: imageListFrom(product.detailImages, fallbackDetailImages),
     productionImages: imageListFrom(product.productionImages, fallback?.productionImages),
     qcImages: imageListFrom(product.qcImages, fallback?.qcImages),
     packagingImages: imageListFrom(product.packagingImages, fallback?.packagingImages),
-    fabricOptions: product.fabricOptions?.length ? product.fabricOptions : fallback?.fabricOptions || [],
-    customizationOptions: product.customizationOptions?.length ? product.customizationOptions : fallback?.customizationOptions || [],
+    fabricOptions: (product.fabricOptions?.length ? product.fabricOptions : fallback?.fabricOptions || []).map(normalizeBuyerFacingClaim),
+    customizationOptions: (product.customizationOptions?.length ? product.customizationOptions : fallback?.customizationOptions || []).map(normalizeBuyerFacingClaim),
     procurementOverride: product.procurementOverride
       ? {
-          moq: product.procurementOverride.overriddenMOQ || fallback?.procurementOverride?.moq,
-          sampleTime: product.procurementOverride.overriddenSampleTime || fallback?.procurementOverride?.sampleTime,
-          reason: product.procurementOverride.overrideReason || fallback?.procurementOverride?.reason,
+          moq: normalizeBuyerFacingClaim(product.procurementOverride.overriddenMOQ || fallback?.procurementOverride?.moq || ''),
+          sampleTime: normalizeBuyerFacingClaim(product.procurementOverride.overriddenSampleTime || fallback?.procurementOverride?.sampleTime || ''),
+          reason: normalizeBuyerFacingClaim(product.procurementOverride.overrideReason || fallback?.procurementOverride?.reason || ''),
         }
-      : fallback?.procurementOverride,
+      : fallback?.procurementOverride
+        ? {
+            moq: normalizeBuyerFacingClaim(fallback.procurementOverride.moq || ''),
+            sampleTime: normalizeBuyerFacingClaim(fallback.procurementOverride.sampleTime || ''),
+            reason: normalizeBuyerFacingClaim(fallback.procurementOverride.reason || ''),
+          }
+        : undefined,
     relatedFaqs: product.relatedFaqs?.length ? product.relatedFaqs.map(mapFaqItem).filter(Boolean) as CmsFaqItem[] : fallback?.relatedFaqs || [],
     featured: product.featured ?? fallback?.featured ?? false,
     seo: seoFrom(product.seo, fallback?.seo || {title: `${product.productName} | POXIOL`, description: product.shortDescription || product.fullDescription || product.productName}),
@@ -666,17 +673,17 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
       const fb = fallback[index]
       return {
         type: section.sectionType || fb?.type,
-        eyebrow: section.eyebrow || fb?.eyebrow,
-        title: section.title || fb?.title || 'Page section',
+        eyebrow: section.eyebrow ? normalizeBuyerFacingClaim(section.eyebrow) : fb?.eyebrow,
+        title: normalizeBuyerFacingClaim(section.title || fb?.title || 'Page section'),
         body: normalizeBuyerFacingClaim(normalizePublicContactText(textFromPortable(section.body) || fb?.body || '')),
         image: optionalImage(section.image, fb?.image, 'card'),
         productionMedia: mapProductionMediaSet(section.productionMedia) || fb?.productionMedia,
-        facts: section.facts?.length ? section.facts : fb?.facts || [],
-        stats: section.stats?.length ? section.stats.filter((item) => item.value && item.label).map((item) => ({value: item.value || '', label: item.label || ''})) : fb?.stats || [],
-        steps: section.steps?.length ? section.steps.filter((item) => item.title && item.description).map((item) => ({title: item.title || '', description: item.description || ''})) : fb?.steps || [],
-        specifications: section.specifications?.length ? section.specifications.filter((item) => item.label && item.value).map((item) => ({label: item.label || '', value: item.value || ''})) : fb?.specifications || [],
+        facts: section.facts?.length ? section.facts.map(normalizeBuyerFacingClaim) : fb?.facts || [],
+        stats: section.stats?.length ? section.stats.filter((item) => item.value && item.label).map((item) => ({value: normalizeBuyerFacingClaim(item.value || ''), label: normalizeBuyerFacingClaim(item.label || '')})) : fb?.stats || [],
+        steps: section.steps?.length ? section.steps.filter((item) => item.title && item.description).map((item) => ({title: normalizeBuyerFacingClaim(item.title || ''), description: normalizeBuyerFacingClaim(item.description || '')})) : fb?.steps || [],
+        specifications: section.specifications?.length ? section.specifications.filter((item) => item.label && item.value).map((item) => ({label: normalizeBuyerFacingClaim(item.label || ''), value: normalizeBuyerFacingClaim(item.value || '')})) : fb?.specifications || [],
         gallery: section.gallery?.length ? section.gallery.map((image, imageIndex) => optionalImage(image, fb?.gallery?.[imageIndex], 'card')).filter(Boolean) as CmsPageSection['gallery'] : fb?.gallery || [],
-        faqs: section.faqs?.length ? section.faqs.filter((item) => item.question && item.answer).map((item) => ({question: item.question || '', answer: item.answer || ''})) : fb?.faqs || [],
+        faqs: section.faqs?.length ? section.faqs.filter((item) => item.question && item.answer).map((item) => ({question: normalizeBuyerFacingQuestion(item.question || ''), answer: normalizeFaqAnswer(item.answer || '')})) : fb?.faqs || [],
         cta: mapCta(section.cta, fb?.cta),
       }
     })
@@ -686,14 +693,35 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
 function normalizeArticleBlocks(nodes: CmsPortableTextNode[] | undefined): CmsPortableTextNode[] | undefined {
   return nodes?.map((node) => {
     if (node._type === 'block') return {...node, children: node.children?.map((child) => ({...child, text: child.text ? normalizeBuyerFacingClaim(child.text) : child.text}))}
-    if (node._type === 'tableBlock') return {...node, caption: node.caption ? normalizeBuyerFacingClaim(node.caption) : node.caption, rows: node.rows?.map((row) => ({...row, cells: row.cells?.map(normalizeBuyerFacingClaim)}))}
+    if (node._type === 'tableBlock') return {
+      ...node,
+      caption: node.caption ? normalizeBuyerFacingClaim(node.caption) : node.caption,
+      rows: node.rows?.map((row) => {
+        const rowText = row.cells?.join(' ') || ''
+        return {
+          ...row,
+          cells: row.cells?.map((cell) => {
+            if (/sample\s+MOQ|minimum\s+order/i.test(rowText) && /\b1\s*set\b/i.test(cell)) {
+              return 'Confirmed according to product and project requirements'
+            }
+            if (/sample/i.test(rowText) && /\b\d+\s*[-\u2010-\u2015]\s*\d+\s*(?:working\s*)?days\b/i.test(cell)) {
+              return 'Confirmed after design, material and project review'
+            }
+            if (/bulk\s+production/i.test(rowText) && /\b\d+\s*[-\u2010-\u2015]\s*\d+\s*(?:working\s*)?days\b/i.test(cell)) {
+              return 'Confirmed after quantity, size breakdown, customization and approvals'
+            }
+            return normalizeBuyerFacingClaim(cell)
+          }),
+        }
+      }),
+    }
     return {...node, title: node.title ? normalizeBuyerFacingClaim(node.title) : node.title, body: node.body ? normalizeBuyerFacingClaim(node.body) : node.body}
   })
 }
 
 function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
   if (article.sections?.length) {
-    return article.sections.map((section) => ({title: section.title || 'Section', content: Array.isArray(section.content) ? section.content.map(normalizeBuyerFacingClaim) : normalizeBuyerFacingClaim(section.content || '')}))
+    return article.sections.map((section) => ({title: normalizeBuyerFacingClaim(section.title || 'Section'), content: Array.isArray(section.content) ? section.content.map(normalizeBuyerFacingClaim) : normalizeBuyerFacingClaim(section.content || '')}))
   }
   if (Array.isArray(article.body) && article.body.length) return []
   const body = textFromPortable(article.body)
@@ -771,7 +799,7 @@ function normalizePageClaims(page: CmsPage): CmsPage {
       stats: section.stats?.map((stat) => ({...stat, value: normalizeBuyerFacingClaim(stat.value)})),
       steps: section.steps?.map((step) => ({...step, description: normalizeBuyerFacingClaim(step.description)})),
       specifications: section.specifications?.map((item) => ({...item, value: normalizeBuyerFacingClaim(item.value)})),
-      faqs: section.faqs?.map((faq) => ({...faq, answer: normalizeBuyerFacingClaim(faq.answer)})),
+      faqs: section.faqs?.map((faq) => ({...faq, question: normalizeBuyerFacingQuestion(faq.question), answer: normalizeFaqAnswer(faq.answer)})),
     })),
     seo: {...page.seo, description: normalizeBuyerFacingClaim(page.seo.description)},
   }
@@ -957,11 +985,11 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
   if (!response.ok) return legacyFaqGroups
 
   const cms = response.result || []
-  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item, answer: normalizeFaqAnswer(item.answer)})))
-  const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(faq.question as string, faqCategoryName(faq.category))))
+  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item, question: normalizeBuyerFacingQuestion(item.question), answer: normalizeFaqAnswer(item.answer)})))
+  const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(normalizeBuyerFacingQuestion(faq.question as string), faqCategoryName(faq.category))))
   const visibleCms = cms
     .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
-    .map((faq) => ({category: faqCategoryName(faq.category), question: faq.question as string, answer: normalizeBuyerFacingClaim(normalizeFaqAnswer(textFromPortable(faq.answer)))}))
+    .map((faq) => ({category: faqCategoryName(faq.category), question: normalizeBuyerFacingQuestion(faq.question as string), answer: normalizeFaqAnswer(textFromPortable(faq.answer))}))
 
   if (getCmsListMode() === 'strict') return withBuyerDecisionFaqs(groupsFromFaqItems(visibleCms))
 
@@ -983,7 +1011,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
   const body = textFromPortable(article.body)
   return {
     slug: article.slug,
-    title: article.title,
+    title: normalizeBuyerFacingClaim(article.title),
     excerpt: normalizeBuyerFacingClaim(article.excerpt || fallback?.excerpt || body || article.title),
     intro: normalizeBuyerFacingClaim(article.excerpt || fallback?.intro || body || article.title),
     eyebrow: fallback?.eyebrow || (articleType === 'blog' ? 'Blog' : articleType === 'resource' ? 'Resource' : 'Guide'),
@@ -1002,7 +1030,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     relatedCategories: mapRelated(article.relatedCategories, '/products/').length ? mapRelated(article.relatedCategories, '/products/') : fallback?.relatedCategories || [],
     relatedCaseStudies: mapRelated(article.relatedCaseStudies, '/projects/').length ? mapRelated(article.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies || [],
     relatedArticles: mapArticleRelated(article.relatedArticles).length ? mapArticleRelated(article.relatedArticles) : fallback?.relatedArticles || [],
-    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: faq.question as string, answer: normalizeBuyerFacingClaim(normalizeFaqAnswer(textFromPortable(faq.answer)))})) : fallback?.faqs || [],
+    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: normalizeBuyerFacingQuestion(faq.question as string), answer: normalizeFaqAnswer(textFromPortable(faq.answer))})) : fallback?.faqs || [],
     cta: mapCta(article.cta, fallback?.cta),
     secondaryCta: fallback?.secondaryCta,
     sections: sectionsFromArticle(article, fallback),

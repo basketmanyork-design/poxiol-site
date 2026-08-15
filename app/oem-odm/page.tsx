@@ -18,7 +18,7 @@ const userGroups = [
   {
     icon: <Store className="h-6 w-6 text-lime-400" />,
     title: "Custom Retailers",
-    desc: "Support for product testing, MOQ 1 custom orders, repeat order support and fast mockup workflows."
+    desc: "Support for product testing, project-specific order planning, repeat order support and structured mockup workflows."
   },
   {
     icon: <Trophy className="h-6 w-6 text-lime-400" />,
@@ -49,7 +49,7 @@ const customizationOptions = [
 
 const advantages = [
   { title: "Multi-Sport Range", desc: "Support across many teamwear categories to help you expand beyond a single sport." },
-  { title: "Flexible MOQ", desc: "MOQ 1 support helps brands and retailers test products before larger commitments." },
+  { title: "Project-Based Quantity", desc: "Order quantity is confirmed according to the product format and project requirements so brands can plan testing before larger commitments." },
   { title: "Fast Mockup Process", desc: "Reducing communication friction and supporting fast buyer decision-making." },
   { title: "Sampling Support", desc: "Verifying product quality, fit, and print effect before scaling to bulk orders." },
   { title: "Teamwear Specialization", desc: "Built around the specific use cases of clubs, schools, teams, and sports events." }

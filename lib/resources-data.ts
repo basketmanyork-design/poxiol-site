@@ -123,7 +123,7 @@ export const resourcePages: ResourcePageData[] = [
       },
       {
         title: "Sample and Production Timeline",
-        content: "Sample production: 2-3 working days after design confirmation. Bulk production time depends on quantity and customization complexity. POXIOL provides a clear production plan before order confirmation."
+        content: "Sample availability and timing are confirmed after the design, materials and project requirements are reviewed. Production scheduling depends on quantity, customization, size breakdown and approvals, and is confirmed before the order proceeds."
       }
     ],
     ctaText: "Send your order details to get a realistic production plan and factory quotation."

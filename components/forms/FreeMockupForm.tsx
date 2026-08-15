@@ -80,7 +80,7 @@ export default function FreeMockupForm() {
       </div>
       {errorMessage ? <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">{errorMessage}</div> : null}
       <button type="submit" disabled={loading} className="mt-8 h-[56px] w-full rounded-full bg-lime-400 text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white disabled:cursor-not-allowed disabled:opacity-70">{loading ? "Submitting..." : "Get My Free Mockup"}</button>
-      <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3"><p>Free design preview before order</p><p>Response within 1 business day</p><p>Files requested by reply email</p></div>
+      <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3"><p>Free design preview before order</p><p>Project details reviewed before design work</p><p>Files requested by reply email</p></div>
     </form>
   );
 }

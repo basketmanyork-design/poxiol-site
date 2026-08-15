@@ -19,10 +19,10 @@ export const pseoPages: PSEOPage[] = [
     author: {
       name: "David Zhang",
       role: "Lead Manufacturing Specialist",
-      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      bio: "David focuses on technical sportswear manufacturing, project planning and uniform program requirements for clubs, schools and academies."
     },
     faqs: [
-      { question: "What is the typical production timeline for basketball uniforms?", answer: "Bulk production usually takes 7–12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
+      { question: "How is the production timeline for basketball uniforms confirmed?", answer: "Production scheduling is confirmed after the design, quantity, size breakdown and project requirements are approved." },
       { question: "Can I see a sample before bulk production?", answer: "Yes, we highly recommend ordering a sample to verify fit, color, and fabric quality." },
       { question: "What file formats do I need for logos?", answer: "Vector files like AI, EPS, or SVG are preferred for the sharpest printing results." },
     ],
@@ -41,7 +41,7 @@ export const pseoPages: PSEOPage[] = [
     faqs: [
       { question: "Do you manufacture goalkeeper kits as well?", answer: "Yes, we produce specialized goalkeeper jerseys with padded elbows and matching shorts." },
       { question: "Are soccer socks customizable?", answer: "Yes, we can produce custom knitted socks with your club name or logo." },
-      { question: "What is the minimum order for soccer kits?", answer: "Sample MOQ is 1 set for sample development. Recommended team order quantity: 10–15 sets or more for efficient bulk pricing. Bulk order quantity is quoted according to sport, design, size mix and order requirements." },
+      { question: "How is the order quantity for soccer kits confirmed?", answer: "Order quantity is confirmed according to the sport, garment format, design, size mix and project requirements." },
     ],
   },
   {
@@ -53,7 +53,7 @@ export const pseoPages: PSEOPage[] = [
     author: {
       name: "David Zhang",
       role: "Lead Manufacturing Specialist",
-      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      bio: "David focuses on technical sportswear manufacturing, project planning and uniform program requirements for clubs, schools and academies."
     },
     faqs: [
       { question: "Which model is better for a new sportswear brand?", answer: "ODM is often better for a fast launch, while OEM is better if you have a unique product concept." },
@@ -87,7 +87,7 @@ export const pseoPages: PSEOPage[] = [
     author: {
       name: "Michael Chen",
       role: "Printing & Sublimation Expert",
-      bio: "Michael has spent 15 years mastering digital sublimation and textile printing, ensuring pro-level color accuracy for professional sports teams."
+      bio: "Michael focuses on digital sublimation, textile printing and color-management requirements for custom sportswear projects."
     },
     faqs: [
       { question: "Can you sublimate on cotton?", answer: "No, sublimation requires at least 80% polyester content to allow the dye to bond with the fibers." },
@@ -104,7 +104,7 @@ export const pseoPages: PSEOPage[] = [
     author: {
       name: "David Zhang",
       role: "Lead Manufacturing Specialist",
-      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      bio: "David focuses on technical sportswear manufacturing, project planning and uniform program requirements for clubs, schools and academies."
     },
     faqs: [
       { question: "What are the risks of using a trading company instead of a factory?", answer: "Trading companies often have higher prices, slower communication, and less control over the production quality." },
@@ -124,7 +124,7 @@ export const pseoPages: PSEOPage[] = [
     faqs: [
       { question: "Do you offer youth and adult sizes for schools?", answer: "Yes, we provide a full range of sizes from youth XS to adult 5XL to accommodate all school grade levels." },
       { question: "Can we add school logos and player names?", answer: "Absolutely. Our sublimation process allows for unlimited customization including school logos, player names, and numbers at no extra cost." },
-      { question: "What is the turnaround time for school orders?", answer: "Bulk production usually takes 7–12 working days after sample or artwork approval. Large, complex or peak-season orders require a confirmed production schedule." },
+      { question: "How is the schedule for school orders confirmed?", answer: "Production scheduling is confirmed after the design, quantity, mixed-size breakdown, customization and school project requirements are approved." },
     ],
   },
   {
@@ -136,7 +136,7 @@ export const pseoPages: PSEOPage[] = [
     author: {
       name: "David Zhang",
       role: "Lead Manufacturing Specialist",
-      bio: "David has over 20 years of experience in technical sportswear manufacturing and has overseen uniform programs for over 500 sports academies worldwide."
+      bio: "David focuses on technical sportswear manufacturing, project planning and uniform program requirements for clubs, schools and academies."
     },
     faqs: [
       { question: "What is the best fabric for youth soccer uniforms?", answer: "We recommend breathable Interlock polyester for its durability and comfort." },
@@ -156,7 +156,7 @@ export const pseoPages: PSEOPage[] = [
       bio: "Sarah is a textile engineer specializing in performance sportswear fabrics and moisture-management technologies."
     },
     faqs: [
-      { question: "How long is shipping to Australia?", answer: "Shipping to major Australian cities typically takes 4-7 business days via express courier." },
+      { question: "How is shipping to Australia planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Can you handle sponsor logos for NPL clubs?", answer: "Yes, we can integrate unlimited sponsor logos into the sublimated design for a professional, durable finish." },
       { question: "Are your soccer kits suitable for hot Australian summers?", answer: "Yes, we use lightweight, breathable Interlock and Mesh fabrics specifically engineered for performance in warm conditions." },
     ],
@@ -181,7 +181,7 @@ export const pseoPages: PSEOPage[] = [
     content: "Our baseball jersey manufacturing focus is on durability and range of motion. We use high-density, breathable polyester fabrics that withstand the rigors of the game. From full-button traditional jerseys to modern v-neck designs, we offer a variety of styles to suit your club's tradition. Our sublimation process ensures your team graphics and numbers remain sharp and vibrant season after season. With fast turnaround times and reliable global shipping, POXIOL is the preferred partner for baseball clubs looking for elite gear.",
     faqs: [
       { question: "Do you offer full-button baseball jerseys?", answer: "Yes, we manufacture full-button, two-button, and v-neck baseball jerseys." },
-      { question: "What is the typical MOQ for baseball clubs?", answer: "Sample MOQ is 1 set for sample development. Bulk order quantity is quoted according to sport, design, size mix and order requirements. Recommended team order quantity: 10–15 jerseys or more for more efficient bulk pricing." },
+      { question: "How is the order quantity for baseball clubs confirmed?", answer: "Order quantity is confirmed according to the garment format, design, size mix, customization and club project requirements." },
       { question: "Can we include piping and custom sleeves?", answer: "Yes, all design elements including piping, sleeve patterns, and logos are fully customizable." },
     ],
   },
@@ -192,7 +192,7 @@ export const pseoPages: PSEOPage[] = [
     intro: "POXIOL is a premier soccer teamwear supplier for the United States, delivering custom soccer kits to academies, schools, clubs, colleges and sports organizations from New York to Los Angeles.",
     content: "We understand the rapid growth of soccer in the US and provide scalable manufacturing solutions to meet the increasing demand for high-quality teamwear. Our factory specializes in US-standard sizing and performance fabrics that excel in various regional climates. By partnering with POXIOL, US-based sports distributors and soccer organizations gain access to direct factory pricing and expert design support, ensuring their teams look as professional as the pros.",
     faqs: [
-      { question: "What are the shipping times to the USA?", answer: "Express shipping to the US typically takes 3-6 business days." },
+      { question: "How is shipping to the USA planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Do you comply with US sizing standards?", answer: "Yes, we use standard US athletic sizing for all our soccer apparel." },
       { question: "Can you produce jerseys for collegiate programs?", answer: "Yes, POXIOL supports custom uniform designs for schools, colleges, and clubs. Buyers must own or be authorized to use all submitted team names, logos, sponsor marks and artwork. POXIOL does not reproduce unauthorized league, club or third-party trademarks." },
     ],
@@ -228,7 +228,7 @@ export const pseoPages: PSEOPage[] = [
     intro: "POXIOL is a leading soccer teamwear supplier for the United Kingdom, providing custom football kits to clubs, academies, and schools across England, Scotland, and Wales.",
     content: "We deliver professional-grade soccer kits designed for the UK football culture, utilizing high-performance fabrics that excel on the pitch. Our direct factory partnership offers UK sports distributors and club secretaries an efficient way to order custom kits with low MOQs and reliable international delivery. With POXIOL, your UK team gets top-tier apparel at competitive prices, backed by our expertise in global teamwear manufacturing.",
     faqs: [
-      { question: "How long is delivery to the UK?", answer: "Shipping to the UK typically takes 4-7 business days via express air courier." },
+      { question: "How is delivery to the UK planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Are your kits suitable for UK weather conditions?", answer: "Yes, our fabrics are selected for their durability and performance in varied weather, from wet match days to summer training." },
       { question: "Can we use British sizing standards?", answer: "Yes, we offer sizing charts aligned with UK and European standards for a perfect fit." },
     ],
@@ -240,7 +240,7 @@ export const pseoPages: PSEOPage[] = [
     intro: "Elevate your Melbourne-based basketball team with premium custom jerseys. POXIOL provides high-performance basketball apparel for clubs and academies across Melbourne.",
     content: "We specialize in manufacturing elite basketball jerseys for the thriving Melbourne sports community. Our focus is on providing breathable, durable, and stylish uniforms that represent your club with pride. With our direct-to-factory model and efficient shipping to Victoria, Melbourne teams receive professional-grade gear at a fraction of local retail costs. Whether for community leagues or elite academies, POXIOL is your trusted partner for basketball teamwear in Melbourne.",
     faqs: [
-      { question: "What are the shipping times to Melbourne?", answer: "Express shipping to Melbourne typically takes 4-6 business days." },
+      { question: "How is shipping to Melbourne planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Do you work with local Melbourne sports distributors?", answer: "Yes, we partner with various distributors and club managers across Melbourne." },
       { question: "Can I get a custom design for my Melbourne academy?", answer: "Absolutely, we provide free 3D mockups after the project requirements are reviewed to help your academy stand out." },
     ],
@@ -264,7 +264,7 @@ export const pseoPages: PSEOPage[] = [
     intro: "Stand out on the London football scene with professional custom kits. POXIOL provides elite soccer apparel for clubs and academies throughout Greater London.",
     content: "We are a preferred manufacturer for London-based soccer organizations, offering high-performance match-day kits and training wear. Our direct-to-factory model ensures London clubs receive premium gear without the high cost of local retailers. We provide rapid design support and reliable shipping to the UK capital, ensuring your team is ready for every fixture. From Sunday league teams to elite youth academies, POXIOL is your London partner for soccer kit excellence.",
     faqs: [
-      { question: "How fast is delivery to London?", answer: "Shipping to London generally takes 4-7 business days via express courier." },
+      { question: "How is delivery to London planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Can we order full team kits including socks?", answer: "Yes, we provide complete kit solutions including jerseys, shorts, and custom socks." },
       { question: "Do you support London-based sports academies?", answer: "Yes, we work with many academies across London to provide professional-grade youth kits." },
     ],
@@ -288,7 +288,7 @@ export const pseoPages: PSEOPage[] = [
     intro: "Equip your New York-based sports organization with elite custom teamwear. POXIOL provides professional-grade apparel for clubs, schools, and leagues across the New York area.",
     content: "We are a trusted partner for New York sports teams, offering high-performance uniforms for basketball, soccer, baseball, and more. Our direct-to-factory model provides New York sports directors and club managers with a cost-effective way to source pro-level gear. With efficient shipping to the Tri-State area and expert design support, POXIOL ensures your New York team looks and performs at their best. From local leagues to competitive academies, we are your New York source for teamwear excellence.",
     faqs: [
-      { question: "What are the shipping times to New York?", answer: "Express shipping to New York typically takes 3-5 business days." },
+      { question: "How is shipping to New York planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Do you work with New York school athletic departments?", answer: "Yes, we provide custom uniform solutions for many schools and universities in the New York area." },
       { question: "Can I get a custom design for my NYC club?", answer: "Absolutely, our designers provide free 3D mockups after the project requirements are reviewed to capture your NYC team's identity." },
     ],

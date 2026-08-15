@@ -1,5 +1,6 @@
 import type {CmsFaqItem} from './cms/types'
 import {GEO_V1} from './geo-v1'
+export {normalizeBuyerFacingClaim, normalizeBuyerFacingQuestion} from './legacy-claim-normalizer'
 
 export const BUYER_DECISION_HERO_HEADING = GEO_V1.homepage.heroHeading
 
@@ -179,19 +180,6 @@ export const BUYER_DECISION_FAQS: CmsFaqItem[] = [
   {question: 'What payment terms do you offer?', answer: 'Payment terms are confirmed with your itemized quotation before any payment. Sample fees, freight and project-specific requirements are confirmed in advance — no hidden assumptions.'},
   {question: 'Do you support DDP or help with customs?', answer: 'Destination, shipping method, freight, carrier timing and applicable customs or duties assumptions are confirmed for your specific quotation. Contact us to confirm DDP availability for your delivery country.'},
 ]
-
-export function normalizeBuyerFacingClaim(value: string): string {
-  return value
-    .replace(/15\+ years(?: of apparel experience| of expertise| experience)?/gi, 'B2B teamwear experience')
-    .replace(/(?:(?:production|monthly) capacity:\s*)?30,000\+ units(?: monthly)?\.?/gi, 'Production planning is based on confirmed quantity and schedule.')
-    .replace(/reliable door-to-door logistics serving clubs and brands in 50\+ countries including USA, EU, AU\.?/gi, 'Global shipping support is planned according to the confirmed destination and shipping method.')
-    .replace(/within\s+24\s+hours/gi, 'after the project requirements are reviewed')
-    .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'factory-direct custom teamwear manufacturer')
-    .replace(/Elite\s+Custom\s+Teamwear\s+Manufacturing/gi, 'Custom Teamwear Manufacturing')
-    .replace(/Elite\s+OEM\s+Soccer\s+Apparel\s+Manufacturer/gi, 'OEM Soccer Apparel Manufacturer')
-    .replace(/Elite\s+Custom\s+Teamwear\s+Manufacturer/gi, 'Custom teamwear manufacturer')
-    .replace(/Elite\s+sublimation\s+printing/gi, 'Full-color sublimation printing')
-}
 
 export function normalizeCtaLabel(label: string, href: string): string {
   if (href.startsWith('/free-mockup')) return APPROVED_CTA_LABELS.primary

@@ -49,7 +49,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                {data.heroText}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {(data.heroProofPoints || ["Sample Support", "Free Mockup", "Sample production: 2-3 working days", "OEM/ODM Ready", "Quality Support"]).map((item)=>(
+              {(data.heroProofPoints || ["Sample Support", "Free Mockup", "Project-Specific Scheduling", "OEM/ODM Ready", "Quality Support"]).map((item)=>(
                 <span key={item} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white">{item}</span>
               ))}
             </div>

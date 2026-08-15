@@ -19,7 +19,7 @@ export const basketballPageSchema = {
           "name": "What is the MOQ for custom basketball uniforms?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         },
         {
@@ -27,7 +27,7 @@ export const basketballPageSchema = {
           "name": "How long does basketball uniform production take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sample production usually takes 2–3 working days after mockup approval. Bulk production usually takes 7–12 working days after sample or artwork approval."
+            "text": "Sample availability and timing are confirmed after the design, materials and project requirements are reviewed. Production scheduling is confirmed after the quantity, size breakdown, customization and approvals are defined."
           }
         }
       ]
@@ -56,7 +56,7 @@ export const soccerPageSchema = {
           "name": "What is the MOQ for custom soccer jerseys?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         },
         {
@@ -64,7 +64,7 @@ export const soccerPageSchema = {
           "name": "How long does soccer kit production take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sample production usually takes 2–3 working days after mockup approval. Bulk production usually takes 7–12 working days after sample or artwork approval."
+            "text": "Sample availability and timing are confirmed after the design, materials and project requirements are reviewed. Production scheduling is confirmed after the quantity, size breakdown, customization and approvals are defined."
           }
         }
       ]
@@ -93,7 +93,7 @@ export const baseballPageSchema = {
           "name": "What is the MOQ for custom baseball jerseys?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         }
       ]
@@ -122,7 +122,7 @@ export const americanFootballPageSchema = {
           "name": "What is the MOQ for custom football uniforms?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         }
       ]
@@ -151,7 +151,7 @@ export const volleyballPageSchema = {
           "name": "What is the MOQ for volleyball uniforms?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         }
       ]
@@ -180,7 +180,7 @@ export const rugbyPageSchema = {
           "name": "What is the MOQ for rugby jerseys?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         }
       ]
@@ -209,7 +209,7 @@ export const esportsPageSchema = {
           "name": "What is the MOQ for esports jerseys?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         }
       ]
@@ -238,7 +238,7 @@ export const runningPageSchema = {
           "name": "What is the MOQ for running apparel?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         }
       ]
@@ -267,7 +267,7 @@ export const hockeyPageSchema = {
           "name": "What is the MOQ for hockey jerseys?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+            "text": "Order quantity is confirmed according to the product format, customization and project requirements."
           }
         }
       ]

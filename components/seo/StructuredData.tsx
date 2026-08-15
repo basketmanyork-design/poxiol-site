@@ -22,7 +22,7 @@ export const organizationSchema = {
   "alternateName": "POXIOL",
   "url": "https://www.poxiol.com/",
   "logo": "https://www.poxiol.com/logo.png",
-  "description": "POXIOL is a custom teamwear manufacturer providing multi-sport sports uniforms, free mockups, MOQ 1 custom orders and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.",
+  "description": "POXIOL is a custom teamwear manufacturer providing multi-sport sports uniforms, free mockups, project-specific order planning and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.",
   "knowsAbout": [
     "Custom teamwear",
     "Custom sports uniforms",
@@ -114,7 +114,7 @@ export const homepageFaqSchema = {
       "name": "What is your MOQ for custom teamwear?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "POXIOL supports flexible MOQ from 1 piece for sample orders."
+        "text": "Order quantity depends on the product format and project requirements. Share the sport, product, estimated quantity and customization needs so the order structure can be confirmed for the quotation."
       }
     },
     {
@@ -122,7 +122,7 @@ export const homepageFaqSchema = {
       "name": "How long does custom teamwear production take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sample production usually takes 5-7 days and bulk production usually takes 10-20 days depending on order details."
+        "text": "Sample availability and production scheduling are confirmed after the design, materials, quantity, size breakdown, customization and project requirements are reviewed."
       }
     },
     {

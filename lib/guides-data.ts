@@ -66,7 +66,7 @@ export const guidePages: GuidePage[] = [
       },
       {
         question: "How long does sample production take?",
-        answer: "Sample production: 2-3 working days after mockup approval. Express international delivery usually takes 3–7 business days depending on country."
+        answer: "Sample availability and timing are confirmed after the mockup, materials and construction requirements are reviewed. Shipping method and delivery timing are confirmed for the destination and shipment requirements."
       }
     ],
     cta: { text: "Request Technical Sample", href: "/sample-order/" },
@@ -91,7 +91,7 @@ export const guidePages: GuidePage[] = [
     h1: "How to Evaluate and Choose a Teamwear Manufacturer in China",
     intro: "Sourcing custom teamwear directly from China offers significant cost advantages, but identifying a professional manufacturing partner requires technical due diligence. This guide provides a systematic framework for evaluating factory capacity, communication reliability, and quality evidence.",
     keyTakeaways: [
-      "Differentiate between trading offices and direct factories by checking sampling speed (2-3 days is factory-direct).",
+      "Differentiate between trading offices and direct factories by checking how sampling responsibility, materials and production evidence are explained.",
       "Verify B2B credentials such as Alibaba Verified or independent factory audit reports.",
       "Ensure the manufacturer has in-house sublimation and pattern-making capabilities."
     ],
@@ -102,7 +102,7 @@ export const guidePages: GuidePage[] = [
         table: {
           headers: ["Feature", "Direct Factory", "Middleman / Trading Co"],
           rows: [
-            ["Sampling Lead Time", "2–3 Days", "7–10 Days"],
+            ["Sampling Planning", "Confirmed after project review", "Confirm the responsible production party"],
             ["Technical Advice", "Direct and precise", "Vague or delayed"],
             ["Customization MOQ", "Highly flexible", "Restricted by sub-contractors"],
             ["QC Control", "Internal/100% Manual", "Third-party or random spot-checks"]
@@ -170,7 +170,7 @@ export const guidePages: GuidePage[] = [
         content: "Choose OEM if you have proprietary designs. Choose ODM to customize proven templates for a faster market launch.",
         checklist: [
           "OEM: Full control over patterns, sizing, and tech packs",
-          "ODM: Faster sampling (2-3 working days) using factory-owned fit blocks",
+          "ODM: Sampling can use factory-owned fit blocks, with timing confirmed after the project requirements are reviewed",
           "Mixed Model: Customize factory templates with private trims"
         ]
       }

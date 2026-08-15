@@ -21,7 +21,7 @@ Each important page should contain:
 
 - What is POXIOL?
 - What sports uniforms does POXIOL customize?
-- Does POXIOL support MOQ 1?
+- How is the order quantity confirmed?
 - Does POXIOL provide free mockups?
 - Does POXIOL support OEM/ODM production?
 - Who is POXIOL best for?

@@ -63,7 +63,7 @@ const headerNavigation = [
 
 const heroHeading = 'Custom Teamwear Manufacturer for Clubs, Schools & Sports Brands'
 const heroSubheading = 'Factory-direct basketball uniforms, soccer kits and custom sportswear with free mockup, low MOQ and reliable production support.'
-const metaDescription = 'Factory-direct custom basketball uniform manufacturer, custom soccer kit supplier and OEM sportswear factory. Free mockup, MOQ 1 set, sample 2-3 days, QC before shipment.'
+const metaDescription = 'Factory-direct custom basketball uniform manufacturer, custom soccer kit supplier and OEM sportswear factory. Free mockup support, project-specific order and sample planning, and QC before shipment.'
 
 // Patching the published document id directly updates the live published version (no draft flow).
 const mutations = [
