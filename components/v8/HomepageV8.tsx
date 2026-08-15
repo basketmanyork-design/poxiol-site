@@ -13,7 +13,8 @@ import {
   getV8PageConfig,
 } from '@/lib/v8'
 import type {V8FaqItem} from '@/lib/v8/types.ts'
-import {getHeroProductionAsset, getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
+import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
+import {getProductVisualization} from '@/lib/product-visualization/registry.ts'
 import {BuyerProblems} from './BuyerProblems'
 import {CustomerSegmentation} from './CustomerSegmentation'
 import {DesignJourney} from './DesignJourney'
@@ -27,22 +28,35 @@ import {MockupToFinished} from './MockupToFinished'
 import {SampleInspectionProof} from './SampleInspectionProof'
 import {PackingProof} from './PackingProof'
 import {RealProductGallery} from './RealProductGallery'
+import {ProductVisualizationSection} from './ProductVisualizationSection'
 
 export function HomepageV8({content, chrome, faqs}: {content: CmsHomeContent; chrome: CmsSiteChrome; faqs: readonly V8FaqItem[]}) {
   const page = getV8PageConfig('home')
   const buyers = V8_HOMEPAGE_BUYER_IDS.map((id) => V8_BUYERS.find((buyer) => buyer.id === id)).filter((buyer): buyer is (typeof V8_BUYERS)[number] => Boolean(buyer))
   const media = cmsProductionMediaToV8Assets(content.productionMedia)
   const realProofMedia = [...media, ...getV8ProductionAssetsForPage('home')]
-  const heroMedia = getHeroProductionAsset('home') || media.find((asset) => asset.stage === 'factory-overview-video')
+  const heroVisualization = getProductVisualization('PV-HOME-001')
+  const categoryVisualizations = [
+    getProductVisualization('PV-SOCCER-001'),
+    getProductVisualization('PV-BASEBALL-001'),
+  ]
   const startDesign = getV8Cta('start-design')
   const freeMockup = getV8Cta('free-mockup')
   const requestSample = getV8Cta('request-sample')
 
   return (
     <>
-      <V8Hero config={page.hero} media={heroMedia} />
+      <V8Hero config={page.hero} visualization={heroVisualization} visualizationPage="/" />
 
       <HomepageGeoEntitySections showCustomerSegments={false} />
+
+      <ProductVisualizationSection
+        assets={categoryVisualizations}
+        page="/"
+        eyebrow="Sport Categories"
+        title="Soccer and Baseball Teamwear Visualizations"
+        description="Explore approved POXIOL product visualizations for additional teamwear categories."
+      />
 
       <RealProductGallery
         assets={realProofMedia}

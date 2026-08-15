@@ -25,6 +25,8 @@ import {MockupToFinished} from './MockupToFinished'
 import {SampleInspectionProof} from './SampleInspectionProof'
 import {QCProofGallery} from './QCProofGallery'
 import {PackingProof} from './PackingProof'
+import {BASKETBALL_VISUALIZATION_SEQUENCE, getProductVisualization} from '@/lib/product-visualization/registry.ts'
+import {ProductVisualizationSection} from './ProductVisualizationSection'
 
 export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   const config = getV8PageConfig('basketball')
@@ -41,9 +43,18 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
       <ServiceSchema name="Custom Basketball Uniform Manufacturing" description={data.metaDescription} url={fullUrl} />
       <FAQSchema faqs={schemaFaqs} />
       <Header />
-      <V8Hero config={config.hero} primary={PHASE4_BASKETBALL.primaryCta} secondary={PHASE4_BASKETBALL.secondaryCta} />
+      <V8Hero config={config.hero} visualization={getProductVisualization('PV-BASK-001')} visualizationPage="/products/basketball-uniforms/" primary={PHASE4_BASKETBALL.primaryCta} secondary={PHASE4_BASKETBALL.secondaryCta} />
 
       <ProductGeoSections details={geoDetails} />
+
+      <ProductVisualizationSection
+        assets={BASKETBALL_VISUALIZATION_SEQUENCE}
+        page="/products/basketball-uniforms/"
+        eyebrow="Basketball Product Visualization"
+        title="Review the Uniform from Full Set to Product Details"
+        description="These approved product visualizations present the same POXIOL basketball concept from the full set through garment and material details."
+        layout="walkthrough"
+      />
 
       <RealProductGallery assets={realProofMedia} />
 

@@ -7,6 +7,8 @@ import {getV8Faqs} from '@/lib/v8/faqs'
 import {cmsProductionMediaToV8Assets} from '@/lib/v8/media'
 import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
 import {MockupToFinished} from '@/components/v8/MockupToFinished'
+import {ProductVisualizationSection} from '@/components/v8/ProductVisualizationSection'
+import {getProductVisualization} from '@/lib/product-visualization/registry'
 
 const customizationNextSteps = [
   {id: 'customization-mockup', title: 'Confirm the Design Direction', audience: 'Early design stage', description: 'Share the logo, colors and reference available for a project mockup.', href: '/free-mockup/', ctaLabel: 'Get Free Mockup'},
@@ -28,5 +30,6 @@ export default async function Page() {
     ...cmsProductionMediaToV8Assets(page.productionMedia),
     ...getV8ProductionAssetsForPage('customization'),
   ]
-  return <CmsPageTemplate page={page} beforeFooterSlot={<><MockupToFinished assets={realProofMedia} /><SolutionCards items={customizationNextSteps} eyebrow="Next Step" title="Move from Design to Production" description="Choose the next step that matches the current project stage." /><FAQSection faqs={faqs} title="Customization Project Questions" /></>} />
+  const customizationVisualization = getProductVisualization('PV-CUSTOM-001')
+  return <CmsPageTemplate page={page} beforeFooterSlot={<><ProductVisualizationSection assets={[customizationVisualization]} page="/customization/" eyebrow="Customization Visualization" title="From Mockup to Finished Presentation" description="Review the approved POXIOL visualization of a design concept moving from mockup to finished presentation." layout="single" /><MockupToFinished assets={realProofMedia} /><SolutionCards items={customizationNextSteps} eyebrow="Next Step" title="Move from Design to Production" description="Choose the next step that matches the current project stage." /><FAQSection faqs={faqs} title="Customization Project Questions" /></>} />
 }

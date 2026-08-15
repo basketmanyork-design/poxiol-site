@@ -18,6 +18,8 @@ import {SolutionCards} from './SolutionCards'
 import {V8Hero} from './V8Hero'
 import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
 import {RealProductGallery} from './RealProductGallery'
+import {getProductVisualizationsForPage} from '@/lib/product-visualization/registry.ts'
+import {ProductVisualizationSection} from './ProductVisualizationSection'
 
 export function V8BuyerLandingPage({pageId}: {pageId: V8BuyerPageContent['pageId']}) {
   const page = getV8BuyerPageContent(pageId)
@@ -28,6 +30,7 @@ export function V8BuyerLandingPage({pageId}: {pageId: V8BuyerPageContent['pageId
   const fullUrl = `${V8_BRAND.canonicalBaseUrl}${page.canonicalPath}`
   const faqSchemaItems = page.faqs.map(({question, answer}) => ({question, answer}))
   const realProofMedia = getV8ProductionAssetsForPage(pageId)
+  const supportingVisualizations = getProductVisualizationsForPage(page.canonicalPath)
 
   return (
     <main className="bg-white text-neutral-950">
@@ -61,6 +64,14 @@ export function V8BuyerLandingPage({pageId}: {pageId: V8BuyerPageContent['pageId
         eyebrow="Buyer Solutions"
         title={`A Clearer ${page.label} Workflow`}
         description="Use shared design, approval and production steps while keeping this buyer group's requirements clear."
+      />
+
+      <ProductVisualizationSection
+        assets={supportingVisualizations}
+        page={page.canonicalPath}
+        eyebrow="Teamwear Categories"
+        title="Soccer and Baseball Program Visualizations"
+        description="Approved product visualizations support category planning for school and club teamwear programs."
       />
 
       <RealProductGallery assets={realProofMedia} />
