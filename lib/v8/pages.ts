@@ -11,7 +11,7 @@ export const V8_PAGE_CONFIGS: readonly V8PageConfig[] = [
     hero: {
       eyebrow: 'Professional Custom Teamwear Manufacturer',
       title: 'Custom Teamwear Manufacturer For Clubs, Schools & Sports Brands',
-      description: 'From your first idea to finished uniforms, POXIOL helps teams create reliable custom sportswear with professional design support and quality control.',
+      description: 'POXIOL specializes in custom Basketball, Soccer and Baseball teamwear for clubs, schools, youth programs and sports brands, with design support, sample review and quality control.',
       primaryCtaId: 'free-mockup',
       secondaryCtaId: 'request-sample',
     },

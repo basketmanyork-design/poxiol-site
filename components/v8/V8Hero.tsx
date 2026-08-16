@@ -2,6 +2,7 @@ import {PrimaryButton, SecondaryButton} from '@/components/ui'
 import {getV8Cta} from '@/lib/v8/ctas.ts'
 import type {V8Cta, V8HeroConfig, V8MediaAsset} from '@/lib/v8/types.ts'
 import type {ProductVisualizationAsset} from '@/lib/product-visualization/types.ts'
+import {resolveVerifiedMedia} from '@/lib/v8/media.ts'
 import {ProductVisualizationMedia} from './ProductVisualizationMedia'
 import {VerifiedMediaPlaceholder} from './VerifiedMediaPlaceholder'
 
@@ -10,9 +11,11 @@ export function V8Hero({config, media, visualization, visualizationPage, heading
   const secondary = secondaryOverride === undefined
     ? (config.secondaryCtaId ? getV8Cta(config.secondaryCtaId) : null)
     : secondaryOverride
+  const verifiedMedia = resolveVerifiedMedia(media)
+  const hasVisual = Boolean(visualization || verifiedMedia)
   return (
     <section className="bg-neutral-950 px-5 pb-28 pt-4 text-white sm:pt-12 md:px-10 md:pb-16 md:pt-10 xl:px-20" aria-labelledby={headingId}>
-      <div className="mx-auto grid w-full min-w-0 max-w-7xl items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+      <div className={`mx-auto grid w-full min-w-0 max-w-7xl items-center gap-10 ${hasVisual ? 'lg:grid-cols-[1.2fr_0.8fr] lg:gap-14' : ''}`}>
         <div className="min-w-0">
           <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#B6FF00]">{config.eyebrow}</p>
           <h1 id={headingId} className="mt-5 max-w-full break-words [overflow-wrap:anywhere] text-[2rem] font-black uppercase leading-[1.02] min-[390px]:text-4xl sm:max-w-3xl sm:text-5xl lg:text-5xl xl:text-5xl">{config.title}</h1>
@@ -24,7 +27,7 @@ export function V8Hero({config, media, visualization, visualizationPage, heading
         </div>
         {visualization
           ? <ProductVisualizationMedia asset={visualization} page={visualizationPage} priority />
-          : <VerifiedMediaPlaceholder asset={media} priority />}
+          : verifiedMedia ? <VerifiedMediaPlaceholder asset={verifiedMedia} priority /> : null}
       </div>
     </section>
   )

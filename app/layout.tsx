@@ -9,23 +9,21 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.poxiol.com"),
   title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
   description:
-    "POXIOL provides custom basketball uniforms, soccer kits, baseball uniforms, running apparel, training wear and multi-sport teamwear with project-specific mockup, sample and OEM/ODM support.",
+    "POXIOL specializes in custom basketball uniforms, soccer kits and baseball uniforms with project-specific mockup, sample, quality-control and OEM/ODM support.",
   keywords: [
     "custom teamwear",
     "custom sports uniforms",
     "basketball uniforms manufacturer",
     "custom soccer kits",
     "baseball uniforms supplier",
-    "custom running apparel",
     "sublimation team uniforms",
     "OEM sportswear manufacturer",
     "ODM teamwear supplier",
-    "custom training wear",
   ],
   openGraph: {
     title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
     description:
-      "Custom sports uniforms for clubs, schools, events, brands and teams worldwide.",
+      "Custom basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.",
     type: "website",
     siteName: "POXIOL Teamwear",
   },

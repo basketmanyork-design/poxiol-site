@@ -24,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "",
     "/solutions/",
     "/products/",
+    "/custom-baseball-softball-uniforms/",
     "/design-gallery/",
     "/factory/",
     "/customization/",

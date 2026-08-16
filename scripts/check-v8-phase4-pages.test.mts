@@ -35,7 +35,7 @@ const expectedRoutes = [
     routeFile: 'app/manufacturing/page.tsx',
     component: 'V8AuthorityPage',
     h1: 'How POXIOL Manufactures Custom Teamwear',
-    requiredText: ['Design Preparation', 'Material Selection', 'Printing', 'Cutting', 'Sewing', 'Inspection', 'Packing', 'Verified production visual pending'],
+    requiredText: ['Design Preparation', 'Material Selection', 'Printing', 'Cutting', 'Sewing', 'Inspection', 'Packing'],
     links: ['/quality-control-process/', '/get-quote/'],
     schemas: ['WebPage', 'Service', 'FAQPage', 'BreadcrumbList'],
   },
@@ -121,6 +121,7 @@ if (outputMode) {
     assert.equal(canonicals.length, 1)
     assert.equal(canonical, `${baseUrl}${expected.route}`)
     assert.equal(new Set(ids).size, ids.length, `${expected.route} must not contain duplicate HTML IDs.`)
+    assert.doesNotMatch(visibleHtml, /Verified production visual pending/i, `${expected.route} must hide unverified public proof placeholders.`)
     for (const phrase of expected.requiredText) assert.ok(visibleText.includes(phrase), `${expected.route} is missing: ${phrase}`)
     for (const phrase of ('forbiddenText' in expected ? expected.forbiddenText : [])) assert.equal(visibleText.includes(phrase), false, `${expected.route} must not duplicate: ${phrase}`)
     for (const href of expected.links) assert.match(visibleHtml, new RegExp(`<a\\b[^>]*href=["']${href.replaceAll('/', '\\/')}["']`), `${expected.route} is missing link ${href}`)

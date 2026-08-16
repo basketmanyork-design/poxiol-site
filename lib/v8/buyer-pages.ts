@@ -11,6 +11,12 @@ const sharedAuthorityLinks = [
   {id: 'quality-control', title: 'Quality Control', description: 'Understand the checks used for materials, printing, sewing, sizing and packing.', audience: 'Inspection process', href: '/quality-control-process/', ctaLabel: 'Review Quality Control'},
 ] as const
 
+const coreSportLinks = [
+  {id: 'core-basketball', title: 'Basketball Programs', description: 'Review jerseys, shorts, reversible options, roster customization and sample approval.', audience: 'Core sport', href: '/products/basketball-uniforms/', ctaLabel: 'Explore Basketball'},
+  {id: 'core-soccer', title: 'Soccer Programs', description: 'Review jerseys, shorts, socks, goalkeeper options and complete soccer kits.', audience: 'Core sport', href: '/products/soccer-jerseys/', ctaLabel: 'Explore Soccer'},
+  {id: 'core-baseball', title: 'Baseball Programs', description: 'Review baseball jerseys, pants, full uniforms and roster customization.', audience: 'Core sport', href: '/custom-baseball-softball-uniforms/', ctaLabel: 'Explore Baseball'},
+] as const
+
 const pageDefinitions = [
   {
     pageId: 'youth-team-uniforms',
@@ -18,10 +24,10 @@ const pageDefinitions = [
     canonicalPath: '/youth-team-uniforms/',
     purpose: 'A buyer-identity page for youth basketball teams, youth sports clubs and team managers.',
     seoTitle: 'Youth Team Uniforms for Clubs and Team Managers | POXIOL',
-    seoDescription: 'Plan youth basketball and multi-sport uniforms with mixed sizes, player names and numbers, coach apparel, mockup review and sample approval.',
+    seoDescription: 'Plan youth basketball, soccer and baseball uniforms with mixed sizes, player names and numbers, coach apparel, mockup review and sample approval.',
     heroEyebrow: 'For Youth Teams and Team Managers',
     heroTitle: 'Youth Team Uniforms Made Simple for Managers',
-    heroDescription: 'Coordinate mixed sizes, player names and numbers, coach apparel and approvals through one clear ordering process.',
+    heroDescription: 'Coordinate basketball, soccer or baseball products, mixed sizes, player details, coach apparel and approvals through one clear ordering process.',
     heroPrimaryCtaId: 'start-project',
     heroSecondaryCtaId: 'request-sample',
     buyerIds: ['youth-teams'],
@@ -43,10 +49,10 @@ const pageDefinitions = [
     canonicalPath: '/school-teamwear/',
     purpose: 'A buyer-identity page for schools, academies and education sports programs.',
     seoTitle: 'School Teamwear Programs for Schools and Academies | POXIOL',
-    seoDescription: 'Coordinate seasonal school and academy teamwear with clear sizing, repeat supply planning and reliable production steps.',
+    seoDescription: 'Coordinate seasonal basketball, soccer and baseball school teamwear with clear sizing, repeat supply planning and reliable production steps.',
     heroEyebrow: 'For Schools, Academies and Education Programs',
     heroTitle: 'School Teamwear Built for Seasonal Programs',
-    heroDescription: 'Plan seasonal orders, team sizes and repeat requirements through a reliable design, approval and production workflow.',
+    heroDescription: 'Plan seasonal basketball, soccer and baseball orders, team sizes and repeat requirements through a clear approval and production workflow.',
     heroPrimaryCtaId: 'get-quote',
     heroSecondaryCtaId: 'request-sample',
     buyerIds: ['schools'],
@@ -68,10 +74,10 @@ const pageDefinitions = [
     canonicalPath: '/club-teamwear-program/',
     purpose: 'A buyer-identity page for sports clubs managing multiple teams and long-term programs.',
     seoTitle: 'Club Teamwear Programs for Multiple Teams | POXIOL',
-    seoDescription: 'Manage multiple squads, club collections and repeat teamwear orders through one consistent approval and production workflow.',
+    seoDescription: 'Manage basketball, soccer and baseball squads, club collections and repeat teamwear orders through one consistent approval and production workflow.',
     heroEyebrow: 'For Sports Clubs and Multiple Teams',
     heroTitle: 'One Club Teamwear Program for Every Squad',
-    heroDescription: 'Coordinate club collections, multiple team requirements and repeat orders with consistent approved production details.',
+    heroDescription: 'Coordinate basketball, soccer and baseball club collections, multiple team requirements and repeat orders with consistent approved details.',
     heroPrimaryCtaId: 'start-project',
     heroSecondaryCtaId: 'request-sample',
     buyerIds: ['clubs'],
@@ -93,10 +99,10 @@ const pageDefinitions = [
     canonicalPath: '/private-label-teamwear/',
     purpose: 'A buyer-identity page for sports brands and distributors planning OEM teamwear collections.',
     seoTitle: 'Private Label Teamwear for Sports Brands and Distributors | POXIOL',
-    seoDescription: 'Plan OEM teamwear collections with custom labels, packaging, sample approval and repeat manufacturing requirements.',
+    seoDescription: 'Plan private-label basketball, soccer and baseball collections with custom labels, packaging, sample approval and repeat manufacturing requirements.',
     heroEyebrow: 'For Sports Brands and Distributors',
     heroTitle: 'Private Label Teamwear Built Around Your Brand',
-    heroDescription: 'Develop OEM teamwear with confirmed specifications, custom labels, packaging, sample approval and repeat manufacturing requirements.',
+    heroDescription: 'Develop basketball, soccer and baseball OEM teamwear with confirmed specifications, custom labels, packaging, sample approval and repeat manufacturing requirements.',
     heroPrimaryCtaId: 'get-quote',
     heroSecondaryCtaId: 'request-sample',
     buyerIds: ['sports-brands', 'distributors'],
@@ -117,6 +123,7 @@ const pageDefinitions = [
 export const V8_BUYER_PAGE_CONTENT: readonly V8BuyerPageContent[] = pageDefinitions.map((page) => ({
   ...page,
   authorityLinks: [
+    ...coreSportLinks,
     ...sharedAuthorityLinks,
     {id: `${page.pageId}-inquiry`, title: page.finalCta.label, description: page.finalCta.description, audience: 'Project inquiry', href: page.finalCta.href, ctaLabel: page.finalCta.label},
   ],

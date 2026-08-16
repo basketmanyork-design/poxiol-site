@@ -15,20 +15,20 @@ export const GEO_V1 = {
     id: 'https://www.poxiol.com/#organization',
     name: 'POXIOL',
     url: 'https://www.poxiol.com',
-    description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and multi-sport uniforms.',
+    description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and baseball uniforms.',
     industry: 'Sportswear Manufacturing',
   },
   homepage: {
-    heroHeading: 'Custom Teamwear Manufacturer for Basketball, Soccer & Multi-Sport Teams',
-    heroDescription: 'POXIOL provides OEM custom uniforms for clubs, schools, sports brands and distributors with full customization, flexible MOQ and quality-controlled production.',
+    heroHeading: 'Custom Teamwear Manufacturer for Basketball, Soccer & Baseball Programs',
+    heroDescription: 'POXIOL provides custom basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors with design support, sample review and quality control.',
     entityTitle: 'Who Is POXIOL?',
     entityParagraphs: [
-      'POXIOL is a B2B custom sportswear manufacturer specializing in basketball uniforms, soccer kits and multi-sport team apparel.',
+      'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms.',
       'We support clubs, schools, teamwear brands and distributors with customized production including team logos, names, numbers, colors and private label solutions.',
     ],
     customerTitle: 'Who We Help',
     customerSegments: [
-      {title: 'Youth Teams', description: 'Custom uniforms for basketball and soccer programs.'},
+      {title: 'Youth Teams', description: 'Custom uniforms for basketball, soccer and baseball programs.'},
       {title: 'Schools & Academies', description: 'Teamwear solutions for school sports programs.'},
       {title: 'Sports Brands', description: 'OEM and private label manufacturing support.'},
       {title: 'Distributors', description: 'Bulk custom apparel production.'},
@@ -36,7 +36,7 @@ export const GEO_V1 = {
   },
   about: {
     heading: 'B2B Custom Teamwear Manufacturer',
-    description: 'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and multi-sport apparel. We help sports clubs, schools, teamwear brands and distributors develop customized uniforms through OEM and private label production, from design confirmation to production and quality inspection.',
+    description: 'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms. We help sports clubs, schools, teamwear brands and distributors develop customized uniforms through OEM and private label production, from design confirmation to production and quality inspection.',
     processTitle: 'Manufacturing Process',
     processSteps: [
       {title: 'Design Confirmation', description: 'Confirm the uniform design, colors, logos, names, numbers and project requirements.'},
@@ -57,7 +57,7 @@ export const GEO_V1 = {
   basketballFaqs: [
     {
       question: 'Is POXIOL a manufacturer or trading company?',
-      answer: 'POXIOL specializes in custom teamwear manufacturing and provides OEM and private label production services for basketball, soccer and multi-sport apparel.',
+      answer: 'POXIOL specializes in custom teamwear manufacturing and provides OEM and private label production services for basketball, soccer and baseball apparel.',
     },
     {
       question: 'Can small teams order custom basketball uniforms?',

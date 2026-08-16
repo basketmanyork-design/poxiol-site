@@ -1,2 +1,8 @@
-import CategoryRedirect from "@/components/CategoryRedirect";
-export default function Page() { return <CategoryRedirect />; }
+import {CoreSportLandingPage} from '@/components/core-sports/CoreSportLandingPage'
+import {getCoreSportMetadata} from '@/lib/core-sports'
+
+export const metadata = getCoreSportMetadata('baseball')
+
+export default function Page() {
+  return <CoreSportLandingPage sportId="baseball" />
+}

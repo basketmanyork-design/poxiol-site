@@ -53,20 +53,20 @@ for (const [name, html] of Object.entries(pages)) {
 
 const homeText = visibleText(pages.home)
 for (const phrase of [
-  'Custom Teamwear Manufacturer for Basketball, Soccer & Multi-Sport Teams',
-  'POXIOL provides OEM custom uniforms for clubs, schools, sports brands and distributors with full customization, flexible MOQ and quality-controlled production.',
+  'Custom Teamwear Manufacturer For Clubs, Schools & Sports Brands',
+  'POXIOL specializes in custom Basketball, Soccer and Baseball teamwear for clubs, schools, youth programs and sports brands, with design support, sample review and quality control.',
   'Who Is POXIOL?',
-  'POXIOL is a B2B custom sportswear manufacturer specializing in basketball uniforms, soccer kits and multi-sport team apparel.',
+  'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms.',
   'Who We Help',
   'Youth Teams',
-  'Schools & Academies',
+  'Schools',
   'Sports Brands',
   'Distributors',
 ]) assert.ok(homeText.includes(phrase), `homepage is missing GEO V1 phrase: ${phrase}`)
 
 const aboutText = visibleText(pages.about)
 for (const phrase of [
-  'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and multi-sport apparel.',
+  'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms.',
   'clubs, schools, teamwear brands and distributors',
   'OEM and private label production',
   'Manufacturing Process',
@@ -132,7 +132,7 @@ assert.deepEqual(
     id: 'https://www.poxiol.com/#organization',
     name: 'POXIOL',
     url: 'https://www.poxiol.com',
-    description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and multi-sport uniforms.',
+    description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and baseball uniforms.',
     industry: 'Sportswear Manufacturing',
   },
 )

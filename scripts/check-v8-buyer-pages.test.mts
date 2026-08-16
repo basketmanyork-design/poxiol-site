@@ -11,7 +11,7 @@ const expectedPages = [
     id: 'youth-team-uniforms',
     route: '/youth-team-uniforms/',
     title: 'Youth Team Uniforms for Clubs and Team Managers | POXIOL',
-    description: 'Plan youth basketball and multi-sport uniforms with mixed sizes, player names and numbers, coach apparel, mockup review and sample approval.',
+    description: 'Plan youth basketball, soccer and baseball uniforms with mixed sizes, player names and numbers, coach apparel, mockup review and sample approval.',
     h1: 'Youth Team Uniforms Made Simple for Managers',
     cta: 'Create Your Team Uniform',
   },
@@ -19,7 +19,7 @@ const expectedPages = [
     id: 'school-teamwear',
     route: '/school-teamwear/',
     title: 'School Teamwear Programs for Schools and Academies | POXIOL',
-    description: 'Coordinate seasonal school and academy teamwear with clear sizing, repeat supply planning and reliable production steps.',
+    description: 'Coordinate seasonal basketball, soccer and baseball school teamwear with clear sizing, repeat supply planning and reliable production steps.',
     h1: 'School Teamwear Built for Seasonal Programs',
     cta: 'Request School Teamwear Solution',
   },
@@ -27,7 +27,7 @@ const expectedPages = [
     id: 'club-teamwear-program',
     route: '/club-teamwear-program/',
     title: 'Club Teamwear Programs for Multiple Teams | POXIOL',
-    description: 'Manage multiple squads, club collections and repeat teamwear orders through one consistent approval and production workflow.',
+    description: 'Manage basketball, soccer and baseball squads, club collections and repeat teamwear orders through one consistent approval and production workflow.',
     h1: 'One Club Teamwear Program for Every Squad',
     cta: 'Build Your Club Teamwear Program',
   },
@@ -35,7 +35,7 @@ const expectedPages = [
     id: 'private-label-teamwear',
     route: '/private-label-teamwear/',
     title: 'Private Label Teamwear for Sports Brands and Distributors | POXIOL',
-    description: 'Plan OEM teamwear collections with custom labels, packaging, sample approval and repeat manufacturing requirements.',
+    description: 'Plan private-label basketball, soccer and baseball collections with custom labels, packaging, sample approval and repeat manufacturing requirements.',
     h1: 'Private Label Teamwear Built Around Your Brand',
     cta: 'Discuss Your OEM Project',
   },
@@ -70,6 +70,9 @@ for (const expected of expectedPages) {
   assert.equal(new Set(page.faqs.map((faq) => faq.question)).size, page.faqs.length)
   assert.doesNotMatch(`${page.seoTitle}\n${page.seoDescription}\n${page.heroTitle}`, /Custom Teamwear Manufacturer/i)
   assert.deepEqual(page.authorityLinks.map((item) => item.href), [
+    '/products/basketball-uniforms/',
+    '/products/soccer-jerseys/',
+    '/custom-baseball-softball-uniforms/',
     '/customization/',
     '/manufacturing/',
     '/quality-control-process/',
@@ -117,7 +120,7 @@ if (outputMode) {
     assert.match(heroHtml, new RegExp(expected.cta), `${expected.id} needs its approved CTA in the first screen.`)
     const heroHrefs = [...heroHtml.matchAll(/<a\b[^>]*href=["']([^"']+)["']/gi)].map((match) => match[1])
     assert.equal(new Set(heroHrefs).size, heroHrefs.length, `${expected.id} Hero must not repeat the same CTA destination.`)
-    assert.match(html, /Verified production visual pending/)
+    assert.doesNotMatch(bodyWithoutScripts, /Verified production visual pending/i, `${expected.id} must hide unverified public proof placeholders.`)
     for (const href of ['/customization/', '/manufacturing/', '/quality-control-process/']) {
       assert.match(html, new RegExp(`href=["']${href.replaceAll('/', '\\/')}["']`))
     }

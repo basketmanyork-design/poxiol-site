@@ -16,7 +16,7 @@ const h1Count = (html.match(/<h1\b/gi) || []).length
 assert.equal(h1Count, 1, 'Homepage must render exactly one H1.')
 
 assert.match(visibleText, /Custom Teamwear Manufacturer For Clubs, Schools & Sports Brands/i)
-assert.match(visibleText, /From your first idea to finished uniforms, POXIOL helps teams create reliable custom sportswear with professional design support and quality control\./i)
+assert.match(visibleText, /POXIOL specializes in custom Basketball, Soccer and Baseball teamwear for clubs, schools, youth programs and sports brands, with design support, sample review and quality control\./i)
 
 assert.match(html, /href="\/free-mockup\/"[^>]*>[^<]*Get Free Mockup/i)
 assert.match(html, /href="\/sample-order\/"[^>]*>[^<]*Request Sample/i)
@@ -53,9 +53,9 @@ for (const label of journey) {
 }
 assert.match(visibleText, /Start Your Team Design/i)
 
-assert.match(visibleText, /Verified production visual pending/i)
+assert.doesNotMatch(visibleText, /Verified production visual pending/i)
 
-for (const solution of ['Custom Basketball Uniforms', 'Custom Soccer Kits', 'School Teamwear', 'Private Label Sportswear', 'Club Teamwear']) {
+for (const solution of ['Custom Basketball Uniforms', 'Custom Soccer Kits', 'Custom Baseball Uniforms']) {
   assert.match(visibleText, new RegExp(solution, 'i'))
 }
 

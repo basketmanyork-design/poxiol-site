@@ -26,7 +26,7 @@ export const V8_BUYERS: readonly V8Buyer[] = [
   {
     id: 'clubs',
     title: 'Sports Clubs',
-    description: 'Custom kits and multi-sport apparel for club teams and programs.',
+    description: 'Custom basketball, soccer and baseball kits for club teams and programs.',
     href: '/club-teamwear-program/',
   },
   {

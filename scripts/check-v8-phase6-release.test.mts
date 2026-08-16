@@ -130,7 +130,8 @@ if (outputMode) {
   for (const route of ['/customization/', '/free-mockup/', '/get-quote/', '/sample-order/', '/contact/']) {
     const html = read(`out${route}index.html`)
     assert.doesNotMatch(html, /<img[^>]+cdn\.sanity\.io/i, `${route} must not render unverified Sanity images.`)
-    assert.match(html, /Verified production visual pending/i, `${route} must show the safe media placeholder when no verified asset is available.`)
+    const visibleHtml = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    assert.doesNotMatch(visibleHtml, /Verified production visual pending/i, `${route} must hide unverified public proof placeholders.`)
   }
 
   for (const route of ['/free-mockup/', '/get-quote/', '/sample-order/']) {

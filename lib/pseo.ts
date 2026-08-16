@@ -8,6 +8,13 @@ export type PSEOPage = {
   faqs: { question: string; answer: string }[];
 };
 
+export function getPseoCoreSportLink(slug: string): {label: string; href: string} | null {
+  if (slug.includes('basketball')) return {label: 'Custom Basketball Uniforms', href: '/products/basketball-uniforms/'}
+  if (slug.includes('soccer')) return {label: 'Custom Soccer Kits', href: '/products/soccer-jerseys/'}
+  if (slug.includes('baseball')) return {label: 'Custom Baseball Uniforms', href: '/custom-baseball-softball-uniforms/'}
+  return null
+}
+
 export const pseoPages: PSEOPage[] = [
   // --- KNOWLEDGE GUIDES (From Content Pack) ---
   {

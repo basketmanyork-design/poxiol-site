@@ -29,6 +29,12 @@ const required = new Map([
     ['POXIOL_BASK_NumberDetail.webp', 'Macro visualization of white number 23 on black basketball jersey fabric', 'Macro visualization of number placement on the jersey.'],
     ['POXIOL_BASK_Waistband.webp', 'Close-up visualization of elastic waistband on black basketball shorts', 'Elastic waistband visualization for the basketball product detail section.'],
   ]],
+  ['products/soccer-jerseys', [
+    ['POXIOL_SOCCER_FullSet.webp', 'POXIOL black and neon green soccer kit with jersey shorts and socks', 'POXIOL soccer kit visualization showing jersey, shorts and socks.'],
+  ]],
+  ['custom-baseball-softball-uniforms', [
+    ['POXIOL_BASEBALL_FullSet.webp', 'POXIOL black white and neon green baseball uniform set', 'POXIOL baseball uniform visualization showing jersey and matching pants.'],
+  ]],
   ['customization', [['POXIOL_CUSTOM_MockupToFinished.webp', 'Basketball jersey design visualization transitioning from mockup to finished presentation', 'Concept-to-finished visualization for POXIOL customization.']]],
   ['free-mockup', [['POXIOL_CUSTOM_MockupToFinished.webp', 'Basketball jersey design visualization transitioning from mockup to finished presentation', 'Concept-to-finished visualization for POXIOL customization.']]],
   ['sample-order', [['POXIOL_BASK_FrontBackComparison.webp', 'Front and back comparison of matching POXIOL basketball uniform set', 'Front-and-back comparison visualization for the same basketball uniform concept.']]],

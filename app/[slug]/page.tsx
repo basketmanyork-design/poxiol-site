@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
-import { pseoPages, getPSEOPageBySlug } from "@/lib/pseo";
+import { pseoPages, getPSEOPageBySlug, getPseoCoreSportLink } from "@/lib/pseo";
 import StructuredData from "@/components/seo/StructuredData";
 import Link from "next/link";
 
@@ -33,6 +33,7 @@ export default async function PSEOPage({ params }: Props) {
   const page = getPSEOPageBySlug(slug);
 
   if (!page) notFound();
+  const coreSportLink = getPseoCoreSportLink(page.slug);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -111,6 +112,16 @@ export default async function PSEOPage({ params }: Props) {
                 ))}
               </div>
             </div>
+
+            {coreSportLink ? (
+              <div className="rounded-3xl border border-lime-400/30 bg-lime-400/5 p-8">
+                <p className="text-xs font-black uppercase tracking-widest text-lime-400">Core Product Page</p>
+                <h2 className="mt-3 text-2xl font-black text-white">Continue to the Main Commercial Page</h2>
+                <Link href={coreSportLink.href} className="mt-5 inline-flex min-h-11 items-center font-black text-lime-400 underline underline-offset-4">
+                  {coreSportLink.label}
+                </Link>
+              </div>
+            ) : null}
 
             <div className="flex flex-col items-center justify-center space-y-6 pt-10">
               <h2 className="text-3xl font-black uppercase tracking-tight text-white">Ready to Start Your Project?</h2>
