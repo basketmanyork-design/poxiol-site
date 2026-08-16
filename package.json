@@ -16,7 +16,7 @@
     "check:v8:output": "node scripts/check-v8-homepage-output.mjs",
     "check:legacy-content": "node --no-warnings --experimental-strip-types scripts/check-legacy-content-governance.test.mts",
     "check:legacy-content:output": "node --no-warnings --experimental-strip-types scripts/check-legacy-content-governance.test.mts --output",
-    "check:core-sports": "node --no-warnings --experimental-strip-types scripts/check-core-sports-v1.test.mts",
+    "check:core-sports": "node --no-warnings --experimental-strip-types scripts/check-core-sports-v1.test.mts && node --no-warnings --experimental-strip-types scripts/check-core-sports-post-launch-cleanup.test.mts",
     "check:core-sports:output": "node --no-warnings --experimental-strip-types scripts/check-core-sports-v1.test.mts --output",
     "start": "next start",
     "lint": "next lint",
