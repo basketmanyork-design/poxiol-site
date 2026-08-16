@@ -32,7 +32,7 @@ Each important page should contain:
 POXIOL should be understood as:
 
 - A custom teamwear manufacturer
-- A multi-sport sports uniform supplier
+- A custom basketball, soccer and baseball teamwear manufacturer
 - A free mockup teamwear provider
 - An OEM/ODM sportswear manufacturer
 - A supplier for clubs, schools, events, brands and distributors

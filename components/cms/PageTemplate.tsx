@@ -204,7 +204,7 @@ export function CmsPageTemplate({page, contactSlot, beforeFooterSlot}: {page: Cm
       <Header />
       <section className="relative bg-neutral-950 px-5 pb-28 pt-16 md:px-10 md:py-32 xl:px-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.12),transparent_30%)]" />
-        <div className="relative mx-auto grid w-full min-w-0 max-w-7xl grid-cols-1 gap-14 lg:grid-cols-2 lg:items-center">
+        <div className={`relative mx-auto grid w-full min-w-0 max-w-7xl grid-cols-1 gap-14 ${heroMedia ? 'lg:grid-cols-2 lg:items-center' : ''}`}>
           <div className="min-w-0">
             <p className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">{page.eyebrow}</p>
             <h1 className="max-w-full break-words [overflow-wrap:anywhere] text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-7xl">{page.heading}</h1>
@@ -214,7 +214,7 @@ export function CmsPageTemplate({page, contactSlot, beforeFooterSlot}: {page: Cm
               <SecondaryButton href="/contact/" className="w-full sm:w-auto">Talk to a Teamwear Specialist</SecondaryButton>
             </div>
           </div>
-          <VerifiedMediaPlaceholder asset={heroMedia} />
+          {heroMedia ? <VerifiedMediaPlaceholder asset={heroMedia} /> : null}
         </div>
       </section>
 

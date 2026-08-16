@@ -3,7 +3,7 @@ import type {CmsPageSection} from './cms/types'
 export const sportsCategories = [
   { title: "Basketball Uniforms", description: "Custom jerseys, shorts and full sublimation team sets.", cta: "View Basketball Uniforms", href: "/products/basketball-uniforms/", image: "/images/sports/basketball_sm.webp" },
   { title: "Soccer Kits", description: "Jerseys, shorts, socks and goalkeeper kits for clubs and schools.", cta: "View Soccer Kit Options", href: "/products/soccer-jerseys/", image: "/images/sports/soccer_sm.webp" },
-  { title: "Baseball & Softball", description: "Button jerseys, pants, caps and full team uniforms.", cta: "View Baseball Options", href: "/products/", image: "/images/sports/baseball_sm.webp" },
+  { title: "Baseball & Softball", description: "Button jerseys, pants, caps and full team uniforms.", cta: "View Baseball Options", href: "/custom-baseball-softball-uniforms/", image: "/images/sports/baseball_sm.webp" },
   { title: "Running & Marathon Wear", description: "Lightweight singlets, event vests and marathon apparel.", cta: "View Running Wear", href: "/products/", image: "/images/sports/running_sm.webp" },
   { title: "Training Wear", description: "Warm-up suits, tracksuits, training tops and team travel apparel.", cta: "View Training Wear", href: "/products/training-wear/", image: "/images/sports/training_sm.webp" },
   { title: "American Football Uniforms", description: "Custom jerseys, pants and practice uniforms for teams.", cta: "View Football Uniforms", href: "/products/", image: "/images/sports/american-football_sm.webp" },

@@ -22,6 +22,12 @@ export function resolveVerifiedMedia(asset?: V8MediaAsset | null): V8MediaAsset 
   return asset
 }
 
+export function getPublicProofAssets(assets: readonly V8MediaAsset[]): V8MediaAsset[] {
+  return assets
+    .map((asset) => resolveVerifiedMedia(asset))
+    .filter((asset): asset is V8MediaAsset => Boolean(asset))
+}
+
 function cmsMediaAsset(id: string, asset?: CmsVerifiedMediaAsset): V8MediaAsset | null {
   if (!asset) return null
   const slot = V8_MEDIA_SLOTS.find((item) => item.id === asset.stage)

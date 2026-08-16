@@ -9,18 +9,18 @@ import {
 
 assert.equal(
   GEO_V1.homepage.heroHeading,
-  'Custom Teamwear Manufacturer for Basketball, Soccer & Multi-Sport Teams',
+  'Custom Teamwear Manufacturer for Basketball, Soccer & Baseball Programs',
 )
 assert.equal(
   GEO_V1.homepage.heroDescription,
-  'POXIOL provides OEM custom uniforms for clubs, schools, sports brands and distributors with full customization, flexible MOQ and quality-controlled production.',
+  'POXIOL provides custom basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors with design support, sample review and quality control.',
 )
 assert.equal(GEO_V1.organization.id, 'https://www.poxiol.com/#organization')
 assert.deepEqual(GEO_V1.organization, {
   id: 'https://www.poxiol.com/#organization',
   name: 'POXIOL',
   url: 'https://www.poxiol.com',
-  description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and multi-sport uniforms.',
+  description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and baseball uniforms.',
   industry: 'Sportswear Manufacturing',
 })
 

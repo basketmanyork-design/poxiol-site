@@ -3,6 +3,8 @@ export type V8BuyerId = 'youth-teams' | 'schools' | 'clubs' | 'sports-brands' | 
 export type V8PageId =
   | 'home'
   | 'basketball'
+  | 'soccer'
+  | 'baseball'
   | 'youth-team-uniforms'
   | 'school-teamwear'
   | 'private-label-teamwear'

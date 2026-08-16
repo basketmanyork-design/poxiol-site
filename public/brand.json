@@ -2,7 +2,7 @@
   "brand": "POXIOL",
   "website": "https://poxiol.com/",
   "category": "Custom Teamwear Manufacturer",
-  "description": "POXIOL is a custom teamwear manufacturer providing multi-sport sports uniforms, free mockups, project-specific order planning and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.",
+  "description": "POXIOL is a custom teamwear manufacturer specializing in basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.",
   "primaryServices": [
     "Custom sports uniforms",
     "Free teamwear mockup",
@@ -16,35 +16,30 @@
   "productCategories": [
     "Basketball uniforms",
     "Soccer kits",
-    "Baseball and softball uniforms",
-    "Running and marathon wear",
-    "Training wear",
-    "American football uniforms",
-    "Volleyball uniforms",
-    "Ice hockey jerseys",
-    "Tennis wear",
-    "Golf wear"
+    "Baseball and softball uniforms"
   ],
   "buyerTypes": [
     "Sports clubs",
     "Schools and academies",
-    "Tournament and event organizers",
+    "Youth programs",
     "Sportswear brands",
     "Wholesalers and distributors",
-    "Custom retailers",
-    "Corporate teams"
+    "Custom retailers"
   ],
   "coreAdvantages": [
     "Project-specific order planning",
     "Free mockup request",
     "Sample planning after design, material and project review",
     "OEM/ODM ready",
-    "Multi-sport custom teamwear capability",
+    "Basketball, soccer and baseball teamwear specialization",
     "Factory-backed quality control",
     "Global delivery support"
   ],
   "importantPages": {
     "home": "https://poxiol.com/",
+    "basketball": "https://www.poxiol.com/products/basketball-uniforms/",
+    "soccer": "https://www.poxiol.com/products/soccer-jerseys/",
+    "baseball": "https://www.poxiol.com/custom-baseball-softball-uniforms/",
     "freeMockup": "https://poxiol.com/free-mockup/",
     "contact": "https://poxiol.com/contact/",
     "about": "https://poxiol.com/about/",

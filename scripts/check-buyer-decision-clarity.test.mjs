@@ -36,7 +36,7 @@ for (const sharedSection of ['CustomerSegmentation', 'BuyerProblems', 'DesignJou
   assert.ok(homepageV8Source.includes(`<${sharedSection}`), `HomepageV8 must render ${sharedSection}`)
 }
 assert.match(buyerSource, /GEO_V1\.homepage\.heroHeading/, 'homepage heading must use the shared GEO V1 entity conclusion')
-assert.match(geoSource, /Custom Teamwear Manufacturer for Basketball, Soccer & Multi-Sport Teams/, 'shared GEO V1 brand-level homepage conclusion is missing')
+assert.match(geoSource, /Custom Teamwear Manufacturer for Basketball, Soccer & Baseball Programs/, 'shared GEO V1 brand-level homepage conclusion is missing')
 
 for (const heading of [
   'Who We Are',

@@ -1,5 +1,5 @@
 // Code-owned header navigation (conversion-optimized structure).
-// Products expands to the four priority categories on desktop and mobile.
+// Products gives the three first-stage core sports primary visibility.
 // "Get Quote" replaces the old "Contact" entry to signal B2B purchase intent.
 
 export type NavChild = { label: string; href: string };
@@ -17,8 +17,8 @@ export const HEADER_NAV: NavItem[] = [
     children: [
       { label: 'Basketball Uniforms', href: '/products/basketball-uniforms/' },
       { label: 'Soccer Kits', href: '/products/soccer-jerseys/' },
-      { label: 'Training Wear', href: '/products/training-wear/' },
-      { label: 'OEM Sportswear', href: '/oem-odm/' },
+      { label: 'Baseball Uniforms', href: '/custom-baseball-softball-uniforms/' },
+      { label: 'All Products', href: '/products/' },
     ],
   },
   { label: 'Factory', href: '/factory/' },

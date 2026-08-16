@@ -167,7 +167,7 @@ export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
 ]
 
 export const BUYER_DECISION_FAQS: CmsFaqItem[] = [
-  {question: 'What does POXIOL manufacture?', answer: 'POXIOL manufactures custom basketball uniforms, soccer kits, training wear and private-label teamwear for clubs, schools, academies, distributors and sportswear brands.'},
+  {question: 'What does POXIOL manufacture?', answer: 'POXIOL specializes in custom basketball uniforms, soccer kits and baseball uniforms for clubs, schools, youth programs, distributors and sportswear brands, with private-label project support.'},
   {question: 'What affects the quotation?', answer: 'The quotation depends on product format, fabric, quantity, names, numbers, artwork, labels, packaging, shipping destination and shipping method.'},
   {question: 'Can I review a sample before bulk production?', answer: 'Sample availability and quantity are confirmed for the project so the buyer can review agreed fabric, fit, print and construction details before bulk production planning.'},
   {question: 'How is artwork approved?', answer: 'The buyer reviews the front and back layout, colors, logos, names and numbers before sample or production scheduling.'},

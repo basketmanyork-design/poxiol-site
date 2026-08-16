@@ -1,7 +1,7 @@
 import {V8_PROCESSES} from './processes.ts'
 import type {V8ContentCard, V8ProcessStep} from './types.ts'
 
-export const V8_HOMEPAGE_BUYER_IDS = ['youth-teams', 'schools', 'clubs', 'sports-brands'] as const
+export const V8_HOMEPAGE_BUYER_IDS = ['youth-teams', 'schools', 'clubs', 'sports-brands', 'distributors'] as const
 
 export const V8_HOMEPAGE_PROBLEMS: readonly V8ContentCard[] = [
   {id: 'design-confidence', title: 'Will my design look correct?', description: 'Free Mockup Before Production'},
@@ -39,27 +39,11 @@ export const V8_HOMEPAGE_SOLUTIONS: readonly V8ContentCard[] = [
     ctaLabel: 'Explore Soccer Kits',
   },
   {
-    id: 'school-teamwear',
-    title: 'School Teamwear',
-    audience: 'For schools and academies',
-    description: 'Plan team identity, roster requirements and sizing across school sports programs.',
-    href: '/school-teamwear/',
-    ctaLabel: 'Plan School Teamwear',
-  },
-  {
-    id: 'private-label-sportswear',
-    title: 'Private Label Sportswear',
-    audience: 'For sports brands and distributors',
-    description: 'Confirm branding, product specifications and sample requirements before bulk production.',
-    href: '/private-label-teamwear/',
-    ctaLabel: 'Start a Private Label Project',
-  },
-  {
-    id: 'club-teamwear',
-    title: 'Club Teamwear',
-    audience: 'For sports clubs and team programs',
-    description: 'Create a consistent teamwear program around approved design and repeatable project details.',
-    href: '/club-teamwear-program/',
-    ctaLabel: 'Plan Club Teamwear',
+    id: 'baseball-uniforms',
+    title: 'Custom Baseball Uniforms',
+    audience: 'For youth programs, schools, clubs and baseball brands',
+    description: 'Plan jerseys, pants and full uniform programs with confirmed artwork, roster, sizing and sample requirements.',
+    href: '/custom-baseball-softball-uniforms/',
+    ctaLabel: 'Explore Baseball Uniforms',
   },
 ] as const

@@ -1,6 +1,6 @@
 # POXIOL
 
-> POXIOL is a factory-direct custom teamwear manufacturer specializing in basketball uniforms, soccer kits, training wear, team hoodies, accessories and OEM/ODM sportswear programs for clubs, schools, academies, brands, distributors and event organizers worldwide.
+> POXIOL is a custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.
 
 ## Core Pages
 
@@ -8,6 +8,7 @@
 - Products: https://www.poxiol.com/products/
 - Custom Basketball Uniforms: https://www.poxiol.com/products/basketball-uniforms/
 - Custom Soccer Jerseys: https://www.poxiol.com/products/soccer-jerseys/
+- Custom Baseball Uniforms: https://www.poxiol.com/custom-baseball-softball-uniforms/
 - Manufacturing: https://www.poxiol.com/manufacturing/
 - Quality Control Process: https://www.poxiol.com/quality-control-process/
 - Certificates & Testing: https://www.poxiol.com/certificates-testing/
@@ -32,7 +33,7 @@
 
 - Custom basketball uniforms
 - Custom soccer kits
-- Custom training wear
+- Custom baseball uniforms
 - Custom team hoodies and jackets
 - OEM sportswear manufacturing
 - ODM teamwear development
@@ -55,7 +56,7 @@
 - Adult leagues
 - Sportswear brands
 - Distributors
-- Event organizers
+- Youth programs
 - Custom retailers
 
 ## Important Compliance Notes

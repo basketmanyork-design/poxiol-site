@@ -27,10 +27,12 @@ import {QCProofGallery} from './QCProofGallery'
 import {PackingProof} from './PackingProof'
 import {BASKETBALL_VISUALIZATION_SEQUENCE, getProductVisualization} from '@/lib/product-visualization/registry.ts'
 import {ProductVisualizationSection} from './ProductVisualizationSection'
+import {getCoreSport} from '@/lib/core-sports'
 
 export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   const config = getV8PageConfig('basketball')
-  const fullUrl = 'https://www.poxiol.com/products/basketball-uniforms/'
+  const coreSport = getCoreSport('basketball')
+  const fullUrl = 'https://www.poxiol.com' + coreSport.canonicalPath
   const faqs = getPhase4BasketballFaqs(data.faqs)
   const schemaFaqs = faqs.map(({question, answer}) => ({question, answer}))
   const geoDetails = buildSportsProductGeoDetails(data)
@@ -38,7 +40,7 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
 
   return (
     <main className="bg-white text-neutral-950">
-      <ContentViewTracker event="product_category_view" params={{product_category: data.slug, sport: data.primaryKeyword}} />
+      <ContentViewTracker event="product_category_view" params={{product_category: coreSport.canonicalPath, sport: coreSport.id}} />
       <ProductSchema name={data.h1} description={data.metaDescription} url={fullUrl} image={data.heroImage} />
       <ServiceSchema name="Custom Basketball Uniform Manufacturing" description={data.metaDescription} url={fullUrl} />
       <FAQSchema faqs={schemaFaqs} />
@@ -46,6 +48,14 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
       <V8Hero config={config.hero} visualization={getProductVisualization('PV-BASK-001')} visualizationPage="/products/basketball-uniforms/" primary={PHASE4_BASKETBALL.primaryCta} secondary={PHASE4_BASKETBALL.secondaryCta} />
 
       <ProductGeoSections details={geoDetails} />
+
+      <SolutionCards
+        items={coreSport.productCards}
+        headingId="basketball-core-product-system-title"
+        eyebrow="Basketball Product System"
+        title={coreSport.productSummaryTitle}
+        description="Review the complete basketball product scope before design and sample approval."
+      />
 
       <ProductVisualizationSection
         assets={BASKETBALL_VISUALIZATION_SEQUENCE}

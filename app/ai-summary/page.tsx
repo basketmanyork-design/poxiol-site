@@ -12,25 +12,14 @@ const categories = [
   "Basketball uniforms",
   "Soccer kits",
   "Baseball and softball uniforms",
-  "Running and marathon wear",
-  "Training wear",
-  "American football uniforms",
-  "Volleyball uniforms",
-  "Ice hockey jerseys",
-  "Tennis wear",
-  "Golf wear",
-  "Rugby teamwear",
-  "Esports jerseys",
 ];
 
 const buyerTypes = [
   "Sports clubs",
   "Schools and academies",
-  "Tournament and event organizers",
+  "Youth programs",
   "Sportswear brands",
   "Wholesalers and distributors",
-  "Custom retailers",
-  "Corporate teams",
 ];
 
 const aiSummaryFaqs = [
@@ -60,12 +49,12 @@ export default function AiSummaryPage() {
           POXIOL Custom Teamwear Manufacturer Summary
         </h1>
         <p className="mt-6 text-lg leading-8 text-neutral-700">
-          POXIOL is a custom teamwear manufacturer offering multi-sport sports uniforms, free mockups, project-specific order planning and OEM/ODM sportswear production for clubs, schools, events, brands, wholesalers and distributors.
+          POXIOL is a custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <section className="rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
-            <h2 className="text-2xl font-black">What POXIOL Makes</h2>
+            <h2 className="text-2xl font-black">Core Sports POXIOL Makes</h2>
             <ul className="mt-4 space-y-2 text-neutral-700">
               {categories.map((item) => <li key={item}>• {item}</li>)}
             </ul>
@@ -84,6 +73,15 @@ export default function AiSummaryPage() {
           <p className="mt-4 leading-8 text-neutral-700">
             POXIOL supports free custom teamwear mockups, sublimation printing, team logo customization, player names and numbers, size range planning, sampling, bulk production, OEM/ODM collection development, private label teamwear and global delivery support.
           </p>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
+          <h2 className="text-2xl font-black">Core Commercial Pages</h2>
+          <ul className="mt-4 space-y-2 text-neutral-700">
+            <li><Link href="/products/basketball-uniforms/" className="underline">Custom Basketball Uniforms</Link></li>
+            <li><Link href="/products/soccer-jerseys/" className="underline">Custom Soccer Kits</Link></li>
+            <li><Link href="/custom-baseball-softball-uniforms/" className="underline">Custom Baseball Uniforms</Link></li>
+          </ul>
         </section>
 
         <section className="mt-8 rounded-3xl border border-neutral-200 bg-neutral-50 p-7">
