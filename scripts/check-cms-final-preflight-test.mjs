@@ -19,17 +19,17 @@ const EXPECTED_CANDIDATE_KEYS = JSON.parse(
 const EXPECTED_TYPES = [
   'seoFields', 'imageWithAlt', 'portableText', 'publishStatus', 'callToAction',
   'faqReference', 'relatedContent', 'procurementOverride', 'pageSection',
-  'verifiedMediaAsset', 'productionMediaSet',
+  'verifiedMediaAsset', 'productionMediaSet', 'claimPolicy',
   'siteSettings', 'navigationSettings', 'footerSettings', 'procurementStandards',
   'sitePage', 'productCategory', 'product', 'caseStudy', 'faqCategory',
-  'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings'
+  'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings', 'evidenceRecord'
 ];
 
 const baseSetup = (tmpDir) => {
   const docsDir = join(tmpDir, 'docs');
   mkdirSync(docsDir, { recursive: true });
   writeFileSync(join(docsDir, 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({
-    correctedCandidateCount: 125,
+    correctedCandidateCount: 151,
     candidateKeys: EXPECTED_CANDIDATE_KEYS,
     articleConflictCount: 0,
     routeConflictCount: 0,
@@ -92,7 +92,7 @@ const tests = [
     name: "3. Article conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 125, candidateKeys: EXPECTED_CANDIDATE_KEYS, articleConflictCount: 1 }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 151, candidateKeys: EXPECTED_CANDIDATE_KEYS, articleConflictCount: 1 }));
     },
     expectedExitCode: 1
   },
@@ -100,7 +100,7 @@ const tests = [
     name: "4. Route conflict",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
-      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 125, candidateKeys: EXPECTED_CANDIDATE_KEYS, routeConflictCount: 1 }));
+      writeFileSync(join(tmpDir, 'docs', 'CMS_MIGRATION_DRY_RUN_SUMMARY.json'), JSON.stringify({ correctedCandidateCount: 151, candidateKeys: EXPECTED_CANDIDATE_KEYS, routeConflictCount: 1 }));
     },
     expectedExitCode: 1
   },
@@ -163,6 +163,14 @@ const tests = [
     expectedExitCode: 1
   },
   {
+    name: "11b. Committed Sanity token literal",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      writeFileSync(join(tmpDir, 'scripts', 'sanity-leak.mjs'), 'const sanityToken = "abcdefghijklmnopqrstuvwxyz123456";');
+    },
+    expectedExitCode: 1
+  },
+  {
     name: "12. Unsafe workflow permission",
     setup: (tmpDir) => {
       baseSetup(tmpDir);
@@ -179,6 +187,16 @@ const tests = [
       const libDir = join(tmpDir, 'lib', 'sanity');
       mkdirSync(libDir, { recursive: true });
       writeFileSync(join(libDir, 'safe.ts'), `const token = process.env.TOKEN;`);
+    },
+    expectedExitCode: 0
+  },
+  {
+    name: "13b. Harmless typed token parameter",
+    setup: (tmpDir) => {
+      baseSetup(tmpDir);
+      const libDir = join(tmpDir, 'lib', 'sanity');
+      mkdirSync(libDir, { recursive: true });
+      writeFileSync(join(libDir, 'safe-signature.ts'), 'export function sanityQueryUrl(token?: string): string { return token || ""; }');
     },
     expectedExitCode: 0
   },
@@ -413,7 +431,11 @@ async function run() {
     }
   }
 
-  console.log(`\nAll preflight self-tests passed (fail-closed verified, ${passCount}/${passCount + failCount})`);
+  if (failCount === 0) {
+    console.log(`\nAll preflight self-tests passed (fail-closed verified, ${passCount}/${passCount + failCount})`);
+  } else {
+    console.error(`\nPreflight self-tests FAILED (${passCount}/${passCount + failCount} passed)`);
+  }
   process.exit(failCount === 0 ? 0 : 1);
 }
 run();

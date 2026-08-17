@@ -7,9 +7,9 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const selfScripts = ['check-cms-final-preflight.mjs', 'check-cms-final-preflight-test.mjs', 'verify-mvp-seed-result.cjs', 'check-cms-safety.mjs', 'cms-migration-dry-run.ts'];
-const EXPECTED_CORRECTED_CANDIDATE_COUNT = 125;
+const EXPECTED_CORRECTED_CANDIDATE_COUNT = 151;
 const EXPECTED_REDIRECT_CANDIDATE = 'redirectRule.redirect-2494c1e68511ad18';
-const EXPECTED_CANDIDATE_KEYS_SHA256 = '3ae014c9199d03472ad9351a3ed21aab6b7783ebc6205cd29eae120e3f8bc0c5';
+const EXPECTED_CANDIDATE_KEYS_SHA256 = '2fcde9bf694d3893f390bb797026db9b38a9459ee07650b7165ff7380bc1113e';
 
 
 let totalFail = 0;
@@ -70,6 +70,9 @@ const candidateKeysValid =
   candidateKeysHash === EXPECTED_CANDIDATE_KEYS_SHA256;
 if (!candidateKeysValid) {
   console.error(`FATAL: Migration candidate set does not match the approved ${EXPECTED_CORRECTED_CANDIDATE_COUNT}-candidate baseline.`);
+  console.error(`- Candidate count: ${candidateKeys.length}`);
+  console.error(`- Candidate hash: ${candidateKeysHash}`);
+  console.error(`- Required redirect present: ${candidateKeys.includes(EXPECTED_REDIRECT_CANDIDATE)}`);
   totalFail++;
 }
 
@@ -198,10 +201,10 @@ if (!gitCheckFailure && binaryChangeCount > 0) {
 const expectedTypes = [
   'seoFields', 'imageWithAlt', 'portableText', 'publishStatus', 'callToAction',
   'faqReference', 'relatedContent', 'procurementOverride', 'pageSection',
-  'verifiedMediaAsset', 'productionMediaSet',
+  'verifiedMediaAsset', 'productionMediaSet', 'claimPolicy',
   'siteSettings', 'navigationSettings', 'footerSettings', 'procurementStandards',
   'sitePage', 'productCategory', 'product', 'caseStudy', 'faqCategory',
-  'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings'
+  'faqItem', 'article', 'author', 'redirectRule', 'analyticsSettings', 'evidenceRecord'
 ];
 
 const schemaPath = join(ROOT, 'studio', 'schemaTypes', 'index.ts');
@@ -322,7 +325,7 @@ const secretPatterns = [
   /\bBearer\s+[A-Za-z0-9\-_\.]{20,}\b/,
   /\bCLOUDFLARE_API_TOKEN\b/i,
   /\bDEPLOY_HOOK.*[A-Za-z0-9]{20,}\b/,
-  /\bsanity.*token\b/i
+  /\bsanity[A-Za-z0-9_]*token\s*[:=]\s*['"][A-Za-z0-9._-]{16,}['"]/i
 ];
 
 function scanForSecrets() {
