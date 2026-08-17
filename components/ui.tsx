@@ -143,7 +143,7 @@ export async function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
             <Link href="/" className="inline-flex min-h-10 items-center text-3xl font-black uppercase tracking-tight">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="150" height="42" className="h-10 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
-            <p className="mt-6 max-w-xs leading-8 text-neutral-400">Factory-direct custom teamwear manufacturer for clubs, schools, academies and sports brands worldwide.</p>
+            <p className="mt-6 max-w-xs leading-8 text-neutral-400">Custom teamwear manufacturing partner for clubs, schools, academies and sports brands.</p>
             <div className="mt-8 flex flex-col gap-3">
               <Link href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</Link>
               <Link href={getQuoteHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</Link>
@@ -167,6 +167,9 @@ export async function Footer() {
         <div className="mt-20 flex flex-col gap-6 border-t border-white/10 pt-10 text-xs font-bold uppercase tracking-widest text-neutral-500 md:flex-row md:items-center md:justify-between">
           <p>{chrome.copyright}</p>
           <div className="flex flex-wrap gap-x-8 gap-y-2">
+            <Link href="/privacy-policy/" className="text-white hover:text-[#B6FF00]">Privacy</Link>
+            <Link href="/terms/" className="text-white hover:text-[#B6FF00]">Terms</Link>
+            <Link href="/intellectual-property-policy/" className="text-white hover:text-[#B6FF00]">IP Policy</Link>
             <span>Project MOQ Confirmed by Consultation</span>
             <span>Sample Plan Confirmed by Project</span>
             <span>International Shipping Support</span>

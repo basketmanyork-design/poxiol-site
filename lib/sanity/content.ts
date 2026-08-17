@@ -41,18 +41,23 @@ import type {
   CmsSiteChrome,
 } from '@/lib/cms/types'
 import type {CmsPortableTextNode} from '@/lib/cms/portableText'
+import {normalizeBasketballCategoryPublicCopy} from '@/lib/truth/basketball-category'
 import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
 import {resolveProductsForCategoryVisibility} from '@/lib/cms/category-visibility'
 import {resolveContent} from './fallback'
 import {getWeek3GuideBySlug, week3Guides} from '@/lib/week3-guides'
+import {publicEvidenceFromSanity, type SanityEvidenceRecord} from '@/lib/evidence/sanity'
+import type {EvidenceRecord} from '@/lib/evidence/types'
+import {resolveProcurementTruth, type ProcurementPolicySource} from '@/lib/truth/procurement-policy'
 import {cardImageUrl, getImageUrl, heroImageUrl} from './image'
 import {
   articleBySlugQuery,
   articlesQuery,
   caseStudiesQuery,
   caseStudyBySlugQuery,
+  evidenceRecordsQuery,
   faqItemsQuery,
   footerQuery,
   navigationQuery,
@@ -131,7 +136,7 @@ type SanitySiteSettings = {
 type SanityNav = {headerNavigation?: SanityLink[]}
 type SanityFooter = {footerColumns?: Array<{title?: string; links?: SanityLink[]}>; copyright?: string}
 
-type SanityProcurementStandards = {
+type SanityProcurementStandards = ProcurementPolicySource & {
   defaultMOQ?: string
   sampleMOQ?: string
   sampleTime?: string
@@ -448,14 +453,14 @@ function mapCategory(category: SanityCategory, fallback: CmsProductCategory | un
   if (!category.slug || !category.categoryName) return null
   return {
     slug: category.slug,
-    title: category.categoryName,
-    shortName: category.shortName,
-    description: category.heroDescription || category.introduction || fallback?.description || category.categoryName,
+    title: normalizeBuyerFacingClaim(category.categoryName),
+    shortName: category.shortName ? normalizeBuyerFacingClaim(category.shortName) : category.shortName,
+    description: normalizeBuyerFacingClaim(category.heroDescription || category.introduction || fallback?.description || category.categoryName),
     image: imageFrom(category.heroImage, fallback?.image || {url: '/images/poxiol-v62/products_teamwear_matrix.png', alt: category.categoryName}, 'card'),
-    buyerTypes: category.buyerTypes?.length ? category.buyerTypes : fallback?.buyerTypes,
-    targetMarkets: category.targetMarkets?.length ? category.targetMarkets : fallback?.targetMarkets,
-    productTypes: category.productTypes?.length ? category.productTypes : fallback?.productTypes,
-    coreBenefits: category.coreBenefits?.length ? category.coreBenefits : fallback?.coreBenefits,
+    buyerTypes: category.buyerTypes?.length ? category.buyerTypes.map(normalizeBuyerFacingClaim) : fallback?.buyerTypes,
+    targetMarkets: category.targetMarkets?.length ? category.targetMarkets.map(normalizeBuyerFacingClaim) : fallback?.targetMarkets,
+    productTypes: category.productTypes?.length ? category.productTypes.map(normalizeBuyerFacingClaim) : fallback?.productTypes,
+    coreBenefits: category.coreBenefits?.length ? category.coreBenefits.map(normalizeBuyerFacingClaim) : fallback?.coreBenefits,
     relatedFaqs: category.relatedFaqs?.map(mapFaqItem).filter(Boolean) as CmsFaqItem[] || fallback?.relatedFaqs || [],
     relatedCaseStudies: mapRelated(category.relatedCaseStudies, '/projects/').length ? mapRelated(category.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies,
     relatedGuides: mapArticleRelated(category.relatedGuides).length ? mapArticleRelated(category.relatedGuides) : fallback?.relatedGuides,
@@ -514,7 +519,7 @@ function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, in
   const fallbackDetailImages = fallback?.detailImages?.length ? fallback.detailImages : fallback?.image ? [fallback.image] : []
   return {
     slug: product.slug,
-    title: product.productName,
+    title: normalizeBuyerFacingClaim(product.productName),
     categorySlug: product.categorySlug || fallback?.categorySlug,
     categoryTitle: product.categoryTitle || fallback?.categoryTitle,
     description: normalizeBuyerFacingClaim(product.shortDescription || fallback?.description || product.fullDescription || product.productName),
@@ -548,7 +553,7 @@ function mapProduct(product: SanityProduct, fallback: CmsProduct | undefined, in
 }
 function seoFrom(seo: Seo | undefined, fallback: CmsSeo): CmsSeo {
   return {
-    title: seo?.seoTitle || fallback.title,
+    title: normalizeBuyerFacingClaim(seo?.seoTitle || fallback.title),
     description: normalizeBuyerFacingClaim(seo?.metaDescription || fallback.description),
     canonicalUrl: seo?.canonicalUrl || fallback.canonicalUrl,
     ogImage: optionalImage(seo?.ogImage, fallback.ogImage),
@@ -565,7 +570,7 @@ function mapCta(cta: SanityCta | undefined, fallback?: CmsCta): CmsCta | undefin
 function mapLink(link: SanityLink | undefined): CmsLink | null {
   const href = link?.externalUrl || link?.url || link?.href
   if (!link?.label || !href) return null
-  return {label: link.label, href, openInNewWindow: link.openInNewWindow}
+  return {label: normalizeBuyerFacingClaim(link.label), href, openInNewWindow: link.openInNewWindow}
 }
 
 const exportedCategorySlugs = new Set(sportsPages.map((page) => page.slug.replace(/^products\//, '')))
@@ -790,6 +795,8 @@ export async function getHomeBrandContent() {
 function normalizePageClaims(page: CmsPage): CmsPage {
   return {
     ...page,
+    title: normalizeBuyerFacingClaim(page.title),
+    eyebrow: normalizeBuyerFacingClaim(page.eyebrow),
     heading: normalizeBuyerFacingClaim(page.heading),
     description: normalizeBuyerFacingClaim(page.description),
     sections: page.sections.map((section) => ({
@@ -801,7 +808,11 @@ function normalizePageClaims(page: CmsPage): CmsPage {
       specifications: section.specifications?.map((item) => ({...item, value: normalizeBuyerFacingClaim(item.value)})),
       faqs: section.faqs?.map((faq) => ({...faq, question: normalizeBuyerFacingQuestion(faq.question), answer: normalizeFaqAnswer(faq.answer)})),
     })),
-    seo: {...page.seo, description: normalizeBuyerFacingClaim(page.seo.description)},
+    seo: {
+      ...page.seo,
+      title: normalizeBuyerFacingClaim(page.seo.title),
+      description: normalizeBuyerFacingClaim(page.seo.description),
+    },
   }
 }
 
@@ -815,22 +826,25 @@ export async function getSitePage(key: string): Promise<CmsPage> {
   return {
     key,
     slug: page.slug || legacy.slug,
-    title: page.internalName || legacy.title,
-    eyebrow: page.heroEyebrow || legacy.eyebrow,
+    title: normalizeBuyerFacingClaim(page.internalName || legacy.title),
+    eyebrow: normalizeBuyerFacingClaim(page.heroEyebrow || legacy.eyebrow),
     heading: key === 'homepage' ? BUYER_DECISION_HERO_HEADING : normalizeBuyerFacingClaim(page.heroHeading || legacy.heading),
     description: key === 'homepage' ? BUYER_DECISION_HERO_DESCRIPTION : normalizeBuyerFacingClaim(page.heroSubheading || legacy.description),
     image: optionalImage(page.heroImage, legacy.image || {url: '/images/poxiol-v62/about_hero.png', alt: page.internalName || legacy.title}, 'hero'),
     productionMedia: mapProductionMediaSet(page.productionMedia) || legacy.productionMedia,
     heroCta: mapCta(page.heroCTA, legacy.heroCta),
     heroSecondaryCta: mapCta(page.heroSecondaryCTA),
-    homepageUspCards: page.homepageUspCards?.filter((card) => card.metric && card.title && card.description).map((card) => ({metric: card.metric || '', title: card.title || '', description: card.description || '', displayOrder: card.displayOrder})),
+    homepageUspCards: page.homepageUspCards?.filter((card) => card.metric && card.title && card.description).map((card) => ({metric: normalizeBuyerFacingClaim(card.metric || ''), title: normalizeBuyerFacingClaim(card.title || ''), description: normalizeBuyerFacingClaim(card.description || ''), displayOrder: card.displayOrder})),
     homepageSectionHeadings: page.homepageSectionHeadings ? {
-      sourcing: {eyebrow: page.homepageSectionHeadings.sourcingEyebrow || 'Factory Specs', title: page.homepageSectionHeadings.sourcingTitle || 'Factory Sourcing Summary', subtitle: page.homepageSectionHeadings.sourcingSubtitle},
-      usp: {eyebrow: page.homepageSectionHeadings.uspEyebrow || 'Why POXIOL', title: page.homepageSectionHeadings.uspTitle || 'POXIOL Manufacturing Advantage', subtitle: page.homepageSectionHeadings.uspSubtitle},
-      matrix: {eyebrow: page.homepageSectionHeadings.matrixEyebrow || 'Products', title: page.homepageSectionHeadings.matrixTitle || 'Custom Teamwear Matrix'},
-      faq: {eyebrow: page.homepageSectionHeadings.faqEyebrow || 'FAQ', title: page.homepageSectionHeadings.faqTitle || 'Custom Teamwear Sourcing Guide'},
+      sourcing: {eyebrow: normalizeBuyerFacingClaim(page.homepageSectionHeadings.sourcingEyebrow || 'Factory Specs'), title: normalizeBuyerFacingClaim(page.homepageSectionHeadings.sourcingTitle || 'Factory Sourcing Summary'), subtitle: page.homepageSectionHeadings.sourcingSubtitle ? normalizeBuyerFacingClaim(page.homepageSectionHeadings.sourcingSubtitle) : undefined},
+      usp: {eyebrow: normalizeBuyerFacingClaim(page.homepageSectionHeadings.uspEyebrow || 'Why POXIOL'), title: normalizeBuyerFacingClaim(page.homepageSectionHeadings.uspTitle || 'POXIOL Manufacturing Advantage'), subtitle: page.homepageSectionHeadings.uspSubtitle ? normalizeBuyerFacingClaim(page.homepageSectionHeadings.uspSubtitle) : undefined},
+      matrix: {eyebrow: normalizeBuyerFacingClaim(page.homepageSectionHeadings.matrixEyebrow || 'Products'), title: normalizeBuyerFacingClaim(page.homepageSectionHeadings.matrixTitle || 'Custom Teamwear Matrix')},
+      faq: {eyebrow: normalizeBuyerFacingClaim(page.homepageSectionHeadings.faqEyebrow || 'FAQ'), title: normalizeBuyerFacingClaim(page.homepageSectionHeadings.faqTitle || 'Custom Teamwear Sourcing Guide')},
     } : undefined,
-    inquirySupport: page.inquirySupport,
+    inquirySupport: page.inquirySupport ? {
+      title: page.inquirySupport.title ? normalizeBuyerFacingClaim(page.inquirySupport.title) : undefined,
+      description: page.inquirySupport.description ? normalizeBuyerFacingClaim(page.inquirySupport.description) : undefined,
+    } : undefined,
     sections: mapPageSections(page.contentSections, legacy.sections),
     bottomCta: mapCta(page.bottomCTA, legacy.bottomCta),
     seo: seoFrom(page.seo, legacy.seo),
@@ -1136,12 +1150,13 @@ function basketballProcurementTable(
   standards: SanityProcurementStandards | null,
 ): SportsPageData['procurementTable'] {
   if (!standards) return fallback
+  const truth = resolveProcurementTruth(standards)
   const approved = [
-    {item: 'Sample MOQ', specification: 'Confirmed during project consultation'},
-    {item: 'Sample production', specification: 'Confirmed during project consultation'},
-    {item: 'Bulk production', specification: 'Confirmed according to quantity, customization and the current production schedule'},
+    {item: 'Sample MOQ', specification: truth.quantity},
+    {item: 'Sample production', specification: truth.sampleTiming},
+    {item: 'Bulk production', specification: truth.productionTiming},
     {item: 'Quality control', specification: standards.qcStandard || 'Inspection before shipment'},
-    {item: 'Size tolerance', specification: 'Confirmed against the approved project size specification'},
+    {item: 'Size tolerance', specification: truth.measurementTolerance},
     {item: 'Mixed sizes', specification: standards.mixedSizes || 'Mixed adult and youth sizes are supported'},
   ]
   const replacementTokens = ['sample support', 'sample moq', 'sample production', 'bulk production', 'quality control', 'size tolerance', 'mixed sizes']
@@ -1157,7 +1172,7 @@ export async function getBasketballDecisionPage(legacyData: SportsPageData): Pro
     sanityQuery<SanityProcurementStandards>(procurementStandardsQuery),
   ])
   if (!categoryResponse.ok || !categoryResponse.result) return base
-  const category = categoryResponse.result
+  const category = normalizeBasketballCategoryPublicCopy(categoryResponse.result)
   if (!isDocumentVisible(category.publishStatus, contentSource)) return base
 
   const decisionSections = mapPageSections(
@@ -1174,6 +1189,7 @@ export async function getBasketballDecisionPage(legacyData: SportsPageData): Pro
   return {
     ...base,
     h1: category.heroTitle || base.h1,
+    heroText: category.heroDescription || category.introduction || base.heroText,
     heroImageAlt: category.heroImage?.altText || base.heroImageAlt || base.h1,
     heroProofPoints: category.heroProofPoints?.length ? category.heroProofPoints : base.heroProofPoints,
     buyerTypes: category.buyerTypes?.length
@@ -1200,6 +1216,13 @@ export async function getBasketballDecisionPage(legacyData: SportsPageData): Pro
 
 export async function getBasketballPreviewPage(legacyData: SportsPageData): Promise<SportsPageData | null> {
   return getBasketballDecisionPage(legacyData)
+}
+
+export async function getPublicEvidenceRecords(): Promise<EvidenceRecord[]> {
+  if (contentSource === 'legacy') return []
+  const response = await sanityQuery<SanityEvidenceRecord[]>(evidenceRecordsQuery)
+  if (!response.ok) return []
+  return (response.result || []).map(publicEvidenceFromSanity).filter(Boolean) as EvidenceRecord[]
 }
 
 function legacyHomeRows(): CmsHomeContent['sourcingRows'] {
@@ -1230,7 +1253,7 @@ function normalizeHomepageSeo(seo: CmsSeo): CmsSeo {
   return {
     ...seo,
     description: normalizeHomepageClaim(seo.description)
-      .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'POXIOL is a factory-direct custom teamwear manufacturer'),
+      .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'POXIOL is a custom teamwear manufacturing partner'),
   }
 }
 
@@ -1316,14 +1339,18 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
   }))
   const faqs = normalizeHomepageFaqs(faqGroups.flatMap((group) => group.items).slice(0, 7))
   const procurementData = procurement.ok ? procurement.result : null
+  const procurementTruth = resolveProcurementTruth(procurementData || {})
   const procurementRows = procurementData
     ? [
-        {item: 'Sample MOQ', capability: 'Confirmed during project consultation.'},
-        {item: 'Sample Production', capability: 'Confirmed during project consultation.'},
-        {item: 'Mockup Time', capability: 'Confirmed after complete project requirements are reviewed.'},
-        {item: 'Bulk Production', capability: 'Confirmed according to quantity, customization and the current production schedule.'},
+        {item: 'Sample MOQ', capability: procurementTruth.quantity},
+        {item: 'Sample Production', capability: procurementTruth.sampleTiming},
+        {item: 'Mockup Time', capability: procurementTruth.mockupTiming},
+        {item: 'Bulk Production', capability: procurementTruth.productionTiming},
         {item: 'Quality Control', capability: normalizeQualityControl(procurementData.qcStandard || procurementData.qualityPromise, procurementData.sizeTolerance)},
-        {item: 'Shipping Notes', capability: procurementData.mixedSizes || STANDARD_MIXED_SIZES},      ]
+        {item: 'Size Tolerance', capability: procurementTruth.measurementTolerance},
+        {item: 'Mixed Sizes', capability: procurementData.mixedSizes || STANDARD_MIXED_SIZES},
+        {item: 'Shipping Notes', capability: procurementTruth.shippingTiming},
+      ]
     : legacyHomeRows()
 
   const pageAny = page as CmsPage & {
@@ -1339,7 +1366,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     brandName: chrome.brandName,
     siteUrl: chrome.siteUrl,
     productionMedia: page.productionMedia,
-    heroEyebrow: page.eyebrow || 'Factory-Direct Teamwear Manufacturer',
+    heroEyebrow: page.eyebrow || 'Custom Teamwear Manufacturer',
     heroHeading: BUYER_DECISION_HERO_HEADING,
     heroDescription: BUYER_DECISION_HERO_DESCRIPTION,
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
@@ -1357,7 +1384,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
       faq: {eyebrow: 'FAQ', title: 'Custom Teamwear Sourcing Guide'},
     },
     inquiryTitle: normalizeHomepageClaim(ctaSection?.title || 'Build Your Teamwear Project'),
-    inquiryDescription: normalizeHomepageClaim(ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.'),
+    inquiryDescription: normalizeHomepageClaim(ctaSection?.body || 'Submit your project details for a manufacturing review. POXIOL reviews your logo, quantity and requested schedule to prepare a mockup and production plan.'),
     inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
     inquirySupportDescription: normalizeHomepageClaim(pageAny.inquirySupport?.description || 'Share the tournament date and project requirements by WhatsApp so the available sample and production schedule can be confirmed.'),
     faqs: BUYER_DECISION_FAQS,

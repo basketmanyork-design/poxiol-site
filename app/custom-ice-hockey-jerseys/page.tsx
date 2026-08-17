@@ -1,2 +1,5 @@
-import CategoryRedirect from "@/components/CategoryRedirect";
-export default function Page() { return <CategoryRedirect />; }
+import {notFound} from 'next/navigation'
+
+export default function Page() {
+  notFound()
+}

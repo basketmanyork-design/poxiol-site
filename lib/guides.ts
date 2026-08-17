@@ -51,7 +51,7 @@ const existingBuyingGuides: BuyingGuide[] = [
       },
     ],
     faqs: [
-      { question: "Can I order just one sample?", answer: "Yes, we support sample orders to ensure you are 100% satisfied with the quality before committing to a full team order." },
+      { question: "Can I request a sample?", answer: "Sample availability and quantity are confirmed after the product, design and project requirements are reviewed." },
       { question: "How is the production and shipping schedule confirmed?", answer: "Production scheduling is confirmed after the design, quantity, size breakdown and project requirements are approved. Shipping method and delivery timing are then confirmed for the destination and shipment requirements." },
     ],
   },
@@ -98,7 +98,7 @@ const existingBuyingGuides: BuyingGuide[] = [
     ],
     faqs: [
       { question: "Does sublimation work on cotton?", answer: "Sublimation requires polyester fibers to bond correctly. For performance teamwear, we use high-grade polyesters and poly-blends." },
-      { question: "Is there a limit to colors?", answer: "No. Sublimation allows for unlimited colors, gradients, and fine details at no additional cost." },
+      { question: "How are colors and design details confirmed?", answer: "Sublimation can support broad full-color artwork, gradients and fine details, subject to the approved artwork, fabric, print method and production review." },
     ],
   },
   {
@@ -108,7 +108,7 @@ const existingBuyingGuides: BuyingGuide[] = [
     metaDescription: "The professional's hub for teamwear manufacturing questions. Covers factory verification, fabric GSM, size tolerances, and private label support.",
     eyebrow: "Professional Hub",
     h1: "B2B Sourcing & Manufacturing FAQ",
-    intro: "Deep technical insights and procurement advice for sports organizations, brand owners, and sportswear distributors looking for factory-direct manufacturing excellence.",
+    intro: "Technical insights and procurement advice for sports organizations, brand owners and sportswear distributors evaluating a teamwear manufacturing partner.",
     sections: [],
     faqs: [],
     relatedArticles: [

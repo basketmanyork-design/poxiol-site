@@ -1,0 +1,1762 @@
+{
+  "generatedAt": "2026-08-17T16:51:38.656Z",
+  "total": 247,
+  "publicReview": 0,
+  "byClassification": {
+    "DETECTION_RULE": 30,
+    "GOVERNANCE_RECORD": 14,
+    "LEGAL_RETAIN": 9,
+    "NON_PUBLIC_TOOLING": 21,
+    "SAFE_NEGATION": 3,
+    "TEST_FIXTURE": 170
+  },
+  "byKind": {
+    "ABSOLUTE_QUALITY": 9,
+    "CAPACITY_OR_SCALE": 28,
+    "CERTIFICATION": 13,
+    "COMPANY_HISTORY": 4,
+    "EQUIPMENT_BRAND": 14,
+    "FACTORY_DIRECT": 17,
+    "FIXED_TIMELINE": 37,
+    "GUARANTEE": 3,
+    "MOCKUP_TIMING": 18,
+    "MOQ": 35,
+    "PRODUCTION_TIMING": 8,
+    "PROJECT_AUTHENTICITY": 25,
+    "SAMPLE_TIMING": 15,
+    "SHIPPING_TIMING": 5,
+    "TOLERANCE_RETURN_POLICY": 1,
+    "UNLIMITED": 15
+  },
+  "findings": [
+    {
+      "path": "scripts/check-v9-output-truth.test.mts",
+      "line": 39,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-output-truth.test.mts",
+      "line": 40,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-output-truth.test.mts",
+      "line": 41,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-output-truth.test.mts",
+      "line": 42,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-output-truth.test.mts",
+      "line": 43,
+      "kind": "UNLIMITED",
+      "value": "UNLIMITED",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-output-truth.test.mts",
+      "line": 43,
+      "kind": "UNLIMITED",
+      "value": "unlimited",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-output-truth.test.mts",
+      "line": 44,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 13,
+      "kind": "MOQ",
+      "value": "MOQ 1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 15,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample production usually takes 2-3 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 15,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 19,
+      "kind": "PRODUCTION_TIMING",
+      "value": "Bulk production usually takes 7-12 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 19,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 22,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory-direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 24,
+      "kind": "FACTORY_DIRECT",
+      "value": "factory-direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 28,
+      "kind": "MOQ",
+      "value": "MOQ 1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 31,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample Production (2-3 Days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 31,
+      "kind": "PRODUCTION_TIMING",
+      "value": "Production (2-3 Days After Mockup Confirmation) → Bulk production usually takes 7-12 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 31,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 31,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 34,
+      "kind": "UNLIMITED",
+      "value": "Unlimited",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 35,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "100%",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 36,
+      "kind": "FACTORY_DIRECT",
+      "value": "Direct Manufacturer",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 38,
+      "kind": "FIXED_TIMELINE",
+      "value": "2–3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 42,
+      "kind": "FIXED_TIMELINE",
+      "value": "7–12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 46,
+      "kind": "COMPANY_HISTORY",
+      "value": "15+ years experience",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 46,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 50,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory-direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 54,
+      "kind": "FACTORY_DIRECT",
+      "value": "factory-direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 63,
+      "kind": "MOQ",
+      "value": "1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 64,
+      "kind": "MOQ",
+      "value": "MOQ 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 65,
+      "kind": "SAMPLE_TIMING",
+      "value": "sampleProductionTime: 'Sample production usually takes 2-3 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 65,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 66,
+      "kind": "PRODUCTION_TIMING",
+      "value": "bulkProductionTime: 'Bulk production usually takes 7-12 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 66,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 67,
+      "kind": "MOCKUP_TIMING",
+      "value": "mockupTime: 'Free mockup usually within 2 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 68,
+      "kind": "SHIPPING_TIMING",
+      "value": "shippingNotes: 'Express delivery usually takes 3-7 business days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 70,
+      "kind": "TOLERANCE_RETURN_POLICY",
+      "value": "Not A Reason For Returns",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 77,
+      "kind": "MOQ",
+      "value": "MOQ 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 78,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample production is 2-3 days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 78,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 85,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "Customer Success Story",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 89,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "3,000 pieces",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-sanity-migration.test.mts",
+      "line": 125,
+      "kind": "MOQ",
+      "value": "1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 44,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory Direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 44,
+      "kind": "MOQ",
+      "value": "MOQ 1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 44,
+      "kind": "SHIPPING_TIMING",
+      "value": "delivery guaranteed in 7-12 days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 44,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 53,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "30,000+ units",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory Direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "MOQ",
+      "value": "MOQ 1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample 2-3 days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "PRODUCTION_TIMING",
+      "value": "Bulk 7-12 days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "UNLIMITED",
+      "value": "Unlimited",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 71,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "100%",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 73,
+      "kind": "UNLIMITED",
+      "value": "UNLIMITED",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "MOQ",
+      "value": "1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "MOCKUP_TIMING",
+      "value": "2h",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "MOCKUP_TIMING",
+      "value": "24h",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "FIXED_TIMELINE",
+      "value": "3–5",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "FIXED_TIMELINE",
+      "value": "fast delivery",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "FIXED_TIMELINE",
+      "value": "rapid production",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 78,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 83,
+      "kind": "FACTORY_DIRECT",
+      "value": "Direct manufacturer",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 83,
+      "kind": "FACTORY_DIRECT",
+      "value": "Direct factory",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 83,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "Real Project",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 83,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "Customer Success Story",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 87,
+      "kind": "COMPANY_HISTORY",
+      "value": "15+ years experience",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 89,
+      "kind": "MOCKUP_TIMING",
+      "value": "2 h",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 93,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 97,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 101,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real project",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 105,
+      "kind": "UNLIMITED",
+      "value": "unlimited",
+      "classification": "SAFE_NEGATION"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 110,
+      "kind": "UNLIMITED",
+      "value": "unlimited",
+      "classification": "SAFE_NEGATION"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 110,
+      "kind": "UNLIMITED",
+      "value": "Unlimited",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 111,
+      "kind": "UNLIMITED",
+      "value": "UNLIMITED",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 122,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory Direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 122,
+      "kind": "UNLIMITED",
+      "value": "unlimited",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 122,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "30,000 units",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 122,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 122,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "100%",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 153,
+      "kind": "MOQ",
+      "value": "Start with 1 Sample",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 154,
+      "kind": "MOQ",
+      "value": "one-set sample",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 155,
+      "kind": "MOQ",
+      "value": "Start with 1 Sample",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v9-truth-foundation.test.mts",
+      "line": 156,
+      "kind": "MOQ",
+      "value": "one-set sample",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 13,
+      "kind": "UNLIMITED",
+      "value": "UNLIMITED",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 35,
+      "kind": "UNLIMITED",
+      "value": "UNLIMITED",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 37,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "KIAN",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 37,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "EPSON",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 39,
+      "kind": "CERTIFICATION",
+      "value": "ISO",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 39,
+      "kind": "CERTIFICATION",
+      "value": "BSCI",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 39,
+      "kind": "CERTIFICATION",
+      "value": "SGS",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 39,
+      "kind": "CERTIFICATION",
+      "value": "CE",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 39,
+      "kind": "CERTIFICATION",
+      "value": "WRAP",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 39,
+      "kind": "CERTIFICATION",
+      "value": "Sedex",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 75,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/scan-v9-red-claims.mts",
+      "line": 75,
+      "kind": "FIXED_TIMELINE",
+      "value": "2–3",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 76,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 78,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 105,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "KIAN",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 106,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "EPSON",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 108,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 118,
+      "kind": "UNLIMITED",
+      "value": "UNLIMITED",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 301,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "customer success story",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/v9-sanity-truth-migration.mts",
+      "line": 301,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real project",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "app/builder/page.tsx",
+      "line": 16,
+      "kind": "MOCKUP_TIMING",
+      "value": "2 h",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "app/fabric-guide/page.tsx",
+      "line": 50,
+      "kind": "MOCKUP_TIMING",
+      "value": "2 h",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "app/fabric-guide/page.tsx",
+      "line": 83,
+      "kind": "MOCKUP_TIMING",
+      "value": "2 h",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "app/printing-guide/page.tsx",
+      "line": 99,
+      "kind": "MOCKUP_TIMING",
+      "value": "2 h",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "app/terms/page.tsx",
+      "line": 26,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 19,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 46,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 73,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 100,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 127,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 154,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 181,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 208,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 235,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 263,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 291,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 321,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 349,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "content/product-visualization/assets.json",
+      "line": 373,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "GOVERNANCE_RECORD"
+    },
+    {
+      "path": "lib/guides-data.ts",
+      "line": 90,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "lib/guides-data.ts",
+      "line": 92,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "LEGAL_RETAIN"
+    },
+    {
+      "path": "lib/high-intent-guides.js",
+      "line": 97,
+      "kind": "UNLIMITED",
+      "value": "unlimited",
+      "classification": "SAFE_NEGATION"
+    },
+    {
+      "path": "lib/legacy-claim-normalizer.ts",
+      "line": 27,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "lib/legacy-claim-normalizer.ts",
+      "line": 27,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "lib/legacy-claim-normalizer.ts",
+      "line": 28,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "capacity",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "lib/product-visualization/policy.ts",
+      "line": 7,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "lib/sanity/content.ts",
+      "line": 1309,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "lib/sanity/content.ts",
+      "line": 1309,
+      "kind": "FIXED_TIMELINE",
+      "value": "2–3",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/basketball-decision-page-plan.mjs",
+      "line": 30,
+      "kind": "MOQ",
+      "value": "MOQ: 1 set",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/basketball-decision-page-plan.mjs",
+      "line": 31,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample production: 2–3 working days",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/basketball-decision-page-plan.mjs",
+      "line": 31,
+      "kind": "FIXED_TIMELINE",
+      "value": "2–3",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/basketball-decision-page-plan.mjs",
+      "line": 32,
+      "kind": "PRODUCTION_TIMING",
+      "value": "Bulk production: 7–12 working days",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/basketball-decision-page-plan.mjs",
+      "line": 32,
+      "kind": "FIXED_TIMELINE",
+      "value": "7–12",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/buyer-decision-draft-plan.mjs",
+      "line": 10,
+      "kind": "FACTORY_DIRECT",
+      "value": "factory-direct",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/buyer-decision-draft-plan.mjs",
+      "line": 20,
+      "kind": "FACTORY_DIRECT",
+      "value": "factory-direct",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/buyer-decision-draft-plan.mjs",
+      "line": 21,
+      "kind": "FACTORY_DIRECT",
+      "value": "factory-direct",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/buyer-decision-draft-plan.mjs",
+      "line": 23,
+      "kind": "FACTORY_DIRECT",
+      "value": "factory-direct",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/buyer-decision-draft-plan.mjs",
+      "line": 42,
+      "kind": "MOCKUP_TIMING",
+      "value": "within 24 hours",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/check-basketball-decision-page.mjs",
+      "line": 53,
+      "kind": "MOQ",
+      "value": "MOQ: 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-buyer-decision-clarity.test.mjs",
+      "line": 110,
+      "kind": "COMPANY_HISTORY",
+      "value": "15+ years experience",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-buyer-decision-clarity.test.mjs",
+      "line": 111,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "30,000+ units",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-buyer-decision-clarity.test.mjs",
+      "line": 113,
+      "kind": "MOCKUP_TIMING",
+      "value": "within 24 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-buyer-decision-clarity.test.mjs",
+      "line": 164,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "30,000+ units",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-buyer-decision-clarity.test.mjs",
+      "line": 164,
+      "kind": "MOCKUP_TIMING",
+      "value": "within 24 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-buyer-decision-draft-plan.test.mjs",
+      "line": 22,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "30,000+ units",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-buyer-decision-draft-plan.test.mjs",
+      "line": 23,
+      "kind": "MOCKUP_TIMING",
+      "value": "within 24 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-cms-binary-allowlist.mts",
+      "line": 26,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-guide-route-integrity.test.mjs",
+      "line": 16,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "KIAN",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-guide-route-integrity.test.mjs",
+      "line": 16,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "EPSON",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-high-intent-guides-content-gaps.test.mjs",
+      "line": 54,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "KIAN",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-high-intent-guides-content-gaps.test.mjs",
+      "line": 54,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "EPSON",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-high-intent-guides-week2.test.mjs",
+      "line": 48,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "KIAN",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-high-intent-guides-week2.test.mjs",
+      "line": 48,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "EPSON",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-high-intent-guides-week2.test.mjs",
+      "line": 48,
+      "kind": "GUARANTEE",
+      "value": "guaranteed delivery",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 12,
+      "kind": "MOQ",
+      "value": "MOQ 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 13,
+      "kind": "MOQ",
+      "value": "MOQ: 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 14,
+      "kind": "MOQ",
+      "value": "MOQ 1",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 15,
+      "kind": "MOQ",
+      "value": "1 set MOQ",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 16,
+      "kind": "MOQ",
+      "value": "1-set MOQ",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 17,
+      "kind": "MOQ",
+      "value": "1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 18,
+      "kind": "MOQ",
+      "value": "1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 20,
+      "kind": "MOQ",
+      "value": "MOQ: 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 21,
+      "kind": "MOQ",
+      "value": "MOQ from 1 piece",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 23,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample production: 2-3 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 23,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 24,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample production: 2–3 Days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 24,
+      "kind": "FIXED_TIMELINE",
+      "value": "2–3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 25,
+      "kind": "PRODUCTION_TIMING",
+      "value": "Bulk production: 7—12 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 25,
+      "kind": "FIXED_TIMELINE",
+      "value": "7—12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 26,
+      "kind": "MOCKUP_TIMING",
+      "value": "Mockup in 2h",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 27,
+      "kind": "MOCKUP_TIMING",
+      "value": "mockup in 1-2 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 28,
+      "kind": "MOCKUP_TIMING",
+      "value": "within 24 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 30,
+      "kind": "MOCKUP_TIMING",
+      "value": "within 2 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 32,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "3,000+ teams",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 33,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "30,000 sets",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 34,
+      "kind": "COMPANY_HISTORY",
+      "value": "20 years of experience",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 36,
+      "kind": "SHIPPING_TIMING",
+      "value": "shipping typically takes 3-6 business days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 37,
+      "kind": "GUARANTEE",
+      "value": "Guaranteed delivery",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 38,
+      "kind": "CERTIFICATION",
+      "value": "BSCI",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 64,
+      "kind": "MOQ",
+      "value": "MOQ 1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 65,
+      "kind": "MOQ",
+      "value": "MOQ: 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 66,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample Production in 2-3 Days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 66,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 67,
+      "kind": "SAMPLE_TIMING",
+      "value": "sampling (2–3 days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 67,
+      "kind": "FIXED_TIMELINE",
+      "value": "2–3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 68,
+      "kind": "PRODUCTION_TIMING",
+      "value": "Bulk production usually takes 7–12 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 68,
+      "kind": "FIXED_TIMELINE",
+      "value": "7–12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 69,
+      "kind": "SHIPPING_TIMING",
+      "value": "shipping typically takes 3-6 business days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-legacy-content-governance.test.mts",
+      "line": 75,
+      "kind": "MOQ",
+      "value": "MOQ 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-product-visualization.test.mts",
+      "line": 66,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real customer",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-seed-trust-conversion-preview.mjs",
+      "line": 54,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory-Direct",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-seed-trust-conversion-preview.mjs",
+      "line": 95,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "3,000+ Teams",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-seed-trust-conversion-preview.mjs",
+      "line": 96,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "KIAN",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-seed-trust-conversion-preview.mjs",
+      "line": 97,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "EPSON",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-solutions-image-integrity.test.mjs",
+      "line": 15,
+      "kind": "CAPACITY_OR_SCALE",
+      "value": "3,000+ Teams",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-solutions-image-integrity.test.mjs",
+      "line": 15,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "KIAN",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-solutions-image-integrity.test.mjs",
+      "line": 15,
+      "kind": "EQUIPMENT_BRAND",
+      "value": "EPSON",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase5-conversion.test.mts",
+      "line": 69,
+      "kind": "SAMPLE_TIMING",
+      "value": "sample section', body: 'Sample Production: 2-3 Days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase5-conversion.test.mts",
+      "line": 69,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase5-conversion.test.mts",
+      "line": 69,
+      "kind": "SHIPPING_TIMING",
+      "value": "shipping: 3-7 Business Days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase5-conversion.test.mts",
+      "line": 71,
+      "kind": "SAMPLE_TIMING",
+      "value": "Sample production: 2-3 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase5-conversion.test.mts",
+      "line": 71,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 46,
+      "kind": "MOQ",
+      "value": "MOQ 1",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 46,
+      "kind": "SAMPLE_TIMING",
+      "value": "sample production in 2-3 days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 46,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 48,
+      "kind": "MOQ",
+      "value": "MOQ 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 49,
+      "kind": "PRODUCTION_TIMING",
+      "value": "Bulk production commonly takes 7-12 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 49,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 52,
+      "kind": "MOQ",
+      "value": "MOQ 1 Set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 59,
+      "kind": "MOQ",
+      "value": "1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 59,
+      "kind": "SAMPLE_TIMING",
+      "value": "sample/i, /2-3 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 59,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 59,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "100%",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 73,
+      "kind": "MOQ",
+      "value": "MOQ 1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 75,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 76,
+      "kind": "FIXED_TIMELINE",
+      "value": "7-12",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 77,
+      "kind": "MOCKUP_TIMING",
+      "value": "within 2 hours",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 78,
+      "kind": "MOCKUP_TIMING",
+      "value": "Mockup in 2h",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 151,
+      "kind": "MOQ",
+      "value": "1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 151,
+      "kind": "SAMPLE_TIMING",
+      "value": "sample/i, /2-3 working days",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 151,
+      "kind": "FIXED_TIMELINE",
+      "value": "2-3",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/check-v8-phase6-release.test.mts",
+      "line": 151,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "100%",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/cms-apply-conversion-20260807.mjs",
+      "line": 65,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory-direct",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/cms-apply-conversion-20260807.mjs",
+      "line": 66,
+      "kind": "FACTORY_DIRECT",
+      "value": "Factory-direct",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/cms-migration-dry-run.ts",
+      "line": 23,
+      "kind": "UNLIMITED",
+      "value": "Unlimited",
+      "classification": "NON_PUBLIC_TOOLING"
+    },
+    {
+      "path": "scripts/legacy-claim-policy.mts",
+      "line": 67,
+      "kind": "CERTIFICATION",
+      "value": "ISO",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/legacy-claim-policy.mts",
+      "line": 67,
+      "kind": "CERTIFICATION",
+      "value": "BSCI",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/legacy-claim-policy.mts",
+      "line": 67,
+      "kind": "CERTIFICATION",
+      "value": "SGS",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/legacy-claim-policy.mts",
+      "line": 67,
+      "kind": "CERTIFICATION",
+      "value": "CE",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/legacy-claim-policy.mts",
+      "line": 67,
+      "kind": "CERTIFICATION",
+      "value": "WRAP",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/legacy-claim-policy.mts",
+      "line": 67,
+      "kind": "CERTIFICATION",
+      "value": "Sedex",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "scripts/portable-text-rendering.test.mjs",
+      "line": 17,
+      "kind": "MOQ",
+      "value": "1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "scripts/portable-text-rendering.test.mjs",
+      "line": 29,
+      "kind": "MOQ",
+      "value": "1 set",
+      "classification": "TEST_FIXTURE"
+    },
+    {
+      "path": "studio/schemaTypes/documents/caseStudy.ts",
+      "line": 15,
+      "kind": "PROJECT_AUTHENTICITY",
+      "value": "real project",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "studio/schemaTypes/validation.ts",
+      "line": 9,
+      "kind": "GUARANTEE",
+      "value": "guaranteed delivery",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "studio/schemaTypes/validation.ts",
+      "line": 9,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "never fade",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "studio/schemaTypes/validation.ts",
+      "line": 10,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "never crack",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "studio/schemaTypes/validation.ts",
+      "line": 10,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "never peel",
+      "classification": "DETECTION_RULE"
+    },
+    {
+      "path": "studio/schemaTypes/validation.ts",
+      "line": 10,
+      "kind": "ABSOLUTE_QUALITY",
+      "value": "100%",
+      "classification": "DETECTION_RULE"
+    }
+  ]
+}

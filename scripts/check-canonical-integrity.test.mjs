@@ -38,7 +38,7 @@ const sitemap = fs.readFileSync(sitemapPath, 'utf8')
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
 assert.ok(sitemapUrls.length > 0, 'Sitemap must contain URLs')
 
-const auditUrls = [...sitemapUrls, productionOrigin + '/projects/']
+const auditUrls = [...new Set([...sitemapUrls, productionOrigin + '/projects/'])]
 const rows = auditUrls.map((sitemapUrl) => {
   const url = new URL(sitemapUrl)
   const expectedPathname = normalizePathname(url.pathname)

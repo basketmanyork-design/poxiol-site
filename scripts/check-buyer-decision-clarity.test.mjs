@@ -18,13 +18,13 @@ for (const file of requiredSourceFiles) {
   )
 }
 
-const [homeSource, homepageV8Source, buyerSource, geoSource, shippingSource, sitemapSource, caseSchema, projectSource, projectDetailSource, faqSource] = await Promise.all([
+const [homeSource, homepageV8Source, buyerSource, geoSource, shippingSource, canonicalSource, caseSchema, projectSource, projectDetailSource, faqSource] = await Promise.all([
   readFile(path.join(root, 'app/page.tsx'), 'utf8'),
   readFile(path.join(root, 'components/v8/HomepageV8.tsx'), 'utf8'),
   readFile(path.join(root, 'lib/buyer-decision.ts'), 'utf8'),
   readFile(path.join(root, 'lib/geo-v1.ts'), 'utf8'),
   readFile(path.join(root, 'app/shipping-after-sales/page.tsx'), 'utf8'),
-  readFile(path.join(root, 'app/sitemap.ts'), 'utf8'),
+  readFile(path.join(root, 'lib/canonical-architecture.ts'), 'utf8'),
   readFile(path.join(root, 'studio/schemaTypes/documents/caseStudy.ts'), 'utf8'),
   readFile(path.join(root, 'app/projects/page.tsx'), 'utf8'),
   readFile(path.join(root, 'app/projects/[slug]/page.tsx'), 'utf8'),
@@ -65,7 +65,7 @@ for (const factor of [
 
 assert.match(shippingSource, /alternates:\s*\{\s*canonical:\s*["']\/shipping-after-sales\/["']/, 'shipping page must have a self-canonical')
 assert.match(shippingSource, /Breadcrumb/, 'shipping page must expose breadcrumb data')
-assert.match(sitemapSource, /shipping-after-sales/, 'sitemap must include the shipping and after-sales page')
+assert.match(canonicalSource, /shipping-after-sales/, 'canonical sitemap ledger must include the shipping and after-sales page')
 
 for (const field of ['buyerAuthorizationStatus', 'approvedImageStatus', 'evidenceNote', 'verifiedProcess', 'verifiableResultStatement']) {
   assert.ok(caseSchema.includes(field), `case-study evidence schema is missing ${field}`)

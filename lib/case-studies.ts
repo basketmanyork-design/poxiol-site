@@ -28,9 +28,9 @@ export const caseStudies: CaseStudy[] = [
     title: "Basketball Academy Uniform Program",
     clientType: "Basketball Academy",
     country: "North America",
-    quantity: "300 sets",
+    quantity: "Confirmed by project requirements",
     product: "Reversible basketball jersey and shorts sets",
-    timeline: "21 days",
+    timeline: "Confirmed after project review",
     customization: "Team logo, player number, reversible color design, youth/adult size breakdown",
     overview: "POXIOL supported a basketball academy uniform program with reversible basketball jersey sets, player number customization, size grouping and production planning for training and tournament use.",
     buyerBackground: "The buyer was a basketball academy preparing uniforms for training sessions and tournament use. The academy needed a professional uniform system for multiple age groups and wanted the uniforms to be breathable, durable and easy to reorder.",
@@ -45,10 +45,10 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL prepared front and back mockups based on the academy's colors and number layout. After sample confirmation, bulk production was arranged with size-grouped packing.",
     fabricPrinting: "The project used lightweight performance fabric with sublimation printing for long-lasting color and clear number graphics.",
     productionTimeline: [
-      "Day 1–3: Design mockup and layout confirmation",
-      "Day 4–8: Sample preparation and review",
-      "Day 9–18: Bulk production",
-      "Day 19–21: QC, packing and shipment preparation"
+      "Design mockup and layout confirmation",
+      "Sample preparation and review",
+      "Bulk production scheduling after approval",
+      "Quality checks, packing and shipment preparation"
     ],
     qualityControl: "The QC process checked fabric surface, sublimation print clarity, number alignment, stitching strength, size measurement and packing labels.",
     packingDelivery: "Uniforms were sorted by size and packed for easier team distribution after delivery.",
@@ -60,8 +60,8 @@ export const caseStudies: CaseStudy[] = [
       { item: "Buyer Type", details: "Basketball Academy" },
       { item: "Region", details: "North America" },
       { item: "Product", details: "Reversible basketball jersey and shorts sets" },
-      { item: "Quantity", details: "300 sets" },
-      { item: "Timeline", details: "21 days" },
+      { item: "Quantity", details: "Confirmed by project requirements" },
+      { item: "Timeline", details: "Confirmed after project review" },
       { item: "Customization", details: "Team logo, player number, reversible color design, youth/adult size breakdown" },
       { item: "Related Product", details: "Custom Basketball Uniforms" }
     ]
@@ -71,9 +71,9 @@ export const caseStudies: CaseStudy[] = [
     title: "Soccer Club Home & Away Kit Launch",
     clientType: "Soccer Club",
     country: "Australia",
-    quantity: "500 sets",
+    quantity: "Confirmed by project requirements",
     product: "Home and away soccer kits",
-    timeline: "25 days",
+    timeline: "Confirmed after project review",
     customization: "Club colors, sponsor placement, player numbers, youth/adult size breakdown",
     overview: "POXIOL supported a soccer club with home and away kit development, custom color matching, mockup confirmation and bulk production planning.",
     buyerBackground: "The soccer club needed a coordinated home and away kit launch before the season. The buyer wanted consistent team identity and clear sponsor placement.",
@@ -88,10 +88,10 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL prepared mockups for both kit versions and helped the buyer review color balance, logo placement and number visibility.",
     fabricPrinting: "The kits used breathable performance fabric and sublimation printing for durable team graphics.",
     productionTimeline: [
-      "Day 1–3: Mockup development",
-      "Day 4–7: Sample confirmation",
-      "Day 8–21: Bulk production",
-      "Day 22–25: Inspection, packing and shipping preparation"
+      "Mockup development",
+      "Sample confirmation",
+      "Bulk production scheduling after approval",
+      "Inspection, packing and shipping preparation"
     ],
     qualityControl: "Checks included color consistency, sponsor placement, number visibility, stitching, size measurement and carton packing list.",
     packingDelivery: "The order was packed by size and kit type to support easier club distribution.",
@@ -103,8 +103,8 @@ export const caseStudies: CaseStudy[] = [
       { item: "Buyer Type", details: "Soccer Club" },
       { item: "Region", details: "Australia" },
       { item: "Product", details: "Home and away soccer kits" },
-      { item: "Quantity", details: "500 sets" },
-      { item: "Timeline", details: "25 days" },
+      { item: "Quantity", details: "Confirmed by project requirements" },
+      { item: "Timeline", details: "Confirmed after project review" },
       { item: "Customization", details: "Club colors, sponsor placement, player numbers, youth/adult size breakdown" },
       { item: "Related Product", details: "Custom Soccer Kits" }
     ]
@@ -114,9 +114,9 @@ export const caseStudies: CaseStudy[] = [
     title: "School Multi-Sport Uniform Program",
     clientType: "School Athletics Department",
     country: "United Kingdom",
-    quantity: "300 sets",
+    quantity: "Confirmed by project requirements",
     product: "Basketball, volleyball and training uniforms",
-    timeline: "30 days",
+    timeline: "Confirmed after project review",
     customization: "Unified school color system, team logo placement, player numbers, size-grouped packing",
     overview: "POXIOL supported a school athletics department with a coordinated multi-sport apparel program covering basketball, volleyball and training wear.",
     buyerBackground: "A multi-sport school athletics program required coordinated uniforms across several teams and age groups, while maintaining one shared visual identity.",
@@ -131,10 +131,10 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL created a unified design system and adapted it across basketball, volleyball and training wear. Packing was organized by sport, size and team group.",
     fabricPrinting: "Different fabric options were matched to each product category, with sublimation printing used for clear graphics and color consistency.",
     productionTimeline: [
-      "Day 1–5: Multi-sport design mockup",
-      "Day 6–10: Sample and size confirmation",
-      "Day 11–24: Bulk production",
-      "Day 25–28: QC, packing and delivery preparation"
+      "Multi-sport design mockup",
+      "Sample and size confirmation",
+      "Bulk production scheduling after approval",
+      "Quality checks, packing and delivery preparation"
     ],
     qualityControl: "QC checked color consistency across sports, print position, stitching, size measurement, quantity by team and packing separation.",
     packingDelivery: "Items were sorted by sport category, size and team group for easier distribution.",
@@ -146,8 +146,8 @@ export const caseStudies: CaseStudy[] = [
       { item: "Buyer Type", details: "School Athletics Department" },
       { item: "Region", details: "United Kingdom" },
       { item: "Product", details: "Basketball uniforms, volleyball uniforms and training wear" },
-      { item: "Quantity", details: "800 pieces" },
-      { item: "Timeline", details: "28 days" },
+      { item: "Quantity", details: "Confirmed by project requirements" },
+      { item: "Timeline", details: "Confirmed after project review" },
       { item: "Customization", details: "Unified school color system, team logo placement, player numbers, size-grouped packing" },
       { item: "Related Product", details: "Custom Teamwear for Schools" }
     ]
@@ -157,9 +157,9 @@ export const caseStudies: CaseStudy[] = [
     title: "Sports Event Bulk Uniform Program",
     clientType: "Event Organizer",
     country: "Middle East",
-    quantity: "1,200 pieces",
+    quantity: "Confirmed by project requirements",
     product: "Event uniforms and staff apparel",
-    timeline: "30 days",
+    timeline: "Confirmed after project review",
     customization: "Event color system, size grouping, staff and participant apparel",
     overview: "POXIOL supported a sports event with uniforms for staff and participants, requiring strict delivery and organized packing.",
     buyerBackground: "The buyer needed uniforms for a sports event with a strict deadline and multiple size groups.",
@@ -172,9 +172,9 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL confirmed branding and color layout for event staff and participants.",
     fabricPrinting: "Lightweight mesh for staff and training performance fabric for participants.",
     productionTimeline: [
-      "Day 1–5: Prep and design confirmation",
-      "Day 6–25: Bulk production",
-      "Day 26–30: QC and export packing"
+      "Preparation and design confirmation",
+      "Bulk production scheduling after approval",
+      "Quality checks and export packing"
     ],
     qualityControl: "Checking print quality, size breakdown and event-day distribution labels.",
     packingDelivery: "Packed by staff/participant category and size.",
@@ -186,8 +186,8 @@ export const caseStudies: CaseStudy[] = [
       { item: "Buyer Type", details: "Event Organizer" },
       { item: "Region", details: "Middle East" },
       { item: "Product", details: "Event uniforms and staff apparel" },
-      { item: "Quantity", details: "1,200 pieces" },
-      { item: "Timeline", details: "30 days" },
+      { item: "Quantity", details: "Confirmed by project requirements" },
+      { item: "Timeline", details: "Confirmed after project review" },
       { item: "Customization", details: "Event color system, size grouping, staff and participant apparel" },
       { item: "Related Product", details: "Custom Event Teamwear" }
     ]
@@ -197,9 +197,9 @@ export const caseStudies: CaseStudy[] = [
     title: "Teamwear Distributor Bulk Program",
     clientType: "Regional Distributor",
     country: "Global",
-    quantity: "3,000 pieces",
+    quantity: "Confirmed by project requirements",
     product: "Multi-sport custom uniforms",
-    timeline: "35 days",
+    timeline: "Confirmed after project review",
     customization: "Multi-sport category development, repeatable mockup templates, fabric recommendations",
     overview: "POXIOL established a repeatable manufacturing workflow for a regional distributor to support multiple teamwear categories.",
     buyerBackground: "The distributor needed a scalable production partner for multiple teamwear categories and repeat local buyers.",
@@ -212,9 +212,9 @@ export const caseStudies: CaseStudy[] = [
     designMockup: "POXIOL created design templates for the distributor's catalog.",
     fabricPrinting: "Durable sublimation inks on mesh and interlock fabrics.",
     productionTimeline: [
-      "Day 1–5: Catalog prep",
-      "Day 6–30: Continuous production cycles",
-      "Day 31–35: QC and consolidated shipping"
+      "Catalog preparation",
+      "Production-cycle planning after approval",
+      "Quality checks and consolidated shipping preparation"
     ],
     qualityControl: "Batch-level QC for color consistency and stitching durability.",
     packingDelivery: "Bulk packing for ocean or air freight.",
@@ -226,8 +226,8 @@ export const caseStudies: CaseStudy[] = [
       { item: "Buyer Type", details: "Regional Distributor" },
       { item: "Region", details: "Global" },
       { item: "Product", details: "Multi-sport custom uniforms" },
-      { item: "Quantity", details: "3,000 pieces" },
-      { item: "Timeline", details: "35 days" },
+      { item: "Quantity", details: "Confirmed by project requirements" },
+      { item: "Timeline", details: "Confirmed after project review" },
       { item: "Customization", details: "Multi-sport category development, repeatable mockup templates, fabric recommendations" },
       { item: "Related Product", details: "OEM / ODM Teamwear" }
     ]

@@ -3,7 +3,7 @@ import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMoc
 
 export const metadata: Metadata = {
   title: "B2B Custom Teamwear Solutions | POXIOL",
-  description: "POXIOL provides specialized teamwear solutions for clubs, schools, brands and distributors. OEM/ODM production with professional design and fast delivery.",
+  description: "POXIOL provides specialized teamwear solutions for clubs, schools, brands and distributors. OEM/ODM design, production and delivery planning are confirmed for each project.",
   alternates: { canonical: "/solutions/" },
 };
 

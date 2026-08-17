@@ -22,7 +22,7 @@ export const b2bFaqData: B2BFAQCategory[] = [
       },
       {
         question: "Does POXIOL provide factory audit reports?",
-        answer: "Yes. POXIOL maintains transparent manufacturing standards. We can provide factory inspection details, production capacity data, and QC checklists upon request for authorized B2B distributors and brand partners."
+        answer: "Supplier-verification information is confirmed for the project. Ask which inspection records, production-planning information and QC checklists are available for authorized review."
       }
     ]
   },
@@ -39,7 +39,7 @@ export const b2bFaqData: B2BFAQCategory[] = [
       },
       {
         question: "What ink technology is used for POXIOL sublimation?",
-        answer: "We use high-grade Italian KIAN ink and Japanese EPSON print heads. This ensures CMYK color accuracy, high-vibrancy graphics, and high color fastness that is highly resistant to cracking, peeling, or fading, even after intensive washing and high-contact use."
+        answer: "Ink, print-head configuration and color-control requirements are confirmed for the approved fabric and artwork. Request current process evidence for the specific project rather than relying on a fixed equipment-brand claim."
       }
     ]
   },

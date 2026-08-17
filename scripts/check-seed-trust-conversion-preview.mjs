@@ -36,7 +36,7 @@ const source = sourceFiles.filter((file) => fs.existsSync(path.join(root, file))
 
 const requiredSourceCopy = [
   'Custom Basketball Uniforms for Growing Youth Clubs',
-  'Start with 1 Sample. Scale from One Roster to Every Team in Your Program.',
+  'Confirm the sample plan for the project. Scale from One Roster to Every Team in Your Program.',
   'One Club, Multiple Teams',
   'Logo to Design Preview to Sample',
   'Youth and Adult Size Breakdown',

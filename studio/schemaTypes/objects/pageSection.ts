@@ -42,6 +42,7 @@ export const pageSection = defineType({
     defineField({name: 'body', title: 'Body copy', type: 'array', of: [{type: 'block'}]}),
     defineField({name: 'image', title: 'Image module', type: 'imageWithAlt'}),
     defineField({name: 'productionMedia', title: 'Verified production media', type: 'productionMediaSet', description: 'Optional V8 media slots. Unverified assets remain hidden on the website.'}),
+    defineField({name: 'evidenceRecords', title: 'Evidence records', type: 'array', of: [{type: 'reference', to: [{type: 'evidenceRecord'}]}]}),
     defineField({name: 'facts', title: 'Evidence / parameter bullets', type: 'array', of: [{type: 'string'}]}),
     defineField({name: 'products', title: 'Products', type: 'array', of: [{type: 'reference', to: [{type: 'product'}]}]}),
     defineField({name: 'productCategories', title: 'Product categories', type: 'array', of: [{type: 'reference', to: [{type: 'productCategory'}]}]}),

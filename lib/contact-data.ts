@@ -9,7 +9,7 @@ export const inquiryGuide = [
   { title: "Free Mockup", description: "For new teamwear design requests and custom uniform previews." },
   { title: "OEM/ODM Cooperation", description: "For sportswear brands, distributors and custom teamwear businesses." },
   { title: "Wholesale Inquiry", description: "For retailers, resellers and regional uniform distributors." },
-  { title: "Factory Capability", description: "For supplier evaluation, compliance checks and production capacity questions." },
+  { title: "Manufacturing Capability", description: "For supplier evaluation, compliance checks and production-planning questions." },
   { title: "Existing Order", description: "For order updates, production progress and shipment questions." },
   { title: "After-Sales Support", description: "For quality support, remake requests or service follow-up." },
 ];

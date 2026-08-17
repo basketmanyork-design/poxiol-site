@@ -61,6 +61,21 @@ const productionMediaProjection = `{
   qualityInspectionVideo${verifiedMediaProjection}
 }`
 
+const claimPolicyProjection = `[]{
+  claimId,
+  sourceField,
+  claim,
+  status,
+  publicValue,
+  replacement,
+  legacyValue,
+  evidence,
+  publicRule,
+  reviewedAt,
+  reviewedBy,
+  internalNotes
+}`
+
 const ctaProjection = `{
   label,
   url,
@@ -76,6 +91,7 @@ const pageSectionProjection = `contentSections[]{
   body,
   image${imageProjection},
   productionMedia${productionMediaProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   facts,
   products[]->{productName, "slug": slug.current},
   productCategories[]->{categoryName, "slug": slug.current},
@@ -158,6 +174,8 @@ export const sitePagesQuery = `*[_type == "sitePage"] | order(pageKey asc){
   homepageSectionHeadings,
   inquirySupport,
   productionMedia${productionMediaProjection},
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   ${pageSectionProjection},
   bottomCTA${ctaProjection},
   ${seoProjection},
@@ -179,6 +197,8 @@ export const sitePageByKeyQuery = `*[_type == "sitePage" && pageKey == $key][0]{
   homepageSectionHeadings,
   inquirySupport,
   productionMedia${productionMediaProjection},
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   ${pageSectionProjection},
   bottomCTA${ctaProjection},
   ${seoProjection},
@@ -201,6 +221,10 @@ export const productCategoriesQuery = `*[_type == "productCategory"] | order(dis
   homepageVisibility,
   showOnHomepage,
   activeStatus,
+  taxonomyGroup,
+  taxonomyKey,
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   displayOrder,
   publishStatus,
   ${seoProjection}
@@ -249,6 +273,8 @@ export const productCategoryBySlugQuery = `*[_type == "productCategory" && slug.
   showOnHomepage,
   activeStatus,
   publishStatus,
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   ${seoProjection}
 }`
 
@@ -260,6 +286,9 @@ const productProjection = `{
   "categorySlug": category->slug.current,
   "categoryTitle": category->categoryName,
   sport,
+  taxonomyKey,
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   buyerTypes,
   targetMarkets,
   shortDescription,
@@ -342,6 +371,8 @@ export const caseStudiesQuery = `*[_type == "caseStudy"] | order(displayOrder as
   approvedImageStatus,
   evidenceNote,
   verifiedProcess,
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   verifiableResultStatement,
   relatedProducts[]->{productName, "slug": slug.current},
   relatedGuides[]->{title, "slug": slug.current, articleType},
@@ -374,6 +405,8 @@ export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $
   approvedImageStatus,
   evidenceNote,
   verifiedProcess,
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   verifiableResultStatement,
   displayOrder,
   publishStatus,
@@ -401,7 +434,8 @@ export const faqItemsQuery = `*[_type == "faqItem"] | order(displayOrder asc, _u
     "General"
   ),
   displayOrder,
-  publishStatus
+  publishStatus,
+  claimPolicies${claimPolicyProjection}
 }`
 
 const articleProjection = `{
@@ -428,6 +462,8 @@ const articleProjection = `{
   relatedCategories[]->{categoryName, "slug": slug.current},
   relatedCaseStudies[]->{projectTitle, title, "slug": slug.current},
   relatedArticles[]->{title, "slug": slug.current, articleType},
+  claimPolicies${claimPolicyProjection},
+  "evidenceRecordIds": evidenceRecords[]._ref,
   "relatedFaqs": faqReferences[] | order(displayOrder asc){"question": faq->question, "answer": faq->answer},
   cta${ctaProjection},
   displayOrder,
@@ -436,6 +472,26 @@ const articleProjection = `{
 }`
 
 export const articlesQuery = `*[_type == "article"] | order(displayOrder asc, publishedAt desc, _updatedAt desc)${articleProjection}`
+
+export const evidenceRecordsQuery = `*[_type == "evidenceRecord"] | order(evidenceDate desc, _updatedAt desc){
+  _id,
+  evidenceType,
+  "imageUrl": image.asset->url,
+  "imageAlt": image.altText,
+  "videoUrl": video.asset->url,
+  "videoPosterUrl": videoPoster.asset->url,
+  caption,
+  processStage,
+  "relatedProducts": relatedProducts[]->slug.current,
+  relatedSports,
+  "relatedProjects": relatedProjects[]->slug.current,
+  relatedCapabilities,
+  evidenceDate,
+  verificationStatus,
+  internalNotes,
+  visibility,
+  publicUseApproved
+}`
 
 export const articleBySlugQuery = `*[_type == "article" && slug.current == $slug][0]${articleProjection}`
 
@@ -446,6 +502,13 @@ export const redirectRulesQuery = `*[_type == "redirectRule" && active == true] 
 }`
 
 export const procurementStandardsQuery = `*[_id == "procurementStandards"][0]{
+  quantityPolicy,
+  sampleTimingPolicy,
+  productionTimingPolicy,
+  mockupTimingPolicy,
+  shippingTimingPolicy,
+  measurementTolerancePolicy,
+  returnPolicyStatus,
   defaultMOQ,
   sampleMOQ,
   sampleTime,

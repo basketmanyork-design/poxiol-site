@@ -150,7 +150,7 @@ export const week3Guides: CmsArticle[] = [
     ['Kit configuration, shirt and short details, socks, trims and personalization should be listed before comparing wholesale quotations.', 'Artwork, size grading, labels, packaging and destination requirements should be approved with the sample scope.', 'Inspection points and packing records should match the agreed kit components and quantity breakdown.'],
     guideLinks([
       {label: 'Soccer Jerseys', href: '/products/soccer-jerseys/'},
-      {label: 'Soccer Product Range', href: '/products/soccer-jerseys-1/'},
+      {label: 'Soccer Product Range', href: '/products/soccer-jerseys/'},
     ]),
     guideLinks([{label: 'Factory and quality process', href: '/quality-control-process/'}]),
   ),

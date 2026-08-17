@@ -106,7 +106,7 @@ export const sportsPages: SportsPageData[] = [
     procurementTable: [
       { item: "Product Name", specification: "Custom Basketball Uniforms" },
       { item: "Main Products", specification: "Jerseys, shorts, reversible sets, practice jerseys and team packages" },
-      { item: "Material Options", specification: "100% Polyester Mesh, Dura-Interlock, Pro-Performance mesh" },
+      { item: "Material Options", specification: "Polyester mesh, interlock and performance-mesh options confirmed by product specification" },
       { item: "Size Range", specification: "Youth sizes (YXS-YXL) and Adult sizes (S-5XL)" },
       { item: "Custom Areas", specification: "Front/back logos, names, numbers, side panels, collars, labels" },
       { item: "Sample Support", specification: "Sample quantity and timing are confirmed during project consultation" },

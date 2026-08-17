@@ -40,7 +40,7 @@ export const draftPlan = [
       coreBenefits: [
         'Coordinate team names, player names, numbers, logos and colors from one confirmed artwork file.',
         'Review fabric hand feel, fit and size breakdown before bulk production.',
-        'Use a one-set sample to confirm design and workmanship before the bulk schedule.',
+        'Use the confirmed project sample to review design and workmanship before the bulk schedule.',
         'Check measurements, print alignment, stitching and packing before shipment.',
       ],
       defaultProcurementStandards: {_type: 'reference', _ref: 'procurementStandards'},
@@ -124,7 +124,7 @@ export const draftPlan = [
     role: 'Full team sets',
     set: {
       shortDescription: 'Coordinate matching basketball jerseys and shorts for complete club, school, academy or branded team programs.',
-      fullDescription: 'Full team sets combine a confirmed jersey and shorts design with the same colors, logos, player details and size breakdown. Review artwork, fabric, fit and a one-set sample before confirming the bulk production schedule.',
+      fullDescription: 'Full team sets combine a confirmed jersey and shorts design with the same colors, logos, player details and size breakdown. Review artwork, fabric, fit and the confirmed project sample before confirming the bulk production schedule.',
       keyBenefits: ['Coordinated jersey and shorts artwork', 'Mixed youth and adult size support', 'Player name and number management', 'Private-label and packing notes supported'],
       fabricOptions: ['Polyester performance mesh', 'Polyester interlock', 'Breathable panel options'],
       customizationOptions: ['Sublimation printing', 'Team and sponsor logos', 'Player names and numbers', 'Custom colors and patterns'],

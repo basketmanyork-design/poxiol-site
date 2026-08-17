@@ -11,7 +11,7 @@ export const BUYER_DECISION_HERO_DESCRIPTION = GEO_V1.homepage.heroDescription
 export const APPROVED_CTA_LABELS = {
   primary: 'Get Free Design Mockup',
   secondary: 'Talk to a Teamwear Specialist',
-  sample: 'Start with 1 Sample',
+  sample: 'Confirm a Project Sample Plan',
   quote: 'Request Factory Quote',
 } as const
 
@@ -71,10 +71,10 @@ export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
     id: 'who-we-are',
     eyebrow: '01 / Identity',
     title: 'Who We Are',
-    body: 'POXIOL is a factory-direct custom teamwear manufacturer supporting clubs, schools, academies, distributors and sportswear brands with design review, sampling, production planning and shipment preparation.',
+    body: 'POXIOL is a custom teamwear manufacturing partner supporting clubs, schools, academies, distributors and sportswear brands with design review, sampling, production planning and shipment preparation.',
     cards: [
       {title: 'B2B Teamwear Experience', description: 'Project requirements are reviewed against the confirmed product, quantity and schedule.'},
-      {title: 'Factory-Direct Coordination', description: 'Design, sample, production and packing details are managed through one project workflow.'},
+      {title: 'Project Coordination', description: 'Design, sample, production and packing details are managed through one project workflow.'},
     ],
   },
   {

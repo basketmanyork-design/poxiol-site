@@ -7,7 +7,7 @@ export const faqData: FAQCategory[] = [
   {
     category: "General Custom Teamwear",
     items: [
-      { question: "What is POXIOL?", answer: "POXIOL is a factory-direct custom teamwear manufacturer specializing in basketball uniforms, soccer kits, training wear, team hoodies, accessories and OEM/ODM sportswear programs for clubs, schools, academies, brands, distributors and event organizers." },
+      { question: "What is POXIOL?", answer: "POXIOL is a custom teamwear manufacturing partner supporting basketball uniforms, soccer kits, training wear, team hoodies and OEM/ODM sportswear programs for clubs, schools, academies, brands, distributors and event organizers." },
       { question: "Who does POXIOL work with?", answer: "POXIOL works with sports clubs, schools, academies, amateur teams, sportswear brands, distributors, custom retailers and event organizers worldwide." },
       { question: "What products can POXIOL manufacture?", answer: "POXIOL can manufacture custom basketball uniforms, soccer kits, baseball uniforms, training wear, warm-up sets, team hoodies, jackets, accessories and private label teamwear collections." },
       { question: "How is the order quantity confirmed?", answer: "Order quantity depends on the product format and project requirements. Share the sport, product, estimated quantity and customization needs so the order structure can be confirmed for the quotation." },

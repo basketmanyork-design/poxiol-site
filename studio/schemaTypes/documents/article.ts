@@ -35,6 +35,8 @@ export const article = defineType({
     defineField({name: 'featuredImage', title: 'Featured image', type: 'imageWithAlt', group: 'basic'}),
     defineField({name: 'body', title: 'Body', type: 'portableText', group: 'content'}),
     defineField({name: 'keyTakeaways', title: 'Key takeaways', type: 'array', of: [{type: 'string'}], group: 'content'}),
+    defineField({name: 'claimPolicies', title: 'Truth claim policies', type: 'array', group: 'authoring', of: [{type: 'claimPolicy'}]}),
+    defineField({name: 'evidenceRecords', title: 'Evidence records', type: 'array', group: 'relations', of: [{type: 'reference', to: [{type: 'evidenceRecord'}]}]}),
     defineField({name: 'author', title: 'Author', type: 'reference', to: [{type: 'author'}], group: 'authoring'}),
     defineField({name: 'reviewedBy', title: 'Reviewed by', type: 'reference', to: [{type: 'author'}], group: 'authoring'}),
     defineField({name: 'publishedAt', title: 'Published at', type: 'datetime', group: 'authoring'}),
