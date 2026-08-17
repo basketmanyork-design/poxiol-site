@@ -9,7 +9,7 @@ Canonical origin: `https://www.poxiol.com`
 - Generated output check: zero missing canonicals, zero canonical/path mismatches, zero duplicate canonical tags, zero sitemap/noindex conflicts and zero missing or duplicate H1s. The truth gate also scans 140 non-redirect HTML outputs, including noindex pages, not only sitemap pages.
 - Internal link graph reduced from 27 orphan pages to zero for the approved sitemap set.
 - Redirect file contains 27 permanent redirects and one Google verification rewrite.
-- Eight unconfirmed sports landing routes have Pages Function 404 handlers and are excluded from navigation and sitemap. Their real Preview HTTP status is still pending verification. Files remain in place so an owner-approved offer can be restored without inventing content.
+- Eight unconfirmed sports landing routes have Pages Function 404 handlers and are excluded from navigation and sitemap. Cloudflare Preview verified real 404 responses plus `X-Robots-Tag: noindex` for all eight. Files remain in place so an owner-approved offer can be restored without inventing content.
 
 ## Primary route decisions
 
@@ -67,7 +67,7 @@ Their 19 canonical blog targets remain indexable but are deliberately deferred f
 
 ## Owner-review routes
 
-| Route | Implemented behavior (Preview verification pending) | Reason |
+| Route | Verified Preview behavior | Reason |
 | --- | --- | --- |
 | `/custom-american-football-uniforms/` | Pages Function 404 / omitted | Offer not confirmed |
 | `/custom-esports-jerseys/` | Pages Function 404 / omitted | Offer not confirmed |
@@ -80,4 +80,4 @@ Their 19 canonical blog targets remain indexable but are deliberately deferred f
 
 ## Verification note
 
-Static export and output-level tests verify the route set, canonical tags, H1s, sitemap membership and redirect contract. OpenNext documents that Windows support is not guaranteed; the local OpenNext transform failed after the successful Next build, and Wrangler Pages on this host parsed rules but did not serve assets. Actual Cloudflare Preview HTTP behavior must therefore be checked on the Git-generated Preview before merge.
+Static export and output-level tests verify the route set, canonical tags, H1s, sitemap membership and redirect contract. OpenNext documents that Windows support is not guaranteed; the local OpenNext transform failed after the successful Next build, and Wrangler Pages on this host parsed rules but did not serve assets. Cloudflare Git Preview `https://d9497bf1.poxiol-site.pages.dev` supplied the accepted HTTP evidence: twelve required core/base routes returned 200, four representative redirect sources returned 301, all eight owner-review routes returned 404 plus `X-Robots-Tag: noindex`, and the sitemap returned 71 approved URLs.

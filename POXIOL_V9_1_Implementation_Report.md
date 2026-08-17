@@ -9,7 +9,7 @@ Base: `origin/main` at `ae452f70b4a027822fc4340db683746e90653fc1`
 
 The source-code portion of V9.1 is implemented: risky public claims are removed or governed, taxonomy and canonical ownership are explicit, the sitemap and internal-link graph are tightened, and Sanity receives claim/evidence schema plus a revision-safe migration tool.
 
-This is **not a Production-complete release**. The production Sanity migration is blocked by missing project access, and the Cloudflare Preview still requires the Git build. No Production deployment or merge was performed.
+This is **not a Production-complete release**. The Cloudflare Preview and required HTTP/browser acceptance passed, but the production Sanity migration remains blocked by missing project access. No Production deployment or merge was performed.
 
 ## Before and after
 
@@ -23,7 +23,7 @@ This is **not a Production-complete release**. The production Sanity migration i
 | Sitemap | 100 URLs | 71 approved canonical URLs |
 | Internal-link orphans | 27 | 0 in approved sitemap graph |
 | Redirect contract | Partial | 27 permanent redirects plus one verification rewrite |
-| Unconfirmed sports pages | Public stubs | Eight routes have compiled Pages Function 404 handlers and are omitted from sitemap/navigation; Preview HTTP check pending |
+| Unconfirmed sports pages | Public stubs | Eight routes return verified Preview 404 responses with `X-Robots-Tag: noindex` and are omitted from sitemap/navigation |
 | Evidence | Marketing copy could imply proof | Typed evidence record, strict approval filter and CMS references; no invented evidence |
 | CMS cleanup | 120-document public snapshot | 84-patch / 537-change / zero-delete guarded plan; apply blocked by access |
 
@@ -55,27 +55,26 @@ The runtime legacy claim normalizer remains active by design until an authorized
 ## Verification evidence
 
 - Full test suite: passed.
-- `check:v9`: passed; 196 classified source matches, zero unexplained public-review matches.
+- `check:v9`: passed; zero unexplained public-review matches in the final source scan.
 - Root TypeScript: passed.
-- Sanity Studio TypeScript: passed during implementation; rerun required at final handoff.
+- Sanity Studio TypeScript: passed locally and in the final GitHub integration check.
 - Production static build: passed; 169 static-generation steps and 124 generated pages in the recorded build.
 - Canonical output gate: passed with zero failures.
 - V9.1 built-output truth gate: passed across 71 sitemap URLs and 140 non-redirect HTML outputs; six matches are exact-allowlisted legal dependency or safe-negation contexts.
 - OpenNext local transform: Next build and site gates passed, then Windows dependency tracing failed. OpenNext does not guarantee full Windows support.
 - Wrangler Pages local attempt: rules parsed, but static assets returned 404 on this Windows host; results were rejected rather than reported as site behavior.
-- Pages Functions build: passed with Wrangler 4.119.0; the generated invocation list contains only the eight owner-review routes. The handler preserves the 404 page body, returns status 404 and adds `X-Robots-Tag: noindex`. Preview HTTP verification remains required.
+- Pages Functions build: passed with Wrangler 4.119.0; the generated invocation list contains only the eight owner-review routes. Cloudflare Preview verified that all eight preserve the 404 page body, return status 404 and add `X-Robots-Tag: noindex`.
+- GitHub `CMS Production Integration Check`: passed, including three static builds, sitemap checks, safety scan, Studio TypeScript, schema validation and Studio build.
 
-Final verification will be rerun after this report is added and recorded in the Draft PR.
+## Preview acceptance
 
-## Preview acceptance still required
+Accepted Preview: `https://d9497bf1.poxiol-site.pages.dev`
 
-After push and Cloudflare Git Preview creation, verify:
-
-1. `/`, `/products/`, `/guides/` and `/projects/` return 200.
-2. Representative canonical redirects return 301 with the expected `Location`.
-3. The eight owner-review sport routes return 404.
-4. `/sitemap.xml` returns 200 with 71 URLs and excludes redirect sources and owner-review routes.
-5. Desktop and mobile views show one H1, correct canonical tags, working nav/footer links and no visual regression.
+1. Twelve required core/base routes returned 200.
+2. Four representative canonical redirects returned 301 with the expected `Location`.
+3. All eight owner-review sport routes returned 404 plus `X-Robots-Tag: noindex`.
+4. `/sitemap.xml` returned 200 with 71 URLs and excluded redirect sources and owner-review routes.
+5. The ten required pages passed desktop checks at measured 1440 x 900 and mobile checks at measured 390 x 844: no horizontal overflow, broken image, empty CTA target, missing main content, missing navigation, off-screen interactive control or browser console error was observed.
 
 ## Known limitations and owner confirmation
 
