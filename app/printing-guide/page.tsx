@@ -15,7 +15,7 @@ const printingMethods = [
   {
     name: "Sublimation Printing",
     description: "Sublimation printing uses heat and pressure to transfer dye directly into polyester fabric. The design becomes part of the fabric rather than sitting on top of it.",
-    advantages: ["Full-color graphics", "No cracking", "No peeling", "Lightweight feel", "Excellent durability", "Unlimited design freedom"],
+    advantages: ["Full-color graphics", "Crack-resistant finish", "Peel-resistant finish", "Lightweight feel", "Durability reviewed by application", "Broad design flexibility"],
     bestFor: ["Basketball uniforms", "Soccer kits", "Baseball jerseys", "Volleyball uniforms", "Esports jerseys"],
     durability: "Excellent",
     designFreedom: "Excellent",

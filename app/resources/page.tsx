@@ -22,7 +22,7 @@ export default async function ResourcesPage() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading level="h1" eyebrow="Knowledge Center" title="Teamwear Knowledge & Buying Guides" subtitle="Our resources and guides are regularly updated with practical manufacturing insights." dark center />
           <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {[{ title: "Manufacturing Hub", href: "/manufacturing/", desc: "OEM & ODM production processes." }, { title: "Projects Gallery", href: "/projects/", desc: "Explore success stories." }, { title: "FAQ Center", href: "/faq/", desc: "Get answers to common questions." }].map((item) => (
+            {[{ title: "Fabric Guide", href: "/fabric-guide/", desc: "Review fabric weight, knit and project-fit considerations." }, { title: "Printing Guide", href: "/printing-guide/", desc: "Compare printing methods and artwork requirements." }, { title: "Manufacturing Hub", href: "/manufacturing/", desc: "Review the production workflow." }, { title: "Projects", href: "/projects/", desc: "Explore labeled manufacturing scenarios." }, { title: "FAQ Center", href: "/faq/", desc: "Get answers to common questions." }].map((item) => (
               <Link key={item.title} href={item.href} className="group flex flex-col items-center rounded-3xl border border-lime-400/20 bg-lime-400/5 p-8 text-center transition hover:bg-lime-400/10">
                 <h3 className="text-xl font-black uppercase text-lime-400">{item.title}</h3>
                 <p className="mt-2 text-sm text-neutral-400">{item.desc}</p>

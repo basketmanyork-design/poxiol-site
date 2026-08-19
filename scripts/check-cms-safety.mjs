@@ -23,6 +23,11 @@ try {
 const textFiles = output.split('\0').filter(Boolean)
 const binaryExt = /\.(png|jpe?g|gif|webp|svg|ico|woff2?|ttf|eot|pdf|zip|txt|log)$/i
 const skipFiles = ['package-lock.json', 'tsconfig.tsbuildinfo']
+const mojibakeEvidenceFiles = new Set([
+  'POXIOL_V9_0_Site_Truth_Architecture_Audit.md',
+  'docs/v9-1/sanity-before.ndjson',
+  'docs/v9-1a/sanity-before.ndjson',
+])
 let failures = []
 for (const file of textFiles) {
   if (binaryExt.test(file) || skipFiles.includes(basename(file))) continue
@@ -34,7 +39,9 @@ for (const file of textFiles) {
   }
   if (buf[0] === 0xef && buf[1] === 0xbb && buf[2] === 0xbf) failures.push(file + ': UTF-8 BOM')
   const text = buf.toString('utf8')
-  for (const pattern of suspicious) if (text.includes(pattern)) failures.push(file + ': suspicious mojibake ' + pattern)
+  if (!mojibakeEvidenceFiles.has(file)) {
+    for (const pattern of suspicious) if (text.includes(pattern)) failures.push(file + ': suspicious mojibake ' + pattern)
+  }
   for (const pattern of secretPatterns) if (pattern.test(text)) failures.push(file + ': possible secret/token exposure')
 }
 if (failures.length) {

@@ -85,7 +85,7 @@ export const homeTrustSections: CmsPageSection[] = [
     steps: [
       {title: "Logo", description: "Share the club logo, team colors and roster requirements."},
       {title: "Design Preview", description: "Review the front and back layout, names, numbers and color direction."},
-      {title: "Sample", description: "Start with 1 Sample to check fabric, sizing, print and construction."},
+      {title: "Sample", description: "Confirm the project sample plan to check fabric, sizing, print and construction."},
       {title: "Approval", description: "Confirm the sample or artwork before bulk production is scheduled."},
     ],
   },

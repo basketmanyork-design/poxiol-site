@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import {existsSync, readFileSync} from 'node:fs'
 import path from 'node:path'
+import {PUBLIC_STATIC_SITEMAP_PATHS} from '../lib/sitemap-policy.ts'
 
 const root = process.cwd()
 const outputMode = process.argv.includes('--output')
@@ -89,8 +90,7 @@ assert.match(buyerTemplate, /BreadcrumbSchema/)
 assert.match(buyerTemplate, /schema=\{false\}/, 'Visible FAQ and FAQPage JSON-LD must use the same resolved array.')
 assert.match(buyerTemplate, /<V8Hero\b[^>]*primary=\{page\.finalCta\}/, 'The buyer-specific CTA must be visible in the Hero as well as the final section.')
 
-const sitemapSource = readFileSync(path.join(root, 'app/sitemap.ts'), 'utf8')
-for (const expected of expectedPages) assert.match(sitemapSource, new RegExp(expected.route.replaceAll('/', '\\/')))
+for (const expected of expectedPages) assert.equal(PUBLIC_STATIC_SITEMAP_PATHS.includes(expected.route), true)
 
 if (outputMode) {
   const sitemapXml = readFileSync(path.join(root, 'out/sitemap.xml'), 'utf8')

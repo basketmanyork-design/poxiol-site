@@ -43,7 +43,7 @@
     "sitePage": 0,
     "siteSettings": 0
   },
-  "correctedCandidateCount": 125,
+  "correctedCandidateCount": 151,
   "unsupportedTypeCount": 0,
   "plannedDocumentsByType": {
     "siteSettings": 1,
@@ -58,7 +58,7 @@
     "faqItem": 35,
     "article": 37,
     "author": 1,
-    "redirectRule": 1
+    "redirectRule": 27
   },
   "candidateKeys": [
     "article.article-blog-best-sportswear-fabrics",
@@ -173,7 +173,33 @@
     "productCategory.category-soccer-jerseys",
     "productCategory.category-team-accessories",
     "productCategory.category-training-wear",
+    "redirectRule.redirect-0089c7f15d4e073d",
+    "redirectRule.redirect-02d0488fcc49b0ab",
+    "redirectRule.redirect-0648d2ac685d4b61",
+    "redirectRule.redirect-1932bf71eff2e633",
+    "redirectRule.redirect-21a2a7f93ff1d4e3",
     "redirectRule.redirect-2494c1e68511ad18",
+    "redirectRule.redirect-320e0afb0f368b60",
+    "redirectRule.redirect-4c8a65dd4aed5e61",
+    "redirectRule.redirect-5cde4d4885daf94a",
+    "redirectRule.redirect-6e11c580bd481658",
+    "redirectRule.redirect-893502acf77acdc4",
+    "redirectRule.redirect-8cb55a5f5c426915",
+    "redirectRule.redirect-904018eb83c81946",
+    "redirectRule.redirect-9ba025893ab70dae",
+    "redirectRule.redirect-9bade6c936d30a12",
+    "redirectRule.redirect-b46685bb51c03e53",
+    "redirectRule.redirect-b81c340679c120a5",
+    "redirectRule.redirect-b9163c56f45a7d9b",
+    "redirectRule.redirect-c9855448c187eb1b",
+    "redirectRule.redirect-ca4b2d1767625bcf",
+    "redirectRule.redirect-ceb4dfe914309cd0",
+    "redirectRule.redirect-df64af9492a0c080",
+    "redirectRule.redirect-e2733ff0a771a8df",
+    "redirectRule.redirect-e287c424416ca7c8",
+    "redirectRule.redirect-fa3c795537404395",
+    "redirectRule.redirect-fb83579633618d99",
+    "redirectRule.redirect-ff1162c1ae650665",
     "sitePage.page-about",
     "sitePage.page-contact",
     "sitePage.page-customization",
@@ -196,7 +222,7 @@
   "ordinaryDocumentIdStrategy": "Sanity-generated IDs; candidates use legacyKey/legacySource/legacyRoute for deterministic matching.",
   "reuseExistingCount": 2,
   "updateExistingCount": 40,
-  "createNewDraftCount": 83,
+  "createNewDraftCount": 109,
   "duplicateExistingCount": 0,
   "obsoleteMvpCount": 10,
   "corruptedExistingCount": 5,
@@ -259,7 +285,7 @@
     },
     "reuseExistingCount": 2,
     "updateExistingCount": 40,
-    "createNewDraftCount": 83,
+    "createNewDraftCount": 109,
     "duplicateExistingCount": 0,
     "obsoleteMvpCount": 10,
     "corruptedExistingCount": 5,
@@ -377,5 +403,5 @@
     "duplicateAssetHashCount": 4,
     "manifestPath": "tmp/cms-migration-dry-run/asset-manifest.json"
   },
-  "dryRunHash": "085b8009e4deb0b89a02e648e9371b2bc0d6552a0569f70532ed68db61f791fa"
+  "dryRunHash": "68533e988ba7ff2694390d9dca87bbe4d412994a25a387a908ec13bd2ca06b41"
 }

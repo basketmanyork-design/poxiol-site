@@ -89,16 +89,16 @@ export const legacySiteChrome: CmsSiteChrome = {
 
 
 const corePageFallbacks: Record<string, {title: string; eyebrow: string; heading: string; description: string; seoTitle: string; metaDescription: string; image?: {url: string; alt: string}}> = {
-  about: {title: 'About POXIOL', eyebrow: 'Our Identity', heading: 'Custom Teamwear Manufacturing', description: 'POXIOL provides factory-direct custom teamwear support for B2B buyers, coordinating design review, sampling, confirmed production and shipment preparation.', seoTitle: 'About POXIOL | Professional Custom Teamwear Manufacturer', metaDescription: "Learn how POXIOL supports B2B custom teamwear projects through design review, sampling, production coordination and quality checks before shipment.", image: {url: '/images/poxiol-v6/home_hero_custom_teamwear_manufacturer.png', alt: 'POXIOL Teamwear Manufacturing Expertise'}},
-  factory: {title: 'Factory', eyebrow: 'Direct Manufacturer', heading: 'Custom Teamwear Factory in China for B2B Sportswear Buyers', description: 'POXIOL coordinates custom teamwear production from digital mockup and material confirmation through sewing, quality checks, packing and export shipment preparation.', seoTitle: 'Custom Teamwear Factory in China | POXIOL Sportswear Manufacturing', metaDescription: 'Explore the POXIOL custom teamwear workflow, including sublimation printing, sewing coordination, quality checks, packing and export shipment preparation.', image: {url: '/images/poxiol-v6/manufacturing_sublimation_printing.png', alt: 'POXIOL production line for sublimated teamwear'}},
+  about: {title: 'About POXIOL', eyebrow: 'Our Identity', heading: 'Custom Teamwear Manufacturing', description: 'POXIOL provides custom teamwear project support for B2B buyers, coordinating design review, sampling, confirmed production and shipment preparation.', seoTitle: 'About POXIOL | Professional Custom Teamwear Manufacturer', metaDescription: "Learn how POXIOL supports B2B custom teamwear projects through design review, sampling, production coordination and quality checks before shipment.", image: {url: '/images/poxiol-v6/home_hero_custom_teamwear_manufacturer.png', alt: 'POXIOL Teamwear Manufacturing Expertise'}},
+  factory: {title: 'Factory', eyebrow: 'Manufacturing Partner', heading: 'Teamwear Manufacturing Partner for B2B Sportswear Buyers', description: 'POXIOL coordinates custom teamwear production from digital mockup and material confirmation through sewing, quality checks, packing and export shipment preparation.', seoTitle: 'Teamwear Manufacturing Partner | POXIOL', metaDescription: 'Explore the POXIOL custom teamwear workflow, including sublimation printing, sewing coordination, quality checks, packing and export shipment preparation.', image: {url: '/images/poxiol-v6/manufacturing_sublimation_printing.png', alt: 'Sublimated teamwear production process'}},
   manufacturing: {title: 'Manufacturing', eyebrow: 'Manufacturing Excellence', heading: 'Professional OEM & ODM Teamwear Manufacturing', description: 'POXIOL is a custom teamwear manufacturing platform specializing in OEM and ODM sports uniforms for clubs, schools, academies, distributors and sports brands worldwide.', seoTitle: 'OEM Sportswear Manufacturing | Custom Teamwear Factory | POXIOL', metaDescription: 'POXIOL is a professional OEM and ODM sportswear manufacturer specializing in custom basketball uniforms, soccer kits, baseball jerseys, volleyball apparel and private label teamwear.', image: {url: '/images/poxiol-v6/manufacturing_packing_global_delivery.png', alt: 'POXIOL teamwear packing inspection and global delivery preparation'}},
   'quality-control-process': {title: 'Quality Control Process', eyebrow: 'Quality Control', heading: 'Custom Teamwear Quality Control Process', description: 'POXIOL uses a multi-stage quality control workflow to help B2B buyers reduce production risk and ensure repeatable quality.', seoTitle: 'Custom Teamwear Quality Control Process | POXIOL Sports Uniform QC', metaDescription: 'Learn how POXIOL controls fabric, printing, sewing, sizing, packing and final inspection for custom basketball uniforms, soccer kits and OEM teamwear orders.', image: {url: '/images/poxiol-v6/manufacturing_quality_control.png', alt: 'POXIOL quality control inspection for custom sports uniforms'}},
-  customization: {title: 'Customization', eyebrow: 'Customization', heading: 'Total Creative Control', description: 'At POXIOL, customization goes far beyond a logo. We help you engineer every detail of your uniform, from colors and graphics to private labels and packaging.', seoTitle: 'Unlimited Teamwear Customization Options | POXIOL', metaDescription: 'From custom logos and player names to private labels and specialized fabrics. POXIOL offers full-range teamwear customization for pro teams and brands.'},
+  customization: {title: 'Customization', eyebrow: 'Customization', heading: 'Project-Specific Customization', description: 'POXIOL reviews colors, graphics, labels and packaging options against the approved product, artwork, fabric and production requirements.', seoTitle: 'Teamwear Customization Options | POXIOL', metaDescription: 'Review custom logos, player names, private labels, fabrics and packaging options for teamwear projects. Final options are confirmed during project review.'},
   contact: {title: 'Contact', eyebrow: 'Start Your Project', heading: 'Get in Touch.', description: 'Share your sport category, logo, quantity, colors and deadline so POXIOL can prepare mockup, sample or quote guidance for your teamwear project.', seoTitle: 'Contact POXIOL | Get Free Custom Teamwear Mockup', metaDescription: 'Contact POXIOL to start your custom teamwear project. Submit sport category, logo, quantity, colors and deadline to get a free mockup and production plan.'},
   'oem-odm': {title: 'OEM/ODM', eyebrow: 'OEM/ODM Service', heading: 'OEM/ODM Partner', description: 'POXIOL helps sportswear brands, distributors, custom retailers and wholesalers develop private label teamwear collections across basketball, soccer, baseball, running, training wear and more.', seoTitle: 'OEM/ODM Sportswear Manufacturer for Custom Teamwear Brands | POXIOL', metaDescription: 'POXIOL supports OEM/ODM sportswear production for teamwear brands, distributors, wholesalers and custom uniform businesses with design support, sampling, sublimation printing and multi-sport collection development.', image: {url: '/images/poxiol-v6/home_oem_odm_solutions.png', alt: 'POXIOL OEM and ODM sportswear solutions'}},
   'free-mockup': {title: 'Free Mockup', eyebrow: 'Design Preview', heading: 'Free Mockup Design.', description: 'Request a free POXIOL custom teamwear mockup. Send your sport, logo, colors and quantity to get a professional uniform design preview after the project requirements are reviewed.', seoTitle: 'Get a Free Custom Teamwear Mockup | POXIOL', metaDescription: 'Request a free POXIOL custom teamwear mockup. Send your sport, logo, colors and quantity to get a professional uniform design preview after the project requirements are reviewed.'},
   'sample-order': {title: 'Sample Order', eyebrow: 'Sample Support', heading: 'Sample Order Support.', description: 'Test fabric, fit and print quality before bulk production with a custom jersey sample order after mockup confirmation.', seoTitle: 'Start a Sample Order | POXIOL Custom Teamwear Testing', metaDescription: 'Test the fabric, fit and print quality before bulk production. Sample availability and timing are confirmed after the design, materials and project requirements are reviewed.'},
-  'get-quote': {title: 'Get Quote', eyebrow: 'B2B Pricing', heading: 'Factory Direct Quote.', description: 'Request a POXIOL factory-direct quote and receive wholesale pricing and production plans for basketball, soccer and multi-sport teamwear after the project requirements are reviewed.', seoTitle: 'Get a Factory Quote | POXIOL Custom Teamwear Wholesale', metaDescription: 'Request a wholesale factory quote for custom basketball uniforms, soccer kits, or OEM sportswear. Receive direct B2B pricing and production plans after the project requirements are reviewed.'},
+  'get-quote': {title: 'Get Quote', eyebrow: 'B2B Pricing', heading: 'Project Quote.', description: 'Request a POXIOL teamwear quote and receive pricing and production planning after the project requirements are reviewed.', seoTitle: 'Get a Teamwear Quote | POXIOL Custom Teamwear Wholesale', metaDescription: 'Request a wholesale project quote for custom basketball uniforms, soccer kits or OEM sportswear. Pricing and production planning are confirmed after project review.'},
 }
 
 function pageSections(key: string, title: string): CmsPageSection[] {
@@ -109,7 +109,7 @@ function pageSections(key: string, title: string): CmsPageSection[] {
       {type: 'processSteps', eyebrow: 'Start simple', title: 'How custom teamwear projects move forward', steps: [{title: 'Send design needs', description: 'Share sport, quantity, deadline, logo files and reference styles.'}, {title: 'Confirm mockup', description: 'Review design direction, materials and price before production.'}, {title: 'Sample or bulk', description: 'Approve sample details or move into confirmed bulk production.'}, {title: 'QC and delivery', description: 'Check names, numbers, packaging and shipment details before dispatch.'}]},
     ],
     about: [
-      {type: 'imageText', eyebrow: 'About POXIOL', title: 'Factory-direct support for custom teamwear buyers', body: 'POXIOL helps teams and sportswear brands coordinate design, sampling, production and delivery without losing control of quality details.', image: {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL custom teamwear presentation'}, facts: ['B2B teamwear focus', 'Design-to-production coordination', 'Factory-direct supply chain']},
+      {type: 'imageText', eyebrow: 'About POXIOL', title: 'Manufacturing support for custom teamwear buyers', body: 'POXIOL helps teams and sportswear brands coordinate design, sampling, production and delivery without losing control of quality details.', image: {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL custom teamwear presentation'}, facts: ['B2B teamwear focus', 'Design-to-production coordination', 'Project-based supply coordination']},
       {type: 'evidenceGrid', title: 'What buyers can manage', facts: ['B2B custom teamwear support', 'Design and sample coordination', 'Quality checks before shipment', 'Sublimation teamwear manufacturing']},
     ],
     factory: [
@@ -153,7 +153,7 @@ function pageSections(key: string, title: string): CmsPageSection[] {
     ],
   }
   return pages[key as keyof typeof pages] || [
-    {type: 'richText', eyebrow: title, title: title + ' overview', body: 'POXIOL provides practical custom teamwear support for buyers who need clear production details, responsive quotation and reliable delivery planning.', facts: ['Factory-direct support', 'Project-specific quotation', 'Design and sample coordination', 'Export delivery planning'], cta: commonCta},
+    {type: 'richText', eyebrow: title, title: title + ' overview', body: 'POXIOL provides practical custom teamwear support for buyers who need clear production details, responsive quotation and delivery planning.', facts: ['Manufacturing project support', 'Project-specific quotation', 'Design and sample coordination', 'Export delivery planning'], cta: commonCta},
   ]
 }
 
@@ -162,9 +162,9 @@ export const legacyPages: CmsPage[] = [
     key: 'homepage',
     slug: '',
     title: 'POXIOL',
-    eyebrow: 'Factory-direct teamwear',
+    eyebrow: 'Custom teamwear manufacturing',
     heading: 'Custom Basketball Uniforms for Growing Youth Clubs',
-    description: 'Start with 1 Sample. Scale from One Roster to Every Team in Your Program.',
+    description: 'Confirm the sample plan for the project. Scale from One Roster to Every Team in Your Program.',
     heroCta: {label: 'Get a Free Mockup', href: '/free-mockup/'},
     sections: pageSections('homepage', 'Homepage'),
     bottomCta: {label: 'Start your teamwear project', href: '/contact/'},
@@ -175,7 +175,7 @@ export const legacyPages: CmsPage[] = [
     },
   },
   ...[
-    ['about', 'About POXIOL', 'Factory-direct teamwear partner'],
+    ['about', 'About POXIOL', 'Teamwear manufacturing partner'],
     ['factory', 'Factory', 'Manufacturing visibility'],
     ['manufacturing', 'Manufacturing', 'OEM and ODM production'],
     ['quality-control-process', 'Quality Control Process', 'Inspection before shipment'],
@@ -245,17 +245,23 @@ export const legacyProducts: CmsProduct[] = sportsPages.flatMap((page) =>
 
 export const legacyProjects: CmsProject[] = caseStudies.map((project, index) => ({
   slug: project.slug,
-  title: project.title,
+  title: `${project.title} — Manufacturing Scenario`,
   country: project.country,
   product: project.product,
   image: {url: project.image, alt: project.title},
   qualityControl: project.qualityControl,
   packaging: project.packingDelivery,
   solution: project.solution,
-  overview: project.overview,
+  overview: `Planning scenario only; not a verified customer record. ${project.overview}`,
+  caseType: 'Manufacturing Scenario',
+  realOrExample: 'example',
+  evidenceStatus: 'scenario',
+  buyerAuthorizationStatus: 'unknown',
+  approvedImageStatus: 'notAvailable',
+  evidenceNote: 'No buyer-authorized evidence is attached. Public presentation must remain a manufacturing scenario.',
   seo: {
-    title: `${project.title} | POXIOL B2B Case Study`,
-    description: project.overview,
+    title: `${project.title} Manufacturing Scenario | POXIOL`,
+    description: `Planning scenario for ${project.product}; not a verified customer record.`,
     canonicalUrl: `https://www.poxiol.com/projects/${project.slug}/`,
   },
   displayOrder: index,

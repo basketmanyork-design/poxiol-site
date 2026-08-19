@@ -4,7 +4,8 @@ import { Header, Footer, SectionHeading, SecondaryButton } from "@/components/ui
 import { CollectionPageSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 import { FAQSection } from "@/components/v8/FAQSection";
 import { productCategoryHref, productsFaqs } from "@/lib/products-page";
-import { getProductCategories } from "@/lib/sanity/content";
+import { getProductCategories, getProducts } from "@/lib/sanity/content";
+import { isSitemapDeniedPath, PUBLIC_PRODUCT_DETAIL_CATEGORY_SLUGS } from "@/lib/sitemap-policy";
 
 export const metadata: Metadata = {
   title: "Performance Teamwear Products | Custom Sports Uniforms | POXIOL",
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductsPage() {
-  const categories = await getProductCategories();
+  const [categories, products] = await Promise.all([getProductCategories(), getProducts()]);
+  const publicProductCategories = new Set<string>(PUBLIC_PRODUCT_DETAIL_CATEGORY_SLUGS);
+  const publicProducts = products.filter((product) => product.categorySlug && publicProductCategories.has(product.categorySlug) && !product.seo.noIndex && !isSitemapDeniedPath(`/products/${product.slug}/`));
   const baseUrl = "https://www.poxiol.com";
 
   return (
@@ -46,6 +49,22 @@ export default async function ProductsPage() {
           </div>
         </div>
       </section>
+      {publicProducts.length ? (
+        <section className="bg-neutral-900 px-5 py-20 text-white md:px-10 xl:px-20">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading eyebrow="Product Specifications" title="Browse Confirmed Product Categories" subtitle="Review product-level specifications within the currently published Basketball, Soccer, Training Wear and Outerwear categories." dark center />
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {publicProducts.map((product) => (
+                <Link key={product.slug} href={`/products/${product.slug}/`} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-lime-400/40">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-lime-400">{product.categoryTitle || product.categorySlug}</p>
+                  <h3 className="mt-3 text-lg font-black uppercase text-white">{product.title}</h3>
+                  <p className="mt-3 line-clamp-2 text-sm leading-6 text-neutral-400">{product.description}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
       <div className="bg-white text-neutral-950">
         <FAQSection faqs={productsFaqs} schema={false} title="Custom Teamwear Product Questions" />
       </div>

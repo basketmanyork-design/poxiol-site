@@ -13,6 +13,7 @@ export const faqItem = defineType({
     defineField({name: 'answer', title: 'Answer', type: 'portableText', group: 'content', validation: (Rule) => Rule.required()}),
     defineField({name: 'shortAnswer', title: 'Short answer', type: 'text', rows: 2, group: 'content'}),
     defineField({name: 'fullAnswer', title: 'Full answer', type: 'portableText', group: 'content'}),
+    defineField({name: 'claimPolicies', title: 'Truth claim policies', type: 'array', group: 'meta', of: [{type: 'claimPolicy'}]}),
     defineField({name: 'category', title: 'Category', type: 'string', group: 'meta'}),
     defineField({name: 'categoryRef', title: 'Category reference', type: 'reference', to: [{type: 'faqCategory'}], group: 'meta'}),
     defineField({name: 'keywords', title: 'Keywords', type: 'array', of: [{type: 'string'}], group: 'meta'}),

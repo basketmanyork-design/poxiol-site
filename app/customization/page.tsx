@@ -11,6 +11,7 @@ import {ProductVisualizationSection} from '@/components/v8/ProductVisualizationS
 import {getProductVisualization} from '@/lib/product-visualization/registry'
 
 const customizationNextSteps = [
+  {id: 'customization-branding', title: 'Review Logos, Names and Numbers', audience: 'Artwork planning', description: 'Review authorization, placement and production considerations for logos, player names and numbers.', href: '/customization/logo-name-number/', ctaLabel: 'Review Branding Options'},
   {id: 'customization-mockup', title: 'Confirm the Design Direction', audience: 'Early design stage', description: 'Share the logo, colors and reference available for a project mockup.', href: '/free-mockup/', ctaLabel: 'Get Free Mockup'},
   {id: 'customization-manufacturing', title: 'Review Manufacturing', audience: 'Before production planning', description: 'See how confirmed artwork and project specifications move through production.', href: '/manufacturing/', ctaLabel: 'See Manufacturing'},
   {id: 'customization-quote', title: 'Request a Project Quote', audience: 'Defined purchasing project', description: 'Share quantity, deadline and customization requirements for a qualified project review.', href: '/get-quote/', ctaLabel: 'Get a Project Quote'},

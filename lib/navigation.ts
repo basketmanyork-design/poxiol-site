@@ -2,6 +2,8 @@
 // Products gives the three first-stage core sports primary visibility.
 // "Get Quote" replaces the old "Contact" entry to signal B2B purchase intent.
 
+import {productNavigationEntries} from './site-taxonomy.ts'
+
 export type NavChild = { label: string; href: string };
 
 export type NavItem = {
@@ -15,9 +17,7 @@ export const HEADER_NAV: NavItem[] = [
     label: 'Products',
     href: '/products/',
     children: [
-      { label: 'Basketball Uniforms', href: '/products/basketball-uniforms/' },
-      { label: 'Soccer Kits', href: '/products/soccer-jerseys/' },
-      { label: 'Baseball Uniforms', href: '/custom-baseball-softball-uniforms/' },
+      ...productNavigationEntries().map((item) => ({label: item.label, href: item.path})),
       { label: 'All Products', href: '/products/' },
     ],
   },

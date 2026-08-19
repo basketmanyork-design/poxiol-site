@@ -39,7 +39,7 @@ export const guidePages: GuidePage[] = [
       },
       {
         title: "2. Sublimation Color & Print Precision",
-        content: "Examine the vibrancy of the sublimation graphics. Professional factories use high-grade inks (like Italian KIAN) to ensure high color fastness and resistance to cracking or peeling.",
+        content: "Examine the vibrancy of the sublimation graphics and ask for current ink, print-head and color-control information that applies to the proposed fabric and artwork.",
         table: {
           headers: ["Inspection Area", "Requirement", "Action if Failed"],
           rows: [
@@ -91,21 +91,21 @@ export const guidePages: GuidePage[] = [
     h1: "How to Evaluate and Choose a Teamwear Manufacturer in China",
     intro: "Sourcing custom teamwear directly from China offers significant cost advantages, but identifying a professional manufacturing partner requires technical due diligence. This guide provides a systematic framework for evaluating factory capacity, communication reliability, and quality evidence.",
     keyTakeaways: [
-      "Differentiate between trading offices and direct factories by checking how sampling responsibility, materials and production evidence are explained.",
+      "Differentiate between trading offices and production-responsible partners by checking how sampling responsibility, materials and production evidence are explained.",
       "Verify B2B credentials such as Alibaba Verified or independent factory audit reports.",
       "Ensure the manufacturer has in-house sublimation and pattern-making capabilities."
     ],
     sections: [
       {
-        title: "1. Factory-Direct vs. Middlemen",
-        content: "A real factory controls the production timeline and technical specs. Middlemen often face delays because they sub-contract production to third-party facilities.",
+        title: "1. Manufacturing Coordination vs. Intermediaries",
+        content: "A production-responsible partner should identify who controls the production timeline and technical specifications. Trading intermediaries should disclose any third-party production responsibility.",
         table: {
-          headers: ["Feature", "Direct Factory", "Middleman / Trading Co"],
+          headers: ["Feature", "Production-responsible partner", "Middleman / Trading Co"],
           rows: [
             ["Sampling Planning", "Confirmed after project review", "Confirm the responsible production party"],
             ["Technical Advice", "Direct and precise", "Vague or delayed"],
             ["Customization MOQ", "Highly flexible", "Restricted by sub-contractors"],
-            ["QC Control", "Internal/100% Manual", "Third-party or random spot-checks"]
+            ["QC Control", "Documented inspection plan", "Third-party or agreed sampling plan"]
           ]
         }
       },
@@ -122,7 +122,7 @@ export const guidePages: GuidePage[] = [
     faqs: [
       {
         question: "How do I know if a supplier is a real factory?",
-        answer: "Ask for live video tours, check for B2B verification badges, and review their specific equipment. Real factories provide direct technical answers about production capacity."
+        answer: "Ask for current video tours, traceable company information, equipment evidence and production-planning records. Confirm how the supplier, legal entity and manufacturing operation are related before relying on a factory claim."
       }
     ],
     cta: { text: "Request Factory Inspection", href: "/factory/" },

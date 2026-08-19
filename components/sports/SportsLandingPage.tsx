@@ -28,7 +28,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       />
       <ServiceSchema
         name={`Custom ${productLabel} Manufacturing`}
-        description={`POXIOL provides factory-direct custom ${productLabel.toLowerCase()} production with free mockup and sampling.`}
+        description={`POXIOL supports custom ${productLabel.toLowerCase()} projects with design review, mockup support and project-specific sampling.`}
         url={fullUrl}
       />
       <FAQSchema faqs={resolvedFaqs} />

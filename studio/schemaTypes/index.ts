@@ -4,6 +4,7 @@ import {portableText} from './objects/portableText'
 import {pageSection} from './objects/pageSection'
 import {verifiedMediaAsset} from './objects/verifiedMediaAsset'
 import {productionMediaSet} from './objects/productionMediaSet'
+import {claimPolicy} from './objects/claimPolicy'
 import {siteSettings} from './singletons/siteSettings'
 import {navigationSettings, footerSettings} from './singletons/navigation'
 import {procurementStandards} from './singletons/procurementStandards'
@@ -17,6 +18,7 @@ import {faqItem} from './documents/faqItem'
 import {article} from './documents/article'
 import {author} from './documents/author'
 import {redirectRule} from './documents/redirectRule'
+import {evidenceRecord} from './documents/evidenceRecord'
 
 export const schemaTypes = [
   seoFields,
@@ -29,6 +31,7 @@ export const schemaTypes = [
   procurementOverride,
   verifiedMediaAsset,
   productionMediaSet,
+  claimPolicy,
   pageSection,
   siteSettings,
   navigationSettings,
@@ -43,5 +46,6 @@ export const schemaTypes = [
   article,
   author,
   redirectRule,
+  evidenceRecord,
   analyticsSettings,
 ]

@@ -39,7 +39,7 @@ export const pseoPages: PSEOPage[] = [
     title: "Soccer Jersey Buying Guide | How To Order Custom Soccer Kits | POXIOL",
     h1: "Complete Soccer Jersey Buying Guide",
     intro: "Whether you're a semi-pro club or a youth academy, choosing the right soccer kit is essential for team identity and player performance. This guide explores the technical aspects of soccer apparel manufacturing.",
-    content: "A high-quality soccer jersey must balance breathability with durability. We recommend using 'Bird Eye' or 'Micro-Mesh' polyester, which provides excellent moisture-wicking properties for match-day intensity. Sublimation remains the gold standard for soccer printing, as it allows for unlimited sponsor logos and intricate patterns without adding weight to the garment. Don't forget the importance of 'Cool-Dry' technology, which keeps players comfortable during the full 90 minutes. POXIOL provides end-to-end support for soccer organizations looking to upgrade their teamwear.",
+    content: "A soccer jersey specification should balance breathability with durability. Bird-eye or micro-mesh polyester and sublimation may support lightweight, detailed artwork, subject to the approved fabric, artwork, logo authorization and production review. POXIOL provides project support for soccer organizations evaluating teamwear options.",
     author: {
       name: "Sarah Miller",
       role: "Fabric Technology Consultant",
@@ -81,7 +81,7 @@ export const pseoPages: PSEOPage[] = [
     },
     faqs: [
       { question: "What is GSM in fabric?", answer: "GSM stands for Grams per Square Meter; it measures the weight and thickness of the fabric." },
-      { question: "Is 100% polyester better than cotton for sports?", answer: "Yes, polyester is superior for sports because it doesn't absorb water (sweat) and dries much faster than cotton." },
+      { question: "How does polyester compare with cotton for sports?", answer: "Polyester is commonly selected for sportswear because fabric weight, knit and moisture behavior can be matched to the intended activity. Final material selection should be confirmed for the product and use case." },
       { question: "Do you offer eco-friendly fabric options?", answer: "Yes, we can source recycled polyester (rPET) for brands looking for sustainable manufacturing solutions." },
     ],
   },
@@ -89,7 +89,7 @@ export const pseoPages: PSEOPage[] = [
     slug: "how-sublimation-printing-works-for-teamwear",
     title: "How Sublimation Printing Works for Teamwear | Complete Teamwear Printing Guide | POXIOL",
     h1: "Complete How Sublimation Printing Works for Teamwear",
-    intro: "Sublimation printing has revolutionized teamwear by allowing for unlimited design creativity without sacrificing performance. Learn why it's the preferred choice for professional sports uniforms.",
+    intro: "Sublimation printing supports broad full-color design options on compatible fabrics. Review when it fits a teamwear specification and which constraints should be confirmed.",
     content: "Unlike screen printing or heat transfer, sublimation uses heat to turn ink into a gas that infuses directly into the fabric fibers. This results in a print with high color fastness that is highly resistant to cracking or peeling, and maintains the fabric's full breathability. This process is professional-grade for complex patterns, gradients, and multiple sponsor logos. At POXIOL, we use high-precision Japanese printers and professional-grade inks to ensure vibrant, lasting colors that stand out on the field and the court. Sublimation is a leading solution for durable, high-impact teamwear branding.",
     author: {
       name: "Michael Chen",
@@ -127,10 +127,10 @@ export const pseoPages: PSEOPage[] = [
     title: "Custom Basketball Uniforms for Schools | High School Basketball Jerseys | POXIOL",
     h1: "Custom Basketball Uniforms for Schools & Academies",
     intro: "POXIOL provides professional-grade custom basketball uniforms specifically designed for school programs and basketball academies. We understand the unique needs of school athletics, from durable performance fabrics to consistent branding across youth and varsity teams.",
-    content: "Our school basketball uniform program features high-performance mesh and interlock fabrics that stand up to daily practice and game-day intensity. As a direct manufacturer, we offer schools flexible ordering, budget-friendly pricing, and fast delivery timelines to ensure your teams are ready for the season opener. Whether you need classic sublimated jerseys or modern reversible sets, our design team provides free mockups after the project requirements are reviewed to help you visualize your school's unique identity.",
+    content: "Our school basketball uniform program includes mesh and interlock options reviewed against the intended training and game use. As a teamwear manufacturing partner, we support flexible order planning, project-confirmed pricing and delivery planning based on the approved product requirements. Whether you need sublimated jerseys or reversible sets, our design team provides free mockups after the project requirements are reviewed to help you visualize your school's identity.",
     faqs: [
       { question: "Do you offer youth and adult sizes for schools?", answer: "Yes, we provide a full range of sizes from youth XS to adult 5XL to accommodate all school grade levels." },
-      { question: "Can we add school logos and player names?", answer: "Absolutely. Our sublimation process allows for unlimited customization including school logos, player names, and numbers at no extra cost." },
+      { question: "Can we add school logos and player names?", answer: "Logo, player-name and number options are confirmed after artwork authorization, fabric, placement and project requirements are reviewed." },
       { question: "How is the schedule for school orders confirmed?", answer: "Production scheduling is confirmed after the design, quantity, mixed-size breakdown, customization and school project requirements are approved." },
     ],
   },
@@ -164,7 +164,7 @@ export const pseoPages: PSEOPage[] = [
     },
     faqs: [
       { question: "How is shipping to Australia planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
-      { question: "Can you handle sponsor logos for NPL clubs?", answer: "Yes, we can integrate unlimited sponsor logos into the sublimated design for a professional, durable finish." },
+      { question: "Can sponsor logos be included for clubs?", answer: "Sponsor-logo placement is confirmed after artwork authorization, available print area, fabric and production requirements are reviewed." },
       { question: "Are your soccer kits suitable for hot Australian summers?", answer: "Yes, we use lightweight, breathable Interlock and Mesh fabrics specifically engineered for performance in warm conditions." },
     ],
   },
@@ -197,7 +197,7 @@ export const pseoPages: PSEOPage[] = [
     title: "Soccer Teamwear Supplier USA | Custom Football Kits America | POXIOL",
     h1: "Trusted Soccer Teamwear Supplier for USA Markets",
     intro: "POXIOL is a premier soccer teamwear supplier for the United States, delivering custom soccer kits to academies, schools, clubs, colleges and sports organizations from New York to Los Angeles.",
-    content: "We understand the rapid growth of soccer in the US and provide scalable manufacturing solutions to meet the increasing demand for high-quality teamwear. Our factory specializes in US-standard sizing and performance fabrics that excel in various regional climates. By partnering with POXIOL, US-based sports distributors and soccer organizations gain access to direct factory pricing and expert design support, ensuring their teams look as professional as the pros.",
+    content: "We support soccer organizations in the US with project-specific sizing review, material selection and manufacturing coordination. US-based sports distributors and soccer organizations can review pricing, design support and production requirements with POXIOL before an order is confirmed.",
     faqs: [
       { question: "How is shipping to the USA planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Do you comply with US sizing standards?", answer: "Yes, we use standard US athletic sizing for all our soccer apparel." },
@@ -223,7 +223,7 @@ export const pseoPages: PSEOPage[] = [
     intro: "Scale your soccer brand with POXIOL's expert OEM manufacturing services. We provide professional-grade soccer apparel production with custom branding and technical specifications.",
     content: "As a specialist soccer apparel manufacturer, we support brands and distributors in developing comprehensive soccer kit lines. Our OEM services include advanced fabric sourcing, high-precision sublimation printing, and meticulous QC standards. We help you create unique soccer gear that sets your brand apart in a competitive market. From match-day jerseys to training wear and accessories, POXIOL is your reliable partner for soccer apparel excellence.",
     faqs: [
-      { question: "What is your production capacity for soccer jerseys?", answer: "We have a high-volume capacity suitable for both boutique brands and large-scale distributors." },
+      { question: "How is production planning confirmed for soccer jerseys?", answer: "Available production planning is confirmed after the product, quantity, customization and requested schedule are reviewed." },
       { question: "Can you source recycled fabrics for soccer kits?", answer: "Yes, we offer various eco-friendly polyester options for sustainable soccer branding." },
       { question: "Do you provide custom neck tape and labeling?", answer: "Yes, we offer full private-label services including custom neck tape, labels, and tags." },
     ],
@@ -233,7 +233,7 @@ export const pseoPages: PSEOPage[] = [
     title: "Soccer Teamwear Supplier UK | Custom Football Kits Britain | POXIOL",
     h1: "Professional Soccer Teamwear Supplier for UK Clubs",
     intro: "POXIOL is a leading soccer teamwear supplier for the United Kingdom, providing custom football kits to clubs, academies, and schools across England, Scotland, and Wales.",
-    content: "We deliver professional-grade soccer kits designed for the UK football culture, utilizing high-performance fabrics that excel on the pitch. Our direct factory partnership offers UK sports distributors and club secretaries an efficient way to order custom kits with low MOQs and reliable international delivery. With POXIOL, your UK team gets top-tier apparel at competitive prices, backed by our expertise in global teamwear manufacturing.",
+    content: "We support custom soccer-kit projects for UK clubs with material, sizing, artwork and manufacturing review. Order quantity, pricing, shipping method and delivery timing are confirmed after the product and project requirements are reviewed.",
     faqs: [
       { question: "How is delivery to the UK planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
       { question: "Are your kits suitable for UK weather conditions?", answer: "Yes, our fabrics are selected for their durability and performance in varied weather, from wet match days to summer training." },
@@ -305,7 +305,7 @@ export const pseoPages: PSEOPage[] = [
     title: "Custom Sports Apparel Distributor | Teamwear Manufacturing Partner | POXIOL",
     h1: "Manufacturing Partner for Sports Apparel Distributors",
     intro: "Scale your distribution business with a reliable manufacturing partner. POXIOL provides high-quality custom sports apparel for distributors looking for scalable and dependable production.",
-    content: "As a manufacturing partner for sports apparel distributors, we offer a wide range of teamwear categories, including basketball, soccer, and baseball. Our direct factory model provides distributors with competitive pricing, consistent quality, and reliable timelines. We support your business with white-label solutions, custom branding, and a streamlined order process that makes it easy to serve your local club and school networks. Partner with POXIOL to expand your product offering and increase your distribution capacity.",
+    content: "As a manufacturing partner for sports apparel distributors, we support teamwear categories including basketball, soccer and baseball. Pricing, quality requirements and production timelines are confirmed for each project. White-label options, custom branding and order workflow are reviewed against the selected products and approved specifications so distributors can plan their local club and school programs.",
     faqs: [
       { question: "How do you support sports apparel distributors?", answer: "We provide wholesale pricing, scalable production, and reliable logistics support for distributors." },
       { question: "Can we use our own branding for the apparel we distribute?", answer: "Yes, we offer full private-label and white-label services for our distribution partners." },

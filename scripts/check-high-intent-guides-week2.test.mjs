@@ -12,12 +12,12 @@ assert.match(guideRegistrySource, /import \{highIntentGuides\} from '\.\/high-in
 assert.match(guideRegistrySource, /\.\.\.highIntentGuides/, 'guide registry must expose high-intent records')
 const siteUrl = 'https://www.poxiol.com'
 const contracts = [
-  {slug: 'reversible-vs-single-layer-basketball-uniforms', h1: 'Reversible vs Single-Layer Basketball Uniforms: Which Is Better for Your Team?', primary: ['Start with 1 Sample', '/sample-order/'], secondary: ['Get a Free Mockup', '/free-mockup/'], markers: ['30-Second Answer', 'Youth Programs', 'Sample Verification', 'Specification Checklist']},
-  {slug: 'custom-basketball-uniform-fabric-gsm', h1: 'How to Choose Fabric and GSM for Youth Basketball Uniforms', primary: ['Talk to a Teamwear Specialist', '/contact/'], secondary: ['Start with 1 Sample', '/sample-order/'], markers: ['What GSM Means', 'Structure Changes the Wearing Experience', 'Sample Test Checklist', 'Information to Send for a Quotation']},
-  {slug: 'sample-first-vs-bulk-teamwear-order', h1: 'Sample First or Bulk Order: Which Is Safer for Custom Teamwear?', primary: ['Start with 1 Sample', '/sample-order/'], secondary: ['Talk to a Teamwear Specialist', '/contact/'], markers: ['Decision Tree', 'When a Sample Comes First', 'Sample Approval Record', 'Time and Cost Factors']},
+  {slug: 'reversible-vs-single-layer-basketball-uniforms', h1: 'Reversible vs Single-Layer Basketball Uniforms: Which Is Better for Your Team?', primary: ['Plan a Project Sample', '/sample-order/'], secondary: ['Get a Free Mockup', '/free-mockup/'], markers: ['30-Second Answer', 'Youth Programs', 'Sample Verification', 'Specification Checklist']},
+  {slug: 'custom-basketball-uniform-fabric-gsm', h1: 'How to Choose Fabric and GSM for Youth Basketball Uniforms', primary: ['Talk to a Teamwear Specialist', '/contact/'], secondary: ['Plan a Project Sample', '/sample-order/'], markers: ['What GSM Means', 'Structure Changes the Wearing Experience', 'Sample Test Checklist', 'Information to Send for a Quotation']},
+  {slug: 'sample-first-vs-bulk-teamwear-order', h1: 'Sample First or Bulk Order: Which Is Safer for Custom Teamwear?', primary: ['Plan a Project Sample', '/sample-order/'], secondary: ['Talk to a Teamwear Specialist', '/contact/'], markers: ['Decision Tree', 'When a Sample Comes First', 'Sample Approval Record', 'Time and Cost Factors']},
   {slug: 'custom-basketball-uniform-cost-factors', h1: 'What Affects the Cost of Custom Basketball Uniforms?', primary: ['Talk to a Teamwear Specialist', '/contact/'], secondary: ['Get a Free Mockup', '/free-mockup/'], markers: ['Seven Cost Factors', 'Reversible vs Single-Layer', 'Itemized Quotation', 'Information That Reduces Requoting']},
 ]
-const allowedCtas = new Set(['Get a Free Mockup', 'Talk to a Teamwear Specialist', 'Start with 1 Sample'])
+const allowedCtas = new Set(['Get a Free Mockup', 'Talk to a Teamwear Specialist', 'Plan a Project Sample'])
 const targets = new Map(buyingGuides.filter((guide) => contracts.some(({slug}) => slug === guide.slug)).map((guide) => [guide.slug, guide]))
 
 assert.equal(targets.size, 4, 'all four high-intent guide data records must exist')

@@ -84,6 +84,12 @@ function listFiles(start: string): string[] {
   return readdirSync(start).flatMap((entry) => listFiles(path.join(start, entry)))
 }
 
+function hasTypeScriptTwin(file: string): boolean {
+  if (file.endsWith('.jsx')) return existsSync(file.slice(0, -4) + '.tsx')
+  if (file.endsWith('.js')) return existsSync(file.slice(0, -3) + '.ts')
+  return false
+}
+
 function toRoute(relativeFile: string): string {
   const normalized = relativeFile.replaceAll('\\', '/')
   if (normalized === 'out/index.html') return '/'
@@ -98,6 +104,7 @@ const targets = outputMode
       ...includedScripts.map((file) => path.join(root, file)),
     ].filter((file) =>
       sourceExtensions.has(path.extname(file))
+      && !hasTypeScriptTwin(file)
       && path.relative(root, file).replaceAll('\\', '/') !== 'studio/schemaTypes/validation.ts',
     )
 

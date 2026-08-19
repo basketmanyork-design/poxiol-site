@@ -52,17 +52,19 @@ assert.match(compositionSource, /schema=\{false\}/, 'Visible FAQ and FAQPage JSO
 const soccerSource = coreSource.slice(coreSource.indexOf("id: 'soccer'"), coreSource.indexOf("id: 'baseball'"))
 assert.doesNotMatch(soccerSource, /basketball/i, 'Soccer data must not contain Basketball template residue.')
 
-const navigation = read('lib/navigation.ts')
-const basketballNav = navigation.indexOf('/products/basketball-uniforms/')
-const soccerNav = navigation.indexOf('/products/soccer-jerseys/')
-const baseballNav = navigation.indexOf('/custom-baseball-softball-uniforms/')
-assert.ok(basketballNav >= 0 && soccerNav > basketballNav && baseballNav > soccerNav, 'Navigation must prioritize Basketball, Soccer and Baseball in that order.')
+const {HEADER_NAV} = await import('../lib/navigation.ts')
+assert.deepEqual(
+  HEADER_NAV.find((item) => item.label === 'Products')?.children?.slice(0, 3).map((item) => item.href),
+  owners.map((owner) => owner.route),
+  'Navigation must prioritize Basketball, Soccer and Baseball in that order.',
+)
 
 const buyerData = read('lib/v8/buyer-pages.ts')
 for (const owner of owners) assert.ok(buyerData.includes(owner.route), 'Buyer pages must link to ' + owner.route)
 assert.match(read('app/[slug]/page.tsx'), /getPseoCoreSportLink/, 'Core sport guides and long-tail pages must link back to their owner URL.')
 
-assert.match(read('app/sitemap.ts'), /custom-baseball-softball-uniforms/, 'Baseball primary URL must be in the sitemap source.')
+const {sitemapTaxonomyEntries} = await import('../lib/site-taxonomy.ts')
+assert.ok(sitemapTaxonomyEntries().some((item) => item.path === '/custom-baseball-softball-uniforms/'), 'Baseball primary URL must be in the sitemap source.')
 assert.match(read('public/_redirects'), /^\/custom-basketball-uniforms\/ \/products\/basketball-uniforms\/ 301$/m, 'Approved Basketball HTTP 301 must remain unchanged.')
 assert.equal(existsSync(path.join(root, 'app/products/baseball-uniforms/page.tsx')), false, 'Do not create a duplicate Baseball commercial route.')
 assert.equal(existsSync(path.join(root, 'app/custom-basketball-uniform-manufacturer/page.tsx')), false, 'Do not create a duplicate Basketball commercial route.')
