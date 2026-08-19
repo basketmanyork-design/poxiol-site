@@ -26,6 +26,7 @@ const skipFiles = ['package-lock.json', 'tsconfig.tsbuildinfo']
 const mojibakeEvidenceFiles = new Set([
   'POXIOL_V9_0_Site_Truth_Architecture_Audit.md',
   'docs/v9-1/sanity-before.ndjson',
+  'docs/v9-1a/sanity-before.ndjson',
 ])
 let failures = []
 for (const file of textFiles) {
