@@ -14,11 +14,22 @@ export type SanityEvidenceRecord = {
   imageAlt?: string
   videoUrl?: string
   videoPosterUrl?: string
+  certificateName?: string
+  certificateHolder?: string
+  certificateIssuer?: string
+  certificateNumber?: string
+  certificateScope?: string
+  certificateIssuedDate?: string
+  certificateExpiryDate?: string
+  certificateFileUrl?: string
+  offeringRelationship?: string
   caption?: string
   processStage?: string
   relatedProducts?: string[]
   relatedSports?: string[]
   relatedProjects?: string[]
+  sampleId?: string
+  authorizationStatus?: 'APPROVED' | 'RESTRICTED' | 'UNKNOWN'
   relatedCapabilities?: string[]
   evidenceDate?: string
   verificationStatus?: string
@@ -32,7 +43,7 @@ const verificationSet = new Set<string>(EVIDENCE_VERIFICATION_STATUSES)
 
 export function publicEvidenceFromSanity(source?: SanityEvidenceRecord): EvidenceRecord | undefined {
   if (!source?._id || !source.evidenceType || !source.verificationStatus || !source.visibility) return undefined
-  if (source.evidenceType !== 'IMAGE' && source.evidenceType !== 'VIDEO') return undefined
+  if (source.evidenceType !== 'IMAGE' && source.evidenceType !== 'VIDEO' && source.evidenceType !== 'CERTIFICATE') return undefined
   if (!verificationSet.has(source.verificationStatus)) return undefined
   if (source.visibility !== 'PUBLIC' && source.visibility !== 'PRIVATE') return undefined
 
@@ -41,11 +52,19 @@ export function publicEvidenceFromSanity(source?: SanityEvidenceRecord): Evidenc
     evidenceType: source.evidenceType,
     ...(source.imageUrl || source.imageAlt ? {image: {url: source.imageUrl || '', alt: source.imageAlt || ''}} : {}),
     ...(source.videoUrl || source.videoPosterUrl ? {video: {url: source.videoUrl || '', posterUrl: source.videoPosterUrl || ''}} : {}),
+    ...(source.evidenceType === 'CERTIFICATE' ? {certificate: {
+      name: source.certificateName || '', holder: source.certificateHolder || '', issuer: source.certificateIssuer || '',
+      certificateNumber: source.certificateNumber || '', scope: source.certificateScope || '',
+      issuedDate: source.certificateIssuedDate || '', expiryDate: source.certificateExpiryDate || '',
+      fileUrl: source.certificateFileUrl || '', offeringRelationship: source.offeringRelationship || '',
+    }} : {}),
     caption: source.caption || '',
     processStage: source.processStage || '',
     relatedProducts: source.relatedProducts || [],
     relatedSports: source.relatedSports || [],
     relatedProjects: source.relatedProjects || [],
+    sampleId: source.sampleId,
+    authorizationStatus: source.authorizationStatus,
     relatedCapabilities: (source.relatedCapabilities || []).filter((item): item is EvidenceCapability => capabilitySet.has(item)),
     evidenceDate: source.evidenceDate || '',
     verificationStatus: source.verificationStatus as EvidenceVerificationStatus,

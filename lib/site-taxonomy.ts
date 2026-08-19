@@ -1,6 +1,44 @@
 export type TaxonomyGroupId = 'SPORTS' | 'TEAMWEAR' | 'MANUFACTURING_SOLUTIONS'
 export type TaxonomyPublicStatus = 'PUBLISHED' | 'OWNER_CONFIRMATION_REQUIRED' | 'PLANNED'
 
+export const PRODUCT_CATEGORY_STATES = ['ACTIVE_VERIFIED', 'MANUFACTURABLE_NOT_PROVEN', 'PLANNED', 'DISABLED'] as const
+export type ProductCategoryState = (typeof PRODUCT_CATEGORY_STATES)[number]
+
+export type CategoryPublicationGate = {
+  public: boolean
+  navigation: boolean
+  products: boolean
+  sitemap: boolean
+  internalLinks: boolean
+  seoLandingPage: boolean
+  noindex: boolean
+}
+
+export function categoryPublicationGate(state: ProductCategoryState, indexabilityApproved = false): CategoryPublicationGate {
+  if (state === 'ACTIVE_VERIFIED') return {public: true, navigation: true, products: true, sitemap: true, internalLinks: true, seoLandingPage: true, noindex: false}
+  if (state === 'MANUFACTURABLE_NOT_PROVEN' && indexabilityApproved) {
+    return {public: true, navigation: false, products: false, sitemap: true, internalLinks: true, seoLandingPage: true, noindex: false}
+  }
+  return {public: false, navigation: false, products: false, sitemap: false, internalLinks: false, seoLandingPage: false, noindex: true}
+}
+
+export const CATEGORY_PUBLICATION_DECISIONS: Readonly<Record<string, {state: ProductCategoryState; reason: string}>> = {
+  basketball: {state: 'ACTIVE_VERIFIED', reason: 'Approved core sport with a canonical public offer.'},
+  soccer: {state: 'ACTIVE_VERIFIED', reason: 'Approved core sport with a canonical public offer.'},
+  baseball: {state: 'ACTIVE_VERIFIED', reason: 'Approved core sport with a canonical public offer.'},
+  'training-wear': {state: 'ACTIVE_VERIFIED', reason: 'Approved public Teamwear category.'},
+  'hoodies-jackets': {state: 'ACTIVE_VERIFIED', reason: 'Approved public Teamwear category.'},
+  'team-accessories': {state: 'MANUFACTURABLE_NOT_PROVEN', reason: 'CMS may retain the category, but public capability evidence is not established.'},
+  'american-football': {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+  esports: {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+  golf: {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+  'ice-hockey': {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+  rugby: {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+  'running-marathon': {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+  tennis: {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+  volleyball: {state: 'PLANNED', reason: 'Offer is not owner-verified for public promotion.'},
+}
+
 export type TaxonomyEntry = {
   id: string
   label: string
@@ -53,16 +91,20 @@ export const SITE_TAXONOMY: readonly TaxonomyGroup[] = [
   },
 ] as const
 
+function taxonomyPublicationState(item: TaxonomyEntry): ProductCategoryState {
+  return CATEGORY_PUBLICATION_DECISIONS[item.id]?.state || (item.publicStatus === 'PUBLISHED' ? 'ACTIVE_VERIFIED' : 'PLANNED')
+}
+
 export function publicTaxonomyGroups(): TaxonomyGroup[] {
   return SITE_TAXONOMY.map((group) => ({
     ...group,
-    items: group.items.filter((item) => item.publicStatus === 'PUBLISHED' && item.path),
+    items: group.items.filter((item) => item.publicStatus === 'PUBLISHED' && categoryPublicationGate(taxonomyPublicationState(item)).public && item.path),
   })).filter((group) => group.items.length)
 }
 
 export function navigableTaxonomyEntries(): TaxonomyEntry[] {
   return SITE_TAXONOMY.flatMap((group) => group.items).filter(
-    (item) => item.publicStatus === 'PUBLISHED' && item.navigation && Boolean(item.path),
+    (item) => item.publicStatus === 'PUBLISHED' && categoryPublicationGate(taxonomyPublicationState(item)).navigation && item.navigation && Boolean(item.path),
   )
 }
 
@@ -72,7 +114,7 @@ export function productNavigationEntries(): Array<TaxonomyEntry & {path: string}
     .filter((group) => group.id !== 'MANUFACTURING_SOLUTIONS')
     .flatMap((group) => group.items)
     .filter((item): item is TaxonomyEntry & {path: string} => {
-      if (item.publicStatus !== 'PUBLISHED' || !item.navigation || !item.path || seen.has(item.path)) return false
+      if (item.publicStatus !== 'PUBLISHED' || !categoryPublicationGate(taxonomyPublicationState(item)).navigation || !item.navigation || !item.path || seen.has(item.path)) return false
       seen.add(item.path)
       return true
     })
@@ -81,7 +123,7 @@ export function productNavigationEntries(): Array<TaxonomyEntry & {path: string}
 export function sitemapTaxonomyEntries(): TaxonomyEntry[] {
   const seen = new Set<string>()
   return SITE_TAXONOMY.flatMap((group) => group.items).filter((item) => {
-    if (item.publicStatus !== 'PUBLISHED' || !item.sitemap || !item.path || seen.has(item.path)) return false
+    if (item.publicStatus !== 'PUBLISHED' || !categoryPublicationGate(taxonomyPublicationState(item)).sitemap || !item.sitemap || !item.path || seen.has(item.path)) return false
     seen.add(item.path)
     return true
   })

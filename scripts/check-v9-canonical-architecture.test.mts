@@ -3,6 +3,7 @@ import {existsSync, readFileSync} from 'node:fs'
 import {
   CANONICAL_URLS,
   PSEO_BLOG_DUPLICATE_SLUGS,
+  REDIRECT_OWNERSHIP_REVIEW,
   redirectEntries,
   sitemapEntries,
   validateCanonicalArchitecture,
@@ -37,6 +38,11 @@ assert.deepEqual(
 )
 
 assert.equal(PSEO_BLOG_DUPLICATE_SLUGS.length, 19)
+assert.equal(REDIRECT_OWNERSHIP_REVIEW.length, 19)
+assert.deepEqual(REDIRECT_OWNERSHIP_REVIEW.map((entry) => entry.slug), [...PSEO_BLOG_DUPLICATE_SLUGS])
+assert.ok(REDIRECT_OWNERSHIP_REVIEW.every((entry) => entry.dataAvailable === 'TRAFFIC_DATA_NOT_AVAILABLE'))
+assert.ok(REDIRECT_OWNERSHIP_REVIEW.some((entry) => entry.decision === 'KEEP_301'))
+assert.ok(REDIRECT_OWNERSHIP_REVIEW.some((entry) => entry.decision === 'OWNER_REVIEW'))
 for (const slug of PSEO_BLOG_DUPLICATE_SLUGS) {
   const root = CANONICAL_URLS.find((entry) => entry.path === `/${slug}/`)
   assert.equal(root?.status, 'REDIRECT')

@@ -10,6 +10,14 @@ import {
   SHIPPING_TIMING_CONFIRMED,
   TIMELINE_CONFIRMED,
 } from '../lib/truth/public-copy.ts'
+import {
+  OWNER_DECISIONS,
+  ownerPolicyIdForLegacyKind,
+  projectPublicationDecision,
+  type OwnerClaimPolicyId,
+  type ProjectAuthenticityClass,
+} from '../lib/truth/owner-decisions.ts'
+import {CATEGORY_PUBLICATION_DECISIONS, categoryPublicationGate, type ProductCategoryState} from '../lib/site-taxonomy.ts'
 import {scanV9ClaimText, type V9ClaimKind} from './scan-v9-red-claims.mts'
 
 const PROJECT_ID = 'oqpv1xbc'
@@ -25,19 +33,33 @@ export type SnapshotDocument = {
 }
 
 export type MigrationPatch = {
-  id: string
-  type: string
-  ifRevisionID: string
+  documentId: string
+  documentType: string
+  revision: string
   set: Record<string, unknown>
   unset: string[]
-  changes: Array<{field: string; kind: V9ClaimKind | 'PROJECT_CLASSIFICATION' | 'TAXONOMY'; before: unknown; after: unknown; status: string}>
+  changes: MigrationChange[]
+}
+
+export type MigrationChange = {
+  fieldPath: string
+  kind: V9ClaimKind | 'PROJECT_CLASSIFICATION' | 'TAXONOMY'
+  before: unknown
+  proposedAfter: unknown
+  claimPolicy: string
+  reason: string
+  riskClassification: string
+  truthStatus: string
+  result: 'PLANNED'
 }
 
 export type MigrationPlan = {
-  version: 'POXIOL_V9_1'
+  version: 'POXIOL_V9_1A'
   generatedAt: string
   projectId: string
   dataset: string
+  snapshot: {projectId: string; dataset: string; capturedAt: string; documentCount: number}
+  affectedDocumentIds: string[]
   deleteCount: 0
   patches: MigrationPatch[]
 }
@@ -50,7 +72,7 @@ const KNOWN_FIELDS: Readonly<Record<string, readonly string[]>> = {
     'measurementTolerancePolicy', 'returnPolicyStatus',
   ],
   sitePage: ['pageKey', 'internalName', 'slug', 'heroEyebrow', 'heroHeading', 'heroSubheading', 'homepageUspCards', 'homepageSectionHeadings', 'inquirySupport', 'contentSections', 'seo', 'publishStatus', 'claimPolicies'],
-  productCategory: ['categoryName', 'shortName', 'slug', 'heroTitle', 'heroDescription', 'introduction', 'heroProofPoints', 'decisionSections', 'buyerTypes', 'targetMarkets', 'productTypes', 'keyFeatures', 'coreBenefits', 'navigationVisibility', 'homepageVisibility', 'showOnHomepage', 'activeStatus', 'taxonomyGroup', 'taxonomyKey', 'displayOrder', 'publishStatus', 'seo', 'claimPolicies'],
+  productCategory: ['categoryName', 'shortName', 'slug', 'heroTitle', 'heroDescription', 'introduction', 'heroProofPoints', 'decisionSections', 'buyerTypes', 'targetMarkets', 'productTypes', 'keyFeatures', 'coreBenefits', 'navigationVisibility', 'homepageVisibility', 'showOnHomepage', 'activeStatus', 'publicationState', 'taxonomyGroup', 'taxonomyKey', 'displayOrder', 'publishStatus', 'seo', 'claimPolicies'],
   product: ['productName', 'slug', 'sport', 'taxonomyKey', 'category', 'shortDescription', 'fullDescription', 'keyBenefits', 'fabricOptions', 'fabric', 'composition', 'gsm', 'printing', 'customizationOptions', 'customizationAreas', 'sizeRange', 'packaging', 'procurementOverride', 'displayOrder', 'publishStatus', 'seo', 'claimPolicies'],
   faqItem: ['question', 'answer', 'shortAnswer', 'fullAnswer', 'category', 'sports', 'products', 'productCategories', 'pages', 'guides', 'displayOrder', 'publishStatus', 'claimPolicies'],
   article: ['title', 'slug', 'articleType', 'excerpt', 'summary', 'body', 'keyTakeaways', 'methodology', 'displayOrder', 'publishStatus', 'seo', 'claimPolicies'],
@@ -128,6 +150,34 @@ function claimId(documentId: string, field: string, kind: V9ClaimKind): string {
 
 type Change = {field: string; kind: V9ClaimKind; before: string; after: string; status: string}
 
+function ownerDecisionFor(kind: string) {
+  const policyId = ownerPolicyIdForLegacyKind(kind)
+  return {policyId, decision: OWNER_DECISIONS[policyId as OwnerClaimPolicyId]}
+}
+
+function migrationChange(
+  fieldPath: string,
+  kind: MigrationChange['kind'],
+  before: unknown,
+  proposedAfter: unknown,
+  truthStatus: string,
+  reason?: string,
+  riskClassification?: string,
+): MigrationChange {
+  const {policyId, decision} = ownerDecisionFor(kind)
+  return {
+    fieldPath,
+    kind,
+    before: before === undefined ? null : before,
+    proposedAfter: proposedAfter === undefined ? null : proposedAfter,
+    claimPolicy: policyId,
+    reason: reason || decision?.reason || 'Replace an unverified legacy public value with the governed V9.1A value.',
+    riskClassification: riskClassification || decision?.riskClassification || `LEGACY_${kind}`,
+    truthStatus,
+    result: 'PLANNED',
+  }
+}
+
 type MigrationContext = {
   categoriesById: Map<string, SnapshotDocument>
   categoryIdsBySlug: Map<string, string>
@@ -140,13 +190,14 @@ const CATEGORY_TAXONOMY: Readonly<Record<string, {
   navigation: boolean
   homepage: boolean
   active: boolean
+  publicationState: ProductCategoryState
 }>> = {
-  'basketball-uniforms': {group: 'SPORTS', key: 'basketball', sport: 'Basketball', navigation: true, homepage: true, active: true},
-  'soccer-jerseys': {group: 'SPORTS', key: 'soccer', sport: 'Soccer', navigation: true, homepage: true, active: true},
-  'soccer-kits': {group: 'SPORTS', key: 'soccer-legacy-duplicate', sport: 'Soccer', navigation: false, homepage: false, active: false},
-  'training-wear': {group: 'TEAMWEAR', key: 'training-wear', navigation: true, homepage: true, active: true},
-  'hoodies-jackets': {group: 'TEAMWEAR', key: 'hoodies-jackets', navigation: true, homepage: true, active: true},
-  'team-accessories': {group: 'TEAMWEAR', key: 'team-accessories', navigation: false, homepage: false, active: true},
+  'basketball-uniforms': {group: 'SPORTS', key: 'basketball', sport: 'Basketball', navigation: true, homepage: true, active: true, publicationState: 'ACTIVE_VERIFIED'},
+  'soccer-jerseys': {group: 'SPORTS', key: 'soccer', sport: 'Soccer', navigation: true, homepage: true, active: true, publicationState: 'ACTIVE_VERIFIED'},
+  'soccer-kits': {group: 'SPORTS', key: 'soccer-legacy-duplicate', sport: 'Soccer', navigation: false, homepage: false, active: false, publicationState: 'DISABLED'},
+  'training-wear': {group: 'TEAMWEAR', key: 'training-wear', navigation: true, homepage: true, active: true, publicationState: 'ACTIVE_VERIFIED'},
+  'hoodies-jackets': {group: 'TEAMWEAR', key: 'hoodies-jackets', navigation: true, homepage: true, active: true, publicationState: 'ACTIVE_VERIFIED'},
+  'team-accessories': {group: 'TEAMWEAR', key: 'team-accessories', navigation: false, homepage: false, active: true, publicationState: 'MANUFACTURABLE_NOT_PROVEN'},
 }
 
 function slugCurrent(document?: SnapshotDocument): string | undefined {
@@ -163,7 +214,7 @@ function taxonomyPatch(document: SnapshotDocument, context: MigrationContext): {
   const assign = (field: string, after: unknown) => {
     if (JSON.stringify(document[field]) === JSON.stringify(after)) return
     set[field] = after
-    changes.push({field, kind: 'TAXONOMY', before: document[field], after, status: 'MIGRATED'})
+    changes.push(migrationChange(field, 'TAXONOMY', document[field], after, 'OWNER_CONFIRMED_CLASSIFICATION', 'Align the CMS field with the approved category and canonical ownership registry.', 'TAXONOMY_GOVERNANCE'))
   }
 
   if (document._type === 'productCategory') {
@@ -176,9 +227,14 @@ function taxonomyPatch(document: SnapshotDocument, context: MigrationContext): {
     assign('homepageVisibility', policy.homepage)
     assign('showOnHomepage', policy.homepage)
     assign('activeStatus', policy.active)
+    assign('publicationState', policy.publicationState)
     if (slug === 'soccer-kits') {
       const currentSeo = document.seo && typeof document.seo === 'object' ? document.seo as Record<string, unknown> : {}
       assign('seo', {...currentSeo, canonicalUrl: 'https://www.poxiol.com/products/soccer-jerseys/', indexStatus: 'noindex'})
+    } else if (policy.publicationState !== 'ACTIVE_VERIFIED') {
+      const currentSeo = document.seo && typeof document.seo === 'object' ? document.seo as Record<string, unknown> : {}
+      const gate = categoryPublicationGate(policy.publicationState)
+      if (gate.noindex) assign('seo', {...currentSeo, indexStatus: 'noindex'})
     }
     return {set, changes}
   }
@@ -225,53 +281,64 @@ function sanitizeValue(value: unknown, field: string, changes: Change[]): unknow
 
 function policyFor(documentId: string, change: Change, reviewedAt: string) {
   const conditional = change.status === 'CONDITIONAL'
+  const {policyId, decision} = ownerDecisionFor(change.kind)
   return {
     _key: claimId(documentId, change.field, change.kind).replace(/[^a-zA-Z0-9]/g, '').slice(-12),
     _type: 'claimPolicy',
     claimId: claimId(documentId, change.field, change.kind),
+    ownerDecisionId: policyId,
+    ...(decision ? {ownerDecisionStatus: decision.decisionStatus} : {}),
     sourceField: change.field,
     claim: change.before,
     status: change.status,
     ...(conditional ? {publicValue: change.after} : {replacement: change.after}),
     legacyValue: change.before,
-    publicRule: conditional ? 'Publish only with the stated project dependencies.' : 'Do not publish the historical value without owner-approved evidence.',
+    publicRule: decision?.publicRule || (conditional ? 'Publish only with the stated project dependencies.' : 'Do not publish the historical value without owner-approved evidence.'),
     reviewedAt,
-    reviewedBy: 'POXIOL V9.1 migration',
-    internalNotes: 'Created from the V9.0 RED claim audit. Owner facts remain unconfirmed unless evidence is attached.',
+    reviewedBy: 'POXIOL V9.1A migration',
+    internalNotes: 'Created from legacy claim discovery and bound to a stable V9.1A policy ID. Evidence gates still apply.',
   }
 }
 
 function procurementPatch(document: SnapshotDocument, reviewedAt: string): MigrationPatch {
   const old = (field: string) => typeof document[field] === 'string' ? document[field] as string : ''
-  const policy = (claimIdValue: string, sourceField: string, status: string, replacement: string) => ({
-    _type: 'claimPolicy', claimId: claimIdValue, sourceField, claim: old(sourceField), status,
+  const policy = (claimIdValue: OwnerClaimPolicyId, sourceField: string, status: string, replacement: string) => ({
+    _type: 'claimPolicy', claimId: claimIdValue, ownerDecisionId: claimIdValue,
+    ownerDecisionStatus: OWNER_DECISIONS[claimIdValue].decisionStatus,
+    sourceField, claim: old(sourceField), status,
     ...(status === 'VERIFIED' || status === 'CONDITIONAL' ? {publicValue: replacement} : {replacement}),
-    legacyValue: old(sourceField), publicRule: 'Publish the replacement until owner-approved evidence supports a more specific value.',
-    reviewedAt, reviewedBy: 'POXIOL V9.1 migration', internalNotes: 'Historical value preserved for internal review.',
+    legacyValue: old(sourceField), publicRule: OWNER_DECISIONS[claimIdValue].publicRule,
+    reviewedAt, reviewedBy: 'POXIOL V9.1A migration', internalNotes: 'Historical value preserved for internal review. Stable owner decision attached.',
   })
   const set: Record<string, unknown> = {
     defaultMOQ: ORDER_QUANTITY_CONFIRMED,
     sampleMOQ: ORDER_QUANTITY_CONFIRMED,
-    sampleTime: SAMPLE_TIMING_CONFIRMED,
-    sampleProductionTime: SAMPLE_TIMING_CONFIRMED,
+    sampleTime: TIMELINE_CONFIRMED,
+    sampleProductionTime: TIMELINE_CONFIRMED,
     bulkProductionTime: TIMELINE_CONFIRMED,
     mockupTime: TIMELINE_CONFIRMED,
     shippingNotes: SHIPPING_TIMING_CONFIRMED,
     sizeTolerance: MEASUREMENT_TOLERANCE_REVIEW,
     qualityPromise: 'Manufacturing tolerance and return policy are reviewed separately.',
     returnPolicyStatus: 'POLICY_REVIEW_REQUIRED',
-    quantityPolicy: policy('V9-CMS-MOQ', 'defaultMOQ', 'OWNER_CONFIRMATION_REQUIRED', ORDER_QUANTITY_CONFIRMED),
-    sampleTimingPolicy: policy('V9-CMS-SAMPLE-TIMING', 'sampleProductionTime', 'OPERATIONAL_TARGET', SAMPLE_TIMING_CONFIRMED),
-    productionTimingPolicy: policy('V9-CMS-PRODUCTION-TIMING', 'bulkProductionTime', 'OPERATIONAL_TARGET', TIMELINE_CONFIRMED),
-    mockupTimingPolicy: policy('V9-CMS-MOCKUP-TIMING', 'mockupTime', 'OPERATIONAL_TARGET', TIMELINE_CONFIRMED),
-    shippingTimingPolicy: policy('V9-CMS-SHIPPING-TIMING', 'shippingNotes', 'CONDITIONAL', SHIPPING_TIMING_CONFIRMED),
-    measurementTolerancePolicy: policy('V9-CMS-MEASUREMENT-TOLERANCE', 'qualityPromise', 'OWNER_CONFIRMATION_REQUIRED', MEASUREMENT_TOLERANCE_REVIEW),
+    quantityPolicy: policy('CLAIM_MOQ', 'defaultMOQ', 'CONDITIONAL', ORDER_QUANTITY_CONFIRMED),
+    sampleTimingPolicy: policy('CLAIM_TIMELINE', 'sampleProductionTime', 'OPERATIONAL_TARGET', TIMELINE_CONFIRMED),
+    productionTimingPolicy: policy('CLAIM_TIMELINE', 'bulkProductionTime', 'OPERATIONAL_TARGET', TIMELINE_CONFIRMED),
+    mockupTimingPolicy: policy('CLAIM_TIMELINE', 'mockupTime', 'OPERATIONAL_TARGET', TIMELINE_CONFIRMED),
+    shippingTimingPolicy: policy('CLAIM_SHIPPING', 'shippingNotes', 'CONDITIONAL', SHIPPING_TIMING_CONFIRMED),
+    measurementTolerancePolicy: policy('CLAIM_SIZE_TOLERANCE', 'qualityPromise', 'CONDITIONAL', MEASUREMENT_TOLERANCE_REVIEW),
   }
-  const changes = Object.entries(set).filter(([field, after]) => JSON.stringify(document[field]) !== JSON.stringify(after)).map(([field, after]) => ({
-    field, kind: field === 'returnPolicyStatus' || field === 'qualityPromise' || field === 'measurementTolerancePolicy' ? 'TOLERANCE_RETURN_POLICY' as const : field.includes('quantity') || field.includes('MOQ') ? 'MOQ' as const : field.includes('sample') ? 'SAMPLE_TIMING' as const : field.includes('shipping') ? 'SHIPPING_TIMING' as const : field.includes('mockup') ? 'MOCKUP_TIMING' as const : 'PRODUCTION_TIMING' as const,
-    before: document[field], after, status: 'MIGRATED',
-  }))
-  return {id: document._id, type: document._type, ifRevisionID: document._rev, set, unset: [], changes}
+  const changes = Object.entries(set).filter(([field, after]) => JSON.stringify(document[field]) !== JSON.stringify(after)).map(([field, after]) => {
+    const kind = field === 'returnPolicyStatus' || field === 'qualityPromise' || field === 'measurementTolerancePolicy' || field === 'sizeTolerance'
+      ? 'TOLERANCE_RETURN_POLICY' as const
+      : field.includes('quantity') || field.includes('MOQ') ? 'MOQ' as const
+        : field.includes('shipping') ? 'SHIPPING_TIMING' as const
+          : field.includes('mockup') || field.includes('sample') || field.includes('production') || field.includes('bulk') ? 'PRODUCTION_TIMING' as const
+            : 'PRODUCTION_TIMING' as const
+    const decision = ownerDecisionFor(kind).decision
+    return migrationChange(field, kind, document[field], after, decision?.truthStatus || 'CONDITIONAL')
+  })
+  return {documentId: document._id, documentType: document._type, revision: document._rev, set, unset: [], changes}
 }
 
 function genericPatch(document: SnapshotDocument, reviewedAt: string, context: MigrationContext): MigrationPatch | null {
@@ -292,25 +359,46 @@ function genericPatch(document: SnapshotDocument, reviewedAt: string, context: M
   const unset: string[] = []
   const projectChanges: MigrationPatch['changes'] = []
   if (document._type === 'caseStudy') {
-    const verified = document.evidenceStatus === 'verified' && document.buyerAuthorizationStatus === 'publicApproved'
-    if (!verified) {
-      if (document.realOrExample !== 'SCENARIO') {
-        set.realOrExample = 'SCENARIO'
-        projectChanges.push({field: 'realOrExample', kind: 'PROJECT_CLASSIFICATION', before: document.realOrExample, after: 'SCENARIO', status: 'PLACEHOLDER'})
-      }
-      if (/customer success story|real project/i.test(String(document.projectTitle || document.title || ''))) {
-        set.projectTitle = 'Example Project Scenario'
-        projectChanges.push({field: 'projectTitle', kind: 'PROJECT_CLASSIFICATION', before: document.projectTitle, after: 'Example Project Scenario', status: 'PLACEHOLDER'})
-      }
-      if (document.quantityDisplay !== undefined) {
-        unset.push('quantityDisplay')
-        projectChanges.push({field: 'quantityDisplay', kind: 'PROJECT_CLASSIFICATION', before: document.quantityDisplay, after: undefined, status: 'UNVERIFIED'})
-      }
+    const currentClass = typeof document.realOrExample === 'string' ? document.realOrExample : ''
+    const approvedClass = (['VERIFIED_REAL_PROJECT', 'BUYER_AUTHORIZED_PROJECT', 'INTERNAL_SAMPLE', 'DEMO', 'SCENARIO', 'UNVERIFIED'] as const).includes(currentClass as ProjectAuthenticityClass)
+      ? currentClass as ProjectAuthenticityClass
+      : document.evidenceStatus === 'verified' && document.buyerAuthorizationStatus === 'publicApproved'
+        ? 'BUYER_AUTHORIZED_PROJECT'
+        : /sample/i.test(currentClass) ? 'INTERNAL_SAMPLE'
+          : /demo/i.test(currentClass) ? 'DEMO'
+            : /example|scenario/i.test(currentClass) || document.evidenceStatus === 'example' ? 'SCENARIO'
+              : 'UNVERIFIED'
+    if (document.realOrExample !== approvedClass) {
+      set.realOrExample = approvedClass
+      projectChanges.push(migrationChange('realOrExample', 'PROJECT_CLASSIFICATION', document.realOrExample, approvedClass, approvedClass === 'UNVERIFIED' ? 'UNVERIFIED' : 'CONDITIONAL'))
+    }
+    const publication = projectPublicationDecision(approvedClass, document.buyerAuthorizationStatus === 'publicApproved')
+    if (publication.requiredLabel && String(document.projectTitle || document.title || '') !== publication.requiredLabel) {
+      set.projectTitle = publication.requiredLabel
+      projectChanges.push(migrationChange('projectTitle', 'PROJECT_CLASSIFICATION', document.projectTitle, publication.requiredLabel, approvedClass === 'SCENARIO' ? 'PLACEHOLDER' : 'CONDITIONAL'))
+    }
+    if (!publication.public && document.publishStatus !== 'draft') {
+      set.publishStatus = 'draft'
+      projectChanges.push(migrationChange('publishStatus', 'PROJECT_CLASSIFICATION', document.publishStatus, 'draft', 'UNVERIFIED', 'Prevent an unverified project from being published as evidence.', 'PROJECT_AUTHENTICITY'))
+    }
+    if ((approvedClass === 'SCENARIO' || approvedClass === 'UNVERIFIED') && document.quantityDisplay !== undefined) {
+      unset.push('quantityDisplay')
+      projectChanges.push(migrationChange('quantityDisplay', 'PROJECT_CLASSIFICATION', document.quantityDisplay, undefined, 'UNVERIFIED'))
     }
   }
 
   const taxonomy = taxonomyPatch(document, context)
-  for (const [field, after] of Object.entries(taxonomy.set)) set[field] = after
+  for (const [field, after] of Object.entries(taxonomy.set)) {
+    if (field === 'seo' && set.seo && typeof set.seo === 'object' && after && typeof after === 'object') {
+      const taxonomySeo = after as Record<string, unknown>
+      set.seo = {
+        ...taxonomySeo,
+        ...(set.seo as Record<string, unknown>),
+        ...(taxonomySeo.canonicalUrl !== undefined ? {canonicalUrl: taxonomySeo.canonicalUrl} : {}),
+        ...(taxonomySeo.indexStatus !== undefined ? {indexStatus: taxonomySeo.indexStatus} : {}),
+      }
+    } else set[field] = after
+  }
 
   if (changes.length) {
     const existing = Array.isArray(document.claimPolicies) ? document.claimPolicies : []
@@ -319,10 +407,21 @@ function genericPatch(document: SnapshotDocument, reviewedAt: string, context: M
     set.claimPolicies = Array.from(byId.values())
   }
   if (!Object.keys(set).length && !unset.length) return null
-  return {id: document._id, type: document._type, ifRevisionID: document._rev, set, unset, changes: [...changes, ...projectChanges, ...taxonomy.changes]}
+  return {
+    documentId: document._id,
+    documentType: document._type,
+    revision: document._rev,
+    set,
+    unset,
+    changes: [
+      ...changes.map((change) => migrationChange(change.field, change.kind, change.before, change.after, change.status)),
+      ...projectChanges,
+      ...taxonomy.changes,
+    ],
+  }
 }
 
-export function buildMigrationPlan(documents: SnapshotDocument[], generatedAt = new Date().toISOString()): MigrationPlan {
+export function buildMigrationPlan(documents: SnapshotDocument[], generatedAt = new Date().toISOString(), snapshotCapturedAt = generatedAt): MigrationPlan {
   const categories = documents.filter((document) => document._type === 'productCategory')
   const context: MigrationContext = {
     categoriesById: new Map(categories.map((document) => [document._id, document])),
@@ -332,14 +431,23 @@ export function buildMigrationPlan(documents: SnapshotDocument[], generatedAt = 
     })),
   }
   const patches = documents.map((document) => document._type === 'procurementStandards' ? procurementPatch(document, generatedAt) : genericPatch(document, generatedAt, context)).filter(Boolean) as MigrationPatch[]
-  return {version: 'POXIOL_V9_1', generatedAt, projectId: PROJECT_ID, dataset: DATASET, deleteCount: 0, patches}
+  return {
+    version: 'POXIOL_V9_1A',
+    generatedAt,
+    projectId: PROJECT_ID,
+    dataset: DATASET,
+    snapshot: {projectId: PROJECT_ID, dataset: DATASET, capturedAt: snapshotCapturedAt, documentCount: documents.length},
+    affectedDocumentIds: patches.map((patch) => patch.documentId),
+    deleteCount: 0,
+    patches,
+  }
 }
 
 export function mutationPayloadFor(patch: MigrationPatch) {
   return {
     patch: {
-      id: patch.id,
-      ifRevisionID: patch.ifRevisionID,
+      id: patch.documentId,
+      ifRevisionID: patch.revision,
       set: patch.set,
       ...(patch.unset.length ? {unset: patch.unset} : {}),
     },
@@ -392,24 +500,57 @@ function arg(name: string, fallback?: string): string | undefined {
   return index >= 0 ? process.argv[index + 1] : fallback
 }
 
-async function applyPlan(plan: MigrationPlan) {
+export function classifyMutationHttpResult(status: number): 'APPLIED' | 'REVISION_CONFLICT' | 'FAILED' {
+  if (status >= 200 && status < 300) return 'APPLIED'
+  if (status === 409) return 'REVISION_CONFLICT'
+  return 'FAILED'
+}
+
+type ApplyResult = {
+  documentId: string
+  documentType: string
+  revision: string
+  result: 'APPLIED' | 'SKIPPED' | 'REVISION_CONFLICT' | 'FAILED' | 'NO_CHANGE'
+  detail?: string
+}
+
+async function applyPlan(plan: MigrationPlan): Promise<ApplyResult[]> {
   const token = process.env.SANITY_WRITE_TOKEN
   if (!token) throw new Error('SANITY_WRITE_TOKEN is required for apply mode. No mutation was sent.')
   if (plan.deleteCount !== 0) throw new Error('Migration plan contains deletes and is blocked.')
   const url = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data/mutate/${DATASET}?returnIds=true&visibility=sync`
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'},
-    body: JSON.stringify({mutations: plan.patches.map(mutationPayloadFor)}),
-  })
-  if (!response.ok) throw new Error(`Sanity mutation failed with HTTP ${response.status}: ${await response.text()}`)
-  return response.json()
+  const results: ApplyResult[] = []
+  for (const patch of plan.patches) {
+    if (!Object.keys(patch.set).length && !patch.unset.length) {
+      results.push({documentId: patch.documentId, documentType: patch.documentType, revision: patch.revision, result: 'NO_CHANGE'})
+      continue
+    }
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'},
+        body: JSON.stringify({mutations: [mutationPayloadFor(patch)]}),
+      })
+      const result = classifyMutationHttpResult(response.status)
+      const detail = response.ok ? undefined : (await response.text()).slice(0, 1000)
+      results.push({documentId: patch.documentId, documentType: patch.documentType, revision: patch.revision, result, ...(detail ? {detail} : {})})
+    } catch (error) {
+      results.push({
+        documentId: patch.documentId,
+        documentType: patch.documentType,
+        revision: patch.revision,
+        result: 'FAILED',
+        detail: error instanceof Error ? error.message : String(error),
+      })
+    }
+  }
+  return results
 }
 
 export function materializeExpectedAfter(plan: MigrationPlan, documents: SnapshotDocument[]) {
   const byId = new Map(documents.map((document) => [document._id, structuredClone(document)]))
   for (const patch of plan.patches) {
-    const document = byId.get(patch.id)
+    const document = byId.get(patch.documentId)
     if (!document) continue
     Object.assign(document, patch.set)
     for (const field of patch.unset) delete document[field]
@@ -420,42 +561,51 @@ export function materializeExpectedAfter(plan: MigrationPlan, documents: Snapsho
 async function main() {
   const mode = arg('--mode')
   if (mode === 'snapshot') {
-    const output = arg('--output', 'docs/v9-1/sanity-before.ndjson') as string
+    const output = arg('--output', 'docs/v9-1a/sanity-before.ndjson') as string
+    const manifestOutput = arg('--manifest', 'docs/v9-1a/sanity-before-manifest.json') as string
+    const capturedAt = new Date().toISOString()
     const documents = await snapshot()
+    const previewPlan = buildMigrationPlan(documents, capturedAt, capturedAt)
     writeText(output, `${documents.map((document) => JSON.stringify(document)).join('\n')}\n`)
-    console.log(JSON.stringify({mode, output, documents: documents.length}))
+    writeText(manifestOutput, `${JSON.stringify({projectId: PROJECT_ID, dataset: DATASET, capturedAt, documentCount: documents.length, affectedDocumentIds: previewPlan.affectedDocumentIds}, null, 2)}\n`)
+    console.log(JSON.stringify({mode, output, manifestOutput, projectId: PROJECT_ID, dataset: DATASET, capturedAt, documents: documents.length, affectedDocuments: previewPlan.affectedDocumentIds.length}))
     return
   }
   if (mode === 'plan') {
-    const input = arg('--input', 'docs/v9-1/sanity-before.ndjson') as string
-    const output = arg('--output', 'docs/v9-1/sanity-migration-plan.json') as string
-    const plan = buildMigrationPlan(readNdjson(input))
+    const input = arg('--input', 'docs/v9-1a/sanity-before.ndjson') as string
+    const output = arg('--output', 'docs/v9-1a/sanity-migration-plan.json') as string
+    const capturedAt = arg('--snapshot-captured-at') || new Date().toISOString()
+    const plan = buildMigrationPlan(readNdjson(input), new Date().toISOString(), capturedAt)
     writeText(output, `${JSON.stringify(plan, null, 2)}\n`)
     console.log(JSON.stringify({mode, output, patches: plan.patches.length, deletes: plan.deleteCount, changes: plan.patches.reduce((sum, patch) => sum + patch.changes.length, 0)}))
     return
   }
   if (mode === 'apply') {
-    const input = arg('--input', 'docs/v9-1/sanity-migration-plan.json') as string
+    const input = arg('--input', 'docs/v9-1a/sanity-migration-plan.json') as string
+    const resultPath = arg('--result', 'docs/v9-1a/sanity-failed-skipped.json') as string
     const plan = JSON.parse(readFileSync(input, 'utf8')) as MigrationPlan
-    const result = await applyPlan(plan)
-    console.log(JSON.stringify({mode, patches: plan.patches.length, result}))
+    const results = await applyPlan(plan)
+    const counts = Object.fromEntries(['APPLIED', 'SKIPPED', 'REVISION_CONFLICT', 'FAILED', 'NO_CHANGE'].map((status) => [status, results.filter((result) => result.result === status).length]))
+    writeText(resultPath, `${JSON.stringify({projectId: PROJECT_ID, dataset: DATASET, appliedAt: new Date().toISOString(), counts, results}, null, 2)}\n`)
+    console.log(JSON.stringify({mode, patches: plan.patches.length, resultPath, counts}))
+    if (counts.FAILED) process.exitCode = 1
     return
   }
   if (mode === 'verify') {
-    const input = arg('--input', 'docs/v9-1/sanity-migration-plan.json') as string
-    const beforePath = arg('--before', 'docs/v9-1/sanity-before.ndjson') as string
-    const afterPath = arg('--after', 'docs/v9-1/sanity-after.ndjson') as string
-    const diffPath = arg('--diff', 'docs/v9-1/sanity-migration-diff.json') as string
+    const input = arg('--input', 'docs/v9-1a/sanity-migration-plan.json') as string
+    const beforePath = arg('--before', 'docs/v9-1a/sanity-before.ndjson') as string
+    const afterPath = arg('--after', 'docs/v9-1a/sanity-after.ndjson') as string
+    const diffPath = arg('--diff', 'docs/v9-1a/sanity-applied-diff.json') as string
     const plan = JSON.parse(readFileSync(input, 'utf8')) as MigrationPlan
-    const ids = plan.patches.map((patch) => patch.id)
+    const ids = plan.patches.map((patch) => patch.documentId)
     const after = (await querySanity(`*[_id in $ids]`, process.env.SANITY_READ_TOKEN || process.env.SANITY_WRITE_TOKEN, {ids})).map(projectSnapshotDocument).sort((left, right) => left._id.localeCompare(right._id))
     const expected = materializeExpectedAfter(plan, readNdjson(beforePath))
-    const diffs = plan.patches.flatMap((patch) => patch.changes.map((change) => ({documentId: patch.id, ...change})))
+    const diffs = plan.patches.flatMap((patch) => patch.changes.map((change) => ({documentId: patch.documentId, documentType: patch.documentType, revision: patch.revision, field: change.fieldPath, before: change.before, after: change.proposedAfter, policy: change.claimPolicy, result: 'APPLIED'})))
     const mismatches = plan.patches.flatMap((patch) => {
-      const actual = after.find((document) => document._id === patch.id)
-      const wanted = expected.find((document) => document._id === patch.id)
-      if (!actual || !wanted) return [{documentId: patch.id, reason: 'document-missing'}]
-      return [...Object.keys(patch.set), ...patch.unset].filter((field) => JSON.stringify(actual[field]) !== JSON.stringify(wanted[field])).map((field) => ({documentId: patch.id, field, expected: wanted[field], actual: actual[field]}))
+      const actual = after.find((document) => document._id === patch.documentId)
+      const wanted = expected.find((document) => document._id === patch.documentId)
+      if (!actual || !wanted) return [{documentId: patch.documentId, reason: 'document-missing'}]
+      return [...Object.keys(patch.set), ...patch.unset].filter((field) => JSON.stringify(actual[field]) !== JSON.stringify(wanted[field])).map((field) => ({documentId: patch.documentId, field, expected: wanted[field], actual: actual[field]}))
     })
     writeText(afterPath, `${after.map((document) => JSON.stringify(document)).join('\n')}\n`)
     writeText(diffPath, `${JSON.stringify({verifiedAt: new Date().toISOString(), diffs, mismatches}, null, 2)}\n`)

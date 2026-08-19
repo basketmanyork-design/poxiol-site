@@ -9,7 +9,7 @@ export const TIMELINE_CONFIRMED =
   'Timeline confirmed after artwork, quantity and production requirements are reviewed.'
 
 export const SHIPPING_TIMING_CONFIRMED =
-  'Shipping timing is confirmed after the destination, shipping method and project requirements are reviewed.'
+  'Shipping options and transit time are confirmed based on destination, shipping method and order requirements.'
 
 export const CUSTOMIZATION_CONFIRMED =
   `Customization options are confirmed ${PROJECT_DEPENDENCIES}.`

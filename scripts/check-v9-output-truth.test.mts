@@ -35,13 +35,17 @@ function scanSegment(pathname: string, area: string, content: string) {
 const findings: Array<{pathname: string; area: string; kind: string; value: string; classification: string}> = []
 const scannedPaths = new Set<string>()
 
-const expectedExplainedResiduals = [
+const cmsGuidePath = '/guides/how-to-choose-teamwear-manufacturer-china/'
+const cmsGuideResiduals = [
   {pathname: '/guides/how-to-choose-teamwear-manufacturer-china/', area: 'metadata', kind: 'CAPACITY_OR_SCALE', value: 'capacity', classification: 'LEGAL_RETAIN'},
   {pathname: '/guides/how-to-choose-teamwear-manufacturer-china/', area: 'metadata', kind: 'CAPACITY_OR_SCALE', value: 'capacity', classification: 'LEGAL_RETAIN'},
   {pathname: '/guides/how-to-choose-teamwear-manufacturer-china/', area: 'metadata', kind: 'CAPACITY_OR_SCALE', value: 'capacity', classification: 'LEGAL_RETAIN'},
   {pathname: '/guides/how-to-choose-teamwear-manufacturer-china/', area: 'schema', kind: 'CAPACITY_OR_SCALE', value: 'capacity', classification: 'LEGAL_RETAIN'},
+] as const
+const expectedExplainedResiduals = [
   {pathname: '/guides/sample-first-vs-bulk-teamwear-order/', area: 'visible', kind: 'UNLIMITED', value: 'unlimited', classification: 'SAFE_NEGATION'},
   {pathname: '/terms/', area: 'visible', kind: 'CAPACITY_OR_SCALE', value: 'capacity', classification: 'LEGAL_RETAIN'},
+  ...(existsSync(fileFor(cmsGuidePath)) ? cmsGuideResiduals : []),
 ] as const
 
 function findingKey(item: {pathname: string; area: string; kind: string; value: string; classification: string}): string {
@@ -105,4 +109,4 @@ const configuredRedirects = new Map(
 for (const entry of redirectEntries()) assert.deepEqual(configuredRedirects.get(entry.path), {target: entry.canonicalTarget, status: entry.redirect})
 
 if (process.argv.includes('--details')) console.log(JSON.stringify(findings, null, 2))
-console.log(`POXIOL V9.1 output truth checks passed (${urls.length} sitemap URLs, ${scannedPaths.size} non-redirect HTML outputs, ${findings.length} explained residuals).`)
+console.log(`POXIOL V9.1 output truth checks passed (${urls.length} sitemap URLs, ${scannedPaths.size} non-redirect HTML outputs, ${findings.length} explained residuals; ${existsSync(fileFor(cmsGuidePath)) ? 'CMS-connected' : 'local-fallback'} profile).`)

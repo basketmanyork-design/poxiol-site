@@ -38,6 +38,12 @@ export const productCategory = defineType({
     defineField({name: 'homepageVisibility', title: 'Show on homepage', type: 'boolean', initialValue: false, group: 'display'}),
     defineField({name: 'showOnHomepage', title: 'Show on homepage (legacy)', type: 'boolean', initialValue: false, group: 'display'}),
     defineField({name: 'activeStatus', title: 'Active status', type: 'boolean', initialValue: true, group: 'display'}),
+    defineField({name: 'publicationState', title: 'Category publication state', type: 'string', group: 'display', options: {list: [
+      {title: 'Active verified', value: 'ACTIVE_VERIFIED'},
+      {title: 'Manufacturable, not proven', value: 'MANUFACTURABLE_NOT_PROVEN'},
+      {title: 'Planned', value: 'PLANNED'},
+      {title: 'Disabled', value: 'DISABLED'},
+    ]}, validation: (Rule) => Rule.required()}),
     defineField({name: 'featured', title: 'Featured', type: 'boolean', initialValue: false, group: 'display'}),
     defineField({name: 'displayOrder', title: 'Display order', type: 'number', initialValue: 0, group: 'display'}),
     defineField({name: 'publishStatus', title: 'Publish status', type: 'publishStatus', group: 'display'}),

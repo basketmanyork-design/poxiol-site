@@ -8,6 +8,15 @@ export const claimPolicy = defineType({
   icon: WarningOutlineIcon,
   fields: [
     defineField({name: 'claimId', title: 'Claim ID', type: 'string', validation: (Rule) => Rule.required()}),
+    defineField({name: 'ownerDecisionId', title: 'Owner decision ID', type: 'string', description: 'Stable V9 owner policy family, for example CLAIM_MOQ.'}),
+    defineField({name: 'ownerDecisionStatus', title: 'Owner decision status', type: 'string', options: {list: [
+      'OWNER_CONFIRMED_RESTRICTION',
+      'OWNER_CONFIRMED_CONDITIONAL',
+      'OWNER_CONFIRMED_OPERATIONAL_TARGET',
+      'OWNER_CONFIRMED_SEPARATION_REQUIRED',
+      'OWNER_CONFIRMED_VERIFICATION_REQUIRED',
+      'OWNER_CONFIRMED_CLASSIFICATION',
+    ]}}),
     defineField({name: 'sourceField', title: 'Source field path', type: 'string', description: 'Exact CMS field governed by this record.', validation: (Rule) => Rule.required()}),
     defineField({name: 'claim', title: 'Claim', type: 'text', rows: 2}),
     defineField({name: 'status', title: 'Truth status', type: 'string', options: {list: [

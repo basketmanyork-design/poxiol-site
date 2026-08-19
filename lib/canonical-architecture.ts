@@ -32,6 +32,49 @@ export const PSEO_BLOG_DUPLICATE_SLUGS = [
   'soccer-teamwear-supplier-usa',
 ] as const
 
+export type RedirectOwnershipDecision = 'KEEP_301' | 'KEEP_SEPARATE' | 'OWNER_REVIEW'
+export type RedirectOwnershipReview = {
+  slug: (typeof PSEO_BLOG_DUPLICATE_SLUGS)[number]
+  intent: string
+  overlap: 'HIGH' | 'PARTIAL'
+  dataAvailable: 'TRAFFIC_DATA_NOT_AVAILABLE'
+  decision: RedirectOwnershipDecision
+  reason: string
+}
+
+const keepEditorial301 = new Set([
+  'best-sportswear-fabrics',
+  'how-sublimation-printing-works-for-teamwear',
+  'how-to-choose-a-teamwear-manufacturer',
+  'oem-vs-odm-sportswear',
+])
+
+export const REDIRECT_OWNERSHIP_REVIEW: readonly RedirectOwnershipReview[] = PSEO_BLOG_DUPLICATE_SLUGS.map((slug) => {
+  if (keepEditorial301.has(slug)) return {
+    slug,
+    intent: 'Informational guide',
+    overlap: 'HIGH',
+    dataAvailable: 'TRAFFIC_DATA_NOT_AVAILABLE',
+    decision: 'KEEP_301',
+    reason: 'The root and Blog records target the same informational query and the Blog route is the established editorial owner.',
+  }
+  const intent = slug.includes('supplier-') || slug.includes('new-york') || slug.includes('melbourne') || slug.includes('london')
+    ? 'Commercial geographic landing intent'
+    : slug.includes('for-schools') || slug.includes('for-academies') || slug.includes('for-clubs')
+      ? 'Commercial buyer-segment landing intent'
+      : slug.startsWith('oem-') || slug.includes('distributor')
+        ? 'Commercial manufacturing-partner intent'
+        : 'Mixed commercial and editorial intent'
+  return {
+    slug,
+    intent,
+    overlap: 'PARTIAL',
+    dataAvailable: 'TRAFFIC_DATA_NOT_AVAILABLE',
+    decision: 'OWNER_REVIEW',
+    reason: 'The root record is shaped as a commercial landing page while the Blog document is editorial; traffic, backlink and canonical-history evidence is unavailable, so separation or consolidation needs owner review.',
+  }
+})
+
 const primary = (path: string, intent: string): CanonicalUrlEntry => ({
   path, intent, canonicalTarget: path, status: 'PRIMARY', sitemap: true, index: true,
 })

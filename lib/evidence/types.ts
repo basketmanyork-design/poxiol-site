@@ -10,14 +10,27 @@ export type EvidenceCapability = (typeof EVIDENCE_CAPABILITIES)[number]
 
 export type EvidenceRecord = {
   id: string
-  evidenceType: 'IMAGE' | 'VIDEO'
+  evidenceType: 'IMAGE' | 'VIDEO' | 'CERTIFICATE'
   image?: {url: string; alt: string}
   video?: {url: string; posterUrl: string}
+  certificate?: {
+    name: string
+    holder: string
+    issuer: string
+    certificateNumber: string
+    scope: string
+    issuedDate: string
+    expiryDate: string
+    fileUrl: string
+    offeringRelationship: string
+  }
   caption: string
   processStage: string
   relatedProducts: string[]
   relatedSports: string[]
   relatedProjects: string[]
+  sampleId?: string
+  authorizationStatus?: 'APPROVED' | 'RESTRICTED' | 'UNKNOWN'
   relatedCapabilities: EvidenceCapability[]
   evidenceDate: string
   verificationStatus: EvidenceVerificationStatus

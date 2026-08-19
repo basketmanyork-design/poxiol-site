@@ -1,0 +1,29 @@
+# POXIOL V9.1A Redirect Ownership Review
+
+Updated: 2026-08-19
+
+No GSC, backlink or traffic dataset was available in this task. Every row is therefore marked `TRAFFIC_DATA_NOT_AVAILABLE`. The review compares current root PSEO source, the same-slug Production Blog document, route purpose, internal ownership and existing canonical architecture. It does not change or add redirects.
+
+| Root URL | Blog URL | Intent | Overlap | Data Available | Decision | Reason |
+| --- | --- | --- | --- | --- | --- | --- |
+| `/best-sportswear-fabrics/` | `/blog/best-sportswear-fabrics/` | Informational fabric guide | High | `TRAFFIC_DATA_NOT_AVAILABLE` | `KEEP_301` | Same query and guide purpose; Blog is the established editorial owner. |
+| `/custom-baseball-jerseys-for-clubs/` | `/blog/custom-baseball-jerseys-for-clubs/` | Commercial club landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | A club landing could serve a different buyer step; performance and link evidence are missing. |
+| `/custom-basketball-jerseys-melbourne/` | `/blog/custom-basketball-jerseys-melbourne/` | Commercial geographic landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Local landing intent may differ; canonical history and ranking data are missing. |
+| `/custom-basketball-uniforms-for-schools/` | `/blog/custom-basketball-uniforms-for-schools/` | Commercial school landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | School buyer intent may justify a landing page if unique content and demand are proven. |
+| `/custom-soccer-kits-london/` | `/blog/custom-soccer-kits-london/` | Commercial geographic landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Local landing intent may differ; canonical history and ranking data are missing. |
+| `/custom-soccer-uniforms-for-academies/` | `/blog/custom-soccer-uniforms-for-academies/` | Commercial academy landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Academy-specific commercial value needs owner and traffic validation. |
+| `/custom-sports-apparel-distributor/` | `/blog/custom-sports-apparel-distributor/` | B2B distributor landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Distributor solution intent can be distinct from an article; proof of demand is unavailable. |
+| `/custom-teamwear-new-york/` | `/blog/custom-teamwear-new-york/` | Commercial geographic landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Local landing intent may differ; canonical history and ranking data are missing. |
+| `/custom-volleyball-uniforms-for-schools/` | `/blog/custom-volleyball-uniforms-for-schools/` | Commercial school landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Volleyball is still a planned category and the landing purpose is not owner-confirmed. |
+| `/how-sublimation-printing-works-for-teamwear/` | `/blog/how-sublimation-printing-works-for-teamwear/` | Informational process guide | High | `TRAFFIC_DATA_NOT_AVAILABLE` | `KEEP_301` | Same educational query and page purpose; Blog is the natural owner. |
+| `/how-to-choose-a-teamwear-manufacturer/` | `/blog/how-to-choose-a-teamwear-manufacturer/` | Informational buyer guide | High | `TRAFFIC_DATA_NOT_AVAILABLE` | `KEEP_301` | Same evaluation-guide intent and topic; Blog is the natural owner. |
+| `/oem-baseball-apparel-manufacturer/` | `/blog/oem-baseball-apparel-manufacturer/` | Commercial OEM landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | OEM landing intent may warrant a distinct solution page; demand and backlink data are missing. |
+| `/oem-basketball-apparel-manufacturer/` | `/blog/oem-basketball-apparel-manufacturer/` | Commercial OEM landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | OEM landing intent may warrant a distinct solution page; demand and backlink data are missing. |
+| `/oem-soccer-apparel-manufacturer/` | `/blog/oem-soccer-apparel-manufacturer/` | Commercial OEM landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | OEM landing intent may warrant a distinct solution page; demand and backlink data are missing. |
+| `/oem-volleyball-apparel-manufacturer/` | `/blog/oem-volleyball-apparel-manufacturer/` | Commercial OEM landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Volleyball is planned and OEM landing ownership needs owner confirmation. |
+| `/oem-vs-odm-sportswear/` | `/blog/oem-vs-odm-sportswear/` | Informational comparison guide | High | `TRAFFIC_DATA_NOT_AVAILABLE` | `KEEP_301` | Same comparison intent and guide purpose; Blog is the established editorial owner. |
+| `/soccer-jersey-supplier-australia/` | `/blog/soccer-jersey-supplier-australia/` | Commercial geographic supplier landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Regional supplier intent may differ; performance and link evidence are missing. |
+| `/soccer-teamwear-supplier-uk/` | `/blog/soccer-teamwear-supplier-uk/` | Commercial geographic supplier landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Regional supplier intent may differ; performance and link evidence are missing. |
+| `/soccer-teamwear-supplier-usa/` | `/blog/soccer-teamwear-supplier-usa/` | Commercial geographic supplier landing vs editorial guide | Partial | `TRAFFIC_DATA_NOT_AVAILABLE` | `OWNER_REVIEW` | Regional supplier intent may differ; performance and link evidence are missing. |
+
+Summary: `KEEP_301` 4; `KEEP_SEPARATE` 0; `OWNER_REVIEW` 15. Existing redirect behavior stays unchanged until the 15 owner-review rows have traffic/backlink evidence and an explicit ownership decision.

@@ -63,7 +63,7 @@ assert.deepEqual(resolveProcurementTruth({
   sampleTiming: SAMPLE_TIMING_CONFIRMED,
   productionTiming: TIMELINE_CONFIRMED,
   mockupTiming: TIMELINE_CONFIRMED,
-  shippingTiming: 'Shipping timing is confirmed after the destination, shipping method and project requirements are reviewed.',
+  shippingTiming: 'Shipping options and transit time are confirmed based on destination, shipping method and order requirements.',
   measurementTolerance: 'Manufacturing tolerance is confirmed against the approved product measurement specification.',
 })
 

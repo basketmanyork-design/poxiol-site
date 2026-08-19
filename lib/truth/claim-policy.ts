@@ -10,6 +10,9 @@ export const CLAIM_STATUSES = [
 export type ClaimStatus = (typeof CLAIM_STATUSES)[number]
 
 export type PublicClaimPolicy = {
+  claimId?: string
+  ownerDecisionId?: string
+  ownerDecisionStatus?: string
   status: ClaimStatus
   publicValue?: string
   replacement?: string

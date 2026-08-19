@@ -1,5 +1,5 @@
 import {execFileSync} from 'node:child_process'
-import {readFileSync, writeFileSync} from 'node:fs'
+import {existsSync, readFileSync, writeFileSync} from 'node:fs'
 import {pathToFileURL} from 'node:url'
 
 export type V9ClaimKind =
@@ -72,6 +72,7 @@ export function classifyResidual(path: string, lineText = ''): ResidualClassific
   if (/className\s*=/.test(lineText) || /\bdepend(?:s|ed)?\s+on\b[^.\n]{0,120}\bcapacity\b/i.test(lineText) || /\b(?:check|evaluat(?:e|ing)|framework\s+for\s+evaluating)\b[^.\n]{0,120}\bcapacity\b/i.test(lineText)) return 'LEGAL_RETAIN'
   if (/\.test\.[cm]?[jt]sx?$/.test(normalized) || /scripts\/check-/.test(normalized)) return 'TEST_FIXTURE'
   if (normalized.startsWith('content/product-visualization/')) return 'GOVERNANCE_RECORD'
+  if (normalized === 'lib/truth/owner-decisions.ts') return 'GOVERNANCE_RECORD'
   if (normalized === 'lib/sanity/content.ts' && /sample production\|sample time\|2-3\|2–3/.test(lineText)) return 'DETECTION_RULE'
   if (/legacy-claim-(?:policy|normalizer)|scan-v9-red-claims|studio\/schemaTypes\/validation\.ts|studio\/schemaTypes\/documents\/caseStudy\.ts|lib\/product-visualization\/policy\.ts/.test(normalized)) return 'DETECTION_RULE'
   if (normalized.startsWith('scripts/')) return 'NON_PUBLIC_TOOLING'
@@ -95,6 +96,7 @@ function main() {
   const findings = [] as Array<{path: string; line: number; kind: V9ClaimKind; value: string; classification: ResidualClassification}>
   for (const path of gitFiles().filter((file) => roots.test(file.replaceAll('\\', '/')))) {
     if (/\.(?:png|jpe?g|gif|webp|ico|woff2?|ttf|pdf|zip)$/i.test(path)) continue
+    if (/\.jsx?$/.test(path) && existsSync(path.replace(/\.jsx?$/, (extension) => extension === '.jsx' ? '.tsx' : '.ts'))) continue
     let content = ''
     try { content = readFileSync(path, 'utf8') } catch { continue }
     content.split(/\r?\n/).forEach((lineText, index) => {
