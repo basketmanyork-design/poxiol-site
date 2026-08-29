@@ -1,4 +1,5 @@
 import manifest from '@/content/product-visualization/assets.json'
+import assetAllowlist from '@/content/release/asset-allowlist.json'
 import {canDisplayProductVisualization} from './policy.ts'
 import type {ProductVisualizationAsset, ProductVisualizationRecord} from './types.ts'
 
@@ -19,6 +20,23 @@ const dimensions: Record<string, {width: number; height: number}> = {
   'PV-BASK-010': {width: 1200, height: 1200},
 }
 
+const finalVisualizationAllowlist = new Map(
+  assetAllowlist
+    .filter((item) => item.allowedUse === 'product-visualization')
+    .map((item) => [item.assetId, item]),
+)
+
+function passesFinalVisualizationAllowlist(assetId: string, publicPath: string): boolean {
+  const review = finalVisualizationAllowlist.get(assetId)
+  return Boolean(
+    review &&
+      review.path === publicPath &&
+      review.classification === 'ILLUSTRATION_NON_PROOF' &&
+      review.thirdPartyMarkReview === 'PASS' &&
+      review.poxiolMarkReview === 'PASS_RETAINED',
+  )
+}
+
 export const PRODUCT_VISUALIZATIONS: readonly ProductVisualizationAsset[] = (manifest as ProductVisualizationRecord[]).map((record) => ({
   ...record,
   publicPath: `/product-visualization/${record.publicFile}`,
@@ -29,12 +47,12 @@ const byId = new Map(PRODUCT_VISUALIZATIONS.map((asset) => [asset.assetId, asset
 
 export function getProductVisualization(assetId: string): ProductVisualizationAsset {
   const asset = byId.get(assetId)
-  if (!asset || !canDisplayProductVisualization(asset)) throw new Error(`Product visualization is unavailable: ${assetId}`)
+  if (!asset || !passesFinalVisualizationAllowlist(asset.assetId, asset.publicPath) || !canDisplayProductVisualization(asset)) throw new Error(`Product visualization is unavailable: ${assetId}`)
   return asset
 }
 
 export function getProductVisualizationsForPage(page: string): ProductVisualizationAsset[] {
-  return PRODUCT_VISUALIZATIONS.filter((asset) => asset.recommendedPages.includes(page) && canDisplayProductVisualization(asset, page))
+  return PRODUCT_VISUALIZATIONS.filter((asset) => passesFinalVisualizationAllowlist(asset.assetId, asset.publicPath) && asset.recommendedPages.includes(page) && canDisplayProductVisualization(asset, page))
 }
 
 export const BASKETBALL_VISUALIZATION_SEQUENCE = [

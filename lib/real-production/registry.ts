@@ -1,17 +1,36 @@
 import manifest from '../../content/real-production/manifest/assets.json'
+import assetAllowlist from '../../content/release/asset-allowlist.json'
 import type {V8PageId} from '../v8/types.ts'
 import {canPublishProductionAsset} from './policy.ts'
 import type {RealProductionAsset, RealProductionManifest} from './types.ts'
 import type {V8MediaAsset, V8MediaStage} from '../v8/types.ts'
 
 const registry = manifest as RealProductionManifest
+const finalEvidenceAllowlist = new Map(
+  assetAllowlist
+    .filter((item) => item.classification === 'EVIDENCE')
+    .map((item) => [item.assetId, item]),
+)
+
+function passesFinalEvidenceAllowlist(asset: RealProductionAsset): boolean {
+  const review = finalEvidenceAllowlist.get(asset.assetId)
+  return Boolean(
+    review &&
+      review.path === asset.publicPath &&
+      review.allowedUse === 'basketball-product-detail' &&
+      review.thirdPartyMarkReview === 'PASS' &&
+      review.poxiolMarkReview === 'PASS_RETAINED',
+  )
+}
 
 export function getAllProductionAssets(): readonly RealProductionAsset[] {
   return registry.assets
 }
 
 export function getPublishedProductionAssets(): RealProductionAsset[] {
-  return registry.assets.filter(canPublishProductionAsset)
+  return registry.assets.filter(
+    (asset) => canPublishProductionAsset(asset) && passesFinalEvidenceAllowlist(asset),
+  )
 }
 
 export function getProductionAssetsForPage(pageId: V8PageId): RealProductionAsset[] {
