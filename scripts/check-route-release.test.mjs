@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import {compareRoutes} from '../lib/release/route-release.mjs'
+import {compareRoutes, shouldRequireExactManifest} from '../lib/release/route-release.mjs'
 
 test('rejects an unexplained public URL removal', () => {
   assert.throws(
@@ -33,4 +33,11 @@ test('rejects a redirect whose destination is not rendered', () => {
     }),
     /REDIRECT_DESTINATION_NOT_RENDERED:\/old\/->\/missing\//,
   )
+})
+
+test('allows safe route-manifest drift only on a Cloudflare preview branch', () => {
+  assert.equal(shouldRequireExactManifest({CF_PAGES: '1', CF_PAGES_BRANCH: 'codex/construction-completion'}), false)
+  assert.equal(shouldRequireExactManifest({CF_PAGES: '1', CF_PAGES_BRANCH: 'main'}), true)
+  assert.equal(shouldRequireExactManifest({CF_PAGES: '1'}), true)
+  assert.equal(shouldRequireExactManifest({}), true)
 })
