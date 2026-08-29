@@ -9,12 +9,13 @@ import {useInquiryContext} from '@/components/useInquiryContext'
 import {InquiryReference} from './InquiryReference'
 import {publicSourcePath} from '@/lib/inquiry-context'
 import InquiryLink from '@/components/InquiryLink'
+import {PrivacyStatusLink} from '../legal/PrivacyStatusLink'
 
 const formType = 'Contact Page CMS'
 const entry = getV8ConversionEntry('contact')
 const inputClass = 'min-h-[50px] w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-950 outline-none focus:border-lime-500 focus-visible:ring-2 focus-visible:ring-lime-400/40'
 
-export default function GeneralInquiryForm({publicEmail, whatsappHref, privacyPolicyApproved = false}: {publicEmail: string; whatsappHref: string; privacyPolicyApproved?: boolean}) {
+export default function GeneralInquiryForm({publicEmail, whatsappHref, privacyPolicyApproved}: {publicEmail: string; whatsappHref: string; privacyPolicyApproved: boolean}) {
   const [fields, setFields] = useState({message: '', email: '', fullName: ''})
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -119,7 +120,7 @@ export default function GeneralInquiryForm({publicEmail, whatsappHref, privacyPo
         {submitted ? 'Question submitted' : unconfirmed ? 'Check receipt before resending' : loading ? 'Sending...' : entry.ctaLabel}
       </button>
       <p className="mt-4 text-xs leading-5 text-neutral-600">
-        {privacyPolicyApproved ? <>Read how we handle your information in our <a href="/privacy-policy/" className="font-semibold underline">Privacy Policy</a>.</> : <><a href="/privacy-policy/" className="font-semibold underline">Draft privacy notice</a> — pending owner and legal approval.</>}
+        <PrivacyStatusLink approved={privacyPolicyApproved} />
       </p>
       <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-neutral-200 pt-4 text-sm">
         <p className="w-full text-neutral-600">Prefer another way to ask?</p>

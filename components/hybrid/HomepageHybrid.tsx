@@ -9,7 +9,7 @@ function Limitation({children}: {children: string}) {
   return <p className={styles.limitation}>{children}</p>
 }
 
-export function HomepageHybrid({publicEmail, whatsappHref}: {publicEmail: string; whatsappHref: string}) {
+export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved}: {publicEmail: string; whatsappHref: string; privacyPolicyApproved: boolean}) {
   const home = hybridHome
 
   return (
@@ -115,7 +115,7 @@ export function HomepageHybrid({publicEmail, whatsappHref}: {publicEmail: string
           <p className={styles.eyebrow}>Existing project inquiry</p>
           <h2 id="hybrid-inquiry-title">Share the project context</h2>
           <p className={styles.lead}>Use the established free-mockup review form to begin the project conversation. This pilot does not add a second form or replace its endpoint, recovery, attachment, or analytics behavior.</p>
-          <ProjectQualificationForm intent="mockup" formType="Homepage V8 Lead" publicEmail={publicEmail} whatsappHref={whatsappHref} />
+          <ProjectQualificationForm intent="mockup" formType="Homepage V8 Lead" publicEmail={publicEmail} whatsappHref={whatsappHref} privacyPolicyApproved={privacyPolicyApproved} />
         </div>
       </section>
 

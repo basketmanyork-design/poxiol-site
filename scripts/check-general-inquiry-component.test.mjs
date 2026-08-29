@@ -43,6 +43,7 @@ function harness({submit = async () => {}, tracking = {}, uuid = () => 'test-id'
       if (name === '@/components/useInquiryContext') return {useInquiryContext: () => ({product:'',style:'',sport:'',source:''})}
       if (name === './InquiryReference') return {InquiryReference: () => null}
       if (name === '@/components/InquiryLink') return {default: () => null}
+      if (name === '../legal/PrivacyStatusLink') return {PrivacyStatusLink: () => null}
       if (name === '@/lib/inquiry-context') return {publicSourcePath: () => '/contact/'}
       return require(name)
     },

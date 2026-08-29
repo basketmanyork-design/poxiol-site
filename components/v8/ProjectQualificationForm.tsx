@@ -7,12 +7,14 @@ export function ProjectQualificationForm({
   publicEmail,
   whatsappHref,
   defaultSport,
+  privacyPolicyApproved,
 }: {
   intent: V8ConversionIntent
   formType: string
   publicEmail?: string
   whatsappHref?: string
   defaultSport?: string
+  privacyPolicyApproved: boolean
 }) {
   const entry = getV8ConversionEntry(intent)
   return (
@@ -26,6 +28,7 @@ export function ProjectQualificationForm({
       publicEmail={publicEmail}
       whatsappHref={whatsappHref}
       defaultSport={defaultSport}
+      privacyPolicyApproved={privacyPolicyApproved}
     />
   )
 }

@@ -30,7 +30,7 @@ import {PackingProof} from './PackingProof'
 import {RealProductGallery} from './RealProductGallery'
 import {ProductVisualizationSection} from './ProductVisualizationSection'
 
-export function HomepageV8({content, chrome, faqs}: {content: CmsHomeContent; chrome: CmsSiteChrome; faqs: readonly V8FaqItem[]}) {
+export function HomepageV8({content, chrome, faqs, privacyPolicyApproved}: {content: CmsHomeContent; chrome: CmsSiteChrome; faqs: readonly V8FaqItem[]; privacyPolicyApproved: boolean}) {
   const page = getV8PageConfig('home')
   const buyers = V8_HOMEPAGE_BUYER_IDS.map((id) => V8_BUYERS.find((buyer) => buyer.id === id)).filter((buyer): buyer is (typeof V8_BUYERS)[number] => Boolean(buyer))
   const media = cmsProductionMediaToV8Assets(content.productionMedia)
@@ -126,6 +126,7 @@ export function HomepageV8({content, chrome, faqs}: {content: CmsHomeContent; ch
             formType="Homepage V8 Lead"
             publicEmail={chrome.publicEmail}
             whatsappHref={chrome.whatsappHref}
+            privacyPolicyApproved={privacyPolicyApproved}
           />
         </div>
       </section>

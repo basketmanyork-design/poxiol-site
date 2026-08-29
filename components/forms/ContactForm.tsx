@@ -7,6 +7,7 @@ import {InquiryReference} from './InquiryReference';
 import {appendInquiryContext, publicSourcePath} from '@/lib/inquiry-context';
 import {ProjectInquiryRequestError, sendProjectInquiry} from '@/lib/project-inquiry-request';
 import {trackFileUpload, trackFormStart, trackFormSubmit, trackLead} from "@/lib/analytics/client";
+import {PrivacyStatusLink} from '../legal/PrivacyStatusLink';
 import {
   BUYER_ROLE_OPTIONS,
   PROJECT_QUANTITY_OPTIONS,
@@ -102,6 +103,7 @@ export interface ContactFormProps {
   publicEmail?: string;
   whatsappHref?: string;
   defaultSport?: string;
+  privacyPolicyApproved: boolean;
 }
 
 function ContactFormInner({
@@ -114,6 +116,7 @@ function ContactFormInner({
   publicEmail = "sales@poxiol.com",
   whatsappHref = "https://wa.me/8613055646888",
   defaultSport = "",
+  privacyPolicyApproved,
 }: ContactFormProps) {
   const router = useRouter();
   const [fields, setFields] = useState<ProjectQualificationFields>(initialFields);
@@ -330,6 +333,10 @@ function ContactFormInner({
       <button type="submit" disabled={loading || submitted || unconfirmed} className="mt-8 min-h-[56px] w-full rounded-full bg-lime-400 px-5 py-3 text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime-400 disabled:cursor-not-allowed disabled:opacity-70">
         {submitted ? 'Request submitted' : unconfirmed ? 'Check receipt before resending' : loading ? "Submitting..." : ctaText}
       </button>
+
+      <p className="mt-4 text-xs leading-5 text-neutral-600">
+        <PrivacyStatusLink approved={privacyPolicyApproved} />
+      </p>
 
       <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3">
         <p>Project details reviewed before follow-up</p>

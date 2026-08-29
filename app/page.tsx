@@ -4,6 +4,7 @@ import {BreadcrumbSchema, OrganizationSchema} from '@/components/seo/GEOStructur
 import {Footer, Header} from '@/components/ui'
 import {hybridHome} from '@/lib/hybrid/home'
 import {getSiteChrome} from '@/lib/sanity/content'
+import {legalPolicyApproved} from '@/lib/legal-release'
 
 export function generateMetadata(): Metadata {
   return {
@@ -22,7 +23,7 @@ export default async function HomePage() {
       <OrganizationSchema />
       <BreadcrumbSchema items={[{name: 'Home', url: `${baseUrl}/`}]} />
       <Header />
-      <HomepageHybrid publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} />
+      <HomepageHybrid publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} privacyPolicyApproved={legalPolicyApproved()} />
       <Footer />
     </main>
   )
