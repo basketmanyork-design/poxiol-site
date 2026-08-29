@@ -3,7 +3,7 @@ Allow: /
 Allow: /_next/static/
 Allow: /assets/
 Allow: /images/
-# Legal drafts stay crawlable so page-level noindex directives remain visible.
+# Approved legal policies remain crawlable and discoverable.
 Allow: /privacy-policy/
 Allow: /terms/
 Allow: /intellectual-property-policy/
