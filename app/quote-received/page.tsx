@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, PrimaryButton } from "@/components/ui";
+import InquiryNextSteps from "@/components/forms/InquiryNextSteps";
 
 export const metadata: Metadata = {
   title: "Quote Request Received | POXIOL",
@@ -15,11 +16,12 @@ export default function QuoteReceivedPage() {
           ✓
         </div>
         <h1 className="mt-10 text-4xl font-black uppercase tracking-tight md:text-6xl">
-          Quote Received
+          Quote Request Submitted
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-neutral-400 leading-relaxed">
-          We have received your factory quote request. Our pricing team is calculating the costs based on your quantity and customization requirements. Expect a detailed PDF quote in your inbox shortly.
+          Thank you for sharing your project. Your quote request has been submitted for review; a quotation has not yet been prepared. Quantity, customization, delivery details and timing need to be reviewed before pricing is confirmed.
         </p>
+        <InquiryNextSteps />
         <div className="mt-12">
           <PrimaryButton href="/">Return to Home</PrimaryButton>
         </div>

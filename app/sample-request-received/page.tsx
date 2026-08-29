@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, PrimaryButton } from "@/components/ui";
+import InquiryNextSteps from "@/components/forms/InquiryNextSteps";
 
 export const metadata: Metadata = {
   title: "Sample Request Received | POXIOL",
@@ -15,11 +16,12 @@ export default function SampleReceivedPage() {
           ✓
         </div>
         <h1 className="mt-10 text-4xl font-black uppercase tracking-tight md:text-6xl">
-          Sample Request Received
+          Sample Request Submitted
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-neutral-400 leading-relaxed">
-          Thank you for starting a sample order. We will confirm your design mockup and physical sample specifications (fabric, size, and print) before sending the proforma invoice for the sample fee.
+          Your sample request has been submitted for review. This is not a confirmed sample order. The design, fabric, size, printing, sample cost and delivery arrangements still need to be agreed before you decide whether to proceed.
         </p>
+        <InquiryNextSteps />
         <div className="mt-12">
           <PrimaryButton href="/">Return to Home</PrimaryButton>
         </div>

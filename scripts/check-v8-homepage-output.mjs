@@ -15,56 +15,39 @@ const visibleText = html
 const h1Count = (html.match(/<h1\b/gi) || []).length
 assert.equal(h1Count, 1, 'Homepage must render exactly one H1.')
 
-assert.match(visibleText, /Custom Teamwear Manufacturer For Clubs, Schools & Sports Brands/i)
-assert.match(visibleText, /POXIOL specializes in custom Basketball, Soccer and Baseball teamwear for clubs, schools, youth programs and sports brands, with design support, sample review and quality control\./i)
+assert.match(visibleText, /Custom Teamwear Built for Repeatable Team Orders/i)
+assert.match(visibleText, /For Teamwear Distributors, Dealers, Brands & Custom Resellers/i)
+assert.match(visibleText, /Local editorial review/i)
 
-assert.match(html, /href="\/free-mockup\/"[^>]*>[^<]*Get Free Mockup/i)
-assert.match(html, /href="\/sample-order\/"[^>]*>[^<]*Request Sample/i)
-
-const buyerLinks = [
-  ['Youth Teams', '/youth-team-uniforms/'],
-  ['Schools', '/school-teamwear/'],
-  ['Sports Clubs', '/club-teamwear-program/'],
-  ['Sports Brands', '/private-label-teamwear/'],
-]
-for (const [label, href] of buyerLinks) {
-  assert.match(visibleText, new RegExp(label, 'i'))
-  assert.match(html, new RegExp(`href="${href.replaceAll('/', '\\/')}"`))
+const anchors = [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)]
+  .map(match => ({url: new URL(match[1].replace(/&amp;/g, '&'), 'https://www.poxiol.com'), label: match[2].replace(/<[^>]+>/g, '').trim()}))
+for (const [label, path] of [['Upload Your Design', '/free-mockup/'], ['Build Your Range', '/get-quote/'], ['Start a Sample', '/sample-order/']]) {
+  const matches = anchors.filter(anchor => anchor.label === label)
+  assert.ok(matches.length > 0, `Missing ${label}`)
+  for (const {url} of matches) {
+    assert.equal(url.origin, 'https://www.poxiol.com')
+    assert.equal(url.pathname, path, `${label} must retain its distinct intent`)
+    if (label === 'Build Your Range') {
+      assert.equal(url.searchParams.get('product'), 'Full Teamwear')
+      assert.equal(url.searchParams.get('source'), '/')
+      assert.equal(url.hash, '#quote-form')
+      assert.deepEqual([...url.searchParams.keys()].sort(), ['product', 'source'])
+    }
+  }
 }
 
-const problemPairs = [
-  ['Will my design look correct?', 'Free Mockup Before Production'],
-  ['Will quality match expectations?', 'Sample Approval Before Bulk Order'],
-  ['Will production be reliable?', 'Quality Check Before Shipment'],
-]
-for (const [problem, solution] of problemPairs) {
-  assert.match(visibleText, new RegExp(problem.replace(/[?]/g, '\\?'), 'i'))
-  assert.match(visibleText, new RegExp(solution, 'i'))
-}
+for (const label of ['Design Accuracy', 'Size & Fit', 'Project Deadline', 'Sample-to-Bulk', 'Reorder Consistency', 'Account Expansion']) assert.match(visibleText, new RegExp(label, 'i'))
+for (const label of ['Approval checklist explanation', 'Milestone planning explanation', 'Sample and bulk comparison explanation', 'Retained project record explanation']) assert.match(visibleText, new RegExp(label, 'i'))
+assert.match(visibleText, /Evidence pending/i)
+assert.match(visibleText, /Illustrative teamwear configuration/i)
+assert.match(visibleText, /Legacy detail-page integration remains later work/i)
+for (const href of ['/products/basketball-uniforms/', '/products/soccer-jerseys/', '/custom-baseball-softball-uniforms/', '/private-label-teamwear/', '/oem-odm/', '/shipping-after-sales/', '/sample-order/']) assert.match(html, new RegExp(`href="${href.replaceAll('/', '\\/')}"`))
 
-const journeyHtml = html.match(/<section[^>]*aria-labelledby="v8-design-journey-title"[\s\S]*?<\/section>/i)?.[0] || ''
-const journeyText = journeyHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-const journey = ['Idea', 'Mockup', 'Sample', 'Production', 'Quality Control', 'Shipment']
-let previousIndex = -1
-for (const label of journey) {
-  const index = journeyText.indexOf(label)
-  assert.ok(index > previousIndex, `Homepage design journey is missing or out of order: ${label}`)
-  previousIndex = index
-}
-assert.match(visibleText, /Start Your Team Design/i)
-
-assert.doesNotMatch(visibleText, /Verified production visual pending/i)
-
-for (const solution of ['Custom Basketball Uniforms', 'Custom Soccer Kits', 'Custom Baseball Uniforms']) {
-  assert.match(visibleText, new RegExp(solution, 'i'))
-}
-
-assert.match(visibleText, /Ready To Build Your Team Uniform\?/i)
 assert.match(html, /"@type":"Organization"/)
-assert.match(html, /"@type":"FAQPage"/)
 assert.match(html, /"@type":"BreadcrumbList"/)
+assert.doesNotMatch(html, /"@type":"FAQPage"/)
 
 assert.doesNotMatch(html, /\/custom-basketball-uniform-manufacturer\//)
 assert.doesNotMatch(html, /<h1[^>]+(?:hidden|sr-only)/i)
 
-console.log('POXIOL V8 homepage output checks passed.')
+console.log('POXIOL hybrid homepage output checks passed.')

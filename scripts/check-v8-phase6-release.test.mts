@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {pageContentHtml} from './helpers/page-content-html.mjs'
 import {existsSync, readFileSync} from 'node:fs'
 import path from 'node:path'
 
@@ -136,7 +137,7 @@ if (outputMode) {
 
   for (const route of ['/free-mockup/', '/get-quote/', '/sample-order/']) {
     const html = read(`out${route}index.html`)
-    const visibleQuestions = [...html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)]
+    const visibleQuestions = [...pageContentHtml(html).matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)]
       .map((match) => match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim())
     const faqSchemas = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
       .map((match) => JSON.parse(match[1]))

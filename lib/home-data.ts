@@ -33,16 +33,16 @@ export const solutionCards = [
 ];
 
 export const featuredDesigns = [
-  { title: "Storm Court Basketball Set", sport: "Basketball", description: "Bold sublimation basketball set with sharp geometric motion graphics.", image: "/images/designs/storm-court-basketball.webp", href: "/free-mockup/?style=storm-court-basketball-set" },
-  { title: "United Field Soccer Kit", sport: "Soccer", description: "Clean soccer kit design for clubs and academies with a professional field look.", image: "/images/designs/united-field-soccer-kit.webp", href: "/free-mockup/?style=united-field-soccer-kit" },
-  { title: "Falcons Baseball Uniform", sport: "Baseball", description: "Classic button-front baseball uniform with modern sublimation details.", image: "/images/designs/falcons-baseball-uniform.webp", href: "/free-mockup/?style=falcons-baseball-uniform" },
-  { title: "Velocity Running Singlet", sport: "Running", description: "Lightweight running singlet design for races, clubs and event teams.", image: "/images/designs/velocity-running-singlet.webp", href: "/free-mockup/?style=velocity-running-singlet" },
-  { title: "Pro Training Tracksuit", sport: "Training", description: "Modern tracksuit design for warmups, training sessions and travel wear.", image: "/images/designs/pro-training-tracksuit.webp", href: "/free-mockup/?style=pro-training-tracksuit" },
-  { title: "Rangers Volleyball Set", sport: "Volleyball", description: "Dynamic volleyball uniform design with breathable fit and bold team identity.", image: "/images/designs/rangers-volleyball-set.webp", href: "/free-mockup/?style=rangers-volleyball-set" },
-  { title: "Titans Football Uniform", sport: "American Football", description: "Powerful custom football uniform design for practice and game day.", image: "/images/designs/titans-football-uniform.webp", href: "/free-mockup/?style=titans-football-uniform" },
-  { title: "Elite Golf Polo Set", sport: "Golf", description: "Clean golf polo design for clubs, events and corporate sportswear programs.", image: "/images/designs/elite-golf-polo-set.webp", href: "/free-mockup/?style=elite-golf-polo-set" },
-  { title: "Samoa Rugby Pro Jersey", sport: "Rugby", description: "High-durability rugby jersey with traditional patterns and modern fit.", image: "/images/designs/samoa-rugby-jersey.webp", href: "/free-mockup/?style=samoa-rugby-pro-jersey" },
-  { title: "Cyber League Pro Jersey", sport: "Esports", description: "Vibrant neon-accented esports jersey for gaming teams and tournaments.", image: "/images/designs/cyber-league-esports.webp", href: "/free-mockup/?style=cyber-league-pro-jersey" },
+  { title: "Storm Court Basketball Set", sport: "Basketball", description: "Bold basketball concept with sharp geometric motion graphics.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=storm-court-basketball-set" },
+  { title: "United Field Soccer Kit", sport: "Soccer", description: "Clean soccer kit concept for clubs and academies.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=united-field-soccer-kit" },
+  { title: "Baseball Uniform Concept", sport: "Baseball", description: "Button-front baseball uniform concept for a custom team brief.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=baseball-uniform-concept" },
+  { title: "Running Singlet Concept", sport: "Running", description: "Lightweight running singlet concept for races, clubs and event teams.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=running-singlet-concept" },
+  { title: "Training Tracksuit Concept", sport: "Training", description: "Tracksuit concept for warmups, training sessions and travel wear.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=training-tracksuit-concept" },
+  { title: "Volleyball Set Concept", sport: "Volleyball", description: "Volleyball uniform concept for a custom team brief.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=volleyball-set-concept" },
+  { title: "American Football Concept", sport: "American Football", description: "Custom football uniform concept for practice and game-day planning.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=american-football-concept" },
+  { title: "Golf Polo Concept", sport: "Golf", description: "Golf polo concept for clubs, events and corporate sportswear programs.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=golf-polo-concept" },
+  { title: "Rugby Jersey Concept", sport: "Rugby", description: "Rugby jersey concept requiring a confirmed original artwork brief.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=rugby-jersey-concept" },
+  { title: "Esports Jersey Concept", sport: "Esports", description: "Esports jersey concept for gaming teams and tournaments.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=esports-jersey-concept" },
 ];
 
 export const techItems = [

@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#B6FF00]">Project Evidence</p>
-            <h1 className="mt-4 text-4xl font-black uppercase tracking-tight md:text-6xl">Teamwear Projects and Manufacturing Scenarios</h1>
+            <h1 className="mt-4 break-words text-4xl font-black uppercase tracking-tight md:text-6xl">Teamwear Projects and Manufacturing Scenarios</h1>
             <p className="mt-6 text-lg leading-8 text-neutral-400">Review the available project context, quality-control notes and packing details. Records without buyer-approved imagery show a verification-pending placeholder.</p>
           </div>
           <div className="mt-20 grid gap-10 md:grid-cols-2 lg:grid-cols-3">

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import InquiryLink from "@/components/InquiryLink";
 import type { SportsPageData } from "@/lib/sports-pages";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref, getQuoteHref } from "@/components/ui";
 import { ProductSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
@@ -58,9 +58,32 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
               <SecondaryButton href={data.secondaryCta?.href || "#procurement-specs"}>{data.secondaryCta?.label || "View Specifications"}</SecondaryButton>
             </div>
           </div>
-          <div className="relative min-h-[420px] overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 md:min-h-[560px]">
-            <img src={data.heroImage} alt={data.heroImageAlt || `POXIOL ${data.h1} Custom Uniforms`} className="absolute inset-0 h-full w-full object-cover grayscale-[0.2]" />
-          </div>
+          {data.heroMediaKind === 'illustration' ? (
+            <figure className="relative flex min-h-[420px] flex-col overflow-hidden rounded-[3rem] border border-white/10 bg-neutral-900 md:min-h-[560px]">
+              <div className="flex flex-1 items-center justify-center bg-white">
+                <img
+                  src={data.heroImage}
+                  alt={data.heroImageAlt || `POXIOL ${data.h1} Custom Uniforms`}
+                  width={1254}
+                  height={1254}
+                  className="h-auto max-h-[490px] w-full object-contain"
+                />
+              </div>
+              <figcaption className="px-6 py-4 text-sm leading-relaxed text-neutral-300">
+                {data.heroMediaDisclosure}
+              </figcaption>
+            </figure>
+          ) : data.heroMediaKind === 'pendingBrandReview' ? (
+            <div className="flex min-h-[420px] items-center justify-center rounded-[3rem] border border-dashed border-white/20 bg-white/5 px-8 text-center md:min-h-[560px]">
+              <p className="text-sm font-black uppercase tracking-[0.16em] text-neutral-400">
+                {data.heroMediaDisclosure || 'Product imagery pending brand review.'}
+              </p>
+            </div>
+          ) : (
+            <div className="relative min-h-[420px] overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 md:min-h-[560px]">
+              <img src={data.heroImage} alt={data.heroImageAlt || `POXIOL ${data.h1} Custom Uniforms`} className="absolute inset-0 h-full w-full object-cover grayscale-[0.2]" />
+            </div>
+          )}
         </div>
       </section>
 
@@ -168,9 +191,9 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                    ))}
                 </div>
              </div>
-             <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl"><img src="/images/poxiol-v6/manufacturing_sublimation_printing.png" className="h-full w-full object-cover" alt="POXIOL Sublimation Factory" /></div>
-                <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/10 mt-12 shadow-2xl shadow-[#B6FF00]/10"><img src="/images/poxiol-v6/manufacturing_quality_control.png" className="h-full w-full object-cover" alt="POXIOL QC Protocol" /></div>
+             <div className="grid grid-cols-2 gap-4" aria-label="Manufacturing evidence status">
+                <div className="flex aspect-square items-center justify-center rounded-[3rem] border border-dashed border-white/20 bg-white/5 p-7 text-center text-xs font-black uppercase tracking-[0.14em] text-neutral-400">Manufacturing evidence pending verification</div>
+                <div className="mt-12 flex aspect-square items-center justify-center rounded-[3rem] border border-dashed border-white/20 bg-white/5 p-7 text-center text-xs font-black uppercase tracking-[0.14em] text-neutral-400">Manufacturing evidence pending verification</div>
              </div>
           </div>
         </div>
@@ -183,18 +206,22 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
           <div className="grid gap-8 md:grid-cols-3 mt-16">
             {data.designs.map((item)=>(
               <div key={item.title} className="group overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-neutral-50 shadow-sm">
-                <div className="relative h-72 overflow-hidden bg-neutral-200 text-left">
-                  <img src={item.image} alt={`POXIOL ${item.title} Design`} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+                <div className="relative flex h-72 items-center justify-center overflow-hidden bg-neutral-200 p-8 text-center text-xs font-black uppercase tracking-widest text-neutral-500">
+                  {item.imageStatus === 'approved' && item.image ? (
+                    <img src={item.image} alt={`POXIOL ${item.title} Design`} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+                  ) : (
+                    <span>Design imagery pending brand review</span>
+                  )}
                 </div>
                 <div className="p-8 text-left">
                   <h3 className="text-2xl font-black text-neutral-950 uppercase italic tracking-tighter">{item.title}</h3>
                   <p className="mt-3 leading-7 text-neutral-600 text-sm">{item.description}</p>
-                  <Link
+                  <InquiryLink
                     href={item.href || `/free-mockup/?style=${item.title.toLowerCase().replace(/\s+/g, '-')}`}
                     className="mt-6 inline-flex text-sm font-black uppercase tracking-widest text-neutral-950 hover:text-[#B6FF00] hover:underline"
                   >
                     Request This Design →
-                  </Link>
+                  </InquiryLink>
                 </div>
               </div>
             ))}
@@ -257,13 +284,13 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-neutral-400 mb-8">Related Expert Guides</h3>
               <div className="flex flex-wrap justify-center gap-4">
                 {data.relatedGuides.map((guide) => (
-                  <Link
+                  <InquiryLink
                     key={guide.href || guide.slug}
                     href={guide.href || (guide.slug ? `/guides/${guide.slug}/` : "/guides/")}
                     className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:border-lime-500 hover:text-lime-600"
                   >
                     {guide.title} <span className="ml-2">→</span>
-                  </Link>
+                  </InquiryLink>
                 ))}
               </div>
             </div>
@@ -277,9 +304,9 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
             <SectionHeading eyebrow="Related Projects" title="Basketball and School Teamwear References" subtitle="Review related project formats before defining your roster, artwork and delivery plan."/>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {data.relatedCases.map((item) => (
-                <Link key={item.href || item.title} href={item.href || "/projects/"} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-8 transition hover:border-lime-500">
+                <InquiryLink key={item.href || item.title} href={item.href || "/projects/"} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-8 transition hover:border-lime-500">
                   <span className="text-lg font-black uppercase">{item.title}</span>
-                </Link>
+                </InquiryLink>
               ))}
             </div>
           </div>
@@ -296,9 +323,9 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
             <SecondaryButton href="/get-quote/" className="h-16 px-10">Request Factory Quote</SecondaryButton>
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-50">
-             <Link href="/quality-control-process/" className="text-xs font-black uppercase tracking-[0.2em] hover:text-white underline">QC Workflow</Link>
-             <Link href="/certificates-testing/" className="text-xs font-black uppercase tracking-[0.2em] hover:text-white underline">Certificates</Link>
-             <Link href="/faq/" className="text-xs font-black uppercase tracking-[0.2em] hover:text-white underline">Full FAQ</Link>
+             <InquiryLink href="/quality-control-process/" className="text-xs font-black uppercase tracking-[0.2em] hover:text-white underline">QC Workflow</InquiryLink>
+             <InquiryLink href="/certificates-testing/" className="text-xs font-black uppercase tracking-[0.2em] hover:text-white underline">Certificates</InquiryLink>
+             <InquiryLink href="/faq/" className="text-xs font-black uppercase tracking-[0.2em] hover:text-white underline">Full FAQ</InquiryLink>
           </div>
         </div>
       </section>

@@ -1,0 +1,137 @@
+.section {
+  padding: clamp(3.5rem, 7vw, 6.5rem) var(--gutter, 1.25rem);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: var(--content, 75rem);
+  margin-inline: auto;
+}
+
+.hero,
+.dark,
+.closing {
+  background: var(--brand-background, #0a0a0a);
+  color: var(--brand-text, #f8faf6);
+}
+
+.light { background: var(--surface, #fff); color: var(--ink-950, #151914); }
+.muted { background: var(--surface-muted, #f5f6f4); color: var(--ink-950, #151914); }
+
+.review,
+.eyebrow {
+  color: var(--accent, #b7ff00);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.review { margin: 0 0 1.5rem; }
+.light .eyebrow,
+.muted .eyebrow { color: var(--accent-dark, #356000); }
+
+.heroGrid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.hero h1,
+.section h2,
+.section h3 {
+  margin: 0;
+  color: inherit;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: -0.035em;
+}
+
+.hero h1 {
+  max-width: 100%;
+  font-size: clamp(2.125rem, 4vw, 3.125rem);
+  font-weight: 800;
+  line-height: 1.06;
+  text-transform: uppercase;
+}
+
+.section h2 {
+  max-width: 22ch;
+  margin: 0.75rem 0 1.25rem;
+  font-size: clamp(1.75rem, 3vw, 2.875rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.section h3 { font-size: 1.125rem; line-height: 1.25; }
+
+.lead { max-width: 44rem; font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); line-height: 1.7; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0; }
+
+.primary,
+.secondary,
+.rangeLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid var(--accent, #b7ff00);
+  border-radius: 999px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+}
+
+.primary { background: var(--accent, #b7ff00); color: var(--brand-background, #0a0a0a); }
+.secondary { background: transparent; color: inherit; }
+
+.figure {
+  min-width: 0;
+  margin: 0;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border-radius: 1.5rem;
+  background: var(--surface, #fff);
+}
+
+.figure img { width: 100%; height: auto; aspect-ratio: 1; border-radius: 0.75rem; object-fit: contain; background: var(--surface-muted, #f5f6f4); }
+.figure figcaption { padding-top: 0.625rem; color: var(--ink-700, #41483f); font-size: 0.75rem; letter-spacing: 0.04em; }
+.limitation { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid currentColor; font-size: 0.8125rem; font-weight: 700; line-height: 1.45; opacity: 0.78; }
+
+.gridSix,
+.gridFour,
+.gridThree { display: grid; gap: 1rem; }
+.gridSix { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.gridFour { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gridThree { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.card,
+.plainCard { min-width: 0; padding: 1.25rem; border: 1px solid var(--line, #d9ded5); border-radius: var(--radius-sm, 0.5rem); }
+.card span,
+.plainCard span,
+.process span { display: inline-flex; margin-bottom: 1.5rem; color: var(--accent-dark, #356000); font-weight: 900; }
+.card p,
+.plainCard p,
+.process p { line-height: 1.5; }
+.card a { color: inherit; font-weight: 800; }
+.process { display: grid; margin: 2.5rem 0 0; padding: 0; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; list-style: none; }
+.process li { min-width: 0; padding-top: 1rem; border-top: 2px solid var(--accent, #b7ff00); }
+.rangeLink { min-height: 8rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; border-color: var(--brand-text, #f8faf6); border-radius: 0; color: var(--brand-text, #f8faf6); }
+.rangeLink span + span { color: var(--accent, #b7ff00); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.pending { margin-top: 1rem; color: var(--accent, #b7ff00); font-size: 0.85rem; }
+
+@media (max-width: 48rem) {
+  .heroGrid { grid-template-columns: 1fr; }
+  .gridSix,
+  .gridFour,
+  .gridThree { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 32rem) {
+  .gridSix,
+  .gridFour,
+  .gridThree { grid-template-columns: 1fr; }
+  .actions { display: grid; }
+  .actions > a { width: 100%; }
+}

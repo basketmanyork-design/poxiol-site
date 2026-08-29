@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict'
-import {formatRedirect, parseRedirects, validateRedirectRules} from './generate-cms-redirects.mjs'
+import {mkdtemp, mkdir, readFile, rm, writeFile} from 'node:fs/promises'
+import {tmpdir} from 'node:os'
+import {join} from 'node:path'
+import {formatRedirect, generateCmsRedirects, parseRedirects, validateRedirectRules} from './generate-cms-redirects.mjs'
 
 const base = parseRedirects(`/old /new 301
 `)
@@ -25,4 +28,26 @@ const badCases = [
 for (const rules of badCases) {
   assert.throws(() => validateRedirectRules(base, rules))
 }
+
+const rootDir = await mkdtemp(join(tmpdir(), 'poxiol-cms-redirects-'))
+try {
+  await mkdir(join(rootDir, 'public'), {recursive: true})
+  await writeFile(join(rootDir, 'public', '_redirects'), '/old /new 301\n', 'utf8')
+  const fetchImpl = async () => new Response(JSON.stringify({
+    result: [{sourcePath: '/retired', destinationPath: '/products/', redirectType: 301}],
+  }), {status: 200, headers: {'content-type': 'application/json'}})
+
+  await generateCmsRedirects({rootDir, fetchImpl})
+  const first = await readFile(join(rootDir, 'out', '_redirects'), 'utf8')
+  await generateCmsRedirects({rootDir, fetchImpl})
+  const second = await readFile(join(rootDir, 'out', '_redirects'), 'utf8')
+
+  assert.equal(second, first, 'Repeated generation must be byte-identical')
+  assert.equal((second.match(/^# Base redirects$/gm) || []).length, 1)
+  assert.equal((second.match(/^# CMS redirects - generated at build time$/gm) || []).length, 1)
+  assert.equal((second.match(/^\/retired \/products\/ 301$/gm) || []).length, 1)
+} finally {
+  await rm(rootDir, {recursive: true, force: true})
+}
+
 console.log('cms redirect tests passed')

@@ -18,15 +18,15 @@ export default function DesignGalleryPage() {
           
           <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredDesigns.map(design => (
-              <div key={design.title} className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 aspect-square">
-                <img src={design.image} alt={design.title} className="h-full w-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-10 flex flex-col justify-end">
+              <article key={design.title} className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5">
+                <div className="flex aspect-square items-center justify-center border-b border-white/10 bg-neutral-900 p-8 text-center text-xs font-black uppercase tracking-widest text-neutral-500">Design imagery pending brand review</div>
+                <div className="p-8">
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#B6FF00]">{design.sport}</span>
                   <h3 className="mt-3 text-2xl font-black uppercase italic leading-none">{design.title}</h3>
-                  <p className="mt-4 text-xs text-neutral-400 opacity-0 group-hover:opacity-100 transition duration-300">{design.description}</p>
-                  <SecondaryButton href={`/free-mockup/?style=${design.title.toLowerCase().replace(/\s+/g, '-')}`} className="mt-6 opacity-0 group-hover:opacity-100 transition h-12 text-xs">Request This Look</SecondaryButton>
+                  <p className="mt-4 text-sm leading-6 text-neutral-400">{design.description}</p>
+                  <SecondaryButton href={design.href} className="mt-6 h-12 w-full text-xs">Share Your Design Brief</SecondaryButton>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>

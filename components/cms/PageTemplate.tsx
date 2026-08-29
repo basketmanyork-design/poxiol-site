@@ -6,6 +6,7 @@ import type {CmsPage, CmsPageSection} from '@/lib/cms/types'
 import {FAQSchema} from '@/components/seo/GEOStructuredData'
 import {VerifiedMediaPlaceholder} from '@/components/v8/VerifiedMediaPlaceholder'
 import {cmsProductionMediaToV8Assets} from '@/lib/v8/media'
+import {getV8ConversionEntry, type V8ConversionIntent} from '@/lib/v8/leads'
 
 function verifiedMedia(media: CmsPage['productionMedia']) {
   return cmsProductionMediaToV8Assets(media)
@@ -194,9 +195,14 @@ function CmsSection({section, index}: {section: CmsPageSection; index: number}) 
   )
 }
 
-export function CmsPageTemplate({page, contactSlot, beforeFooterSlot}: {page: CmsPage; contactSlot?: React.ReactNode; beforeFooterSlot?: React.ReactNode}) {
+export function CmsPageTemplate({page, contactSlot, beforeFooterSlot, conversionIntent}: {page: CmsPage; contactSlot?: React.ReactNode; beforeFooterSlot?: React.ReactNode; conversionIntent?: V8ConversionIntent}) {
   const faqItems = page.sections.flatMap((section) => section.faqs || [])
   const heroMedia = verifiedMedia(page.productionMedia)[0]
+  const conversionEntry = conversionIntent ? getV8ConversionEntry(conversionIntent) : undefined
+  const formCta = conversionEntry ? {label: conversionEntry.formTitle, href: `#${conversionEntry.formAnchorId}`} : undefined
+  const heroCta = formCta ?? page.heroCta
+  const bottomCta = page.bottomCta ? formCta ?? page.bottomCta : undefined
+  const contactSection = contactSlot ? <section className="bg-white px-5 py-16 text-neutral-950 md:px-10 md:py-24 xl:px-20"><div className="mx-auto max-w-7xl">{contactSlot}</div></section> : null
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <PageJsonLd page={page} />
@@ -210,24 +216,26 @@ export function CmsPageTemplate({page, contactSlot, beforeFooterSlot}: {page: Cm
             <h1 className="max-w-full break-words [overflow-wrap:anywhere] text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-7xl">{page.heading}</h1>
             <p className="mt-8 max-w-full break-words [overflow-wrap:anywhere] text-lg leading-8 text-neutral-300 sm:max-w-2xl">{page.description}</p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-              {page.heroCta ? <PrimaryButton href={page.heroCta.href} className="w-full sm:w-auto">{page.heroCta.label}</PrimaryButton> : null}
-              <SecondaryButton href="/contact/" className="w-full sm:w-auto">Talk to a Teamwear Specialist</SecondaryButton>
+              {heroCta ? <PrimaryButton href={heroCta.href} className="w-full sm:w-auto">{heroCta.label}</PrimaryButton> : null}
+              {!conversionEntry && heroCta?.href !== '/contact/' ? <SecondaryButton href="/contact/" className="w-full sm:w-auto">Talk to a Teamwear Specialist</SecondaryButton> : null}
             </div>
           </div>
           {heroMedia ? <VerifiedMediaPlaceholder asset={heroMedia} /> : null}
         </div>
       </section>
 
+      {conversionIntent === 'contact' ? contactSection : null}
+
       {page.sections.map((section, index) => <CmsSection key={`${section.type || 'section'}-${section.title}-${index}`} section={section} index={index} />)}
 
-      {contactSlot ? <section className="bg-white px-5 py-16 text-neutral-950 md:px-10 md:py-24 xl:px-20"><div className="mx-auto max-w-7xl">{contactSlot}</div></section> : null}
+      {conversionIntent !== 'contact' ? contactSection : null}
 
-      {page.bottomCta ? (
+      {bottomCta ? (
         <section className="bg-neutral-950 px-5 py-16 text-center text-white md:px-10 md:py-24 xl:px-20">
           <div className="mx-auto max-w-4xl rounded-[2rem] border border-white/10 bg-white/5 p-10">
-            <h2 className="text-3xl font-black uppercase md:text-5xl">Ready to move this project forward?</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-300">Send your design, quantity and deadline. POXIOL will help confirm the next practical step.</p>
-            <div className="mt-8"><PrimaryButton href={page.bottomCta.href}>{page.bottomCta.label}</PrimaryButton></div>
+            <h2 className="text-3xl font-black uppercase md:text-5xl">{conversionIntent === 'contact' ? 'Have a question before you decide?' : 'Ready to move this project forward?'}</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-neutral-300">{conversionIntent === 'contact' ? 'Start with your question. No artwork or confirmed quantity is needed for a general inquiry.' : 'Send your design, quantity and deadline. POXIOL will help confirm the next practical step.'}</p>
+            <div className="mt-8"><PrimaryButton href={bottomCta.href}>{bottomCta.label}</PrimaryButton></div>
           </div>
         </section>
       ) : null}

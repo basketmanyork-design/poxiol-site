@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {pageContentHtml} from './helpers/page-content-html.mjs'
 import {existsSync, readFileSync} from 'node:fs'
 import path from 'node:path'
 
@@ -12,21 +13,21 @@ const owners = [
     id: 'basketball',
     route: '/products/basketball-uniforms/',
     file: 'app/products/basketball-uniforms/page.tsx',
-    h1: 'Custom Basketball Uniform Manufacturer for Clubs, Schools and Sportswear Brands',
+    h1: 'Custom Basketball Uniform Manufacturer for Distributors and Brands',
     terms: ['Jersey and Shorts', 'Front and Back', 'Reversible', 'Names and Numbers', 'Sample Review', 'Quality Control', 'Reorders', 'Private Label'],
   },
   {
     id: 'soccer',
     route: '/products/soccer-jerseys/',
     file: 'app/products/soccer-jerseys/page.tsx',
-    h1: 'Custom Soccer Kit Manufacturer for Clubs, Schools and Sports Brands',
+    h1: 'Custom Soccer Kit Manufacturer for Distributors and Brands',
     terms: ['Jersey, Shorts and Socks', 'Full Soccer Kit', 'Goalkeeper', 'Team Crest', 'Sample Approval', 'Manufacturing', 'Quality Control', 'Packaging'],
   },
   {
     id: 'baseball',
     route: '/custom-baseball-softball-uniforms/',
     file: 'app/custom-baseball-softball-uniforms/page.tsx',
-    h1: 'Custom Baseball Uniform Manufacturer for Teams, Schools and Clubs',
+    h1: 'Custom Baseball Uniform Manufacturer for Distributors and Brands',
     terms: ['Baseball Jersey', 'Baseball Pants', 'Full Baseball Uniform', 'Front and Back', 'Player Numbers', 'Sample Review', 'Manufacturing', 'Quality Control'],
   },
 ] as const
@@ -110,7 +111,8 @@ if (outputMode) {
 
     for (const term of owner.terms) assert.ok(visibleText.includes(term), owner.route + ' is missing: ' + term)
     for (const href of ['/customization/', '/sample-order/', '/manufacturing/', '/quality-control-process/', '/get-quote/']) {
-      assert.ok(visibleHtml.includes('href="' + href + '"'), owner.route + ' is missing link ' + href)
+      const links = [...visibleHtml.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match=>new URL(match[1].replace(/&amp;/g,'&'),baseUrl))
+      assert.ok(links.some(link=>link.origin===baseUrl && link.pathname===href), owner.route + ' is missing link ' + href)
     }
 
     const schemas = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
@@ -121,7 +123,7 @@ if (outputMode) {
       })
     for (const type of ['Product', 'Service', 'FAQPage']) assert.ok(schemas.some((schema) => schema['@type'] === type), owner.route + ' is missing ' + type + ' schema.')
     const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage')
-    const visibleFaqs = [...visibleHtml.matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)].map((match) => match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim())
+    const visibleFaqs = [...pageContentHtml(visibleHtml).matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)].map((match) => match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim())
     assert.deepEqual(faqSchema.mainEntity.map((item: {name: string}) => item.name), visibleFaqs, owner.route + ' FAQ and schema must match.')
   }
 

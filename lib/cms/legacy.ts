@@ -18,8 +18,8 @@ import type {
   CmsSiteChrome,
 } from './types'
 
-const publicEmail = 'york@basketman.cn'
 const salesEmail = 'sales@poxiol.com'
+const publicEmail = salesEmail
 const whatsappNumber = '+8613055646888'
 const whatsappDigits = '8613055646888'
 const alibabaStoreUrl = 'https://basketman.en.alibaba.com/'
@@ -248,7 +248,12 @@ export const legacyProjects: CmsProject[] = caseStudies.map((project, index) => 
   title: project.title,
   country: project.country,
   product: project.product,
-  image: {url: project.image, alt: project.title},
+  // Legacy project media is not public evidence. Only governed CMS records
+  // with explicit project, buyer and image approval may expose an image.
+  image: undefined,
+  evidenceStatus: 'example',
+  buyerAuthorizationStatus: 'unknown',
+  approvedImageStatus: 'pending',
   qualityControl: project.qualityControl,
   packaging: project.packingDelivery,
   solution: project.solution,

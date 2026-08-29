@@ -1,7 +1,11 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/navigation";
+import {useInquiryContext} from '@/components/useInquiryContext';
+import {InquiryReference} from './InquiryReference';
+import {appendInquiryContext, publicSourcePath} from '@/lib/inquiry-context';
+import {ProjectInquiryRequestError, sendProjectInquiry} from '@/lib/project-inquiry-request';
 import {trackFileUpload, trackFormStart, trackFormSubmit, trackLead} from "@/lib/analytics/client";
 import {
   BUYER_ROLE_OPTIONS,
@@ -46,6 +50,48 @@ function FieldLabel({htmlFor, children, required = false}: {htmlFor: string; chi
   );
 }
 
+function AttachmentField({id, name, label, accept, file, disabled, onChange}: {
+  id: string;
+  name: keyof ProjectAttachments;
+  label: string;
+  accept: string;
+  file: File | null;
+  disabled: boolean;
+  onChange: (file: File | null) => boolean;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const invalid = Boolean(validateProjectAttachment(file));
+  const selectedId = `${id}-selected`;
+  const errorId = `${id}-error`;
+
+  function removeFile() {
+    // The parent checks the live submission lock, including stale click handlers.
+    if (!onChange(null)) return;
+    if (inputRef.current) {
+      inputRef.current.value = '';
+      inputRef.current.focus();
+    }
+  }
+
+  return (
+    <>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      <input ref={inputRef} id={id} name={name} type="file" accept={accept}
+        disabled={disabled} aria-invalid={invalid || undefined}
+        aria-describedby={file ? `${selectedId}${invalid ? ` ${errorId}` : ''}` : undefined}
+        onChange={(event) => onChange(event.target.files?.[0] || null)} className={fileClass} />
+      {file ? (
+        <div className="mt-3 min-w-0 space-y-2">
+          <p id={selectedId} className="break-all text-sm leading-5 text-neutral-700">Selected file: {file.name}</p>
+          {invalid ? <p id={errorId} aria-live="polite" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-semibold leading-5 text-red-700">File exceeds the 10 MB limit. Choose a smaller file or remove it.</p> : null}
+          <button type="button" aria-controls={id} aria-label={`Remove ${label}`} disabled={disabled} onClick={removeFile}
+            className="inline-flex min-h-11 items-center rounded-lg border border-neutral-300 px-3 py-2 text-sm font-bold text-neutral-950 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50">Remove file</button>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 export interface ContactFormProps {
   intent?: V8ConversionIntent;
   title?: string;
@@ -65,6 +111,8 @@ function ContactFormInner({
   formType = "Contact V8 Optimized",
   ctaText = "Send Project Inquiry",
   successUrl = "/thank-you/",
+  publicEmail = "sales@poxiol.com",
+  whatsappHref = "https://wa.me/8613055646888",
   defaultSport = "",
 }: ContactFormProps) {
   const router = useRouter();
@@ -72,66 +120,89 @@ function ContactFormInner({
   const [attachments, setAttachments] = useState<ProjectAttachments>(initialAttachments);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [unconfirmed, setUnconfirmed] = useState(false);
+  const submissionState = useRef<'idle' | 'sending' | 'accepted' | 'unconfirmed'>('idle');
+  const errorPanelRef = useRef<HTMLDivElement>(null);
+  const [errorFocusRequest, setErrorFocusRequest] = useState(0);
+  const context = useInquiryContext();
+  const [productReference, setProductReference] = useState('');
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const style = searchParams.get("style") || "";
-    const sport = searchParams.get("sport") || defaultSport;
-    setFields((current) => ({...current, selectedStyle: style, sport: current.sport || sport}));
-  }, [defaultSport]);
+    const sport = context.sport || (PROJECT_SPORT_OPTIONS.includes(defaultSport as typeof PROJECT_SPORT_OPTIONS[number]) ? defaultSport : '');
+    setFields((current) => ({...current, selectedStyle: context.style, sport: current.sport || sport}));
+    setProductReference(context.product);
+  }, [defaultSport, context.product, context.sport, context.style]);
+
+  // Wait until the conditional error panel is committed. File selection/edits
+  // do not request focus; only a failed submit increments this counter.
+  useEffect(() => {
+    if (!errorFocusRequest) return;
+    errorPanelRef.current?.focus({preventScroll: true});
+    errorPanelRef.current?.scrollIntoView({block: 'start'});
+  }, [errorFocusRequest]);
 
   function updateField(name: keyof ProjectQualificationFields, value: string) {
-    trackFormStart(formType);
     setFields((current) => ({...current, [name]: value}));
+    try { trackFormStart(formType); } catch { /* Analytics must not discard edits. */ }
   }
 
   function updateAttachment(name: keyof ProjectAttachments, file: File | null) {
-    setErrorMessage("");
-    const fileError = validateProjectAttachment(file);
-    if (fileError) {
-      setErrorMessage(fileError);
-      setAttachments((current) => ({...current, [name]: null}));
-      return;
-    }
+    if (submissionState.current === 'sending' || submissionState.current === 'accepted') return false;
+    // Keep the actual selection, even when invalid, so it cannot be silently
+    // dropped from an otherwise successful submission. Revalidate before POST.
     setAttachments((current) => ({...current, [name]: file}));
-    if (file) {
-      trackFormStart(formType);
-      trackFileUpload(formType);
+    if (submissionState.current === 'idle') {
+      const nextAttachments = {...attachments, [name]: file};
+      const invalid = Object.values(nextAttachments).find(item => validateProjectAttachment(item));
+      setErrorMessage(invalid ? `${invalid.name} is larger than 10 MB. Replace or remove that file before submitting; you can arrange file sharing with us below.` : '');
     }
+    if (file) {
+      try { trackFormStart(formType); trackFileUpload(formType); } catch { /* Optional telemetry only. */ }
+    }
+    return true;
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submissionState.current !== 'idle') return;
+    submissionState.current = 'sending';
     setLoading(true);
     setErrorMessage("");
 
     try {
+      if (!process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT) {
+        throw new Error('The form is temporarily unavailable. Please contact us by email or WhatsApp below.');
+      }
       const endpoint = requireContactFormEndpoint(process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT);
+
+      const invalid = Object.values(attachments).find(file => validateProjectAttachment(file));
+      if (invalid) throw new Error(`${invalid.name} is larger than 10 MB. Replace or remove that file before submitting; it has not been uploaded.`);
 
       const formData = createProjectSubmissionFormData({
         intent,
         formType,
-        sourcePage: window.location.href,
+        sourcePage: publicSourcePath(window.location.pathname),
         fields,
         attachments,
       });
+      appendInquiryContext(formData, {...context, product:productReference, style:fields.selectedStyle});
 
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {Accept: "application/json"},
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Submit failed. Please try again or contact us by email or WhatsApp.");
-      }
-
-      const submissionId = crypto.randomUUID();
-      trackFormSubmit(formType, submissionId);
-      trackLead(formType, submissionId);
-      router.push(successUrl);
+      await sendProjectInquiry(endpoint, formData);
+      submissionState.current = 'accepted';
+      setSubmitted(true);
+      try {
+        const submissionId = crypto.randomUUID();
+        trackFormSubmit(formType, submissionId);
+        trackLead(formType, submissionId);
+      } catch { /* An accepted submission remains accepted without analytics. */ }
+      try { router.push(successUrl); } catch { /* Keep the accepted state and next-step link below. */ }
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+      const uncertain = error instanceof ProjectInquiryRequestError && error.unconfirmed;
+      submissionState.current = uncertain ? 'unconfirmed' : 'idle';
+      setUnconfirmed(uncertain);
+      setErrorMessage(error instanceof Error ? error.message : 'The request could not be prepared. Please contact us below.');
+      setErrorFocusRequest((current) => current + 1);
     } finally {
       setLoading(false);
     }
@@ -148,12 +219,8 @@ function ContactFormInner({
         </p>
       </div>
 
-      {fields.selectedStyle ? (
-        <div className="mb-8 rounded-2xl border border-lime-400/30 bg-lime-400/10 p-4">
-          <p className="text-xs font-black uppercase tracking-widest text-neutral-500">Requested Look / Style</p>
-          <p className="mt-1 text-lg font-black uppercase italic text-neutral-950">{fields.selectedStyle.replace(/-/g, " ")}</p>
-        </div>
-      ) : null}
+      <fieldset disabled={loading || submitted} className="min-w-0">
+      <InquiryReference context={context} product={productReference} style={fields.selectedStyle} onProduct={setProductReference} onStyle={value=>updateField('selectedStyle',value)} />
 
       <div className="space-y-9">
         <fieldset>
@@ -197,19 +264,19 @@ function ContactFormInner({
 
         <fieldset>
           <legend className="mb-2 text-lg font-black text-neutral-950">Assets</legend>
-          <p className="mb-4 text-xs leading-5 text-neutral-500">Optional. Maximum 10 MB per file. Upload only project files you are authorized to share.</p>
+          <p className="mb-4 text-xs leading-5 text-neutral-500">Optional. Maximum 10 MB per file. Choosing a file does not upload it; files are sent only when you submit. Upload only project files you are authorized to share.</p>
           <div className="grid gap-5 md:grid-cols-2">
             <div>
-              <FieldLabel htmlFor="field-logo-file">Logo Upload</FieldLabel>
-              <input id="field-logo-file" name="logo_file" type="file" accept=".ai,.eps,.pdf,.png,.jpg,.jpeg,.webp,image/*,application/pdf" onChange={(event) => updateAttachment("logo_file", event.target.files?.[0] || null)} className={fileClass} />
+              <AttachmentField id="field-logo-file" name="logo_file" label="Logo Upload" accept=".ai,.eps,.pdf,.png,.jpg,.jpeg,.webp,image/*,application/pdf"
+                file={attachments.logo_file} disabled={loading || submitted} onChange={(file) => updateAttachment('logo_file', file)} />
             </div>
             <div>
-              <FieldLabel htmlFor="field-reference-file">Reference Image Upload</FieldLabel>
-              <input id="field-reference-file" name="reference_design_file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,image/*,application/pdf" onChange={(event) => updateAttachment("reference_design_file", event.target.files?.[0] || null)} className={fileClass} />
+              <AttachmentField id="field-reference-file" name="reference_design_file" label="Reference Image Upload" accept=".pdf,.png,.jpg,.jpeg,.webp,image/*,application/pdf"
+                file={attachments.reference_design_file} disabled={loading || submitted} onChange={(file) => updateAttachment('reference_design_file', file)} />
             </div>
             <div className="md:col-span-2">
-              <FieldLabel htmlFor="field-tech-pack-file">Size Chart / Tech Pack (Optional)</FieldLabel>
-              <input id="field-tech-pack-file" name="size_chart_tech_pack_file" type="file" accept=".csv,.xls,.xlsx,.pdf,.doc,.docx,.png,.jpg,.jpeg" onChange={(event) => updateAttachment("size_chart_tech_pack_file", event.target.files?.[0] || null)} className={fileClass} />
+              <AttachmentField id="field-tech-pack-file" name="size_chart_tech_pack_file" label="Size Chart / Tech Pack (Optional)" accept=".csv,.xls,.xlsx,.pdf,.doc,.docx,.png,.jpg,.jpeg"
+                file={attachments.size_chart_tech_pack_file} disabled={loading || submitted} onChange={(file) => updateAttachment('size_chart_tech_pack_file', file)} />
             </div>
           </div>
         </fieldset>
@@ -241,14 +308,27 @@ function ContactFormInner({
         </fieldset>
       </div>
 
+      </fieldset>
+
       {errorMessage ? (
-        <div id="project-form-error" role="alert" aria-live="assertive" className="mt-5 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">
-          {errorMessage}
+        <div ref={errorPanelRef} id="project-form-error" role="alert" aria-live="assertive" tabIndex={-1} className="mt-5 scroll-mt-28 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700">
+          <h3 className="font-black">{unconfirmed ? 'Please check receipt before resending' : 'Your request needs attention'}</h3>
+          <p className="mt-2 break-words">{errorMessage}</p>
+          <p className="mt-2">Your entered details and selected files remain on this page. They are not saved after leaving or refreshing.</p>
+          {unconfirmed ? <p className="mt-2">Do not submit again or refresh to retry. Use email or WhatsApp to check receipt first; mention your original email, team or company and approximate submission time.</p> : null}
+          {unconfirmed ? <p className="mt-2">Changing or removing files here only changes this page; it does not withdraw an earlier submission.</p> : null}
+          <div className="mt-3 flex flex-wrap gap-3">
+            <a href={`mailto:${publicEmail}?subject=POXIOL%20inquiry%20help`} className="inline-flex min-h-11 max-w-full items-center break-all rounded-lg bg-white px-3 py-2 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Email {publicEmail}</a>
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Open WhatsApp</a>
+          </div>
+          <p className="mt-2 text-xs">These links open your email app or WhatsApp; they do not send a message automatically.</p>
         </div>
       ) : null}
 
-      <button type="submit" disabled={loading} className="mt-8 min-h-[56px] w-full rounded-full bg-lime-400 px-5 py-3 text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime-400 disabled:cursor-not-allowed disabled:opacity-70">
-        {loading ? "Submitting..." : ctaText}
+      {submitted ? <div role="status" className="mt-5 rounded-xl bg-lime-50 p-4 text-sm text-neutral-950"><p className="font-bold">Request submitted. Please do not send it again.</p><a href={successUrl} className="inline-flex min-h-11 items-center font-bold underline">View next steps</a></div> : null}
+      {loading ? <p role="status" className="mt-5 text-sm text-neutral-700">Sending your request. Please keep this page open and do not submit again.</p> : null}
+      <button type="submit" disabled={loading || submitted || unconfirmed} className="mt-8 min-h-[56px] w-full rounded-full bg-lime-400 px-5 py-3 text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime-400 disabled:cursor-not-allowed disabled:opacity-70">
+        {submitted ? 'Request submitted' : unconfirmed ? 'Check receipt before resending' : loading ? "Submitting..." : ctaText}
       </button>
 
       <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3">

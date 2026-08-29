@@ -12,3 +12,14 @@ body { margin: 0; background: #050505; color: #111; }
 .poxiol-card:hover img { transform: scale(1.04); }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (max-width: 767px) {
+  /* Leave editing space for the keyboard and native date/select controls. */
+  body:has(form :is(input, select, textarea):focus) .poxiol-mobile-cta {
+    visibility: hidden;
+    pointer-events: none;
+  }
+  form :is(input, select, textarea, button) {
+    scroll-margin-block: 7rem;
+  }
+}

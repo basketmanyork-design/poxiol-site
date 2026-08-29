@@ -4,7 +4,11 @@ import { tmpdir } from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
 
-import { buildCandidateImport } from '../lib/construction/import-manifest.mjs'
+import {
+  buildCandidateImport,
+  expandRelativeSourceDependencies,
+  extractScriptFileReferences,
+} from '../lib/construction/import-manifest.mjs'
 
 const latestDigest =
   '715760eedeabb0ca7b5758d4536e78c4c06cad699caa912bf1ef0f483b103efc'
@@ -12,7 +16,27 @@ const latestDigest =
 function withCandidateFile(run) {
   const root = mkdtempSync(path.join(tmpdir(), 'poxiol-import-manifest-'))
   mkdirSync(path.join(root, 'app'))
+  mkdirSync(path.join(root, 'scripts'))
+  mkdirSync(path.join(root, 'scripts', 'helpers'))
+  mkdirSync(path.join(root, 'components'))
   writeFileSync(path.join(root, 'app', 'page.tsx'), 'latest\n')
+  writeFileSync(path.join(root, 'scripts', 'required.test.mjs'), 'latest\n')
+  writeFileSync(
+    path.join(root, 'scripts', 'main.test.mjs'),
+    "import './helpers/page-content-html.mjs'\n",
+  )
+  writeFileSync(
+    path.join(root, 'scripts', 'helpers', 'page-content-html.mjs'),
+    'export const helper = true\n',
+  )
+  writeFileSync(
+    path.join(root, 'components', 'AliasConsumer.tsx'),
+    "import '@/components/useInquiryContext'\n",
+  )
+  writeFileSync(
+    path.join(root, 'components', 'useInquiryContext.ts'),
+    'export const useInquiryContext = true\n',
+  )
 
   try {
     return run(root)
@@ -78,6 +102,74 @@ test('uses the latest approved hash when batches repeat a candidate path', () =>
         sha256: latestDigest,
         bytes: 7,
         approvedBy: 'CF-HYBRID-08',
+      },
+    ])
+  })
+})
+
+test('expands project-root alias imports from manifest-listed source files', () => {
+  withCandidateFile((candidateRoot) => {
+    assert.deepEqual(
+      expandRelativeSourceDependencies({
+        candidateRoot,
+        entryPaths: ['components/AliasConsumer.tsx'],
+      }),
+      [
+        'components/AliasConsumer.tsx',
+        'components/useInquiryContext.ts',
+      ],
+    )
+  })
+})
+
+test('expands relative source imports without adding unrelated candidate files', () => {
+  withCandidateFile((candidateRoot) => {
+    assert.deepEqual(
+      expandRelativeSourceDependencies({
+        candidateRoot,
+        entryPaths: ['scripts/main.test.mjs'],
+      }),
+      [
+        'scripts/helpers/page-content-html.mjs',
+        'scripts/main.test.mjs',
+      ],
+    )
+  })
+})
+
+test('extracts only explicit script file references from package commands', () => {
+  assert.deepEqual(
+    extractScriptFileReferences({
+      scripts: {
+        test: 'node scripts/a.test.mjs && npm run nested',
+        nested:
+          'node --experimental-strip-types scripts/b.test.mts --output',
+        build: 'next build',
+      },
+    }),
+    ['scripts/a.test.mjs', 'scripts/b.test.mts'],
+  )
+})
+
+test('adds a required package script only when a baseline inventory proves its hash', () => {
+  withCandidateFile((candidateRoot) => {
+    const entries = buildCandidateImport({
+      candidateRoot,
+      batches: [],
+      requiredPaths: ['scripts/required.test.mjs'],
+      baselineInventory: {
+        'scripts/required.test.mjs': latestDigest,
+        'scripts/unreferenced.test.mjs': 'f'.repeat(64),
+      },
+      baselineApprovedBy: 'CF-HYBRID-06:before-hashes',
+    })
+
+    assert.deepEqual(entries, [
+      {
+        path: 'scripts/required.test.mjs',
+        sha256: latestDigest,
+        bytes: 7,
+        approvedBy: 'CF-HYBRID-06:before-hashes',
       },
     ])
   })

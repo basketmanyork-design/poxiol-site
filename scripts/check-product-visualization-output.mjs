@@ -14,9 +14,7 @@ function invariant(condition, message) {
 
 const required = new Map([
   ['/', [
-    ['POXIOL_HOME_BasketballHero.webp', 'POXIOL black and neon green basketball uniform with jersey and matching shorts', 'POXIOL basketball uniform concept shown as a coordinated jersey and shorts set.'],
-    ['POXIOL_SOCCER_FullSet.webp', 'POXIOL black and neon green soccer kit with jersey shorts and socks', 'POXIOL soccer kit visualization showing jersey, shorts and socks.'],
-    ['POXIOL_BASEBALL_FullSet.webp', 'POXIOL black white and neon green baseball uniform set', 'POXIOL baseball uniform visualization showing jersey and matching pants.'],
+    ['poxiol-teamwear-hero-poxiol-only-v2.png', 'Illustrative POXIOL-branded basketball, football, and warm-up teamwear configurations', 'Illustrative teamwear configuration'],
   ]],
   ['products/basketball-uniforms', [
     ['POXIOL_BASK_FullSet.webp', 'POXIOL black basketball jersey and shorts set with neon green lightning graphics and number 23', 'Basketball uniform visualization showing the matching jersey and shorts set.'],
@@ -50,9 +48,9 @@ const required = new Map([
 
 for (const [route, assets] of required) {
   const html = htmlFor(route)
-  invariant(html.includes('Product visualization'), `${route} is missing the visualization disclosure`)
+  invariant(html.includes(route === '/' ? 'Illustrative teamwear configuration' : 'Product visualization'), `${route} is missing the visualization disclosure`)
   for (const [file, alt, caption] of assets) {
-    invariant(html.includes(`/product-visualization/${file}`), `${route} is missing ${file}`)
+    invariant(html.includes(route === '/' ? `/images/${file}` : `/product-visualization/${file}`), `${route} is missing ${file}`)
     invariant(html.includes(alt), `${route} changed the approved alt for ${file}`)
     invariant(html.includes(caption), `${route} changed the approved caption for ${file}`)
   }

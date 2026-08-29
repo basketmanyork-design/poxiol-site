@@ -35,7 +35,7 @@ const expectedPages = [
     id: 'private-label-teamwear',
     route: '/private-label-teamwear/',
     title: 'Private Label Teamwear for Sports Brands and Distributors | POXIOL',
-    description: 'Plan private-label basketball, soccer and baseball collections with custom labels, packaging, sample approval and repeat manufacturing requirements.',
+    description: 'Private-label teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
     h1: 'Private Label Teamwear Built Around Your Brand',
     cta: 'Discuss Your OEM Project',
   },

@@ -7,6 +7,7 @@ import {getSiteChrome, getSitePage} from '@/lib/sanity/content'
 import {SAMPLE_ORDER_FAQS, withSampleOrderFaqs} from '@/lib/v8/conversion-faqs'
 import {ProductVisualizationSection} from '@/components/v8/ProductVisualizationSection'
 import {getProductVisualization} from '@/lib/product-visualization/registry'
+import {getV8ConversionEntry} from '@/lib/v8/leads'
 
 const pageKey = 'sample-order'
 
@@ -22,7 +23,7 @@ export default async function Page() {
   return (
     <>
       <FormContactFallback context="sample" />
-      <CmsPageTemplate page={pageWithFaqs} beforeFooterSlot={<><ProductVisualizationSection assets={[sampleVisualization]} page="/sample-order/" eyebrow="Sample Visualization" title="Review the Front and Back Together" description="Use the approved front-and-back visualization to discuss the same uniform concept before a sample request." layout="single" /><ConversionEntryGuide currentIntent="sample" /><section id="sample-request-form" className="bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-3xl"><ProjectQualificationForm intent="sample" formType="Sample Request Conversion" publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} /></div></section></>} />
+      <CmsPageTemplate page={pageWithFaqs} conversionIntent="sample" beforeFooterSlot={<><ProductVisualizationSection assets={[sampleVisualization]} page="/sample-order/" eyebrow="Sample Visualization" title="Review the Front and Back Together" description="Use the approved front-and-back visualization to discuss the same uniform concept before a sample request." layout="single" /><ConversionEntryGuide currentIntent="sample" /><section id={getV8ConversionEntry('sample').formAnchorId} tabIndex={-1} className="scroll-mt-24 bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-3xl"><ProjectQualificationForm intent="sample" formType="Sample Request Conversion" publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} /></div></section></>} />
     </>
   )
 }

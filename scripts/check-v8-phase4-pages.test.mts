@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {pageContentHtml} from './helpers/page-content-html.mjs'
 import {existsSync, readFileSync} from 'node:fs'
 import path from 'node:path'
 
@@ -13,7 +14,7 @@ const expectedRoutes = [
     route: '/products/basketball-uniforms/',
     routeFile: 'app/products/basketball-uniforms/page.tsx',
     component: 'BasketballV8LandingPage',
-    h1: 'Custom Basketball Uniform Manufacturer for Clubs, Schools and Sportswear Brands',
+    h1: 'Custom Basketball Uniform Manufacturer for Distributors and Brands',
     requiredText: [
       'Common Basketball Uniform Ordering Challenges',
       'Basketball Uniform Customization',
@@ -124,7 +125,8 @@ if (outputMode) {
     assert.doesNotMatch(visibleHtml, /Verified production visual pending/i, `${expected.route} must hide unverified public proof placeholders.`)
     for (const phrase of expected.requiredText) assert.ok(visibleText.includes(phrase), `${expected.route} is missing: ${phrase}`)
     for (const phrase of ('forbiddenText' in expected ? expected.forbiddenText : [])) assert.equal(visibleText.includes(phrase), false, `${expected.route} must not duplicate: ${phrase}`)
-    for (const href of expected.links) assert.match(visibleHtml, new RegExp(`<a\\b[^>]*href=["']${href.replaceAll('/', '\\/')}["']`), `${expected.route} is missing link ${href}`)
+    const outgoingLinks = [...visibleHtml.matchAll(/<a\b[^>]*href=["']([^"']+)["']/g)].map(match=>new URL(match[1].replace(/&amp;/g,'&'),'https://www.poxiol.com'))
+    for (const href of expected.links) assert.ok(outgoingLinks.some(link=>link.origin==='https://www.poxiol.com' && link.pathname===href), `${expected.route} is missing link ${href}`)
 
     const schemas = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
       .flatMap((match) => {
@@ -142,7 +144,7 @@ if (outputMode) {
     .find((schema) => schema['@type'] === 'FAQPage')
   assert.ok(basketballFaqSchema)
   const basketballVisibleHtml = basketballHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
-  const visibleFaqQuestions = [...basketballVisibleHtml.matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)]
+  const visibleFaqQuestions = [...pageContentHtml(basketballVisibleHtml).matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)]
     .map((match) => match[1].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim())
   const schemaFaqQuestions = basketballFaqSchema.mainEntity.map((item: {name: string}) => item.name)
 

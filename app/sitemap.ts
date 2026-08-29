@@ -3,6 +3,7 @@ import { caseStudies } from "@/lib/case-studies";
 import { sportsPages } from "@/lib/sports-pages";
 import { pseoPages } from "@/lib/pseo";
 import { getArticles, getProductCategories } from "@/lib/sanity/content";
+import { publicLegalPolicyRoutes } from "@/lib/legal-release";
 
 export const dynamic = "force-static";
 
@@ -48,9 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/private-label-teamwear/",
     "/shipping-after-sales/",
     "/guides/b2b-sourcing-faq/",
-    "/privacy-policy/",
-    "/terms/",
-    "/intellectual-property-policy/",
+    ...publicLegalPolicyRoutes(),
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

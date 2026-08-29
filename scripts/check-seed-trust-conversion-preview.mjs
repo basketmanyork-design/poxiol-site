@@ -63,13 +63,13 @@ const requiredOutputCopy = [
 const contentResolverSource = read('lib/sanity/content.ts')
 const homepageSource = read('app/page.tsx')
 const homepageV8Source = read('components/v8/HomepageV8.tsx')
-assert.ok(homepageSource.includes('<HomepageV8'), 'Homepage does not render the shared V8 buyer decision composition')
+assert.ok(homepageSource.includes('<HomepageHybrid'), 'Pilot homepage must render the approved hybrid composition')
 for (const sharedSection of ['CustomerSegmentation', 'BuyerProblems', 'DesignJourney', 'ProductionProof', 'SolutionCards']) {
   assert.ok(homepageV8Source.includes(`<${sharedSection}`), `HomepageV8 does not render ${sharedSection}`)
 }
 assert.ok(contentResolverSource.includes('trustSections:'), 'CMS resolver must continue to resolve trust sections for compatible consumers')
 assert.ok(!homepageSource.includes('Teams Served') && !homepageV8Source.includes('Teams Served'), 'Homepage still renders unsupported team-count proof')
-assert.ok(homepageSource.includes('<FAQSchema faqs={homepageFaqs.map'), 'Homepage JSON-LD must use the same resolved FAQ data as the visible V8 FAQ')
+assert.ok(!homepageSource.includes('<FAQSchema'), 'Pilot homepage without visible FAQs must not publish FAQ schema')
 
 const projectListSource = read('app/projects/page.tsx')
 const projectDetailSource = read('app/projects/[slug]/page.tsx')

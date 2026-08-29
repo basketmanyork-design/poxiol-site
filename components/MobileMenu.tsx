@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import InquiryLink from '@/components/InquiryLink';
 import { HEADER_NAV, HEADER_CTA, type NavItem } from "@/lib/navigation";
 
 export default function MobileMenu() {
@@ -64,26 +65,26 @@ export default function MobileMenu() {
                   <ul className="pb-4 pl-4">
                     {item.children.map((child) => (
                       <li key={child.href}>
-                        <Link
+                        <InquiryLink
                           href={child.href}
                           onClick={() => setOpen(false)}
                           className="block py-2.5 text-sm font-semibold text-neutral-300 hover:text-[#B6FF00]"
                         >
                           {child.label}
-                        </Link>
+                        </InquiryLink>
                       </li>
                     ))}
                   </ul>
                 ) : null}
               </div>
             ))}
-            <Link
+            <InquiryLink
               href={HEADER_CTA.href}
               onClick={() => setOpen(false)}
               className="mt-6 inline-flex h-14 items-center justify-center rounded-full bg-[#B6FF00] px-8 text-base font-black uppercase tracking-wide text-black"
             >
               {HEADER_CTA.label}
-            </Link>
+            </InquiryLink>
           </nav>
         </div>
       ) : null}

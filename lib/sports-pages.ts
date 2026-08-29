@@ -25,11 +25,13 @@ export type SportsPageData = {
   heroText: string;
   heroImage: string;
   heroImageAlt?: string;
+  heroMediaKind?: 'illustration' | 'pendingBrandReview';
+  heroMediaDisclosure?: string;
   heroProofPoints?: string[];
   primaryKeyword: string;
   productTypes: { title: string; description: string }[];
   features: { title: string; description: string }[];
-  designs: { title: string; description: string; image: string; href?: string }[];
+  designs: { title: string; description: string; image?: string; imageStatus?: 'approved' | 'pendingBrandReview'; href?: string }[];
   buyerTypes: { title: string; description: string }[];
   procurementTable: { item: string; specification: string }[];
   faqs: { question: string; answer: string }[];
@@ -84,7 +86,10 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM BASKETBALL UNIFORMS",
     h1: "Custom Basketball Uniform Manufacturer for Clubs, Schools and Sportswear Brands",
     heroText: "POXIOL manufactures custom basketball jerseys, shorts, reversible uniforms and full team packages for global B2B buyers. We support free mockup design, sample confirmation, sublimation printing, player name and number customization, private label packaging and bulk production planning.",
-    heroImage: "/images/sports-pages/basketball/hero.png",
+    heroImage: "/product-visualization/POXIOL_BASK_FullSet.webp",
+    heroImageAlt: "POXIOL black basketball jersey and shorts set with neon green lightning graphics and number 23",
+    heroMediaKind: "illustration",
+    heroMediaDisclosure: "Product visualization — not a factory or completed-order photograph.",
     primaryKeyword: "custom basketball uniforms",
     productTypes: [
       { title: "Basketball Jerseys", description: "Sleeveless custom jerseys with team name, logo, player name and number options." },
@@ -94,9 +99,9 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Storm Court Set", description: "Bold sublimation basketball set with sharp geometric motion graphics.", image: "/images/designs/storm-court-basketball.webp", href: "/free-mockup/?style=storm-court-basketball-set" },
-      { title: "Metro Blue Set", description: "Blue and white team set for clubs and school programs.", image: "/images/sports-pages/basketball/design-2.webp", href: "/free-mockup/?style=metro-blue-basketball-set" },
-      { title: "Red Impact Set", description: "Red, black and white basketball kit for strong team identity.", image: "/images/sports-pages/basketball/design-3.webp", href: "/free-mockup/?style=red-impact-basketball-set" }
+      { title: "Storm Court Set", description: "Bold sublimation basketball set with sharp geometric motion graphics.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=storm-court-basketball-set" },
+      { title: "Metro Blue Set", description: "Blue and white team set for clubs and school programs.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=metro-blue-basketball-set" },
+      { title: "Red Impact Set", description: "Red, black and white basketball kit for strong team identity.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=red-impact-basketball-set" }
     ],
     buyerTypes: [
       { title: "Basketball Clubs", description: "Flexible team orders for local clubs and amateur programs." },
@@ -153,7 +158,10 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM SOCCER TEAMWEAR",
     h1: "Custom Soccer Kit Manufacturer for Clubs, Schools and Distributors",
     heroText: "POXIOL provides custom soccer jerseys, shorts, socks, goalkeeper kits and full team packages for global B2B buyers. We support home and away kit design, sponsor placement, team logo customization, sublimation printing, sample confirmation, private label packaging and bulk production planning.",
-    heroImage: "/images/sports-pages/soccer/hero.png",
+    heroImage: "/product-visualization/POXIOL_SOCCER_FullSet.webp",
+    heroImageAlt: "POXIOL black and neon green soccer kit with jersey shorts and socks",
+    heroMediaKind: "illustration",
+    heroMediaDisclosure: "Product visualization — not a factory or completed-order photograph.",
     primaryKeyword: "custom soccer kits",
     productTypes: [
       { title: "Soccer Jerseys", description: "Custom soccer shirts with team logo, colors, names and numbers." },
@@ -163,9 +171,9 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "United Field Kit", description: "Royal blue, white and silver soccer kit for clubs and academies.", image: "/images/designs/united-field-soccer-kit.webp", href: "/free-mockup/?style=united-field-soccer-kit" },
-      { title: "Navy Crest Kit", description: "Clean navy and lime style for modern teamwear programs.", image: "/images/sports-pages/soccer/design-2.webp", href: "/free-mockup/?style=navy-crest-soccer-kit" },
-      { title: "City Red Kit", description: "Red and white soccer kit with safe custom team identity.", image: "/images/sports-pages/soccer/design-3.webp", href: "/free-mockup/?style=city-red-soccer-kit" }
+      { title: "United Field Kit", description: "Royal blue, white and silver soccer kit for clubs and academies.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=united-field-soccer-kit" },
+      { title: "Navy Crest Kit", description: "Clean navy and lime style for modern teamwear programs.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=navy-crest-soccer-kit" },
+      { title: "City Red Kit", description: "Red and white soccer kit for a custom team identity.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=city-red-soccer-kit" }
     ],
     buyerTypes: [
       { title: "Soccer Clubs", description: "Custom kits for local clubs, academies and seasonal teams." },
@@ -218,7 +226,10 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM TRAINING WEAR",
     h1: "Custom Training Wear and Warm-up Suits",
     heroText: "Create custom tracksuits, warm-up jackets, and training tops for clubs, schools, and sportswear brands with professional After-Sales Quality Support.",
-    heroImage: "/images/sports-pages/training/hero.png",
+    heroImage: "/images/poxiol-teamwear-hero-poxiol-only-v2.png",
+    heroImageAlt: "Illustrative basketball, soccer and training range with POXIOL wordmarks",
+    heroMediaKind: "illustration",
+    heroMediaDisclosure: "Illustrative teamwear configuration — not a factory or completed-order photograph.",
     primaryKeyword: "custom training wear",
     productTypes: [
       { title: "Tracksuits", description: "Custom jacket and pants sets for team travel and warmups." },
@@ -228,9 +239,9 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Pro Training Set", description: "Modern tracksuit design for warmups, training sessions and travel wear.", image: "/images/designs/pro-training-tracksuit.webp", href: "/free-mockup/?style=pro-training-tracksuit" },
-      { title: "Navy Travel Set", description: "Navy and white warm-up jacket and pants for team travel.", image: "/images/sports-pages/training/design-2.webp", href: "/free-mockup/?style=navy-travel-set" },
-      { title: "Black Motion Set", description: "Black and gray training top and pants with lime accents.", image: "/images/sports-pages/training/design-3.webp", href: "/free-mockup/?style=black-motion-training-set" }
+      { title: "Pro Training Set", description: "Modern tracksuit design for warmups, training sessions and travel wear.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=pro-training-tracksuit" },
+      { title: "Navy Travel Set", description: "Navy and white warm-up jacket and pants for team travel.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=navy-travel-set" },
+      { title: "Black Motion Set", description: "Black and gray training top and pants with lime accents.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=black-motion-training-set" }
     ],
     buyerTypes: [
       { title: "Clubs", description: "Warmups and travel apparel for club teams." },
@@ -247,7 +258,10 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM HOODIES & JACKETS",
     h1: "Custom Team Hoodies & Jackets",
     heroText: "Build your team outerwear with custom hoodies, zip-ups, and jackets. Engineered for comfort and professional appearance.",
-    heroImage: "/images/poxiol-v62/home_hero_v62.png",
+    heroImage: "/images/poxiol-teamwear-hero-poxiol-only-v2.png",
+    heroImageAlt: "Illustrative basketball, soccer and training range with POXIOL wordmarks",
+    heroMediaKind: "illustration",
+    heroMediaDisclosure: "Illustrative teamwear configuration — not a factory or completed-order photograph.",
     primaryKeyword: "custom hoodies",
     productTypes: [
       { title: "Pullover Hoodies", description: "Premium custom hoodies with front pocket and drawstring hood." },
@@ -256,7 +270,7 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Elite Tech Hoodie", description: "Modern fit hoodie with vibrant team accents.", image: "/images/designs/cyber-league-esports.webp", href: "/free-mockup/?style=elite-tech-hoodie" }
+      { title: "Elite Tech Hoodie", description: "Modern fit hoodie with vibrant team accents.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=elite-tech-hoodie" }
     ],
     buyerTypes: [
       { title: "Clubs", description: "Branded outerwear for team members and supporters." },
@@ -272,7 +286,9 @@ export const sportsPages: SportsPageData[] = [
     eyebrow: "CUSTOM TEAM ACCESSORIES",
     h1: "Custom Team Accessories",
     heroText: "Complete your elite team identity with custom socks, bags, and branded accessories manufactured to match your uniforms.",
-    heroImage: "/images/poxiol-v6/manufacturing_packing_global_delivery.png",
+    heroImage: "",
+    heroMediaKind: "pendingBrandReview",
+    heroMediaDisclosure: "Product imagery pending brand review.",
     primaryKeyword: "team accessories",
     productTypes: [
       { title: "Team Socks", description: "Custom sublimated or knitted socks with team logos and colors." },
@@ -280,7 +296,7 @@ export const sportsPages: SportsPageData[] = [
     ],
     features: genericFeatures(),
     designs: [
-      { title: "Pro Gear Bag", description: "Heavy-duty custom bag for athlete gear.", image: "/images/manufacturing/packing-shipping.webp", href: "/free-mockup/?style=pro-gear-bag" }
+      { title: "Pro Gear Bag", description: "Heavy-duty custom bag for athlete gear.", imageStatus: "pendingBrandReview", href: "/free-mockup/?style=pro-gear-bag" }
     ],
     buyerTypes: [
       { title: "Clubs", description: "Complete accessory kits for team members." },

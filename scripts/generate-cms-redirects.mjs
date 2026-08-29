@@ -94,13 +94,9 @@ export async function generateCmsRedirects({rootDir = process.cwd(), fetchImpl =
   const publicFile = path.join(rootDir, 'public', '_redirects')
   let baseText = ''
   try {
-    baseText = await fs.readFile(outFile, 'utf8')
+    baseText = await fs.readFile(publicFile, 'utf8')
   } catch {
-    try {
-      baseText = await fs.readFile(publicFile, 'utf8')
-    } catch {
-      baseText = ''
-    }
+    baseText = ''
   }
 
   const baseRules = parseRedirects(baseText)

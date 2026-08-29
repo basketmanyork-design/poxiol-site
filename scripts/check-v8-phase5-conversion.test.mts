@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {pageContentHtml} from './helpers/page-content-html.mjs'
 import {existsSync, readFileSync} from 'node:fs'
 import path from 'node:path'
 import {V8_CONVERSION_ENTRIES} from '../lib/v8/leads.ts'
@@ -94,10 +95,12 @@ if (outputMode) {
     const visibleText = visibleHtml.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ')
     assert.ok(visibleText.includes(entry.formTitle), `${entry.path} is missing its intent-specific form title.`)
     assert.ok(visibleText.includes(entry.ctaLabel), `${entry.path} is missing its intent-specific CTA label.`)
-    for (const field of requiredFields) {
+    const entryFields = entry.intent === 'contact' ? ['message', 'email', 'fullName'] : requiredFields
+    for (const field of entryFields) {
       assert.match(visibleHtml, new RegExp(`<(?:input|select|textarea)\\b[^>]*name=["']${field}["']`, 'i'), `${entry.path} is missing ${field}.`)
     }
-    assert.ok(visibleHtml.indexOf('name="buyerRole"') < visibleHtml.indexOf('<footer'), `${entry.path} must render its project form before the site footer.`)
+    const firstField = entry.intent === 'contact' ? 'message' : 'buyerRole'
+    assert.ok(visibleHtml.indexOf(`name="${firstField}"`) < visibleHtml.indexOf('<footer'), `${entry.path} must render its inquiry form before the site footer.`)
     assert.ok(visibleText.includes('One project, one clear next step'), `${entry.path} is missing the shared conversion-entry guide.`)
   }
 
@@ -115,7 +118,10 @@ if (outputMode) {
     const relative = route === '/' ? 'out/index.html' : `out/${route.replace(/^\/+|\/+$/g, '')}/index.html`
     const html = read(relative)
     const hrefs = [...html.matchAll(/<a\b[^>]*href=["']([^"']+)["']/gi)].map((match) => match[1])
-    assert.ok(hrefs.some((href) => ['/free-mockup/', '/get-quote/', '/sample-order/', '/contact/'].includes(href)), `${route} has no conversion entry CTA.`)
+    assert.ok(hrefs.some((href) => {
+      const url = new URL(href.replace(/&amp;/g,'&'),'https://www.poxiol.com')
+      return url.origin === 'https://www.poxiol.com' && ['/free-mockup/', '/get-quote/', '/sample-order/', '/contact/'].includes(url.pathname)
+    }), `${route} has no conversion entry CTA.`)
   }
 
   const customizationHtml = read('out/customization/index.html')
@@ -125,7 +131,7 @@ if (outputMode) {
   assert.ok(customizationHtml.includes('"@type":"FAQPage"'), 'Customization must expose FAQPage schema from the visible shared FAQ data.')
 
   const freeMockupHtml = read('out/free-mockup/index.html')
-  const visibleFreeMockupQuestions = [...freeMockupHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)]
+  const visibleFreeMockupQuestions = [...pageContentHtml(freeMockupHtml).matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)]
     .map((match) => match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim())
   const freeMockupFaqSchemas = [...freeMockupHtml.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
     .map((match) => JSON.parse(match[1]))
@@ -135,7 +141,7 @@ if (outputMode) {
   assert.deepEqual(freeMockupFaqSchemas[0].mainEntity.map((item: {name: string}) => item.name), visibleFreeMockupQuestions, 'Free Mockup FAQPage schema must match the visible FAQ data.')
 
   const getQuoteHtml = read('out/get-quote/index.html')
-  const visibleGetQuoteFaqs = [...getQuoteHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
+  const visibleGetQuoteFaqs = [...pageContentHtml(getQuoteHtml).matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
     .map((match) => ({
       question: match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),
       answer: match[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),
@@ -148,7 +154,7 @@ if (outputMode) {
   assert.deepEqual(getQuoteFaqSchemas[0].mainEntity.map((item: {name: string; acceptedAnswer: {text: string}}) => ({question: item.name, answer: item.acceptedAnswer.text})), visibleGetQuoteFaqs, 'Get Quote FAQPage schema must match visible questions, answers and order.')
 
   const sampleOrderHtml = read('out/sample-order/index.html')
-  const visibleSampleOrderFaqs = [...sampleOrderHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
+  const visibleSampleOrderFaqs = [...pageContentHtml(sampleOrderHtml).matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
     .map((match) => ({
       question: match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),
       answer: match[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),

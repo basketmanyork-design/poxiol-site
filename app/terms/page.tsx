@@ -1,10 +1,13 @@
 import type {Metadata} from 'next'
 import {Header, Footer} from '@/components/ui'
+import {LegalDraftNotice} from '@/components/legal/LegalDraftNotice'
+import {legalPolicyMetadata} from '@/lib/legal-release'
 
 export const metadata: Metadata = {
   title: 'Terms | POXIOL',
   description: 'General website and inquiry terms for POXIOL custom teamwear buyers.',
   alternates: {canonical: 'https://www.poxiol.com/terms/'},
+  ...legalPolicyMetadata(),
 }
 
 export default function Page() {
@@ -13,6 +16,7 @@ export default function Page() {
       <Header />
       <section className="px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">
+          <LegalDraftNotice />
           <p className="text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">POXIOL Policy</p>
           <h1 className="mt-5 text-4xl font-black uppercase tracking-tight md:text-6xl">Terms</h1>
           <p className="mt-6 text-lg leading-8 text-neutral-300">General website and inquiry terms for POXIOL custom teamwear buyers.</p>

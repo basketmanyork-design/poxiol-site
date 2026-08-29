@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer, PrimaryButton } from "@/components/ui";
+import InquiryNextSteps from "@/components/forms/InquiryNextSteps";
 
 export const metadata: Metadata = {
   title: "Request Received | POXIOL",
@@ -15,11 +16,12 @@ export default function ThankYouPage() {
           ✓
         </div>
         <h1 className="mt-10 text-4xl font-black uppercase tracking-tight md:text-6xl">
-          Thank You!
+          Request Submitted
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-neutral-400 leading-relaxed">
-          Your request has been successfully received. Our design and production team will review your details and logo/files, and we will contact you via email or WhatsApp after the project requirements are reviewed.
+          Thank you for contacting POXIOL. Your request has been submitted for review. The next step is to clarify the details you shared and any design or project requirements, not to start production.
         </p>
+        <InquiryNextSteps />
         <div className="mt-12">
           <PrimaryButton href="/">Return to Home</PrimaryButton>
         </div>

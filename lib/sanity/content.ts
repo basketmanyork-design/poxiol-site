@@ -1109,11 +1109,6 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
   if (!category) return getCmsListMode() === 'strict' ? null : legacyData
   const matchedFaqs = await getMatchedFaqsForProductCategory(categorySlug, category.relatedFaqs?.length ? category.relatedFaqs : legacyData.faqs, category.title)
   const productCards = products.map((product) => ({title: product.title, description: product.description}))
-  const designs = products
-    .filter((product) => product.image)
-    .slice(0, 3)
-    .map((product) => ({title: product.title, description: product.description, image: product.image?.url || legacyData.heroImage, href: `/products/${product.slug}/`}))
-
   return {
     ...legacyData,
     metaTitle: category.seo.title,
@@ -1121,11 +1116,13 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
     eyebrow: category.shortName || legacyData.eyebrow,
     h1: category.title || legacyData.h1,
     heroText: category.description || legacyData.heroText,
-    heroImage: category.image.url || legacyData.heroImage,
+    // Sports media is default-deny until the CMS schema carries explicit brand-rights review metadata.
+    // CMS may continue to overlay buyer-facing text, but cannot replace reviewed POXIOL media.
+    heroImage: legacyData.heroImage,
     primaryKeyword: category.title || legacyData.primaryKeyword,
     productTypes: productCards.length ? productCards : legacyData.productTypes,
     features: productCards.length ? productCards.slice(0, 4) : legacyData.features,
-    designs: designs.length ? designs : legacyData.designs,
+    designs: legacyData.designs,
     faqs: matchedFaqs.length ? matchedFaqs : legacyData.faqs,
     noIndex: category.seo.noIndex,
   }

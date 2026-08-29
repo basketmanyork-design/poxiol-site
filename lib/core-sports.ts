@@ -51,6 +51,8 @@ const ctas = {
 }
 
 const consultation = 'Confirmed during project consultation'
+const channelBuyers = ['Teamwear Distributors', 'Dealers', 'Sportswear Brands', 'Custom Resellers'] as const
+const channelAudience = 'Teamwear distributors, dealers, sportswear brands and custom resellers worldwide'
 
 export const CORE_SPORTS: readonly CoreSportDefinition[] = [
   {
@@ -60,13 +62,13 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     priority: 45,
     canonicalPath: '/products/basketball-uniforms/',
     seoTitle: 'Custom Basketball Uniform Manufacturer | POXIOL',
-    seoDescription: 'Custom basketball jerseys, shorts, reversible uniforms and team sets for clubs, schools, youth programs, sports brands and distributors, with mockup, sample and quality-control review.',
+    seoDescription: 'Custom basketball uniforms for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client orders, samples and reorders.',
     primaryKeyword: 'custom basketball uniforms',
     secondaryKeywords: ['basketball uniform manufacturer', 'custom basketball jerseys', 'custom team basketball uniforms', 'sublimated basketball uniforms'],
     hero: {
       eyebrow: 'Custom Basketball Uniforms',
-      title: 'Custom Basketball Uniform Manufacturer for Clubs, Schools and Sportswear Brands',
-      description: 'Develop basketball jerseys, shorts, reversible options and full team sets with confirmed artwork, roster, sizing, sample and production requirements.',
+      title: 'Custom Basketball Uniform Manufacturer for Distributors and Brands',
+      description: 'For teamwear distributors, dealers, sportswear brands and custom resellers worldwide managing ongoing team orders. Plan jerseys, shorts and full team sets around your client brief, sample approval and reorder requirements.',
       primaryCtaId: 'free-mockup',
       secondaryCtaId: 'request-sample',
     },
@@ -90,10 +92,10 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     geoDetails: {
       overview: [
         {label: 'Product Type', value: 'Custom Basketball Uniforms'},
-        {label: 'Application', value: 'Club, school, youth and branded basketball programs'},
+        {label: 'Application', value: 'Basketball programs for your downstream teams, clubs and schools'},
         {label: 'Customization', value: 'Team colors, logos, names, numbers and approved graphics'},
         {label: 'Production Type', value: consultation},
-        {label: 'Suitable For', value: 'Clubs, schools, youth programs, sports brands and distributors'},
+        {label: 'Suitable For', value: channelAudience},
       ],
       specifications: [
         {label: 'Fabric', value: consultation},
@@ -103,7 +105,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
         {label: 'MOQ', value: consultation},
         {label: 'Production Type', value: consultation},
       ],
-      recommendedFor: ['Youth Programs', 'Schools', 'Clubs', 'Sports Brands', 'Distributors'],
+      recommendedFor: channelBuyers,
     },
   },
   {
@@ -113,13 +115,13 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     priority: 35,
     canonicalPath: '/products/soccer-jerseys/',
     seoTitle: 'Custom Soccer Kit Manufacturer | Soccer Jerseys & Full Kits | POXIOL',
-    seoDescription: 'Custom soccer jerseys, shorts, socks, goalkeeper kits and full team kits for clubs, schools, youth programs, sports brands and distributors.',
+    seoDescription: 'Custom soccer kits for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client orders, samples and reorders.',
     primaryKeyword: 'custom soccer kits',
     secondaryKeywords: ['custom soccer jerseys', 'soccer kit manufacturer', 'soccer jersey manufacturer', 'custom soccer uniforms', 'soccer jersey supplier'],
     hero: {
       eyebrow: 'Custom Soccer Kits',
-      title: 'Custom Soccer Kit Manufacturer for Clubs, Schools and Sports Brands',
-      description: 'Plan jerseys, shorts, socks, goalkeeper options and full soccer kits with confirmed crest placement, player details, sample approval and production requirements.',
+      title: 'Custom Soccer Kit Manufacturer for Distributors and Brands',
+      description: 'For teamwear distributors, dealers, sportswear brands and custom resellers worldwide managing ongoing team orders. Plan jerseys, shorts, socks and goalkeeper options around your client brief, sample approval and reorder requirements.',
       primaryCtaId: 'free-mockup',
       secondaryCtaId: 'request-sample',
     },
@@ -160,10 +162,10 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     geoDetails: {
       overview: [
         {label: 'Product Type', value: 'Custom Soccer Kits'},
-        {label: 'Application', value: 'Club, school, youth and branded soccer programs'},
+        {label: 'Application', value: 'Soccer programs for your downstream teams, clubs and schools'},
         {label: 'Customization', value: 'Crests, authorized sponsor artwork, names, numbers and colors'},
         {label: 'Production Type', value: consultation},
-        {label: 'Suitable For', value: 'Clubs, schools, youth programs, sports brands and distributors'},
+        {label: 'Suitable For', value: channelAudience},
       ],
       specifications: [
         {label: 'Fabric', value: consultation},
@@ -173,7 +175,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
         {label: 'MOQ', value: consultation},
         {label: 'Production Type', value: consultation},
       ],
-      recommendedFor: ['Youth Programs', 'Schools', 'Clubs', 'Sports Brands', 'Distributors'],
+      recommendedFor: channelBuyers,
     },
   },
   {
@@ -183,13 +185,13 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     priority: 20,
     canonicalPath: '/custom-baseball-softball-uniforms/',
     seoTitle: 'Custom Baseball Uniform Manufacturer | Jerseys, Pants & Team Sets | POXIOL',
-    seoDescription: 'Custom baseball jerseys, pants and full uniforms for youth programs, schools, clubs, sports brands and distributors, with sample, manufacturing and QC review.',
+    seoDescription: 'Custom baseball uniforms for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client orders, samples and reorders.',
     primaryKeyword: 'custom baseball uniforms',
     secondaryKeywords: ['baseball uniform manufacturer', 'custom baseball jerseys', 'baseball jersey manufacturer', 'baseball uniform supplier', 'custom sublimated baseball jerseys'],
     hero: {
       eyebrow: 'Custom Baseball Uniforms',
-      title: 'Custom Baseball Uniform Manufacturer for Teams, Schools and Clubs',
-      description: 'Develop baseball jerseys, pants and full uniform programs with confirmed front and back artwork, player details, sizing, sample and production requirements.',
+      title: 'Custom Baseball Uniform Manufacturer for Distributors and Brands',
+      description: 'For teamwear distributors, dealers, sportswear brands and custom resellers worldwide managing ongoing team orders. Plan jerseys, pants and full uniform programs around your client brief, sample approval and reorder requirements.',
       primaryCtaId: 'free-mockup',
       secondaryCtaId: 'request-sample',
     },
@@ -230,10 +232,10 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     geoDetails: {
       overview: [
         {label: 'Product Type', value: 'Custom Baseball Uniforms'},
-        {label: 'Application', value: 'Youth, school, club and branded baseball programs'},
+        {label: 'Application', value: 'Baseball programs for your downstream teams, clubs and schools'},
         {label: 'Customization', value: 'Team names, logos, player names, numbers and approved graphics'},
         {label: 'Production Type', value: consultation},
-        {label: 'Suitable For', value: 'Youth programs, schools, clubs, sports brands and distributors'},
+        {label: 'Suitable For', value: channelAudience},
       ],
       specifications: [
         {label: 'Fabric', value: consultation},
@@ -243,7 +245,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
         {label: 'MOQ', value: consultation},
         {label: 'Production Type', value: consultation},
       ],
-      recommendedFor: ['Youth Programs', 'Schools', 'Clubs', 'Sports Brands', 'Distributors'],
+      recommendedFor: channelBuyers,
     },
   },
 ] as const
@@ -252,6 +254,21 @@ export function getCoreSport(id: CoreSportId): CoreSportDefinition {
   const sport = CORE_SPORTS.find((item) => item.id === id)
   if (!sport) throw new Error('Unknown core sport: ' + id)
   return sport
+}
+
+// Local integration policy: editorial positioning belongs to the approved core
+// page; imported procurement facts stay with their existing source. This is not
+// a CMS write or a validation of those facts for public release.
+export function resolveCoreSportGeoDetails(id: CoreSportId, imported: GeoProductDetails): GeoProductDetails {
+  const approved = getCoreSport(id).geoDetails
+  const positioningLabels = ['Product Type', 'Application', 'Suitable For']
+  return {
+    ...imported,
+    overview: imported.overview.map(row => positioningLabels.includes(row.label)
+      ? approved.overview.find(candidate => candidate.label === row.label) || row
+      : row),
+    recommendedFor: approved.recommendedFor,
+  }
 }
 
 export function getCoreSportMetadata(id: CoreSportId): Metadata {

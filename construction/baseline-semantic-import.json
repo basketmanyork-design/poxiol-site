@@ -1,0 +1,37 @@
+{
+  "evidence": [
+    "CF-HYBRID-01_checks.json",
+    "CF-HYBRID-02/before-hashes.json"
+  ],
+  "include": [
+    "app/free-mockup/page.tsx",
+    "app/get-quote/page.tsx",
+    "app/globals.css",
+    "app/layout.tsx",
+    "app/quote-received/page.tsx",
+    "app/sample-order/page.tsx",
+    "app/sample-request-received/page.tsx",
+    "app/thank-you/page.tsx",
+    "components/forms/InquiryNextSteps.tsx",
+    "lib/hybrid/local-review.mjs",
+    "next.config.mjs",
+    "public/images/poxiol-teamwear-hero-poxiol-only-v2.png",
+    "public/images/poxiol-teamwear-hero-poxiol-only-v2.README.md",
+    "scripts/check-hybrid-integration.test.mjs",
+    "scripts/check-page-content-html.test.mjs"
+  ],
+  "exclude": [
+    {
+      "path": ".env.prelaunch",
+      "reason": "machine-local prelaunch configuration is never imported or committed"
+    },
+    {
+      "path": "CLOUDFLARE_DEPLOYMENT.md",
+      "reason": "legacy deployment notes are not runtime construction source"
+    },
+    {
+      "path": "next-env.d.ts",
+      "reason": "Next.js generated declaration stays production-baseline controlled"
+    }
+  ]
+}

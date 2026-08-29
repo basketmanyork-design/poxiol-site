@@ -7,23 +7,23 @@ import { Layers, Rocket, Users, ShieldCheck, CheckCircle2, Package, Layout, Pale
 const userGroups = [
   {
     icon: <Rocket className="h-6 w-6 text-lime-400" />,
-    title: "Sportswear Brands",
-    desc: "Support for original design, fabric direction, product sampling and production planning for private label collections."
+    title: "Teamwear Distributors",
+    desc: "Plan product ranges for downstream team clients, with separate specifications, sample approvals and reorder requirements."
   },
   {
     icon: <Globe className="h-6 w-6 text-lime-400" />,
-    title: "Wholesalers & Distributors",
-    desc: "Expand your catalog with multi-sport custom uniforms and flexible order support for regional markets."
+    title: "Dealers",
+    desc: "Translate club and school briefs into clear products, artwork, quantities, sizes and target dates for review."
   },
   {
     icon: <Store className="h-6 w-6 text-lime-400" />,
-    title: "Custom Retailers",
-    desc: "Support for product testing, project-specific order planning, repeat order support and structured mockup workflows."
+    title: "Sportswear Brands",
+    desc: "Plan brand-owned collections with confirmed product specifications, authorized artwork, labels, packaging and sample requirements."
   },
   {
     icon: <Trophy className="h-6 w-6 text-lime-400" />,
-    title: "Events & Club Programs",
-    desc: "Custom apparel collections for tournaments and club programs with consistent visual identity and production planning."
+    title: "Custom Resellers",
+    desc: "Coordinate client approvals, personalized team rosters and repeat requests through a clear project brief."
   }
 ];
 
@@ -50,16 +50,22 @@ const customizationOptions = [
 const advantages = [
   { title: "Multi-Sport Range", desc: "Support across many teamwear categories to help you expand beyond a single sport." },
   { title: "Project-Based Quantity", desc: "Order quantity is confirmed according to the product format and project requirements so brands can plan testing before larger commitments." },
-  { title: "Fast Mockup Process", desc: "Reducing communication friction and supporting fast buyer decision-making." },
+  { title: "Mockup Review", desc: "Confirm artwork, placement and product requirements before the sample plan is agreed." },
   { title: "Sampling Support", desc: "Verifying product quality, fit, and print effect before scaling to bulk orders." },
   { title: "Teamwear Specialization", desc: "Built around the specific use cases of clubs, schools, teams, and sports events." }
 ];
 
 const pageKey = "oem-odm";
+// Local editorial override; preserve CMS canonical, robots and media data.
+const oemPositioning = {
+  title: "OEM/ODM Teamwear for Distributors and Brands | POXIOL",
+  heading: "OEM/ODM Teamwear for Channel Partners",
+  description: "OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getSitePage(pageKey);
-  return metadataFromCmsPage(page);
+  return metadataFromCmsPage(page, oemPositioning);
 }
 
 export default async function OEMPage() {
@@ -74,35 +80,40 @@ export default async function OEMPage() {
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center relative z-10">
           <div>
             <p className="mb-6 text-sm font-black uppercase tracking-[0.2em] text-lime-400">{page.eyebrow || "Strategic Manufacturing"}</p>
-            <h1 className="text-6xl font-black leading-[0.95] tracking-tight md:text-8xl uppercase">
-              {page.heading || "OEM/ODM Partner"}
+            <h1 className="text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl uppercase">
+              {oemPositioning.heading}
             </h1>
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-neutral-400">
-              {page.description || "POXIOL helps sportswear brands, distributors, custom retailers and wholesalers develop private label teamwear collections across multiple sport categories with clear process support."}
+              {oemPositioning.description}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <PrimaryButton href={page.heroCta?.href || "/free-mockup/"}>{page.heroCta?.label || "Start OEM/ODM Project"}</PrimaryButton>
-              <SecondaryButton href="/contact/">Consult with Experts</SecondaryButton>
+              <PrimaryButton href="/get-quote/">Discuss Your OEM Project</PrimaryButton>
+              <SecondaryButton href="/contact/">Ask a Project Question</SecondaryButton>
             </div>
           </div>
           <div className="relative group">
             <div className="absolute -inset-4 rounded-[3rem] bg-lime-400/10 blur-2xl group-hover:bg-lime-400/20 transition"></div>
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
+            <figure className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-neutral-900 shadow-2xl">
               <img
-                src="/images/solutions/oem-odm-catalog.jpg"
-                alt="POXIOL OEM Design Studio"
-                className="h-full w-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition duration-700"
+                src="/images/poxiol-teamwear-hero-poxiol-only-v2.png"
+                alt="Illustrative basketball, soccer and training range with POXIOL wordmarks"
+                width={1254}
+                height={1254}
+                className="h-auto w-full object-contain"
               />
-            </div>
+              <figcaption className="px-6 py-4 text-sm leading-relaxed text-neutral-300">
+                Illustrative teamwear configuration — not a factory or completed-order photograph.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
       {/* Overview */}
-      <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20">
+      <section className="bg-white text-neutral-950 px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-4xl text-center">
           <SectionHeading eyebrow="Service Overview" title="Teamwear Development Support" center />
-          <p className="mt-8 text-xl text-neutral-400 leading-relaxed">
+          <p className="mt-8 text-xl text-neutral-600 leading-relaxed">
             POXIOL supports buyers who want more than a one-time team order. Whether you are building a new teamwear brand, expanding an online uniform catalog or preparing a multi-sport collection for regional buyers, we provide the manufacturing foundation for your growth.
           </p>
         </div>
@@ -129,7 +140,7 @@ export default async function OEMPage() {
       {/* OEM vs ODM */}
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20 border-b border-white/5">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Service Models" title="OEM vs ODM Support" center />
+          <SectionHeading eyebrow="Service Models" title="OEM vs ODM Support" dark center />
           <div className="mt-16 grid gap-16 lg:grid-cols-2">
             <div className="rounded-[3rem] bg-neutral-900 p-12 border border-white/5">
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-lime-400 text-black">
@@ -192,7 +203,7 @@ export default async function OEMPage() {
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20 border-b border-white/5">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-end mb-16">
-            <SectionHeading eyebrow="Product Scope" title="OEM/ODM Product Categories" />
+            <SectionHeading eyebrow="Product Scope" title="OEM/ODM Product Categories" dark />
             <p className="text-xl text-neutral-400">
                Multi-sport development across all major uniform categories including basketball, soccer, baseball, running, training, and corporate sportswear.
             </p>
@@ -210,7 +221,7 @@ export default async function OEMPage() {
       {/* Customization Options */}
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Capabilities" title="Deep Customization Options" center />
+          <SectionHeading eyebrow="Capabilities" title="Deep Customization Options" dark center />
           <div className="mt-16 grid gap-8 lg:grid-cols-3">
             {customizationOptions.map((group, idx) => (
               <div key={idx} className="rounded-3xl border border-white/5 bg-white/5 p-10">
@@ -234,7 +245,7 @@ export default async function OEMPage() {
       {/* Advantages */}
       <section className="bg-neutral-900 px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="The Advantage" title="Why Partners Choose POXIOL" center />
+          <SectionHeading eyebrow="The Advantage" title="Why Partners Choose POXIOL" dark center />
           <div className="mt-16 grid gap-8 lg:grid-cols-3">
             {advantages.map((adv, idx) => (
               <div key={idx} className="flex flex-col gap-6 p-8 rounded-[2.5rem] bg-white/5 border border-white/5 transition hover:border-lime-400/50">
@@ -258,7 +269,7 @@ export default async function OEMPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <PrimaryButton href="/free-mockup/" className="px-12 py-5 text-xl">Start OEM/ODM Project</PrimaryButton>
-            <SecondaryButton href="/contact/" className="px-12 py-5 text-xl">Request Free Mockup</SecondaryButton>
+            <SecondaryButton href="/contact/" className="px-12 py-5 text-xl">Ask a Project Question</SecondaryButton>
           </div>
         </div>
       </section>

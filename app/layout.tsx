@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Suspense fallback={null}>
           <AnalyticsProvider config={analyticsConfig} />
         </Suspense>
-        <div id="main-content" className="pb-24 md:pb-0">{children}</div>
+        <div id="main-content" className="pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0">{children}</div>
         <WhatsAppButton />
       </body>
     </html>

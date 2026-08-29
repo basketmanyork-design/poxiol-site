@@ -3,6 +3,7 @@ node_modules
 out
 .env.local
 .env*.local
+.env.prelaunch
 .DS_Store
 *.tsbuildinfo
 studio/dist

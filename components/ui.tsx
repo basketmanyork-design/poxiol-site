@@ -3,6 +3,8 @@ import React from "react";
 import { getSiteChrome } from "@/lib/sanity/content";
 import { HEADER_NAV, HEADER_CTA } from "@/lib/navigation";
 import MobileMenu from "@/components/MobileMenu";
+import MobileInquiryLink from "@/components/MobileInquiryLink";
+import InquiryLink from "@/components/InquiryLink";
 
 export const freeMockupHref = "/free-mockup/";
 export const getQuoteHref = "/get-quote/";
@@ -39,18 +41,22 @@ export function SectionHeading({ eyebrow, title, subtitle, dark = false, center 
 }
 
 export function PrimaryButton({ href = freeMockupHref, children, className = "" }: { href?: string; children: React.ReactNode; className?: string }) {
+  const classes = `inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full bg-[#B6FF00] px-8 py-4 text-center font-black uppercase tracking-wide text-black transition hover:bg-white ${className}`;
+  // Native fragment navigation preserves the form's top-aligned scroll position.
+  // Next's router focuses the entire tall target after scrolling, recentering it.
+  if (href.startsWith("#")) return <a href={href} className={classes}>{children}</a>;
   return (
-    <Link href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full bg-[#B6FF00] px-8 py-4 text-center font-black uppercase tracking-wide text-black transition hover:bg-white ${className}`}>
+    <InquiryLink href={href} className={classes}>
       {children}
-    </Link>
+    </InquiryLink>
   );
 }
 
 export function SecondaryButton({ href, children, darkText = false, className = "" }: { href: string; children: React.ReactNode; darkText?: boolean; className?: string }) {
   return (
-    <Link href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full border px-8 py-4 text-center transition ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
+    <InquiryLink href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full border px-8 py-4 text-center transition ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
       {children}
-    </Link>
+    </InquiryLink>
   );
 }
 
@@ -64,7 +70,7 @@ export async function WhatsAppButton() {
   return (
     <>
       {/* Desktop: floating pill with text, bottom right */}
-      <a
+      <InquiryLink
         href={chrome.whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
@@ -73,11 +79,11 @@ export async function WhatsAppButton() {
       >
         {icon}
         Chat With Our Team
-      </a>
+      </InquiryLink>
 
       {/* Mobile: fixed bottom CTA bar */}
-      <div className="fixed inset-x-0 bottom-0 z-[60] grid grid-cols-2 gap-3 border-t border-white/10 bg-neutral-950/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-xl md:hidden">
-        <a
+      <div className="poxiol-mobile-cta fixed inset-x-0 bottom-0 z-[60] grid grid-cols-2 gap-3 border-t border-white/10 bg-neutral-950/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-xl md:hidden" role="navigation" aria-label="Quick inquiry actions">
+        <InquiryLink
           href={chrome.whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
@@ -85,13 +91,8 @@ export async function WhatsAppButton() {
         >
           {icon}
           WhatsApp
-        </a>
-        <a
-          href={HEADER_CTA.href}
-          className="inline-flex h-14 items-center justify-center rounded-full bg-[#B6FF00] text-sm font-black uppercase tracking-wide text-black"
-        >
-          Get Quote
-        </a>
+        </InquiryLink>
+        <MobileInquiryLink />
       </div>
     </>
   );
@@ -106,27 +107,24 @@ export async function Header() {
         <Link href="/" aria-label="POXIOL home" className="inline-flex min-w-[112px] items-center gap-3 text-2xl font-black tracking-tight text-white uppercase">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="128" height="36" className="h-9 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
           {HEADER_NAV.map((item) => (
-            <div key={item.label} className="group relative">
-              <Link href={item.href} className="inline-flex items-center gap-1 text-sm font-bold text-white/80 transition hover:text-[#B6FF00]">
-                {item.label}
-                {item.children?.length ? <span className="text-[10px] text-white/50 transition group-hover:rotate-180 group-hover:text-[#B6FF00]">▾</span> : null}
-              </Link>
-              {item.children?.length ? (
-                <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 opacity-0 transition group-hover:visible group-hover:opacity-100">
-                  <div className="w-64 rounded-2xl border border-white/10 bg-neutral-950 p-3 shadow-2xl">
+            item.children?.length ? <details key={item.label} className="group relative">
+              <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-sm font-bold text-white/80 transition hover:text-[#B6FF00]">
+                {item.label}<span className="text-[10px] text-white/50 transition group-open:rotate-180 group-open:text-[#B6FF00]">▾</span>
+              </summary>
+              <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4">
+                <div className="w-64 rounded-2xl border border-white/10 bg-neutral-950 p-3 shadow-2xl">
                     {item.children.map((child) => (
-                      <Link key={child.href} href={child.href} className="block rounded-xl px-4 py-3 text-sm font-bold text-white/80 transition hover:bg-white/5 hover:text-[#B6FF00]">
+                      <InquiryLink key={child.href} href={child.href} className="block rounded-xl px-4 py-3 text-sm font-bold text-white/80 transition hover:bg-white/5 hover:text-[#B6FF00]">
                         {child.label}
-                      </Link>
+                      </InquiryLink>
                     ))}
-                  </div>
                 </div>
-              ) : null}
-            </div>
+              </div>
+            </details> : <Link key={item.label} href={item.href} className="text-sm font-bold text-white/80 transition hover:text-[#B6FF00]">{item.label}</Link>
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href={HEADER_CTA.href} className="hidden rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white md:inline-flex">{HEADER_CTA.label}</Link>
+          <InquiryLink href={HEADER_CTA.href} className="hidden rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white md:inline-flex">{HEADER_CTA.label}</InquiryLink>
           <MobileMenu />
         </div>
       </div>
@@ -143,11 +141,11 @@ export async function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
             <Link href="/" className="inline-flex min-h-10 items-center text-3xl font-black uppercase tracking-tight">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="150" height="42" className="h-10 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
-            <p className="mt-6 max-w-xs leading-8 text-neutral-400">Factory-direct custom teamwear manufacturer for clubs, schools, academies and sports brands worldwide.</p>
+            <p className="mt-6 max-w-xs leading-8 text-neutral-400">Custom teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide, supporting ongoing team orders for your clients.</p>
             <div className="mt-8 flex flex-col gap-3">
-              <Link href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</Link>
-              <Link href={getQuoteHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</Link>
-              <a href={chrome.whatsappHref} target="_blank" rel="noreferrer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">WhatsApp: {chrome.whatsappNumber}</a>
+              <InquiryLink href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</InquiryLink>
+              <InquiryLink href={getQuoteHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</InquiryLink>
+              <InquiryLink href={chrome.whatsappHref} target="_blank" rel="noreferrer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">WhatsApp: {chrome.whatsappNumber}</InquiryLink>
               <a href={emailHref(chrome.publicEmail)} className="text-neutral-400 text-sm hover:text-white"><EmailAddress email={chrome.publicEmail} /></a>
             </div>
           </div>
@@ -157,7 +155,7 @@ export async function Footer() {
               <ul className="mt-6 space-y-4">
                 {col.links.map((link) => (
                   <li key={`${col.title}-${link.label}-${link.href}`}>
-                    <Link href={link.href} className="text-sm text-neutral-400 transition hover:text-[#B6FF00]">{link.label}</Link>
+                    <InquiryLink href={link.href} className="text-sm text-neutral-400 transition hover:text-[#B6FF00]">{link.label}</InquiryLink>
                   </li>
                 ))}
               </ul>

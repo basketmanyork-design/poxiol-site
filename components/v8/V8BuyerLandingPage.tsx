@@ -47,7 +47,7 @@ export function V8BuyerLandingPage({pageId}: {pageId: V8BuyerPageContent['pageId
       <section className="px-5 py-14 md:px-10 md:py-20 xl:px-20" aria-labelledby={`${pageId}-buyer-fit-title`}>
         <div className="mx-auto max-w-7xl rounded-3xl border border-neutral-200 bg-white p-7 shadow-sm md:p-10">
           <p className="text-sm font-black uppercase tracking-[0.16em] text-lime-700">Buyer Fit</p>
-          <h2 id={`${pageId}-buyer-fit-title`} className="mt-4 text-3xl font-black uppercase text-neutral-950 md:text-4xl">Built for {buyerLabels.join(' and ')}</h2>
+          <h2 id={`${pageId}-buyer-fit-title`} className="mt-4 text-3xl font-black uppercase text-neutral-950 md:text-4xl">{pageId === 'private-label-teamwear' ? 'Built for Channel Partners' : `Built for ${buyerLabels.join(' and ')}`}</h2>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-600">{page.purpose}</p>
         </div>
       </section>

@@ -29,38 +29,6 @@ export function OrganizationSchema() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
-export function LocalBusinessSchema() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "POXIOL Teamwear Factory",
-    "image": `${baseUrl}/images/hero/hero-trust-new.webp`,
-    "@id": `${baseUrl}/factory/#localbusiness`,
-    "url": `${baseUrl}/factory/`,
-    "telephone": "+86-13055646888",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "No. 88, Teamwear Industrial Zone",
-      "addressLocality": "Putian",
-      "addressRegion": "Fujian",
-      "postalCode": "351100",
-      "addressCountry": "CN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 25.4542,
-      "longitude": 119.0075
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "08:00",
-      "closes": "22:00"
-    }
-  };
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
-}
-
 export function CollectionPageSchema({ name, description, url, items }: { name: string; description: string; url: string; items: { name: string; url: string }[] }) {
   const schema = {
     "@context": "https://schema.org",
@@ -103,7 +71,7 @@ export function ProductSchema({ name, description, url, image }: { name: string;
         },
         "description": description,
         "category": "Custom Sports Uniforms",
-        "image": image || `${baseUrl}/images/hero/hero-trust-new.webp`,
+        "image": image || `${baseUrl}/images/poxiol-teamwear-hero-poxiol-only-v2.png`,
         "manufacturer": {
           "@id": `${baseUrl}/#organization`
         },
