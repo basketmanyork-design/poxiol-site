@@ -36,6 +36,8 @@ assert.match(visible, /Product construction, material, quantity and timing are c
 assert.doesNotMatch(visible, /Nike|Adidas|Puma|Under Armour/i)
 assert.match(html, /motion-reduce:transition-none/)
 assert.match(html, /motion-reduce:transform-none/)
+assert.equal((html.match(/data-product-scene=/g) || []).length, 15)
+assert.equal((html.match(/\/images\/product-discovery\//g) || []).length >= 15, true)
 
 for (const id of ['sports', 'scenarios']) assert.match(html, new RegExp(`id="${id}"`))
 for (const href of [

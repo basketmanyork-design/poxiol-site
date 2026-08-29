@@ -26,6 +26,7 @@ export type SportCategory = {
   contentStage: SportContentStage
   href: string
   inquiryProduct: string
+  sceneImage: string
 }
 
 export type WearingScenario = {
@@ -34,6 +35,7 @@ export type WearingScenario = {
   description: string
   productGroups: readonly string[]
   inquiryProduct: string
+  sceneImage: string
 }
 
 export const SPORT_CATEGORIES = [
@@ -45,6 +47,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'deep-page',
     href: '/products/soccer-jerseys/',
     inquiryProduct: 'Soccer Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-soccer.webp',
   },
   {
     id: 'basketball',
@@ -54,6 +57,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'deep-page',
     href: '/products/basketball-uniforms/',
     inquiryProduct: 'Basketball Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-basketball.webp',
   },
   {
     id: 'track-field',
@@ -63,6 +67,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Track & Field Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-track-field.webp',
   },
   {
     id: 'badminton',
@@ -72,6 +77,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Badminton Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-badminton.webp',
   },
   {
     id: 'volleyball',
@@ -81,6 +87,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Volleyball Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-volleyball.webp',
   },
   {
     id: 'baseball-softball',
@@ -90,6 +97,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'deep-page',
     href: '/custom-baseball-softball-uniforms/',
     inquiryProduct: 'Baseball & Softball Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-baseball-softball.webp',
   },
   {
     id: 'ice-hockey',
@@ -99,6 +107,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Ice Hockey Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-ice-hockey.webp',
   },
   {
     id: 'american-football',
@@ -108,6 +117,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'American Football Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-american-football.webp',
   },
   {
     id: 'rugby',
@@ -117,6 +127,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Rugby Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-rugby.webp',
   },
   {
     id: 'tennis',
@@ -126,6 +137,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Tennis Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-tennis.webp',
   },
   {
     id: 'cricket',
@@ -135,6 +147,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Cricket Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-cricket.webp',
   },
   {
     id: 'golf',
@@ -144,6 +157,7 @@ export const SPORT_CATEGORIES = [
     contentStage: 'project-review',
     href: '/products/',
     inquiryProduct: 'Golf Teamwear Program',
+    sceneImage: '/images/product-discovery/sport-golf.webp',
   },
 ] as const satisfies readonly SportCategory[]
 
@@ -154,6 +168,7 @@ export const WEARING_SCENARIOS = [
     description: 'Competition uniforms and coordinated match components, confirmed for the selected sport and project.',
     productGroups: ['Competition uniforms', 'Coordinated match components'],
     inquiryProduct: 'Match Day Teamwear',
+    sceneImage: '/images/product-discovery/scenario-match-day.webp',
   },
   {
     id: 'warm-up-training',
@@ -161,6 +176,7 @@ export const WEARING_SCENARIOS = [
     description: 'Training tops, warm-up layers, tracksuits and practice apparel, confirmed during project review.',
     productGroups: ['Training tops', 'Warm-up layers', 'Tracksuits', 'Practice apparel'],
     inquiryProduct: 'Warm-Up & Training Teamwear',
+    sceneImage: '/images/product-discovery/scenario-warm-up-training.webp',
   },
   {
     id: 'off-field-travel',
@@ -168,6 +184,7 @@ export const WEARING_SCENARIOS = [
     description: 'Hoodies, jackets, polos, travel sets and team accessories, confirmed during project review.',
     productGroups: ['Hoodies', 'Jackets', 'Polos', 'Travel sets', 'Team accessories'],
     inquiryProduct: 'Off-Field & Travel Teamwear',
+    sceneImage: '/images/product-discovery/scenario-off-field-travel.webp',
   },
 ] as const satisfies readonly WearingScenario[]
 
