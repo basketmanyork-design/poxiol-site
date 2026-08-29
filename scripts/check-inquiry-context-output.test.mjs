@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs'
 import {test} from 'node:test'
 const read = route => readFileSync(`out/${route}/index.html`, 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
 const links = html => [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map(m=>({url:new URL(m[1].replace(/&amp;/g,'&'),'https://www.poxiol.com'),text:m[2].replace(/<[^>]+>/g,'')}))
-for (const [route,sport] of [['products/basketball-uniforms','Basketball'],['products/soccer-jerseys','Soccer'],['custom-baseball-softball-uniforms','Baseball / Softball']]) {
+for (const [route,sport] of [['products/basketball-uniforms','Basketball'],['products/soccer-jerseys','Soccer'],['custom-baseball-softball-uniforms','Baseball & Softball']]) {
   test(`${route} renders contextual inquiry links without relying on a click interceptor`, () => {
     const all = links(read(route)).filter(a=>['/free-mockup/','/get-quote/','/sample-order/','/contact/'].includes(a.url.pathname))
     assert.ok(all.length >= 3)
