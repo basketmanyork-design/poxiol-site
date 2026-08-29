@@ -8,7 +8,17 @@ This checklist is an operational gate. A checked construction stage is not permi
 - [x] C2 — page, content, evidence and public-asset closure accepted.
 - [x] C3 — inquiry, privacy and analytics closure accepted.
 - [x] C4 — legacy CMS, SEO, canonical, sitemap and route release acceptance completed.
-- [ ] C5 — final release audit and explicit owner authorization completed.
+- [x] C5 — locked local construction audit and handoff package completed; no external authorization is implied.
+
+## C5 local construction gate
+
+- [x] Exact static output is hash-locked in the release manifest.
+- [x] Source, build and output command acceptance is recorded with all exit codes 0.
+- [x] Nineteen routes pass at desktop, tablet, mobile and narrow-mobile viewports (76 scenarios).
+- [x] Inquiry and analytics behavior passes without a real submission or analytics activation.
+- [x] Accessibility structure and local performance smoke evidence are recorded with limitations disclosed.
+- [x] Verified stable production rollback reference and procedure are recorded but not executed.
+- [x] Owner gates and the separate Preview/production authorization boundary are explicit.
 
 ## C2 evidence gate
 
