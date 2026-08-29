@@ -11,9 +11,9 @@ This decision means the exact local static artifact is complete enough for a sep
 ## Locked artifact
 
 - Release manifest: `construction/release-manifest.json`.
-- Release manifest SHA-256: `8bc3439af62d2b1c67f9688e08002474ac8143321086673a37ba6d888d75563b`.
+- Release manifest SHA-256: `65253352f5ec5a85510fe1e4a09473f020ba5626e6ca7931b16e24a7840634bd`.
 - Source aggregate SHA-256: `f6b3a9b5efa362e7c4012d299a7c412564cf4b107b48961e05e1bff5b87ad809`.
-- Output aggregate SHA-256: `f2cacf232ca1b75842fc54d94012a98408b17d8708187813741ffebb0fa6fc1e`.
+- Output aggregate SHA-256: `84dd470694a092b3c5dc7a979524ae22e5974b1bcd8d262af7a519d0bb511464`.
 - Locked output files: 684.
 - Build: 124 static pages, exit code 0.
 - Preview readiness: `PREVIEW_READY_PRODUCTION_NO_GO`.
