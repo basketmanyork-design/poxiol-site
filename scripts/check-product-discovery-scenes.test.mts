@@ -41,5 +41,6 @@ test('all 12 sports and 3 wearing scenarios expose reviewed scene backgrounds', 
     assert.equal(reviewed?.allowedUse, 'product-discovery-scene', scenePath)
     assert.equal(reviewed?.thirdPartyMarkReview, 'PASS', scenePath)
     assert.equal(reviewed?.poxiolMarkReview, 'PASS_RETAINED', scenePath)
+    assert.equal(reviewed?.reviewSource, 'OWNER-APPROVED-2026-08-29', scenePath)
   }
 })

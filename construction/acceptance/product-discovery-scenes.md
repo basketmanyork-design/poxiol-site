@@ -2,6 +2,7 @@
 
 Date: 2026-08-29  
 Status: PREVIEW-READY / PRODUCTION NO-GO
+Owner asset approval: APPROVED — 2026-08-29
 
 ## Approved scope
 
@@ -46,4 +47,6 @@ Final project assets are stored in `public/images/product-discovery/`. Each bina
 
 ## Production gate
 
-No deployment, DNS, analytics, CMS, or live-account changes were performed. Production remains blocked until the existing owner gates are cleared.
+The owner approved all 15 product-discovery scene assets for POXIOL website use on 2026-08-29. This clears the asset-approval gate only; it does not authorize deployment.
+
+No deployment, DNS, analytics, CMS, or live-account changes were performed. Production remains blocked until the remaining owner gates are cleared.
