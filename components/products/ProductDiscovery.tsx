@@ -26,7 +26,7 @@ export function ProductDiscovery() {
                 : 'Discuss This Sport Program'
 
               return (
-                <article key={sport.id} className="group flex min-h-72 flex-col justify-between overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white/10 to-transparent p-6 transition-colors hover:border-[#b6ff00]/70">
+                <article key={sport.id} className="group flex min-h-72 flex-col justify-between overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white/10 to-transparent p-6 transition-colors hover:border-[#b6ff00]/70 motion-reduce:transition-none">
                   <div>
                     <span aria-hidden="true" className="text-5xl font-black text-white/10">{String(index + 1).padStart(2, '0')}</span>
                     <h3 className="mt-6 text-2xl font-black uppercase leading-tight">{sport.label}</h3>
@@ -34,7 +34,7 @@ export function ProductDiscovery() {
                   </div>
                   <Link href={href} className="mt-8 inline-flex min-h-11 items-center gap-2 font-black uppercase tracking-wide text-[#b6ff00] outline-none focus-visible:ring-2 focus-visible:ring-[#b6ff00] focus-visible:ring-offset-4 focus-visible:ring-offset-black">
                     {cta}
-                    <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
+                    <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" strokeWidth={2.5} />
                   </Link>
                 </article>
               )
@@ -56,7 +56,7 @@ export function ProductDiscovery() {
                   {SPORT_CATEGORIES.map((sport) => (
                     <li key={sport.id}>
                       <Link
-                        className="inline-flex min-h-11 items-center rounded-full border border-neutral-300 bg-white px-3 py-2 text-sm font-bold outline-none transition-colors hover:border-[#356000] hover:text-[#356000] focus-visible:ring-2 focus-visible:ring-[#356000] focus-visible:ring-offset-2"
+                        className="inline-flex min-h-11 items-center rounded-full border border-neutral-300 bg-white px-3 py-2 text-sm font-bold outline-none transition-colors hover:border-[#356000] hover:text-[#356000] focus-visible:ring-2 focus-visible:ring-[#356000] focus-visible:ring-offset-2 motion-reduce:transition-none"
                         href={productDiscoveryInquiryHref({sport: sport.id, scenario: scenario.id, source: '/products/'})}
                       >
                         {sport.label}

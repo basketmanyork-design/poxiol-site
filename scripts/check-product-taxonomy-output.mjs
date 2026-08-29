@@ -34,6 +34,8 @@ for (const label of [...sports, ...scenarios]) {
 }
 assert.match(visible, /Product construction, material, quantity and timing are confirmed after the project brief is reviewed\./)
 assert.doesNotMatch(visible, /Nike|Adidas|Puma|Under Armour/i)
+assert.match(html, /motion-reduce:transition-none/)
+assert.match(html, /motion-reduce:transform-none/)
 
 for (const id of ['sports', 'scenarios']) assert.match(html, new RegExp(`id="${id}"`))
 for (const href of [
