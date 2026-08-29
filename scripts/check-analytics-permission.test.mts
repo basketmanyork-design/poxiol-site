@@ -1,7 +1,12 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import test from 'node:test'
-import {readAnalyticsPermission, writeAnalyticsPermission} from '../lib/privacy/analytics-permission.ts'
+import {
+  persistAnalyticsPermissionSafely,
+  readAnalyticsPermission,
+  readAnalyticsPermissionSafely,
+  writeAnalyticsPermission,
+} from '../lib/privacy/analytics-permission.ts'
 
 test('defaults to unknown and persists only accepted or rejected', () => {
   const values = new Map<string, string>()
@@ -18,6 +23,16 @@ test('defaults to unknown and persists only accepted or rejected', () => {
 test('unknown and corrupt stored values remain default deny', () => {
   assert.equal(readAnalyticsPermission({getItem: () => 'granted'}), 'unknown')
   assert.equal(readAnalyticsPermission({getItem: () => 'accepted'}), 'accepted')
+})
+
+test('storage denial resolves to rejected without throwing', () => {
+  const denied = {
+    getItem(): string | null { throw new Error('storage denied') },
+    setItem(): void { throw new Error('storage denied') },
+  }
+  assert.equal(readAnalyticsPermissionSafely(denied), 'rejected')
+  assert.equal(persistAnalyticsPermissionSafely(denied, 'accepted'), 'rejected')
+  assert.equal(persistAnalyticsPermissionSafely(denied, 'rejected'), 'rejected')
 })
 
 test('provider gates GA on accepted permission and clears attribution on rejection', () => {

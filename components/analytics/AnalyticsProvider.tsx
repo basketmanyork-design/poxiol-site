@@ -9,8 +9,8 @@ import {classifyOutboundLink} from '@/lib/analytics/core'
 import {captureAttribution, clearAttributionStorage, trackEvent, trackOutboundClick, trackPageView} from '@/lib/analytics/client'
 import {
   clearAnalyticsPermission,
-  readAnalyticsPermission,
-  writeAnalyticsPermission,
+  persistAnalyticsPermissionSafely,
+  readAnalyticsPermissionSafely,
   type AnalyticsPermission,
 } from '@/lib/privacy/analytics-permission'
 
@@ -64,11 +64,7 @@ export function AnalyticsProvider({
   const [permission, setPermission] = useState<AnalyticsPermission>(initialPermission)
 
   useEffect(() => {
-    try {
-      setPermission(readAnalyticsPermission(window.localStorage))
-    } catch {
-      setPermission('rejected')
-    }
+    setPermission(readAnalyticsPermissionSafely(window.localStorage))
   }, [])
 
   useEffect(() => {
@@ -78,21 +74,11 @@ export function AnalyticsProvider({
   }, [permission])
 
   const accept = useCallback(() => {
-    try {
-      writeAnalyticsPermission(window.localStorage, 'accepted')
-      setPermission('accepted')
-    } catch {
-      setPermission('rejected')
-    }
+    setPermission(persistAnalyticsPermissionSafely(window.localStorage, 'accepted'))
   }, [])
 
   const reject = useCallback(() => {
-    setPermission('rejected')
-    try {
-      writeAnalyticsPermission(window.localStorage, 'rejected')
-    } catch {
-      // In-memory rejection remains the safe fallback.
-    }
+    setPermission(persistAnalyticsPermissionSafely(window.localStorage, 'rejected'))
     clearAttributionStorage()
   }, [])
 

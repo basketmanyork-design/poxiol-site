@@ -18,3 +18,23 @@ export function writeAnalyticsPermission(
 export function clearAnalyticsPermission(storage: {removeItem(key: string): void}) {
   storage.removeItem(ANALYTICS_PERMISSION_STORAGE_KEY)
 }
+
+export function readAnalyticsPermissionSafely(storage: {getItem(key: string): string | null}): AnalyticsPermission {
+  try {
+    return readAnalyticsPermission(storage)
+  } catch {
+    return 'rejected'
+  }
+}
+
+export function persistAnalyticsPermissionSafely(
+  storage: {setItem(key: string, value: string): void},
+  value: Exclude<AnalyticsPermission, 'unknown'>,
+): AnalyticsPermission {
+  try {
+    writeAnalyticsPermission(storage, value)
+    return value
+  } catch {
+    return 'rejected'
+  }
+}
