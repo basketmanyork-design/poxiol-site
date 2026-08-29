@@ -62,6 +62,21 @@ export function captureAttribution() {
   }
 }
 
+export function clearAttributionStorage() {
+  if (typeof window === 'undefined') return
+  window.__poxiolAnalyticsEnabled = false
+  try {
+    window.localStorage.removeItem(firstTouchKey)
+  } catch {
+    // Rejection remains effective in memory when storage is unavailable.
+  }
+  try {
+    window.sessionStorage.removeItem(sessionTouchKey)
+  } catch {
+    // Rejection remains effective in memory when storage is unavailable.
+  }
+}
+
 export function trackEvent(event: AnalyticsEventName, params: AnalyticsEventParams = {}) {
   if (typeof window === 'undefined' || !window.__poxiolAnalyticsEnabled || !window.gtag) return
   window.gtag('event', event, sanitizeEventParams({...currentAttribution(), ...params}))

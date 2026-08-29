@@ -1,11 +1,18 @@
 'use client'
 
-import {useEffect} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import Script from 'next/script'
 import {usePathname, useSearchParams} from 'next/navigation'
+import {AnalyticsPreferences} from '@/components/privacy/AnalyticsPreferences'
 import type {AnalyticsRuntimeConfig} from '@/lib/analytics/server'
 import {classifyOutboundLink} from '@/lib/analytics/core'
-import {captureAttribution, trackEvent, trackOutboundClick, trackPageView} from '@/lib/analytics/client'
+import {captureAttribution, clearAttributionStorage, trackEvent, trackOutboundClick, trackPageView} from '@/lib/analytics/client'
+import {
+  clearAnalyticsPermission,
+  readAnalyticsPermission,
+  writeAnalyticsPermission,
+  type AnalyticsPermission,
+} from '@/lib/privacy/analytics-permission'
 
 let lastPageView = ''
 
@@ -47,31 +54,87 @@ function AnalyticsRuntime() {
   return null
 }
 
-export function AnalyticsProvider({config}: {config: AnalyticsRuntimeConfig}) {
-  if (!config.enabled || !config.measurementId) return null
+export function AnalyticsProvider({
+  config,
+  initialPermission = 'unknown',
+}: {
+  config: AnalyticsRuntimeConfig
+  initialPermission?: AnalyticsPermission
+}) {
+  const [permission, setPermission] = useState<AnalyticsPermission>(initialPermission)
+
+  useEffect(() => {
+    try {
+      setPermission(readAnalyticsPermission(window.localStorage))
+    } catch {
+      setPermission('rejected')
+    }
+  }, [])
+
+  useEffect(() => {
+    if (permission === 'accepted') return
+    lastPageView = ''
+    clearAttributionStorage()
+  }, [permission])
+
+  const accept = useCallback(() => {
+    try {
+      writeAnalyticsPermission(window.localStorage, 'accepted')
+      setPermission('accepted')
+    } catch {
+      setPermission('rejected')
+    }
+  }, [])
+
+  const reject = useCallback(() => {
+    setPermission('rejected')
+    try {
+      writeAnalyticsPermission(window.localStorage, 'rejected')
+    } catch {
+      // In-memory rejection remains the safe fallback.
+    }
+    clearAttributionStorage()
+  }, [])
+
+  const change = useCallback(() => {
+    try {
+      clearAnalyticsPermission(window.localStorage)
+      setPermission('unknown')
+    } catch {
+      setPermission('rejected')
+    }
+    clearAttributionStorage()
+  }, [])
+
+  const enabled = permission === 'accepted' && config.enabled && Boolean(config.measurementId)
 
   return (
     <>
-      <Script
-        id="poxiol-ga4"
-        src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.measurementId)}`}
-        strategy="afterInteractive"
-      />
-      <Script id="poxiol-ga4-config" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function(){window.dataLayer.push(arguments);};
-          window.__poxiolAnalyticsEnabled = true;
-          window.gtag('js', new Date());
-          window.gtag('config', ${JSON.stringify(config.measurementId)}, {
-            send_page_view: false,
-            debug_mode: ${config.debugMode ? 'true' : 'false'},
-            allow_google_signals: false,
-            allow_ad_personalization_signals: false
-          });
-        `}
-      </Script>
-      <AnalyticsRuntime />
+      <AnalyticsPreferences permission={permission} onAccept={accept} onReject={reject} onChange={change} />
+      {enabled ? (
+        <>
+          <Script
+            id="poxiol-ga4"
+            src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.measurementId)}`}
+            strategy="afterInteractive"
+          />
+          <Script id="poxiol-ga4-config" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              window.gtag = function(){window.dataLayer.push(arguments);};
+              window.__poxiolAnalyticsEnabled = true;
+              window.gtag('js', new Date());
+              window.gtag('config', ${JSON.stringify(config.measurementId)}, {
+                send_page_view: false,
+                debug_mode: ${config.debugMode ? 'true' : 'false'},
+                allow_google_signals: false,
+                allow_ad_personalization_signals: false
+              });
+            `}
+          </Script>
+          <AnalyticsRuntime />
+        </>
+      ) : null}
     </>
   )
 }
