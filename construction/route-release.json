@@ -3,10 +3,10 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
-    "candidateSitemapSha256": "831beab225860d393c4bef34dd0e80b301a52415f81997ca1978204c00bc2818",
+    "candidateSitemapSha256": "3168358dd17957e4bc809c76ec864517a81d0591286b8ab3fd9461f6cea94ee5",
     "publicCount": 100,
-    "candidateCount": 77,
-    "renderedCount": 166,
+    "candidateCount": 76,
+    "renderedCount": 148,
     "legalStatus": "PENDING_OWNER_LEGAL_APPROVAL"
   },
   "routes": {
@@ -84,7 +84,6 @@
       "/youth-team-uniforms/"
     ],
     "ADDED": [
-      "/blog/custom-teamwear-production-notes/",
       "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
       "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
       "/guides/moq-1-custom-teamwear-how-it-works/",
