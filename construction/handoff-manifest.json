@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "LOCAL_CONSTRUCTION_COMPLETE_PREVIEW_READY_PRODUCTION_NO_GO",
-  "commit": "5192dd07bf9ac272c6bcf7d64d6723148275cee3",
+  "commit": "2e14041b9a7854d43c0c9e02bb616c242858ab93",
   "productionAuthorized": false,
   "deploymentPerformed": false,
   "cloudflarePreviewCreated": false,
@@ -11,11 +11,11 @@
   "artifacts": [
     {
       "path": "construction/acceptance-command-results.json",
-      "sha256": "53fe40d96c4e40c591a3e7cfa952ff38c363ba0e138b81677573c07dfc8bc167"
+      "sha256": "412fc439e922e6b52b355be8c7d1e53649fde7fa42dae68e905f534ad919bff2"
     },
     {
       "path": "construction/browser-acceptance.json",
-      "sha256": "ac712ee8cb547c208d32e694612df955ab71068424caf3ff993c835c25f91ad3"
+      "sha256": "05d193041963861a299970dbffc2fb0dfc595d06a11bbcefae226ead587cefd0"
     },
     {
       "path": "construction/lighthouse-local.json",
@@ -23,11 +23,11 @@
     },
     {
       "path": "construction/preview-readiness.json",
-      "sha256": "9c6f7c0d3282f8d72517080818197dd83006e090c6534e83192a0cf4c3e4a885"
+      "sha256": "017793d99251e571ae233ffc1c36fbbd004c53e8748dde2a47bf6393ba4eb433"
     },
     {
       "path": "construction/release-manifest.json",
-      "sha256": "65253352f5ec5a85510fe1e4a09473f020ba5626e6ca7931b16e24a7840634bd"
+      "sha256": "54c01f3e23f8b9ce3b09b57c7b4d014af450c08b48546068e9d3235146d2787d"
     },
     {
       "path": "construction/rollback-manifest.json",
@@ -51,7 +51,7 @@
     },
     {
       "path": "docs/operations/construction-c5-acceptance.md",
-      "sha256": "71b237606a44cece02f978152495b8dc94417b78cc423a2e8eb42b017bd7b404"
+      "sha256": "a2187bcf1982863c5ecf81446de813463987aecaf4329ff3bfd457c762d97d49"
     },
     {
       "path": "docs/operations/owner-gates.md",
