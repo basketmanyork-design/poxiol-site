@@ -12,7 +12,7 @@ export const productsFaqs: readonly V8FaqItem[] = [
   {
     id: 'products-categories',
     question: 'What teamwear products does POXIOL manufacture?',
-    answer: 'POXIOL manufactures custom basketball uniforms, soccer kits, baseball jerseys, volleyball uniforms, training wear, hoodies and team accessories.',
+    answer: 'POXIOL reviews custom teamwear projects for soccer, basketball, track and field, badminton, volleyball, baseball and softball, ice hockey, American football, rugby, tennis, cricket and golf. Product construction is confirmed for each project.',
     pageIds: [],
   },
   {

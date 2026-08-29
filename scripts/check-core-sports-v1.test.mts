@@ -53,12 +53,6 @@ assert.match(compositionSource, /schema=\{false\}/, 'Visible FAQ and FAQPage JSO
 const soccerSource = coreSource.slice(coreSource.indexOf("id: 'soccer'"), coreSource.indexOf("id: 'baseball'"))
 assert.doesNotMatch(soccerSource, /basketball/i, 'Soccer data must not contain Basketball template residue.')
 
-const navigation = read('lib/navigation.ts')
-const basketballNav = navigation.indexOf('/products/basketball-uniforms/')
-const soccerNav = navigation.indexOf('/products/soccer-jerseys/')
-const baseballNav = navigation.indexOf('/custom-baseball-softball-uniforms/')
-assert.ok(basketballNav >= 0 && soccerNav > basketballNav && baseballNav > soccerNav, 'Navigation must prioritize Basketball, Soccer and Baseball in that order.')
-
 const buyerData = read('lib/v8/buyer-pages.ts')
 for (const owner of owners) assert.ok(buyerData.includes(owner.route), 'Buyer pages must link to ' + owner.route)
 assert.match(read('app/[slug]/page.tsx'), /getPseoCoreSportLink/, 'Core sport guides and long-tail pages must link back to their owner URL.')

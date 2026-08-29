@@ -7,6 +7,7 @@ import {
   getSportCategory,
   productDiscoveryInquiryHref,
 } from '../lib/product-taxonomy.ts'
+import {HEADER_NAV} from '../lib/navigation.ts'
 
 const expectedSports = [
   'Soccer',
@@ -59,4 +60,15 @@ test('a selected sport and scenario reaches the safe quote form with editable co
   })
   assert.equal(productDiscoveryInquiryHref({sport: 'unknown', source: '/products/'}), '/products/')
   assert.equal(getScenario('unknown'), undefined)
+})
+
+test('the Products menu stays compact while exposing both discovery dimensions', () => {
+  const products = HEADER_NAV.find((item) => item.label === 'Products')
+  assert.deepEqual(products?.children, [
+    {label: 'All Products', href: '/products/'},
+    {label: 'Browse by Sport', href: '/products/#sports'},
+    {label: 'Browse by Wearing Scenario', href: '/products/#scenarios'},
+    {label: 'Basketball Uniforms', href: '/products/basketball-uniforms/'},
+    {label: 'Soccer Kits', href: '/products/soccer-jerseys/'},
+  ])
 })

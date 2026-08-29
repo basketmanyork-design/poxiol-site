@@ -1,51 +1,44 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, SecondaryButton } from "@/components/ui";
+import { ProductDiscovery } from "@/components/products/ProductDiscovery";
 import { CollectionPageSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
 import { FAQSection } from "@/components/v8/FAQSection";
-import { productCategoryHref, productsFaqs } from "@/lib/products-page";
-import { getProductCategories } from "@/lib/sanity/content";
+import { productsFaqs } from "@/lib/products-page";
+import { SPORT_CATEGORIES } from "@/lib/product-taxonomy";
 
 export const metadata: Metadata = {
-  title: "Performance Teamwear Products | Custom Sports Uniforms | POXIOL",
-  description: "Explore POXIOL's custom teamwear products, including basketball uniforms, soccer kits and training wear, with project-specific sampling and production planning.",
+  title: "Custom Teamwear by Sport & Wearing Scenario | POXIOL",
+  description: "Explore POXIOL custom teamwear by sport or wearing scenario. Product construction, material, quantity and timing are confirmed after project review.",
   alternates: { canonical: "/products/" },
 };
 
-export default async function ProductsPage() {
-  const categories = await getProductCategories();
+export default function ProductsPage() {
   const baseUrl = "https://www.poxiol.com";
+  const matureCategories = SPORT_CATEGORIES.filter((category) => category.contentStage === "deep-page");
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <CollectionPageSchema
         name="POXIOL Custom Teamwear Products"
-        description="Performance teamwear matrix engineered for clubs, schools and sportswear brands."
+        description="Custom teamwear discovery by sport and wearing scenario, with project-specific review."
         url={`${baseUrl}/products/`}
-        items={categories.map((category) => ({ name: category.title, url: `${baseUrl}${productCategoryHref(category.slug)}` }))}
+        items={matureCategories.map((category) => ({ name: category.label, url: `${baseUrl}${category.href}` }))}
       />
       <FAQSchema faqs={productsFaqs.map(({question, answer}) => ({question, answer}))} />
       <BreadcrumbSchema items={[{ name: "Home", url: `${baseUrl}/` }, { name: "Products", url: `${baseUrl}/products/` }]} />
 
       <Header />
-      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
+      <section className="bg-neutral-950 px-5 py-20 text-center md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading level="h1" eyebrow="Products Matrix" title="Performance Teamwear Categories" subtitle="Custom teamwear products for multiple sport categories, with order quantity and production planning confirmed according to each project." dark center />
-          <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((category) => (
-              <Link key={category.slug} href={productCategoryHref(category.slug)} className="group relative aspect-square overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 shadow-2xl">
-                <img src={category.image.url} alt={category.image.alt} className="h-full w-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-10 flex flex-col justify-end text-left">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#B6FF00]">{category.shortName || "Product Category"}</span>
-                  <h3 className="mt-2 text-3xl font-black uppercase italic leading-none">{category.title}</h3>
-                  <p className="mt-4 text-xs text-neutral-400 opacity-0 group-hover:opacity-100 transition duration-300">{category.description}</p>
-                  <div className="mt-6 flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#B6FF00] opacity-0 group-hover:opacity-100 transition duration-300">View Specifications <span>→</span></div>
-                </div>
-              </Link>
-            ))}
+          <SectionHeading level="h1" eyebrow="Product System" title="Custom Teamwear by Sport and Wearing Scenario" subtitle="Start with the sport you serve or the way the team will wear the range. Final specifications and planning are confirmed after project review." dark center />
+          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="#sports" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#B6FF00] px-6 font-black uppercase text-black outline-none focus-visible:ring-2 focus-visible:ring-white">Browse by Sport</Link>
+            <Link href="#scenarios" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white px-6 font-black uppercase text-white outline-none focus-visible:ring-2 focus-visible:ring-[#B6FF00]">Browse by Wearing Scenario</Link>
           </div>
         </div>
       </section>
+      <ProductDiscovery />
       <div className="bg-white text-neutral-950">
         <FAQSection faqs={productsFaqs} schema={false} title="Custom Teamwear Product Questions" />
       </div>

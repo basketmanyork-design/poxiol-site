@@ -15,10 +15,11 @@ export const HEADER_NAV: NavItem[] = [
     label: 'Products',
     href: '/products/',
     children: [
-      { label: 'Basketball Uniforms', href: '/products/basketball-uniforms/' },
-      { label: 'Soccer Jerseys', href: '/products/soccer-jerseys/' },
-      { label: 'Baseball & Softball Uniforms', href: '/custom-baseball-softball-uniforms/' },
       { label: 'All Products', href: '/products/' },
+      { label: 'Browse by Sport', href: '/products/#sports' },
+      { label: 'Browse by Wearing Scenario', href: '/products/#scenarios' },
+      { label: 'Basketball Uniforms', href: '/products/basketball-uniforms/' },
+      { label: 'Soccer Kits', href: '/products/soccer-jerseys/' },
     ],
   },
   { label: 'Solutions', href: '/private-label-teamwear/', children: [
