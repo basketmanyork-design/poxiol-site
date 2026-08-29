@@ -52,4 +52,22 @@ const quoteLinks = [...html.matchAll(/<a\b[^>]*href="([^"]+)"/gi)]
 assert.ok(quoteLinks.some((url) => url.searchParams.get('sport') === 'Rugby'))
 assert.ok(quoteLinks.some((url) => url.searchParams.get('sport') === 'American Football'))
 
+const schemas = [...html.matchAll(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi)]
+  .map((match) => JSON.parse(match[1]))
+const collection = schemas.find((schema) => schema['@type'] === 'CollectionPage')
+assert.deepEqual(
+  collection?.mainEntity?.itemListElement?.map((item) => item.url),
+  [
+    'https://www.poxiol.com/products/soccer-jerseys/',
+    'https://www.poxiol.com/products/basketball-uniforms/',
+    'https://www.poxiol.com/custom-baseball-softball-uniforms/',
+  ],
+)
+const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage')
+const faqNames = faqSchema?.mainEntity?.map((item) => item.name) || []
+const visibleFaqs = [...html.matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)]
+  .map((match) => match[1].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').trim())
+  .filter((name) => faqNames.includes(name))
+assert.deepEqual(faqNames, visibleFaqs)
+
 console.log('POXIOL dual-dimension Products output checks passed.')
