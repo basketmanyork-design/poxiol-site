@@ -6,6 +6,7 @@ import { getArticles, getProductCategories } from "@/lib/sanity/content";
 import { publicLegalPolicyRoutes } from "@/lib/legal-release";
 import { DEDICATED_GUIDE_SLUGS } from "@/lib/guides/routes";
 import { publicSectionDecision, type PublicSectionId } from "@/lib/release/publication-policy";
+import { getPermanentRedirectSources } from "@/lib/release/redirect-sources";
 
 export const dynamic = "force-static";
 
@@ -20,7 +21,10 @@ const governedStaticPages: Array<{route: string; policy: PublicSectionId}> = [
 
 function uniqueByUrl(routes: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
   const seen = new Set<string>();
+  const redirectSources = getPermanentRedirectSources();
   return routes.filter((route) => {
+    const pathname = new URL(route.url).pathname;
+    if (redirectSources.has(pathname)) return false;
     if (seen.has(route.url)) return false;
     seen.add(route.url);
     return true;

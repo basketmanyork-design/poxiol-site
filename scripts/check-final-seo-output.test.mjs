@@ -26,6 +26,24 @@ test('the maintained guide receiving a legacy redirect remains discoverable', ()
   assert.match(sitemap, /\/guides\/how-to-order-custom-basketball-uniforms-for-your-team\//)
 })
 
+test('redirect sources are excluded from the sitemap', () => {
+  const sitemap = readFileSync('out/sitemap.xml', 'utf8')
+  const redirects = readFileSync('public/_redirects', 'utf8')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'))
+    .map((line) => line.split(/\s+/))
+    .filter(([, , status]) => /^30[1278]$/.test(status || ''))
+
+  for (const [source] of redirects) {
+    assert.equal(
+      sitemap.includes(`<loc>https://www.poxiol.com${source}</loc>`),
+      false,
+      `Redirect source must not be discoverable in sitemap: ${source}`,
+    )
+  }
+})
+
 test('robots keeps legal drafts crawlable so their noindex directives can be seen', () => {
   const robots = readFileSync('public/robots.txt', 'utf8')
   for (const route of ['/privacy-policy/', '/terms/', '/intellectual-property-policy/']) {
