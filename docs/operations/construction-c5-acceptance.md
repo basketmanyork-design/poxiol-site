@@ -11,16 +11,16 @@ This decision means the exact local static artifact is complete enough for a sep
 ## Locked artifact
 
 - Release manifest: `construction/release-manifest.json`.
-- Release manifest SHA-256: `24e23f1741d3d6898d9d820319bd4971f29184cd7b3d9f5158c6946337d967ef`.
+- Release manifest SHA-256: `54c01f3e23f8b9ce3b09b57c7b4d014af450c08b48546068e9d3235146d2787d`.
 - Source aggregate SHA-256: `f6b3a9b5efa362e7c4012d299a7c412564cf4b107b48961e05e1bff5b87ad809`.
-- Output aggregate SHA-256: `33e7798eba9148a77c7278de843b1a5fa5efa9c02d9160e02845308d7fd2d84f`.
+- Output aggregate SHA-256: `8b6af41d034ef25bc1e6c8bfd3721fe8a2b9a045ac3867de2ffffdc08ea1d014`.
 - Locked output files: 684.
 - Build: 124 static pages, exit code 0.
 - Preview readiness: `PREVIEW_READY_PRODUCTION_NO_GO`.
 
 ## Automated acceptance
 
-`construction/acceptance-command-results.json` records 15 source, build and output commands. Every command exited 0. The locked build recorded 144 passing checks, no failing checks and 124 static pages. The source suite recorded 37 passing checks; the conversion suite recorded 93 passing checks.
+`construction/acceptance-command-results.json` records 15 source, build and output commands. Every command exited 0. The locked build recorded 148 passing checks, no failing checks and 124 static pages. The source suite recorded 37 passing checks; the conversion suite recorded 93 passing checks.
 
 The command record stores command names, exit codes, durations, pass/fail counts, static-page count and output hashes only. It stores no environment values, credentials or raw submission data.
 
