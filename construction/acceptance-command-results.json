@@ -54,11 +54,11 @@
     {
       "command": "npm run build:prelaunch",
       "exitCode": 0,
-      "durationMs": 50576,
-      "passCount": 133,
+      "durationMs": 52456,
+      "passCount": 144,
       "failCount": 0,
       "staticPageCount": 124,
-      "outputSha256": "8c394854d96a027fe699ebf59df55bdf6135ead2b5c51267411d1cf3365702a6"
+      "outputSha256": "51df266f8b8ed337252e5e86dd611ba61113ff83511b32c27e6cd309419054fd"
     },
     {
       "command": "npm run check:analytics-release",
