@@ -7,7 +7,7 @@ This checklist is an operational gate. A checked construction stage is not permi
 - [x] C1 — source baseline and guarded candidate convergence accepted.
 - [x] C2 — page, content, evidence and public-asset closure accepted.
 - [x] C3 — inquiry, privacy and analytics closure accepted.
-- [ ] C4 — infrastructure and deployment-path acceptance completed.
+- [x] C4 — legacy CMS, SEO, canonical, sitemap and route release acceptance completed.
 - [ ] C5 — final release audit and explicit owner authorization completed.
 
 ## C2 evidence gate
@@ -29,6 +29,16 @@ This checklist is an operational gate. A checked construction stage is not permi
 - [x] Storage denial resolves safely to rejected without blocking navigation or forms.
 - [x] GA4 and Cloudflare Web Analytics remain governed as disabled pending approval.
 - [x] Mobile preference controls remain clear of primary and sticky inquiry CTAs.
+
+## C4 CMS, SEO and route gate
+
+- [x] Legacy Sanity public contract is enforced on all build content queries.
+- [x] Sixteen published Sanity query families were audited with unauthenticated GET only; `cmsWrites: 0`.
+- [x] Existing public sitemap baseline contains 100 routes and no unexplained removal remains.
+- [x] Route decision is 71 preserved, 6 added, 26 explicitly redirected, 3 legal drafts withheld and 0 owner-approved 410s.
+- [x] Candidate sitemap contains 77 deterministic URLs; legal drafts are absent and retain restrictive page robots metadata.
+- [x] Canonical audit reports 0 failures across 78 audited URLs.
+- [x] Redirect, sitemap, robots, structured-data and route-manifest gates pass on the final prelaunch build.
 
 ## Mandatory production gates
 

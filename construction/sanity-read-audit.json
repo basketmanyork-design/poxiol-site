@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "projectId": "oqpv1xbc",
+  "dataset": "production",
+  "apiVersion": "2024-01-01",
+  "transport": "GET_ONLY",
+  "perspective": "published",
+  "authentication": "none",
+  "cmsWrites": 0,
+  "reads": [
+    {
+      "name": "site-settings",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "5f6b6041c787291b6674395054b4c91928f3225ed9d1cd93cfa568e69bb89021",
+      "responseSha256": "18ec75cab738eb5925acdbdb78f919fdb6a97874d0b67f4e562ee1b7a6b2873e",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "navigation",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "797d4b82f50514bd891971fbbbdbaa857eb51d5851a2c8cce318a88a1501b1a0",
+      "responseSha256": "da5101cf2a6961165beb17edea1dcdf198f3aa2d4956e3a0dab16b04af856945",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "footer",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "80eeb60874f3798c89f871173a1059e8fe2deadae82f656d9dee85070fcc9e24",
+      "responseSha256": "ed691007919e40b0ceeaa06be746a38fd419ad9517bf4a5f9fac6f81ceaac5d2",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "site-page",
+      "method": "GET",
+      "perspective": "published",
+      "params": {
+        "key": "homepage"
+      },
+      "querySha256": "4bde361cf5a6d2aa2841e51fd7201fcaaa3afa04a411e24176d0aa31169ea2d7",
+      "responseSha256": "5a4fc7bea9fe49e1435275c343e0b9bb6cb6c95664aa353c2874b9f73f0147b9",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "product-categories",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "3d573b45d9334f0e5d8c2474d135adf526dbea63611060b8bad44341d95c0e96",
+      "responseSha256": "b7bfffbbf111ad465ab70ce2a0017ef34f36fa1971a6d54612a329a78d8cd271",
+      "resultKind": "array",
+      "resultCount": 6
+    },
+    {
+      "name": "product-category",
+      "method": "GET",
+      "perspective": "published",
+      "params": {
+        "slug": "basketball-uniforms"
+      },
+      "querySha256": "a87a86da7499464163a8d7fef3c6a110f95e5fa81ae8ae4a61efae446475a754",
+      "responseSha256": "69008cea9b0f27c1491f34702cdcf4ae2f5a0a992caef5a47eeb90641efc5068",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "products",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "1c8ca951c0dbc273dd3388e784d45e92ca210182e81ec1775a7cc0e5cb4d481a",
+      "responseSha256": "19b469747e578f6fd379388fcc42031278c6db54f526293d55f34650b7dd083a",
+      "resultKind": "array",
+      "resultCount": 19
+    },
+    {
+      "name": "products-by-category",
+      "method": "GET",
+      "perspective": "published",
+      "params": {
+        "categorySlug": "basketball-uniforms"
+      },
+      "querySha256": "29da662260cc9ecee18116ac5cbab33c3bd27d8d25781ecbbc0b48600a610b37",
+      "responseSha256": "70f121070b507ac148eeb580f591bb842d887aa1fd1d4b1576ff241385574440",
+      "resultKind": "array",
+      "resultCount": 4
+    },
+    {
+      "name": "product",
+      "method": "GET",
+      "perspective": "published",
+      "params": {
+        "slug": "team-accessories-team-socks"
+      },
+      "querySha256": "f227505da1ca937e0c0707df3542a639f6570aa897677f95824a1f62357c72d5",
+      "responseSha256": "4cdadb234f462aabe8fb13fcbffdb591a411fecf7f96deeae760ecb7b8819898",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "case-studies",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "894edc635fbd063e29e8e17fb0670c7888585a07cd69ae62b63e5d555be37c5e",
+      "responseSha256": "074e17249df46dd087f3665259e857d96ce756f688dbb4c8062f5f4a141513ab",
+      "resultKind": "array",
+      "resultCount": 5
+    },
+    {
+      "name": "case-study",
+      "method": "GET",
+      "perspective": "published",
+      "params": {
+        "slug": "usa-basketball-academy-uniform-program"
+      },
+      "querySha256": "c89a3d4d488bfffb66afaad68c6f34bf500db0806b745c894666ebd724d16367",
+      "responseSha256": "a77ab5883df95388534024614590ed4162b2ba3d47d71b89abfc4367330bcc68",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "faqs",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "2423b61bfbb6b4b7389a3b59cb20e45001de6d265ab80cf52e4a642747182a70",
+      "responseSha256": "af8c7770510873c2061ec914f91719208944ead64775706f9d18430650ec69b7",
+      "resultKind": "array",
+      "resultCount": 38
+    },
+    {
+      "name": "articles",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "b6b176082a57e28081045624922a10e707b97b05f9efbc5ca1ebe60869aba063",
+      "responseSha256": "cc865342a709dc5336cf8b0d6c5284a495d010391da9779407587df4395f8b69",
+      "resultKind": "array",
+      "resultCount": 40
+    },
+    {
+      "name": "article",
+      "method": "GET",
+      "perspective": "published",
+      "params": {
+        "slug": "soccer-jersey-buying-guide"
+      },
+      "querySha256": "3171936c3d76704619c8105a8e35c2a5e8a0bc997f511dca6c0ef64c7d7cb5b8",
+      "responseSha256": "abfdde09e17ad134ee97083d63e42f709286d697b7d3c6e4be5ca6e1a5c4214c",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "procurement-standards",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "4748ec916f890421fcb98dc45a9b7ae8aa7b434fb48031a2a5fcf7957fc1cab8",
+      "responseSha256": "a98bd552c3534f7bfd50d0506992391480a763f1b9ed92cee3df1f641332767a",
+      "resultKind": "object",
+      "resultCount": 1
+    },
+    {
+      "name": "redirect-rules",
+      "method": "GET",
+      "perspective": "published",
+      "params": {},
+      "querySha256": "d3d6835ffd66e040ee903e61bf91aa4e324391f4ee4260053cdf287648783781",
+      "responseSha256": "7b2829d2949203227f93c7fc4ed50ebfb183614064b1b23e22188354b9fa51e2",
+      "resultKind": "array",
+      "resultCount": 0
+    }
+  ]
+}
