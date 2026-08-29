@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
+import path from 'node:path'
 import {createRequire} from 'node:module'
 import {test} from 'node:test'
 import vm from 'node:vm'
@@ -11,20 +12,43 @@ const validReviewEnvironment = {
   POXIOL_INTEGRATION_ORIGIN: 'http://127.0.0.1:4466',
 }
 
+test('the governed production record captures the exact authorized launch', () => {
+  const approval = JSON.parse(readFileSync(path.join(process.cwd(), 'content/release/production-approval.json'), 'utf8'))
+  assert.equal(approval.status, 'APPROVED')
+  assert.equal(approval.approvedAt, '2026-08-30')
+  assert.equal(approval.approvedBy, 'POXIOL legal representative')
+  assert.equal(approval.deploymentTarget, 'https://www.poxiol.com')
+  assert.match(approval.approvalBasis, /direct production deployment/i)
+})
+
 test('accepts the explicitly opted-in loopback review environment', () => {
   assert.doesNotThrow(() => assertLocalHybridReview(validReviewEnvironment))
 })
 
-test('accepts a Cloudflare Pages preview branch without opening production', () => {
+test('accepts preview branches and opens main only for a complete governed production approval', () => {
+  const approvedProduction = {
+    status: 'APPROVED',
+    approvedAt: '2026-08-30',
+    approvedBy: 'POXIOL legal representative',
+  }
+  const mainEnvironment = {
+    CF_PAGES: '1',
+    CF_PAGES_BRANCH: 'main',
+    CF_PAGES_URL: 'https://www.poxiol.com',
+  }
   assert.doesNotThrow(() => assertLocalHybridReview({
     CF_PAGES: '1',
     CF_PAGES_BRANCH: 'codex/construction-completion',
     CF_PAGES_URL: 'https://preview.example.pages.dev',
   }))
-  assert.throws(() => assertLocalHybridReview({
-    CF_PAGES: '1',
-    CF_PAGES_BRANCH: 'main',
-    CF_PAGES_URL: 'https://www.poxiol.com',
+  assert.doesNotThrow(() => assertLocalHybridReview(mainEnvironment, approvedProduction))
+  assert.throws(() => assertLocalHybridReview(mainEnvironment, {
+    ...approvedProduction,
+    status: 'PENDING_OWNER_APPROVAL',
+  }), {message: 'LOCAL_HYBRID_REVIEW_ONLY'})
+  assert.throws(() => assertLocalHybridReview(mainEnvironment, {
+    ...approvedProduction,
+    approvedBy: null,
   }), {message: 'LOCAL_HYBRID_REVIEW_ONLY'})
 })
 

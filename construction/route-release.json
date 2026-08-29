@@ -3,11 +3,11 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
-    "candidateSitemapSha256": "3168358dd17957e4bc809c76ec864517a81d0591286b8ab3fd9461f6cea94ee5",
+    "candidateSitemapSha256": "9437cf8f6bc52223dd90e7da4536a45de153358e5a9724d33a7458a6643d2d13",
     "publicCount": 100,
-    "candidateCount": 76,
-    "renderedCount": 148,
-    "legalStatus": "PENDING_OWNER_LEGAL_APPROVAL"
+    "candidateCount": 80,
+    "renderedCount": 166,
+    "legalStatus": "APPROVED"
   },
   "routes": {
     "PRESERVED": [
@@ -45,6 +45,7 @@
       "/how-sublimation-printing-works-for-teamwear/",
       "/how-to-choose-a-teamwear-manufacturer/",
       "/how-to-order-custom-basketball-uniforms/",
+      "/intellectual-property-policy/",
       "/manufacturing/",
       "/oem-baseball-apparel-manufacturer/",
       "/oem-basketball-apparel-manufacturer/",
@@ -53,6 +54,7 @@
       "/oem-volleyball-apparel-manufacturer/",
       "/oem-vs-odm-sportswear/",
       "/printing-guide/",
+      "/privacy-policy/",
       "/private-label-teamwear/",
       "/products/",
       "/products/basketball-uniforms/",
@@ -81,9 +83,11 @@
       "/soccer-teamwear-supplier-uk/",
       "/soccer-teamwear-supplier-usa/",
       "/solutions/",
+      "/terms/",
       "/youth-team-uniforms/"
     ],
     "ADDED": [
+      "/blog/custom-teamwear-production-notes/",
       "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
       "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
       "/guides/moq-1-custom-teamwear-how-it-works/",
@@ -118,11 +122,7 @@
       "/guides/teamwear-quality-control-checklist/",
       "/guides/teamwear-sample-approval-checklist/"
     ],
-    "WITHHELD_LEGAL": [
-      "/intellectual-property-policy/",
-      "/privacy-policy/",
-      "/terms/"
-    ],
+    "WITHHELD_LEGAL": [],
     "OWNER_410_REQUIRED": []
   },
   "redirects": [

@@ -1,7 +1,15 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import {compareRoutes, shouldRequireExactManifest} from '../lib/release/route-release.mjs'
+import {compareRoutes, shouldRequireExactManifest, withheldLegalRoutes} from '../lib/release/route-release.mjs'
+
+test('withholds legal routes unless the governed approval record is complete', () => {
+  const legalRoutes = ['/privacy-policy/', '/terms/']
+  const approved = {status: 'APPROVED', approvedAt: '2026-08-30', approvedBy: 'POXIOL legal representative'}
+  assert.deepEqual(withheldLegalRoutes(approved, legalRoutes), [])
+  assert.deepEqual(withheldLegalRoutes({...approved, approvedBy: null}, legalRoutes), legalRoutes)
+  assert.deepEqual(withheldLegalRoutes({...approved, status: 'PENDING_OWNER_LEGAL_APPROVAL'}, legalRoutes), legalRoutes)
+})
 
 test('rejects an unexplained public URL removal', () => {
   assert.throws(

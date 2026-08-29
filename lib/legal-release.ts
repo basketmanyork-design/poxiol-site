@@ -5,30 +5,37 @@ export const LEGAL_POLICY_ROUTES = ['/privacy-policy/', '/terms/', '/intellectua
 export const LEGAL_DRAFT_NOTICE = 'Draft policy — pending owner and legal approval.'
 
 type LegalEnvironment = Record<string, string | undefined>
-
-export function legalPolicyApproved() {
-  return approval.status === 'APPROVED'
+type LegalApprovalRecord = {
+  status: string
+  approvedAt: string | null
+  approvedBy: string | null
 }
 
-export function legalPreviewAllowed(environment: LegalEnvironment) {
-  if (legalPolicyApproved()) return true
+export function legalPolicyApproved(record: LegalApprovalRecord = approval) {
+  return record.status === 'APPROVED'
+    && Boolean(record.approvedAt?.trim())
+    && Boolean(record.approvedBy?.trim())
+}
+
+export function legalPreviewAllowed(environment: LegalEnvironment, record: LegalApprovalRecord = approval) {
+  if (legalPolicyApproved(record)) return true
   if (environment.CF_PAGES_BRANCH === 'main') return false
   if (environment.CF_PAGES === '1' && environment.CF_PAGES_BRANCH) return true
   return environment.POXIOL_DEPLOYMENT_ENV === 'local' || environment.POXIOL_DEPLOYMENT_ENV === 'preview'
 }
 
-export function assertLegalReleaseReady(environment: LegalEnvironment) {
-  if (!legalPreviewAllowed(environment)) throw new Error('LEGAL_APPROVAL_REQUIRED:privacy,terms,ip')
+export function assertLegalReleaseReady(environment: LegalEnvironment, record: LegalApprovalRecord = approval) {
+  if (!legalPreviewAllowed(environment, record)) throw new Error('LEGAL_APPROVAL_REQUIRED:privacy,terms,ip')
 }
 
-export function publicLegalPolicyRoutes(): readonly string[] {
-  return legalPolicyApproved() ? LEGAL_POLICY_ROUTES : []
+export function publicLegalPolicyRoutes(record: LegalApprovalRecord = approval): readonly string[] {
+  return legalPolicyApproved(record) ? LEGAL_POLICY_ROUTES : []
 }
 
-export function legalPolicyMetadata(): Pick<Metadata, 'robots'> {
-  return legalPolicyApproved() ? {} : {robots: 'noindex, nofollow, noarchive'}
+export function legalPolicyMetadata(record: LegalApprovalRecord = approval): Pick<Metadata, 'robots'> {
+  return legalPolicyApproved(record) ? {} : {robots: 'noindex, nofollow, noarchive'}
 }
 
-export function legalDraftNotice() {
-  return legalPolicyApproved() ? '' : LEGAL_DRAFT_NOTICE
+export function legalDraftNotice(record: LegalApprovalRecord = approval) {
+  return legalPolicyApproved(record) ? '' : LEGAL_DRAFT_NOTICE
 }

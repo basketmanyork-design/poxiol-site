@@ -2,7 +2,7 @@ import {createHash} from 'node:crypto'
 import {existsSync, readFileSync, readdirSync, statSync, writeFileSync} from 'node:fs'
 import {join, relative, resolve, sep} from 'node:path'
 
-import {compareRoutes, normalizeRoute, shouldRequireExactManifest} from '../lib/release/route-release.mjs'
+import {compareRoutes, normalizeRoute, shouldRequireExactManifest, withheldLegalRoutes} from '../lib/release/route-release.mjs'
 
 const ROOT = resolve(import.meta.dirname, '..')
 const BASELINE_PATH = join(ROOT, 'construction', 'public-sitemap-baseline.txt')
@@ -83,7 +83,7 @@ function buildManifest() {
   const redirects = parseRedirects(redirectsText)
   const gone = JSON.parse(goneText)
   const legal = JSON.parse(legalText)
-  const withheldLegal = legal.status === 'approved' ? [] : LEGAL_ROUTES
+  const withheldLegal = withheldLegalRoutes(legal, LEGAL_ROUTES)
   const result = compareRoutes({publicUrls, candidateUrls, renderedUrls, withheldLegal, redirects, gone})
 
   return {

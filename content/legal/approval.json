@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "status": "PENDING_OWNER_LEGAL_APPROVAL",
-  "approvedAt": null,
-  "approvedBy": null,
-  "approvalBasis": "No owner-approved legal policy text or legal approval record has been supplied."
+  "status": "APPROVED",
+  "approvedAt": "2026-08-30",
+  "approvedBy": "POXIOL legal representative",
+  "approvalBasis": "The POXIOL legal representative approved the existing English Privacy Policy, Terms of Service, and Intellectual Property Policy for production publication on 2026-08-30."
 }

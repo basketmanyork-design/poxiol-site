@@ -2,12 +2,12 @@ import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import test from 'node:test'
 
-test('keeps withheld legal drafts out of sitemap and noindex', () => {
+test('publishes approved legal policies in sitemap without noindex directives', () => {
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
   for (const route of ['/privacy-policy/', '/terms/', '/intellectual-property-policy/']) {
-    assert.equal(sitemap.includes(route), false)
+    assert.equal(sitemap.includes(`<loc>https://www.poxiol.com${route}</loc>`), true)
     const html = readFileSync(`out${route}index.html`, 'utf8')
-    assert.match(html, /noindex, nofollow, noarchive/)
+    assert.doesNotMatch(html, /noindex, nofollow, noarchive/)
   }
 })
 
@@ -44,7 +44,7 @@ test('redirect sources are excluded from the sitemap', () => {
   }
 })
 
-test('robots keeps legal drafts crawlable so their noindex directives can be seen', () => {
+test('robots keeps approved legal policies crawlable', () => {
   const robots = readFileSync('public/robots.txt', 'utf8')
   for (const route of ['/privacy-policy/', '/terms/', '/intellectual-property-policy/']) {
     assert.match(robots, new RegExp(`^Allow: ${route.replaceAll('/', '\\/')}\\s*$`, 'm'))
