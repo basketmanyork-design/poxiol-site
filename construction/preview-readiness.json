@@ -17,9 +17,9 @@
   },
   "releaseManifest": {
     "path": "construction/release-manifest.json",
-    "sha256": "65253352f5ec5a85510fe1e4a09473f020ba5626e6ca7931b16e24a7840634bd",
+    "sha256": "24e23f1741d3d6898d9d820319bd4971f29184cd7b3d9f5158c6946337d967ef",
     "sourceAggregateSha256": "f6b3a9b5efa362e7c4012d299a7c412564cf4b107b48961e05e1bff5b87ad809",
-    "outputAggregateSha256": "84dd470694a092b3c5dc7a979524ae22e5974b1bcd8d262af7a519d0bb511464"
+    "outputAggregateSha256": "33e7798eba9148a77c7278de843b1a5fa5efa9c02d9160e02845308d7fd2d84f"
   },
   "rollback": {
     "path": "construction/rollback-manifest.json",
