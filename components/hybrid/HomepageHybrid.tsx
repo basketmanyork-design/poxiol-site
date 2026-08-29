@@ -3,6 +3,7 @@ import Link from 'next/link'
 import InquiryLink from '@/components/InquiryLink'
 import {ProjectQualificationForm} from '@/components/v8/ProjectQualificationForm'
 import {hybridHome} from '@/lib/hybrid/home'
+import {SPORT_CATEGORIES, WEARING_SCENARIOS} from '@/lib/product-taxonomy'
 import styles from './HomepageHybrid.module.css'
 
 function Limitation({children}: {children: string}) {
@@ -45,6 +46,37 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
         <div className={styles.container}>
           <h2 id="hybrid-audience-title">{home.audience.title}</h2>
           <p className={styles.lead}>{home.audience.body}</p>
+        </div>
+      </section>
+
+      <section id="product-discovery" className={`${styles.section} ${styles.light}`} aria-labelledby="product-discovery-title">
+        <div className={styles.container}>
+          <p className={styles.eyebrow}>{home.productDiscovery.eyebrow}</p>
+          <h2 id="product-discovery-title">{home.productDiscovery.title}</h2>
+          <p className={styles.lead}>{home.productDiscovery.body}</p>
+          <div className={styles.discoveryActions}>
+            <Link className={styles.primary} href="/products/#sports">{home.productDiscovery.sportCta}</Link>
+            <Link className={styles.secondaryDark} href="/products/#scenarios">{home.productDiscovery.scenarioCta}</Link>
+          </div>
+          <div className={styles.sportLinks} aria-label="Browse POXIOL teamwear by sport">
+            {SPORT_CATEGORIES.map((sport) => (
+              <Link
+                key={sport.id}
+                className={styles.sportLink}
+                href={sport.contentStage === 'deep-page' ? sport.href : '/products/#sports'}
+              >
+                {sport.label}
+              </Link>
+            ))}
+          </div>
+          <div className={styles.scenarioGrid}>
+            {WEARING_SCENARIOS.map((scenario) => (
+              <Link key={scenario.id} className={styles.scenarioLink} href="/products/#scenarios">
+                {scenario.label}
+              </Link>
+            ))}
+          </div>
+          <Link className={styles.fullSystemLink} href="/products/">{home.productDiscovery.fullCta}</Link>
         </div>
       </section>
 
@@ -119,9 +151,9 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
           <p className={styles.eyebrow}>Product range</p>
           <h2 id="hybrid-range-title">Build the product range around the account</h2>
           <div className={styles.gridThree}>
-            {home.range.map(link => <Link key={link.href} href={link.href} className={styles.rangeLink}>
-              <span>{link.title}</span>
-              <span>{link.label}</span>
+            {WEARING_SCENARIOS.map((scenario) => <Link key={scenario.id} href="/products/#scenarios" className={styles.rangeLink}>
+              <span>{scenario.label}</span>
+              <span>Explore this wearing scenario</span>
             </Link>)}
           </div>
         </div>

@@ -19,6 +19,19 @@ assert.match(visibleText, /Custom Teamwear Built for Repeatable Team Orders/i)
 assert.match(visibleText, /For Teamwear Distributors, Dealers, Brands & Custom Resellers/i)
 assert.match(visibleText, /Final feasibility remains project-specific and is confirmed during project review/i)
 
+for (const label of ['Soccer','Basketball','Track & Field','Badminton','Volleyball','Baseball & Softball','Ice Hockey','American Football','Rugby','Tennis','Cricket','Golf']) {
+  assert.match(visibleText, new RegExp(label.replace(/&/g, '&')))
+}
+for (const label of ['Match Day','Warm-Up & Training','Off-Field & Travel']) {
+  assert.match(visibleText, new RegExp(label.replace(/&/g, '&')))
+}
+assert.match(visibleText, /Find the Right Teamwear Starting Point/)
+assert.match(html, /id="product-discovery"/)
+assert.ok(html.indexOf('hybrid-audience-title') < html.indexOf('product-discovery'))
+assert.ok(html.indexOf('product-discovery') < html.indexOf('hybrid-risks-title'))
+assert.match(html, /href="\/products\/#sports"/)
+assert.match(html, /href="\/products\/#scenarios"/)
+
 const anchors = [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)]
   .map(match => ({url: new URL(match[1].replace(/&amp;/g, '&'), 'https://www.poxiol.com'), label: match[2].replace(/<[^>]+>/g, '').trim()}))
 for (const [label, path] of [['Upload Your Design', '/free-mockup/'], ['Build Your Range', '/get-quote/'], ['Start a Sample', '/sample-order/']]) {

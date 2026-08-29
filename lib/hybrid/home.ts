@@ -10,6 +10,14 @@ export const hybridHome = {
   },
   hero: {title: 'Custom Teamwear Built for Repeatable Team Orders', body: 'POXIOL supports teamwear distributors, dealers, sportswear brands, and custom resellers serving teams worldwide with a controlled path from design review through repeat orders.', projectReviewNote},
   audience: {title: 'For Teamwear Distributors, Dealers, Brands & Custom Resellers', body: 'Six risks can turn a team order into a client problem. Our process is built to control them.'},
+  productDiscovery: {
+    eyebrow: 'Product discovery',
+    title: 'Find the Right Teamwear Starting Point',
+    body: 'Start with the sport you serve or the way the team will wear the range. Product construction and project planning are confirmed after the brief is reviewed.',
+    sportCta: 'Browse by Sport',
+    scenarioCta: 'Browse by Wearing Scenario',
+    fullCta: 'View the Full Product System',
+  },
   risks: [
     {title:'Design Accuracy', body:'Complex customization, confirmed before production.', href:'/customization/', cta:'Review customization'},
     {title:'Size & Fit', body:'Team sizing is checked before the order is locked.', href:'/guides/basketball-uniform-size-guide/', cta:'Basketball size guide'},
@@ -38,11 +46,6 @@ export const hybridHome = {
     {title:'Define the Approval Path', body:'Identify which design, size, sample, and timing decisions require confirmation.'},
     {title:'Plan Project Milestones', body:'Map the confirmed review steps before production and delivery planning.'},
     {title:'Retain the Reference', body:'Organize the confirmed project record for the associated order and later review.'},
-  ],
-  range: [
-    {title:'Basketball Uniforms', label:'Explore basketball uniforms', href:'/products/basketball-uniforms/'},
-    {title:'Soccer / Football Kits', label:'Explore soccer jerseys', href:'/products/soccer-jerseys/'},
-    {title:'Full Teamwear', label:'Explore product groups', href:'/products/'},
   ],
   closing: {title:'Tell us where the risk is before we quote the project.', body:'Share your product, quantity, design status, size mix, destination and target in-hand date. We’ll help you define the right approval path before production.'},
   intents: {

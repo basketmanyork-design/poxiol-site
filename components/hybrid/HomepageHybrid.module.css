@@ -70,6 +70,7 @@
 
 .primary,
 .secondary,
+.secondaryDark,
 .rangeLink {
   display: inline-flex;
   align-items: center;
@@ -86,6 +87,18 @@
 
 .primary { background: var(--accent, #b7ff00); color: var(--brand-background, #0a0a0a); }
 .secondary { background: transparent; color: inherit; }
+.secondaryDark { background: transparent; border-color: var(--ink-950, #151914); color: var(--ink-950, #151914); }
+
+.primary:focus-visible,
+.secondary:focus-visible,
+.secondaryDark:focus-visible,
+.rangeLink:focus-visible,
+.sportLink:focus-visible,
+.scenarioLink:focus-visible,
+.fullSystemLink:focus-visible {
+  outline: 3px solid var(--accent-dark, #356000);
+  outline-offset: 3px;
+}
 
 .figure {
   min-width: 0;
@@ -120,11 +133,39 @@
 .rangeLink span + span { color: var(--accent, #b7ff00); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .pending { margin-top: 1rem; color: var(--accent, #b7ff00); font-size: 0.85rem; }
 
+.discoveryActions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-block: 1.5rem; }
+.sportLinks { display: flex; flex-wrap: wrap; gap: 0.625rem; margin: 2rem 0; }
+.sportLink {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+.scenarioGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.scenarioLink {
+  min-height: 8rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+  border: 1px solid var(--line, #d9ded5);
+  color: inherit;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.fullSystemLink { display: inline-flex; margin-top: 1.5rem; color: inherit; font-weight: 800; text-underline-offset: 0.25rem; }
+
 @media (max-width: 48rem) {
   .heroGrid { grid-template-columns: 1fr; }
   .gridSix,
   .gridFour,
   .gridThree { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scenarioGrid { grid-template-columns: 1fr; }
   .process { grid-template-columns: 1fr; }
 }
 
@@ -134,4 +175,6 @@
   .gridThree { grid-template-columns: 1fr; }
   .actions { display: grid; }
   .actions > a { width: 100%; }
+  .discoveryActions { display: grid; }
+  .discoveryActions > a { width: 100%; }
 }
