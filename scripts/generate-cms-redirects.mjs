@@ -7,6 +7,8 @@ const PROJECT_ID = 'oqpv1xbc'
 const DATASET = 'production'
 const API_VERSION = '2024-01-01'
 const PROTECTED_SOURCES = new Set(['/robots.txt', '/sitemap.xml', '/llms.txt'])
+const CMS_REDIRECT_FIELDS = new Set(['_type', 'sourcePath', 'destinationPath', 'redirectType'])
+const FORBIDDEN_PUBLIC_FIELD = /token|secret|password|apiKey|customer|buyerEmail|recipient/i
 
 export function parseRedirects(text) {
   return text
@@ -40,6 +42,12 @@ export function validateRedirectRules(baseRules, cmsRules) {
   const errors = []
   const all = [...baseRules.map((rule) => normalizeRule(rule, 'base'))]
   const seen = new Set(all.map((rule) => rule.sourcePath))
+  for (const rule of cmsRules) {
+    for (const key of Object.keys(rule).sort()) {
+      if (FORBIDDEN_PUBLIC_FIELD.test(key)) errors.push(`forbidden-field:${key}`)
+      else if (!CMS_REDIRECT_FIELDS.has(key)) errors.push(`unrecognized-field:${key}`)
+    }
+  }
   const cms = cmsRules.map((rule) => normalizeRule(rule, 'cms')).sort((a, b) => a.sourcePath.localeCompare(b.sourcePath))
 
   for (const rule of cms) {

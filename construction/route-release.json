@@ -3,9 +3,9 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
-    "candidateSitemapSha256": "1b434f1ed1c78a9432596dff50106dfb63e4021cfe2bf1804ab0227bce5f2834",
+    "candidateSitemapSha256": "dcff354146ee9684d995681b1c538268a153de794471c367577ed4a823093c78",
     "publicCount": 100,
-    "candidateCount": 72,
+    "candidateCount": 77,
     "renderedCount": 121,
     "legalStatus": "PENDING_OWNER_LEGAL_APPROVAL"
   },
@@ -84,7 +84,12 @@
       "/youth-team-uniforms/"
     ],
     "ADDED": [
-      "/blog/custom-teamwear-production-notes/"
+      "/blog/custom-teamwear-production-notes/",
+      "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
+      "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
+      "/guides/moq-1-custom-teamwear-how-it-works/",
+      "/guides/oem-odm-sportswear-manufacturing-guide-for-brands/",
+      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/"
     ],
     "REDIRECTED": [
       "/blog/best-sportswear-fabrics/",

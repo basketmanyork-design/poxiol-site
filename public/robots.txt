@@ -3,6 +3,10 @@ Allow: /
 Allow: /_next/static/
 Allow: /assets/
 Allow: /images/
+# Legal drafts stay crawlable so page-level noindex directives remain visible.
+Allow: /privacy-policy/
+Allow: /terms/
+Allow: /intellectual-property-policy/
 Disallow: /api/
 Disallow: /thank-you/
 Disallow: /quote-received/

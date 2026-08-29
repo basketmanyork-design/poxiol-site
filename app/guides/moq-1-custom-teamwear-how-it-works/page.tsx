@@ -5,6 +5,7 @@ import { Header, Footer } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Custom Teamwear Order Quantities: How They Work | POXIOL",
   description: "A buyer education guide explaining project-specific order quantities, samples, small teams, custom retail testing and scaling.",
+  alternates: {canonical: "https://www.poxiol.com/guides/moq-1-custom-teamwear-how-it-works/"},
 };
 
 export default function GuidePage() {

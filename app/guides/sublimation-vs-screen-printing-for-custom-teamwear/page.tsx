@@ -5,6 +5,7 @@ import { Header, Footer } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Sublimation vs Screen Printing for Custom Teamwear | POXIOL",
   description: "A comparison guide explaining printing methods, design flexibility, comfort, durability and teamwear use cases.",
+  alternates: {canonical: "https://www.poxiol.com/guides/sublimation-vs-screen-printing-for-custom-teamwear/"},
 };
 
 export default function GuidePage() {

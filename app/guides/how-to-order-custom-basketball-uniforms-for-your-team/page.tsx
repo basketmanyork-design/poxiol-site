@@ -7,6 +7,7 @@ import { basketballGuideSchema } from "@/lib/seo-data";
 export const metadata: Metadata = {
   title: "How to Order Custom Basketball Uniforms for Your Team | POXIOL",
   description: "A practical guide for clubs, schools and teams covering design mockup, logos, names, numbers, sizing, sampling and production.",
+  alternates: {canonical: "https://www.poxiol.com/guides/how-to-order-custom-basketball-uniforms-for-your-team/"},
 };
 
 export default function GuidePage() {

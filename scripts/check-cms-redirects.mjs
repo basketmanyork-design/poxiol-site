@@ -29,6 +29,13 @@ for (const rules of badCases) {
   assert.throws(() => validateRedirectRules(base, rules))
 }
 
+assert.throws(
+  () => validateRedirectRules(base, [
+    {sourcePath: '/private', destinationPath: '/products/', redirectType: 301, apiKey: 'private'},
+  ]),
+  /forbidden-field:apiKey/,
+)
+
 const rootDir = await mkdtemp(join(tmpdir(), 'poxiol-cms-redirects-'))
 try {
   await mkdir(join(rootDir, 'public'), {recursive: true})

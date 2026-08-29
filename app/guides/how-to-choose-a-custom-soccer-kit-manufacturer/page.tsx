@@ -5,6 +5,7 @@ import { Header, Footer } from "@/components/ui";
 export const metadata: Metadata = {
   title: "How to Choose a Custom Soccer Kit Manufacturer | POXIOL",
   description: "A supplier selection guide for soccer clubs, academies, schools, tournaments and distributors.",
+  alternates: {canonical: "https://www.poxiol.com/guides/how-to-choose-a-custom-soccer-kit-manufacturer/"},
 };
 
 export default function GuidePage() {

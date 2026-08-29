@@ -5,6 +5,7 @@ import { Header, Footer } from "@/components/ui";
 export const metadata: Metadata = {
   title: "OEM/ODM Sportswear Manufacturing Guide for Brands | POXIOL",
   description: "A technical guide for apparel brands, distributors and retailers covering private label production, sampling and OEM services.",
+  alternates: {canonical: "https://www.poxiol.com/guides/oem-odm-sportswear-manufacturing-guide-for-brands/"},
 };
 
 export default function GuidePage() {
