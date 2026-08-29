@@ -31,12 +31,12 @@ export function ProductDiscovery() {
                   <Image
                     aria-hidden="true"
                     alt=""
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
+                    className="object-cover transition-[filter,transform] duration-500 [@media(hover:hover)]:group-hover:brightness-125 [@media(hover:hover)]:group-hover:scale-[1.03] group-focus-within:brightness-125 group-focus-within:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
                     fill
                     sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1023px) 50vw, 33vw"
                     src={sport.sceneImage}
                   />
-                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/95" />
+                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/95 transition-opacity duration-300 [@media(hover:hover)]:group-hover:opacity-80 group-focus-within:opacity-80 motion-reduce:transition-none" />
                   <div className="relative z-10 flex h-full flex-1 flex-col justify-between">
                     <div>
                       <span aria-hidden="true" className="text-5xl font-black text-white/35">{String(index + 1).padStart(2, '0')}</span>
@@ -65,12 +65,12 @@ export function ProductDiscovery() {
                 <Image
                   aria-hidden="true"
                   alt=""
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
+                  className="object-cover transition-[filter,transform] duration-500 [@media(hover:hover)]:group-hover:brightness-125 [@media(hover:hover)]:group-hover:scale-[1.03] group-focus-within:brightness-125 group-focus-within:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
                   fill
                   sizes="(max-width: 1023px) calc(100vw - 2.5rem), 33vw"
                   src={scenario.sceneImage}
                 />
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/65 to-black/95" />
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/65 to-black/95 transition-opacity duration-300 [@media(hover:hover)]:group-hover:opacity-80 group-focus-within:opacity-80 motion-reduce:transition-none" />
                 <div className="relative z-10">
                   <h3 className="text-2xl font-black uppercase leading-tight">{scenario.label}</h3>
                   <p className="mt-4 font-medium leading-7 text-white/85">{scenario.description}</p>
