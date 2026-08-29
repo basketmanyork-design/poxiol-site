@@ -67,7 +67,7 @@ test('OEM hero separates project quote from a general question instead of duplic
 test('OEM uses the reviewed own-brand illustration without presenting it as factory or order proof',()=>{
   const body=visible(read('/oem-odm/'))
   const hero=body.match(/<section\b[^>]*>[\s\S]*?<\/section>/i)?.[0] || ''
-  assert.match(hero,/<img\b[^>]*src="\/images\/poxiol-teamwear-hero-poxiol-only-v2\.png"/)
+  assert.match(hero,/<img\b[^>]*src="\/images\/poxiol-teamwear-hero-poxiol-only-v2\.webp"/)
   assert.match(text(hero),/Illustrative teamwear configuration.*not a factory or completed-order photograph/i)
   assert.doesNotMatch(body,/\/images\/solutions\/oem-odm-catalog\.jpg/)
 })

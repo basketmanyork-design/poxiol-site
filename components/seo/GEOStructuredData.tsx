@@ -71,7 +71,7 @@ export function ProductSchema({ name, description, url, image }: { name: string;
         },
         "description": description,
         "category": "Custom Sports Uniforms",
-        "image": image || `${baseUrl}/images/poxiol-teamwear-hero-poxiol-only-v2.png`,
+        "image": image || `${baseUrl}/images/poxiol-teamwear-hero-poxiol-only-v2.webp`,
         "manufacturer": {
           "@id": `${baseUrl}/#organization`
         },

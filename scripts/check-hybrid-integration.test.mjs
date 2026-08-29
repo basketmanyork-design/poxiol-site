@@ -66,12 +66,15 @@ test('renders the approved global-buyer content with distinct existing inquiry t
   const anchors = nodes(tree).filter(node => node?.props?.href).map(node => node.props)
   assert.match(text, /For Teamwear Distributors, Dealers, Brands & Custom Resellers/)
   assert.match(text, /Design Accuracy.*Size & Fit.*Project Deadline.*Sample-to-Bulk.*Reorder Consistency.*Account Expansion/)
-  assert.match(text, /Evidence pending/)
+  assert.match(text, /Approval planning/)
+  assert.match(text, /Plan the approval path before production/)
+  assert.doesNotMatch(text, /Local editorial review|Owner-approved editorial wording only|Evidence pending|local source projection|pilot does not add a second form/i)
+  assert.equal((text.match(/Final feasibility remains project-specific/g) || []).length, 1)
   assert.equal(anchors.filter(anchor => anchor.href === '/free-mockup/').some(anchor => anchor.children === 'Upload Your Design'), true)
   assert.equal(anchors.filter(anchor => anchor.href === '/get-quote/?product=Full%20Teamwear&source=%2F').some(anchor => anchor.children === 'Build Your Range'), true)
   assert.equal(anchors.filter(anchor => anchor.href === '/sample-order/').some(anchor => anchor.children === 'Start a Sample'), true)
   const illustration = nodes(tree).find(node => node?.props?.src)?.props
-  assert.equal(illustration?.src, '/images/poxiol-teamwear-hero-poxiol-only-v2.png')
+  assert.equal(illustration?.src, '/images/poxiol-teamwear-hero-poxiol-only-v2.webp')
   assert.match(text, /Illustrative teamwear configuration/)
 })
 

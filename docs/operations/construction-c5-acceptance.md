@@ -11,9 +11,9 @@ This decision means the exact local static artifact is complete enough for a sep
 ## Locked artifact
 
 - Release manifest: `construction/release-manifest.json`.
-- Release manifest SHA-256: `c75a981daa3ea76c7ec9421db4ae994f6655e130832a809acd0018340690f49e`.
-- Source aggregate SHA-256: `774c6a6686eb8b83245890a069dac67499763c37dcc2fdc6f13ec58b473d6e90`.
-- Output aggregate SHA-256: `84029c6e9135265b06e99699fdb71bd9a0f1194b424a55fbc09f089925c5283a`.
+- Release manifest SHA-256: `8bc3439af62d2b1c67f9688e08002474ac8143321086673a37ba6d888d75563b`.
+- Source aggregate SHA-256: `f6b3a9b5efa362e7c4012d299a7c412564cf4b107b48961e05e1bff5b87ad809`.
+- Output aggregate SHA-256: `f2cacf232ca1b75842fc54d94012a98408b17d8708187813741ffebb0fa6fc1e`.
 - Locked output files: 684.
 - Build: 124 static pages, exit code 0.
 - Preview readiness: `PREVIEW_READY_PRODUCTION_NO_GO`.
@@ -36,6 +36,8 @@ The command record stores command names, exit codes, durations, pass/fail counts
 - at least eight visible inquiry actions per scenario;
 - skip link, English document language, labelled controls and no positive tabindex.
 
+The matrix was rerun after the mobile conversion repair. Buyer-visible internal construction language was absent across all governed routes, and the accepted/rejected analytics state rendered as a compact 123×44-pixel `Privacy choices` control. At 390×844, `Build Your Range` retained `Full Teamwear` context and placed the quote form 96 CSS pixels below the viewport top. The approved POXIOL illustration changed from a 1,487,571-byte PNG to an 82,756-byte WebP without changing dimensions, POXIOL marks or non-proof classification.
+
 The matrix uses `/design-gallery/` as the governed product-visualization page. `/product-visualization/` is an asset directory and is not treated as a public page route.
 
 ## Inquiry, privacy and analytics acceptance
@@ -48,11 +50,10 @@ The consent interface passed Reject → Change preference → Accept behavior. N
 
 The source accessibility gate passed. Five high-risk browser routes were additionally checked for heading order, labelled controls, skip links, positive tabindex and control touch targets; no sampled failure was recorded. DOM focus order begins with `Skip to Content`.
 
-No Lighthouse package or browser Lighthouse runner was present in the locked workspace. No dependency was installed for acceptance. `construction/lighthouse-local.json` therefore makes no Lighthouse score or production Core Web Vitals claim. It records disclosed Chrome DevTools local-lab samples for home, one guide and the quote page. A true Lighthouse run remains an owner-authorized Preview follow-up.
+No Lighthouse package or browser Lighthouse runner was present in the locked workspace. No dependency was installed for acceptance. `construction/lighthouse-local.json` therefore makes no Lighthouse score or production Core Web Vitals claim. It records fresh-tab Chrome DevTools local-lab samples for home, one guide and the quote page; the current homepage sample recorded 14 ms to DOMContentLoaded and 41 ms task duration without network throttling. A true Lighthouse run remains an owner-authorized Preview follow-up.
 
 ## Rollback and production boundary
 
 The verified stable production reference remains Cloudflare Pages project `poxiol-site`, commit `ae452f70b4a027822fc4340db683746e90653fc1`, deployment `da1e8d5c-5db3-4522-9ee3-79cbbc0774a4` and immutable URL `https://da1e8d5c.poxiol-site.pages.dev`. The rollback record is read-only and was not executed.
 
 All unresolved owner decisions are listed in `docs/operations/owner-gates.md`. Production remains NO-GO until every mandatory production gate is resolved and the owner gives a new explicit authorization for the exact next external action.
-

@@ -16,7 +16,6 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
     <>
       <section className={`${styles.section} ${styles.hero}`} aria-labelledby="hybrid-home-title">
         <div className={styles.container}>
-          <p className={styles.review}>Local editorial review — no public publication or operational proof</p>
           <div className={styles.heroGrid}>
             <div>
               <h1 id="hybrid-home-title">{home.hero.title}</h1>
@@ -25,11 +24,11 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
                 <InquiryLink href={home.intents.design.href} className={styles.primary}>{home.intents.design.label}</InquiryLink>
                 <InquiryLink href={home.intents.range.href} className={styles.secondary}>{home.intents.range.label}</InquiryLink>
               </div>
-              <Limitation>{home.hero.limitation}</Limitation>
+              <Limitation>{home.hero.projectReviewNote}</Limitation>
             </div>
             <figure className={styles.figure}>
               <Image
-                src="/images/poxiol-teamwear-hero-poxiol-only-v2.png"
+                src="/images/poxiol-teamwear-hero-poxiol-only-v2.webp"
                 width={1254}
                 height={1254}
                 priority
@@ -46,7 +45,6 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
         <div className={styles.container}>
           <h2 id="hybrid-audience-title">{home.audience.title}</h2>
           <p className={styles.lead}>{home.audience.body}</p>
-          <Limitation>{home.audience.limitation}</Limitation>
         </div>
       </section>
 
@@ -59,7 +57,6 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{risk.title}</h3>
               <p>{risk.body}</p>
-              <Limitation>{risk.limitation}</Limitation>
               <Link href={risk.href}>{risk.cta}</Link>
             </article>)}
           </div>
@@ -75,7 +72,6 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{item.title}</h3>
               <p>{item.body}</p>
-              <Limitation>{item.limitation}</Limitation>
             </article>)}
           </div>
         </div>
@@ -83,8 +79,8 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
 
       <section className={`${styles.section} ${styles.muted}`} aria-labelledby="hybrid-explanations-title">
         <div className={styles.container}>
-          <p className={styles.eyebrow}>Editorial explanations</p>
-          <h2 id="hybrid-explanations-title">Evidence pending</h2>
+          <p className={styles.eyebrow}>Approval planning</p>
+          <h2 id="hybrid-explanations-title">Plan the approval path before production</h2>
           <div className={styles.gridFour}>
             {home.explanations.map(item => <article key={item.title} className={styles.card}>
               <h3>{item.title}</h3>
@@ -104,7 +100,6 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{step.title}</h3>
               <p>{step.body}</p>
-              <Limitation>{step.limitation}</Limitation>
             </li>)}
           </ol>
         </div>
@@ -112,9 +107,9 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
 
       <section id="contact" className={`${styles.section} ${styles.light}`} aria-labelledby="hybrid-inquiry-title">
         <div className={styles.container}>
-          <p className={styles.eyebrow}>Existing project inquiry</p>
+          <p className={styles.eyebrow}>Project inquiry</p>
           <h2 id="hybrid-inquiry-title">Share the project context</h2>
-          <p className={styles.lead}>Use the established free-mockup review form to begin the project conversation. This pilot does not add a second form or replace its endpoint, recovery, attachment, or analytics behavior.</p>
+          <p className={styles.lead}>Share the product, quantity, design status, size mix, destination and target date available now. POXIOL will use the brief to identify the next review step.</p>
           <ProjectQualificationForm intent="mockup" formType="Homepage V8 Lead" publicEmail={publicEmail} whatsappHref={whatsappHref} privacyPolicyApproved={privacyPolicyApproved} />
         </div>
       </section>
@@ -140,8 +135,6 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
             <InquiryLink href={home.intents.range.href} className={styles.primary}>{home.intents.range.label}</InquiryLink>
             <InquiryLink href={home.intents.sample.href} className={styles.secondary}>{home.intents.sample.label}</InquiryLink>
           </div>
-          <Limitation>{home.closing.limitation}</Limitation>
-          <p className={styles.pending}>{home.provenance.note}</p>
         </div>
       </section>
     </>

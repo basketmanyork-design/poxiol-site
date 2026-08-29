@@ -48,9 +48,12 @@
     "brokenImages": 0,
     "thirdPartyBrandAssets": 0,
     "unsupportedAbsoluteClaims": 0,
+    "buyerVisibleInternalLanguageFailures": 0,
     "blockingOverlays": 0,
     "thirdPartyScriptStylesheetOrImageLoads": 0,
-    "minimumVisibleInquiryCtasPerScenario": 8
+    "minimumVisibleInquiryCtasPerScenario": 8,
+    "settledPrivacyChoiceButtonMaxWidthPx": 123,
+    "settledPrivacyChoiceButtonMaxHeightPx": 44
   },
   "accessibility": {
     "sourceAndOutputContract": "PASS",
@@ -78,6 +81,9 @@
     "consoleErrors": 0
   },
   "notes": [
+    "The full 76-scenario matrix was rerun after the mobile buyer-facing copy, privacy-control and WebP changes; all scenarios passed with zero browser console warnings or errors.",
+    "The approved 1254 x 1254 POXIOL illustration is now served as an 82,756-byte WebP instead of the replaced 1,487,571-byte PNG; its POXIOL mark and non-proof classification remain unchanged.",
+    "On 390 x 844, the homepage Build Your Range action preserved product=Full Teamwear and source=/, then placed #quote-form 96 CSS pixels below the viewport top without a page-level horizontal overflow.",
     "The legacy /product-visualization/ path is a static asset directory, not a page route; /design-gallery/ is the governed product-visualization page used in the matrix.",
     "Lazy images were not classified as broken until the browser reported a completed load with zero natural width; output asset integrity remains independently enforced by build tests.",
     "No link that could open WhatsApp, email, Alibaba, Formspree or another external destination was clicked."

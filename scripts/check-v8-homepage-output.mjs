@@ -17,7 +17,7 @@ assert.equal(h1Count, 1, 'Homepage must render exactly one H1.')
 
 assert.match(visibleText, /Custom Teamwear Built for Repeatable Team Orders/i)
 assert.match(visibleText, /For Teamwear Distributors, Dealers, Brands & Custom Resellers/i)
-assert.match(visibleText, /Local editorial review/i)
+assert.match(visibleText, /Final feasibility remains project-specific and is confirmed during project review/i)
 
 const anchors = [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)]
   .map(match => ({url: new URL(match[1].replace(/&amp;/g, '&'), 'https://www.poxiol.com'), label: match[2].replace(/<[^>]+>/g, '').trim()}))
@@ -38,9 +38,9 @@ for (const [label, path] of [['Upload Your Design', '/free-mockup/'], ['Build Yo
 
 for (const label of ['Design Accuracy', 'Size & Fit', 'Project Deadline', 'Sample-to-Bulk', 'Reorder Consistency', 'Account Expansion']) assert.match(visibleText, new RegExp(label, 'i'))
 for (const label of ['Approval checklist explanation', 'Milestone planning explanation', 'Sample and bulk comparison explanation', 'Retained project record explanation']) assert.match(visibleText, new RegExp(label, 'i'))
-assert.match(visibleText, /Evidence pending/i)
+assert.match(visibleText, /Plan the approval path before production/i)
 assert.match(visibleText, /Illustrative teamwear configuration/i)
-assert.match(visibleText, /Legacy detail-page integration remains later work/i)
+assert.doesNotMatch(visibleText, /Local editorial review|Owner-approved editorial wording only|Evidence pending|local source projection|pilot does not add a second form/i)
 for (const href of ['/products/basketball-uniforms/', '/products/soccer-jerseys/', '/custom-baseball-softball-uniforms/', '/private-label-teamwear/', '/oem-odm/', '/shipping-after-sales/', '/sample-order/']) assert.match(html, new RegExp(`href="${href.replaceAll('/', '\\/')}"`))
 
 assert.match(html, /"@type":"Organization"/)

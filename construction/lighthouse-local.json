@@ -15,54 +15,51 @@
     "environment": "loopback-only locked static review server",
     "throttling": "none",
     "runsPerRoute": 1,
-    "interpretation": "Local construction smoke metrics only; not a production Core Web Vitals claim."
+    "interpretation": "Fresh-tab reload samples for the current locked construction artifact. Local smoke metrics only; not a production Core Web Vitals claim."
   },
   "records": [
     {
       "route": "/",
-      "domContentLoadedMs": 30,
-      "firstContentfulPaintMs": 105,
-      "loadMs": 70,
-      "taskDurationMs": 107,
-      "scriptDurationMs": 34,
-      "layoutDurationMs": 3,
-      "jsHeapUsedBytes": 10432932,
-      "resources": 21,
-      "nodes": 2051,
-      "htmlBytes": 94213,
-      "referencedStaticAssetCount": 13,
-      "referencedStaticAssetBytes": 580633
+      "domContentLoadedMs": 14,
+      "taskDurationMs": 41,
+      "scriptDurationMs": 8,
+      "layoutDurationMs": 2,
+      "jsHeapUsedBytes": 9224336,
+      "resources": 33,
+      "nodes": 2032,
+      "htmlBytes": 84188,
+      "heroAssetBytes": 82756
     },
     {
       "route": "/guides/custom-basketball-uniform-cost-factors/",
-      "domContentLoadedMs": 18,
-      "firstContentfulPaintMs": 44,
-      "loadMs": 26,
-      "taskDurationMs": 43,
-      "scriptDurationMs": 10,
+      "domContentLoadedMs": 13,
+      "taskDurationMs": 34,
+      "scriptDurationMs": 7,
       "layoutDurationMs": 1,
-      "jsHeapUsedBytes": 8482648,
+      "jsHeapUsedBytes": 8471304,
       "resources": 26,
-      "nodes": 1320,
-      "htmlBytes": 75541,
-      "referencedStaticAssetCount": 10,
-      "referencedStaticAssetBytes": 540340
+      "nodes": 1316,
+      "htmlBytes": 75541
     },
     {
       "route": "/get-quote/",
-      "domContentLoadedMs": 86,
-      "firstContentfulPaintMs": 127,
-      "loadMs": 104,
-      "taskDurationMs": 126,
-      "scriptDurationMs": 11,
-      "layoutDurationMs": 4,
-      "jsHeapUsedBytes": 9004352,
+      "domContentLoadedMs": 13,
+      "taskDurationMs": 39,
+      "scriptDurationMs": 8,
+      "layoutDurationMs": 2,
+      "jsHeapUsedBytes": 8910452,
       "resources": 27,
-      "nodes": 1820,
-      "htmlBytes": 82679,
-      "referencedStaticAssetCount": 12,
-      "referencedStaticAssetBytes": 574665
+      "nodes": 1816,
+      "htmlBytes": 82779
     }
   ],
+  "httpSmoke": {
+    "homepageTotalSeconds": 0.001175,
+    "basketballTotalSeconds": 0.00124,
+    "quoteTotalSeconds": 0.001058,
+    "heroWebpTotalSeconds": 0.001098,
+    "throttling": "none",
+    "interpretation": "Loopback transfer timing only."
+  },
   "productionFollowUp": "Run Lighthouse and real-user Core Web Vitals on an owner-authorized Cloudflare Preview before production authorization."
 }

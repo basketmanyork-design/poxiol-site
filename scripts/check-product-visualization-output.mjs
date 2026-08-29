@@ -14,7 +14,7 @@ function invariant(condition, message) {
 
 const required = new Map([
   ['/', [
-    ['poxiol-teamwear-hero-poxiol-only-v2.png', 'Illustrative POXIOL-branded basketball, football, and warm-up teamwear configurations', 'Illustrative teamwear configuration'],
+    ['poxiol-teamwear-hero-poxiol-only-v2.webp', 'Illustrative POXIOL-branded basketball, football, and warm-up teamwear configurations', 'Illustrative teamwear configuration'],
   ]],
   ['products/basketball-uniforms', [
     ['POXIOL_BASK_FullSet.webp', 'POXIOL black basketball jersey and shorts set with neon green lightning graphics and number 23', 'Basketball uniform visualization showing the matching jersey and shorts set.'],

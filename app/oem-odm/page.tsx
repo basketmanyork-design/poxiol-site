@@ -95,7 +95,7 @@ export default async function OEMPage() {
             <div className="absolute -inset-4 rounded-[3rem] bg-lime-400/10 blur-2xl group-hover:bg-lime-400/20 transition"></div>
             <figure className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-neutral-900 shadow-2xl">
               <img
-                src="/images/poxiol-teamwear-hero-poxiol-only-v2.png"
+                src="/images/poxiol-teamwear-hero-poxiol-only-v2.webp"
                 alt="Illustrative basketball, soccer and training range with POXIOL wordmarks"
                 width={1254}
                 height={1254}

@@ -5,7 +5,7 @@ import {test} from 'node:test'
 import {sportsPages} from '../lib/sports-pages.ts'
 
 const root=process.cwd()
-const approved='/images/poxiol-teamwear-hero-poxiol-only-v2.png'
+const approved='/images/poxiol-teamwear-hero-poxiol-only-v2.webp'
 const projectWithdrawn=['home_hero_v62.png','project_school_multisport_v62.png','project_soccer_club_v62.png','projects_basketball_academy_uniform_program.png','manufacturing_packing_global_delivery.png','manufacturing_sublimation_printing.png']
 const brandUnsafe=['/images/poxiol-v62/home_hero_v62.png','/images/poxiol-v62/project_school_multisport_v62.png','/images/hero/hero-trust-new.webp','/images/sports-pages/basketball/hero.png','/images/sports-pages/soccer/hero.png','/images/sports-pages/training/hero.png']
 

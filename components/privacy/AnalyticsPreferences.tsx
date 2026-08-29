@@ -29,9 +29,13 @@ export function AnalyticsPreferences({
   }
 
   return (
-    <aside className={panelClass} aria-label="Analytics preference">
-      <p aria-live="polite">Analytics preference {permission}.</p>
-      <button type="button" onClick={onChange} className={`${buttonClass} mt-3 border border-neutral-500 bg-neutral-900 text-white`}>Change analytics preference</button>
-    </aside>
+    <button
+      type="button"
+      onClick={onChange}
+      aria-label={`Change analytics preference (${permission})`}
+      className="fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] left-3 z-[80] inline-flex min-h-11 items-center justify-center rounded-full border border-neutral-600 bg-neutral-950 px-4 py-2 text-xs font-bold text-white shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 md:bottom-4"
+    >
+      Privacy choices
+    </button>
   )
 }
