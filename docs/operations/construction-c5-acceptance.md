@@ -20,7 +20,7 @@ This decision means the exact local static artifact is complete enough for a sep
 
 ## Automated acceptance
 
-`construction/acceptance-command-results.json` records 15 source, build and output commands. Every command exited 0. The locked build recorded 144 passing checks, no failing checks and 124 static pages. The source suite recorded 37 passing checks; the conversion suite recorded 91 passing checks.
+`construction/acceptance-command-results.json` records 15 source, build and output commands. Every command exited 0. The locked build recorded 144 passing checks, no failing checks and 124 static pages. The source suite recorded 37 passing checks; the conversion suite recorded 93 passing checks.
 
 The command record stores command names, exit codes, durations, pass/fail counts, static-page count and output hashes only. It stores no environment values, credentials or raw submission data.
 
