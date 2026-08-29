@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "status": "PREVIEW_READY_PRODUCTION_NO_GO",
+  "productionAuthorized": false,
+  "deploymentPerformed": false,
+  "cloudflarePreviewCreated": false,
+  "cmsWrites": 0,
+  "realFormSubmissions": 0,
+  "trackedSourceClean": true,
+  "testsPassed": true,
+  "buildPassed": true,
+  "gates": {
+    "c1": true,
+    "c2": true,
+    "c3": true,
+    "c4": true
+  },
+  "releaseManifest": {
+    "path": "construction/release-manifest.json",
+    "sha256": "73a5b507363499910c5bc78f26e90fee448840d9604d9c99e8755f8d31887ded",
+    "sourceAggregateSha256": "774c6a6686eb8b83245890a069dac67499763c37dcc2fdc6f13ec58b473d6e90",
+    "outputAggregateSha256": "da73c79882c2d1737661eb2e120b511dcf853e3645ed52d73be97e1699aa7337"
+  },
+  "rollback": {
+    "path": "construction/rollback-manifest.json",
+    "sha256": "8063b12b1621ee8f0267e3eda5cfefd68e412571349931bc7b1fe86bc8e66a93",
+    "productionCommit": "ae452f70b4a027822fc4340db683746e90653fc1",
+    "deploymentId": "da1e8d5c-5db3-4522-9ee3-79cbbc0774a4"
+  }
+}

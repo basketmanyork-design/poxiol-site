@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "projectName": "poxiol-site",
+  "previousProductionCommit": "ae452f70b4a027822fc4340db683746e90653fc1",
+  "previousProductionDeploymentId": "da1e8d5c-5db3-4522-9ee3-79cbbc0774a4",
+  "previousProductionDeploymentUrl": "https://da1e8d5c.poxiol-site.pages.dev",
+  "activeDomains": [
+    "https://poxiol.com",
+    "https://www.poxiol.com",
+    "https://poxiol-site.pages.dev"
+  ],
+  "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
+  "referenceObservedFrom": "Cloudflare Dashboard deployment list (read-only)",
+  "referenceObservedDate": "2026-08-29",
+  "rollbackExecutionAuthorized": false,
+  "rollbackExecuted": false,
+  "deploymentPerformed": false
+}
