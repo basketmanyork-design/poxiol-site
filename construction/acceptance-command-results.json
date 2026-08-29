@@ -27,7 +27,7 @@
     {
       "command": "node scripts/assert-preview-readiness.mjs --check",
       "exitCode": 0,
-      "durationMs": 79,
+      "durationMs": 84,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
@@ -36,7 +36,7 @@
     {
       "command": "node scripts/check-sitemap-output.mjs",
       "exitCode": 0,
-      "durationMs": 47,
+      "durationMs": 49,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
@@ -45,7 +45,7 @@
     {
       "command": "node scripts/generate-route-release.mjs --check",
       "exitCode": 0,
-      "durationMs": 73,
+      "durationMs": 74,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
@@ -72,7 +72,7 @@
     {
       "command": "npm run check:canonical",
       "exitCode": 0,
-      "durationMs": 278,
+      "durationMs": 287,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
@@ -81,7 +81,7 @@
     {
       "command": "npm run check:cms-redirects",
       "exitCode": 0,
-      "durationMs": 269,
+      "durationMs": 286,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
