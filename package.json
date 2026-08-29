@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "check:construction-source": "node --test scripts/check-construction-source-contract.test.mjs scripts/check-construction-import-policy.test.mjs scripts/generate-construction-import.test.mjs scripts/check-construction-import-result.test.mjs && node scripts/generate-construction-import.mjs --check",
+    "check:construction-release": "node --test scripts/check-construction-release-manifest.test.mjs && node scripts/generate-construction-release-manifest.mjs --check",
     "check:plan-a-publication": "node --no-warnings --experimental-strip-types --test scripts/check-plan-a-publication-policy.test.mts",
     "check:final-public-assets": "node --no-warnings --experimental-strip-types --test scripts/check-final-public-assets.test.mts",
     "prebuild": "node --no-warnings --experimental-strip-types scripts/assert-legal-release-ready.mts && node --no-warnings --experimental-strip-types scripts/assert-analytics-release-ready.mts",
