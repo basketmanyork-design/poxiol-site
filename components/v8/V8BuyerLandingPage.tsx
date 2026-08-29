@@ -1,4 +1,5 @@
 import {BreadcrumbSchema, FAQSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
+import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice'
 import {Footer, Header} from '@/components/ui'
 import {
   V8_BRAND,
@@ -20,6 +21,7 @@ import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
 import {RealProductGallery} from './RealProductGallery'
 import {getProductVisualizationsForPage} from '@/lib/product-visualization/registry.ts'
 import {ProductVisualizationSection} from './ProductVisualizationSection'
+import {publicSectionDecision} from '@/lib/release/publication-policy'
 
 export function V8BuyerLandingPage({pageId}: {pageId: V8BuyerPageContent['pageId']}) {
   const page = getV8BuyerPageContent(pageId)
@@ -31,6 +33,7 @@ export function V8BuyerLandingPage({pageId}: {pageId: V8BuyerPageContent['pageId
   const faqSchemaItems = page.faqs.map(({question, answer}) => ({question, answer}))
   const realProofMedia = getV8ProductionAssetsForPage(pageId)
   const supportingVisualizations = getProductVisualizationsForPage(page.canonicalPath)
+  const planningDecision = publicSectionDecision('solutions-planning')
 
   return (
     <main className="bg-white text-neutral-950">
@@ -49,6 +52,9 @@ export function V8BuyerLandingPage({pageId}: {pageId: V8BuyerPageContent['pageId
           <p className="text-sm font-black uppercase tracking-[0.16em] text-lime-700">Buyer Fit</p>
           <h2 id={`${pageId}-buyer-fit-title`} className="mt-4 text-3xl font-black uppercase text-neutral-950 md:text-4xl">{pageId === 'private-label-teamwear' ? 'Built for Channel Partners' : `Built for ${buyerLabels.join(' and ')}`}</h2>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-600">{page.purpose}</p>
+          {planningDecision === 'QUALIFIED_EXPLANATION' ? (
+            <div className="mt-8 max-w-4xl"><QualifiedExplanationNotice /></div>
+          ) : null}
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
+import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice'
 import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
 import {FAQSchema, ProductSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
 import {Footer, Header} from '@/components/ui'
@@ -22,6 +23,7 @@ import {RealProductGallery} from '@/components/v8/RealProductGallery'
 import {SampleApproval} from '@/components/v8/SampleApproval'
 import {SolutionCards} from '@/components/v8/SolutionCards'
 import {V8Hero} from '@/components/v8/V8Hero'
+import {publicSectionDecision} from '@/lib/release/publication-policy'
 
 export function CoreSportLandingPage({sportId}: {sportId: Exclude<CoreSportId, 'basketball'>}) {
   const sport = getCoreSport(sportId)
@@ -29,6 +31,7 @@ export function CoreSportLandingPage({sportId}: {sportId: Exclude<CoreSportId, '
   const visualization = getProductVisualization(sport.visualizationId)
   const verifiedEvidence = getV8ProductionAssetsForPage(sport.pageId)
   const schemaFaqs = sport.faqs.map(({question, answer}) => ({question, answer}))
+  const planningDecision = publicSectionDecision('solutions-planning')
 
   return (
     <main className="bg-white text-neutral-950">
@@ -47,6 +50,12 @@ export function CoreSportLandingPage({sportId}: {sportId: Exclude<CoreSportId, '
       />
 
       <ProductGeoSections details={sport.geoDetails} />
+
+      {planningDecision === 'QUALIFIED_EXPLANATION' ? (
+        <section className="bg-white px-5 pb-6 md:px-10 xl:px-20" aria-label="Planning content limitation">
+          <div className="mx-auto max-w-7xl"><QualifiedExplanationNotice /></div>
+        </section>
+      ) : null}
 
       <SolutionCards
         items={sport.productCards}

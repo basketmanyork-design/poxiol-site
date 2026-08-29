@@ -75,7 +75,8 @@ test('OEM uses the reviewed own-brand illustration without presenting it as fact
 test('solution cards withhold unverified legacy pictures and their embedded brand or project claims',()=>{
   const body=visible(read('/solutions/'))
   for(const file of ['manufacturing_sublimation_printing.png','home_hero_v62.png','project_school_multisport_v62.png','home_oem_odm_solutions.png']) assert.ok(!body.includes(file),'Unverified legacy visual remains: '+file)
-  assert.equal((text(body).match(/Project imagery pending verification/g)||[]).length,6)
+  assert.equal((text(body).match(/Project imagery pending verification/g)||[]).length,0)
+  assert.match(text(body),/This is a planning explanation, not a customer project, factory record, quality result, delivery result or production guarantee\./)
 })
 
 for(const [route,product] of [['/oem-odm/','OEM / ODM Teamwear'],['/private-label-teamwear/','Private Label Teamwear']]) test(`${route} includes its program context in every inquiry link`,()=>{

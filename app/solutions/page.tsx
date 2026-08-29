@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMockupHref, getQuoteHref } from "@/components/ui";
+import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import {contextualInquiryHref} from '@/lib/inquiry-context';
+import {publicSectionDecision} from '@/lib/release/publication-policy';
 
 const solutionSeo = {
   title: "B2B Custom Teamwear Solutions | POXIOL",
@@ -19,7 +21,6 @@ type Solution = {
   subtitle: string;
   desc: string;
   items: string[];
-  image?: string;
 };
 
 const solutions: Solution[] = [
@@ -66,19 +67,29 @@ const solutions: Solution[] = [
 ];
 
 export default function SolutionsPage() {
+  const planningDecision = publicSectionDecision('solutions-planning');
+
   return (
     <main className="bg-[#0A0A0A] text-white">
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="B2B Solutions" title="Custom Teamwear Programs Built for Your Needs" subtitle="For teamwear distributors, dealers, sportswear brands and custom resellers worldwide managing ongoing client orders. Plan the first team kit, repeat orders and a broader Full Teamwear range around your client brief." dark center level="h1" />
-          
-          <div className="mt-24 space-y-32 text-left">
-            {solutions.map((sol, i) => (
-              <div key={sol.title} className={`grid gap-16 lg:grid-cols-2 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
+
+          {planningDecision === 'QUALIFIED_EXPLANATION' ? (
+            <div className="mx-auto mt-12 max-w-4xl">
+              <QualifiedExplanationNotice />
+            </div>
+          ) : null}
+
+          {planningDecision !== 'WITHHELD' ? <div className="mt-20 space-y-8 text-left">
+            {solutions.map((sol) => (
+              <article key={sol.title} className="grid gap-8 border-t border-white/10 py-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+                <div>
                   <p className="text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00] mb-4">{sol.subtitle}</p>
                   <h2 className="text-3xl font-black uppercase tracking-tight md:text-5xl">{sol.title}</h2>
+                </div>
+                <div>
                   <p className="mt-6 text-lg text-neutral-400 leading-relaxed">{sol.desc}</p>
                   <ul className="mt-10 grid gap-4 sm:grid-cols-2">
                     {sol.items.map(item => (
@@ -92,18 +103,9 @@ export default function SolutionsPage() {
                     <SecondaryButton href={contextualInquiryHref(getQuoteHref, {product:sol.title,sport:sol.sport,source:'/solutions/'})}>Get Quote</SecondaryButton>
                   </div>
                 </div>
-                <div className={`aspect-[16/10] overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  {sol.image ? (
-                    <img src={sol.image} alt={sol.title} className="h-full w-full object-cover" />
-                  ) : (
-                    <div className="flex h-full items-center justify-center p-8 text-center text-sm font-bold uppercase tracking-widest text-neutral-400">
-                      Project imagery pending verification
-                    </div>
-                  )}
-                </div>
-              </div>
+              </article>
             ))}
-          </div>
+          </div> : null}
         </div>
       </section>
 

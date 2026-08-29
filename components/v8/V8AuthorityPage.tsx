@@ -1,4 +1,5 @@
 import {PageJsonLd} from '@/components/cms/PageTemplate'
+import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice'
 import {FAQSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
 import {Footer, Header, SectionHeading} from '@/components/ui'
 import type {CmsPage} from '@/lib/cms/types'
@@ -16,6 +17,7 @@ import {QualityControl} from './QualityControl'
 import {SolutionCards} from './SolutionCards'
 import {V8Hero} from './V8Hero'
 import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
+import {publicSectionDecision} from '@/lib/release/publication-policy'
 import {ManufacturingProof} from './ManufacturingProof'
 import {QCProofGallery} from './QCProofGallery'
 import {RealProductGallery} from './RealProductGallery'
@@ -31,6 +33,11 @@ export function V8AuthorityPage({pageId, page}: {pageId: AuthorityPageId; page: 
   const schemaPage = {...page, heading: config.hero.title, description: config.hero.description}
   const fullUrl = `https://www.poxiol.com${config.canonicalPath}`
   const faqSchemaItems = content.faqs.map(({question, answer}) => ({question, answer}))
+  const planningDecision = publicSectionDecision(
+    pageId === 'quality-control'
+      ? 'quality-control-planning'
+      : 'manufacturing-planning',
+  )
 
   return (
     <main className="bg-white text-neutral-950">
@@ -44,6 +51,9 @@ export function V8AuthorityPage({pageId, page}: {pageId: AuthorityPageId; page: 
       <section className="px-5 py-16 md:px-10 md:py-24 xl:px-20" aria-labelledby={`${pageId}-authority-intro-title`}>
         <div className="mx-auto max-w-7xl">
           <div id={`${pageId}-authority-intro-title`}><SectionHeading eyebrow={config.label} title={content.introTitle} subtitle={content.introDescription} /></div>
+          {planningDecision === 'QUALIFIED_EXPLANATION' ? (
+            <div className="mt-10 max-w-4xl"><QualifiedExplanationNotice /></div>
+          ) : null}
         </div>
       </section>
 

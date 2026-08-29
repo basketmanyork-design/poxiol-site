@@ -1,10 +1,12 @@
 import InquiryLink from "@/components/InquiryLink";
+import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import type { SportsPageData } from "@/lib/sports-pages";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref, getQuoteHref } from "@/components/ui";
 import { ProductSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
 import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
 import { ProductGeoSections } from "@/components/sections/GeoV1Sections";
 import { buildSportsProductGeoDetails, resolveSportsFaqs } from "@/lib/geo-v1";
+import {publicSectionDecision} from '@/lib/release/publication-policy';
 
 function titleCaseKeyword(keyword: string) {
   return keyword.replace(/^custom\s+/i, "").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -16,6 +18,9 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
   const fullUrl = `${baseUrl}/${data.slug}/`;
   const resolvedFaqs = resolveSportsFaqs(data);
   const geoDetails = buildSportsProductGeoDetails(data);
+  const planningDecision = publicSectionDecision('solutions-planning');
+  const designDecision = publicSectionDecision('design-planning');
+  const showHeroMedia = data.heroMediaKind !== 'pendingBrandReview';
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black text-left">
@@ -41,7 +46,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       <Header />
       <section className="relative overflow-hidden bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(182,255,0,0.16),transparent_30%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+        <div className={`relative mx-auto grid max-w-7xl gap-12 lg:items-center ${showHeroMedia ? 'lg:grid-cols-[1fr_0.9fr]' : ''}`}>
           <div>
             <p className="mb-5 text-sm font-black uppercase tracking-[0.16em] text-[#B6FF00]">{data.eyebrow}</p>
             <h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl uppercase">{data.h1}</h1>
@@ -74,11 +79,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
               </figcaption>
             </figure>
           ) : data.heroMediaKind === 'pendingBrandReview' ? (
-            <div className="flex min-h-[420px] items-center justify-center rounded-[3rem] border border-dashed border-white/20 bg-white/5 px-8 text-center md:min-h-[560px]">
-              <p className="text-sm font-black uppercase tracking-[0.16em] text-neutral-400">
-                {data.heroMediaDisclosure || 'Product imagery pending brand review.'}
-              </p>
-            </div>
+            null
           ) : (
             <div className="relative min-h-[420px] overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 md:min-h-[560px]">
               <img src={data.heroImage} alt={data.heroImageAlt || `POXIOL ${data.h1} Custom Uniforms`} className="absolute inset-0 h-full w-full object-cover grayscale-[0.2]" />
@@ -173,12 +174,17 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
         </div>
       </section>
 
-      {/* 3. Customization Evidence - Conclusion + Data Structure */}
+      {/* 3. Qualified customization planning */}
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 border-y border-white/5">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          {planningDecision === 'QUALIFIED_EXPLANATION' ? (
+            <div className="mx-auto mb-12 max-w-4xl text-neutral-950">
+              <QualifiedExplanationNotice />
+            </div>
+          ) : null}
+          {planningDecision !== 'WITHHELD' ? <div className="mx-auto max-w-4xl">
              <div>
-                <SectionHeading eyebrow="B2B Evidence" title="Professional Customization Support" subtitle={`Vibrant team identity through high-color sublimation and durable construction.`} dark/>
+                <SectionHeading eyebrow="Customization Planning" title="Define the Customization Brief" subtitle="Use these options to prepare the artwork and product brief. Final materials, construction and appearance are confirmed through the project-specific sample review." dark/>
                 <div className="mt-12 grid gap-6">
                    {data.features.map(feat => (
                      <div key={feat.title} className="flex gap-5 text-left">
@@ -191,11 +197,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                    ))}
                 </div>
              </div>
-             <div className="grid grid-cols-2 gap-4" aria-label="Manufacturing evidence status">
-                <div className="flex aspect-square items-center justify-center rounded-[3rem] border border-dashed border-white/20 bg-white/5 p-7 text-center text-xs font-black uppercase tracking-[0.14em] text-neutral-400">Manufacturing evidence pending verification</div>
-                <div className="mt-12 flex aspect-square items-center justify-center rounded-[3rem] border border-dashed border-white/20 bg-white/5 p-7 text-center text-xs font-black uppercase tracking-[0.14em] text-neutral-400">Manufacturing evidence pending verification</div>
-             </div>
-          </div>
+          </div> : null}
         </div>
       </section>
 
@@ -203,16 +205,17 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       <section className="bg-white px-5 py-20 md:px-10 md:py-32 xl:px-20 text-neutral-950 border-y border-neutral-100">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Inspiration" title="Original Teamwear Design Concepts" subtitle="Select a design style and customize it with your own team colors and logos."/>
-          <div className="grid gap-8 md:grid-cols-3 mt-16">
+          {designDecision === 'QUALIFIED_EXPLANATION' ? (
+            <div className="mt-10 max-w-4xl"><QualifiedExplanationNotice /></div>
+          ) : null}
+          {designDecision !== 'WITHHELD' ? <div className="grid gap-8 md:grid-cols-3 mt-16">
             {data.designs.map((item)=>(
               <div key={item.title} className="group overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-neutral-50 shadow-sm">
-                <div className="relative flex h-72 items-center justify-center overflow-hidden bg-neutral-200 p-8 text-center text-xs font-black uppercase tracking-widest text-neutral-500">
-                  {item.imageStatus === 'approved' && item.image ? (
+                {item.imageStatus === 'approved' && item.image ? (
+                  <div className="relative flex h-72 items-center justify-center overflow-hidden bg-neutral-200 p-8 text-center text-xs font-black uppercase tracking-widest text-neutral-500">
                     <img src={item.image} alt={`POXIOL ${item.title} Design`} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-                  ) : (
-                    <span>Design imagery pending brand review</span>
-                  )}
-                </div>
+                  </div>
+                ) : null}
                 <div className="p-8 text-left">
                   <h3 className="text-2xl font-black text-neutral-950 uppercase italic tracking-tighter">{item.title}</h3>
                   <p className="mt-3 leading-7 text-neutral-600 text-sm">{item.description}</p>
@@ -225,7 +228,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
                 </div>
               </div>
             ))}
-          </div>
+          </div> : null}
         </div>
       </section>
 

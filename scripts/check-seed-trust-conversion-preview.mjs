@@ -56,7 +56,7 @@ const requiredOutputCopy = [
   'Remove Uncertainty Before Production',
   'From Your Idea to Finished Uniforms',
   'Production Proof, Only When Verified',
-  'Project imagery pending verification',
+  'This is a planning explanation, not a customer project, factory record, quality result, delivery result or production guarantee.',
   'Ready To Build Your Team Uniform?',
 ]
 
@@ -74,9 +74,10 @@ assert.ok(!homepageSource.includes('<FAQSchema'), 'Pilot homepage without visibl
 const projectListSource = read('app/projects/page.tsx')
 const projectDetailSource = read('app/projects/[slug]/page.tsx')
 
-assert.ok(projectListSource.includes('Project imagery pending verification'), 'Project cards need a safe missing-image state')
+assert.ok(projectListSource.includes('QualifiedExplanationNotice'), 'Project cards need an explicit non-proof planning limitation')
 assert.equal((projectListSource.match(/<h1/g) || []).length, 1, 'Projects page must render one visible h1')
-assert.ok(projectDetailSource.includes('Project imagery pending verification'), 'Project detail needs a safe missing-image state')
+assert.ok(projectDetailSource.includes('QualifiedExplanationNotice'), 'Project detail needs an explicit non-proof planning limitation')
+assert.ok(!projectListSource.includes('Project imagery pending verification') && !projectDetailSource.includes('Project imagery pending verification'), 'Plan A must remove unfinished project image frames')
 assert.ok(!contentResolverSource.includes("projects_basketball_academy_uniform_program.png', alt: title"), 'Project resolver still fabricates a basketball evidence image')
 
 const ledgerPath = path.join(root, 'docs/POXIOL_SEED_TRUST_CONVERSION_DRAFT_LEDGER.json')

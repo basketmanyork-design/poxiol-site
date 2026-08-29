@@ -1,9 +1,11 @@
 import {SectionHeading} from '@/components/ui'
 import {getPublicProofAssets} from '@/lib/v8/media.ts'
+import {publicSectionDecision} from '@/lib/release/publication-policy'
 import type {V8MediaAsset, V8ProcessStep} from '@/lib/v8/types.ts'
 import {VerifiedMediaPlaceholder} from './VerifiedMediaPlaceholder'
 
 export function ProductionProof({steps, media = [], eyebrow = 'Production Proof', title = 'Verified Production Media', description}: {steps: readonly V8ProcessStep[]; media?: readonly V8MediaAsset[]; eyebrow?: string; title?: string; description?: string}) {
+  if (publicSectionDecision('factory-process') !== 'EVIDENCE') return null
   const publishableMedia = getPublicProofAssets(media)
   const visibleSteps = steps.filter((step) => publishableMedia.some((asset) => asset.stage === step.id))
   if (!visibleSteps.length) return null

@@ -1,4 +1,5 @@
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
+import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice'
 import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
 import {FAQSchema, ProductSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
 import {Footer, Header} from '@/components/ui'
@@ -27,6 +28,7 @@ import {PackingProof} from './PackingProof'
 import {BASKETBALL_VISUALIZATION_SEQUENCE, getProductVisualization} from '@/lib/product-visualization/registry.ts'
 import {ProductVisualizationSection} from './ProductVisualizationSection'
 import {getCoreSport, resolveCoreSportGeoDetails} from '@/lib/core-sports'
+import {publicSectionDecision} from '@/lib/release/publication-policy'
 
 export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   const coreSport = getCoreSport('basketball')
@@ -35,6 +37,7 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   const schemaFaqs = faqs.map(({question, answer}) => ({question, answer}))
   const geoDetails = resolveCoreSportGeoDetails('basketball', buildSportsProductGeoDetails(data))
   const realProofMedia = getV8ProductionAssetsForSample('POXIOL-RP-001')
+  const planningDecision = publicSectionDecision('solutions-planning')
 
   return (
     <main className="bg-white text-neutral-950">
@@ -46,6 +49,12 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
       <V8Hero config={coreSport.hero} visualization={getProductVisualization('PV-BASK-001')} visualizationPage="/products/basketball-uniforms/" primary={PHASE4_BASKETBALL.primaryCta} secondary={PHASE4_BASKETBALL.secondaryCta} />
 
       <ProductGeoSections details={geoDetails} />
+
+      {planningDecision === 'QUALIFIED_EXPLANATION' ? (
+        <section className="bg-white px-5 pb-6 md:px-10 xl:px-20" aria-label="Planning content limitation">
+          <div className="mx-auto max-w-7xl"><QualifiedExplanationNotice /></div>
+        </section>
+      ) : null}
 
       <SolutionCards
         items={coreSport.productCards}

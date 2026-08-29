@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, SecondaryButton, freeMockupHref } from "@/components/ui";
+import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import { featuredDesigns } from "@/lib/home-data";
+import {publicSectionDecision} from '@/lib/release/publication-policy';
 
 export const metadata: Metadata = {
   title: "Custom Teamwear Design Gallery | POXIOL Inspiration",
@@ -9,17 +11,24 @@ export const metadata: Metadata = {
 };
 
 export default function DesignGalleryPage() {
+  const planningDecision = publicSectionDecision('design-planning');
+
   return (
     <main className="bg-[#0A0A0A] text-white">
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading level="h1" eyebrow="Gallery" title="Custom Teamwear Design Inspiration" subtitle="Professional sublimation design concepts developed by the POXIOL creative team." dark center />
-          
-          <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          {planningDecision === 'QUALIFIED_EXPLANATION' ? (
+            <div className="mx-auto mt-12 max-w-4xl">
+              <QualifiedExplanationNotice />
+            </div>
+          ) : null}
+
+          {planningDecision !== 'WITHHELD' ? <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredDesigns.map(design => (
-              <article key={design.title} className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5">
-                <div className="flex aspect-square items-center justify-center border-b border-white/10 bg-neutral-900 p-8 text-center text-xs font-black uppercase tracking-widest text-neutral-500">Design imagery pending brand review</div>
+              <article key={design.title} className="border-t border-white/15 py-8">
                 <div className="p-8">
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#B6FF00]">{design.sport}</span>
                   <h3 className="mt-3 text-2xl font-black uppercase italic leading-none">{design.title}</h3>
@@ -28,7 +37,7 @@ export default function DesignGalleryPage() {
                 </div>
               </article>
             ))}
-          </div>
+          </div> : null}
         </div>
       </section>
 

@@ -27,6 +27,8 @@ test('keeps non-proof buyer education explicitly qualified', () => {
     'solutions-planning',
     'design-planning',
     'manufacturing-planning',
+    'quality-control-planning',
+    'project-planning',
     'accessories-planning',
   ] as const) {
     assert.equal(publicSectionDecision(id), 'QUALIFIED_EXPLANATION')

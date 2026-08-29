@@ -29,7 +29,9 @@ test('generic sports template does not present illustrations as manufacturing ev
  const source=readFileSync(join(root,'components/sports/SportsLandingPage.tsx'),'utf8')
  assert.ok(!source.includes('/images/poxiol-v6/manufacturing_sublimation_printing.png'))
  assert.ok(!source.includes('/images/poxiol-v6/manufacturing_quality_control.png'))
- assert.match(source,/Manufacturing evidence pending verification/)
+ assert.doesNotMatch(source,/Manufacturing evidence pending verification/)
+ assert.match(source,/publicSectionDecision/)
+ assert.match(source,/QualifiedExplanationNotice/)
 })
 
 test('CMS text overlays cannot reintroduce unreviewed sports media',()=>{
@@ -43,16 +45,18 @@ test('CMS text overlays cannot reintroduce unreviewed sports media',()=>{
  assert.ok(!resolver.includes('heroImage: category.image.url'))
 })
 
-test('gallery pending cards keep copy separate and the CTA visible without hover',()=>{
+test('gallery withholds unfinished media while keeping planning copy and CTA visible',()=>{
  const source=readFileSync(join(root,'app/design-gallery/page.tsx'),'utf8')
  assert.ok(!source.includes('absolute inset-0'))
  assert.ok(!source.includes('opacity-0 group-hover:opacity-100'))
+ assert.ok(!source.includes('Design imagery pending brand review'))
+ assert.match(source,/QualifiedExplanationNotice/)
  assert.match(source,/Share Your Design Brief/)
 })
 
 test('projects heading can wrap safely at the 320px acceptance width',()=>{
  const source=readFileSync(join(root,'app/projects/page.tsx'),'utf8')
- assert.match(source,/<h1 className="[^"]*break-words[^"]*">Teamwear Projects and Manufacturing Scenarios<\/h1>/)
+ assert.match(source,/<h1 className="[^"]*break-words[^"]*">Teamwear Planning Scenarios<\/h1>/)
 })
 
 if(process.argv.includes('--output')){
@@ -73,7 +77,9 @@ if(process.argv.includes('--output')){
    const html=visible(readFileSync(file,'utf8'))
    for(const name of projectWithdrawn)assert.ok(!html.includes(name),file+' exposes '+name)
   }
-  assert.match(visible(readFileSync(join(projectRoot,'index.html'),'utf8')),/Project imagery pending verification/)
+  const projectIndex=visible(readFileSync(join(projectRoot,'index.html'),'utf8'))
+  assert.doesNotMatch(projectIndex,/Project imagery pending verification|Verified Project/)
+  assert.match(projectIndex,/This is a planning explanation, not a customer project, factory record, quality result, delivery result or production guarantee\./)
  })
  test('built pages withhold legacy design boards and unsafe schema fallbacks',()=>{
   const htmlFiles:string[]=[]
@@ -91,15 +97,17 @@ if(process.argv.includes('--output')){
    assert.doesNotMatch(html,/\/images\/designs\/|\/images\/sports-pages\/(?:basketball|soccer|training)\/design-[23]\.webp/,file+' exposes an unreviewed legacy design image')
   }
   const gallery=visible(readFileSync(join(root,'out/design-gallery/index.html'),'utf8'))
-  assert.equal((gallery.match(/Design imagery pending brand review/g)||[]).length,10)
+  assert.equal((gallery.match(/Design imagery pending brand review/g)||[]).length,0)
+  assert.match(gallery,/This is a planning explanation, not a customer project, factory record, quality result, delivery result or production guarantee\./)
   assert.match(gallery,/Share Your Design Brief/i)
  })
- test('built generic sports pages label unavailable manufacturing evidence instead of simulating proof',()=>{
+ test('built generic sports pages withhold unavailable manufacturing evidence and qualify planning copy',()=>{
   for(const slug of ['products/hoodies-jackets','products/training-wear','products/team-accessories']){
    const html=visible(readFileSync(join(root,'out',slug,'index.html'),'utf8'))
    assert.ok(!html.includes('manufacturing_sublimation_printing.png'),slug+' exposes a simulated printing scene')
    assert.ok(!html.includes('manufacturing_quality_control.png'),slug+' exposes a simulated QC scene')
-   assert.match(html,/Manufacturing evidence pending verification/,slug+' lacks an evidence-status disclosure')
+   assert.doesNotMatch(html,/Manufacturing evidence pending verification/,slug+' renders an unfinished evidence frame')
+   assert.match(html,/This is a planning explanation, not a customer project, factory record, quality result, delivery result or production guarantee\./,slug+' lacks the planning limitation')
   }
  })
 }

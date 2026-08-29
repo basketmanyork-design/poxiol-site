@@ -71,8 +71,9 @@ for (const field of ['buyerAuthorizationStatus', 'approvedImageStatus', 'evidenc
   assert.ok(caseSchema.includes(field), `case-study evidence schema is missing ${field}`)
 }
 
-assert.match(projectSource + projectDetailSource, /Manufacturing Scenario|Example Scenario/, 'unverified project records must render as scenarios')
-assert.match(projectSource + projectDetailSource, /Project imagery pending verification/, 'unverified project imagery must use the neutral placeholder')
+assert.match(projectSource + projectDetailSource, /Planning Scenario/, 'unverified project records must render as planning scenarios')
+assert.doesNotMatch(projectSource + projectDetailSource, /Project imagery pending verification|Verified Project/, 'unsupported project proof must be withheld instead of shown as an unfinished frame')
+assert.match(projectSource + projectDetailSource, /QualifiedExplanationNotice/, 'retained project planning content must carry the public limitation')
 assert.match(faqSource, /faqPageSchemaFromGroups/, 'visible FAQ and FAQPage JSON-LD must share the resolved groups')
 
 const articleTemplateSource = await readFile(path.join(root, 'components/cms/ArticleTemplate.tsx'), 'utf8')
@@ -141,7 +142,8 @@ if (!sourceOnly) {
 
   assert.match(htmlByRoute.home, /Custom Teamwear Built for Repeatable Team Orders/, 'built pilot homepage must render the approved global B2B H1')
   assert.match(htmlByRoute.shipping, /Production Planning/, 'built shipping page must render production planning guidance')
-  assert.match(htmlByRoute.projects, /Manufacturing Scenario|Example Scenario/, 'built projects page must keep unverified records labeled as scenarios')
+  assert.match(htmlByRoute.projects, /Planning Scenario/, 'built projects page must keep unverified records labeled as planning scenarios')
+  assert.doesNotMatch(htmlByRoute.projects, /Project imagery pending verification|Verified Project/, 'built projects page must withhold unsupported project proof')
 
   const faqSchemas = [...htmlByRoute.faq.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
     .map((match) => JSON.parse(match[1]))

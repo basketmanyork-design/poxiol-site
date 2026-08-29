@@ -8,5 +8,7 @@
   "solutions-planning": "QUALIFIED_EXPLANATION",
   "design-planning": "QUALIFIED_EXPLANATION",
   "manufacturing-planning": "QUALIFIED_EXPLANATION",
+  "quality-control-planning": "QUALIFIED_EXPLANATION",
+  "project-planning": "QUALIFIED_EXPLANATION",
   "accessories-planning": "QUALIFIED_EXPLANATION"
 }
