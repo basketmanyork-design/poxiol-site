@@ -120,16 +120,23 @@ test('renders the approved global-buyer content with distinct existing inquiry t
 })
 
 test('keeps approved navigation groups and destination-labelled legacy routes', () => {
-  const navigation = compile('lib/navigation.ts')
+  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts')})
+  const productTaxonomy = compile('lib/product-taxonomy.ts', {'./inquiry-context.ts': inquiryContext})
+  const navigation = compile('lib/navigation.ts', {'./product-taxonomy.ts': productTaxonomy})
   const groups = Object.fromEntries(navigation.HEADER_NAV.map(item => [item.label, item.children || []]))
-  assert.deepEqual(Array.from(groups.Products, item => item.href), ['/products/', '/products/#sports', '/products/#scenarios', '/products/basketball-uniforms/', '/products/soccer-jerseys/'])
+  const products = navigation.HEADER_NAV.find(item => item.label === 'Products')
+  assert.deepEqual(Array.from(products.groups, group => group.label), ['Explore', 'Browse by Sport', 'Browse by Wearing Scenario'])
+  assert.equal(products.groups[1].items.length, 12)
+  assert.equal(products.groups[2].items.length, 3)
   assert.deepEqual(Array.from(groups.Solutions, item => item.href), ['/private-label-teamwear/', '/oem-odm/', '/sample-order/'])
   assert.deepEqual(Array.from(groups['Why POXIOL'], item => item.href), ['/customization/', '/quality-control-process/', '/fabric-guide/', '/shipping-after-sales/'])
   assert.deepEqual(Array.from(groups['About POXIOL'], item => item.href), ['/about/', '/factory/', '/contact/'])
 })
 
 test('Header renders real semantic disclosures for every navigation group with children', async () => {
-  const navigation = compile('lib/navigation.ts')
+  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts')})
+  const productTaxonomy = compile('lib/product-taxonomy.ts', {'./inquiry-context.ts': inquiryContext})
+  const navigation = compile('lib/navigation.ts', {'./product-taxonomy.ts': productTaxonomy})
   const ui = compile('components/ui.tsx', {
     'react/jsx-runtime': jsxRuntime,
     react: {},
@@ -140,6 +147,7 @@ test('Header renders real semantic disclosures for every navigation group with c
     '@/components/MobileInquiryLink': {default: () => null},
     '@/components/MobileInquiryBar': {default: () => null},
     '@/components/InquiryLink': {default: () => null},
+    '@/components/DesktopMenuLink': {default: () => null},
   })
   const header = await ui.Header()
   const disclosures = nodes(header).filter(node => node.type === 'details')
@@ -150,7 +158,9 @@ test('Header renders real semantic disclosures for every navigation group with c
 function mobileMenuHarness() {
   const slots = []
   let cursor = 0
-  const navigation = compile('lib/navigation.ts')
+  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts')})
+  const productTaxonomy = compile('lib/product-taxonomy.ts', {'./inquiry-context.ts': inquiryContext})
+  const navigation = compile('lib/navigation.ts', {'./product-taxonomy.ts': productTaxonomy})
   const menu = compile('components/MobileMenu.tsx', {
     'react/jsx-runtime': jsxRuntime,
     react: {useState(initial) { const index = cursor++; if (!(index in slots)) slots[index] = initial; return [slots[index], value => { slots[index] = typeof value === 'function' ? value(slots[index]) : value }] }},

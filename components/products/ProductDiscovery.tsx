@@ -27,7 +27,7 @@ export function ProductDiscovery() {
                 : 'Discuss This Sport Program'
 
               return (
-                <article key={sport.id} data-product-scene={sport.id} className="group relative flex min-h-[27rem] flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-neutral-950 p-6 transition-colors hover:border-[#b6ff00]/80 motion-reduce:transition-none">
+                <article id={`sport-${sport.id}`} key={sport.id} data-product-scene={sport.id} className="group relative flex min-h-[27rem] scroll-mt-24 flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-neutral-950 p-6 transition-colors hover:border-[#b6ff00]/80 motion-reduce:transition-none">
                   <Image
                     aria-hidden="true"
                     alt=""
@@ -61,7 +61,7 @@ export function ProductDiscovery() {
           <h2 id="scenarios-title" className="mt-3 max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl">Choose how the range will be worn</h2>
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
             {WEARING_SCENARIOS.map((scenario) => (
-              <article key={scenario.id} data-product-scene={scenario.id} className="group relative min-h-[34rem] overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950 p-6 text-white md:p-8">
+              <article id={`scenario-${scenario.id}`} key={scenario.id} data-product-scene={scenario.id} className="group relative min-h-[34rem] scroll-mt-24 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950 p-6 text-white md:p-8">
                 <Image
                   aria-hidden="true"
                   alt=""

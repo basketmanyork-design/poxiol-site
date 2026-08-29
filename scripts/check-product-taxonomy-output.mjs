@@ -40,6 +40,28 @@ assert.equal((html.match(/data-product-scene=/g) || []).length, 15)
 assert.equal((html.match(/\/images\/product-discovery\//g) || []).length >= 15, true)
 
 for (const id of ['sports', 'scenarios']) assert.match(html, new RegExp(`id="${id}"`))
+for (const id of [
+  'sport-track-field',
+  'sport-badminton',
+  'sport-volleyball',
+  'sport-ice-hockey',
+  'sport-american-football',
+  'sport-rugby',
+  'sport-tennis',
+  'sport-cricket',
+  'sport-golf',
+  'scenario-match-day',
+  'scenario-warm-up-training',
+  'scenario-off-field-travel',
+]) {
+  assert.match(html, new RegExp(`id="${id}"`), `Missing precise discovery anchor ${id}`)
+}
+
+const header = html.match(/<header\b[\s\S]*?<\/header>/i)?.[0] || ''
+assert.match(header, /aria-label="Products menu"/, 'Desktop navigation must expose the grouped Products menu.')
+for (const label of [...sports, ...scenarios]) {
+  assert.match(header, new RegExp(label.replace(/&/g, '&(?:amp;)?')), `Products menu is missing ${label}`)
+}
 for (const href of [
   '/products/basketball-uniforms/',
   '/products/soccer-jerseys/',

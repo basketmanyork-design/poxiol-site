@@ -62,13 +62,35 @@ test('a selected sport and scenario reaches the safe quote form with editable co
   assert.equal(getScenario('unknown'), undefined)
 })
 
-test('the Products menu stays compact while exposing both discovery dimensions', () => {
+test('the Products menu exposes the complete dual-dimension taxonomy', () => {
   const products = HEADER_NAV.find((item) => item.label === 'Products')
-  assert.deepEqual(products?.children, [
+  assert.deepEqual(products?.groups?.map((group) => group.label), [
+    'Explore',
+    'Browse by Sport',
+    'Browse by Wearing Scenario',
+  ])
+
+  assert.deepEqual(products?.groups?.[0]?.items, [
     {label: 'All Products', href: '/products/'},
-    {label: 'Browse by Sport', href: '/products/#sports'},
-    {label: 'Browse by Wearing Scenario', href: '/products/#scenarios'},
-    {label: 'Basketball Uniforms', href: '/products/basketball-uniforms/'},
-    {label: 'Soccer Kits', href: '/products/soccer-jerseys/'},
+  ])
+  assert.deepEqual(products?.groups?.[1]?.items.map((item) => item.label), expectedSports)
+  assert.deepEqual(products?.groups?.[1]?.items.map((item) => item.href), [
+    '/products/soccer-jerseys/',
+    '/products/basketball-uniforms/',
+    '/products/#sport-track-field',
+    '/products/#sport-badminton',
+    '/products/#sport-volleyball',
+    '/custom-baseball-softball-uniforms/',
+    '/products/#sport-ice-hockey',
+    '/products/#sport-american-football',
+    '/products/#sport-rugby',
+    '/products/#sport-tennis',
+    '/products/#sport-cricket',
+    '/products/#sport-golf',
+  ])
+  assert.deepEqual(products?.groups?.[2]?.items, [
+    {label: 'Match Day', href: '/products/#scenario-match-day'},
+    {label: 'Warm-Up & Training', href: '/products/#scenario-warm-up-training'},
+    {label: 'Off-Field & Travel', href: '/products/#scenario-off-field-travel'},
   ])
 })

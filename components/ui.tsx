@@ -6,6 +6,7 @@ import MobileMenu from "@/components/MobileMenu";
 import MobileInquiryLink from "@/components/MobileInquiryLink";
 import MobileInquiryBar from "@/components/MobileInquiryBar";
 import InquiryLink from "@/components/InquiryLink";
+import DesktopMenuLink from "@/components/DesktopMenuLink";
 
 export const freeMockupHref = "/free-mockup/";
 export const getQuoteHref = "/get-quote/";
@@ -108,19 +109,47 @@ export async function Header() {
         <Link href="/" aria-label="POXIOL home" className="inline-flex min-w-[112px] items-center gap-3 text-2xl font-black tracking-tight text-white uppercase">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="128" height="36" className="h-9 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
           {HEADER_NAV.map((item) => (
-            item.children?.length ? <details key={item.label} className="group relative">
-              <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-sm font-bold text-white/80 transition hover:text-[#B6FF00]">
+            item.children?.length || item.groups?.length ? <details key={item.label} className="group relative">
+              <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-md text-sm font-bold text-white/80 outline-none transition hover:text-[#B6FF00] focus-visible:ring-2 focus-visible:ring-[#B6FF00] focus-visible:ring-offset-4 focus-visible:ring-offset-neutral-950">
                 {item.label}<span className="text-[10px] text-white/50 transition group-open:rotate-180 group-open:text-[#B6FF00]">▾</span>
               </summary>
-              <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4">
-                <div className="w-64 rounded-2xl border border-white/10 bg-neutral-950 p-3 shadow-2xl">
-                    {item.children.map((child) => (
-                      <InquiryLink key={child.href} href={child.href} className="block rounded-xl px-4 py-3 text-sm font-bold text-white/80 transition hover:bg-white/5 hover:text-[#B6FF00]">
-                        {child.label}
-                      </InquiryLink>
-                    ))}
+              {item.groups?.length ? (
+                <div className="fixed left-1/2 top-20 z-50 w-[min(920px,calc(100vw-2.5rem))] -translate-x-1/2 pt-4">
+                  <div aria-label={`${item.label} menu`} className="grid grid-cols-[0.7fr_2fr_1.15fr] gap-4 rounded-3xl border border-white/10 bg-neutral-950 p-5 shadow-2xl">
+                    {item.groups.map((navGroup) => {
+                      const groupId = `desktop-${item.label}-${navGroup.label}`.replaceAll(' ', '-').toLowerCase();
+                      return <div key={navGroup.label} role="group" aria-labelledby={groupId} className="min-w-0">
+                        <DesktopMenuLink
+                          id={groupId}
+                          href={navGroup.href}
+                          className="inline-flex min-h-11 items-center text-xs font-black uppercase tracking-[0.16em] text-[#B6FF00] hover:text-white"
+                        >
+                          {navGroup.label}
+                        </DesktopMenuLink>
+                        <ul className={`mt-1 grid gap-1 ${navGroup.columns === 2 ? 'grid-cols-2 gap-x-2' : 'grid-cols-1'}`}>
+                          {navGroup.items.map((child) => (
+                            <li key={`${navGroup.label}-${child.label}`}>
+                              <DesktopMenuLink href={child.href} className="flex min-h-11 items-center rounded-xl px-3 py-2 text-sm font-bold leading-5 text-white/80 transition hover:bg-white/5 hover:text-[#B6FF00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B6FF00]">
+                                {child.label}
+                              </DesktopMenuLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    })}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4">
+                  <div className="w-64 rounded-2xl border border-white/10 bg-neutral-950 p-3 shadow-2xl">
+                    {item.children?.map((child) => (
+                      <DesktopMenuLink key={child.href} href={child.href} className="block rounded-xl px-4 py-3 text-sm font-bold text-white/80 transition hover:bg-white/5 hover:text-[#B6FF00]">
+                        {child.label}
+                      </DesktopMenuLink>
+                    ))}
+                  </div>
+                </div>
+              )}
             </details> : <Link key={item.label} href={item.href} className="text-sm font-bold text-white/80 transition hover:text-[#B6FF00]">{item.label}</Link>
           ))}
         </nav>

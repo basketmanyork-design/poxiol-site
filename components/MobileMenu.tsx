@@ -30,7 +30,7 @@ export default function MobileMenu() {
       </button>
 
       {open ? (
-        <div className="absolute inset-x-0 top-20 z-50 border-b border-white/10 bg-neutral-950 px-5 pb-8 pt-4 shadow-2xl">
+        <div className="absolute inset-x-0 top-20 z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto border-b border-white/10 bg-neutral-950 px-5 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-4 shadow-2xl">
           <nav aria-label="Mobile navigation" className="flex flex-col">
             <Link
               href="/"
@@ -39,8 +39,10 @@ export default function MobileMenu() {
             >
               Home
             </Link>
-            {HEADER_NAV.map((item: NavItem) => (
-              <div key={item.label} className="border-b border-white/10">
+            {HEADER_NAV.map((item: NavItem) => {
+              const hasSubmenu = Boolean(item.children?.length || item.groups?.length);
+
+              return <div key={item.label} className="border-b border-white/10">
                 <div className="flex items-center justify-between py-4">
                   <Link
                     href={item.href}
@@ -49,7 +51,7 @@ export default function MobileMenu() {
                   >
                     {item.label}
                   </Link>
-                  {item.children?.length ? (
+                  {hasSubmenu ? (
                     <button
                       type="button"
                       onClick={() => setExpanded(expanded === item.label ? null : item.label)}
@@ -61,7 +63,36 @@ export default function MobileMenu() {
                     </button>
                   ) : null}
                 </div>
-                {item.children?.length && expanded === item.label ? (
+                {item.groups?.length && expanded === item.label ? (
+                  <div className="space-y-5 pb-5 pl-3">
+                    {item.groups.map((navGroup) => {
+                      const groupId = `mobile-${item.label}-${navGroup.label}`.replaceAll(' ', '-').toLowerCase();
+                      return <div key={navGroup.label} role="group" aria-labelledby={groupId}>
+                        <InquiryLink
+                          id={groupId}
+                          href={navGroup.href}
+                          onClick={() => setOpen(false)}
+                          className="inline-flex min-h-11 items-center text-xs font-black uppercase tracking-[0.14em] text-[#B6FF00]"
+                        >
+                          {navGroup.label}
+                        </InquiryLink>
+                        <ul className={`grid gap-x-2 ${navGroup.columns === 2 ? 'min-[390px]:grid-cols-2' : 'grid-cols-1'}`}>
+                          {navGroup.items.map((child) => (
+                            <li key={`${navGroup.label}-${child.label}`}>
+                              <InquiryLink
+                                href={child.href}
+                                onClick={() => setOpen(false)}
+                                className="flex min-h-11 items-center py-2 text-sm font-semibold leading-5 text-neutral-300 hover:text-[#B6FF00]"
+                              >
+                                {child.label}
+                              </InquiryLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    })}
+                  </div>
+                ) : item.children?.length && expanded === item.label ? (
                   <ul className="pb-4 pl-4">
                     {item.children.map((child) => (
                       <li key={child.href}>
@@ -77,7 +108,7 @@ export default function MobileMenu() {
                   </ul>
                 ) : null}
               </div>
-            ))}
+            })}
             <InquiryLink
               href={HEADER_CTA.href}
               onClick={() => setOpen(false)}
