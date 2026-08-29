@@ -9,7 +9,7 @@
     {
       "command": "git diff --check",
       "exitCode": 0,
-      "durationMs": 34,
+      "durationMs": 40,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
@@ -18,11 +18,11 @@
     {
       "command": "git status --short",
       "exitCode": 0,
-      "durationMs": 37,
+      "durationMs": 43,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
-      "outputSha256": "aaca0d6bc613d5cbe509028de061622bca5ba548cefbe760230598d1555822ef"
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "command": "node scripts/assert-preview-readiness.mjs --check",
@@ -63,11 +63,11 @@
     {
       "command": "npm run check:analytics-release",
       "exitCode": 0,
-      "durationMs": 421,
+      "durationMs": 422,
       "passCount": 5,
       "failCount": 0,
       "staticPageCount": null,
-      "outputSha256": "c342f66b2e269cfdf3b0144cb5043a90e50396740f05a770426c824a948e8d62"
+      "outputSha256": "5b5b566147736b1f22139536c75a7c6a1386c2864e301240a4836b2d893e4523"
     },
     {
       "command": "npm run check:canonical",
@@ -90,34 +90,34 @@
     {
       "command": "npm run check:construction-release",
       "exitCode": 0,
-      "durationMs": 499,
+      "durationMs": 491,
       "passCount": 5,
       "failCount": 0,
       "staticPageCount": null,
-      "outputSha256": "8bfc4ff004a54ddaa54c53af180f487a25652535e1d52125bb102d0c48a37546"
+      "outputSha256": "92914ae37d1f71bdd8d7543a719ab843f8841c6cf857982963cebfd0cbc77028"
     },
     {
       "command": "npm run check:conversion-ctas",
       "exitCode": 0,
-      "durationMs": 3354,
+      "durationMs": 3394,
       "passCount": 91,
       "failCount": 0,
       "staticPageCount": null,
-      "outputSha256": "f407f8d7d65d59e9a76fb13d6e919f56c2fab43ba15296b9aa8d34397bc8e1f9"
+      "outputSha256": "5f6c7e1389acd8ed6cc614ed264b51659e359c6b2d811fdc061a5f8ffb0e8068"
     },
     {
       "command": "npm run check:preview-readiness",
       "exitCode": 0,
-      "durationMs": 367,
+      "durationMs": 364,
       "passCount": 6,
       "failCount": 0,
       "staticPageCount": null,
-      "outputSha256": "90ca85b38ff37efe275c839dad441e67433dfba69ae2c8789b89b7d10d370cab"
+      "outputSha256": "d71a63d68f1956760309d49b389c27b5d48988652390824f4630fcd08552d678"
     },
     {
       "command": "npm run check:product-visualization",
       "exitCode": 0,
-      "durationMs": 398,
+      "durationMs": 366,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
@@ -126,7 +126,7 @@
     {
       "command": "npm run check:real-production",
       "exitCode": 0,
-      "durationMs": 1411,
+      "durationMs": 885,
       "passCount": 0,
       "failCount": 0,
       "staticPageCount": null,
@@ -135,11 +135,11 @@
     {
       "command": "npm test",
       "exitCode": 0,
-      "durationMs": 6283,
-      "passCount": 35,
+      "durationMs": 5758,
+      "passCount": 37,
       "failCount": 0,
       "staticPageCount": null,
-      "outputSha256": "bd5a5d7f127a3147a711488a9dda22abf675329cccdc709815d86febb8eb8077"
+      "outputSha256": "f63bf723ef5c0933a2026e29e144274cb768e116b55a087fc2096071ef0d1acd"
     }
   ]
 }
