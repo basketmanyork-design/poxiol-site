@@ -732,9 +732,9 @@ function sectionsFromArticle(article: SanityArticle, fallback?: CmsArticle) {
 export async function getSiteChrome(): Promise<CmsSiteChrome> {
   if (contentSource === 'legacy') return legacySiteChrome
   const [settingsResponse, navResponse, footerResponse, categoryResolution] = await Promise.all([
-    sanityQuery<SanitySiteSettings>(siteSettingsQuery),
-    sanityQuery<SanityNav>(navigationQuery),
-    sanityQuery<SanityFooter>(footerQuery),
+    sanityQuery<SanitySiteSettings>(siteSettingsQuery, {}, {documentType: 'siteSettings', required: true}),
+    sanityQuery<SanityNav>(navigationQuery, {}, {documentType: 'navigationSettings', required: true}),
+    sanityQuery<SanityFooter>(footerQuery, {}, {documentType: 'footerSettings'}),
     resolveProductCategories(),
   ])
 
@@ -808,7 +808,7 @@ function normalizePageClaims(page: CmsPage): CmsPage {
 export async function getSitePage(key: string): Promise<CmsPage> {
   const legacy = legacyPages.find((page) => page.key === key) || legacyPages[0]
   if (contentSource === 'legacy') return normalizePageClaims(legacy)
-  const response = await sanityQuery<SanityPage>(sitePageByKeyQuery, {key})
+  const response = await sanityQuery<SanityPage>(sitePageByKeyQuery, {key}, {documentType: 'sitePage'})
   const page = response.ok ? response.result : null
   if (!response.ok) return normalizePageClaims(legacy)
   if (!page || !isDocumentVisible(page.publishStatus, contentSource)) return normalizePageClaims(legacy)
@@ -840,7 +840,7 @@ export async function getSitePage(key: string): Promise<CmsPage> {
 type ProductCategoriesResolution = {categories: CmsProductCategory[]; knownCategorySlugs: Set<string>; visibilityResolved: boolean}
 
 async function resolveProductCategories(): Promise<ProductCategoriesResolution> {
-  const response = await sanityQuery<SanityCategory[]>(productCategoriesQuery)
+  const response = await sanityQuery<SanityCategory[]>(productCategoriesQuery, {}, {documentType: 'productCategory'})
   const cmsCategories = response.ok ? response.result || [] : []
   const knownCategorySlugs = new Set([
     ...Array.from(exportedCategorySlugs),
@@ -865,7 +865,7 @@ export async function getProductCategories(): Promise<CmsProductCategory[]> {
 
 export async function getProductCategory(slug: string): Promise<CmsProductCategory | null> {
   const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
-  const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug})
+  const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug}, {documentType: 'productCategory'})
   const category = resolveSingle({
     slug,
     legacy: fallback,
@@ -882,7 +882,7 @@ type ProductCategoryResolution = {category: CmsProductCategory | null; suppresse
 
 async function resolveProductCategory(slug: string): Promise<ProductCategoryResolution> {
   const fallback = legacyProductCategories.find((category) => category.slug === slug) || null
-  const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug})
+  const response = await sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug}, {documentType: 'productCategory'})
   if (!response.ok || contentSource === 'legacy') return {category: fallback, suppressed: false}
 
   const cms = response.result
@@ -899,7 +899,7 @@ export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> 
   const categoryResolution = await resolveProductCategories()
   const visibleCategorySlugs = new Set(categoryResolution.categories.map((category) => category.slug))
   const legacy = categorySlug ? legacyProducts.filter((product) => product.categorySlug === categorySlug) : legacyProducts
-  const response = await sanityQuery<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {})
+  const response = await sanityQuery<SanityProduct[]>(categorySlug ? productsByCategoryQuery : productsQuery, categorySlug ? {categorySlug} : {}, {documentType: 'product'})
   return resolveProductsForCategoryVisibility(categoryResolution.visibilityResolved, legacy, () => mergeCmsList({
     legacy: legacy.filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug)),
     cms: response.ok ? response.result || [] : [],
@@ -915,7 +915,7 @@ export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> 
 export async function getProduct(slug: string): Promise<CmsProduct | null> {
   const fallback = legacyProducts.find((product) => product.slug === slug) || null
   const categoryResolution = await resolveProductCategories()
-  const response = await sanityQuery<SanityProduct>(productBySlugQuery, {slug})
+  const response = await sanityQuery<SanityProduct>(productBySlugQuery, {slug}, {documentType: 'product'})
   if (!categoryResolution.visibilityResolved) return fallback
   const product = resolveSingle({
     slug,
@@ -931,7 +931,7 @@ export async function getProduct(slug: string): Promise<CmsProduct | null> {
 }
 
 export async function getProjects(): Promise<CmsProject[]> {
-  const response = await sanityQuery<SanityCaseStudy[]>(caseStudiesQuery)
+  const response = await sanityQuery<SanityCaseStudy[]>(caseStudiesQuery, {}, {documentType: 'caseStudy'})
   return mergeCmsList({
     legacy: legacyProjects,
     cms: response.ok ? response.result || [] : [],
@@ -944,7 +944,7 @@ export async function getProjects(): Promise<CmsProject[]> {
 
 export async function getProject(slug: string): Promise<CmsProject | null> {
   const fallback = legacyProjects.find((project) => project.slug === slug) || null
-  const response = await sanityQuery<SanityCaseStudy>(caseStudyBySlugQuery, {slug})
+  const response = await sanityQuery<SanityCaseStudy>(caseStudyBySlugQuery, {slug}, {documentType: 'caseStudy'})
   return resolveSingle({
     slug,
     legacy: fallback,
@@ -981,7 +981,7 @@ function withBuyerDecisionFaqs(groups: CmsFaqGroup[]): CmsFaqGroup[] {
 
 export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
   if (contentSource === 'legacy') return withBuyerDecisionFaqs(legacyFaqGroups)
-  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery, {}, {documentType: 'faqItem'})
   if (!response.ok) return legacyFaqGroups
 
   const cms = response.result || []
@@ -1041,7 +1041,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
 
 export async function getArticles(type?: CmsArticle['articleType']): Promise<CmsArticle[]> {
   const legacy = type ? legacyArticles.filter((article) => article.articleType === type) : legacyArticles
-  const response = await sanityQuery<SanityArticle[]>(articlesQuery)
+  const response = await sanityQuery<SanityArticle[]>(articlesQuery, {}, {documentType: 'article'})
   const merged = mergeCmsList({
     legacy,
     cms: response.ok ? response.result || [] : [],
@@ -1062,7 +1062,7 @@ export async function getArticle(slug: string): Promise<CmsArticle | null> {
   const controlled = getWeek3GuideBySlug(slug)
   if (controlled) return controlled
   const fallback = legacyArticles.find((article) => article.slug === slug) || null
-  const response = await sanityQuery<SanityArticle>(articleBySlugQuery, {slug})
+  const response = await sanityQuery<SanityArticle>(articleBySlugQuery, {slug}, {documentType: 'article'})
   return resolveSingle({
     slug,
     legacy: fallback,
@@ -1076,7 +1076,7 @@ export async function getArticle(slug: string): Promise<CmsArticle | null> {
 
 export async function getMatchedFaqsForProductCategory(categorySlug: string, fallback: CmsFaqItem[] = [], categoryTitle?: string): Promise<CmsFaqItem[]> {
   if (contentSource === 'legacy') return fallback
-  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery, {}, {documentType: 'faqItem'})
   if (!response.ok) return fallback
   const matched = (response.result || [])
     .filter((faq) => faqMatchesCategory(faq, categorySlug, categoryTitle))
@@ -1087,7 +1087,7 @@ export async function getMatchedFaqsForProductCategory(categorySlug: string, fal
 
 export async function getMatchedFaqsForProduct(productSlug: string, fallback: CmsFaqItem[] = [], categorySlug?: string): Promise<CmsFaqItem[]> {
   if (contentSource === 'legacy') return fallback
-  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery)
+  const response = await sanityQuery<SanityFaq[]>(faqItemsQuery, {}, {documentType: 'faqItem'})
   if (!response.ok) return fallback
   const matched = (response.result || [])
     .filter((faq) => faqMatchesProduct(faq, productSlug, categorySlug))
@@ -1150,8 +1150,8 @@ export async function getBasketballDecisionPage(legacyData: SportsPageData): Pro
   if (!base || contentSource === 'legacy') return base
 
   const [categoryResponse, procurementResponse] = await Promise.all([
-    sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug: 'basketball-uniforms'}),
-    sanityQuery<SanityProcurementStandards>(procurementStandardsQuery),
+    sanityQuery<SanityCategory>(productCategoryBySlugQuery, {slug: 'basketball-uniforms'}, {documentType: 'productCategory'}),
+    sanityQuery<SanityProcurementStandards>(procurementStandardsQuery, {}, {documentType: 'procurementStandards'}),
   ])
   if (!categoryResponse.ok || !categoryResponse.result) return base
   const category = categoryResponse.result
@@ -1302,7 +1302,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     getSitePage('homepage'),
     getProductCategories(),
     getFaqGroups(),
-    sanityQuery<SanityProcurementStandards>(procurementStandardsQuery),
+    sanityQuery<SanityProcurementStandards>(procurementStandardsQuery, {}, {documentType: 'procurementStandards'}),
   ])
   const cmsCategories = categories.filter((category) => category.homepageVisibility !== false).slice(0, 12).map((category) => ({
     title: category.title,

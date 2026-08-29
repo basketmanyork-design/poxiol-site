@@ -2,6 +2,7 @@ import 'server-only'
 
 import type {CmsMode} from '@/lib/cms/types'
 import {resolveSanityRequestPolicy} from './requestPolicy'
+import {safeLegacyContent} from './legacy-contract'
 
 const PROJECT = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'oqpv1xbc'
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -17,6 +18,7 @@ export const contentSource: CmsMode =
 type QueryParams = Record<string, unknown>
 type SanityPerspective = 'published' | 'drafts'
 type StatusedDocument = Record<string, unknown> & {publishStatus?: unknown}
+type PublicContractOptions = {documentType: string; required?: boolean}
 
 export type SanityQueryResult<T> =
   | {ok: true; result: T | null}
@@ -54,6 +56,7 @@ export function isSanityMode() {
 export async function sanityQuery<T>(
   query: string,
   params: QueryParams = {},
+  publicContract?: PublicContractOptions,
 ): Promise<SanityQueryResult<T>> {
   const config = createClientConfig()
   if (!config) {
@@ -85,9 +88,18 @@ export async function sanityQuery<T>(
     if (!response.ok) return {ok: false, errorType: 'http-error'}
 
     const payload = await response.json() as {result?: T | null}
+    const normalized = normalizePublishedQueryResult(payload.result ?? null, config.perspective)
+    const result = publicContract && normalized !== null
+      ? safeLegacyContent<T | null>(
+          publicContract.documentType,
+          normalized,
+          null,
+          {required: publicContract.required},
+        )
+      : normalized
     return {
       ok: true,
-      result: normalizePublishedQueryResult(payload.result ?? null, config.perspective),
+      result,
     }
   } catch {
     return {ok: false, errorType: 'network-error'}
@@ -97,7 +109,8 @@ export async function sanityQuery<T>(
 export async function sanityFetch<T>(
   query: string,
   params: QueryParams = {},
+  publicContract?: PublicContractOptions,
 ): Promise<T | null> {
-  const response = await sanityQuery<T>(query, params)
+  const response = await sanityQuery<T>(query, params, publicContract)
   return response.ok ? response.result : null
 }

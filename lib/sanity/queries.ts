@@ -97,7 +97,6 @@ const linkProjection = `{
 }`
 
 export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
-  _id,
   brandName,
   siteUrl,
   logo${imageProjection},
@@ -107,16 +106,8 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
     whatsappNumber,
     whatsappMessage,
     alibabaStoreUrl,
-    supportEmail,
-    phone,
-    businessHours,
-    timezone,
-    addressVisibility,
     companyAddress
   },
-  socialLinks,
-  favicon${imageProjection},
-  defaultOgImage${imageProjection},
   footer{
     copyright,
     address
@@ -139,12 +130,10 @@ export const footerQuery = `*[_type == "footerSettings"][0]{
     title,
     links[]${linkProjection}
   },
-  copyright,
-  policyLinks[]{label, externalUrl, url}
+  copyright
 }`
 
 export const sitePagesQuery = `*[_type == "sitePage"] | order(pageKey asc){
-  _id,
   pageKey,
   internalName,
   "slug": slug.current,
@@ -165,7 +154,6 @@ export const sitePagesQuery = `*[_type == "sitePage"] | order(pageKey asc){
 }`
 
 export const sitePageByKeyQuery = `*[_type == "sitePage" && pageKey == $key][0]{
-  _id,
   pageKey,
   internalName,
   "slug": slug.current,
@@ -186,7 +174,6 @@ export const sitePageByKeyQuery = `*[_type == "sitePage" && pageKey == $key][0]{
 }`
 
 export const productCategoriesQuery = `*[_type == "productCategory"] | order(displayOrder asc, _updatedAt desc){
-  _id,
   categoryName,
   shortName,
   "slug": slug.current,
@@ -207,7 +194,6 @@ export const productCategoriesQuery = `*[_type == "productCategory"] | order(dis
 }`
 
 export const productCategoryBySlugQuery = `*[_type == "productCategory" && slug.current == $slug][0]{
-  _id,
   categoryName,
   shortName,
   "slug": slug.current,
@@ -253,42 +239,21 @@ export const productCategoryBySlugQuery = `*[_type == "productCategory" && slug.
 }`
 
 const productProjection = `{
-  _id,
   productName,
-  productCode,
   "slug": slug.current,
   "categorySlug": category->slug.current,
   "categoryTitle": category->categoryName,
-  sport,
-  buyerTypes,
-  targetMarkets,
   shortDescription,
   fullDescription,
   primaryImage${imageProjection},
-  mainImage${imageProjection},
-  gallery[]${imageProjection},
   detailImages[]${imageProjection},
   productionImages[]${imageProjection},
   qcImages[]${imageProjection},
   packagingImages[]${imageProjection},
-  keyBenefits,
   fabricOptions,
-  fabric,
-  composition,
-  gsm,
-  printing,
   customizationOptions,
-  customizationAreas,
-  sizeRange,
-  packaging,
-  oem,
-  privateLabel,
   procurementOverride,
-  relatedProducts[]->{productName, "slug": slug.current},
-  relatedCases[]->{projectTitle, title, "slug": slug.current},
-  relatedGuides[]->{title, "slug": slug.current, articleType},
   "relatedFaqs": relatedFaqs[] | order(displayOrder asc){"question": faq->question, "answer": faq->answer},
-  cta${ctaProjection},
   featured,
   displayOrder,
   publishStatus,
@@ -305,7 +270,6 @@ export const productsByCategoryQuery = `*[
 ] | order(displayOrder asc, _updatedAt desc)${productProjection}`
 
 export const caseStudiesQuery = `*[_type == "caseStudy"] | order(displayOrder asc, _updatedAt desc){
-  _id,
   projectTitle,
   title,
   caseType,
@@ -320,7 +284,6 @@ export const caseStudiesQuery = `*[_type == "caseStudy"] | order(displayOrder as
   product,
   productType,
   heroImage${imageProjection},
-  images[]${imageProjection},
   projectBackground,
   challenge,
   requirements,
@@ -335,7 +298,6 @@ export const caseStudiesQuery = `*[_type == "caseStudy"] | order(displayOrder as
   sampleProcess,
   production,
   delivery,
-  result,
   testimonial,
   evidenceStatus,
   buyerAuthorizationStatus,
@@ -343,17 +305,12 @@ export const caseStudiesQuery = `*[_type == "caseStudy"] | order(displayOrder as
   evidenceNote,
   verifiedProcess,
   verifiableResultStatement,
-  relatedProducts[]->{productName, "slug": slug.current},
-  relatedGuides[]->{title, "slug": slug.current, articleType},
-  cta${ctaProjection},
-  structuredDataType,
   displayOrder,
   publishStatus,
   ${seoProjection}
 }`
 
 export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $slug][0]{
-  _id,
   projectTitle,
   title,
   "slug": slug.current,
@@ -381,7 +338,6 @@ export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $
 }`
 
 export const faqItemsQuery = `*[_type == "faqItem"] | order(displayOrder asc, _updatedAt desc){
-  _id,
   question,
   answer,
   shortAnswer,
@@ -400,18 +356,15 @@ export const faqItemsQuery = `*[_type == "faqItem"] | order(displayOrder asc, _u
       coalesce(categoryRef->categoryName, "General"),
     "General"
   ),
+  active,
   displayOrder,
   publishStatus
 }`
 
 const articleProjection = `{
-  _id,
   title,
   "slug": slug.current,
   excerpt,
-  summary,
-  category,
-  tags,
   articleType,
   featuredImage${imageProjection},
   heroImage${imageProjection},
@@ -423,7 +376,6 @@ const articleProjection = `{
   references,
   publishedAt,
   updatedAt,
-  lastReviewedAt,
   relatedProducts[]->{productName, "slug": slug.current},
   relatedCategories[]->{categoryName, "slug": slug.current},
   relatedCaseStudies[]->{projectTitle, title, "slug": slug.current},
