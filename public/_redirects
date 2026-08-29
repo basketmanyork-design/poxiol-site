@@ -2,3 +2,33 @@
 # Note: Primary www redirect is handled at the DNS level via Cloudflare
 /custom-basketball-uniforms/ /products/basketball-uniforms/ 301
 /googlec5c97eecb7db490b.html /googlec5c97eecb7db490b 200
+
+# Exact legacy article equivalents retained for search equity
+/blog/best-sportswear-fabrics/ /best-sportswear-fabrics/ 301
+/blog/custom-baseball-jerseys-for-clubs/ /custom-baseball-jerseys-for-clubs/ 301
+/blog/custom-basketball-jerseys-melbourne/ /custom-basketball-jerseys-melbourne/ 301
+/blog/custom-basketball-uniforms-for-schools/ /custom-basketball-uniforms-for-schools/ 301
+/blog/custom-soccer-kits-london/ /custom-soccer-kits-london/ 301
+/blog/custom-soccer-uniforms-for-academies/ /custom-soccer-uniforms-for-academies/ 301
+/blog/custom-sports-apparel-distributor/ /custom-sports-apparel-distributor/ 301
+/blog/custom-teamwear-new-york/ /custom-teamwear-new-york/ 301
+/blog/custom-volleyball-uniforms-for-schools/ /custom-volleyball-uniforms-for-schools/ 301
+/blog/how-sublimation-printing-works-for-teamwear/ /how-sublimation-printing-works-for-teamwear/ 301
+/blog/how-to-choose-a-teamwear-manufacturer/ /how-to-choose-a-teamwear-manufacturer/ 301
+/blog/oem-baseball-apparel-manufacturer/ /oem-baseball-apparel-manufacturer/ 301
+/blog/oem-basketball-apparel-manufacturer/ /oem-basketball-apparel-manufacturer/ 301
+/blog/oem-soccer-apparel-manufacturer/ /oem-soccer-apparel-manufacturer/ 301
+/blog/oem-volleyball-apparel-manufacturer/ /oem-volleyball-apparel-manufacturer/ 301
+/blog/oem-vs-odm-sportswear/ /oem-vs-odm-sportswear/ 301
+/blog/soccer-jersey-buying-guide/ /soccer-jersey-buying-guide/ 301
+/blog/soccer-jersey-supplier-australia/ /soccer-jersey-supplier-australia/ 301
+/blog/soccer-teamwear-supplier-uk/ /soccer-teamwear-supplier-uk/ 301
+/blog/soccer-teamwear-supplier-usa/ /soccer-teamwear-supplier-usa/ 301
+
+# Confirmed legacy guide intents mapped to their current maintained equivalents
+/guides/custom-teamwear-manufacturer-buying-guide/ /resources/teamwear-manufacturer-evaluation-checklist/ 301
+/guides/how-to-choose-teamwear-manufacturer-china/ /resources/teamwear-manufacturer-evaluation-checklist/ 301
+/guides/private-label-teamwear-manufacturing/ /resources/private-label-teamwear-launch-checklist/ 301
+/guides/school-basketball-uniform-order-checklist/ /guides/how-to-order-custom-basketball-uniforms-for-your-team/ 301
+/guides/teamwear-quality-control-checklist/ /quality-control-process/ 301
+/guides/teamwear-sample-approval-checklist/ /guides/sample-first-vs-bulk-teamwear-order/ 301
