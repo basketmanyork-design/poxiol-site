@@ -57,7 +57,7 @@ function harness({request = async()=>new Response('{}'), tracking = {}, navigate
   const alert=()=>render().find(n=>n.props?.role==='alert')
   const status=()=>render().find(n=>n.props?.role==='status')
   const text=node=>typeof node==='string'||typeof node==='number'?String(node):!node||typeof node!=='object'?'':[node.props?.children].flat(Infinity).map(text).join(' ')
-  const removeButton=id=>render().find(n=>n.type==='button'&&n.props['aria-controls']===id)
+  const removeButton=id=>render().find(n=>n.type==='button'&&n.props['aria-controls']===id&&/^Remove /.test(n.props['aria-label']||''))
   return{requests,navigations,timers,dom,focus,scroll,render,find,edit,attach,removeButton,handler,event,send,button,alert,status,text,expire(){for(const[id,t]of[...timers]){timers.delete(id);t.fn()}}}
 }
 
@@ -164,6 +164,7 @@ for(const[id,field]of attachmentFields)test(`${id}: explicit removal clears nati
   const remove=ui.removeButton(id);assert.ok(remove,'Provide an explicit accessible remove action');assert.equal(remove.props.type,'button')
   remove.props.onClick();ui.render()
   assert.equal(ui.dom.get(id).value,'','Clear the native picker so the same file can be selected again')
+  assert.equal(ui.focus.at(-1)?.id,`${id}-choose`,'Return focus to the visible English file chooser')
   assert.equal(ui.removeButton(id),undefined);assert.equal(ui.find('field-company').props.value,'Keep this reseller draft')
   await ui.send();assert.equal(ui.requests.length,1);assert.equal(ui.requests[0].body.has(field),false)
   for(const[,other]of attachmentFields)if(other!==field)assert.equal(ui.requests[0].body.get(other).name,`${other}.pdf`)

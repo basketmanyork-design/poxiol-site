@@ -66,6 +66,29 @@ function formHarness(file, intent, search) {
 }
 const query='?product=Basketball+Uniforms&sport=Basketball&style=home-kit&source=%2Fproducts%2Fbasketball-uniforms%2F'
 
+test('project deadline remains English on a browser with a non-English operating-system locale',()=>{
+  const ui=formHarness('components/forms/ContactForm.tsx','quote',query)
+  const deadline=ui.find('field-deadline')
+  assert.equal(deadline.props.type,'text','A native date control localizes its placeholder outside the site language')
+  assert.equal(deadline.props.placeholder,'YYYY-MM-DD')
+  assert.equal(deadline.props.inputMode,'numeric')
+  assert.equal(deadline.props.autoComplete,'off')
+})
+
+test('project attachments expose only custom English chooser text',()=>{
+  const ui=formHarness('components/forms/ContactForm.tsx','quote',query)
+  for(const id of ['field-logo-file','field-reference-file','field-tech-pack-file']){
+    const input=ui.find(id)
+    assert.equal(input.props.type,'file')
+    assert.match(input.props.className,/\bsr-only\b/,'Hide operating-system-localized native file text')
+    const chooser=ui.find(`${id}-choose`)
+    assert.equal(chooser.type,'button')
+    assert.equal(chooser.props.children,'Choose file')
+    assert.equal(chooser.props['aria-controls'],id)
+    assert.equal(ui.find(`${id}-status`).props.children,'No file selected')
+  }
+})
+
 test('starting reference puts the first optional input before supplementary guidance',()=>{
   const ui=formHarness('components/forms/ContactForm.tsx','quote',query)
   const nodes=ui.render()

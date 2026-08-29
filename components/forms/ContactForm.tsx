@@ -41,7 +41,7 @@ const initialAttachments: ProjectAttachments = {
 };
 
 const inputClass = "h-[50px] w-full rounded-2xl border border-neutral-300 bg-white px-4 text-base text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-lime-400 focus-visible:ring-2 focus-visible:ring-lime-400/40";
-const fileClass = "block min-h-[50px] w-full cursor-pointer rounded-2xl border border-neutral-300 bg-white px-3 py-3 text-sm text-neutral-700 file:mr-3 file:rounded-full file:border-0 file:bg-neutral-950 file:px-4 file:py-2 file:text-xs file:font-black file:uppercase file:text-white hover:file:bg-lime-400 hover:file:text-neutral-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400";
+const fileChooserClass = "inline-flex min-h-11 shrink-0 items-center justify-center rounded-full border-0 bg-neutral-950 px-4 py-2 text-xs font-black uppercase text-white transition hover:bg-lime-400 hover:text-neutral-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 disabled:cursor-not-allowed disabled:opacity-50";
 
 function FieldLabel({htmlFor, children, required = false}: {htmlFor: string; children: React.ReactNode; required?: boolean}) {
   return (
@@ -61,8 +61,9 @@ function AttachmentField({id, name, label, accept, file, disabled, onChange}: {
   onChange: (file: File | null) => boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const invalid = Boolean(validateProjectAttachment(file));
-  const selectedId = `${id}-selected`;
+  const statusId = `${id}-status`;
   const errorId = `${id}-error`;
 
   function removeFile() {
@@ -70,8 +71,8 @@ function AttachmentField({id, name, label, accept, file, disabled, onChange}: {
     if (!onChange(null)) return;
     if (inputRef.current) {
       inputRef.current.value = '';
-      inputRef.current.focus();
     }
+    buttonRef.current?.focus();
   }
 
   return (
@@ -79,11 +80,15 @@ function AttachmentField({id, name, label, accept, file, disabled, onChange}: {
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <input ref={inputRef} id={id} name={name} type="file" accept={accept}
         disabled={disabled} aria-invalid={invalid || undefined}
-        aria-describedby={file ? `${selectedId}${invalid ? ` ${errorId}` : ''}` : undefined}
-        onChange={(event) => onChange(event.target.files?.[0] || null)} className={fileClass} />
+        aria-describedby={`${statusId}${invalid ? ` ${errorId}` : ''}`}
+        onChange={(event) => onChange(event.target.files?.[0] || null)} className="sr-only" />
+      <div className="flex min-h-[58px] min-w-0 items-center gap-3 rounded-2xl border border-neutral-300 bg-white px-3 py-2">
+        <button ref={buttonRef} id={`${id}-choose`} type="button" aria-controls={id} disabled={disabled}
+          onClick={() => inputRef.current?.click()} className={fileChooserClass}>{file ? 'Replace file' : 'Choose file'}</button>
+        <span id={statusId} aria-live="polite" className="min-w-0 break-all text-sm leading-5 text-neutral-700">{file ? file.name : 'No file selected'}</span>
+      </div>
       {file ? (
         <div className="mt-3 min-w-0 space-y-2">
-          <p id={selectedId} className="break-all text-sm leading-5 text-neutral-700">Selected file: {file.name}</p>
           {invalid ? <p id={errorId} aria-live="polite" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-semibold leading-5 text-red-700">File exceeds the 10 MB limit. Choose a smaller file or remove it.</p> : null}
           <button type="button" aria-controls={id} aria-label={`Remove ${label}`} disabled={disabled} onClick={removeFile}
             className="inline-flex min-h-11 items-center rounded-lg border border-neutral-300 px-3 py-2 text-sm font-bold text-neutral-950 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50">Remove file</button>
@@ -256,7 +261,7 @@ function ContactFormInner({
             </div>
             <div>
               <FieldLabel htmlFor="field-deadline">Deadline</FieldLabel>
-              <input id="field-deadline" name="deadline" type="date" value={fields.deadline} onChange={(event) => updateField("deadline", event.target.value)} className={inputClass} />
+              <input id="field-deadline" name="deadline" type="text" inputMode="numeric" autoComplete="off" placeholder="YYYY-MM-DD" maxLength={10} value={fields.deadline} onChange={(event) => updateField("deadline", event.target.value)} className={inputClass} />
             </div>
             <div className="md:col-span-2">
               <FieldLabel htmlFor="field-customizationRequirements">Customization Requirement</FieldLabel>

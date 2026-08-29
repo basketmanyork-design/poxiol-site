@@ -49,6 +49,8 @@
     "thirdPartyBrandAssets": 0,
     "unsupportedAbsoluteClaims": 0,
     "buyerVisibleInternalLanguageFailures": 0,
+    "chineseIdeographFailures": 0,
+    "localizedNativeControlFailures": 0,
     "blockingOverlays": 0,
     "thirdPartyScriptStylesheetOrImageLoads": 0,
     "minimumVisibleInquiryCtasPerScenario": 8,
@@ -74,6 +76,17 @@
     "realSubmissionTriggered": false,
     "fileSelectedInBrowser": false,
     "attachmentSelectionRemovalCoveredByAutomatedContracts": true,
+    "englishOnlyProjectControls": {
+      "route": "/get-quote/",
+      "viewports": ["1440x900", "390x844"],
+      "deadlinePlaceholder": "YYYY-MM-DD",
+      "fileChooserText": "Choose file",
+      "emptyFileStatusText": "No file selected",
+      "nativeFileControlRenderedSizePx": "1x1",
+      "chineseIdeographsFound": 0,
+      "horizontalOverflowFailures": 0,
+      "consoleWarningsOrErrors": 0
+    },
     "analyticsBeforeChoice": false,
     "rejectHidesChoicePanel": true,
     "changePreferenceReopensPanel": true,
@@ -81,6 +94,8 @@
     "consoleErrors": 0
   },
   "notes": [
+    "A focused post-fix browser audit on /get-quote/ at 1440 x 900 and 390 x 844 confirmed English-only deadline and attachment controls on a Chinese Windows host: YYYY-MM-DD, Choose file and No file selected. The date accepted 2026-10-31, no CJK ideograph or horizontal overflow was found, and the console remained clean.",
+    "The native file inputs remain in the accessibility tree and submission flow at 1 x 1 CSS pixel while buyer-visible controls are custom English UI. File selection was not triggered and no form was submitted during this audit.",
     "The full 76-scenario matrix was rerun after the mobile buyer-facing copy, privacy-control and WebP changes; all scenarios passed with zero browser console warnings or errors.",
     "The approved 1254 x 1254 POXIOL illustration is now served as an 82,756-byte WebP instead of the replaced 1,487,571-byte PNG; its POXIOL mark and non-proof classification remain unchanged.",
     "On 390 x 844, the homepage Build Your Range action preserved product=Full Teamwear and source=/, then placed #quote-form 96 CSS pixels below the viewport top without a page-level horizontal overflow.",

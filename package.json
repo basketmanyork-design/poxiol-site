@@ -44,7 +44,7 @@
     "check:legal-release:output": "node --no-warnings --experimental-strip-types scripts/check-legal-release-gate.test.mts --output",
     "check:analytics-permission": "node --no-warnings --experimental-strip-types --test scripts/check-analytics-permission.test.mts scripts/check-analytics-preferences-component.test.mjs",
     "check:analytics-permission:output": "node --test scripts/check-analytics-permission-output.test.mjs",
-    "check:buyer-facing:output": "node --test scripts/check-buyer-facing-output.test.mjs",
+    "check:buyer-facing:output": "node --test scripts/check-buyer-facing-output.test.mjs scripts/check-english-only-output.test.mjs",
     "check:analytics-release": "node --no-warnings --experimental-strip-types --test scripts/check-analytics-release-gate.test.mts && node --no-warnings --experimental-strip-types scripts/assert-analytics-release-ready.mts",
     "check:legacy-sanity-contract": "node --no-warnings --experimental-strip-types --test scripts/check-legacy-sanity-contract.test.mts",
     "check:route-release:unit": "node --test scripts/check-route-release.test.mjs",

@@ -38,11 +38,15 @@ The command record stores command names, exit codes, durations, pass/fail counts
 
 The matrix was rerun after the mobile conversion repair. Buyer-visible internal construction language was absent across all governed routes, and the accepted/rejected analytics state rendered as a compact 123×44-pixel `Privacy choices` control. At 390×844, `Build Your Range` retained `Full Teamwear` context and placed the quote form 96 CSS pixels below the viewport top. The approved POXIOL illustration changed from a 1,487,571-byte PNG to an 82,756-byte WebP without changing dimensions, POXIOL marks or non-proof classification.
 
+A focused browser rerun on `/get-quote/` at 1440×900 and 390×844 was completed on a Chinese Windows host after the English-only form-control repair. The shared project form displayed `YYYY-MM-DD`, `Choose file` and `No file selected`; the date accepted `2026-10-31`, the page contained no CJK ideograph or horizontal overflow, and the browser console had no warning or error. Native file inputs remain available to the submission flow but are visually replaced by the custom English controls. No file chooser was opened and no form was submitted.
+
 The matrix uses `/design-gallery/` as the governed product-visualization page. `/product-visualization/` is an asset directory and is not treated as a public page route.
 
 ## Inquiry, privacy and analytics acceptance
 
 The local browser preserved the `Full Teamwear` inquiry context from `/solutions/`, displayed the Draft privacy link and exposed the expected submit control. Synthetic local text was used only to exercise fields. Submit was never clicked, no file was selected in the browser and no real request was sent.
+
+The build now includes an English-only output gate that scans every generated HTML page for Chinese ideographs and fails the release build if any are found. Component contracts separately prevent native operating-system-localized date and file text from returning to the shared project form.
 
 The consent interface passed Reject → Change preference → Accept behavior. No analytics script loaded before a choice, after rejection or after acceptance because analytics remains governed as disabled. Attachment selection/removal, timeout recovery, uncertain receipt and no-auto-retry behavior remain covered by the passing automated form contracts.
 
