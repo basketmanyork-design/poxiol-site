@@ -30,7 +30,9 @@ function sha256(buffer) {
 }
 
 async function createManifest() {
-  const commit = execFileSync('git', ['rev-parse', 'HEAD'], {cwd: projectRoot, encoding: 'utf8'}).trim()
+  // Bind the handoff to the newest commit that changed a handed-off artifact.
+  // The manifest's own later commit must not create a self-referential hash loop.
+  const commit = execFileSync('git', ['log', '-1', '--format=%H', '--', ...artifactPaths], {cwd: projectRoot, encoding: 'utf8'}).trim()
   const artifacts = []
   for (const relativePath of artifactPaths) {
     const contents = await readFile(path.join(projectRoot, relativePath))
@@ -52,4 +54,3 @@ if (process.argv.includes('--check')) {
   await writeFile(targetPath, serialized)
   console.log('HANDOFF_MANIFEST_WRITTEN')
 }
-

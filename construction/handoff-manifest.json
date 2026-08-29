@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "status": "LOCAL_CONSTRUCTION_COMPLETE_PREVIEW_READY_PRODUCTION_NO_GO",
+  "commit": "79411ebdc29848ff7962629bcb9e0be1288b4753",
+  "productionAuthorized": false,
+  "deploymentPerformed": false,
+  "cloudflarePreviewCreated": false,
+  "cmsWrites": 0,
+  "realFormSubmissions": 0,
+  "analyticsActivated": false,
+  "artifacts": [
+    {
+      "path": "construction/acceptance-command-results.json",
+      "sha256": "4d06d16e042b2facb06b3af1b11fb7187378b33d1abed6aac68b3d7ae6cc7498"
+    },
+    {
+      "path": "construction/browser-acceptance.json",
+      "sha256": "96f1f12b6bc0b3ffcc1ee62de2fc26757d57b90817a66721153a060705a83a3f"
+    },
+    {
+      "path": "construction/lighthouse-local.json",
+      "sha256": "16016b417eebcc0d374690763635698041ad0a66887f26c71b4d2b31b927ebe4"
+    },
+    {
+      "path": "construction/preview-readiness.json",
+      "sha256": "d792d43279c98f694fa9bfb4e92157286c3c831878aff774cac3c29c0f9c575c"
+    },
+    {
+      "path": "construction/release-manifest.json",
+      "sha256": "c75a981daa3ea76c7ec9421db4ae994f6655e130832a809acd0018340690f49e"
+    },
+    {
+      "path": "construction/rollback-manifest.json",
+      "sha256": "8063b12b1621ee8f0267e3eda5cfefd68e412571349931bc7b1fe86bc8e66a93"
+    },
+    {
+      "path": "docs/operations/construction-c1-acceptance.md",
+      "sha256": "adf395dd75f298f9bd44da8612ee7ca06325cde945c29202e8846656e453566f"
+    },
+    {
+      "path": "docs/operations/construction-c2-acceptance.md",
+      "sha256": "17ca5117b93f8fe3f906ba433df7198577137651993dd28960bcf8b0a37e39cf"
+    },
+    {
+      "path": "docs/operations/construction-c3-acceptance.md",
+      "sha256": "6112550575453a7e65dcdf847facba69a674d68abf20be2fb1892453b8d8d149"
+    },
+    {
+      "path": "docs/operations/construction-c4-acceptance.md",
+      "sha256": "3178a1f8cb00f9618f95d26e2975214e1a47921e4f7e4d1ad606979df6209c2a"
+    },
+    {
+      "path": "docs/operations/construction-c5-acceptance.md",
+      "sha256": "a38357e6a3f91abde7fb46eee1876d5a8fdc2a3990f75a0435eefe4bfda68628"
+    },
+    {
+      "path": "docs/operations/owner-gates.md",
+      "sha256": "351cfdfd4937ee657abed0825a17f38b1f9463f40d28cbac6def3e5925edb951"
+    },
+    {
+      "path": "docs/operations/release-checklist.md",
+      "sha256": "0804ee62578c1ea619033e5eb2b2952aed178a665e03594126bb1a56fbd85219"
+    },
+    {
+      "path": "docs/operations/rollback.md",
+      "sha256": "e26f2d8d01ce8a6e85f4ce1c3c03d2325436fb42d935a18cbce24881fdeade17"
+    }
+  ]
+}
