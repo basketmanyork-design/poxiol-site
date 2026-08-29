@@ -1,0 +1,257 @@
+[
+  {
+    "path": "app/contact/page.tsx",
+    "sha256": "528e792cf33bf5f84ca461c98bd693a6965689403aec066e75c5369858fc515e",
+    "bytes": 2760
+  },
+  {
+    "path": "app/design-gallery/page.tsx",
+    "sha256": "86f8e0f661ae48345304b3f78d44f00ed5d2d157646d3b3ea563e4a8442b9b6d",
+    "bytes": 2629
+  },
+  {
+    "path": "app/intellectual-property-policy/page.tsx",
+    "sha256": "adef8b08bb17f94c1f4298c23da0cf1fda3cf44d9e46875f45d5c0fc9a2157c1",
+    "bytes": 2558
+  },
+  {
+    "path": "app/oem-odm/page.tsx",
+    "sha256": "b72cca448d36c87c209cda01569432be7a585d7dca09873fbe7e3b1032142ac2",
+    "bytes": 16129
+  },
+  {
+    "path": "app/page.tsx",
+    "sha256": "d35e15271d2331c8ab6c00d24ff0dc2c68b8fecd8bbd14732dfa17446a7f851f",
+    "bytes": 1006
+  },
+  {
+    "path": "app/privacy-policy/page.tsx",
+    "sha256": "39f4c20e4e3c60eee4d27198b8ba8905d061e875f501b2ddb193aa2c4efd3c34",
+    "bytes": 2555
+  },
+  {
+    "path": "app/projects/page.tsx",
+    "sha256": "cb957faec61ef30dfa7ca57fbb34223cf864c3ec2a5de3295a14ada6b4410930",
+    "bytes": 3862
+  },
+  {
+    "path": "app/sitemap.ts",
+    "sha256": "fb3e5d58afce28a4cca75660d8672e14d6da87d395620cd214760d2425de0bed",
+    "bytes": 3247
+  },
+  {
+    "path": "app/solutions/page.tsx",
+    "sha256": "1e29021e233bd0be5fce38ab469e52a7fa5b5328a4d108a4abf1c85d5f5f68be",
+    "bytes": 6623
+  },
+  {
+    "path": "app/terms/page.tsx",
+    "sha256": "cd19407d2a5ba022b2b2875679ac97acfe11722ee414e9c039902adf0ff6ec1e",
+    "bytes": 2507
+  },
+  {
+    "path": "components/analytics/AnalyticsProvider.tsx",
+    "sha256": "f3733f5076c5a056d6349eaaee27d5aff7ec3e78a35dbdda1c3276ab3bbaf06a",
+    "bytes": 2743
+  },
+  {
+    "path": "components/forms/ContactForm.tsx",
+    "sha256": "a043f7cd94234501354eb683645730dda7959e7125f2ca67d42863db64905ddd",
+    "bytes": 20294
+  },
+  {
+    "path": "components/forms/GeneralInquiryForm.tsx",
+    "sha256": "c895bd8d613e25bb27ccf12eee51720d81f861a6631b83acfb5a76b40bda06f8",
+    "bytes": 9787
+  },
+  {
+    "path": "components/legal/LegalDraftNotice.tsx",
+    "sha256": "a0055c2c3f087fd1f7c94c1962e440b0d57e801704e48519a8c6b5aad9954d18",
+    "bytes": 465
+  },
+  {
+    "path": "components/seo/GEOStructuredData.tsx",
+    "sha256": "f77e9f7adfcfe8fc978aada840067d26fe0b5c8f8e71337f844e1180e596764d",
+    "bytes": 5684
+  },
+  {
+    "path": "components/sports/SportsLandingPage.tsx",
+    "sha256": "c7e8b9c0d9250970e9bc3d23c8977f6ac6f399e11a07d76e36b710f4a3914b1f",
+    "bytes": 21170
+  },
+  {
+    "path": "components/ui.tsx",
+    "sha256": "a9334e1c7551c1a6efb02e91be25d8011eedb22565e36dae6aa3ed94233c1e6e",
+    "bytes": 11092
+  },
+  {
+    "path": "components/v8/BasketballV8LandingPage.tsx",
+    "sha256": "094eeef7ac7ed69721ec38130a8d424b3f556afdcadd178293ed6a9fd2e88c23",
+    "bytes": 6170
+  },
+  {
+    "path": "components/v8/V8BuyerLandingPage.tsx",
+    "sha256": "8e1eb100ea98374a61f698da7c74061317e7e0000596753e2c8da9c4ee35ee6c",
+    "bytes": 4979
+  },
+  {
+    "path": "content/legal/approval.json",
+    "sha256": "063d2a36beb25bfd10ed3886eba62956ae37b983aa6a15c41d6517e4417aa028",
+    "bytes": 215
+  },
+  {
+    "path": "lib/analytics/client.ts",
+    "sha256": "517c9b2a041e931b5edf6423d8574a4112f54bfa92c2ad73d4e8637d2d943fb2",
+    "bytes": 3994
+  },
+  {
+    "path": "lib/analytics/core.ts",
+    "sha256": "1ba87f20be62ea3c9b37759763f511a0fa5ed2b646085bdcfc9281230bd8261b",
+    "bytes": 2998
+  },
+  {
+    "path": "lib/analytics/server.ts",
+    "sha256": "6d4c76cb953ae3ce502533804eff5b416616f345467f4aa556522d440d858845",
+    "bytes": 1973
+  },
+  {
+    "path": "lib/cms/legacy.ts",
+    "sha256": "1f5ebdaceea7fad95a66c8b5cb9671805a53fd5d3ce8094e8ee4dc7a7c530b91",
+    "bytes": 28068
+  },
+  {
+    "path": "lib/core-sports.ts",
+    "sha256": "e7a9f212f55a6dc82a1279ed1d3c609b8ded804e6935e80b66e1f91021225a72",
+    "bytes": 22008
+  },
+  {
+    "path": "lib/general-inquiry.ts",
+    "sha256": "879ffc8128890f9936972e7044d4c3c919282809695637a488756586dea803b9",
+    "bytes": 1656
+  },
+  {
+    "path": "lib/home-data.ts",
+    "sha256": "456caa41ca2ab727d6e452f06e8a09e91282c307ef276bff03161d358e2d4a0c",
+    "bytes": 13372
+  },
+  {
+    "path": "lib/inquiry-context.ts",
+    "sha256": "5bb9706a3340edeb65a225aa389788e4ea9625b1bec46d76ca29ce6a052fc19b",
+    "bytes": 5052
+  },
+  {
+    "path": "lib/legal-release.ts",
+    "sha256": "a347bcb157398c7acf837f8caace0035fd6577772f759477c6c28197d7d76862",
+    "bytes": 1274
+  },
+  {
+    "path": "lib/project-inquiry-request.ts",
+    "sha256": "136697c1e386adf3e751626c7df993b223ab5af9d7fefefd3748c3f51c7c5367",
+    "bytes": 2054
+  },
+  {
+    "path": "lib/sanity/content.ts",
+    "sha256": "0b4a0e14442623b9f0b665ea7be10e7e64cc2e90e536cec8994ffbdddf07c7ba",
+    "bytes": 68261
+  },
+  {
+    "path": "lib/sports-pages.ts",
+    "sha256": "8082b1981e39178e9814b629c4819e417a36b1c2eff7af034ca778aa4f4cc9c1",
+    "bytes": 23546
+  },
+  {
+    "path": "lib/v8/buyer-pages.ts",
+    "sha256": "f6104f141d4d0afc43fd8ea2dbb6814af70202e4519b62b2a96355c294894211",
+    "bytes": 12926
+  },
+  {
+    "path": "lib/v8/leads.ts",
+    "sha256": "c547b5ee00a754f2fc88a8b8e19cf89bdea5d41256e17cbd7f10d4ebd9efb1d7",
+    "bytes": 6104
+  },
+  {
+    "path": "package.json",
+    "sha256": "d7de5d2c0ce5af3fd095e99b2c831315c20b83707a89fbed22c324257d40710b",
+    "bytes": 8706
+  },
+  {
+    "path": "public/_headers",
+    "sha256": "13b3a34284c4707484147c6d88de9df3b953ed0a7d9c371839cd88d16cb61c0b",
+    "bytes": 527
+  },
+  {
+    "path": "scripts/assert-legal-release-ready.mts",
+    "sha256": "90d3f6cc1770ded431ba225669dd5ac96b8ce332463dc4f0daaf32a2655e1475",
+    "bytes": 426
+  },
+  {
+    "path": "scripts/check-channel-positioning.test.mjs",
+    "sha256": "ce0ff9a44cf68e5e67f3883c9b76c352aa58748f36752fcb25c012bf3cefd030",
+    "bytes": 5317
+  },
+  {
+    "path": "scripts/check-channel-solutions-output.test.mjs",
+    "sha256": "bce87a85eba0579cc30fadb4d5a0f493f3b6bbce0f6a3cdfc8f2f17cd1fced97",
+    "bytes": 5911
+  },
+  {
+    "path": "scripts/check-cms-redirects.mjs",
+    "sha256": "df7d1c05f201ab43d823af7b639a30a16ece14d05d733e6beca58f3ee0a45b65",
+    "bytes": 2623
+  },
+  {
+    "path": "scripts/check-core-sports-v1.test.mts",
+    "sha256": "bbd1355aba6e151a47ba0dafce6b7daeb9a42032fd7a4a8ee9e1e0260e9fe806",
+    "bytes": 10107
+  },
+  {
+    "path": "scripts/check-inquiry-context.test.mjs",
+    "sha256": "eecd611251b4d22eee0352f514dec84319f1b77bf0126e6373198f9004d97909",
+    "bytes": 7029
+  },
+  {
+    "path": "scripts/check-legacy-media-release-guard.test.mts",
+    "sha256": "8c488337689188d174918634a52d4598c669dc5efea0f2f21f26d31cda656662",
+    "bytes": 6128
+  },
+  {
+    "path": "scripts/check-legal-release-gate.test.mts",
+    "sha256": "9eec2e0d4ed329730f354cb409140d476bcd8725fe9f0617b9411e2ea2f2da0b",
+    "bytes": 5263
+  },
+  {
+    "path": "scripts/check-public-inquiry-integrity.mjs",
+    "sha256": "67c520a47d482a9b1991cff8de7ddc219726c32b05a3a14280bb47b9399d095e",
+    "bytes": 4455
+  },
+  {
+    "path": "scripts/check-release-indexing-gates.test.mjs",
+    "sha256": "a25aeae527f6545b1b949afe816bd071d7d737e6fb2eab9dc6bf13d1e1e4dfc5",
+    "bytes": 1333
+  },
+  {
+    "path": "scripts/check-solutions-image-integrity.test.mjs",
+    "sha256": "b49a7a0d3f6ac7cf1d057e6082e33bab9fce17bec603108d5264d3c96627304b",
+    "bytes": 2519
+  },
+  {
+    "path": "scripts/check-v8-buyer-pages.test.mts",
+    "sha256": "ca278faa46972c03e565979aa994b3c8506b9a1a59438ea6f7eaa23074e53b12",
+    "bytes": 9124
+  },
+  {
+    "path": "scripts/check-v8-phase4-pages.test.mts",
+    "sha256": "cc9abba7bb190dbfcfb6d32a1f1343c03891d3427ca28733354c89102797137c",
+    "bytes": 9985
+  },
+  {
+    "path": "scripts/generate-cms-redirects.mjs",
+    "sha256": "c73d3484d5c5e6ce8880d88f4ecf4afd7ac44ea597f146af26aa589b6ba6d0b6",
+    "bytes": 5286
+  },
+  {
+    "path": "scripts/run-inquiry-prelaunch-build.mjs",
+    "sha256": "82c803754c95a319ed1e67b61a82be85a25f9f5471c8b1f890c04f386be33f51",
+    "bytes": 1598
+  }
+]
