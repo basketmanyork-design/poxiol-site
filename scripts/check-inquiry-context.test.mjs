@@ -31,8 +31,12 @@ for (const [route,product] of [['/oem-odm/','OEM / ODM Teamwear'],['/private-lab
 test('product page context derives a public reference and supported sport', () => {
   assert.deepEqual(call('contextFromPage', '/products/basketball-uniforms/', ''), basketball)
   assert.equal(call('contextFromPage', '/products/soccer-jerseys/', '').sport, 'Soccer')
-  assert.equal(call('contextFromPage', '/products/baseball-uniforms/', '').sport, 'Baseball / Softball')
+  assert.equal(call('contextFromPage', '/products/baseball-uniforms/', '').sport, 'Baseball & Softball')
   assert.equal(call('contextFromPage', '/products/team-accessories/', '').sport, '')
+})
+test('American Football and Rugby remain distinct inquiry sports', () => {
+  assert.equal(call('contextFromPage', '/custom-american-football-uniforms/', '').sport, 'American Football')
+  assert.equal(call('contextFromPage', '/custom-rugby-uniforms/', '').sport, 'Rugby')
 })
 test('product CTA preserves intent, adds context and reaches the correct form', () => {
   const url = new URL(call('contextualInquiryHref', '/free-mockup/', basketball), 'https://www.poxiol.com')

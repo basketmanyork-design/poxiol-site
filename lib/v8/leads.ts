@@ -11,13 +11,18 @@ export const BUYER_ROLE_OPTIONS = [
 ] as const
 
 export const PROJECT_SPORT_OPTIONS = [
-  'Basketball',
   'Soccer',
-  'Baseball / Softball',
+  'Basketball',
+  'Track & Field',
+  'Badminton',
   'Volleyball',
-  'American Football',
+  'Baseball & Softball',
   'Ice Hockey',
-  'Running / Training Wear',
+  'American Football',
+  'Rugby',
+  'Tennis',
+  'Cricket',
+  'Golf',
   'Multi-Sport Teamwear',
   'Other',
 ] as const

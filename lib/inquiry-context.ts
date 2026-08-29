@@ -42,11 +42,16 @@ export function contextFromPage(pathname: string, search = ''): InquiryContext {
   if (slug === 'products') return {...empty}
   const sport = /basketball/.test(slug) ? 'Basketball'
     : /soccer/.test(slug) ? 'Soccer'
-    : /baseball|softball/.test(slug) ? 'Baseball / Softball'
+    : /baseball|softball/.test(slug) ? 'Baseball & Softball'
+    : /track-field|running|marathon/.test(slug) ? 'Track & Field'
+    : /badminton/.test(slug) ? 'Badminton'
     : /volleyball/.test(slug) ? 'Volleyball'
     : /american-football/.test(slug) ? 'American Football'
+    : /rugby/.test(slug) ? 'Rugby'
     : /ice-hockey/.test(slug) ? 'Ice Hockey'
-    : /running|training/.test(slug) ? 'Running / Training Wear' : ''
+    : /tennis/.test(slug) ? 'Tennis'
+    : /cricket/.test(slug) ? 'Cricket'
+    : /golf/.test(slug) ? 'Golf' : ''
   return clean({product:slug.replace(/^custom-/, '').replace(/-/g,' ').replace(/\b\w/g,char=>char.toUpperCase()),sport,style:'',source:path})
 }
 
