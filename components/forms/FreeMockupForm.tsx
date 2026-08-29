@@ -37,7 +37,7 @@ export default function FreeMockupForm() {
     </div>
   );
   return (
-    <form onSubmit={handleSubmit} className="rounded-[2rem] bg-white p-6 shadow-2xl md:p-9">
+    <form data-inquiry-form onSubmit={handleSubmit} className="rounded-[2rem] bg-white p-6 shadow-2xl md:p-9">
       <div className="mb-8"><p className="text-sm font-black uppercase tracking-[0.14em] text-lime-600">Free Mockup Form</p><h2 className="mt-3 text-3xl font-black text-neutral-950">Tell Us About Your Project</h2><p className="mt-3 text-sm leading-6 text-neutral-600">Fields marked with * are required. More details help us prepare a better design preview.</p></div>
       <div className="space-y-8">
         <div><h3 className="mb-4 text-lg font-black text-neutral-950">Contact Information</h3><div className="grid gap-4 md:grid-cols-2">

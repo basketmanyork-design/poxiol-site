@@ -70,7 +70,7 @@ export default function GeneralInquiryForm({publicEmail, whatsappHref, privacyPo
   }
 
   return (
-    <form method="post" action={process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT} onSubmit={handleSubmit} className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-200 bg-white p-5 text-left shadow-xl sm:p-6 md:p-9" aria-describedby={error ? 'general-inquiry-help general-inquiry-error' : 'general-inquiry-help'}>
+    <form data-inquiry-form method="post" action={process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT} onSubmit={handleSubmit} className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-200 bg-white p-5 text-left shadow-xl sm:p-6 md:p-9" aria-describedby={error ? 'general-inquiry-help general-inquiry-error' : 'general-inquiry-help'}>
       <p className="text-xs font-black uppercase tracking-[0.14em] text-lime-700">Ask POXIOL</p>
       <h2 className="mt-3 text-3xl font-black text-neutral-950">Send a General Inquiry</h2>
       <p id="general-inquiry-help" className="mt-3 text-sm leading-6 text-neutral-600">New to buying from China? Ask about cooperation, ordering or delivery. No artwork, quantity or technical specifications are needed to ask a question.</p>

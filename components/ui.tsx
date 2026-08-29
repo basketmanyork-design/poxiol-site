@@ -4,6 +4,7 @@ import { getSiteChrome } from "@/lib/sanity/content";
 import { HEADER_NAV, HEADER_CTA } from "@/lib/navigation";
 import MobileMenu from "@/components/MobileMenu";
 import MobileInquiryLink from "@/components/MobileInquiryLink";
+import MobileInquiryBar from "@/components/MobileInquiryBar";
 import InquiryLink from "@/components/InquiryLink";
 
 export const freeMockupHref = "/free-mockup/";
@@ -82,7 +83,7 @@ export async function WhatsAppButton() {
       </InquiryLink>
 
       {/* Mobile: fixed bottom CTA bar */}
-      <div className="poxiol-mobile-cta fixed inset-x-0 bottom-0 z-[60] grid grid-cols-2 gap-3 border-t border-white/10 bg-neutral-950/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-xl md:hidden" role="navigation" aria-label="Quick inquiry actions">
+      <MobileInquiryBar>
         <InquiryLink
           href={chrome.whatsappHref}
           target="_blank"
@@ -93,7 +94,7 @@ export async function WhatsAppButton() {
           WhatsApp
         </InquiryLink>
         <MobileInquiryLink />
-      </div>
+      </MobileInquiryBar>
     </>
   );
 }

@@ -217,7 +217,7 @@ function ContactFormInner({
   }
 
   return (
-    <form method="post" action={process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT} onSubmit={handleSubmit} encType="multipart/form-data" className="rounded-[2rem] bg-white p-5 text-left shadow-xl sm:p-6 md:p-9" aria-describedby={errorMessage ? "project-form-error" : undefined}>
+    <form data-inquiry-form method="post" action={process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT} onSubmit={handleSubmit} encType="multipart/form-data" className="rounded-[2rem] bg-white p-5 text-left shadow-xl sm:p-6 md:p-9" aria-describedby={errorMessage ? "project-form-error" : undefined}>
       <div className="mb-8">
         <p className="text-sm font-black uppercase tracking-[0.14em] text-lime-600">POXIOL Project Qualification</p>
         <h2 className="mt-3 break-words text-3xl font-black text-neutral-950">{title}</h2>

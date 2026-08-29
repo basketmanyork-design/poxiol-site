@@ -30,7 +30,7 @@ export default function MobileMenu() {
       </button>
 
       {open ? (
-        <div className="absolute inset-x-0 top-20 z-50 border-b border-white/10 bg-neutral-950/95 px-5 pb-8 pt-4 shadow-2xl backdrop-blur-xl">
+        <div className="absolute inset-x-0 top-20 z-50 border-b border-white/10 bg-neutral-950 px-5 pb-8 pt-4 shadow-2xl">
           <nav aria-label="Mobile navigation" className="flex flex-col">
             <Link
               href="/"
