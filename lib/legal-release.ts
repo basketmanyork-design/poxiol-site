@@ -13,6 +13,7 @@ export function legalPolicyApproved() {
 export function legalPreviewAllowed(environment: LegalEnvironment) {
   if (legalPolicyApproved()) return true
   if (environment.CF_PAGES_BRANCH === 'main') return false
+  if (environment.CF_PAGES === '1' && environment.CF_PAGES_BRANCH) return true
   return environment.POXIOL_DEPLOYMENT_ENV === 'local' || environment.POXIOL_DEPLOYMENT_ENV === 'preview'
 }
 

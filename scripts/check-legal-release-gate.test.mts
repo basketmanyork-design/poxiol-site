@@ -35,6 +35,7 @@ test('a pending governed record cannot be promoted by production or a forged env
   assert.equal(legal.legalPolicyApproved(), false)
   assert.equal(legal.legalPreviewAllowed({POXIOL_DEPLOYMENT_ENV: 'local'}), true)
   assert.equal(legal.legalPreviewAllowed({POXIOL_DEPLOYMENT_ENV: 'preview'}), true)
+  assert.equal(legal.legalPreviewAllowed({CF_PAGES: '1', CF_PAGES_BRANCH: 'codex/construction-completion'}), true)
   assert.equal(legal.legalPreviewAllowed({}), false)
   assert.equal(legal.legalPreviewAllowed({POXIOL_DEPLOYMENT_ENV: 'production'}), false)
   assert.equal(legal.legalPreviewAllowed({POXIOL_DEPLOYMENT_ENV: 'preview', CF_PAGES_BRANCH: 'main'}), false)
@@ -73,6 +74,14 @@ test('the executable release assertion blocks production and permits explicit lo
   })
   assert.equal(local.status, 0, local.stderr)
   assert.match(local.stdout, /Local legal-policy preview allowed/)
+
+  const cloudflarePreview = spawnSync(process.execPath, ['--no-warnings', '--experimental-strip-types', gateScriptPath], {
+    cwd: root,
+    env: isolatedEnvironment({CF_PAGES: '1', CF_PAGES_BRANCH: 'codex/construction-completion'}),
+    encoding: 'utf8',
+  })
+  assert.equal(cloudflarePreview.status, 0, cloudflarePreview.stderr)
+  assert.match(cloudflarePreview.stdout, /Local legal-policy preview allowed/)
 })
 
 test('the build and source suites retain the legal release gates', () => {
