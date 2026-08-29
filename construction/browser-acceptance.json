@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "productionAuthorized": false,
+  "deploymentPerformed": false,
+  "cmsWrites": 0,
+  "realFormSubmissions": 0,
+  "reviewServer": {
+    "loopbackOnly": true,
+    "cacheControl": "no-store",
+    "xRobotsTag": "noindex, nofollow, noarchive",
+    "externalConnectionsAllowed": false,
+    "sameOriginConnectionsAllowed": true,
+    "formSubmissionAllowed": false
+  },
+  "matrix": {
+    "checkedScenarios": 76,
+    "viewports": [
+      {"name": "desktop", "width": 1440, "height": 900},
+      {"name": "tablet", "width": 768, "height": 1024},
+      {"name": "mobile", "width": 390, "height": 844},
+      {"name": "narrow-mobile", "width": 320, "height": 568}
+    ],
+    "routes": [
+      "/",
+      "/products/basketball-uniforms/",
+      "/products/soccer-jerseys/",
+      "/products/training-wear/",
+      "/solutions/",
+      "/oem-odm/",
+      "/private-label-teamwear/",
+      "/factory/",
+      "/quality-control-process/",
+      "/contact/",
+      "/design-gallery/",
+      "/get-quote/",
+      "/free-mockup/",
+      "/sample-order/",
+      "/privacy-policy/",
+      "/terms/",
+      "/intellectual-property-policy/",
+      "/resources/",
+      "/guides/custom-basketball-uniform-cost-factors/"
+    ],
+    "failures": 0,
+    "consoleErrors": 0,
+    "horizontalOverflow": 0,
+    "brokenImages": 0,
+    "thirdPartyBrandAssets": 0,
+    "unsupportedAbsoluteClaims": 0,
+    "blockingOverlays": 0,
+    "thirdPartyScriptStylesheetOrImageLoads": 0,
+    "minimumVisibleInquiryCtasPerScenario": 8
+  },
+  "accessibility": {
+    "sourceAndOutputContract": "PASS",
+    "sampledRoutes": ["/", "/contact/", "/get-quote/", "/free-mockup/", "/sample-order/"],
+    "skipLinkFirstInDomFocusOrder": true,
+    "headingLevelFailures": 0,
+    "unlabelledControlFailures": 0,
+    "positiveTabIndexFailures": 0,
+    "controlTouchTargetFailuresBelow40Px": 0,
+    "language": "en"
+  },
+  "inquiryAndAnalytics": {
+    "syntheticLocalValuesOnly": true,
+    "queryContextPreserved": {"product": "Full Teamwear", "source": "/solutions/"},
+    "privacyDraftLinkVisible": true,
+    "submitButtonsPresent": true,
+    "submitClicked": false,
+    "realSubmissionTriggered": false,
+    "fileSelectedInBrowser": false,
+    "attachmentSelectionRemovalCoveredByAutomatedContracts": true,
+    "analyticsBeforeChoice": false,
+    "rejectHidesChoicePanel": true,
+    "changePreferenceReopensPanel": true,
+    "acceptWhileAnalyticsGovernedDisabledLoadsAnalytics": false,
+    "consoleErrors": 0
+  },
+  "notes": [
+    "The legacy /product-visualization/ path is a static asset directory, not a page route; /design-gallery/ is the governed product-visualization page used in the matrix.",
+    "Lazy images were not classified as broken until the browser reported a completed load with zero natural width; output asset integrity remains independently enforced by build tests.",
+    "No link that could open WhatsApp, email, Alibaba, Formspree or another external destination was clicked."
+  ]
+}

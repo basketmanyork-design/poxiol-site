@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "productionAuthorized": false,
+  "deploymentPerformed": false,
+  "cmsWrites": 0,
+  "realFormSubmissions": 0,
+  "commands": [
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "durationMs": 34,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "git status --short",
+      "exitCode": 0,
+      "durationMs": 37,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "aaca0d6bc613d5cbe509028de061622bca5ba548cefbe760230598d1555822ef"
+    },
+    {
+      "command": "node scripts/assert-preview-readiness.mjs --check",
+      "exitCode": 0,
+      "durationMs": 79,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "648dcabc240d5332a12a6da2b6dd07177c29868b84f89795337efa4a6d97df42"
+    },
+    {
+      "command": "node scripts/check-sitemap-output.mjs",
+      "exitCode": 0,
+      "durationMs": 47,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "127d09b0b3aa9026f623a46330e2e4b1ad37b88d8fde97d625993e6a6e333ac1"
+    },
+    {
+      "command": "node scripts/generate-route-release.mjs --check",
+      "exitCode": 0,
+      "durationMs": 73,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "4973c9041dbb10777d8ae9ddadc609e8e4a1619950b610e925c1f3fb9b768397"
+    },
+    {
+      "command": "npm run build:prelaunch",
+      "exitCode": 0,
+      "durationMs": 50576,
+      "passCount": 133,
+      "failCount": 0,
+      "staticPageCount": 124,
+      "outputSha256": "8c394854d96a027fe699ebf59df55bdf6135ead2b5c51267411d1cf3365702a6"
+    },
+    {
+      "command": "npm run check:analytics-release",
+      "exitCode": 0,
+      "durationMs": 421,
+      "passCount": 5,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "c342f66b2e269cfdf3b0144cb5043a90e50396740f05a770426c824a948e8d62"
+    },
+    {
+      "command": "npm run check:canonical",
+      "exitCode": 0,
+      "durationMs": 278,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "4faf4b449a875eb2dbb150537f197b622b3524f4122764d6b08489f64b1a83ee"
+    },
+    {
+      "command": "npm run check:cms-redirects",
+      "exitCode": 0,
+      "durationMs": 269,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "bbd7148b4ad3ab8ae85913fde75648dfd7b575f875b4cc4a2372df1475ef9708"
+    },
+    {
+      "command": "npm run check:construction-release",
+      "exitCode": 0,
+      "durationMs": 499,
+      "passCount": 5,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "8bfc4ff004a54ddaa54c53af180f487a25652535e1d52125bb102d0c48a37546"
+    },
+    {
+      "command": "npm run check:conversion-ctas",
+      "exitCode": 0,
+      "durationMs": 3354,
+      "passCount": 91,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "f407f8d7d65d59e9a76fb13d6e919f56c2fab43ba15296b9aa8d34397bc8e1f9"
+    },
+    {
+      "command": "npm run check:preview-readiness",
+      "exitCode": 0,
+      "durationMs": 367,
+      "passCount": 6,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "90ca85b38ff37efe275c839dad441e67433dfba69ae2c8789b89b7d10d370cab"
+    },
+    {
+      "command": "npm run check:product-visualization",
+      "exitCode": 0,
+      "durationMs": 398,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "299ad0336419fe6fc3cf6e3443ac80584777d4c2c7776f1a996b0087da087b4c"
+    },
+    {
+      "command": "npm run check:real-production",
+      "exitCode": 0,
+      "durationMs": 1411,
+      "passCount": 0,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "1df3a88fa49947c580f6a8a578fc3916eca6d3d3b8af102897eb49a3429e8741"
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "durationMs": 6283,
+      "passCount": 35,
+      "failCount": 0,
+      "staticPageCount": null,
+      "outputSha256": "bd5a5d7f127a3147a711488a9dda22abf675329cccdc709815d86febb8eb8077"
+    }
+  ]
+}

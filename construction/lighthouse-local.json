@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "status": "LOCAL_LAB_PASS_LIGHTHOUSE_UNAVAILABLE",
+  "productionAuthorized": false,
+  "deploymentPerformed": false,
+  "cmsWrites": 0,
+  "realFormSubmissions": 0,
+  "lighthouse": {
+    "installed": false,
+    "scoreClaimed": false,
+    "reason": "No Lighthouse package or browser Lighthouse runner was available in the locked workspace. No dependency was downloaded or installed during acceptance."
+  },
+  "method": {
+    "engine": "Chrome DevTools Protocol Performance domain",
+    "environment": "loopback-only locked static review server",
+    "throttling": "none",
+    "runsPerRoute": 1,
+    "interpretation": "Local construction smoke metrics only; not a production Core Web Vitals claim."
+  },
+  "records": [
+    {
+      "route": "/",
+      "domContentLoadedMs": 30,
+      "firstContentfulPaintMs": 105,
+      "loadMs": 70,
+      "taskDurationMs": 107,
+      "scriptDurationMs": 34,
+      "layoutDurationMs": 3,
+      "jsHeapUsedBytes": 10432932,
+      "resources": 21,
+      "nodes": 2051,
+      "htmlBytes": 94213,
+      "referencedStaticAssetCount": 13,
+      "referencedStaticAssetBytes": 580633
+    },
+    {
+      "route": "/guides/custom-basketball-uniform-cost-factors/",
+      "domContentLoadedMs": 18,
+      "firstContentfulPaintMs": 44,
+      "loadMs": 26,
+      "taskDurationMs": 43,
+      "scriptDurationMs": 10,
+      "layoutDurationMs": 1,
+      "jsHeapUsedBytes": 8482648,
+      "resources": 26,
+      "nodes": 1320,
+      "htmlBytes": 75541,
+      "referencedStaticAssetCount": 10,
+      "referencedStaticAssetBytes": 540340
+    },
+    {
+      "route": "/get-quote/",
+      "domContentLoadedMs": 86,
+      "firstContentfulPaintMs": 127,
+      "loadMs": 104,
+      "taskDurationMs": 126,
+      "scriptDurationMs": 11,
+      "layoutDurationMs": 4,
+      "jsHeapUsedBytes": 9004352,
+      "resources": 27,
+      "nodes": 1820,
+      "htmlBytes": 82679,
+      "referencedStaticAssetCount": 12,
+      "referencedStaticAssetBytes": 574665
+    }
+  ],
+  "productionFollowUp": "Run Lighthouse and real-user Core Web Vitals on an owner-authorized Cloudflare Preview before production authorization."
+}

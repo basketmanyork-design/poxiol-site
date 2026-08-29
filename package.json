@@ -7,6 +7,8 @@
     "check:construction-source": "node --test scripts/check-construction-source-contract.test.mjs scripts/check-construction-import-policy.test.mjs scripts/generate-construction-import.test.mjs scripts/check-construction-import-result.test.mjs && node scripts/generate-construction-import.mjs --check",
     "check:construction-release": "node --test scripts/check-construction-release-manifest.test.mjs scripts/check-deterministic-build-id.test.mjs && node scripts/generate-construction-release-manifest.mjs --check",
     "check:preview-readiness": "node --test scripts/check-preview-readiness.test.mjs scripts/check-acceptance-results.test.mjs && node scripts/assert-preview-readiness.mjs --check",
+    "check:locked-review-server": "node --test scripts/check-locked-review-server.test.mjs",
+    "serve:locked-review": "node scripts/serve-locked-build.mjs",
     "accept:construction:source": "node scripts/run-construction-acceptance.mjs source",
     "accept:construction:build": "node scripts/run-construction-acceptance.mjs build",
     "accept:construction:postbuild": "node scripts/run-construction-acceptance.mjs postbuild",
