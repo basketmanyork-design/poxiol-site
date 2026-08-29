@@ -77,7 +77,8 @@ test('the executable release assertion blocks production and permits explicit lo
 
 test('the build and source suites retain the legal release gates', () => {
   const packageJson = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'))
-  assert.equal(packageJson.scripts.prebuild, 'node --no-warnings --experimental-strip-types scripts/assert-legal-release-ready.mts')
+  assert.match(packageJson.scripts.prebuild, /^node --no-warnings --experimental-strip-types scripts\/assert-legal-release-ready\.mts/)
+  assert.match(packageJson.scripts.prebuild, /scripts\/assert-analytics-release-ready\.mts$/)
   assert.match(packageJson.scripts.build, /check:legal-release:output/)
   assert.match(packageJson.scripts.test, /check:legal-release/)
 })

@@ -2,6 +2,7 @@ import 'server-only'
 
 import {contentSource, sanityQuery} from '@/lib/sanity/client'
 import {shouldEnableAnalytics} from './core'
+import {governedAnalyticsEnabled} from '@/lib/privacy/analytics-release'
 
 type AnalyticsSettingsDocument = {
   analyticsEnabled?: boolean
@@ -47,7 +48,7 @@ export async function getAnalyticsRuntimeConfig(): Promise<AnalyticsRuntimeConfi
 
   const settings = response.result
   const measurementId = String(settings.ga4MeasurementId || '').trim().toUpperCase()
-  const enabled = shouldEnableAnalytics({
+  const enabled = governedAnalyticsEnabled('ga4') && shouldEnableAnalytics({
     analyticsEnabled: settings.analyticsEnabled === true,
     ga4Enabled: settings.ga4Enabled === true,
     measurementId,
@@ -62,6 +63,6 @@ export async function getAnalyticsRuntimeConfig(): Promise<AnalyticsRuntimeConfi
     measurementId: enabled ? measurementId : '',
     consentModeEnabled: enabled && settings.consentModeEnabled === true,
     debugMode: enabled && settings.debugMode === true,
-    cloudflareAnalyticsEnabled: settings.cloudflareAnalyticsEnabled === true,
+    cloudflareAnalyticsEnabled: governedAnalyticsEnabled('cloudflareWebAnalytics') && settings.cloudflareAnalyticsEnabled === true,
   }
 }

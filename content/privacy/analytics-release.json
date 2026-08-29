@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "status": "PENDING_OWNER_LEGAL_APPROVAL",
+  "ga4": "DISABLED_PENDING_APPROVAL",
+  "cloudflareWebAnalytics": "DISABLED_PENDING_APPROVAL",
+  "approvedBy": null,
+  "approvedAt": null
+}
