@@ -2,7 +2,7 @@
 
 Date: 2026-08-31
 
-Status: Owner-approved architecture and three-month sanitized retention; written-spec review required before implementation planning
+Status: Owner-approved written specification and three-month sanitized retention; implementation planning authorized, implementation and account changes not yet authorized
 
 Environment: design branch only; no Analytics Engine enablement, Cloudflare binding, Preview deployment, production deployment, DNS, Sanity, form-endpoint, credential or account-setting change
 
