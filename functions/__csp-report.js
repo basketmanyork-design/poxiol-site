@@ -35,7 +35,9 @@ async function readLimitedText(request) {
     if (done) break
     size += value.byteLength
     if (size > MAX_BODY_BYTES) {
-      await reader.cancel()
+      try {
+        await reader.cancel()
+      } catch {}
       throw new PayloadTooLargeError()
     }
     text += decoder.decode(value, {stream: true})

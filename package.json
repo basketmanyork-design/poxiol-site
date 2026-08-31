@@ -19,7 +19,7 @@
     "build:prelaunch": "node --env-file=.env.prelaunch scripts/run-inquiry-prelaunch-build.mjs",
     "check:inquiry-prelaunch": "node --test scripts/check-inquiry-prelaunch-env.test.mjs",
     "check:security-headers:integration": "node --test scripts/check-security-headers-integration.test.mjs",
-    "check:csp-reporting": "node --test scripts/check-csp-reporting.test.mjs scripts/check-csp-pages-function.test.mjs",
+    "check:csp-reporting": "node --test scripts/check-csp-reporting.test.mjs scripts/check-csp-pages-function.test.mjs scripts/check-csp-pages-config.test.mjs",
     "check:inquiry-endpoint:output": "node scripts/check-inquiry-endpoint-output.test.mjs",
     "check:inquiry-success:output": "node scripts/check-inquiry-success-output.test.mjs",
     "check:project-inquiry-recovery": "node scripts/check-project-inquiry-recovery.test.mjs",

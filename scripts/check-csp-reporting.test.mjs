@@ -46,6 +46,17 @@ test('parses Reporting API batches and inspects only the first ten entries', () 
   assert.equal(parsed.at(-1)['effective-directive'], 'img-src')
 })
 
+test('ignores a valid CSP entry after ten non-CSP Reporting API entries', () => {
+  const entries = [
+    ...Array.from({length: 10}, () => ({type: 'deprecation', body: {id: 'not-csp'}})),
+    {type: 'csp-violation', body: legacyReport()},
+  ]
+  assert.deepEqual(parseCspReportPayload({
+    contentType: 'application/reports+json',
+    text: JSON.stringify(entries),
+  }), [])
+})
+
 test('ignores non-CSP Reporting API entries and unknown valid shapes', () => {
   assert.deepEqual(parseCspReportPayload({
     contentType: 'application/reports+json',
@@ -89,6 +100,12 @@ test('discards missing, invalid, and cross-host document URLs', () => {
   assert.equal(sanitizeCspReport({report: legacyReport({'document-uri': 'https://attacker.example/private'}), requestUrl}), null)
 })
 
+test('rejects non-string document URL values before URL parsing', () => {
+  for (const documentUrl of [123, {href: `https://${receiverHost}/contact/`}, []]) {
+    assert.equal(sanitizeCspReport({report: legacyReport({'document-uri': documentUrl}), requestUrl}), null)
+  }
+})
+
 test('normalizes allowed token classes, directive bounds, and status buckets', () => {
   const cases = [
     ['inline', 'inline', '', 0, '0'], ['eval', 'eval', '', 301, '3xx'], ['data:text/plain,hello', 'data', '', 404, '4xx'],
@@ -99,6 +116,28 @@ test('normalizes allowed token classes, directive bounds, and status buckets', (
     assert.equal(sanitized.blockedResourceClass, resourceClass); assert.equal(sanitized.blockedHost, blockedHost)
     assert.equal(sanitized.statusBucket, statusBucket); assert.equal(sanitized.effectiveDirective, 'unknown'); assert.equal(sanitized.disposition, 'unknown')
   }
+})
+
+test('classifies canonical IPv4 and bracketed IPv6 blocked hosts as other without retaining them', () => {
+  for (const blocked of ['https://192.0.2.44/private.js', 'https://[2001:db8::44]/private.js']) {
+    const sanitized = sanitizeCspReport({report: legacyReport({'blocked-uri': blocked}), requestUrl})
+    assert.equal(sanitized.blockedResourceClass, 'other')
+    assert.equal(sanitized.blockedHost, '')
+    assert.equal(JSON.stringify(sanitized).includes(new URL(blocked).hostname), false)
+  }
+})
+
+test('classifies an IP blocked host as other even when it matches the receiver', () => {
+  const ipRequestUrl = 'https://192.0.2.44/__csp-report'
+  const sanitized = sanitizeCspReport({
+    report: legacyReport({
+      'document-uri': 'https://192.0.2.44/contact/',
+      'blocked-uri': 'https://192.0.2.44/private.js',
+    }),
+    requestUrl: ipRequestUrl,
+  })
+  assert.equal(sanitized.blockedResourceClass, 'other')
+  assert.equal(sanitized.blockedHost, '')
 })
 
 test('caps document paths and external hostnames to the approved maxima', () => {

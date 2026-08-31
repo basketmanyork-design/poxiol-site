@@ -35,6 +35,39 @@ async function invoke({
   return {response, writes}
 }
 
+function streamingRequest(chunks, {cancel, close = true} = {}) {
+  let cancelCalls = 0
+  const stream = new ReadableStream({
+    start(controller) {
+      for (const chunk of chunks) controller.enqueue(chunk)
+      if (close) controller.close()
+    },
+    cancel() {
+      cancelCalls += 1
+      return cancel?.()
+    },
+  })
+  return {
+    request: new Request(endpoint, {
+      method: 'POST',
+      headers: {'content-type': 'application/csp-report'},
+      body: stream,
+      duplex: 'half',
+    }),
+    cancelCalls: () => cancelCalls,
+  }
+}
+
+async function invokeStreaming(chunks, options) {
+  const {request, cancelCalls} = streamingRequest(chunks, options)
+  const writes = []
+  const response = await onRequest({
+    request,
+    env: {POXIOL_CSP_REPORTS: {writeDataPoint: (point) => writes.push(point)}},
+  })
+  return {response, writes, cancelCalls}
+}
+
 function assertSafeResponse(response) {
   assert.equal(response.headers.get('cache-control'), 'no-store')
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff')
@@ -59,6 +92,16 @@ test('accepts Reporting API batches and writes no more than ten points', async (
   assert.equal(response.status, 204)
   assert.equal(writes.length, 10)
   assertSafeResponse(response)
+})
+
+test('does not write a valid eleventh CSP report after ten non-CSP batch entries', async () => {
+  const payload = JSON.stringify([
+    ...Array.from({length: 10}, () => ({type: 'deprecation', body: {id: 'not-csp'}})),
+    {type: 'csp-violation', body: body()},
+  ])
+  const {response, writes} = await invoke({contentType: 'application/reports+json', payload})
+  assert.equal(response.status, 204)
+  assert.deepEqual(writes, [])
 })
 
 test('returns 204 and zero writes for valid JSON with no usable CSP entry', async () => {
@@ -86,6 +129,32 @@ test('rejects malformed JSON, unsupported media, and oversized bodies', async ()
   assert.equal(oversized.response.status, 413)
   assert.deepEqual(oversized.writes, [])
   assertSafeResponse(oversized.response)
+})
+
+test('enforces the byte limit for exact, overflowing, multibyte, and rejecting-cancel streams', async () => {
+  const encoder = new TextEncoder()
+  const validPayload = JSON.stringify({'csp-report': body()})
+  const exactLimit = `${validPayload}${' '.repeat(MAX_BODY_BYTES - encoder.encode(validPayload).byteLength)}`
+  const exact = await invokeStreaming([encoder.encode(exactLimit)])
+  assert.equal(encoder.encode(exactLimit).byteLength, MAX_BODY_BYTES)
+  assert.equal(exact.response.status, 204)
+  assert.equal(exact.writes.length, 1)
+
+  const overflow = await invokeStreaming([encoder.encode(`${exactLimit} `)])
+  assert.equal(overflow.response.status, 413)
+  assert.deepEqual(overflow.writes, [])
+
+  const multibyteOverflow = await invokeStreaming([encoder.encode('é'.repeat(Math.ceil((MAX_BODY_BYTES + 1) / 2)))])
+  assert.equal(multibyteOverflow.response.status, 413)
+  assert.deepEqual(multibyteOverflow.writes, [])
+
+  const rejectingCancel = await invokeStreaming([encoder.encode(`${exactLimit} `)], {
+    cancel: () => Promise.reject(new Error('cancel failed')),
+    close: false,
+  })
+  assert.equal(rejectingCancel.response.status, 413)
+  assert.equal(rejectingCancel.cancelCalls(), 1)
+  assert.deepEqual(rejectingCancel.writes, [])
 })
 
 test('rejects non-POST methods with Allow POST', async () => {
@@ -125,6 +194,19 @@ test('discards cross-host document URLs without writing', async () => {
   })
   assert.equal(result.response.status, 204)
   assert.deepEqual(result.writes, [])
+})
+
+test('does not persist canonical IPv4 or bracketed IPv6 blocked-resource hosts through the real Function', async () => {
+  for (const blocked of ['https://192.0.2.44/private.js', 'https://[2001:db8::44]/private.js']) {
+    const {response, writes} = await invoke({
+      payload: JSON.stringify({'csp-report': body({'blocked-uri': blocked})}),
+    })
+    assert.equal(response.status, 204)
+    assert.equal(writes.length, 1)
+    assert.equal(writes[0].blobs[4], 'other')
+    assert.equal(writes[0].blobs[5], '')
+    assert.equal(JSON.stringify(writes).includes(new URL(blocked).hostname), false)
+  }
 })
 
 test('logs nothing and leaks no request sentinels while invoking the real Function', async () => {

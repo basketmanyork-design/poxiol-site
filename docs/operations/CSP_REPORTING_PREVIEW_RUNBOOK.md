@@ -45,7 +45,25 @@ After authorization:
 
 Stop until the owner explicitly authorizes a non-main Preview deployment and controlled synthetic reports. Do not merge to `main`.
 
-After authorization, use the immutable `poxiol-site.pages.dev` branch Preview URL shown by the Cloudflare Pages check. Store it only in the current shell as `POXIOL_PREVIEW_URL`; do not write it into source configuration.
+After authorization, use the immutable `poxiol-site.pages.dev` branch Preview URL shown by the Cloudflare Pages check. Store it only in the current shell as `POXIOL_PREVIEW_URL`; do not write it into source configuration. Derive and validate the exact receiver hostname before querying:
+
+```powershell
+if ([string]::IsNullOrWhiteSpace($env:POXIOL_PREVIEW_URL)) { throw 'POXIOL_PREVIEW_URL is required' }
+try {
+  $previewUrl = [Uri]$env:POXIOL_PREVIEW_URL
+} catch {
+  throw 'POXIOL_PREVIEW_URL must be an absolute HTTPS URL'
+}
+if (-not $previewUrl.IsAbsoluteUri -or $previewUrl.Scheme -ne 'https' -or $previewUrl.UserInfo -or $previewUrl.Port -ne 443) {
+  throw 'POXIOL_PREVIEW_URL must be a credential-free HTTPS URL on port 443'
+}
+$previewHost = $previewUrl.IdnHost.ToLowerInvariant()
+if ($previewHost -notmatch '^[a-z0-9](?:[a-z0-9-]{0,62})?\.poxiol-site\.pages\.dev$') {
+  throw 'POXIOL_PREVIEW_URL must use the immutable branch Preview hostname'
+}
+```
+
+Use the resulting `$previewHost` only as the quoted `__VALIDATED_PREVIEW_HOST__` literal below. Do not replace it with a generic `pages.dev` suffix match or an unvalidated URL value.
 
 ## Sampling-aware query
 
@@ -53,6 +71,7 @@ Use the Analytics Engine dashboard query surface for dataset `poxiol_csp_preview
 
 ```sql
 SELECT
+  blob8 AS receiver_host,
   blob3 AS effective_directive,
   blob4 AS document_path,
   blob5 AS blocked_resource_class,
@@ -61,7 +80,8 @@ SELECT
   SUM(_sample_interval) AS estimated_reports
 FROM poxiol_csp_preview
 WHERE timestamp >= NOW() - INTERVAL '1' HOUR
-GROUP BY blob3, blob4, blob5, blob6, blob7
+  AND blob8 = '__VALIDATED_PREVIEW_HOST__'
+GROUP BY blob8, blob3, blob4, blob5, blob6, blob7
 ORDER BY estimated_reports DESC
 LIMIT 100
 ```
@@ -86,7 +106,7 @@ The dataset may contain the approved directive, document pathname, resource clas
 1. Remove `Reporting-Endpoints`, `report-to`, and `report-uri` from the branch.
 2. Remove Preview binding `POXIOL_CSP_REPORTS`.
 3. Redeploy the immediately preceding known-good Preview commit.
-4. Leave `poxiol_csp_preview` to Cloudflare's approved default three-month expiry unless an approved earlier deletion control is available.
+4. Sanitized rows age out under Cloudflare's rolling platform-default three-month retention. Removing the binding stops new writes, but does not itself delete `poxiol_csp_preview`; the dataset may remain after the binding is removed unless an approved deletion control is available.
 5. Recheck the Preview homepage, `/contact/`, `/get-quote/`, `/free-mockup/`, sitemap, robots, form action, and mobile layout.
 
 ## Production no-go boundary

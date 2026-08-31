@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import {spawn} from 'node:child_process'
-import {existsSync, readFileSync} from 'node:fs'
+import {existsSync} from 'node:fs'
 import net from 'node:net'
 import os from 'node:os'
 import path from 'node:path'
@@ -10,8 +10,6 @@ import {fileURLToPath} from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const wrangler = path.join(root, 'node_modules', 'wrangler', 'bin', 'wrangler.js')
 const worker = path.join(root, '.open-next', 'worker.js')
-const pagesHeadersSource = readFileSync(path.join(root, 'public', '_headers'), 'utf8')
-const pagesRoutes = JSON.parse(readFileSync(path.join(root, 'public', '_routes.json'), 'utf8'))
 
 let baseUrl
 let server
@@ -125,23 +123,4 @@ test('public HTML responses expose the approved report-only CSP without enforcin
       }
     }
   }
-})
-
-test('Pages static headers declare same-origin report-only delivery', () => {
-  assert.match(pagesHeadersSource, /^  Reporting-Endpoints: poxiol-csp="\/__csp-report"$/m)
-  const policyLine = pagesHeadersSource
-    .split(/\r?\n/)
-    .find((line) => line.startsWith('  Content-Security-Policy-Report-Only:'))
-  assert.ok(policyLine)
-  assert.match(policyLine, /(?:^|; )report-to poxiol-csp(?:;|$)/)
-  assert.match(policyLine, /(?:^|; )report-uri \/__csp-report(?:;|$)/)
-  assert.doesNotMatch(pagesHeadersSource, /^  Content-Security-Policy:/m)
-})
-
-test('Pages Functions routing invokes only the CSP receiver', () => {
-  assert.deepEqual(pagesRoutes, {
-    version: 1,
-    include: ['/__csp-report', '/__csp-report/'],
-    exclude: [],
-  })
 })
