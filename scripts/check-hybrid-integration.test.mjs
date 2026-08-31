@@ -25,6 +25,21 @@ test('accepts the explicitly opted-in loopback review environment', () => {
   assert.doesNotThrow(() => assertLocalHybridReview(validReviewEnvironment))
 })
 
+test('CMS pull-request builds declare an explicit loopback review environment', () => {
+  const workflow = readFileSync('.github/workflows/cms-pr-check.yml', 'utf8')
+  const jobStart = workflow.indexOf('\n  cms-pr-check:\n')
+  const stepsStart = workflow.indexOf('\n    steps:\n', jobStart)
+  assert.ok(jobStart >= 0 && stepsStart > jobStart, 'cms-pr-check job configuration must be present')
+  const jobConfiguration = workflow.slice(jobStart, stepsStart)
+  const reviewMode = jobConfiguration.match(/^ {6}POXIOL_INTEGRATION_REVIEW:\s*([^\s#]+)\s*$/m)?.[1]
+  const reviewOrigin = jobConfiguration.match(/^ {6}POXIOL_INTEGRATION_ORIGIN:\s*([^\s#]+)\s*$/m)?.[1]
+
+  assert.doesNotThrow(() => assertLocalHybridReview({
+    POXIOL_INTEGRATION_REVIEW: reviewMode,
+    POXIOL_INTEGRATION_ORIGIN: reviewOrigin,
+  }))
+})
+
 test('accepts preview branches and opens main only for a complete governed production approval', () => {
   const approvedProduction = {
     status: 'APPROVED',

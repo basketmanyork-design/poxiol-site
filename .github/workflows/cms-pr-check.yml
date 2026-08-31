@@ -15,6 +15,9 @@ jobs:
   cms-pr-check:
     runs-on: ubuntu-latest
     timeout-minutes: 35
+    env:
+      POXIOL_INTEGRATION_REVIEW: local
+      POXIOL_INTEGRATION_ORIGIN: http://127.0.0.1:4173
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,6 +36,9 @@ jobs:
 
       - name: Frontend TypeScript check
         run: npx tsc --noEmit
+
+      - name: Hybrid integration contract
+        run: node --test scripts/check-hybrid-integration.test.mjs
 
       - name: Visibility tests
         run: node scripts/check-cms-visibility.mjs
