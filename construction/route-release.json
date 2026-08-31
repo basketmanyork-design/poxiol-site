@@ -3,10 +3,10 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
-    "candidateSitemapSha256": "9437cf8f6bc52223dd90e7da4536a45de153358e5a9724d33a7458a6643d2d13",
+    "candidateSitemapSha256": "02f566cc86ce57f4f712824604f46908e5692cebfde40a4e80e914671565acb5",
     "publicCount": 100,
     "candidateCount": 80,
-    "renderedCount": 166,
+    "renderedCount": 121,
     "legalStatus": "APPROVED"
   },
   "routes": {
