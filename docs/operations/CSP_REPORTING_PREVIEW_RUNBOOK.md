@@ -117,10 +117,10 @@ This runbook does not authorize a Production binding, Production dataset, `main`
 
 - Local focused tests: PASS; pure module, Function HTTP contract, static header source, and OpenNext regression checks completed.
 - Local static build and generated-file inspection: PASS; out/_headers and out/_routes.json match the approved Pages contract.
-- Preview binding verification: NOT AUTHORIZED.
+- Preview binding verification: PASS at 2026-08-31 23:07:13 +08:00; operator Codex under explicit POXIOL Owner Gate A authorization; account-level Analytics Engine enabled by creating dataset `poxiol_csp_preview`; `poxiol-site` Preview visibly shows `POXIOL_CSP_REPORTS` → `poxiol_csp_preview`; the setting states it takes effect on the next deployment.
 - Preview deployment URL and commit: NOT AUTHORIZED.
 - Synthetic legacy report: NOT AUTHORIZED.
 - Synthetic Reporting API batch: NOT AUTHORIZED.
 - Browser-generated report-only violation: NOT AUTHORIZED.
 - Sanitized dataset inspection: NOT AUTHORIZED.
-- Production unchanged check: NOT RUN.
+- Production unchanged check: PASS at 2026-08-31 23:07:13 +08:00; `poxiol-site` Production was reopened read-only and shows no Analytics Engine binding and no `POXIOL_CSP_REPORTS`; no deployment, token, secret, Production binding, push, merge, DNS, WAF, KV, D1, or R2 change was made.
