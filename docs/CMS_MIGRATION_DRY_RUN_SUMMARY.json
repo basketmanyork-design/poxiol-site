@@ -203,7 +203,7 @@
   "duplicateExistingCount": 0,
   "obsoleteMvpCount": 10,
   "corruptedExistingCount": 5,
-  "manualReviewCount": 19,
+  "manualReviewCount": 20,
   "routeConflictCount": 0,
   "articleConflictCount": 0,
   "missingSeoCount": 0,
@@ -217,18 +217,20 @@
     {
       "slug": "how-to-choose-teamwear-manufacturer-china",
       "currentRoutes": [
-        "/guides/how-to-choose-teamwear-manufacturer-china/"
+        "/guides/how-to-choose-teamwear-manufacturer-china/",
+        "/resources/teamwear-manufacturer-evaluation-checklist/"
       ],
-      "authoritativeRoute": "/guides/how-to-choose-teamwear-manufacturer-china/",
-      "action": "Resource candidate renamed to teamwear-manufacturer-evaluation-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL."
+      "authoritativeRoute": "/resources/teamwear-manufacturer-evaluation-checklist/",
+      "action": "The old guide route is a permanent redirect source, so its article candidate is excluded; the target resource candidate and redirectRule are retained."
     },
     {
       "slug": "private-label-teamwear-manufacturing",
       "currentRoutes": [
-        "/guides/private-label-teamwear-manufacturing/"
+        "/guides/private-label-teamwear-manufacturing/",
+        "/resources/private-label-teamwear-launch-checklist/"
       ],
-      "authoritativeRoute": "/guides/private-label-teamwear-manufacturing/",
-      "action": "Resource candidate renamed to private-label-teamwear-launch-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL."
+      "authoritativeRoute": "/resources/private-label-teamwear-launch-checklist/",
+      "action": "The old guide route is a permanent redirect source, so its article candidate is excluded; the target resource candidate and redirectRule are retained."
     },
     {
       "slug": "how-to-order-custom-basketball-uniforms",
@@ -242,10 +244,20 @@
       "slug": "sublimation-printing-guide",
       "currentRoutes": [
         "/guides/sublimation-printing-guide/",
-        "/blog/how-sublimation-printing-works-for-teamwear/"
+        "/blog/how-sublimation-printing-works-for-teamwear/",
+        "/how-sublimation-printing-works-for-teamwear/"
       ],
-      "authoritativeRoute": "/guides/sublimation-printing-guide/",
-      "action": "Distinct blog candidate uses slug how-sublimation-printing-works-for-teamwear."
+      "authoritativeRoute": "/how-sublimation-printing-works-for-teamwear/",
+      "action": "The /blog/ route is a permanent redirect source, so its article candidate is excluded and its redirectRule is retained. The canonical target remains legacy-backed until a separate CMS candidate is approved."
+    },
+    {
+      "slug": "teamwear-sample-approval-checklist",
+      "currentRoutes": [
+        "/guides/teamwear-sample-approval-checklist/",
+        "/guides/sample-first-vs-bulk-teamwear-order/"
+      ],
+      "authoritativeRoute": "/guides/sample-first-vs-bulk-teamwear-order/",
+      "action": "The old checklist route is a permanent redirect source, so its article candidate is excluded; the target guide candidate and redirectRule are retained."
     }
   ],
   "reconciliation": {
@@ -266,7 +278,7 @@
     "duplicateExistingCount": 0,
     "obsoleteMvpCount": 10,
     "corruptedExistingCount": 5,
-    "manualReviewCount": 19,
+    "manualReviewCount": 20,
     "existingMvpDrafts": [
       {
         "id": "article-mvp",
@@ -380,5 +392,5 @@
     "duplicateAssetHashCount": 1,
     "manifestPath": "tmp/cms-migration-dry-run/asset-manifest.json"
   },
-  "dryRunHash": "4fbba360e3f952fffccfcad7b50aa628fa88742bb0209999cebf291b43a40cf1"
+  "dryRunHash": "28a10c083359033f9aed7ccaacc29efd350173f1ad704486c5dc0dd06d560d0e"
 }

@@ -46,7 +46,7 @@ Published business document count: 0
 - corrupted_existing: 5
 - corruptedExistingWithoutPlan: 0
 - obsoleteMvpWithoutDecision: 0
-- manual_review: 19
+- manual_review: 20
 
 ## Existing Data Problems
 

@@ -46,6 +46,9 @@ jobs:
       - name: Redirect generator fixture test
         run: node scripts/check-cms-redirects.mjs
 
+      - name: Migration redirect governance test
+        run: node --test scripts/check-cms-migration-route-governance.test.mjs
+
       - name: Migration dry run determinism
         run: |
           node scripts/cms-migration-dry-run.ts
