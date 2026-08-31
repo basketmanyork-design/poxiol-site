@@ -43,7 +43,7 @@
     "sitePage": 0,
     "siteSettings": 0
   },
-  "correctedCandidateCount": 125,
+  "correctedCandidateCount": 128,
   "unsupportedTypeCount": 0,
   "plannedDocumentsByType": {
     "siteSettings": 1,
@@ -56,42 +56,19 @@
     "caseStudy": 5,
     "faqCategory": 9,
     "faqItem": 35,
-    "article": 37,
+    "article": 14,
     "author": 1,
-    "redirectRule": 1
+    "redirectRule": 27
   },
   "candidateKeys": [
-    "article.article-blog-best-sportswear-fabrics",
-    "article.article-blog-custom-baseball-jerseys-for-clubs",
-    "article.article-blog-custom-basketball-jerseys-melbourne",
-    "article.article-blog-custom-basketball-uniforms-for-schools",
-    "article.article-blog-custom-soccer-kits-london",
-    "article.article-blog-custom-soccer-uniforms-for-academies",
-    "article.article-blog-custom-sports-apparel-distributor",
-    "article.article-blog-custom-teamwear-new-york",
-    "article.article-blog-custom-volleyball-uniforms-for-schools",
-    "article.article-blog-how-sublimation-printing-works-for-teamwear",
-    "article.article-blog-how-to-choose-a-teamwear-manufacturer",
-    "article.article-blog-oem-baseball-apparel-manufacturer",
-    "article.article-blog-oem-basketball-apparel-manufacturer",
-    "article.article-blog-oem-soccer-apparel-manufacturer",
-    "article.article-blog-oem-volleyball-apparel-manufacturer",
-    "article.article-blog-oem-vs-odm-sportswear",
-    "article.article-blog-soccer-jersey-buying-guide",
-    "article.article-blog-soccer-jersey-supplier-australia",
-    "article.article-blog-soccer-teamwear-supplier-uk",
-    "article.article-blog-soccer-teamwear-supplier-usa",
     "article.article-guide-b2b-sourcing-faq",
     "article.article-guide-basketball-uniform-size-guide",
     "article.article-guide-custom-basketball-uniform-cost-factors",
     "article.article-guide-custom-basketball-uniform-fabric-gsm",
-    "article.article-guide-how-to-choose-teamwear-manufacturer-china",
     "article.article-guide-how-to-order-custom-basketball-uniforms",
-    "article.article-guide-private-label-teamwear-manufacturing",
     "article.article-guide-reversible-vs-single-layer-basketball-uniforms",
     "article.article-guide-sample-first-vs-bulk-teamwear-order",
     "article.article-guide-sublimation-printing-guide",
-    "article.article-guide-teamwear-sample-approval-checklist",
     "article.article-resource-custom-basketball-uniform-manufacturer-guide",
     "article.article-resource-custom-soccer-kits-wholesale-guide",
     "article.article-resource-custom-teamwear-moq-production-time",
@@ -173,7 +150,33 @@
     "productCategory.category-soccer-jerseys",
     "productCategory.category-team-accessories",
     "productCategory.category-training-wear",
+    "redirectRule.redirect-15b4345f6bfb6ac6",
+    "redirectRule.redirect-222eba3794684f13",
     "redirectRule.redirect-2494c1e68511ad18",
+    "redirectRule.redirect-37789686b669d753",
+    "redirectRule.redirect-4ad279f63670981c",
+    "redirectRule.redirect-4e337ade3b44d0ea",
+    "redirectRule.redirect-55d9dc6e799baad0",
+    "redirectRule.redirect-61afe76454fcfa9e",
+    "redirectRule.redirect-69c9458a0571955d",
+    "redirectRule.redirect-69e2421d9607b0c0",
+    "redirectRule.redirect-6a1fba5f0972f517",
+    "redirectRule.redirect-6ef9e2a93fc37164",
+    "redirectRule.redirect-71a43f9687160914",
+    "redirectRule.redirect-793bd77553462ff9",
+    "redirectRule.redirect-7ada3d01ec1e58d0",
+    "redirectRule.redirect-7f80e6e601060238",
+    "redirectRule.redirect-854417c328ec034d",
+    "redirectRule.redirect-924df985d4d0d959",
+    "redirectRule.redirect-99764b402930722d",
+    "redirectRule.redirect-a3b49ecedf7ea0b0",
+    "redirectRule.redirect-cd8aef069141b79f",
+    "redirectRule.redirect-d5195ac7a3847ac1",
+    "redirectRule.redirect-d8498475d854ea01",
+    "redirectRule.redirect-e56097fc1c4ec7c2",
+    "redirectRule.redirect-e6b71ee0c1077e6f",
+    "redirectRule.redirect-f90557bf83267a5c",
+    "redirectRule.redirect-fef3386ac94af0cf",
     "sitePage.page-about",
     "sitePage.page-contact",
     "sitePage.page-customization",
@@ -196,11 +199,11 @@
   "ordinaryDocumentIdStrategy": "Sanity-generated IDs; candidates use legacyKey/legacySource/legacyRoute for deterministic matching.",
   "reuseExistingCount": 2,
   "updateExistingCount": 40,
-  "createNewDraftCount": 83,
+  "createNewDraftCount": 86,
   "duplicateExistingCount": 0,
   "obsoleteMvpCount": 10,
   "corruptedExistingCount": 5,
-  "manualReviewCount": 19,
+  "manualReviewCount": 20,
   "routeConflictCount": 0,
   "articleConflictCount": 0,
   "missingSeoCount": 0,
@@ -214,18 +217,20 @@
     {
       "slug": "how-to-choose-teamwear-manufacturer-china",
       "currentRoutes": [
-        "/guides/how-to-choose-teamwear-manufacturer-china/"
+        "/guides/how-to-choose-teamwear-manufacturer-china/",
+        "/resources/teamwear-manufacturer-evaluation-checklist/"
       ],
-      "authoritativeRoute": "/guides/how-to-choose-teamwear-manufacturer-china/",
-      "action": "Resource candidate renamed to teamwear-manufacturer-evaluation-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL."
+      "authoritativeRoute": "/resources/teamwear-manufacturer-evaluation-checklist/",
+      "action": "The old guide route is a permanent redirect source, so its article candidate is excluded; the target resource candidate and redirectRule are retained."
     },
     {
       "slug": "private-label-teamwear-manufacturing",
       "currentRoutes": [
-        "/guides/private-label-teamwear-manufacturing/"
+        "/guides/private-label-teamwear-manufacturing/",
+        "/resources/private-label-teamwear-launch-checklist/"
       ],
-      "authoritativeRoute": "/guides/private-label-teamwear-manufacturing/",
-      "action": "Resource candidate renamed to private-label-teamwear-launch-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL."
+      "authoritativeRoute": "/resources/private-label-teamwear-launch-checklist/",
+      "action": "The old guide route is a permanent redirect source, so its article candidate is excluded; the target resource candidate and redirectRule are retained."
     },
     {
       "slug": "how-to-order-custom-basketball-uniforms",
@@ -239,10 +244,20 @@
       "slug": "sublimation-printing-guide",
       "currentRoutes": [
         "/guides/sublimation-printing-guide/",
-        "/blog/how-sublimation-printing-works-for-teamwear/"
+        "/blog/how-sublimation-printing-works-for-teamwear/",
+        "/how-sublimation-printing-works-for-teamwear/"
       ],
-      "authoritativeRoute": "/guides/sublimation-printing-guide/",
-      "action": "Distinct blog candidate uses slug how-sublimation-printing-works-for-teamwear."
+      "authoritativeRoute": "/how-sublimation-printing-works-for-teamwear/",
+      "action": "The /blog/ route is a permanent redirect source, so its article candidate is excluded and its redirectRule is retained. The canonical target remains legacy-backed until a separate CMS candidate is approved."
+    },
+    {
+      "slug": "teamwear-sample-approval-checklist",
+      "currentRoutes": [
+        "/guides/teamwear-sample-approval-checklist/",
+        "/guides/sample-first-vs-bulk-teamwear-order/"
+      ],
+      "authoritativeRoute": "/guides/sample-first-vs-bulk-teamwear-order/",
+      "action": "The old checklist route is a permanent redirect source, so its article candidate is excluded; the target guide candidate and redirectRule are retained."
     }
   ],
   "reconciliation": {
@@ -259,11 +274,11 @@
     },
     "reuseExistingCount": 2,
     "updateExistingCount": 40,
-    "createNewDraftCount": 83,
+    "createNewDraftCount": 86,
     "duplicateExistingCount": 0,
     "obsoleteMvpCount": 10,
     "corruptedExistingCount": 5,
-    "manualReviewCount": 19,
+    "manualReviewCount": 20,
     "existingMvpDrafts": [
       {
         "id": "article-mvp",
@@ -371,11 +386,11 @@
   ],
   "assetUploadPlan": {
     "uploadPerformed": false,
-    "candidateAssetReferences": 21,
-    "existingLocalAssets": 21,
+    "candidateAssetReferences": 7,
+    "existingLocalAssets": 7,
     "brokenLocalAssets": 0,
-    "duplicateAssetHashCount": 4,
+    "duplicateAssetHashCount": 1,
     "manifestPath": "tmp/cms-migration-dry-run/asset-manifest.json"
   },
-  "dryRunHash": "085b8009e4deb0b89a02e648e9371b2bc0d6552a0569f70532ed68db61f791fa"
+  "dryRunHash": "28a10c083359033f9aed7ccaacc29efd350173f1ad704486c5dc0dd06d560d0e"
 }

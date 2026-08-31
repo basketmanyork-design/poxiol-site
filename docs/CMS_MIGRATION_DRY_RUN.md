@@ -2,7 +2,7 @@
 
 This deterministic dry run is read-only. It reads local legacy source files, compares planned document types against the registered local Studio schema, writes ignored temporary artifacts, and produces summary reports. It does not query Sanity, read tokens, write Sanity documents, upload assets, run Seed, run Dataset Import, modify Cloudflare, deploy schema, or deploy Studio.
 
-Dry run hash: `085b8009e4deb0b89a02e648e9371b2bc0d6552a0569f70532ed68db61f791fa`
+Dry run hash: `28a10c083359033f9aed7ccaacc29efd350173f1ad704486c5dc0dd06d560d0e`
 
 ## Local Candidate Inventory
 
@@ -56,7 +56,7 @@ Published business document count is currently 0.
 
 | Sanity type | Candidate count |
 | --- | ---: |
-| article | 37 |
+| article | 14 |
 | author | 1 |
 | caseStudy | 5 |
 | faqCategory | 9 |
@@ -66,11 +66,11 @@ Published business document count is currently 0.
 | procurementStandards | 1 |
 | product | 17 |
 | productCategory | 5 |
-| redirectRule | 1 |
+| redirectRule | 27 |
 | sitePage | 11 |
 | siteSettings | 1 |
 
-Corrected candidate count: 125
+Corrected candidate count: 128
 Unsupported schema type count: 0
 Unsupported schema types: none
 
@@ -86,11 +86,11 @@ Unsupported schema types: none
 
 - Reuse existing drafts: 2
 - Update existing drafts: 40
-- Create new drafts: 83
+- Create new drafts: 86
 - Duplicate existing: 0
 - Obsolete MVP candidates: 10
 - Corrupted existing: 5
-- Manual review count: 19
+- Manual review count: 20
 
 ## Conflict Summary
 
@@ -99,10 +99,11 @@ Unsupported schema types: none
 
 ### Article conflict plan
 
-- `how-to-choose-teamwear-manufacturer-china`: authoritative `/guides/how-to-choose-teamwear-manufacturer-china/`; Resource candidate renamed to teamwear-manufacturer-evaluation-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL.
-- `private-label-teamwear-manufacturing`: authoritative `/guides/private-label-teamwear-manufacturing/`; Resource candidate renamed to private-label-teamwear-launch-checklist; no redirect is generated because this is a migration candidate, not a confirmed published legacy URL.
+- `how-to-choose-teamwear-manufacturer-china`: authoritative `/resources/teamwear-manufacturer-evaluation-checklist/`; The old guide route is a permanent redirect source, so its article candidate is excluded; the target resource candidate and redirectRule are retained.
+- `private-label-teamwear-manufacturing`: authoritative `/resources/private-label-teamwear-launch-checklist/`; The old guide route is a permanent redirect source, so its article candidate is excluded; the target resource candidate and redirectRule are retained.
 - `how-to-order-custom-basketball-uniforms`: authoritative `/guides/how-to-order-custom-basketball-uniforms/`; Blog/PSEO candidate is highly overlapping with the guide and is marked merged_into_authoritative_article, so it is not emitted as a second article document.
-- `sublimation-printing-guide`: authoritative `/guides/sublimation-printing-guide/`; Distinct blog candidate uses slug how-sublimation-printing-works-for-teamwear.
+- `sublimation-printing-guide`: authoritative `/how-sublimation-printing-works-for-teamwear/`; The /blog/ route is a permanent redirect source, so its article candidate is excluded and its redirectRule is retained. The canonical target remains legacy-backed until a separate CMS candidate is approved.
+- `teamwear-sample-approval-checklist`: authoritative `/guides/sample-first-vs-bulk-teamwear-order/`; The old checklist route is a permanent redirect source, so its article candidate is excluded; the target guide candidate and redirectRule are retained.
 
 ## Content Quality Findings
 

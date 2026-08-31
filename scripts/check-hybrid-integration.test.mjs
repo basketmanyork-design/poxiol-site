@@ -25,6 +25,47 @@ test('accepts the explicitly opted-in loopback review environment', () => {
   assert.doesNotThrow(() => assertLocalHybridReview(validReviewEnvironment))
 })
 
+test('CMS pull-request builds declare an explicit loopback review environment', () => {
+  const workflow = readFileSync('.github/workflows/cms-pr-check.yml', 'utf8')
+  const jobStart = workflow.indexOf('\n  cms-pr-check:\n')
+  const stepsStart = workflow.indexOf('\n    steps:\n', jobStart)
+  assert.ok(jobStart >= 0 && stepsStart > jobStart, 'cms-pr-check job configuration must be present')
+  const jobConfiguration = workflow.slice(jobStart, stepsStart)
+  const reviewMode = jobConfiguration.match(/^ {6}POXIOL_INTEGRATION_REVIEW:\s*([^\s#]+)\s*$/m)?.[1]
+  const reviewOrigin = jobConfiguration.match(/^ {6}POXIOL_INTEGRATION_ORIGIN:\s*([^\s#]+)\s*$/m)?.[1]
+
+  assert.doesNotThrow(() => assertLocalHybridReview({
+    POXIOL_INTEGRATION_REVIEW: reviewMode,
+    POXIOL_INTEGRATION_ORIGIN: reviewOrigin,
+  }))
+})
+
+test('CMS pull-request build variants preserve an exact legacy baseline and mark Sanity variants as previews', () => {
+  const workflow = readFileSync('.github/workflows/cms-pr-check.yml', 'utf8').replace(/\r\n/g, '\n')
+  const jobStart = workflow.indexOf('\n  cms-pr-check:\n')
+  const stepsStart = workflow.indexOf('\n    steps:\n', jobStart)
+  assert.ok(jobStart >= 0 && stepsStart > jobStart, 'cms-pr-check job configuration must be present')
+  const jobConfiguration = workflow.slice(jobStart, stepsStart)
+  assert.doesNotMatch(jobConfiguration, /^ {6}CF_PAGES:/m)
+  assert.doesNotMatch(jobConfiguration, /^ {6}CF_PAGES_BRANCH:/m)
+  const stepBlock = (name) => {
+    const start = workflow.indexOf(`\n      - name: ${name}\n`)
+    assert.ok(start >= 0, `${name} step must be present`)
+    const next = workflow.indexOf('\n      - name:', start + 1)
+    return workflow.slice(start, next >= 0 ? next : workflow.length)
+  }
+
+  const legacy = stepBlock('Legacy static build')
+  assert.doesNotMatch(legacy, /^ {10}CF_PAGES:/m)
+  assert.doesNotMatch(legacy, /^ {10}CF_PAGES_BRANCH:/m)
+
+  for (const name of ['Default sanity static build', 'Sanity preview static build']) {
+    const block = stepBlock(name)
+    assert.match(block, /^ {10}CF_PAGES:\s*['"]1['"]\s*$/m)
+    assert.match(block, /^ {10}CF_PAGES_BRANCH:\s*\$\{\{ github\.head_ref \|\| github\.ref_name \}\}\s*$/m)
+  }
+})
+
 test('accepts preview branches and opens main only for a complete governed production approval', () => {
   const approvedProduction = {
     status: 'APPROVED',

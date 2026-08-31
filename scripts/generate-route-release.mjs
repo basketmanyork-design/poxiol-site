@@ -2,7 +2,13 @@ import {createHash} from 'node:crypto'
 import {existsSync, readFileSync, readdirSync, statSync, writeFileSync} from 'node:fs'
 import {join, relative, resolve, sep} from 'node:path'
 
-import {compareRoutes, normalizeRoute, shouldRequireExactManifest, withheldLegalRoutes} from '../lib/release/route-release.mjs'
+import {
+  compareRoutes,
+  manifestsEquivalent,
+  normalizeRoute,
+  shouldRequireExactManifest,
+  withheldLegalRoutes,
+} from '../lib/release/route-release.mjs'
 
 const ROOT = resolve(import.meta.dirname, '..')
 const BASELINE_PATH = join(ROOT, 'construction', 'public-sitemap-baseline.txt')
@@ -116,14 +122,14 @@ const next = stableJson(buildManifest())
 if (args.has('--check')) {
   if (!existsSync(MANIFEST_PATH)) throw new Error('ROUTE_RELEASE_MANIFEST_MISSING')
   const current = readFileSync(MANIFEST_PATH, 'utf8')
-  if (current !== next && shouldRequireExactManifest()) {
+  if (!manifestsEquivalent(current, next) && shouldRequireExactManifest()) {
     const currentManifest = JSON.parse(current)
     const nextManifest = JSON.parse(next)
     console.error('[route-release] current source:', JSON.stringify(currentManifest.source))
     console.error('[route-release] expected source:', JSON.stringify(nextManifest.source))
     throw new Error('ROUTE_RELEASE_MANIFEST_STALE')
   }
-  if (current !== next) {
+  if (!manifestsEquivalent(current, next)) {
     console.log('[route-release] Cloudflare preview route drift accepted after route-safety validation')
   } else {
     console.log('[route-release] manifest is deterministic and current')

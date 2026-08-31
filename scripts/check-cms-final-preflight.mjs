@@ -7,9 +7,9 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const selfScripts = ['check-cms-final-preflight.mjs', 'check-cms-final-preflight-test.mjs', 'verify-mvp-seed-result.cjs', 'check-cms-safety.mjs', 'cms-migration-dry-run.ts'];
-const EXPECTED_CORRECTED_CANDIDATE_COUNT = 125;
+const EXPECTED_CORRECTED_CANDIDATE_COUNT = 128;
 const EXPECTED_REDIRECT_CANDIDATE = 'redirectRule.redirect-2494c1e68511ad18';
-const EXPECTED_CANDIDATE_KEYS_SHA256 = '3ae014c9199d03472ad9351a3ed21aab6b7783ebc6205cd29eae120e3f8bc0c5';
+const EXPECTED_CANDIDATE_KEYS_SHA256 = '4b36c8b118df9306c8f42b7e427c353f40ec9decdfcbd4bda3fb803db33fee5a';
 
 
 let totalFail = 0;
