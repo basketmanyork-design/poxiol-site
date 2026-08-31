@@ -116,6 +116,8 @@ jobs:
           npm run build
         env:
           CMS_LEGACY_LIST_MODE: merge
+          CF_PAGES: '1'
+          CF_PAGES_BRANCH: ${{ github.head_ref || github.ref_name }}
 
       - name: Default sitemap output integrity
         run: node scripts/check-sitemap-output.mjs
@@ -127,6 +129,8 @@ jobs:
         env:
           NEXT_PUBLIC_CONTENT_SOURCE: sanity-preview
           CMS_LEGACY_LIST_MODE: merge
+          CF_PAGES: '1'
+          CF_PAGES_BRANCH: ${{ github.head_ref || github.ref_name }}
 
       - name: Preview sitemap output integrity
         run: node scripts/check-sitemap-output.mjs
