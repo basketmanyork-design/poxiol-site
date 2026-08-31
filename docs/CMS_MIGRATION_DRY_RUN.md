@@ -2,7 +2,7 @@
 
 This deterministic dry run is read-only. It reads local legacy source files, compares planned document types against the registered local Studio schema, writes ignored temporary artifacts, and produces summary reports. It does not query Sanity, read tokens, write Sanity documents, upload assets, run Seed, run Dataset Import, modify Cloudflare, deploy schema, or deploy Studio.
 
-Dry run hash: `085b8009e4deb0b89a02e648e9371b2bc0d6552a0569f70532ed68db61f791fa`
+Dry run hash: `4fbba360e3f952fffccfcad7b50aa628fa88742bb0209999cebf291b43a40cf1`
 
 ## Local Candidate Inventory
 
@@ -56,7 +56,7 @@ Published business document count is currently 0.
 
 | Sanity type | Candidate count |
 | --- | ---: |
-| article | 37 |
+| article | 14 |
 | author | 1 |
 | caseStudy | 5 |
 | faqCategory | 9 |
@@ -66,11 +66,11 @@ Published business document count is currently 0.
 | procurementStandards | 1 |
 | product | 17 |
 | productCategory | 5 |
-| redirectRule | 1 |
+| redirectRule | 27 |
 | sitePage | 11 |
 | siteSettings | 1 |
 
-Corrected candidate count: 125
+Corrected candidate count: 128
 Unsupported schema type count: 0
 Unsupported schema types: none
 
@@ -86,7 +86,7 @@ Unsupported schema types: none
 
 - Reuse existing drafts: 2
 - Update existing drafts: 40
-- Create new drafts: 83
+- Create new drafts: 86
 - Duplicate existing: 0
 - Obsolete MVP candidates: 10
 - Corrupted existing: 5
