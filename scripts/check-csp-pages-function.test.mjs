@@ -103,6 +103,22 @@ test('fails closed when the Preview Analytics Engine binding is absent', async (
   assertSafeResponse(response)
 })
 
+test('fails closed when Analytics Engine writeDataPoint throws', async () => {
+  const writes = []
+  const request = new Request(endpoint, {
+    method: 'POST',
+    headers: {'content-type': 'application/csp-report'},
+    body: JSON.stringify({'csp-report': body()}),
+  })
+  const response = await onRequest({
+    request,
+    env: {POXIOL_CSP_REPORTS: {writeDataPoint: () => { throw new Error('write failed') }}},
+  })
+  assert.equal(response.status, 503)
+  assert.deepEqual(writes, [])
+  assertSafeResponse(response)
+})
+
 test('discards cross-host document URLs without writing', async () => {
   const result = await invoke({
     payload: JSON.stringify({'csp-report': body({'document-uri': 'https://attacker.example/private'})}),
@@ -113,7 +129,10 @@ test('discards cross-host document URLs without writing', async () => {
 
 test('logs nothing and leaks no request sentinels while invoking the real Function', async () => {
   const calls = []
-  const methods = ['debug', 'info', 'log', 'warn', 'error']
+  const methods = [...new Set([
+    ...Object.keys(console),
+    ...Object.getOwnPropertyNames(Object.getPrototypeOf(console)),
+  ])].filter((method) => typeof console[method] === 'function')
   const originals = Object.fromEntries(methods.map((method) => [method, console[method]]))
   for (const method of methods) console[method] = (...args) => calls.push({method, args})
   let result
