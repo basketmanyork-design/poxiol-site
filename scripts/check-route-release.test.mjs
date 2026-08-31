@@ -63,3 +63,13 @@ test('allows safe route-manifest drift only on a Cloudflare preview branch', () 
   assert.equal(shouldRequireExactManifest({CF_PAGES: '1'}), true)
   assert.equal(shouldRequireExactManifest({}), true)
 })
+
+test('allows safe route-manifest drift for the explicit legacy compatibility build', () => {
+  assert.equal(shouldRequireExactManifest({NEXT_PUBLIC_CONTENT_SOURCE: 'legacy'}), false)
+  assert.equal(shouldRequireExactManifest({NEXT_PUBLIC_CONTENT_SOURCE: 'sanity'}), true)
+  assert.equal(shouldRequireExactManifest({
+    CF_PAGES: '1',
+    CF_PAGES_BRANCH: 'main',
+    NEXT_PUBLIC_CONTENT_SOURCE: 'legacy',
+  }), true)
+})
