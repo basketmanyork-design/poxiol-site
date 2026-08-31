@@ -1,7 +1,21 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import {compareRoutes, shouldRequireExactManifest, withheldLegalRoutes} from '../lib/release/route-release.mjs'
+import * as routeRelease from '../lib/release/route-release.mjs'
+
+const {compareRoutes, shouldRequireExactManifest, withheldLegalRoutes} = routeRelease
+
+test('treats LF and CRLF route manifests as equivalent JSON', () => {
+  assert.equal(
+    typeof routeRelease.manifestsEquivalent,
+    'function',
+    'route-release must expose a line-ending-safe manifest comparison',
+  )
+  const lf = '{\n  "version": 1\n}\n'
+  const crlf = lf.replaceAll('\n', '\r\n')
+  assert.equal(routeRelease.manifestsEquivalent(lf, crlf), true)
+  assert.equal(routeRelease.manifestsEquivalent(lf, '{"version":2}'), false)
+})
 
 test('withholds legal routes unless the governed approval record is complete', () => {
   const legalRoutes = ['/privacy-policy/', '/terms/']
