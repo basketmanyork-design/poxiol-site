@@ -3,7 +3,7 @@
 ## Governed state
 
 - Written specification: APPROVED on 2026-08-31.
-- Local implementation: LOCAL CODE PRESENT; VERIFICATION PENDING.
+- Local implementation: VERIFIED; Cloudflare account and deployments remain unchanged.
 - Workers Analytics Engine account feature: NOT AUTHORIZED TO ENABLE.
 - Preview binding `POXIOL_CSP_REPORTS`: NOT AUTHORIZED TO CREATE.
 - Preview dataset `poxiol_csp_preview`: NOT AUTHORIZED TO CREATE.
@@ -95,8 +95,8 @@ This runbook does not authorize a Production binding, Production dataset, `main`
 
 ## Evidence register
 
-- Local focused tests: NOT RUN.
-- Local static build and generated-file inspection: NOT RUN.
+- Local focused tests: PASS; pure module, Function HTTP contract, static header source, and OpenNext regression checks completed.
+- Local static build and generated-file inspection: PASS; out/_headers and out/_routes.json match the approved Pages contract.
 - Preview binding verification: NOT AUTHORIZED.
 - Preview deployment URL and commit: NOT AUTHORIZED.
 - Synthetic legacy report: NOT AUTHORIZED.
