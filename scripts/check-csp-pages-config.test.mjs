@@ -22,3 +22,14 @@ test('Pages source routes only the CSP receiver to Functions', () => {
     exclude: [],
   })
 })
+
+test('Pages Functions use a Worker-compatible compiler target isolated from the app tsconfig', () => {
+  const functionsTsconfig = JSON.parse(
+    readFileSync(path.join(root, 'functions', 'tsconfig.json'), 'utf8'),
+  )
+
+  assert.equal(functionsTsconfig.compilerOptions?.target, 'esnext')
+  assert.equal(functionsTsconfig.compilerOptions?.module, 'esnext')
+  assert.deepEqual(functionsTsconfig.compilerOptions?.lib, ['esnext'])
+  assert.equal(functionsTsconfig.compilerOptions?.allowJs, true)
+})
