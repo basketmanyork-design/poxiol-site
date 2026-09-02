@@ -2,11 +2,11 @@
   "version": 1,
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
-    "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
-    "candidateSitemapSha256": "fa1f5c3ec00e5dcfd5dd2856ea7be00f95d12075c97c566f7a5ee92bd6e92be2",
+    "publicSitemapSha256": "2e550b089e770abf584c265db3e9204e32566f5882db445f992034328af2ac90",
+    "candidateSitemapSha256": "02f566cc86ce57f4f712824604f46908e5692cebfde40a4e80e914671565acb5",
     "publicCount": 100,
-    "candidateCount": 79,
-    "renderedCount": 148,
+    "candidateCount": 80,
+    "renderedCount": 109,
     "legalStatus": "APPROVED"
   },
   "routes": {
@@ -87,6 +87,7 @@
       "/youth-team-uniforms/"
     ],
     "ADDED": [
+      "/blog/custom-teamwear-production-notes/",
       "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
       "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
       "/guides/moq-1-custom-teamwear-how-it-works/",
@@ -226,8 +227,63 @@
       "status": 301
     },
     {
+      "source": "/builder/",
+      "destination": "/free-mockup/",
+      "status": 301
+    },
+    {
+      "source": "/custom-american-football-uniforms/",
+      "destination": "/products/",
+      "status": 301
+    },
+    {
       "source": "/custom-basketball-uniforms/",
       "destination": "/products/basketball-uniforms/",
+      "status": 301
+    },
+    {
+      "source": "/custom-esports-jerseys/",
+      "destination": "/products/",
+      "status": 301
+    },
+    {
+      "source": "/custom-golf-wear/",
+      "destination": "/products/",
+      "status": 301
+    },
+    {
+      "source": "/custom-ice-hockey-jerseys/",
+      "destination": "/products/",
+      "status": 301
+    },
+    {
+      "source": "/custom-rugby-uniforms/",
+      "destination": "/products/",
+      "status": 301
+    },
+    {
+      "source": "/custom-running-marathon-wear/",
+      "destination": "/products/",
+      "status": 301
+    },
+    {
+      "source": "/custom-soccer-kits/",
+      "destination": "/products/soccer-jerseys/",
+      "status": 301
+    },
+    {
+      "source": "/custom-tennis-wear/",
+      "destination": "/products/",
+      "status": 301
+    },
+    {
+      "source": "/custom-training-wear/",
+      "destination": "/products/training-wear/",
+      "status": 301
+    },
+    {
+      "source": "/custom-volleyball-uniforms/",
+      "destination": "/products/",
       "status": 301
     },
     {

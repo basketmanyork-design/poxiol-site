@@ -72,4 +72,36 @@ for (const route of ['/free-mockup/', '/get-quote/', '/sample-order/']) {
   assert.match(formTag, /method=["']post["']/i, `${route} must retain native POST fallback.`)
 }
 
+const redirectSources = new Set(
+  readFileSync(path.join(outDir, '_redirects'), 'utf8')
+    .split(/\r?\n/)
+    .map((line) => line.trim().split(/\s+/))
+    .filter((parts) => /^30[1278]$/.test(parts[2] || ''))
+    .map(([source]) => source),
+)
+const brokenLinks = []
+for (const file of listFiles(outDir).filter((item) => item.endsWith('.html'))) {
+  const html = readFileSync(file, 'utf8')
+  for (const match of html.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["']/gi)) {
+    const href = match[1].replace(/&amp;/g, '&')
+    if (/^(?:#|mailto:|tel:|javascript:)/i.test(href)) continue
+    let url
+    try {
+      url = new URL(href, 'https://www.poxiol.com')
+    } catch {
+      brokenLinks.push(`${routeFor(file)}\tINVALID\t${href}`)
+      continue
+    }
+    if (url.hostname !== 'www.poxiol.com') continue
+    const pathname = decodeURIComponent(url.pathname)
+    if (redirectSources.has(pathname)) continue
+    const relative = pathname.replace(/^\//, '')
+    const candidates = pathname === '/'
+      ? [path.join(outDir, 'index.html')]
+      : [path.join(outDir, relative), path.join(outDir, relative, 'index.html'), path.join(outDir, `${relative}.html`)]
+    if (!candidates.some(existsSync)) brokenLinks.push(`${routeFor(file)}\t${pathname}\t${href}`)
+  }
+}
+assert.deepEqual(brokenLinks, [], `Broken internal links remain:\n${brokenLinks.join('\n')}`)
+
 console.log('POXIOL commercial P0 buyer-visible hygiene checks passed.')
