@@ -1,8 +1,6 @@
 import type {V8MediaAsset, V8MediaSlot} from './types.ts'
 import type {CmsProductionMediaSet, CmsVerifiedMediaAsset} from '../cms/types'
 
-export const V8_MEDIA_FALLBACK = 'Verified production visual pending'
-
 export const V8_MEDIA_SLOTS: readonly V8MediaSlot[] = [
   {id: 'fabric-inspection', label: 'Fabric inspection', kind: 'image'},
   {id: 'printing', label: 'Printing', kind: 'image'},

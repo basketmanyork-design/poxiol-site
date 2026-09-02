@@ -42,7 +42,6 @@ assert.deepEqual(
   ['incoming-material', 'printing-inspection', 'sewing-inspection', 'size-checking', 'final-inspection', 'packing-verification'],
 )
 
-assert.equal(v8.V8_MEDIA_FALLBACK, 'Verified production visual pending')
 assert.deepEqual(
   v8.V8_MEDIA_SLOTS.map((slot) => slot.id),
   [

@@ -5,6 +5,7 @@ import {useRouter} from "next/navigation";
 import {useInquiryContext} from '@/components/useInquiryContext';
 import {InquiryReference} from './InquiryReference';
 import {appendInquiryContext, publicSourcePath} from '@/lib/inquiry-context';
+import {getApprovedClaimWording} from '@/lib/governance/claims';
 import {ProjectInquiryRequestError, sendProjectInquiry} from '@/lib/project-inquiry-request';
 import {trackFileUpload, trackFormStart, trackFormSubmit, trackLead} from "@/lib/analytics/client";
 import {PrivacyStatusLink} from '../legal/PrivacyStatusLink';
@@ -223,7 +224,7 @@ function ContactFormInner({
         <h2 className="mt-3 break-words text-3xl font-black text-neutral-950">{title}</h2>
         <p className="mt-3 text-sm leading-6 text-neutral-600">{subtitle}</p>
         <p className="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-xs font-bold leading-5 text-neutral-600">
-          Your information is used only to review this project and plan sales follow-up. No external CRM is connected.
+          {getApprovedClaimWording('inquiry-information-purpose')}
         </p>
       </div>
 
@@ -346,7 +347,7 @@ function ContactFormInner({
       <div className="mt-5 grid gap-2 text-xs font-semibold text-neutral-500 md:grid-cols-3">
         <p>Project details reviewed before follow-up</p>
         <p>Attachments are optional</p>
-        <p>No external CRM or unnecessary profiling</p>
+        <p>Project-specific inquiry follow-up</p>
       </div>
     </form>
   );

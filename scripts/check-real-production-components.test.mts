@@ -18,6 +18,7 @@ const placeholder = readFileSync('components/v8/VerifiedMediaPlaceholder.tsx', '
 assert.match(placeholder, /sizes=/, 'Images need responsive sizes')
 assert.match(placeholder, /loading=/, 'Below-fold images need explicit lazy loading')
 assert.match(placeholder, /media\.kind === 'video' && !media\.poster/, 'Verified videos without posters must fall back safely')
+assert.match(placeholder, /return null/, 'Missing evidence must collapse instead of exposing an internal status card')
 assert.match(placeholder, /preload="none"/, 'Videos must not preload large media')
 assert.match(placeholder, /poster=\{media\.poster\}/, 'Videos must render their verified poster')
 assert.doesNotMatch(placeholder, /<img\b/, 'Raw images are forbidden')

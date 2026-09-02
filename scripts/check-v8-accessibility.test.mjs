@@ -29,10 +29,11 @@ const source = componentFiles
 assert.match(source, /focus-visible:/, 'V8 interactive controls need a visible keyboard focus state.')
 assert.match(source, /<ol|role=["']list["']/, 'Ordered workflows need list semantics.')
 assert.match(source, /aria-label|aria-labelledby/, 'V8 sections need accessible labels.')
-assert.match(source, /Verified production visual pending/, 'The safe media fallback must remain visible.')
+assert.doesNotMatch(source, /Verified production visual pending/, 'Internal media status must not appear in buyer-visible components.')
 assert.doesNotMatch(source, /autoPlay|autoplay/, 'Verified videos must not autoplay.')
 
 const verifiedMediaSource = readFileSync('components/v8/VerifiedMediaPlaceholder.tsx', 'utf8')
+assert.match(verifiedMediaSource, /if \(!media \|\| \(media\.kind === 'video' && !media\.poster\)\) \{\s*return null\s*\}/, 'Missing or unverified media must fail closed without a public placeholder.')
 assert.match(verifiedMediaSource, /from ['\"]next\/image['\"]/, 'Verified production images must use the existing Next.js image pipeline.')
 assert.doesNotMatch(verifiedMediaSource, /<img\b/, 'V8 media must not introduce a raw image performance warning.')
 

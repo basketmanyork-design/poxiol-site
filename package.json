@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "check:commercial-claims": "node --no-warnings --experimental-strip-types --test scripts/check-commercial-claim-ledger.test.mts",
+    "check:commercial-hygiene:output": "node scripts/check-commercial-content-hygiene-output.test.mjs",
     "dev": "next dev",
     "check:construction-source": "node --test scripts/check-construction-source-contract.test.mjs scripts/check-construction-import-policy.test.mjs scripts/generate-construction-import.test.mjs scripts/check-construction-import-result.test.mjs && node scripts/generate-construction-import.mjs --check",
     "check:construction-release": "node --test scripts/check-construction-release-manifest.test.mjs scripts/check-deterministic-build-id.test.mjs && node scripts/generate-construction-release-manifest.mjs --check",

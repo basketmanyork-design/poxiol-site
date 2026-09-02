@@ -219,10 +219,6 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
             <img src={article.featuredImage.url} alt={article.featuredImage.alt} className="aspect-[16/9] w-full rounded-[2rem] object-cover" />
             {article.featuredImage.caption ? <figcaption className="mt-3 text-sm text-neutral-500">{article.featuredImage.caption}</figcaption> : null}
           </figure>
-        ) : article.imageStatus ? (
-          <div role="img" aria-label={article.imageStatus} className="mt-12 flex aspect-[16/9] w-full items-center justify-center rounded-[2rem] border border-dashed border-white/20 bg-white/[0.03] px-8 text-center text-sm font-bold uppercase tracking-widest text-neutral-500">
-            {article.imageStatus}
-          </div>
         ) : null}
 
         <div className="mt-16 space-y-14">

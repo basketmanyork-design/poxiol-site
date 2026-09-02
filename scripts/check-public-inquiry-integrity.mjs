@@ -43,6 +43,7 @@ function renderedContactFileNames() {
         let resolved = name.startsWith('@/') ? path.resolve(name.slice(2)) : path.resolve(path.dirname(filename), name)
         if (!existsSync(resolved)) resolved = ['.ts', '.tsx'].map(ext => resolved + ext).find(existsSync)
         assert.ok(resolved, `Cannot resolve ${name}`)
+        if (resolved.endsWith('.json')) return {default: JSON.parse(readFileSync(resolved, 'utf8'))}
         return load(resolved)
       },
     })
