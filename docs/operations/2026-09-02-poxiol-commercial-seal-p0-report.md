@@ -23,7 +23,7 @@ This is a **Preview Gate candidate**, not a production release and not the compl
 | FAQ question/answer mismatch | PASS | MOQ/order-quantity questions and answers are normalized as one semantic pair. |
 | `draft procurement standard` | PASS | Exact legacy sentence maps to the approved order-quantity wording. |
 | `No external CRM...` | PASS | Replaced with approved inquiry-information purpose wording. |
-| Template leakage | PASS for shared sports template | Shared headings are generated from the current product label; five labels are source-tested and all three routes that render the shared template are verified against generated HTML. |
+| Template leakage | PASS for shared sports template | Five labels are helper-tested; the template is contract-tested to consume the helper for both heading families. The product-format heading is additionally verified in generated HTML for all three routes using the shared template. No current route supplies `relatedCases`, so that conditional heading has no live HTML instance. |
 | Dangerous absolute claims | PASS for targeted P0 customization pages | Highest-grade, zero-fading, never-crack/fade, perfect-arrival, retail-ready and launch/scale wording removed or bounded. |
 | Fake redirects | PASS | Retired pages removed; unique HTTP 301 rules added. |
 | Broken internal links | PASS in generated output | Every rendered `<a>` target resolves to output or an approved redirect source. |
@@ -124,8 +124,8 @@ Environment: official Node.js `22.23.2`, npm `10.9.8`, local review origin `http
 - `npm test` — EXPECTED BASELINE EXCEPTION: 1 failure in `CMS pull-request builds declare an explicit loopback review environment` because the tracked workflow uses Windows CRLF while the pre-existing test searches for LF-only delimiters; all commands before that final baseline test, including the mandatory P0 commercial source gates, pass.
 - `npm run check:v8` — PASS.
 - `npm run check:commercial-claims` — PASS (4 tests).
-- `npm run check:commercial-sports-copy` — PASS (5 tests).
-- `npm run check:commercial-sports-copy:output` — PASS (3 generated-route tests for every route using the shared sports template).
+- `npm run check:commercial-sports-copy` — PASS (6 tests: five category-copy cases plus direct template binding for both heading families).
+- `npm run check:commercial-sports-copy:output` — PASS (3 generated-route product-format heading tests for every route using the shared sports template).
 - `npm run check:commercial-redirects` — PASS (3 tests).
 - `npm run check:commercial-customization` — PASS (3 tests).
 - `npm run check:commercial-hygiene:output` — PASS, including generated-link integrity.

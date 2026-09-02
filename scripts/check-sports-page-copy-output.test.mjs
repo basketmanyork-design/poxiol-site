@@ -25,7 +25,7 @@ function buyerVisibleText(html) {
 }
 
 for (const [route, productTitle] of routes) {
-  test(`${route} renders only its shared category headings`, () => {
+  test(`${route} renders only its shared product-format heading`, () => {
     const outputPath = path.join(process.cwd(), 'out', route, 'index.html')
     const visibleText = buyerVisibleText(readFileSync(outputPath, 'utf8'))
 

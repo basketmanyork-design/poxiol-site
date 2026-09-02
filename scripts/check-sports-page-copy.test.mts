@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
 import {test} from 'node:test'
 
 import {sportsPageSectionCopy} from '../lib/sports-page-copy.ts'
@@ -31,3 +32,12 @@ for (const [productLabel, productTitle, relatedTitle] of fixtures) {
     }
   })
 }
+
+test('the shared sports template binds both heading families to the category helper', () => {
+  const source = readFileSync('components/sports/SportsLandingPage.tsx', 'utf8')
+
+  assert.match(source, /const sectionCopy = sportsPageSectionCopy\(productLabel\)/)
+  assert.match(source, /<SectionHeading \{\.\.\.sectionCopy\.productTypes\}\s*\/>/)
+  assert.match(source, /<SectionHeading \{\.\.\.sectionCopy\.relatedProjects\}\s*\/>/)
+  assert.doesNotMatch(source, /Basketball Uniforms Project Planning References/)
+})
