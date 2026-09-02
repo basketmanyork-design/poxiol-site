@@ -1,7 +1,7 @@
 'use client'
 
-import type {AnalyticsEventName, AnalyticsEventParams} from './core'
-import {sanitizeEventParams} from './core'
+import type {AnalyticsAttribution, AnalyticsEventName, AnalyticsEventParams, CtaLocation, LeadEventContext} from './core'
+import {buildAttributionFromUrl, sanitizeEventParams} from './core'
 
 declare global {
   interface Window {
@@ -16,24 +16,26 @@ const sessionTouchKey = 'poxiol.analytics.session-touch'
 const startedForms = new Set<string>()
 const recordedSubmissions = new Set<string>()
 
-type Attribution = {
-  utm_source?: string
-  utm_medium?: string
-  utm_campaign?: string
-  utm_content?: string
-  landing_page?: string
-}
-
-function safeStorage(storage: Storage | undefined, key: string): Attribution {
+function safeStorage(storage: Storage | undefined, key: string): AnalyticsAttribution {
   if (!storage) return {}
   try {
-    return JSON.parse(storage.getItem(key) || '{}') as Attribution
+    const stored = JSON.parse(storage.getItem(key) || '{}') as AnalyticsAttribution
+    const landingPage = stored.landing_page
+      ? new URL(stored.landing_page, 'https://www.poxiol.com').pathname
+      : undefined
+    return {
+      utm_source: stored.utm_source,
+      utm_medium: stored.utm_medium,
+      utm_campaign: stored.utm_campaign,
+      utm_content: stored.utm_content,
+      landing_page: landingPage,
+    }
   } catch {
     return {}
   }
 }
 
-function currentAttribution(): Attribution {
+function currentAttribution(): AnalyticsAttribution {
   if (typeof window === 'undefined') return {}
   const first = safeStorage(window.localStorage, firstTouchKey)
   const session = safeStorage(window.sessionStorage, sessionTouchKey)
@@ -42,18 +44,14 @@ function currentAttribution(): Attribution {
 
 export function captureAttribution() {
   if (typeof window === 'undefined') return
-  const url = new URL(window.location.href)
-  const attribution: Attribution = {
-    utm_source: url.searchParams.get('utm_source') || undefined,
-    utm_medium: url.searchParams.get('utm_medium') || undefined,
-    utm_campaign: url.searchParams.get('utm_campaign') || undefined,
-    utm_content: url.searchParams.get('utm_content') || undefined,
-    landing_page: `${url.pathname}${url.search}`,
-  }
+  const attribution = buildAttributionFromUrl(window.location.href)
   const safe = sanitizeEventParams(attribution)
   if (!Object.keys(safe).length) return
   try {
-    if (!window.localStorage.getItem(firstTouchKey)) {
+    const existingFirstTouch = safeStorage(window.localStorage, firstTouchKey)
+    if (Object.keys(existingFirstTouch).length) {
+      window.localStorage.setItem(firstTouchKey, JSON.stringify(sanitizeEventParams(existingFirstTouch)))
+    } else {
       window.localStorage.setItem(firstTouchKey, JSON.stringify(safe))
     }
     window.sessionStorage.setItem(sessionTouchKey, JSON.stringify(safe))
@@ -86,26 +84,30 @@ export function trackPageView(pagePath: string, pageTitle: string) {
   trackEvent('page_view', {page_path: pagePath, page_title: pageTitle})
 }
 
-export function trackFormStart(formType: string) {
-  const key = `${formType}:${typeof window === 'undefined' ? '' : window.location.pathname}`
+function formParams(context: LeadEventContext): AnalyticsEventParams {
+  return {...context, page_path: typeof window === 'undefined' ? '' : window.location.pathname}
+}
+
+export function trackFormStart(context: LeadEventContext) {
+  const key = `${context.form_id}:${typeof window === 'undefined' ? '' : window.location.pathname}`
   if (startedForms.has(key)) return
   startedForms.add(key)
-  trackEvent('form_start', {form_type: formType, page_path: typeof window === 'undefined' ? '' : window.location.pathname})
+  trackEvent('form_start', formParams(context))
 }
 
-export function trackFormSubmit(formType: string, submissionId: string) {
+export function trackFormSubmit(context: LeadEventContext, submissionId: string) {
   if (recordedSubmissions.has(`submit:${submissionId}`)) return
   recordedSubmissions.add(`submit:${submissionId}`)
-  trackEvent('form_submit', {form_type: formType, page_path: typeof window === 'undefined' ? '' : window.location.pathname})
+  trackEvent('form_submit', formParams(context))
 }
 
-export function trackLead(formType: string, submissionId: string) {
+export function trackLead(context: LeadEventContext, submissionId: string) {
   if (recordedSubmissions.has(`lead:${submissionId}`)) return
   recordedSubmissions.add(`lead:${submissionId}`)
-  trackEvent('generate_lead', {form_type: formType, page_path: typeof window === 'undefined' ? '' : window.location.pathname})
+  trackEvent('generate_lead', formParams(context))
 }
 
-export function trackOutboundClick(event: AnalyticsEventName, href: string, location: string) {
+export function trackOutboundClick(event: AnalyticsEventName, href: string, location?: CtaLocation) {
   let domain = ''
   try {
     domain = href.startsWith('mailto:') ? 'email' : new URL(href, window.location.origin).hostname
@@ -115,8 +117,14 @@ export function trackOutboundClick(event: AnalyticsEventName, href: string, loca
   trackEvent(event, {link_domain: domain, cta_location: location, page_path: window.location.pathname})
 }
 
-export function trackFileUpload(formType: string) {
-  trackEvent('file_upload', {form_type: formType, page_path: typeof window === 'undefined' ? '' : window.location.pathname})
+export function trackFileSelect(context: LeadEventContext) {
+  trackEvent('file_select', formParams(context))
+}
+
+export function trackFileUpload(context: LeadEventContext, submissionId: string) {
+  if (recordedSubmissions.has(`upload:${submissionId}`)) return
+  recordedSubmissions.add(`upload:${submissionId}`)
+  trackEvent('file_upload', formParams(context))
 }
 
 export function trackContentView(event: AnalyticsEventName, params: AnalyticsEventParams) {

@@ -4,7 +4,85 @@ import {readFileSync} from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
 import {pathToFileURL} from 'node:url'
-import {assertAnalyticsReleaseReady} from '../lib/privacy/analytics-release.ts'
+import {shouldEnableAnalytics} from '../lib/analytics/core.ts'
+import {
+  analyticsReleaseApproved,
+  assertAnalyticsReleaseReady,
+  governedAnalyticsEnabled,
+  type AnalyticsReleaseRecord,
+} from '../lib/privacy/analytics-release.ts'
+
+const approvedMetadata = {
+  schemaVersion: 1,
+  status: 'APPROVED',
+  approvedBy: 'POXIOL Owner',
+  approvedAt: '2026-09-02T00:00:00.000Z',
+}
+
+test('approved governance record allows GA4 while Cloudflare Web Analytics remains disabled', () => {
+  const record: AnalyticsReleaseRecord = {
+    ...approvedMetadata,
+    ga4: 'ENABLED',
+    cloudflareWebAnalytics: 'DISABLED_PENDING_APPROVAL',
+  }
+
+  assert.equal(analyticsReleaseApproved(record), true)
+  assert.equal(governedAnalyticsEnabled('ga4', record), true)
+  assert.equal(governedAnalyticsEnabled('cloudflareWebAnalytics', record), false)
+})
+
+test('approved governance record allows Cloudflare Web Analytics while GA4 remains disabled', () => {
+  const record: AnalyticsReleaseRecord = {
+    ...approvedMetadata,
+    ga4: 'DISABLED_PENDING_APPROVAL',
+    cloudflareWebAnalytics: 'ENABLED',
+  }
+
+  assert.equal(governedAnalyticsEnabled('ga4', record), false)
+  assert.equal(governedAnalyticsEnabled('cloudflareWebAnalytics', record), true)
+})
+
+test('approved governance record loads neither provider when both are disabled', () => {
+  const record: AnalyticsReleaseRecord = {
+    ...approvedMetadata,
+    ga4: 'DISABLED_PENDING_APPROVAL',
+    cloudflareWebAnalytics: 'DISABLED_PENDING_APPROVAL',
+  }
+
+  assert.equal(governedAnalyticsEnabled('ga4', record), false)
+  assert.equal(governedAnalyticsEnabled('cloudflareWebAnalytics', record), false)
+})
+
+test('enabled GA4 remains blocked when Owner approval metadata is incomplete', () => {
+  const record: AnalyticsReleaseRecord = {
+    ...approvedMetadata,
+    ga4: 'ENABLED',
+    cloudflareWebAnalytics: 'DISABLED_PENDING_APPROVAL',
+    approvedBy: null,
+  }
+
+  assert.equal(analyticsReleaseApproved(record), false)
+  assert.equal(governedAnalyticsEnabled('ga4', record), false)
+})
+
+test('Preview and development never enable the Production GA loader even for an approved GA4 record', () => {
+  const record: AnalyticsReleaseRecord = {
+    ...approvedMetadata,
+    ga4: 'ENABLED',
+    cloudflareWebAnalytics: 'DISABLED_PENDING_APPROVAL',
+  }
+  assert.equal(governedAnalyticsEnabled('ga4', record), true)
+
+  const base = {
+    analyticsEnabled: true,
+    ga4Enabled: true,
+    measurementId: 'G-PRODUCTION123',
+    contentSource: 'legacy',
+    cloudflarePages: '1',
+  }
+  assert.equal(shouldEnableAnalytics({...base, nodeEnv: 'development', cloudflareBranch: 'main'}), false)
+  assert.equal(shouldEnableAnalytics({...base, nodeEnv: 'production', cloudflareBranch: 'preview-branch'}), false)
+})
 
 test('pending legal approval rejects enabled analytics', () => {
   assert.throws(

@@ -5,7 +5,7 @@ import Script from 'next/script'
 import {usePathname, useSearchParams} from 'next/navigation'
 import {AnalyticsPreferences} from '@/components/privacy/AnalyticsPreferences'
 import type {AnalyticsRuntimeConfig} from '@/lib/analytics/server'
-import {classifyOutboundLink} from '@/lib/analytics/core'
+import {classifyOutboundLink, normalizeCtaLocation} from '@/lib/analytics/core'
 import {captureAttribution, clearAttributionStorage, trackEvent, trackOutboundClick, trackPageView} from '@/lib/analytics/client'
 import {
   clearAnalyticsPermission,
@@ -38,7 +38,7 @@ function AnalyticsRuntime() {
       if (!anchor) return
       const href = anchor.href || anchor.getAttribute('href') || ''
       const outboundEvent = classifyOutboundLink(href)
-      const location = anchor.dataset.analyticsLocation || pathname
+      const location = normalizeCtaLocation(anchor.dataset.analyticsLocation)
       if (outboundEvent) trackOutboundClick(outboundEvent, href, location)
       if (anchor.pathname === '/free-mockup/' || anchor.pathname === '/get-quote/') {
         trackEvent(anchor.pathname === '/free-mockup/' ? 'free_mockup_click' : 'get_quote_click', {

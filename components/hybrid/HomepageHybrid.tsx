@@ -142,7 +142,7 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
           <p className={styles.eyebrow}>Project inquiry</p>
           <h2 id="hybrid-inquiry-title">Share the project context</h2>
           <p className={styles.lead}>Share the product, quantity, design status, size mix, destination and target date available now. POXIOL will use the brief to identify the next review step.</p>
-          <ProjectQualificationForm intent="mockup" formType="Homepage V8 Lead" publicEmail={publicEmail} whatsappHref={whatsappHref} privacyPolicyApproved={privacyPolicyApproved} />
+          <ProjectQualificationForm intent="mockup" formId="homepage_project_inquiry" formType="Homepage V8 Lead" publicEmail={publicEmail} whatsappHref={whatsappHref} privacyPolicyApproved={privacyPolicyApproved} />
         </div>
       </section>
 

@@ -2,7 +2,7 @@ import {spawnSync} from 'node:child_process'
 import {existsSync} from 'node:fs'
 
 const approvedEndpoint = 'https://formspree.io/f/xnpqqnol'
-const keys = ['NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT', 'NEXT_PUBLIC_FORMSPREE_FREE_MOCKUP_ENDPOINT']
+const keys = ['NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT']
 for (const key of keys) {
   if (process.env[key] !== approvedEndpoint) {
     console.error(`Prelaunch endpoint configuration rejected: ${key} must match the approved xnpqqnol form. Check inherited environment overrides.`)

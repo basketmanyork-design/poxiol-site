@@ -2,15 +2,13 @@
 
 ## 1. Configure forms
 
-Create two Formspree forms:
+Use the existing governed Formspree form:
 
-- POXIOL Free Mockup Request
 - POXIOL Contact
 
 Then add environment variables in Cloudflare Pages:
 
 ```bash
-NEXT_PUBLIC_FORMSPREE_FREE_MOCKUP_ENDPOINT=https://formspree.io/f/xxxxxxx
 NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT=https://formspree.io/f/yyyyyyy
 ```
 

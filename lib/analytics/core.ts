@@ -7,14 +7,80 @@ export type AnalyticsEventName =
   | 'email_click'
   | 'free_mockup_click'
   | 'get_quote_click'
+  | 'file_select'
   | 'file_upload'
   | 'alibaba_click'
   | 'product_view'
   | 'product_category_view'
   | 'case_study_view'
   | 'guide_view'
+  | 'qualify_lead'
+  | 'close_convert_lead'
 
 export type AnalyticsEventParams = Record<string, string | number | boolean | undefined>
+
+export type LeadType = 'free_mockup' | 'factory_quote' | 'production_sample' | 'general_inquiry'
+
+export type LeadFormId =
+  | 'free_mockup_form'
+  | 'factory_quote_form'
+  | 'production_sample_form'
+  | 'general_inquiry_form'
+  | 'homepage_project_inquiry'
+
+export type LeadEventContext = {
+  lead_type: LeadType
+  form_id: LeadFormId
+  form_type: string
+}
+
+const leadTypeByFormId: Record<LeadFormId, LeadType> = {
+  free_mockup_form: 'free_mockup',
+  factory_quote_form: 'factory_quote',
+  production_sample_form: 'production_sample',
+  general_inquiry_form: 'general_inquiry',
+  homepage_project_inquiry: 'free_mockup',
+}
+
+export function createLeadEventContext(formId: LeadFormId, formType: string): LeadEventContext {
+  return {lead_type: leadTypeByFormId[formId], form_id: formId, form_type: formType}
+}
+
+export const CTA_LOCATIONS = [
+  'header',
+  'hero',
+  'product_section',
+  'factory_section',
+  'case_study',
+  'form_recovery',
+  'sticky_mobile',
+  'footer',
+] as const
+
+export type CtaLocation = (typeof CTA_LOCATIONS)[number]
+
+export function normalizeCtaLocation(value: string | undefined): CtaLocation | undefined {
+  return CTA_LOCATIONS.find(location => location === value)
+}
+
+export type AnalyticsAttribution = {
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  utm_content?: string
+  landing_page?: string
+}
+
+export function buildAttributionFromUrl(href: string): AnalyticsAttribution {
+  const url = new URL(href)
+  return {
+    utm_source: url.searchParams.get('utm_source') || undefined,
+    utm_medium: url.searchParams.get('utm_medium') || undefined,
+    utm_campaign: url.searchParams.get('utm_campaign') || undefined,
+    utm_content: url.searchParams.get('utm_content') || undefined,
+    landing_page: url.pathname,
+  }
+}
 
 const allowedParameterNames = new Set([
   'page_path',
@@ -25,6 +91,8 @@ const allowedParameterNames = new Set([
   'product_category',
   'product_slug',
   'buyer_type',
+  'lead_type',
+  'form_id',
   'form_type',
   'cta_location',
   'link_domain',

@@ -1,8 +1,10 @@
 import ContactForm from '@/components/forms/ContactForm'
 import {getV8ConversionEntry, type V8ConversionIntent} from '@/lib/v8/leads'
+import type {LeadFormId} from '@/lib/analytics/core'
 
 export function ProjectQualificationForm({
   intent,
+  formId,
   formType,
   publicEmail,
   whatsappHref,
@@ -10,6 +12,7 @@ export function ProjectQualificationForm({
   privacyPolicyApproved,
 }: {
   intent: V8ConversionIntent
+  formId: LeadFormId
   formType: string
   publicEmail?: string
   whatsappHref?: string
@@ -20,6 +23,7 @@ export function ProjectQualificationForm({
   return (
     <ContactForm
       intent={intent}
+      formId={formId}
       title={entry.formTitle}
       subtitle={entry.subtitle}
       formType={formType}

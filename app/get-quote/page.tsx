@@ -21,7 +21,7 @@ export default async function Page() {
   return (
     <>
       <FormContactFallback context="quote" />
-      <CmsPageTemplate page={pageWithFaqs} conversionIntent="quote" beforeFooterSlot={<><ConversionEntryGuide currentIntent="quote" /><section id={getV8ConversionEntry('quote').formAnchorId} tabIndex={-1} className="scroll-mt-24 bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-3xl"><ProjectQualificationForm intent="quote" formType="Get Quote Conversion" publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} privacyPolicyApproved={legalPolicyApproved()} /></div></section></>} />
+      <CmsPageTemplate page={pageWithFaqs} conversionIntent="quote" beforeFooterSlot={<><ConversionEntryGuide currentIntent="quote" /><section id={getV8ConversionEntry('quote').formAnchorId} tabIndex={-1} className="scroll-mt-24 bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-3xl"><ProjectQualificationForm intent="quote" formId="factory_quote_form" formType="Get Quote Conversion" publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} privacyPolicyApproved={legalPolicyApproved()} /></div></section></>} />
     </>
   )
 }

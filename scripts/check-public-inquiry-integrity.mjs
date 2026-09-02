@@ -7,7 +7,6 @@ import ts from 'typescript'
 
 const require = createRequire(import.meta.url)
 const contact = readFileSync('components/forms/ContactForm.tsx', 'utf8')
-const freeMockup = readFileSync('components/forms/FreeMockupForm.tsx', 'utf8')
 const leadPipeline = readFileSync('lib/v8/leads.ts', 'utf8')
 const analyticsClient = readFileSync('lib/analytics/client.ts', 'utf8')
 const analyticsCore = readFileSync('lib/analytics/core.ts', 'utf8')
@@ -56,7 +55,7 @@ function renderedContactFileNames() {
   }
   cursor = 0
   const Component = load(path.resolve('components/forms/ContactForm.tsx')).default
-  const nodes = expand(Component({intent: 'quote', publicEmail: 'sales@example.invalid', whatsappHref: 'https://wa.me/8613055646888'}))
+  const nodes = expand(Component({intent: 'quote', formId: 'factory_quote_form', formType: 'Get Quote Conversion', publicEmail: 'sales@example.invalid', whatsappHref: 'https://wa.me/8613055646888'}))
   return nodes.filter(node => node.type === 'input' && node.props?.type === 'file').map(node => node.props.name)
 }
 
@@ -69,6 +68,7 @@ for (const attachment of expectedAttachments) {
 for (const contract of [
   'new FormData()',
   'NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT',
+  'trackFileSelect',
   'trackFileUpload',
   'trackFormSubmit',
   'trackLead',
@@ -78,18 +78,6 @@ for (const contract of [
   'publicEmail',
 ]) {
   assert.ok(contact.includes(contract) || leadPipeline.includes(contract), `ContactForm pipeline contract missing: ${contract}`)
-}
-
-for (const contract of [
-  'NEXT_PUBLIC_FORMSPREE_FREE_MOCKUP_ENDPOINT',
-  'WHATSAPP_HREF',
-  'trackFormStart',
-  'trackFormSubmit',
-  'trackLead',
-  'submitted',
-  'errorMessage',
-]) {
-  assert.ok(freeMockup.includes(contract), `FreeMockupForm contract missing: ${contract}`)
 }
 
 for (const utmField of ['utm_source', 'utm_medium', 'utm_campaign']) {

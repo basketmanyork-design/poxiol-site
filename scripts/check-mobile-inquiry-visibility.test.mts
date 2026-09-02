@@ -40,7 +40,6 @@ test('every live inquiry form opts into mobile-bar avoidance', async () => {
   for (const file of [
     'components/forms/ContactForm.tsx',
     'components/forms/GeneralInquiryForm.tsx',
-    'components/forms/FreeMockupForm.tsx',
   ]) {
     const source = await readFile(file, 'utf8')
     assert.match(source, /<form\b[^>]*data-inquiry-form/, `${file} must identify its live inquiry form`)

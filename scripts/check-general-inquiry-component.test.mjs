@@ -39,6 +39,9 @@ function harness({submit = async () => {}, tracking = {}, uuid = () => 'test-id'
       if (name === '@/lib/general-inquiry') return {submitGeneralInquiry: submit}
       if (name === '@/lib/project-inquiry-request') return requestModule
       if (name === '@/lib/analytics/client') return {trackFormStart() {}, trackFormSubmit() {}, trackLead() {}, ...tracking}
+      if (name === '@/lib/analytics/core') return {
+        createLeadEventContext(form_id, form_type) {return {lead_type: 'general_inquiry', form_id, form_type}},
+      }
       if (name === '@/lib/v8/leads') return {getV8ConversionEntry: () => ({ctaLabel: 'Send My Question'})}
       if (name === '@/components/useInquiryContext') return {useInquiryContext: () => ({product:'',style:'',sport:'',source:''})}
       if (name === './InquiryReference') return {InquiryReference: () => null}

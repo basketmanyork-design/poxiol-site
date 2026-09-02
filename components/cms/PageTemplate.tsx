@@ -216,8 +216,8 @@ export function CmsPageTemplate({page, contactSlot, beforeFooterSlot, conversion
             <h1 className="max-w-full break-words [overflow-wrap:anywhere] text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-7xl">{page.heading}</h1>
             <p className="mt-8 max-w-full break-words [overflow-wrap:anywhere] text-lg leading-8 text-neutral-300 sm:max-w-2xl">{page.description}</p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-              {heroCta ? <PrimaryButton href={heroCta.href} className="w-full sm:w-auto">{heroCta.label}</PrimaryButton> : null}
-              {!conversionEntry && heroCta?.href !== '/contact/' ? <SecondaryButton href="/contact/" className="w-full sm:w-auto">Talk to a Teamwear Specialist</SecondaryButton> : null}
+              {heroCta ? <PrimaryButton href={heroCta.href} analyticsLocation="hero" className="w-full sm:w-auto">{heroCta.label}</PrimaryButton> : null}
+              {!conversionEntry && heroCta?.href !== '/contact/' ? <SecondaryButton href="/contact/" analyticsLocation="hero" className="w-full sm:w-auto">Talk to a Teamwear Specialist</SecondaryButton> : null}
             </div>
           </div>
           {heroMedia ? <VerifiedMediaPlaceholder asset={heroMedia} /> : null}

@@ -49,11 +49,10 @@ Root directory: /
 In Cloudflare Pages → Settings → Environment variables, add:
 
 ```bash
-NEXT_PUBLIC_FORMSPREE_FREE_MOCKUP_ENDPOINT=https://formspree.io/f/your_free_mockup_id
 NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT=https://formspree.io/f/your_contact_id
 ```
 
-If you do not configure these, forms will show an endpoint error when submitted.
+All live inquiry forms use this governed endpoint. If it is not configured, forms show an endpoint error when submitted.
 
 ## Namecheap → Cloudflare DNS
 

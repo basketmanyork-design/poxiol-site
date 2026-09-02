@@ -5,6 +5,7 @@ import {submitGeneralInquiry} from '@/lib/general-inquiry'
 import {ProjectInquiryRequestError as InquiryRequestError} from '@/lib/project-inquiry-request'
 import {getV8ConversionEntry} from '@/lib/v8/leads'
 import {trackFormStart, trackFormSubmit, trackLead} from '@/lib/analytics/client'
+import {createLeadEventContext} from '@/lib/analytics/core'
 import {useInquiryContext} from '@/components/useInquiryContext'
 import {InquiryReference} from './InquiryReference'
 import {publicSourcePath} from '@/lib/inquiry-context'
@@ -12,6 +13,7 @@ import InquiryLink from '@/components/InquiryLink'
 import {PrivacyStatusLink} from '../legal/PrivacyStatusLink'
 
 const formType = 'Contact Page CMS'
+const leadContext = createLeadEventContext('general_inquiry_form', formType)
 const entry = getV8ConversionEntry('contact')
 const inputClass = 'min-h-[50px] w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-950 outline-none focus:border-lime-500 focus-visible:ring-2 focus-visible:ring-lime-400/40'
 
@@ -31,7 +33,7 @@ export default function GeneralInquiryForm({publicEmail, whatsappHref, privacyPo
     setFields(current => ({...current, [name]: value}))
     if (submissionState.current !== 'unconfirmed') setError('')
     try {
-      trackFormStart(formType)
+      trackFormStart(leadContext)
     } catch {
       // Optional analytics must never block a buyer's edit.
     }
@@ -54,8 +56,8 @@ export default function GeneralInquiryForm({publicEmail, whatsappHref, privacyPo
       setSubmitted(true)
       try {
         const submissionId = crypto.randomUUID()
-        trackFormSubmit(formType, submissionId)
-        trackLead(formType, submissionId)
+        trackFormSubmit(leadContext, submissionId)
+        trackLead(leadContext, submissionId)
       } catch {
         // An accepted inquiry stays successful even when analytics is unavailable.
       }
@@ -108,8 +110,8 @@ export default function GeneralInquiryForm({publicEmail, whatsappHref, privacyPo
           <p className="mt-2">Your entered details remain on this page. They are not saved after leaving or refreshing.</p>
           {unconfirmed ? <p className="mt-2">Do not submit again or refresh to retry. Use email or WhatsApp to check receipt first; mention your original reply email and approximate submission time.</p> : null}
           <div className="mt-3 flex flex-wrap gap-3">
-            <a href={`mailto:${publicEmail}?subject=POXIOL%20inquiry%20help`} className="inline-flex min-h-11 max-w-full items-center break-all rounded-lg bg-white px-3 py-2 font-bold underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Email {publicEmail}</a>
-            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 font-bold underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Open WhatsApp</a>
+            <a href={`mailto:${publicEmail}?subject=POXIOL%20inquiry%20help`} data-analytics-location="form_recovery" className="inline-flex min-h-11 max-w-full items-center break-all rounded-lg bg-white px-3 py-2 font-bold underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Email {publicEmail}</a>
+            <a href={whatsappHref} data-analytics-location="form_recovery" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 font-bold underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Open WhatsApp</a>
           </div>
           <p className="mt-2 text-xs">These links open your email app or WhatsApp; they do not send a message automatically.</p>
         </div>

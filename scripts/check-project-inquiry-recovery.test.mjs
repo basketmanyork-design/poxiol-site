@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url)
 // Real ContactForm and local helpers; only scheduling, navigation, analytics and
 // HTTP are controlled. The fake clock never waits or contacts a real provider.
 function harness({request = async()=>new Response('{}'), tracking = {}, navigate, endpoint = 'https://example.invalid/qa', uuid = ()=>'qa-only'} = {}) {
-  const slots=[], effects=[], requests=[], navigations=[], timers=new Map(), cache=new Map(), dom=new Map(), focus=[], scroll=[]
+  const slots=[], effects=[], requests=[], navigations=[], analytics=[], timers=new Map(), cache=new Map(), dom=new Map(), focus=[], scroll=[]
   let cursor=0, nextTimer=1
   const hooks={
     useState(initial){const i=cursor++;if(!(i in slots))slots[i]=initial;return[slots[i],v=>{slots[i]=typeof v==='function'?v(slots[i]):v}]},
@@ -32,7 +32,14 @@ function harness({request = async()=>new Response('{}'), tracking = {}, navigate
         if(name==='react')return hooks
         if(name==='next/navigation')return{usePathname:()=>'/get-quote/',useRouter:()=>({push(url){navigations.push(url);navigate?.(url)}})}
         if(name==='next/link')return{default:props=>require('react').createElement('a',props)}
-        if(name==='@/lib/analytics/client')return{trackFormStart(){},trackFileUpload(){},trackFormSubmit(){},trackLead(){},...tracking}
+        if(name==='@/lib/analytics/client')return{
+          trackFormStart(...args){analytics.push({name:'form_start',args})},
+          trackFileSelect(...args){analytics.push({name:'file_select',args})},
+          trackFileUpload(...args){analytics.push({name:'file_upload',args})},
+          trackFormSubmit(...args){analytics.push({name:'form_submit',args})},
+          trackLead(...args){analytics.push({name:'generate_lead',args})},
+          ...tracking,
+        }
         if(!name.startsWith('@/')&&!name.startsWith('.'))return require(name)
         let resolved=name.startsWith('@/')?path.resolve(name.slice(2)):path.resolve(path.dirname(filename),name)
         if(!existsSync(resolved))resolved=['.ts','.tsx'].map(ext=>resolved+ext).find(existsSync)
@@ -47,7 +54,7 @@ function harness({request = async()=>new Response('{}'), tracking = {}, navigate
   function expand(node){if(!node||typeof node!=='object')return[];if(typeof node.type==='function')return expand(node.type(node.props));return[node,...[node.props?.children].flat(Infinity).flatMap(expand)]}
   // Model only DOM ref boundaries; the Browser tests cover native file inputs,
   // actual focus and viewport positioning. Components/helpers remain real.
-  function render(){for(let pass=0;pass<10;pass++){cursor=0;const nodes=expand(Component({intent:'quote',successUrl:'/quote-received/',publicEmail:'sales@poxiol.com',whatsappHref:'https://wa.me/8613055646888'}));for(const node of nodes){const id=node.props?.id;if(!id)continue;if(!dom.has(id))dom.set(id,{value:'',focus(options){focus.push({id,options})},scrollIntoView(options){scroll.push({id,options})}});if(node.ref&&typeof node.ref==='object')node.ref.current=dom.get(id)}if(!effects.length)return nodes;effects.splice(0).forEach(fn=>fn())}throw Error('Effects did not settle')}
+  function render(){for(let pass=0;pass<10;pass++){cursor=0;const nodes=expand(Component({intent:'quote',formId:'factory_quote_form',formType:'Get Quote Conversion',successUrl:'/quote-received/',publicEmail:'sales@poxiol.com',whatsappHref:'https://wa.me/8613055646888'}));for(const node of nodes){const id=node.props?.id;if(!id)continue;if(!dom.has(id))dom.set(id,{value:'',focus(options){focus.push({id,options})},scrollIntoView(options){scroll.push({id,options})}});if(node.ref&&typeof node.ref==='object')node.ref.current=dom.get(id)}if(!effects.length)return nodes;effects.splice(0).forEach(fn=>fn())}throw Error('Effects did not settle')}
   const find=id=>render().find(n=>n.props?.id===id)
   const edit=(id,value)=>find(id).props.onChange({target:{value}})
   const attach=(id,file)=>{const input=find(id);dom.get(id).value=file?`C:\\fakepath\\${file.name}`:'';input.props.onChange({target:{files:file?[file]:[]}})}
@@ -59,7 +66,7 @@ function harness({request = async()=>new Response('{}'), tracking = {}, navigate
   const status=()=>render().find(n=>n.props?.role==='status')
   const text=node=>typeof node==='string'||typeof node==='number'?String(node):!node||typeof node!=='object'?'':[node.props?.children].flat(Infinity).map(text).join(' ')
   const removeButton=id=>render().find(n=>n.type==='button'&&n.props['aria-controls']===id&&/^Remove /.test(n.props['aria-label']||''))
-  return{requests,navigations,timers,dom,focus,scroll,render,find,edit,attach,removeButton,handler,event,send,button,alert,status,text,expire(){for(const[id,t]of[...timers]){timers.delete(id);t.fn()}}}
+  return{requests,navigations,analytics,timers,dom,focus,scroll,render,find,edit,attach,removeButton,handler,event,send,button,alert,status,text,expire(){for(const[id,t]of[...timers]){timers.delete(id);t.fn()}}}
 }
 
 function assertRecovery(ui){
@@ -70,6 +77,27 @@ function assertRecovery(ui){
   assert.ok(links.some(n=>n.props.href.startsWith('mailto:sales@poxiol.com')),'Put email inside the error panel')
   assert.ok(links.some(n=>n.props.href.startsWith('https://wa.me/8613055646888')),'Put WhatsApp inside the error panel')
 }
+
+const conversionNames = ui => ui.analytics.map(event => event.name).filter(name => ['form_submit','generate_lead','file_upload'].includes(name))
+const contextOf = event => JSON.parse(JSON.stringify(event.args[0]))
+
+test('Formspree 2xx emits one submit, one lead, and one attachment upload with stable quote keys',async()=>{
+  const ui=harness();ui.attach('field-logo-file',new File(['QA'],'logo.png',{type:'image/png'}));await ui.send();await ui.send()
+  assert.deepEqual(conversionNames(ui),['form_submit','generate_lead','file_upload'])
+  for(const event of ui.analytics){
+    assert.deepEqual(contextOf(event),{lead_type:'factory_quote',form_id:'factory_quote_form',form_type:'Get Quote Conversion'})
+  }
+  assert.equal(ui.analytics.filter(event=>event.name==='file_select').length,1)
+})
+
+for(const scenario of ['http-4xx','http-5xx','request-timeout','network-failure'])test(`${scenario} emits no generate_lead`,async()=>{
+  const ui=harness({request:async()=>{
+    if(scenario==='network-failure')throw TypeError('Disconnected')
+    return new Response('{}',{status:scenario==='http-4xx'?422:scenario==='http-5xx'?503:408})
+  }})
+  await ui.send()
+  assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)
+})
 
 test('same-render duplicate submissions produce only one request while pending',async()=>{
   let resolve;const ui=harness({request:()=>new Promise(r=>{resolve=r})})
@@ -120,6 +148,7 @@ test('60-second deadline releases pending state without treating abort as non-de
   assert.equal(ui.requests[0].signal.aborted,true);assertRecovery(ui);assert.equal(ui.button().props.disabled,true)
   resolve(new Response('{}'));await Promise.resolve();await Promise.resolve()
   assert.equal(ui.navigations.length,0);await ui.send();assert.equal(ui.requests.length,1);assert.equal(ui.timers.size,0)
+  assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)
 })
 
 test('an oversized selection blocks sending even after another valid file is selected',async()=>{

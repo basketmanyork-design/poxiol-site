@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url)
 // Load real form, validation, request transport and contextual links. Only
 // external I/O, React scheduling and the clock are replaced; no live requests.
 function harness({request=async()=>new Response('{}'), prepareError=false, endpoint='https://example.invalid/qa'}={}) {
-  const slots=[], effects=[], requests=[], timers=new Map(), cache=new Map()
+  const slots=[], effects=[], requests=[], analytics=[], timers=new Map(), cache=new Map()
   let cursor=0, nextTimer=1, failPreparation=prepareError
   const hooks={
     useState(initial){const i=cursor++;if(!(i in slots))slots[i]=initial;return[slots[i],v=>{slots[i]=typeof v==='function'?v(slots[i]):v}]},
@@ -33,7 +33,11 @@ function harness({request=async()=>new Response('{}'), prepareError=false, endpo
         if(name==='react')return hooks
         if(name==='next/navigation')return{usePathname:()=>'/contact/'}
         if(name==='next/link')return{default:props=>require('react').createElement('a',props)}
-        if(name==='@/lib/analytics/client')return{trackFormStart(){},trackFormSubmit(){},trackLead(){}}
+        if(name==='@/lib/analytics/client')return{
+          trackFormStart(...args){analytics.push({name:'form_start',args})},
+          trackFormSubmit(...args){analytics.push({name:'form_submit',args})},
+          trackLead(...args){analytics.push({name:'generate_lead',args})},
+        }
         if(!name.startsWith('@/')&&!name.startsWith('.'))return require(name)
         let resolved=name.startsWith('@/')?path.resolve(name.slice(2)):path.resolve(path.dirname(filename),name)
         if(!existsSync(resolved))resolved=['.ts','.tsx'].map(ext=>resolved+ext).find(existsSync)
@@ -55,7 +59,7 @@ function harness({request=async()=>new Response('{}'), prepareError=false, endpo
   const alert=()=>render().find(n=>n.props?.role==='alert')
   const text=node=>typeof node==='string'||typeof node==='number'?String(node):!node||typeof node!=='object'?'':[node.props?.children].flat(Infinity).map(text).join(' ')
   edit('general-message','How do I start supplying local teams?');edit('general-email','qa@example.com')
-  return{requests,timers,render,find,edit,handler,event,send,button,alert,text,expire(){for(const[id,t]of[...timers]){timers.delete(id);t.fn()}}}
+  return{requests,analytics,timers,render,find,edit,handler,event,send,button,alert,text,expire(){for(const[id,t]of[...timers]){timers.delete(id);t.fn()}}}
 }
 
 function assertRecovery(ui){
@@ -67,6 +71,24 @@ function assertRecovery(ui){
   assert.ok(links.some(n=>n.props.href.startsWith('https://wa.me/8613055646888')),'WhatsApp must be inside the recovery panel')
   assert.match(ui.text(alert),/refresh|leaving/i,'State the current-page draft boundary')
 }
+
+test('accepted general inquiry emits one submit and one lead with stable general-inquiry keys',async()=>{
+  const ui=harness();await ui.send();await ui.send()
+  const conversions=ui.analytics.filter(event=>['form_submit','generate_lead'].includes(event.name))
+  assert.deepEqual(conversions.map(event=>event.name),['form_submit','generate_lead'])
+  for(const event of conversions){
+    assert.deepEqual(JSON.parse(JSON.stringify(event.args[0])),{lead_type:'general_inquiry',form_id:'general_inquiry_form',form_type:'Contact Page CMS'})
+  }
+})
+
+for(const scenario of ['http-4xx','http-5xx','request-timeout','network-failure'])test(`general inquiry ${scenario} emits no generate_lead`,async()=>{
+  const ui=harness({request:async()=>{
+    if(scenario==='network-failure')throw TypeError('Disconnected')
+    return new Response('{}',{status:scenario==='http-4xx'?422:scenario==='http-5xx'?503:408})
+  }})
+  await ui.send()
+  assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)
+})
 
 test('a stale submit handler cannot resend an accepted general question',async()=>{
   const ui=harness();const submit=ui.handler();await submit(ui.event);await submit(ui.event)
@@ -103,6 +125,7 @@ test('a 60-second deadline releases pending UI but a late success cannot become 
   resolve(new Response('{}'));await Promise.resolve();await Promise.resolve()
   assert.equal(ui.render().find(n=>n.props?.role==='status'),undefined)
   await ui.send();assert.equal(ui.requests.length,1);assert.equal(ui.button().props.disabled,true);assert.equal(ui.timers.size,0)
+  assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)
 })
 
 test('a form-preparation exception is caught before any network send and does not freeze retry',async()=>{

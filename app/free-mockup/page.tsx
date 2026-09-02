@@ -24,7 +24,7 @@ export default async function Page() {
   return (
     <>
       <FormContactFallback context="free-mockup" />
-      <CmsPageTemplate page={pageWithFaqs} conversionIntent="mockup" beforeFooterSlot={<><ProductVisualizationSection assets={[mockupVisualization]} page="/free-mockup/" eyebrow="Design Visualization" title="From Mockup to Finished Presentation" description="Review the approved POXIOL visualization of the mockup-to-finished design path." layout="single" /><ConversionEntryGuide currentIntent="mockup" /><section id={getV8ConversionEntry('mockup').formAnchorId} tabIndex={-1} className="scroll-mt-24 bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-3xl"><ProjectQualificationForm intent="mockup" formType="Free Mockup Conversion" publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} privacyPolicyApproved={legalPolicyApproved()} /></div></section></>} />
+      <CmsPageTemplate page={pageWithFaqs} conversionIntent="mockup" beforeFooterSlot={<><ProductVisualizationSection assets={[mockupVisualization]} page="/free-mockup/" eyebrow="Design Visualization" title="From Mockup to Finished Presentation" description="Review the approved POXIOL visualization of the mockup-to-finished design path." layout="single" /><ConversionEntryGuide currentIntent="mockup" /><section id={getV8ConversionEntry('mockup').formAnchorId} tabIndex={-1} className="scroll-mt-24 bg-neutral-900 px-5 py-20 md:px-10 md:py-28 xl:px-20"><div className="mx-auto max-w-3xl"><ProjectQualificationForm intent="mockup" formId="free_mockup_form" formType="Free Mockup Conversion" publicEmail={chrome.publicEmail} whatsappHref={chrome.whatsappHref} privacyPolicyApproved={legalPolicyApproved()} /></div></section></>} />
     </>
   )
 }

@@ -7,6 +7,7 @@ import MobileInquiryLink from "@/components/MobileInquiryLink";
 import MobileInquiryBar from "@/components/MobileInquiryBar";
 import InquiryLink from "@/components/InquiryLink";
 import DesktopMenuLink from "@/components/DesktopMenuLink";
+import type {CtaLocation} from '@/lib/analytics/core';
 
 export const freeMockupHref = "/free-mockup/";
 export const getQuoteHref = "/get-quote/";
@@ -42,21 +43,21 @@ export function SectionHeading({ eyebrow, title, subtitle, dark = false, center 
   );
 }
 
-export function PrimaryButton({ href = freeMockupHref, children, className = "" }: { href?: string; children: React.ReactNode; className?: string }) {
+export function PrimaryButton({ href = freeMockupHref, children, className = "", analyticsLocation }: { href?: string; children: React.ReactNode; className?: string; analyticsLocation?: CtaLocation }) {
   const classes = `inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full bg-[#B6FF00] px-8 py-4 text-center font-black uppercase tracking-wide text-black transition hover:bg-white ${className}`;
   // Native fragment navigation preserves the form's top-aligned scroll position.
   // Next's router focuses the entire tall target after scrolling, recentering it.
-  if (href.startsWith("#")) return <a href={href} className={classes}>{children}</a>;
+  if (href.startsWith("#")) return <a href={href} data-analytics-location={analyticsLocation} className={classes}>{children}</a>;
   return (
-    <InquiryLink href={href} className={classes}>
+    <InquiryLink href={href} data-analytics-location={analyticsLocation} className={classes}>
       {children}
     </InquiryLink>
   );
 }
 
-export function SecondaryButton({ href, children, darkText = false, className = "" }: { href: string; children: React.ReactNode; darkText?: boolean; className?: string }) {
+export function SecondaryButton({ href, children, darkText = false, className = "", analyticsLocation }: { href: string; children: React.ReactNode; darkText?: boolean; className?: string; analyticsLocation?: CtaLocation }) {
   return (
-    <InquiryLink href={href} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full border px-8 py-4 text-center transition ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
+    <InquiryLink href={href} data-analytics-location={analyticsLocation} className={`inline-flex max-w-full items-center justify-center whitespace-normal break-words rounded-full border px-8 py-4 text-center transition ${darkText ? "border-neutral-300 text-neutral-950 hover:border-neutral-950" : "border-white/25 text-white hover:border-[#B6FF00] hover:text-[#B6FF00]"} ${className}`}>
       {children}
     </InquiryLink>
   );
@@ -87,6 +88,7 @@ export async function WhatsAppButton() {
       <MobileInquiryBar>
         <InquiryLink
           href={chrome.whatsappHref}
+          data-analytics-location="sticky_mobile"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[#25D366] text-sm font-black uppercase tracking-wide text-white"
@@ -154,7 +156,7 @@ export async function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <InquiryLink href={HEADER_CTA.href} className="hidden rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white md:inline-flex">{HEADER_CTA.label}</InquiryLink>
+          <InquiryLink href={HEADER_CTA.href} data-analytics-location="header" className="hidden rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white md:inline-flex">{HEADER_CTA.label}</InquiryLink>
           <MobileMenu />
         </div>
       </div>
@@ -173,10 +175,10 @@ export async function Footer() {
             <Link href="/" className="inline-flex min-h-10 items-center text-3xl font-black uppercase tracking-tight">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="150" height="42" className="h-10 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
             <p className="mt-6 max-w-xs leading-8 text-neutral-400">Custom teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide, supporting ongoing team orders for your clients.</p>
             <div className="mt-8 flex flex-col gap-3">
-              <InquiryLink href={freeMockupHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</InquiryLink>
-              <InquiryLink href={getQuoteHref} className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</InquiryLink>
-              <InquiryLink href={chrome.whatsappHref} target="_blank" rel="noreferrer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">WhatsApp: {chrome.whatsappNumber}</InquiryLink>
-              <a href={emailHref(chrome.publicEmail)} className="text-neutral-400 text-sm hover:text-white"><EmailAddress email={chrome.publicEmail} /></a>
+              <InquiryLink href={freeMockupHref} data-analytics-location="footer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</InquiryLink>
+              <InquiryLink href={getQuoteHref} data-analytics-location="footer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</InquiryLink>
+              <InquiryLink href={chrome.whatsappHref} data-analytics-location="footer" target="_blank" rel="noreferrer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">WhatsApp: {chrome.whatsappNumber}</InquiryLink>
+              <a href={emailHref(chrome.publicEmail)} data-analytics-location="footer" className="text-neutral-400 text-sm hover:text-white"><EmailAddress email={chrome.publicEmail} /></a>
             </div>
           </div>
           {chrome.footerColumns.map((col) => (
@@ -198,7 +200,7 @@ export async function Footer() {
             <span>Project MOQ Confirmed by Consultation</span>
             <span>Sample Plan Confirmed by Project</span>
             <span>International Shipping Support</span>
-            {chrome.alibabaStoreUrl ? <a href={chrome.alibabaStoreUrl} target="_blank" rel="noreferrer" className="text-white hover:text-[#B6FF00]">Alibaba Store</a> : null}
+            {chrome.alibabaStoreUrl ? <a href={chrome.alibabaStoreUrl} data-analytics-location="footer" target="_blank" rel="noreferrer" className="text-white hover:text-[#B6FF00]">Alibaba Store</a> : null}
           </div>
         </div>
       </div>

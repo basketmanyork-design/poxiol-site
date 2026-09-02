@@ -23,6 +23,7 @@ export default function MobileInquiryLink() {
   return (
     <a
       href={href}
+      data-analytics-location="sticky_mobile"
       className="inline-flex min-h-14 min-w-0 items-center justify-center rounded-full bg-[#B6FF00] px-2 text-center text-sm font-black uppercase leading-tight tracking-wide text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
     >
       {labels[entry.intent]}

@@ -111,6 +111,7 @@ export default function MobileMenu() {
             })}
             <InquiryLink
               href={HEADER_CTA.href}
+              data-analytics-location="header"
               onClick={() => setOpen(false)}
               className="mt-6 inline-flex h-14 items-center justify-center rounded-full bg-[#B6FF00] px-8 text-base font-black uppercase tracking-wide text-black"
             >

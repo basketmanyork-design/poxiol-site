@@ -7,7 +7,8 @@ import {InquiryReference} from './InquiryReference';
 import {appendInquiryContext, publicSourcePath} from '@/lib/inquiry-context';
 import {getApprovedClaimWording} from '@/lib/governance/claims';
 import {ProjectInquiryRequestError, sendProjectInquiry} from '@/lib/project-inquiry-request';
-import {trackFileUpload, trackFormStart, trackFormSubmit, trackLead} from "@/lib/analytics/client";
+import {trackFileSelect, trackFileUpload, trackFormStart, trackFormSubmit, trackLead} from "@/lib/analytics/client";
+import {createLeadEventContext, type LeadFormId} from '@/lib/analytics/core';
 import {PrivacyStatusLink} from '../legal/PrivacyStatusLink';
 import {
   BUYER_ROLE_OPTIONS,
@@ -101,6 +102,7 @@ function AttachmentField({id, name, label, accept, file, disabled, onChange}: {
 
 export interface ContactFormProps {
   intent?: V8ConversionIntent;
+  formId: LeadFormId;
   title?: string;
   subtitle?: string;
   formType?: string;
@@ -114,6 +116,7 @@ export interface ContactFormProps {
 
 function ContactFormInner({
   intent = "contact",
+  formId,
   title = "Send a Project Inquiry",
   subtitle = "Share the project details available now so POXIOL can identify the right next step.",
   formType = "Contact V8 Optimized",
@@ -124,6 +127,7 @@ function ContactFormInner({
   defaultSport = "",
   privacyPolicyApproved,
 }: ContactFormProps) {
+  const leadContext = createLeadEventContext(formId, formType);
   const router = useRouter();
   const [fields, setFields] = useState<ProjectQualificationFields>(initialFields);
   const [attachments, setAttachments] = useState<ProjectAttachments>(initialAttachments);
@@ -153,7 +157,7 @@ function ContactFormInner({
 
   function updateField(name: keyof ProjectQualificationFields, value: string) {
     setFields((current) => ({...current, [name]: value}));
-    try { trackFormStart(formType); } catch { /* Analytics must not discard edits. */ }
+    try { trackFormStart(leadContext); } catch { /* Analytics must not discard edits. */ }
   }
 
   function updateAttachment(name: keyof ProjectAttachments, file: File | null) {
@@ -167,7 +171,7 @@ function ContactFormInner({
       setErrorMessage(invalid ? `${invalid.name} is larger than 10 MB. Replace or remove that file before submitting; you can arrange file sharing with us below.` : '');
     }
     if (file) {
-      try { trackFormStart(formType); trackFileUpload(formType); } catch { /* Optional telemetry only. */ }
+      try { trackFormStart(leadContext); trackFileSelect(leadContext); } catch { /* Optional telemetry only. */ }
     }
     return true;
   }
@@ -202,8 +206,9 @@ function ContactFormInner({
       setSubmitted(true);
       try {
         const submissionId = crypto.randomUUID();
-        trackFormSubmit(formType, submissionId);
-        trackLead(formType, submissionId);
+        trackFormSubmit(leadContext, submissionId);
+        trackLead(leadContext, submissionId);
+        if (Object.values(attachments).some(Boolean)) trackFileUpload(leadContext, submissionId);
       } catch { /* An accepted submission remains accepted without analytics. */ }
       try { router.push(successUrl); } catch { /* Keep the accepted state and next-step link below. */ }
     } catch (error) {
@@ -327,8 +332,8 @@ function ContactFormInner({
           {unconfirmed ? <p className="mt-2">Do not submit again or refresh to retry. Use email or WhatsApp to check receipt first; mention your original email, team or company and approximate submission time.</p> : null}
           {unconfirmed ? <p className="mt-2">Changing or removing files here only changes this page; it does not withdraw an earlier submission.</p> : null}
           <div className="mt-3 flex flex-wrap gap-3">
-            <a href={`mailto:${publicEmail}?subject=POXIOL%20inquiry%20help`} className="inline-flex min-h-11 max-w-full items-center break-all rounded-lg bg-white px-3 py-2 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Email {publicEmail}</a>
-            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Open WhatsApp</a>
+            <a href={`mailto:${publicEmail}?subject=POXIOL%20inquiry%20help`} data-analytics-location="form_recovery" className="inline-flex min-h-11 max-w-full items-center break-all rounded-lg bg-white px-3 py-2 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Email {publicEmail}</a>
+            <a href={whatsappHref} data-analytics-location="form_recovery" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-lg bg-white px-3 py-2 underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Open WhatsApp</a>
           </div>
           <p className="mt-2 text-xs">These links open your email app or WhatsApp; they do not send a message automatically.</p>
         </div>

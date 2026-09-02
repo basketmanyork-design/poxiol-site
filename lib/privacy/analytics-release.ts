@@ -6,26 +6,38 @@ export type AnalyticsReleaseInput = {
   cloudflareAnalyticsEnabled: boolean
 }
 
-type AnalyticsSystem = 'ga4' | 'cloudflareWebAnalytics'
+export type AnalyticsSystem = 'ga4' | 'cloudflareWebAnalytics'
 
-export function analyticsReleaseApproved() {
+export type AnalyticsReleaseRecord = {
+  schemaVersion: number
+  status: string
+  ga4: string
+  cloudflareWebAnalytics: string
+  approvedBy: string | null
+  approvedAt: string | null
+}
+
+/**
+ * `status` approves the governance record and its Owner metadata only.
+ * Each analytics provider remains independently controlled by its own state.
+ */
+export function analyticsReleaseApproved(record: AnalyticsReleaseRecord = release) {
   return Boolean(
-    release.status === 'APPROVED' &&
-      release.approvedBy &&
-      release.approvedAt &&
-      release.ga4 === 'ENABLED' &&
-      release.cloudflareWebAnalytics === 'ENABLED',
+    record.status === 'APPROVED' &&
+      record.approvedBy?.trim() &&
+      record.approvedAt?.trim() &&
+      !Number.isNaN(Date.parse(record.approvedAt)),
   )
 }
 
-export function governedAnalyticsEnabled(system: AnalyticsSystem) {
-  return analyticsReleaseApproved() && release[system] === 'ENABLED'
+export function governedAnalyticsEnabled(system: AnalyticsSystem, record: AnalyticsReleaseRecord = release) {
+  return analyticsReleaseApproved(record) && record[system] === 'ENABLED'
 }
 
-export function governedAnalyticsConfiguration() {
+export function governedAnalyticsConfiguration(record: AnalyticsReleaseRecord = release) {
   return {
-    ga4Enabled: governedAnalyticsEnabled('ga4'),
-    cloudflareAnalyticsEnabled: governedAnalyticsEnabled('cloudflareWebAnalytics'),
+    ga4Enabled: governedAnalyticsEnabled('ga4', record),
+    cloudflareAnalyticsEnabled: governedAnalyticsEnabled('cloudflareWebAnalytics', record),
   }
 }
 
