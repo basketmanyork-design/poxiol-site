@@ -40,7 +40,8 @@ assert.doesNotMatch(legacySource, /mockup-process\.webp/, 'Unverified legacy moc
 const basketballSource = read('components/v8/BasketballV8LandingPage.tsx')
 assert.doesNotMatch(basketballSource, /<BreadcrumbSchema\b/, 'Basketball must not output a second BreadcrumbList beside ProductSchema.')
 assert.doesNotMatch(read('lib/week3-guides.ts'), /href:\s*['"]\/products\/basketball-uniforms-1\/['"]/, 'Basketball commercial links must use the primary landing page.')
-assert.match(read('app/custom-basketball-uniforms/page.tsx'), /fallbackHref=["']\/products\/basketball-uniforms\/["']/, 'The legacy basketball page needs an exact non-JavaScript fallback link.')
+assert.match(read('public/_redirects'), /^\/custom-basketball-uniforms\/ \/products\/basketball-uniforms\/ 301$/m, 'The legacy basketball route needs an exact HTTP 301.')
+assert.equal(existsSync(path.join(root, 'app/custom-basketball-uniforms/page.tsx')), false, 'The retired basketball route must not compete with its HTTP 301.')
 
 const layoutSource = read('app/layout.tsx')
 assert.doesNotMatch(layoutSource, /home_hero_v62_(?:desktop|mobile)\.webp/, 'Unverified legacy people visuals must not be preloaded or used as global social proof.')

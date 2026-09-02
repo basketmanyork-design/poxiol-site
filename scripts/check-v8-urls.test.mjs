@@ -15,14 +15,10 @@ const sitemapSource = readFileSync('app/sitemap.ts', 'utf8')
 assert.doesNotMatch(sitemapSource, /\/custom-basketball-uniform-manufacturer\//)
 assert.doesNotMatch(sitemapSource, /\/production-process\//)
 
-const legacyRoute = existsSync('app/custom-basketball-uniforms/page.tsx')
-  ? readFileSync('app/custom-basketball-uniforms/page.tsx', 'utf8')
-  : ''
-assert.match(legacyRoute, /canonical:\s*["']https:\/\/www\.poxiol\.com\/products\/basketball-uniforms\/["']/)
-assert.doesNotMatch(
-  legacyRoute,
-  /router\.replace|redirect\(/,
-  'The legacy route must not rely on a client or page-level redirect when Cloudflare serves the 301.',
+assert.equal(
+  existsSync('app/custom-basketball-uniforms/page.tsx'),
+  false,
+  'The legacy route must not compete with the Cloudflare HTTP 301.',
 )
 
 console.log('POXIOL V8 URL checks passed.')

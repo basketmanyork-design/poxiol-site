@@ -1,6 +1,17 @@
 # Cloudflare Pages redirects for POXIOL
 # Note: Primary www redirect is handled at the DNS level via Cloudflare
 /custom-basketball-uniforms/ /products/basketball-uniforms/ 301
+/custom-soccer-kits/ /products/soccer-jerseys/ 301
+/custom-training-wear/ /products/training-wear/ 301
+/custom-american-football-uniforms/ /products/ 301
+/custom-esports-jerseys/ /products/ 301
+/custom-golf-wear/ /products/ 301
+/custom-ice-hockey-jerseys/ /products/ 301
+/custom-rugby-uniforms/ /products/ 301
+/custom-running-marathon-wear/ /products/ 301
+/custom-tennis-wear/ /products/ 301
+/custom-volleyball-uniforms/ /products/ 301
+/builder/ /free-mockup/ 301
 /googlec5c97eecb7db490b.html /googlec5c97eecb7db490b 200
 
 # Exact legacy article equivalents retained for search equity
