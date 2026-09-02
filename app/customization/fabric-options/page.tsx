@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Header, Footer, SectionHeading, PrimaryButton, freeMockupHref } from "@/components/ui";
+import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
+import { getApprovedClaimWording } from "@/lib/governance/claims";
 
 export const metadata: Metadata = {
-  title: "Performance Fabric Options | POXIOL Sportswear",
-  description: "Explore our range of high-performance moisture-wicking fabrics for custom basketball, soccer, and training uniforms. Engineered for athletes.",
+  title: "Custom Teamwear Fabric Options | POXIOL",
+  description: "Review fabric categories for custom teamwear, with final material selection confirmed against the product, intended use, availability, and sample.",
 };
 
 const fabrics = [
-  { name: "Pro Mesh", desc: "Highly breathable, open-hole mesh designed for maximum airflow during basketball and training." },
-  { name: "Dura-Interlock", desc: "Smooth, high-tensile polyester with excellent color absorption and durability for soccer and rugby." },
-  { name: "Ultra-Dry Tricot", desc: "Lightweight, moisture-wicking material that moves sweat away from the body for marathon and running wear." },
-  { name: "Flex-Compression", desc: "Four-way stretch fabric for ergonomic fit and muscle support in specialized athletic gear." }
+  { name: "Mesh Structures", desc: "Mesh constructions can be reviewed where airflow and garment structure are priorities." },
+  { name: "Interlock Structures", desc: "Interlock constructions can be compared for smoothness, weight, coverage, and decoration compatibility." },
+  { name: "Tricot Structures", desc: "Tricot options can be reviewed for lightweight product formats and the intended wearing conditions." },
+  { name: "Stretch Structures", desc: "Stretch constructions can be considered where movement, fit, and panel design need additional review." }
 ];
 
 export default function FabricOptionsPage() {
@@ -19,7 +20,7 @@ export default function FabricOptionsPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading eyebrow="Materials" title="Engineered Performance Fabrics" subtitle="We select only the highest grade polyester fibers to ensure your team stays cool, dry, and comfortable." dark center />
+          <SectionHeading eyebrow="Materials" title="Fabric Options by Project" subtitle={getApprovedClaimWording("fabric-review")} dark center />
           
           <div className="mt-20 grid gap-6 md:grid-cols-2 text-left">
             {fabrics.map(f => (
@@ -31,8 +32,8 @@ export default function FabricOptionsPage() {
           </div>
 
           <div className="mt-20 rounded-[3rem] border border-white/10 bg-white/[0.02] p-10 text-left">
-            <h3 className="text-2xl font-black uppercase">Sample Fabric Pack</h3>
-            <p className="mt-6 text-neutral-300">Unsure about the feel or stretch? You can request a physical sample pack containing our core fabric options before starting your bulk team order.</p>
+            <h3 className="text-2xl font-black uppercase">Material and Sample Review</h3>
+            <p className="mt-6 text-neutral-300">Share the product type, intended use, construction preferences, and any material references. The applicable fabric and sample path can then be confirmed for your project.</p>
             <div className="mt-10">
               <PrimaryButton href="/contact/">Request Fabric Sample</PrimaryButton>
             </div>
