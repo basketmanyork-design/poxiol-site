@@ -99,12 +99,27 @@ test('pending legal approval permits both analytics systems disabled', () => {
   assert.equal(assertAnalyticsReleaseReady({legalApproved: false, ga4Enabled: false, cloudflareAnalyticsEnabled: false}), true)
 })
 
-test('the governed release record starts fully disabled and unapproved', () => {
-  const record = JSON.parse(readFileSync('content/privacy/analytics-release.json', 'utf8'))
-  assert.equal(record.ga4, 'DISABLED_PENDING_APPROVAL')
-  assert.equal(record.cloudflareWebAnalytics, 'DISABLED_PENDING_APPROVAL')
-  assert.equal(record.approvedBy, null)
-  assert.equal(record.approvedAt, null)
+test('every enabled provider requires an approved governance record with valid Owner metadata', () => {
+  const record = JSON.parse(readFileSync('content/privacy/analytics-release.json', 'utf8')) as AnalyticsReleaseRecord
+  const providers = ['ga4', 'cloudflareWebAnalytics'] as const
+
+  for (const provider of providers) {
+    assert.ok(
+      record[provider] === 'ENABLED' || record[provider] === 'DISABLED_PENDING_APPROVAL',
+      `${provider} has an unsupported release state`,
+    )
+    if (record[provider] !== 'ENABLED') {
+      assert.equal(governedAnalyticsEnabled(provider, record), false)
+      continue
+    }
+
+    assert.equal(record.status, 'APPROVED')
+    assert.ok(record.approvedBy?.trim(), `${provider} requires approvedBy`)
+    assert.ok(record.approvedAt?.trim(), `${provider} requires approvedAt`)
+    assert.equal(Number.isNaN(Date.parse(record.approvedAt)), false)
+    assert.equal(analyticsReleaseApproved(record), true)
+    assert.equal(governedAnalyticsEnabled(provider, record), true)
+  }
 })
 
 test('an isolated enabled fixture exits non-zero and runtime config consumes the governed gate', () => {
