@@ -369,4 +369,3 @@ git commit -m "docs: record commercial seal p0 verification"
 - [ ] **Step 8: Stop at Preview deployment Gate**
 
 Do not push, merge, create a Production deployment, alter Sanity Published content, or deploy CSP Production. Present the verified branch for owner review.
-

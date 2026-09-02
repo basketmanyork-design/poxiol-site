@@ -15,10 +15,13 @@
 - `scripts/check-commercial-redirects.test.mjs`
 - `scripts/check-customization-claims.test.mts`
 - `scripts/check-sports-page-copy.test.mts`
+- `scripts/check-sports-page-copy-output.test.mjs`
 - `docs/superpowers/specs/2026-09-02-poxiol-commercial-seal-p0-design.md`
 - `docs/superpowers/plans/2026-09-02-poxiol-commercial-seal-p0.md`
 - `docs/operations/2026-09-02-poxiol-commercial-seal-p0-report.md`
 - `docs/operations/2026-09-02-poxiol-commercial-seal-p0-changed-files.md`
+- `docs/operations/2026-09-02-poxiol-commercial-seal-p0-claim-changes.md`
+- `docs/operations/2026-09-02-poxiol-commercial-seal-p0-redirect-report.md`
 
 ## Modified — buyer-visible and runtime
 
@@ -41,7 +44,6 @@
 
 - `construction/route-release.json`
 - `package.json`
-- `scripts/check-hybrid-integration.test.mjs`
 - `scripts/check-inquiry-context-forms.test.mjs`
 - `scripts/check-project-inquiry-recovery.test.mjs`
 - `scripts/check-public-inquiry-integrity.mjs`
@@ -75,4 +77,3 @@
 - Formspree account and endpoint ownership.
 - Analytics accounts or third-party analytics products.
 - Existing tracked or untracked visual assets; no V10 asset was used.
-

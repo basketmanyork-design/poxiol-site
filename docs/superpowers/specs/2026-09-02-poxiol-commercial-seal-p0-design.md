@@ -140,4 +140,3 @@ Use strict TDD for every production behavior:
 ## Rollback
 
 Each task is a separate commit. Rollback is performed by reverting the affected task commit or abandoning the isolated branch. No Production deployment is part of this plan. If a later Preview reveals a regression, the Preview is discarded and the prior Production deployment remains untouched.
-

@@ -2,7 +2,7 @@
 
 ## 1. Outcome
 
-The approved P0 commercial-seal scope is implemented on the isolated branch `codex/poxiol-commercial-seal-p0`. Source tests, output tests, the complete production build command, route-release validation, canonical audit, form recovery suite, and focused visual QA pass.
+The approved P0 commercial-seal scope is implemented on the isolated branch `codex/poxiol-commercial-seal-p0`. P0 source and output gates, the complete production build command, route-release validation, canonical audit, form recovery suite, and focused visual QA pass. The standard `npm test` command retains one documented pre-existing Windows CRLF baseline exception; no P0 code changes were used to hide it.
 
 This is a **Preview Gate candidate**, not a production release and not the completion of P1–P7. No production account, DNS, Sanity Published document, Formspree account, Analytics account, or CSP Reporting Production setting was changed.
 
@@ -23,7 +23,7 @@ This is a **Preview Gate candidate**, not a production release and not the compl
 | FAQ question/answer mismatch | PASS | MOQ/order-quantity questions and answers are normalized as one semantic pair. |
 | `draft procurement standard` | PASS | Exact legacy sentence maps to the approved order-quantity wording. |
 | `No external CRM...` | PASS | Replaced with approved inquiry-information purpose wording. |
-| Template leakage | PASS for shared sports template | Basketball-specific shared headings are now generated from the current product label; five categories are regression-tested. |
+| Template leakage | PASS for shared sports template | Shared headings are generated from the current product label; five labels are source-tested and all three routes that render the shared template are verified against generated HTML. |
 | Dangerous absolute claims | PASS for targeted P0 customization pages | Highest-grade, zero-fading, never-crack/fade, perfect-arrival, retail-ready and launch/scale wording removed or bounded. |
 | Fake redirects | PASS | Retired pages removed; unique HTTP 301 rules added. |
 | Broken internal links | PASS in generated output | Every rendered `<a>` target resolves to output or an approved redirect source. |
@@ -31,6 +31,8 @@ This is a **Preview Gate candidate**, not a production release and not the compl
 | Old V10 assets | PASS | No visual asset added, renamed, referenced, or modified. |
 
 ## 4. Claim Change Report
+
+Standalone report: [2026-09-02-poxiol-commercial-seal-p0-claim-changes.md](./2026-09-02-poxiol-commercial-seal-p0-claim-changes.md).
 
 The ledger at `content/governance/claim-ledger.json` contains seven immutable, owner-approved static records with Claim, Source, Source Date, Evidence Type, Approved Wording, Publish Scope, Dynamic/Static, and Owner Approval.
 
@@ -55,6 +57,8 @@ No factory size, employee, equipment, QC count, certification, sales, rating, de
 Remaining P1 evidence gaps are unchanged: showroom overview, basketball area, soccer area, designer at work, digital printing, laser cutting, sewing, QC inspection, measurement, and packing. These require real approved capture; AI substitution remains prohibited.
 
 ## 6. Redirect Report
+
+Standalone report: [2026-09-02-poxiol-commercial-seal-p0-redirect-report.md](./2026-09-02-poxiol-commercial-seal-p0-redirect-report.md).
 
 All mappings are unique `301` rules in `public/_redirects`; the competing App Router pages and the JavaScript redirect component were removed.
 
@@ -117,17 +121,18 @@ No Lighthouse or real-user Core Web Vitals claim is made in P0. The optimized Ne
 
 Environment: official Node.js `22.23.2`, npm `10.9.8`, local review origin `http://127.0.0.1:4466` for the governed hybrid-build gate.
 
-- `npm test` — PASS.
+- `npm test` — EXPECTED BASELINE EXCEPTION: 1 failure in `CMS pull-request builds declare an explicit loopback review environment` because the tracked workflow uses Windows CRLF while the pre-existing test searches for LF-only delimiters; all commands before that final baseline test, including the mandatory P0 commercial source gates, pass.
 - `npm run check:v8` — PASS.
 - `npm run check:commercial-claims` — PASS (4 tests).
 - `npm run check:commercial-sports-copy` — PASS (5 tests).
+- `npm run check:commercial-sports-copy:output` — PASS (3 generated-route tests for every route using the shared sports template).
 - `npm run check:commercial-redirects` — PASS (3 tests).
 - `npm run check:commercial-customization` — PASS (3 tests).
 - `npm run check:commercial-hygiene:output` — PASS, including generated-link integrity.
 - `npm run check:conversion-ctas` — PASS.
 - `npx tsc --noEmit` — PASS.
 - `npm run build` — PASS from the start after deterministic route-manifest regeneration.
-- `git diff --check` — PASS.
+- `git diff --check origin/main..HEAD` — PASS after review corrections.
 
 ## 12. Remaining risks and next approval gates
 
@@ -148,4 +153,3 @@ Environment: official Node.js `22.23.2`, npm `10.9.8`, local review origin `http
 6. Obtain explicit merge/deploy approval.
 7. After deployment, verify HTTP status/canonical for all 12 retired URLs, live forms without submission side effects, sitemap, robots and key mobile routes.
 8. If any release gate fails, stop and revert the reviewed commit set; do not hot-edit production accounts.
-
