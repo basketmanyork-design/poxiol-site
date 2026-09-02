@@ -7,6 +7,7 @@ import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
 import { ProductGeoSections } from "@/components/sections/GeoV1Sections";
 import { buildSportsProductGeoDetails, resolveSportsFaqs } from "@/lib/geo-v1";
 import {publicSectionDecision} from '@/lib/release/publication-policy';
+import {sportsPageSectionCopy} from '@/lib/sports-page-copy';
 
 function titleCaseKeyword(keyword: string) {
   return keyword.replace(/^custom\s+/i, "").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -14,6 +15,7 @@ function titleCaseKeyword(keyword: string) {
 
 export default function SportsLandingPage({ data }: { data: SportsPageData }) {
   const productLabel = titleCaseKeyword(data.primaryKeyword);
+  const sectionCopy = sportsPageSectionCopy(productLabel);
   const baseUrl = "https://www.poxiol.com";
   const fullUrl = `${baseUrl}/${data.slug}/`;
   const resolvedFaqs = resolveSportsFaqs(data);
@@ -147,7 +149,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
 
       <section className="bg-white px-5 py-20 text-neutral-950 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Basketball Solutions" title="Choose the Right Basketball Uniform Format" subtitle="Compare the product format that fits your roster, use case and customization plan."/>
+          <SectionHeading {...sectionCopy.productTypes}/>
           <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {data.productTypes.map((item) => (
               <div key={item.title} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-8">
@@ -304,7 +306,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
       {data.relatedCases && data.relatedCases.length > 0 && (
         <section className="bg-white px-5 py-20 text-neutral-950 md:px-10 md:py-28 xl:px-20">
           <div className="mx-auto max-w-7xl">
-            <SectionHeading eyebrow="Related Projects" title="Basketball and School Teamwear References" subtitle="Review related project formats before defining your roster, artwork and delivery plan."/>
+            <SectionHeading {...sectionCopy.relatedProjects}/>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {data.relatedCases.map((item) => (
                 <InquiryLink key={item.href || item.title} href={item.href || "/projects/"} className="rounded-3xl border border-neutral-200 bg-neutral-50 p-8 transition hover:border-lime-500">
