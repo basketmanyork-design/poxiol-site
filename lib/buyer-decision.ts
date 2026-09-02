@@ -1,6 +1,6 @@
 import type {CmsFaqItem} from './cms/types'
 import {GEO_V1} from './geo-v1'
-export {normalizeBuyerFacingClaim, normalizeBuyerFacingQuestion} from './legacy-claim-normalizer'
+export {normalizeBuyerFacingClaim, normalizeBuyerFacingFaq, normalizeBuyerFacingQuestion} from './legacy-claim-normalizer'
 
 export const BUYER_DECISION_HERO_HEADING = GEO_V1.homepage.heroHeading
 

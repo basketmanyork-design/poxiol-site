@@ -1,6 +1,12 @@
+import {getApprovedClaimWording} from './governance/claims.ts'
+
 // Shared by CMS mapping and release-guard regression tests.
 export function normalizeBuyerFacingClaim(value: string): string {
   return value
+    .replace(
+      /\bthe\s+draft\s+procurement\s+standard\s+lists\s+(?:a\s+)?minimum\s+sample\s+order\s+of\s+one\s+set\b\.?/gi,
+      getApprovedClaimWording('order-quantity-confirmation'),
+    )
     .replace(/\bSample\s+MOQ\s*(?::|is)?\s*1\s*set\b/gi, 'Sample quantity is confirmed for the project')
     .replace(/\b1\s*[-\u2010-\u2015]?\s*(?:set|piece)\s+(?:custom\s+\w+\s+)?sample\b/gi, 'project-specific sample plan')
     .replace(/\bMOQ\s*(?::|is)?\s*(?:from\s+)?1(?:\s*(?:set|piece))?\b/gi, 'project-specific order quantity')
@@ -35,4 +41,18 @@ export function normalizeBuyerFacingQuestion(value: string): string {
     return 'How is sample timing confirmed?'
   }
   return normalizeBuyerFacingClaim(value)
+}
+
+export function normalizeBuyerFacingFaq(question: string, answer: string): {question: string; answer: string} {
+  const normalizedQuestion = normalizeBuyerFacingQuestion(question)
+  if (normalizedQuestion === 'How is the order quantity confirmed?') {
+    return {
+      question: normalizedQuestion,
+      answer: getApprovedClaimWording('order-quantity-confirmation'),
+    }
+  }
+  return {
+    question: normalizedQuestion,
+    answer: normalizeBuyerFacingClaim(answer),
+  }
 }

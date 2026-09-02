@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "ledgerId": "poxiol-public-claim-ledger",
+  "lastUpdated": "2026-09-02",
+  "claims": [
+    {
+      "id": "inquiry-information-purpose",
+      "claim": "Purpose of buyer inquiry information",
+      "source": "Owner-approved POXIOL commercial seal P0 brief",
+      "sourceDate": "2026-09-02",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Your project information is used only for inquiry review, quotation, sampling and order communication.",
+      "publishScope": ["/", "/free-mockup/", "/get-quote/", "/sample-order/", "/contact/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    },
+    {
+      "id": "order-quantity-confirmation",
+      "claim": "How order quantity is confirmed",
+      "source": "Owner-approved POXIOL commercial seal P0 brief",
+      "sourceDate": "2026-09-02",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Order quantity depends on the product format and project requirements. Share the sport, product, estimated quantity and customization needs so the order structure can be confirmed for the quotation.",
+      "publishScope": ["/faq/", "/resources/", "/guides/", "/products/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    },
+    {
+      "id": "sublimation-comparison",
+      "claim": "Non-absolute comparison for compatible sublimation decoration",
+      "source": "Owner-provided safe wording in the POXIOL commercial seal brief",
+      "sourceDate": "2026-09-02",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Sublimation integrates the artwork into compatible polyester fabric, helping reduce peeling and cracking associated with some surface-applied decoration methods.",
+      "publishScope": ["/customization/logo-name-number/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    },
+    {
+      "id": "fabric-review",
+      "claim": "Project-specific fabric selection boundary",
+      "source": "Owner-approved POXIOL commercial seal P0 brief",
+      "sourceDate": "2026-09-02",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Fabric options are reviewed against the product type, construction, intended use and buyer requirements. The final material is confirmed through current availability and sample review.",
+      "publishScope": ["/customization/fabric-options/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    },
+    {
+      "id": "decoration-placement-review",
+      "claim": "Project-specific artwork and placement review boundary",
+      "source": "Owner-approved POXIOL commercial seal P0 brief",
+      "sourceDate": "2026-09-02",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Artwork, color references, names, numbers and placement requirements are reviewed before the applicable decoration method is confirmed for the project.",
+      "publishScope": ["/customization/logo-name-number/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    },
+    {
+      "id": "packaging-review",
+      "claim": "Project-specific packaging review boundary",
+      "source": "Owner-approved POXIOL commercial seal P0 brief",
+      "sourceDate": "2026-09-02",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Available packing, size-grouping, labeling and branded-packaging requirements are confirmed for the project during quotation and sample review.",
+      "publishScope": ["/customization/custom-packaging/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    },
+    {
+      "id": "private-label-review",
+      "claim": "Project-specific private-label review boundary",
+      "source": "Owner-approved POXIOL commercial seal P0 brief",
+      "sourceDate": "2026-09-02",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Available label, hangtag, care-information and packaging options are confirmed for the project before production.",
+      "publishScope": ["/customization/private-label/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    }
+  ]
+}

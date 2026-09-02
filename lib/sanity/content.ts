@@ -8,6 +8,7 @@ import {
   BUYER_DECISION_HERO_DESCRIPTION,
   BUYER_DECISION_HERO_HEADING,
   normalizeBuyerFacingClaim,
+  normalizeBuyerFacingFaq,
   normalizeBuyerFacingQuestion,
   normalizeCtaLabel,
 } from '@/lib/buyer-decision'
@@ -330,7 +331,7 @@ function mapFaqItem(faq: SanityFaq): CmsFaqItem | null {
   if (!faq.question || faq.active === false || !isDocumentVisible(faq.publishStatus, contentSource)) return null
   const answer = textFromPortable(faq.fullAnswer) || faq.shortAnswer || textFromPortable(faq.answer)
   if (!answer) return null
-  return {question: normalizeBuyerFacingQuestion(faq.question), answer: normalizeFaqAnswer(answer)}
+  return normalizeFaqPair(faq.question, answer)
 }
 
 function normalizedToken(value?: string) {
@@ -435,6 +436,11 @@ function normalizeFaqAnswer(answer: string): string {
     .replace(/Sample Production:\s*2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'Sample timing is confirmed during project consultation')
     .replace(/2\s*[-–]\s*3\s*Days After Mockup Confirmation/gi, 'a project-specific sample schedule')
     .replace(/\s*If a supplier takes more than 7\s*[-–]\s*10 days for a sample, they may be sub-?contracting the work to another facility\.?/gi, ' Timing depends on the approved design, confirmed materials and production schedule.')
+}
+
+function normalizeFaqPair(question: string, answer: string): CmsFaqItem {
+  const pair = normalizeBuyerFacingFaq(question, answer)
+  return {question: pair.question, answer: normalizeFaqAnswer(pair.answer)}
 }
 
 
@@ -683,7 +689,7 @@ function mapPageSections(sections: SanityPageSection[] | undefined, fallback: Cm
         steps: section.steps?.length ? section.steps.filter((item) => item.title && item.description).map((item) => ({title: normalizeBuyerFacingClaim(item.title || ''), description: normalizeBuyerFacingClaim(item.description || '')})) : fb?.steps || [],
         specifications: section.specifications?.length ? section.specifications.filter((item) => item.label && item.value).map((item) => ({label: normalizeBuyerFacingClaim(item.label || ''), value: normalizeBuyerFacingClaim(item.value || '')})) : fb?.specifications || [],
         gallery: section.gallery?.length ? section.gallery.map((image, imageIndex) => optionalImage(image, fb?.gallery?.[imageIndex], 'card')).filter(Boolean) as CmsPageSection['gallery'] : fb?.gallery || [],
-        faqs: section.faqs?.length ? section.faqs.filter((item) => item.question && item.answer).map((item) => ({question: normalizeBuyerFacingQuestion(item.question || ''), answer: normalizeFaqAnswer(item.answer || '')})) : fb?.faqs || [],
+        faqs: section.faqs?.length ? section.faqs.filter((item) => item.question && item.answer).map((item) => normalizeFaqPair(item.question || '', item.answer || '')) : fb?.faqs || [],
         cta: mapCta(section.cta, fb?.cta),
       }
     })
@@ -799,7 +805,7 @@ function normalizePageClaims(page: CmsPage): CmsPage {
       stats: section.stats?.map((stat) => ({...stat, value: normalizeBuyerFacingClaim(stat.value)})),
       steps: section.steps?.map((step) => ({...step, description: normalizeBuyerFacingClaim(step.description)})),
       specifications: section.specifications?.map((item) => ({...item, value: normalizeBuyerFacingClaim(item.value)})),
-      faqs: section.faqs?.map((faq) => ({...faq, question: normalizeBuyerFacingQuestion(faq.question), answer: normalizeFaqAnswer(faq.answer)})),
+      faqs: section.faqs?.map((faq) => ({...faq, ...normalizeFaqPair(faq.question, faq.answer)})),
     })),
     seo: {...page.seo, description: normalizeBuyerFacingClaim(page.seo.description)},
   }
@@ -985,11 +991,11 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
   if (!response.ok) return legacyFaqGroups
 
   const cms = response.result || []
-  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item, question: normalizeBuyerFacingQuestion(item.question), answer: normalizeFaqAnswer(item.answer)})))
+  const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item, ...normalizeFaqPair(item.question, item.answer)})))
   const suppressed = new Set(cms.filter((faq) => faq.publishStatus === 'unpublished' && faq.question).map((faq) => faqKey(normalizeBuyerFacingQuestion(faq.question as string), faqCategoryName(faq.category))))
   const visibleCms = cms
     .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
-    .map((faq) => ({category: faqCategoryName(faq.category), question: normalizeBuyerFacingQuestion(faq.question as string), answer: normalizeFaqAnswer(textFromPortable(faq.answer))}))
+    .map((faq) => ({category: faqCategoryName(faq.category), ...normalizeFaqPair(faq.question as string, textFromPortable(faq.answer))}))
 
   if (getCmsListMode() === 'strict') return withBuyerDecisionFaqs(groupsFromFaqItems(visibleCms))
 
@@ -1030,7 +1036,7 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     relatedCategories: mapRelated(article.relatedCategories, '/products/').length ? mapRelated(article.relatedCategories, '/products/') : fallback?.relatedCategories || [],
     relatedCaseStudies: mapRelated(article.relatedCaseStudies, '/projects/').length ? mapRelated(article.relatedCaseStudies, '/projects/') : fallback?.relatedCaseStudies || [],
     relatedArticles: mapArticleRelated(article.relatedArticles).length ? mapArticleRelated(article.relatedArticles) : fallback?.relatedArticles || [],
-    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => ({question: normalizeBuyerFacingQuestion(faq.question as string), answer: normalizeFaqAnswer(textFromPortable(faq.answer))})) : fallback?.faqs || [],
+    faqs: article.relatedFaqs?.length ? article.relatedFaqs.filter((faq) => faq.question).map((faq) => normalizeFaqPair(faq.question as string, textFromPortable(faq.answer))) : fallback?.faqs || [],
     cta: mapCta(article.cta, fallback?.cta),
     secondaryCta: fallback?.secondaryCta,
     sections: sectionsFromArticle(article, fallback),
