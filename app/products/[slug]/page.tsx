@@ -7,6 +7,7 @@ import type {CmsImage, CmsProduct} from '@/lib/cms/types'
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
 import {buildCmsProductGeoDetails} from '@/lib/geo-v1'
+import {productCategoryHref} from '@/lib/products-page'
 
 type Props = {params: {slug: string}}
 
@@ -54,7 +55,7 @@ function ProductJsonLd({product}: {product: CmsProduct}) {
       itemListElement: [
         {'@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.poxiol.com/'},
         {'@type': 'ListItem', position: 2, name: 'Products', item: 'https://www.poxiol.com/products/'},
-        product.categorySlug ? {'@type': 'ListItem', position: 3, name: product.categoryTitle || product.categorySlug, item: `https://www.poxiol.com/products/${product.categorySlug}/`} : null,
+        product.categorySlug ? {'@type': 'ListItem', position: 3, name: product.categoryTitle || product.categorySlug, item: `https://www.poxiol.com${productCategoryHref(product.categorySlug)}`} : null,
         {'@type': 'ListItem', position: product.categorySlug ? 4 : 3, name: product.title, item: canonical},
       ].filter(Boolean),
     },
@@ -103,7 +104,7 @@ export default async function ProductDetailPage({params}: Props) {
           <div>
             <nav className="text-xs font-black uppercase tracking-widest text-neutral-500">
               <Link href="/" className="hover:text-[#B6FF00]">Home</Link><span className="mx-3">/</span><Link href="/products/" className="hover:text-[#B6FF00]">Products</Link>
-              {product.categorySlug ? <><span className="mx-3">/</span><Link href={`/products/${product.categorySlug}/`} className="hover:text-[#B6FF00]">{product.categoryTitle || product.categorySlug}</Link></> : null}
+              {product.categorySlug ? <><span className="mx-3">/</span><Link href={productCategoryHref(product.categorySlug)} className="hover:text-[#B6FF00]">{product.categoryTitle || product.categorySlug}</Link></> : null}
             </nav>
             <p className="mt-10 text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">Custom Teamwear Product</p>
             <h1 className="mt-5 text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl">{product.title}</h1>
