@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "status": "APPROVED",
-  "ga4": "ENABLED",
+  "status": "PENDING_OWNER_LEGAL_APPROVAL",
+  "ga4": "DISABLED_PENDING_APPROVAL",
   "cloudflareWebAnalytics": "DISABLED_PENDING_APPROVAL",
-  "approvedBy": "POXIOL Owner",
-  "approvedAt": "2026-09-02T12:06:29.263Z"
+  "approvedBy": null,
+  "approvedAt": null
 }
