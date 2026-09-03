@@ -4,14 +4,11 @@ import path from 'node:path'
 import {test} from 'node:test'
 
 const routes = [
-  ['products/training-wear', 'Choose the Right Training Wear Format'],
-  ['products/hoodies-jackets', 'Choose the Right Hoodies Format'],
-  ['products/team-accessories', 'Choose the Right Team Accessories Format'],
+  ['products/training-wear', /Choose the Right Training Wear Format/],
+  // Production CMS uses the approved category title while legacy/local fallback uses the shorter keyword.
+  ['products/hoodies-jackets', /Choose the Right (?:Hoodies|Hoodies & Jackets) Format/],
+  ['products/team-accessories', /Choose the Right Team Accessories Format/],
 ]
-
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
 
 function buyerVisibleText(html) {
   return html
@@ -24,16 +21,16 @@ function buyerVisibleText(html) {
     .replace(/\s+/g, ' ')
 }
 
-for (const [route, productTitle] of routes) {
+for (const [route, productTitlePattern] of routes) {
   test(`${route} renders only its shared product-format heading`, () => {
     const outputPath = path.join(process.cwd(), 'out', route, 'index.html')
     const visibleText = buyerVisibleText(readFileSync(outputPath, 'utf8'))
 
-    assert.match(visibleText, new RegExp(escapeRegExp(productTitle)))
+    assert.match(visibleText, productTitlePattern)
 
-    for (const [, otherProductTitle] of routes) {
-      if (otherProductTitle !== productTitle) {
-        assert.doesNotMatch(visibleText, new RegExp(escapeRegExp(otherProductTitle)))
+    for (const [, otherProductTitlePattern] of routes) {
+      if (otherProductTitlePattern !== productTitlePattern) {
+        assert.doesNotMatch(visibleText, otherProductTitlePattern)
       }
     }
   })
