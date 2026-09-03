@@ -1,11 +1,13 @@
-import {createHash} from 'node:crypto'
 import {existsSync, readFileSync, readdirSync, statSync, writeFileSync} from 'node:fs'
 import {join, relative, resolve, sep} from 'node:path'
 
 import {
+  assertCanonicalRouteReleaseEnvironment,
+  assertRouteReleaseManifestCurrent,
   compareRoutes,
   manifestsEquivalent,
   normalizeRoute,
+  sha256CanonicalText,
   shouldRequireExactManifest,
   withheldLegalRoutes,
 } from '../lib/release/route-release.mjs'
@@ -60,10 +62,6 @@ function stableJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`
 }
 
-function sha256(value) {
-  return createHash('sha256').update(value).digest('hex')
-}
-
 async function captureBaseline() {
   const response = await fetch(PUBLIC_SITEMAP_URL, {method: 'GET', headers: {Accept: 'application/xml'}})
   if (!response.ok) throw new Error(`PUBLIC_SITEMAP_GET_FAILED:${response.status}`)
@@ -96,12 +94,15 @@ function buildManifest() {
     version: 1,
     source: {
       publicSitemap: PUBLIC_SITEMAP_URL,
-      publicSitemapSha256: sha256(baselineText),
-      candidateSitemapSha256: sha256(candidateText),
+      publicSitemapSha256: sha256CanonicalText(baselineText),
+      candidateSitemapSha256: sha256CanonicalText(candidateText),
       publicCount: publicUrls.length,
       candidateCount: candidateUrls.length,
       renderedCount: renderedUrls.length,
       legalStatus: legal.status,
+      contentSource: 'sanity',
+      cmsListMode: 'strict',
+      textHashNormalization: 'LF',
     },
     routes: {
       PRESERVED: result.preserved,
@@ -116,18 +117,25 @@ function buildManifest() {
 }
 
 const args = new Set(process.argv.slice(2))
+const exactProductionCheck = args.has('--check')
+  && process.env.CF_PAGES === '1'
+  && (!process.env.CF_PAGES_BRANCH || process.env.CF_PAGES_BRANCH === 'main')
+if (!args.has('--check') || args.has('--capture-baseline') || exactProductionCheck) {
+  assertCanonicalRouteReleaseEnvironment()
+}
 if (args.has('--capture-baseline')) await captureBaseline()
 const next = stableJson(buildManifest())
 
 if (args.has('--check')) {
   if (!existsSync(MANIFEST_PATH)) throw new Error('ROUTE_RELEASE_MANIFEST_MISSING')
   const current = readFileSync(MANIFEST_PATH, 'utf8')
-  if (!manifestsEquivalent(current, next) && shouldRequireExactManifest()) {
+  const requireExact = shouldRequireExactManifest()
+  if (!manifestsEquivalent(current, next) && requireExact) {
     const currentManifest = JSON.parse(current)
     const nextManifest = JSON.parse(next)
     console.error('[route-release] current source:', JSON.stringify(currentManifest.source))
     console.error('[route-release] expected source:', JSON.stringify(nextManifest.source))
-    throw new Error('ROUTE_RELEASE_MANIFEST_STALE')
+    assertRouteReleaseManifestCurrent(current, next, requireExact)
   }
   if (!manifestsEquivalent(current, next)) {
     console.log('[route-release] Cloudflare preview route drift accepted after route-safety validation')

@@ -1,8 +1,7 @@
-import {createHash} from 'node:crypto'
 import {existsSync, readFileSync, readdirSync, statSync, writeFileSync} from 'node:fs'
 import {relative, resolve, sep} from 'node:path'
 
-import {buildReleaseManifest} from '../lib/release/release-manifest.mjs'
+import {buildReleaseManifest, sha256ReleaseFile} from '../lib/release/release-manifest.mjs'
 
 const root = resolve('.')
 const target = 'construction/release-manifest.json'
@@ -35,7 +34,7 @@ const commits = [
 ]
 
 function sha256(path) {
-  return createHash('sha256').update(readFileSync(resolve(root, path))).digest('hex')
+  return sha256ReleaseFile(path, readFileSync(resolve(root, path)))
 }
 
 function listFiles(directory) {

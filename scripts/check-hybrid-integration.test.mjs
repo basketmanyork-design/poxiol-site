@@ -26,7 +26,7 @@ test('accepts the explicitly opted-in loopback review environment', () => {
 })
 
 test('CMS pull-request builds declare an explicit loopback review environment', () => {
-  const workflow = readFileSync('.github/workflows/cms-pr-check.yml', 'utf8')
+  const workflow = readFileSync('.github/workflows/cms-pr-check.yml', 'utf8').replace(/\r\n/g, '\n')
   const jobStart = workflow.indexOf('\n  cms-pr-check:\n')
   const stepsStart = workflow.indexOf('\n    steps:\n', jobStart)
   assert.ok(jobStart >= 0 && stepsStart > jobStart, 'cms-pr-check job configuration must be present')
