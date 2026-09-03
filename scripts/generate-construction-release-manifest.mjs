@@ -1,7 +1,12 @@
 import {existsSync, readFileSync, readdirSync, statSync, writeFileSync} from 'node:fs'
 import {relative, resolve, sep} from 'node:path'
 
-import {buildReleaseManifest, sha256ReleaseFile} from '../lib/release/release-manifest.mjs'
+import {
+  assertConstructionOutputMatchesRouteRelease,
+  buildReleaseManifest,
+  releaseManifestTextMatches,
+  sha256ReleaseFile,
+} from '../lib/release/release-manifest.mjs'
 
 const root = resolve('.')
 const target = 'construction/release-manifest.json'
@@ -59,10 +64,19 @@ function entries(paths) {
   })
 }
 
+const outputPaths = listFiles('out')
+const routeManifest = JSON.parse(readFileSync(resolve(root, 'construction/route-release.json'), 'utf8'))
+const candidateSitemap = readFileSync(resolve(root, 'out/sitemap.xml'), 'utf8')
+const renderedCount = outputPaths.filter((path) => (
+  (path === 'out/index.html' || path.endsWith('/index.html'))
+  && !path.startsWith('out/_next/')
+)).length
+assertConstructionOutputMatchesRouteRelease({routeManifest, candidateSitemap, renderedCount})
+
 const manifest = buildReleaseManifest({
   commits,
   sourceFiles: entries(sourcePaths),
-  outputFiles: entries(listFiles('out')),
+  outputFiles: entries(outputPaths),
   gates: {c1: true, c2: true, c3: true, c4: true},
 })
 const serialized = `${JSON.stringify(manifest, null, 2)}\n`
@@ -70,7 +84,7 @@ const serialized = `${JSON.stringify(manifest, null, 2)}\n`
 if (process.argv.includes('--check')) {
   if (!existsSync(resolve(root, target))) throw new Error('CONSTRUCTION_RELEASE_MANIFEST_MISSING')
   const current = readFileSync(resolve(root, target), 'utf8')
-  if (current !== serialized) throw new Error('CONSTRUCTION_RELEASE_MANIFEST_STALE')
+  if (!releaseManifestTextMatches(current, serialized)) throw new Error('CONSTRUCTION_RELEASE_MANIFEST_STALE')
   console.log('[construction-release] manifest is deterministic and current')
 } else {
   writeFileSync(resolve(root, target), serialized)

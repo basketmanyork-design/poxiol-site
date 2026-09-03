@@ -55,6 +55,22 @@ test('uses canonical LF hashes for governed text files without rewriting binary 
   )
 })
 
+test('treats CRLF and LF manifest serialization as the same governed record', () => {
+  assert.equal(
+    typeof releaseManifest.releaseManifestTextMatches,
+    'function',
+    'construction manifest checks must be portable across Git line-ending policies',
+  )
+  const lf = '{\n  "schemaVersion": 1\n}\n'
+  const crlf = lf.replaceAll('\n', '\r\n')
+
+  assert.equal(releaseManifest.releaseManifestTextMatches(crlf, lf), true)
+  assert.equal(
+    releaseManifest.releaseManifestTextMatches('{\n  "schemaVersion": 2\n}\n', lf),
+    false,
+  )
+})
+
 test('canonicalizes only Next export scheduling noise while retaining rendered HTML changes', () => {
   const first = Buffer.from(`<!DOCTYPE html><html><head><script src="/a.js" async=""></script><title>POXIOL</title><link rel="icon" href="/icon.svg"/></head><body><main>Stable buyer copy</main><script>self.__next_f.push([1,"2:[\\"$\\",\\"main\\",null,{\\"children\\":\\"Stable buyer copy\\"}]\\n"])</script></body></html>`)
   const reordered = Buffer.from(`<!DOCTYPE html><html><head><link rel="icon" href="/icon.svg"/><title>POXIOL</title><script src="/a.js" async=""></script></head><body><main>Stable buyer copy</main><script>self.__next_f.push([1,"a:[\\"$\\",\\"main\\",null,{\\"children\\":\\"Stable buyer copy\\"}]\\n"])</script></body></html>`)
@@ -87,6 +103,39 @@ test('canonicalizes Next Flight record scheduling while retaining payload change
   assert.notEqual(
     releaseManifest.sha256ReleaseFile('out/about/index.txt', first),
     releaseManifest.sha256ReleaseFile('out/about/index.txt', changed),
+  )
+})
+
+test('refuses to seal construction hashes from output that does not match the governed route release', () => {
+  assert.equal(
+    typeof releaseManifest.assertConstructionOutputMatchesRouteRelease,
+    'function',
+    'construction generation must validate its output against the route release before writing hashes',
+  )
+
+  const canonicalSitemap = '<urlset><url><loc>https://www.poxiol.com/</loc></url></urlset>\n'
+  const routeManifest = {
+    source: {
+      candidateSitemapSha256: releaseManifest.sha256ReleaseFile('out/sitemap.xml', Buffer.from(canonicalSitemap)),
+      candidateCount: 1,
+      renderedCount: 2,
+    },
+  }
+
+  assert.doesNotThrow(() => releaseManifest.assertConstructionOutputMatchesRouteRelease({
+    routeManifest,
+    candidateSitemap: canonicalSitemap,
+    renderedCount: 2,
+  }))
+
+  const fallbackSitemap = '<urlset><url><loc>https://www.poxiol.com/</loc></url><url><loc>https://www.poxiol.com/fallback/</loc></url></urlset>\n'
+  assert.throws(
+    () => releaseManifest.assertConstructionOutputMatchesRouteRelease({
+      routeManifest,
+      candidateSitemap: fallbackSitemap,
+      renderedCount: 3,
+    }),
+    /CONSTRUCTION_RELEASE_ROUTE_OUTPUT_STALE:candidateSitemapSha256,candidateCount,renderedCount/,
   )
 })
 
