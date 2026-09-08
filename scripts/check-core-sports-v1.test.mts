@@ -117,7 +117,9 @@ if (outputMode) {
       })
     for (const type of ['Product', 'Service', 'FAQPage']) assert.ok(schemas.some((schema) => schema['@type'] === type), owner.route + ' is missing ' + type + ' schema.')
     const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage')
-    const visibleFaqs = [...pageContentHtml(visibleHtml).matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)].map((match) => match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim())
+    const faqSections = [...pageContentHtml(visibleHtml).matchAll(/<section\b[^>]*aria-labelledby="v8-faq-title"[^>]*>([\s\S]*?)<\/section>/gi)]
+    assert.equal(faqSections.length, 1, owner.route + ' must contain exactly one labelled FAQ section.')
+    const visibleFaqs = [...faqSections[0][1].matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)].map((match) => match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim())
     assert.deepEqual(faqSchema.mainEntity.map((item: {name: string}) => item.name), visibleFaqs, owner.route + ' FAQ and schema must match.')
   }
 

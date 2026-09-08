@@ -24,6 +24,7 @@ import {SampleApproval} from '@/components/v8/SampleApproval'
 import {SolutionCards} from '@/components/v8/SolutionCards'
 import {V8Hero} from '@/components/v8/V8Hero'
 import {publicSectionDecision} from '@/lib/release/publication-policy'
+import {SoccerClubKitReferences} from './SoccerClubKitReferences'
 
 export function CoreSportLandingPage({sportId}: {sportId: Exclude<CoreSportId, 'basketball'>}) {
   const sport = getCoreSport(sportId)
@@ -73,6 +74,8 @@ export function CoreSportLandingPage({sportId}: {sportId: Exclude<CoreSportId, '
         description={'This approved PRODUCT_VISUALIZATION supports product understanding only. It is not presented as real production, factory, QC or customer proof.'}
         layout="single"
       />
+
+      {sportId === 'soccer' ? <SoccerClubKitReferences /> : null}
 
       <RealProductGallery
         assets={verifiedEvidence}

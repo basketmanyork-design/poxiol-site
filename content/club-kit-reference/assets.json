@@ -1,0 +1,616 @@
+{
+  "version": 1,
+  "approvedBy": "Owner",
+  "approvedAt": "2026-09-08",
+  "approval": "批准使用；可以上线；图2、3需校准轮廓，图5、9需保真处理后使用，同步处理一起上线",
+  "page": "/products/soccer-jerseys/",
+  "assets": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "id": "01",
+      "title": "Club Kit Range",
+      "kind": "product-illustration",
+      "src": "/club-kit-reference/01-kit-range.png",
+      "sha256": "5f3f33f789e89dd6f668488586fe53a2d62b7814e530d1c111ed3de56ed27844",
+      "sourcePath": "output\\football-trust-visuals-2026-09-08\\01-kit-range-poxiol-v1.png",
+      "caption": "Product illustration of a coordinated club kit range. Confirm the available garments and accessories for your order.",
+      "alt": "Club Kit Range — illustrative club kit configuration",
+      "crops": []
+    },
+    {
+      "width": 1515,
+      "height": 939,
+      "id": "02",
+      "title": "Collar Options",
+      "kind": "original-reference",
+      "src": "/club-kit-reference/02-collars-original.png",
+      "sha256": "b392e7191bb9aa5f3b19f7bfe503eb464703a0cc6d8068af68c701050543bfd4",
+      "sourcePath": "assets\\reference\\football-trust-2026-09-08\\02-collars.png",
+      "caption": "Original collar references. Review the chosen construction with your sample; colours shown are reference colours.",
+      "alt": "Collar Options — original supplied reference",
+      "crops": [
+        {
+          "label": "R01",
+          "rect": [
+            477,
+            202,
+            140,
+            83
+          ]
+        },
+        {
+          "label": "R02",
+          "rect": [
+            620,
+            202,
+            140,
+            83
+          ]
+        },
+        {
+          "label": "R03",
+          "rect": [
+            755,
+            202,
+            140,
+            83
+          ]
+        },
+        {
+          "label": "R04",
+          "rect": [
+            905,
+            202,
+            140,
+            83
+          ]
+        },
+        {
+          "label": "R05",
+          "rect": [
+            1050,
+            202,
+            140,
+            83
+          ]
+        },
+        {
+          "label": "R06",
+          "rect": [
+            1190,
+            202,
+            140,
+            83
+          ]
+        },
+        {
+          "label": "R07",
+          "rect": [
+            1340,
+            202,
+            140,
+            83
+          ]
+        },
+        {
+          "label": "V01",
+          "rect": [
+            477,
+            348,
+            140,
+            100
+          ]
+        },
+        {
+          "label": "V02",
+          "rect": [
+            620,
+            348,
+            140,
+            100
+          ]
+        },
+        {
+          "label": "V03",
+          "rect": [
+            755,
+            348,
+            140,
+            100
+          ]
+        },
+        {
+          "label": "V04",
+          "rect": [
+            905,
+            348,
+            140,
+            100
+          ]
+        },
+        {
+          "label": "V05",
+          "rect": [
+            1050,
+            348,
+            140,
+            100
+          ]
+        },
+        {
+          "label": "V06",
+          "rect": [
+            1190,
+            348,
+            140,
+            100
+          ]
+        },
+        {
+          "label": "V07",
+          "rect": [
+            1340,
+            348,
+            140,
+            100
+          ]
+        },
+        {
+          "label": "V08",
+          "rect": [
+            477,
+            525,
+            140,
+            91
+          ]
+        },
+        {
+          "label": "V09",
+          "rect": [
+            620,
+            525,
+            140,
+            91
+          ]
+        },
+        {
+          "label": "V10",
+          "rect": [
+            755,
+            525,
+            140,
+            91
+          ]
+        },
+        {
+          "label": "V11",
+          "rect": [
+            905,
+            525,
+            140,
+            91
+          ]
+        },
+        {
+          "label": "V12",
+          "rect": [
+            1050,
+            525,
+            140,
+            91
+          ]
+        },
+        {
+          "label": "V13",
+          "rect": [
+            1190,
+            525,
+            140,
+            91
+          ]
+        },
+        {
+          "label": "V14",
+          "rect": [
+            1340,
+            525,
+            140,
+            91
+          ]
+        },
+        {
+          "label": "V15",
+          "rect": [
+            477,
+            700,
+            140,
+            112
+          ]
+        },
+        {
+          "label": "V16",
+          "rect": [
+            620,
+            700,
+            140,
+            112
+          ]
+        },
+        {
+          "label": "V17",
+          "rect": [
+            755,
+            700,
+            140,
+            112
+          ]
+        },
+        {
+          "label": "Y01",
+          "rect": [
+            1190,
+            700,
+            140,
+            112
+          ]
+        },
+        {
+          "label": "Y02",
+          "rect": [
+            1340,
+            700,
+            140,
+            112
+          ]
+        }
+      ]
+    },
+    {
+      "width": 800,
+      "height": 800,
+      "id": "03",
+      "title": "Shoulder & Sleeve Construction",
+      "kind": "original-reference",
+      "src": "/club-kit-reference/03-construction-original.png",
+      "sha256": "59182b24fdb94999aa97438187fb6853e93e6e0fb5f705f7904920b5115205ed",
+      "sourcePath": "assets\\reference\\football-trust-2026-09-08\\03-shoulder-sleeve-construction.png",
+      "caption": "Original shoulder and sleeve construction references. Confirm the selected pattern with your sample.",
+      "alt": "Shoulder & Sleeve Construction — original supplied reference",
+      "crops": [
+        {
+          "label": "A — 1",
+          "rect": [
+            335,
+            201,
+            85,
+            81
+          ]
+        },
+        {
+          "label": "A — 2",
+          "rect": [
+            420,
+            201,
+            85,
+            81
+          ]
+        },
+        {
+          "label": "A — 3",
+          "rect": [
+            504,
+            201,
+            85,
+            81
+          ]
+        },
+        {
+          "label": "A — 4",
+          "rect": [
+            589,
+            201,
+            85,
+            81
+          ]
+        },
+        {
+          "label": "A — 5",
+          "rect": [
+            673,
+            201,
+            85,
+            81
+          ]
+        },
+        {
+          "label": "B — 1",
+          "rect": [
+            335,
+            310,
+            85,
+            82
+          ]
+        },
+        {
+          "label": "B — 2",
+          "rect": [
+            420,
+            310,
+            85,
+            82
+          ]
+        },
+        {
+          "label": "B — 3",
+          "rect": [
+            504,
+            310,
+            85,
+            82
+          ]
+        },
+        {
+          "label": "B — 4",
+          "rect": [
+            589,
+            310,
+            85,
+            82
+          ]
+        },
+        {
+          "label": "B — 5",
+          "rect": [
+            673,
+            310,
+            85,
+            82
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1536,
+      "height": 1024,
+      "id": "04",
+      "title": "Your Club. Your Kit.",
+      "kind": "product-illustration",
+      "src": "/club-kit-reference/04-customisation.png",
+      "sha256": "2a0ec48566d0bf29fadac114f5216d648b6c43da46e3d356d27cf687a404dd36",
+      "sourcePath": "output\\football-trust-visuals-2026-09-08\\04-customisation-areas-poxiol-v1.png",
+      "caption": "Product illustration of crest, sponsor artwork, player names, numbers, colours and patterns. Footwear is illustrative.",
+      "alt": "Your Club. Your Kit. — illustrative club kit configuration",
+      "crops": []
+    },
+    {
+      "width": 800,
+      "height": 800,
+      "id": "05",
+      "title": "Fabric Options",
+      "kind": "original-reference",
+      "src": "/club-kit-reference/05-fabrics-original.png",
+      "sha256": "4a097cdd9c34106e5db2d03b44174985f4c1551405251b9ebf6bba65b9aa965e",
+      "sourcePath": "assets\\reference\\football-trust-2026-09-08\\05-fabrics.png",
+      "caption": "Original fabric reference photographs. Confirm composition, weight and suitability with your sample.",
+      "alt": "Fabric Options — original supplied reference",
+      "crops": [
+        {
+          "label": "Fabric 01",
+          "rect": [
+            75,
+            158,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 02",
+          "rect": [
+            249,
+            158,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 03",
+          "rect": [
+            422,
+            158,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 04",
+          "rect": [
+            75,
+            336,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 05",
+          "rect": [
+            249,
+            336,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 06",
+          "rect": [
+            422,
+            336,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 07",
+          "rect": [
+            75,
+            513,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 08",
+          "rect": [
+            249,
+            513,
+            160,
+            134
+          ]
+        },
+        {
+          "label": "Fabric 09",
+          "rect": [
+            422,
+            513,
+            160,
+            134
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1536,
+      "height": 1024,
+      "id": "06",
+      "title": "Crest & Decoration Options",
+      "kind": "product-illustration",
+      "src": "/club-kit-reference/06-decoration.png",
+      "sha256": "4ccda2ddc6bc657a47b6829150262f51b824801f54f0be9d8c79667e9306cb45",
+      "sourcePath": "output\\football-trust-visuals-2026-09-08\\06-decoration-options-poxiol-v1.png",
+      "caption": "Illustrative decoration examples, not photographed production samples. Confirm the method against your fabric and artwork.",
+      "alt": "Crest & Decoration Options — illustrative club kit configuration",
+      "crops": []
+    },
+    {
+      "width": 1536,
+      "height": 1024,
+      "id": "07",
+      "title": "Labels, Trims & Packaging",
+      "kind": "product-illustration",
+      "src": "/club-kit-reference/07-labels-trims.png",
+      "sha256": "4fec3d1957e3df88686dd83faaaf90c3c46e14b892eb3d82ee237e1f4f5ed115",
+      "sourcePath": "output\\football-trust-visuals-2026-09-08\\07-labels-trims-packaging-poxiol-v1.png",
+      "caption": "Illustrative labels, trims and packaging. Label content and accessory availability are confirmed for the order.",
+      "alt": "Labels, Trims & Packaging — illustrative club kit configuration",
+      "crops": []
+    },
+    {
+      "width": 1536,
+      "height": 1024,
+      "id": "08",
+      "title": "Build Your Club Kit",
+      "kind": "product-illustration",
+      "src": "/club-kit-reference/08-workflow-v2.png",
+      "sha256": "e8b6b26f56096e0c5d9a42cc1ccf2c5703c146f14207890442028aa354a3e201",
+      "sourcePath": "output\\football-trust-visuals-2026-09-08\\08-customisation-workflow-poxiol-v2.png",
+      "caption": "Illustrative configuration overview. Confirm product, roster, sample and packing requirements before production.",
+      "alt": "Build Your Club Kit — illustrative club kit configuration",
+      "crops": []
+    },
+    {
+      "width": 750,
+      "height": 689,
+      "id": "09",
+      "title": "Teamwear Production Process",
+      "kind": "original-reference",
+      "src": "/club-kit-reference/09-production-original.png",
+      "sha256": "fbf35305b8426f1c1717a7bdf426a3632501eee21c22df2fea9bf4e9575c9b7d",
+      "sourcePath": "assets\\reference\\football-trust-2026-09-08\\09-production-process.png",
+      "caption": "Original teamwear process reference photographs, not a club delivery case study or a certification record. Original scene branding is retained.",
+      "alt": "Teamwear Production Process — original supplied reference",
+      "crops": [
+        {
+          "label": "01 — Style Selection",
+          "rect": [
+            8,
+            90,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "02 — Artwork Preparation",
+          "rect": [
+            258,
+            90,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "03 — Colour Review",
+          "rect": [
+            507,
+            90,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "04 — Printing",
+          "rect": [
+            507,
+            303,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "05 — Cutting",
+          "rect": [
+            258,
+            303,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "06 — Panel Preparation",
+          "rect": [
+            8,
+            303,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "07 — Sewing",
+          "rect": [
+            8,
+            518,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "08 — Inspection",
+          "rect": [
+            258,
+            518,
+            234,
+            130
+          ]
+        },
+        {
+          "label": "09 — Packing",
+          "rect": [
+            507,
+            518,
+            234,
+            130
+          ]
+        }
+      ]
+    }
+  ]
+}

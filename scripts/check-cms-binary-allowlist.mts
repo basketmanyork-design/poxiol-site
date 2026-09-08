@@ -1,4 +1,5 @@
 import {execFileSync} from 'child_process'
+import {createHash} from 'node:crypto'
 import {existsSync, readFileSync, readdirSync} from 'fs'
 import {basename, extname, join, relative} from 'path'
 import {fileURLToPath} from 'url'
@@ -13,6 +14,7 @@ const REAL_PUBLIC_PATH_PREFIX = '/real-production/'
 const VISUAL_MANIFEST_PATH = 'content/product-visualization/assets.json'
 const VISUAL_PUBLIC_ROOT = 'public/product-visualization'
 const VISUAL_PUBLIC_PREFIX = 'public/product-visualization/'
+const CLUB_PUBLIC_PREFIX = 'public/club-kit-reference/'
 const ALLOWED_EXTENSION = '.webp'
 const ALLOWED_STATUSES = new Set([
   'VERIFIED_POXIOL',
@@ -193,22 +195,56 @@ function auditProductVisualizations(root: string, changedPaths: string[]) {
   return {approved, errors}
 }
 
+function auditClubKitReferences(root: string, changedPaths: string[]) {
+  if (!changedPaths.length) return {approved: 0, errors: [] as string[]}
+  const errors: string[] = []
+  let approved = 0
+  try {
+    const manifest = JSON.parse(readFileSync(join(root, 'content/club-kit-reference/assets.json'), 'utf8'))
+    if (manifest.approvedBy !== 'Owner' || !manifest.approvedAt || manifest.page !== '/products/soccer-jerseys/') throw new Error('Club reference approval is missing')
+    if (!Array.isArray(manifest.assets) || manifest.assets.length !== 9) throw new Error('Expected nine approved club reference assets')
+    const records = new Map<string, string>()
+    for (const asset of manifest.assets) {
+      const repoPath = `public${asset.src}`
+      if (!/^\/club-kit-reference\/[a-z0-9-]+\.png$/.test(asset.src) || records.has(repoPath)) throw new Error('Invalid or duplicate club reference path')
+      if (!['original-reference', 'product-illustration'].includes(asset.kind) || !asset.caption || !asset.alt) throw new Error('Club reference classification/disclosure missing')
+      if (!/^[a-f0-9]{64}$/.test(asset.sha256)) throw new Error('Club reference digest missing')
+      const actual = createHash('sha256').update(readFileSync(join(root, repoPath))).digest('hex')
+      if (actual !== asset.sha256) throw new Error(`Club reference digest mismatch: ${repoPath}`)
+      records.set(repoPath, actual)
+    }
+    for (const path of listPublicFiles(root, 'public/club-kit-reference')) {
+      if (!records.has(path)) errors.push(`Unregistered club reference: ${path}`)
+    }
+    for (const path of changedPaths) {
+      if (records.has(path)) approved++
+      else errors.push(`Unapproved club reference: ${path}`)
+    }
+  } catch (error) {
+    errors.push(error instanceof Error ? error.message : 'Club reference manifest invalid')
+  }
+  return {approved, errors}
+}
+
 export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
   const changedBinaryPaths = Array.from(new Set(binaryPaths.map(normalizeRepoPath))).sort()
   if (!changedBinaryPaths.length) return {passed: true, binaryChangeCount: 0, approvedBinaryChangeCount: 0, errors: [] as string[]}
 
   const realPaths = changedBinaryPaths.filter((path) => path.startsWith(REAL_PUBLIC_PREFIX))
   const visualPaths = changedBinaryPaths.filter((path) => path.startsWith(VISUAL_PUBLIC_PREFIX))
-  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX))
+  const clubPaths = changedBinaryPaths.filter((path) => path.startsWith(CLUB_PUBLIC_PREFIX))
+  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX) && !path.startsWith(CLUB_PUBLIC_PREFIX))
   const real = auditRealProduction(root, realPaths)
   const visual = auditProductVisualizations(root, visualPaths)
+  const club = auditClubKitReferences(root, clubPaths)
   const errors = [
     ...outsidePaths.map((path) => `Binary change outside approved directories: ${path}`),
     ...real.errors,
     ...visual.errors,
+    ...club.errors,
   ]
   const uniqueErrors = Array.from(new Set(errors)).sort()
-  const approvedBinaryChangeCount = real.approved + visual.approved
+  const approvedBinaryChangeCount = real.approved + visual.approved + club.approved
   return {
     passed: uniqueErrors.length === 0 && approvedBinaryChangeCount === changedBinaryPaths.length,
     binaryChangeCount: changedBinaryPaths.length,
