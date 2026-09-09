@@ -42,13 +42,6 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
         </div>
       </section>
 
-      <section className={`${styles.section} ${styles.light}`} aria-labelledby="hybrid-audience-title">
-        <div className={styles.container}>
-          <h2 id="hybrid-audience-title">{home.audience.title}</h2>
-          <p className={styles.lead}>{home.audience.body}</p>
-        </div>
-      </section>
-
       <section id="product-discovery" className={`${styles.section} ${styles.light}`} aria-labelledby="product-discovery-title">
         <div className={styles.container}>
           <p className={styles.eyebrow}>{home.productDiscovery.eyebrow}</p>
@@ -80,6 +73,17 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
         </div>
       </section>
 
+      <section id="fabric-library-entry" className={`${styles.section} ${styles.dark} ${styles.fabricEntry}`} aria-labelledby="fabric-library-title">
+        <div className={`${styles.container} ${styles.fabricEntryGrid}`}>
+          <div>
+            <p className={styles.eyebrow}>Materials</p>
+            <h2 id="fabric-library-title">Fabric Reference Library</h2>
+            <p className={styles.lead}>Explore 29 original fabric photographs. Note the reference codes for your teamwear project; final material specifications are confirmed through sample review.</p>
+          </div>
+          <Link href="/customization/fabric-options/" className={styles.primary}>Explore Fabric Library</Link>
+        </div>
+      </section>
+
       <section className={`${styles.section} ${styles.muted}`} aria-labelledby="hybrid-risks-title">
         <div className={styles.container}>
           <p className={styles.eyebrow}>Buyer risk controls</p>
@@ -92,48 +96,16 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
               <Link href={risk.href}>{risk.cta}</Link>
             </article>)}
           </div>
-        </div>
-      </section>
-
-      <section className={`${styles.section} ${styles.light}`} aria-labelledby="hybrid-capabilities-title">
-        <div className={styles.container}>
-          <p className={styles.eyebrow}>Capabilities</p>
-          <h2 id="hybrid-capabilities-title">Capabilities aligned to repeat-order risk</h2>
-          <div className={styles.gridSix}>
-            {home.capabilities.map((item, index) => <article key={item.title} className={styles.plainCard}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>)}
+          <div className={styles.compactProcess} aria-labelledby="hybrid-process-title">
+            <h3 id="hybrid-process-title">Make the approval path visible</h3>
+            <ol className={styles.process}>
+              {home.process.map((step, index) => <li key={step.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h4>{step.title}</h4>
+                <p>{step.body}</p>
+              </li>)}
+            </ol>
           </div>
-        </div>
-      </section>
-
-      <section className={`${styles.section} ${styles.muted}`} aria-labelledby="hybrid-explanations-title">
-        <div className={styles.container}>
-          <p className={styles.eyebrow}>Approval planning</p>
-          <h2 id="hybrid-explanations-title">Plan the approval path before production</h2>
-          <div className={styles.gridFour}>
-            {home.explanations.map(item => <article key={item.title} className={styles.card}>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-              <Limitation>{item.limitation}</Limitation>
-            </article>)}
-          </div>
-        </div>
-      </section>
-
-      <section className={`${styles.section} ${styles.light}`} aria-labelledby="hybrid-process-title">
-        <div className={styles.container}>
-          <p className={styles.eyebrow}>Project process</p>
-          <h2 id="hybrid-process-title">Make the approval path visible</h2>
-          <ol className={styles.process}>
-            {home.process.map((step, index) => <li key={step.title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </li>)}
-          </ol>
         </div>
       </section>
 

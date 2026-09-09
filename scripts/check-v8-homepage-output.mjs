@@ -16,7 +16,7 @@ const h1Count = (html.match(/<h1\b/gi) || []).length
 assert.equal(h1Count, 1, 'Homepage must render exactly one H1.')
 
 assert.match(visibleText, /Custom Teamwear Built for Repeatable Team Orders/i)
-assert.match(visibleText, /For Teamwear Distributors, Dealers, Brands & Custom Resellers/i)
+assert.match(visibleText, /POXIOL supports teamwear distributors, dealers, sportswear brands, and custom resellers/i)
 assert.match(visibleText, /Final feasibility remains project-specific and is confirmed during project review/i)
 
 for (const label of ['Soccer','Basketball','Track & Field','Badminton','Volleyball','Baseball & Softball','Ice Hockey','American Football','Rugby','Tennis','Cricket','Golf']) {
@@ -27,7 +27,11 @@ for (const label of ['Match Day','Warm-Up & Training','Off-Field & Travel']) {
 }
 assert.match(visibleText, /Find the Right Teamwear Starting Point/)
 assert.match(html, /id="product-discovery"/)
-assert.ok(html.indexOf('hybrid-audience-title') < html.indexOf('product-discovery'))
+assert.doesNotMatch(html, /id="hybrid-audience-title"|id="hybrid-capabilities-title"|id="hybrid-explanations-title"/)
+assert.match(html, /id="fabric-library-entry"/)
+assert.ok(html.indexOf('product-discovery') < html.indexOf('fabric-library-entry'))
+assert.ok(html.indexOf('fabric-library-entry') < html.indexOf('hybrid-risks-title'))
+assert.match(html, /href="\/customization\/fabric-options\/"[^>]*>Explore Fabric Library<\/a>/)
 assert.ok(html.indexOf('product-discovery') < html.indexOf('hybrid-risks-title'))
 assert.match(html, /href="\/products\/#sports"/)
 assert.match(html, /href="\/products\/#scenarios"/)
@@ -50,8 +54,8 @@ for (const [label, path] of [['Upload Your Design', '/free-mockup/'], ['Build Yo
 }
 
 for (const label of ['Design Accuracy', 'Size & Fit', 'Project Deadline', 'Sample-to-Bulk', 'Reorder Consistency', 'Account Expansion']) assert.match(visibleText, new RegExp(label, 'i'))
-for (const label of ['Approval checklist explanation', 'Milestone planning explanation', 'Sample and bulk comparison explanation', 'Retained project record explanation']) assert.match(visibleText, new RegExp(label, 'i'))
-assert.match(visibleText, /Plan the approval path before production/i)
+assert.match(visibleText, /Make the approval path visible/i)
+assert.doesNotMatch(visibleText, /Approval checklist explanation|Milestone planning explanation|Sample and bulk comparison explanation|Retained project record explanation/)
 assert.match(visibleText, /Illustrative teamwear configuration/i)
 assert.doesNotMatch(visibleText, /Local editorial review|Owner-approved editorial wording only|Evidence pending|local source projection|pilot does not add a second form/i)
 for (const href of ['/products/basketball-uniforms/', '/products/soccer-jerseys/', '/custom-baseball-softball-uniforms/', '/private-label-teamwear/', '/oem-odm/', '/shipping-after-sales/', '/sample-order/']) assert.match(html, new RegExp(`href="${href.replaceAll('/', '\\/')}"`))
