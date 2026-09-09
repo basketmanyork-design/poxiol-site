@@ -1,0 +1,502 @@
+{
+  "approvedBy": "Owner",
+  "approvedAt": "2026-09-09",
+  "page": "/customization/fabric-options/",
+  "displayOrder": "Original source order 1–29; no categories or selected subset",
+  "pixelTreatment": "UNCHANGED_JPEG_BYTES_NATIVE_WEB_VIEWPORT",
+  "assets": [
+    {
+      "id": 1,
+      "code": "PX-F001",
+      "title": "Fine Grid Texture",
+      "src": "/fabric-library/px-f001-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "1e3d4f1f09cab3986c7ff757f3e6e6235c4e48e9b1be2f8872a26ace2282d9da",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F001 fine grid texture — original fabric photograph"
+    },
+    {
+      "id": 2,
+      "code": "PX-F002",
+      "title": "Linear Jacquard Texture",
+      "src": "/fabric-library/px-f002-original.jpg",
+      "width": 2401,
+      "height": 1601,
+      "sha256": "3faa082566d205e68ebd4ae62555c50ed5fa9502d383114d4cef305e2effa53e",
+      "cropPixels": [
+        1297,
+        544,
+        912,
+        684
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F002 linear jacquard texture — original fabric photograph"
+    },
+    {
+      "id": 3,
+      "code": "PX-F003",
+      "title": "Structured Mesh Texture",
+      "src": "/fabric-library/px-f003-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "9ef8cd7976bdac078643662d7c443155fe7d42f705a5fa96fd2fdda5e42c24b3",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F003 structured mesh texture — original fabric photograph"
+    },
+    {
+      "id": 4,
+      "code": "PX-F004",
+      "title": "Fine Vertical Mesh",
+      "src": "/fabric-library/px-f004-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "4397c05cc096da1ecf9c3da317540332c6f5735e73951481e6ab7e3ae07c3770",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F004 fine vertical mesh — original fabric photograph"
+    },
+    {
+      "id": 5,
+      "code": "PX-F005",
+      "title": "Open Mesh Texture",
+      "src": "/fabric-library/px-f005-original.jpg",
+      "width": 2505,
+      "height": 1670,
+      "sha256": "613d4956011f2ec3f41a958837bcbd318ef671f774d8ee337e98d633b9638076",
+      "cropPixels": [
+        1378,
+        601,
+        927,
+        695
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F005 open mesh texture — original fabric photograph"
+    },
+    {
+      "id": 6,
+      "code": "PX-F006",
+      "title": "Fine Dotted Texture",
+      "src": "/fabric-library/px-f006-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "cbe3fe7d869c24e2539ae3d316d767cf59c45f7b4bb28f4e4724a29b1cba4e35",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F006 fine dotted texture — original fabric photograph"
+    },
+    {
+      "id": 7,
+      "code": "PX-F007",
+      "title": "Pin-Dot Mesh 01",
+      "src": "/fabric-library/px-f007-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "83f9e0907031ce403a1afe9c94759dec224c602d9a12ba3c908147337da2c16a",
+      "cropPixels": [
+        1652,
+        387,
+        1044,
+        783
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F007 pin-dot mesh 01 — original fabric photograph"
+    },
+    {
+      "id": 8,
+      "code": "PX-F008",
+      "title": "Patterned Mesh Texture",
+      "src": "/fabric-library/px-f008-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "5702c88a97d8170022eaad725b3328451ca68a60fb52f46c24d4b3eae5f088ee",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F008 patterned mesh texture — original fabric photograph"
+    },
+    {
+      "id": 9,
+      "code": "PX-F009",
+      "title": "Short-Dash Mesh",
+      "src": "/fabric-library/px-f009-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "b479fc21e49ef271a841318d6a26b3bec295a5e77ac0dbe2dd75c2f4c11dabf1",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F009 short-dash mesh — original fabric photograph"
+    },
+    {
+      "id": 10,
+      "code": "PX-F010",
+      "title": "Grid Texture 02",
+      "src": "/fabric-library/px-f010-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "47083b7708bcfaa74affdc2c03dafbb7f1ac5f3d5d548ffa205447fdb7a66cd9",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F010 grid texture 02 — original fabric photograph"
+    },
+    {
+      "id": 11,
+      "code": "PX-F011",
+      "title": "Fine Knit Texture 01",
+      "src": "/fabric-library/px-f011-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "335162b07b8831aab5510cf69c5478216ff6c440c3406fbaf1391f2ed221aeff",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F011 fine knit texture 01 — original fabric photograph"
+    },
+    {
+      "id": 12,
+      "code": "PX-F012",
+      "title": "Spaced-Dot Mesh",
+      "src": "/fabric-library/px-f012-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "c2c33581a29fce02c2e62dbc27fc5cb4ae723caea78bf6b20251c372074a9490",
+      "cropPixels": [
+        1594,
+        696,
+        1073,
+        805
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F012 spaced-dot mesh — original fabric photograph"
+    },
+    {
+      "id": 13,
+      "code": "PX-F013",
+      "title": "Fine Knit Texture 02",
+      "src": "/fabric-library/px-f013-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "6d091aef8b3a7e11867a5875655b423230693255bda100a03ab336d70dde0301",
+      "cropPixels": [
+        1594,
+        483,
+        1044,
+        783
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F013 fine knit texture 02 — original fabric photograph"
+    },
+    {
+      "id": 14,
+      "code": "PX-F014",
+      "title": "Pin-Dot Mesh 02",
+      "src": "/fabric-library/px-f014-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "4cbcd576356e48af97cd503f72a800fad19f4d79d003eb734e4fd361f473de85",
+      "cropPixels": [
+        1421,
+        677,
+        1044,
+        783
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F014 pin-dot mesh 02 — original fabric photograph"
+    },
+    {
+      "id": 15,
+      "code": "PX-F015",
+      "title": "Fine Knit Texture 03",
+      "src": "/fabric-library/px-f015-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "44e924cb4e8eda7b756aed4c30a3de4eeb78230995725bd950367a39a72d3bf2",
+      "cropPixels": [
+        1710,
+        619,
+        1015,
+        761
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F015 fine knit texture 03 — original fabric photograph"
+    },
+    {
+      "id": 16,
+      "code": "PX-F016",
+      "title": "Linear Knit Texture",
+      "src": "/fabric-library/px-f016-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "c847f41a804afee5cd979d5debd2858d920e49dd551481bd16211873ffd0dcf9",
+      "cropPixels": [
+        1392,
+        657,
+        1015,
+        761
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F016 linear knit texture — original fabric photograph"
+    },
+    {
+      "id": 17,
+      "code": "PX-F017",
+      "title": "Grouped-Dot Texture",
+      "src": "/fabric-library/px-f017-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "79b9b2f42f6548dea26d2c5b409ee69fdd38a6617142122995cce0e4a40cf570",
+      "cropPixels": [
+        1392,
+        1005,
+        986,
+        740
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F017 grouped-dot texture — original fabric photograph"
+    },
+    {
+      "id": 18,
+      "code": "PX-F018",
+      "title": "Fine Knit Texture 04",
+      "src": "/fabric-library/px-f018-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "ca5dc617ded0a0b7bd1bbafd19f94777fc63f1392325d3f8d3165bc1ca209f27",
+      "cropPixels": [
+        1450,
+        851,
+        1044,
+        783
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F018 fine knit texture 04 — original fabric photograph"
+    },
+    {
+      "id": 19,
+      "code": "PX-F019",
+      "title": "Fine Knit Texture 05",
+      "src": "/fabric-library/px-f019-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "d141990c241b79ad7c32bc999f7abb119f2de19ca7ae07ce46c7221ef8e6a0c2",
+      "cropPixels": [
+        1450,
+        773,
+        1044,
+        783
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F019 fine knit texture 05 — original fabric photograph"
+    },
+    {
+      "id": 20,
+      "code": "PX-F020",
+      "title": "Fine Knit Texture 06",
+      "src": "/fabric-library/px-f020-original.jpg",
+      "width": 3073,
+      "height": 2049,
+      "sha256": "67fc4c484b5293994999d5ee75881d5601b28dab525d1752ffdc9e66351a92b5",
+      "cropPixels": [
+        1444,
+        369,
+        1168,
+        876
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F020 fine knit texture 06 — original fabric photograph"
+    },
+    {
+      "id": 21,
+      "code": "PX-F021",
+      "title": "Fine Knit Texture 07",
+      "src": "/fabric-library/px-f021-original.jpg",
+      "width": 3213,
+      "height": 2142,
+      "sha256": "54dc5aa5860dff10fda8bc402b513d8ce5a1cd6e37f31e3155df36a22c7546d6",
+      "cropPixels": [
+        1542,
+        942,
+        1157,
+        868
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F021 fine knit texture 07 — original fabric photograph"
+    },
+    {
+      "id": 22,
+      "code": "PX-F022",
+      "title": "Geometric Knit Texture",
+      "src": "/fabric-library/px-f022-original.jpg",
+      "width": 3109,
+      "height": 2073,
+      "sha256": "bc22bce46f9cad0b236bae6990434e607eb79a052fb474688724d93a87906cf0",
+      "cropPixels": [
+        1710,
+        746,
+        1150,
+        863
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F022 geometric knit texture — original fabric photograph"
+    },
+    {
+      "id": 23,
+      "code": "PX-F023",
+      "title": "Fine Knit Texture 08",
+      "src": "/fabric-library/px-f023-original.jpg",
+      "width": 3144,
+      "height": 2096,
+      "sha256": "7fdc0d4f810aabaac933e71bb3a5bdfd4458aea1d3ceb9bf62c58b52b1c0e081",
+      "cropPixels": [
+        1415,
+        629,
+        1163,
+        872
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F023 fine knit texture 08 — original fabric photograph"
+    },
+    {
+      "id": 24,
+      "code": "PX-F024",
+      "title": "Fine Knit Texture 09",
+      "src": "/fabric-library/px-f024-original.jpg",
+      "width": 3318,
+      "height": 2212,
+      "sha256": "a1dea63d798d19fdee5717ae8e5db540d53b2a428cf02546a3dfd79e626b235c",
+      "cropPixels": [
+        1626,
+        708,
+        1194,
+        896
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F024 fine knit texture 09 — original fabric photograph"
+    },
+    {
+      "id": 25,
+      "code": "PX-F025",
+      "title": "Fine Knit Texture 10",
+      "src": "/fabric-library/px-f025-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "6f6c32ff78f3547df6533aabd643646991a2ae50748b671a2bfb30849a52fd8b",
+      "cropPixels": [
+        1507,
+        812,
+        1044,
+        783
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F025 fine knit texture 10 — original fabric photograph"
+    },
+    {
+      "id": 26,
+      "code": "PX-F026",
+      "title": "Textured Knit Surface",
+      "src": "/fabric-library/px-f026-original.jpg",
+      "width": 3508,
+      "height": 2339,
+      "sha256": "b42548bf4750a4bfa082ffd70c238401b456149b640d6490808944deac804bad",
+      "cropPixels": [
+        1894,
+        468,
+        1298,
+        974
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F026 textured knit surface — original fabric photograph"
+    },
+    {
+      "id": 27,
+      "code": "PX-F027",
+      "title": "Fine Knit Texture 11",
+      "src": "/fabric-library/px-f027-original.jpg",
+      "width": 2899,
+      "height": 1933,
+      "sha256": "a3197d5e59ae47c78e3c3fe37d512dcbbf232fd93a006b0a37b1a9c2e5076811",
+      "cropPixels": [
+        1305,
+        831,
+        1131,
+        848
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F027 fine knit texture 11 — original fabric photograph"
+    },
+    {
+      "id": 28,
+      "code": "PX-F028",
+      "title": "Fine Knit Texture 12",
+      "src": "/fabric-library/px-f028-original.jpg",
+      "width": 3283,
+      "height": 2189,
+      "sha256": "c553c66e0a374fd86b8bbe2e7cdcc49f9455b02f6c63d4850140300531253ec7",
+      "cropPixels": [
+        1806,
+        832,
+        1182,
+        887
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F028 fine knit texture 12 — original fabric photograph"
+    },
+    {
+      "id": 29,
+      "code": "PX-F029",
+      "title": "Fine Knit Texture 13",
+      "src": "/fabric-library/px-f029-original.jpg",
+      "width": 3109,
+      "height": 2073,
+      "sha256": "6cb17feba6806523d49663be13c719375928f778e985ef1aebb4c9bc12578ea7",
+      "cropPixels": [
+        1648,
+        705,
+        1181,
+        886
+      ],
+      "kind": "original-fabric-photograph",
+      "alt": "PX-F029 fine knit texture 13 — original fabric photograph"
+    }
+  ]
+}

@@ -15,6 +15,7 @@ const VISUAL_MANIFEST_PATH = 'content/product-visualization/assets.json'
 const VISUAL_PUBLIC_ROOT = 'public/product-visualization'
 const VISUAL_PUBLIC_PREFIX = 'public/product-visualization/'
 const CLUB_PUBLIC_PREFIX = 'public/club-kit-reference/'
+const FABRIC_PUBLIC_PREFIX = 'public/fabric-library/'
 const ALLOWED_EXTENSION = '.webp'
 const ALLOWED_STATUSES = new Set([
   'VERIFIED_POXIOL',
@@ -226,6 +227,38 @@ function auditClubKitReferences(root: string, changedPaths: string[]) {
   return {approved, errors}
 }
 
+function auditFabricReferences(root: string, changedPaths: string[]) {
+  if (!changedPaths.length) return {approved: 0, errors: [] as string[]}
+  const errors: string[] = []
+  let approved = 0
+  try {
+    const manifest = JSON.parse(readFileSync(join(root, 'content/fabric-library/assets.json'), 'utf8'))
+    if (manifest.approvedBy !== 'Owner' || !manifest.approvedAt || manifest.page !== '/customization/fabric-options/') throw new Error('Fabric library approval is missing')
+    if (!Array.isArray(manifest.assets) || manifest.assets.length !== 29) throw new Error('Expected 29 approved fabric originals')
+    const records = new Set<string>()
+    for (const [index, asset] of manifest.assets.entries()) {
+      const expected = `/fabric-library/px-f${String(index + 1).padStart(3, '0')}-original.jpg`
+      const repoPath = `public${asset.src}`
+      if (asset.src !== expected || asset.id !== index + 1 || records.has(repoPath)) throw new Error('Invalid fabric reference path or order')
+      if (asset.kind !== 'original-fabric-photograph' || !asset.title || !asset.alt) throw new Error('Fabric reference metadata missing')
+      if (!/^[a-f0-9]{64}$/.test(asset.sha256)) throw new Error('Fabric original digest missing')
+      const actual = createHash('sha256').update(readFileSync(join(root, repoPath))).digest('hex')
+      if (actual !== asset.sha256) throw new Error(`Fabric original digest mismatch: ${repoPath}`)
+      records.add(repoPath)
+    }
+    for (const path of listPublicFiles(root, 'public/fabric-library')) {
+      if (!records.has(path)) errors.push(`Unregistered fabric reference: ${path}`)
+    }
+    for (const path of changedPaths) {
+      if (records.has(path)) approved++
+      else errors.push(`Unapproved fabric reference: ${path}`)
+    }
+  } catch (error) {
+    errors.push(error instanceof Error ? error.message : 'Fabric reference manifest invalid')
+  }
+  return {approved, errors}
+}
+
 export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
   const changedBinaryPaths = Array.from(new Set(binaryPaths.map(normalizeRepoPath))).sort()
   if (!changedBinaryPaths.length) return {passed: true, binaryChangeCount: 0, approvedBinaryChangeCount: 0, errors: [] as string[]}
@@ -233,18 +266,21 @@ export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
   const realPaths = changedBinaryPaths.filter((path) => path.startsWith(REAL_PUBLIC_PREFIX))
   const visualPaths = changedBinaryPaths.filter((path) => path.startsWith(VISUAL_PUBLIC_PREFIX))
   const clubPaths = changedBinaryPaths.filter((path) => path.startsWith(CLUB_PUBLIC_PREFIX))
-  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX) && !path.startsWith(CLUB_PUBLIC_PREFIX))
+  const fabricPaths = changedBinaryPaths.filter((path) => path.startsWith(FABRIC_PUBLIC_PREFIX))
+  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX) && !path.startsWith(CLUB_PUBLIC_PREFIX) && !path.startsWith(FABRIC_PUBLIC_PREFIX))
   const real = auditRealProduction(root, realPaths)
   const visual = auditProductVisualizations(root, visualPaths)
   const club = auditClubKitReferences(root, clubPaths)
+  const fabric = auditFabricReferences(root, fabricPaths)
   const errors = [
     ...outsidePaths.map((path) => `Binary change outside approved directories: ${path}`),
     ...real.errors,
     ...visual.errors,
     ...club.errors,
+    ...fabric.errors,
   ]
   const uniqueErrors = Array.from(new Set(errors)).sort()
-  const approvedBinaryChangeCount = real.approved + visual.approved + club.approved
+  const approvedBinaryChangeCount = real.approved + visual.approved + club.approved + fabric.approved
   return {
     passed: uniqueErrors.length === 0 && approvedBinaryChangeCount === changedBinaryPaths.length,
     binaryChangeCount: changedBinaryPaths.length,
