@@ -17,26 +17,39 @@ export function HomepageHybrid({publicEmail, whatsappHref, privacyPolicyApproved
     <>
       <section className={`${styles.section} ${styles.hero}`} aria-labelledby="hybrid-home-title">
         <div className={styles.container}>
-          <div className={styles.heroGrid}>
-            <div>
-              <h1 id="hybrid-home-title">{home.hero.title}</h1>
-              <p className={styles.lead}>{home.hero.body}</p>
-              <div className={styles.actions}>
-                <InquiryLink href={home.intents.design.href} className={styles.primary}>{home.intents.design.label}</InquiryLink>
-                <InquiryLink href={home.intents.range.href} className={styles.secondary}>{home.intents.range.label}</InquiryLink>
+          <div className={styles.heroStack}>
+            <div className={styles.heroIntro}>
+              <div className={styles.heroCopy}>
+                <h1 id="hybrid-home-title">{home.hero.title}</h1>
+                <p className={styles.lead}>{home.hero.body}</p>
               </div>
-              <Limitation>{home.hero.projectReviewNote}</Limitation>
+              <div className={styles.heroDecision}>
+                <div className={styles.actions}>
+                  <InquiryLink href={home.intents.design.href} className={styles.primary}>{home.intents.design.label}</InquiryLink>
+                  <InquiryLink href={home.intents.range.href} className={styles.secondary}>{home.intents.range.label}</InquiryLink>
+                </div>
+                <Limitation>{home.hero.projectReviewNote}</Limitation>
+              </div>
             </div>
-            <figure className={styles.figure}>
+            <figure className={`${styles.figure} ${styles.heroFigure}`}>
               <Image
-                src="/images/poxiol-teamwear-hero-poxiol-only-v2.webp"
-                width={1254}
-                height={1254}
+                className={styles.heroDesktopArtwork}
+                src="/images/poxiol-teamwear-hero-3x1.webp"
+                width={2172}
+                height={724}
                 priority
-                sizes="(max-width: 767px) calc(100vw - 2rem), 50vw"
-                alt="Illustrative POXIOL-branded basketball, football, and warm-up teamwear configurations"
+                sizes="(max-width: 767px) 0px, min(75rem, calc(100vw - 2.5rem))"
+                alt="Illustrative POXIOL teamwear range banner with copy and inquiry options"
               />
-              <figcaption>Illustrative teamwear configuration</figcaption>
+              <Image
+                className={styles.heroMobileArtwork}
+                src="/images/poxiol-teamwear-range-banner-2x1.webp"
+                width={1774}
+                height={887}
+                sizes="(max-width: 767px) calc(100vw - 2rem), 0px"
+                alt="Illustrative POXIOL-branded multi-sport teamwear range"
+              />
+              <figcaption>Illustrative teamwear range concept — not client project evidence</figcaption>
             </figure>
           </div>
         </div>

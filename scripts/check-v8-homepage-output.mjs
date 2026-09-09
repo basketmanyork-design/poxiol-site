@@ -56,7 +56,9 @@ for (const [label, path] of [['Upload Your Design', '/free-mockup/'], ['Build Yo
 for (const label of ['Design Accuracy', 'Size & Fit', 'Project Deadline', 'Sample-to-Bulk', 'Reorder Consistency', 'Account Expansion']) assert.match(visibleText, new RegExp(label, 'i'))
 assert.match(visibleText, /Make the approval path visible/i)
 assert.doesNotMatch(visibleText, /Approval checklist explanation|Milestone planning explanation|Sample and bulk comparison explanation|Retained project record explanation/)
-assert.match(visibleText, /Illustrative teamwear configuration/i)
+assert.match(visibleText, /Illustrative teamwear range concept/i)
+assert.match(html, /\/images\/poxiol-teamwear-hero-3x1\.webp/)
+assert.match(html, /width="2172" height="724"/)
 assert.doesNotMatch(visibleText, /Local editorial review|Owner-approved editorial wording only|Evidence pending|local source projection|pilot does not add a second form/i)
 for (const href of ['/products/basketball-uniforms/', '/products/soccer-jerseys/', '/custom-baseball-softball-uniforms/', '/private-label-teamwear/', '/oem-odm/', '/shipping-after-sales/', '/sample-order/']) assert.match(html, new RegExp(`href="${href.replaceAll('/', '\\/')}"`))
 

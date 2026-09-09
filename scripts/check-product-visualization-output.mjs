@@ -14,7 +14,7 @@ function invariant(condition, message) {
 
 const required = new Map([
   ['/', [
-    ['poxiol-teamwear-hero-poxiol-only-v2.webp', 'Illustrative POXIOL-branded basketball, football, and warm-up teamwear configurations', 'Illustrative teamwear configuration'],
+    ['poxiol-teamwear-hero-3x1.webp', 'Illustrative POXIOL teamwear range banner with copy and inquiry options', 'Illustrative teamwear range concept — not client project evidence'],
   ]],
   ['products/basketball-uniforms', [
     ['POXIOL_BASK_FullSet.webp', 'POXIOL black basketball jersey and shorts set with neon green lightning graphics and number 23', 'Basketball uniform visualization showing the matching jersey and shorts set.'],
@@ -48,7 +48,7 @@ const required = new Map([
 
 for (const [route, assets] of required) {
   const html = htmlFor(route)
-  invariant(html.includes(route === '/' ? 'Illustrative teamwear configuration' : 'Product visualization'), `${route} is missing the visualization disclosure`)
+  invariant(html.includes(route === '/' ? 'Illustrative teamwear range concept — not client project evidence' : 'Product visualization'), `${route} is missing the visualization disclosure`)
   for (const [file, alt, caption] of assets) {
     invariant(html.includes(route === '/' ? `/images/${file}` : `/product-visualization/${file}`), `${route} is missing ${file}`)
     invariant(html.includes(alt), `${route} changed the approved alt for ${file}`)

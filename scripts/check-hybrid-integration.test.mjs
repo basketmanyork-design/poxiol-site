@@ -161,8 +161,13 @@ test('renders the approved global-buyer content with distinct existing inquiry t
   assert.equal(anchors.filter(anchor => anchor.href === '/get-quote/?product=Full%20Teamwear&source=%2F').some(anchor => anchor.children === 'Build Your Range'), true)
   assert.equal(anchors.filter(anchor => anchor.href === '/sample-order/').some(anchor => anchor.children === 'Start a Sample'), true)
   const illustration = nodes(tree).find(node => node?.props?.src)?.props
-  assert.equal(illustration?.src, '/images/poxiol-teamwear-hero-poxiol-only-v2.webp')
-  assert.match(text, /Illustrative teamwear configuration/)
+  assert.equal(illustration?.src, '/images/poxiol-teamwear-hero-3x1.webp')
+  assert.equal(illustration?.width, 2172)
+  assert.equal(illustration?.height, 724)
+  assert.equal(illustration?.width / illustration?.height, 3, 'Homepage desktop banner must keep the reviewed 3:1 composition')
+  assert.match(illustration?.sizes, /100vw/)
+  assert.match(illustration?.alt, /Illustrative POXIOL teamwear range banner with copy and inquiry options/)
+  assert.match(text, /Illustrative teamwear range concept/)
 })
 
 test('keeps approved navigation groups and destination-labelled legacy routes', () => {
