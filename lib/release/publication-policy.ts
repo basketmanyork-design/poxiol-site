@@ -22,3 +22,12 @@ export function publicSectionDecision(
   }
   return decision as PublicSectionDecision
 }
+
+const governedArticleRoutes = {
+  'blog/custom-teamwear-production-notes': 'blog-custom-teamwear-production-notes',
+} as const satisfies Record<string, PublicSectionId>
+
+export function isArticleRouteReleased(articleType: string, slug: string): boolean {
+  const policyId = governedArticleRoutes[`${articleType}/${slug}` as keyof typeof governedArticleRoutes]
+  return !policyId || publicSectionDecision(policyId) !== 'WITHHELD'
+}

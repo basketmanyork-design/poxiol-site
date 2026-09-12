@@ -5,7 +5,7 @@ import { pseoPages } from "@/lib/pseo";
 import { getArticles, getProductCategories } from "@/lib/sanity/content";
 import { publicLegalPolicyRoutes } from "@/lib/legal-release";
 import { DEDICATED_GUIDE_SLUGS } from "@/lib/guides/routes";
-import { publicSectionDecision, type PublicSectionId } from "@/lib/release/publication-policy";
+import { isArticleRouteReleased, publicSectionDecision, type PublicSectionId } from "@/lib/release/publication-policy";
 import { getPermanentRedirectSources } from "@/lib/release/redirect-sources";
 
 export const dynamic = "force-static";
@@ -97,7 +97,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 5. Article URLs use the same CMS resolver as each route's generateStaticParams.
-  const cmsArticleRoutes = articles.map((article) => {
+  const cmsArticleRoutes = articles.filter((article) => isArticleRouteReleased(article.articleType, article.slug)).map((article) => {
     const section = article.articleType === "blog" ? "blog" : article.articleType === "resource" ? "resources" : "guides";
     return {
       url: `${baseUrl}/${section}/${article.slug}/`,

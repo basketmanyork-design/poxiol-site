@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import Link from 'next/link'
 import {Header, Footer, SectionHeading, PrimaryButton} from '@/components/ui'
 import {getArticles} from '@/lib/sanity/content'
+import {isArticleRouteReleased} from '@/lib/release/publication-policy'
 
 export const metadata: Metadata = {
   title: 'POXIOL Blog | Teamwear SEO Articles',
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const posts = await getArticles('blog')
+  const posts = (await getArticles('blog')).filter((post) => isArticleRouteReleased(post.articleType, post.slug))
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <Header />
