@@ -126,6 +126,27 @@ export function normalizeUtmValue(value: string | undefined): string {
   return normalized
 }
 
+export function analyticsTrafficTypeFromUrl(href: string): 'internal' | undefined {
+  try {
+    const url = new URL(href)
+    const source = normalizeUtmValue(url.searchParams.get('utm_source') || undefined)
+    const medium = normalizeUtmValue(url.searchParams.get('utm_medium') || undefined)
+    return source === 'poxiol-team' && medium === 'internal-test' ? 'internal' : undefined
+  } catch {
+    return undefined
+  }
+}
+
+export function buildAnalyticsTagConfig(debugMode: boolean, trafficType: 'internal' | undefined) {
+  return {
+    send_page_view: false,
+    debug_mode: debugMode,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    ...(trafficType ? {traffic_type: trafficType} : {}),
+  }
+}
+
 export function classifyOutboundLink(href: string): AnalyticsEventName | null {
   const normalized = href.trim().toLowerCase()
   if (normalized.startsWith('mailto:')) return 'email_click'

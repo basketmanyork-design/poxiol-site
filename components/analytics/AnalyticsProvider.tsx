@@ -5,7 +5,12 @@ import Script from 'next/script'
 import {usePathname, useSearchParams} from 'next/navigation'
 import {AnalyticsPreferences} from '@/components/privacy/AnalyticsPreferences'
 import type {AnalyticsRuntimeConfig} from '@/lib/analytics/server'
-import {classifyOutboundLink, normalizeCtaLocation} from '@/lib/analytics/core'
+import {
+  analyticsTrafficTypeFromUrl,
+  buildAnalyticsTagConfig,
+  classifyOutboundLink,
+  normalizeCtaLocation,
+} from '@/lib/analytics/core'
 import {captureAttribution, clearAttributionStorage, trackEvent, trackOutboundClick, trackPageView} from '@/lib/analytics/client'
 import {
   clearAnalyticsPermission,
@@ -62,9 +67,13 @@ export function AnalyticsProvider({
   initialPermission?: AnalyticsPermission
 }) {
   const [permission, setPermission] = useState<AnalyticsPermission>(initialPermission)
+  const [trafficType, setTrafficType] = useState<'internal' | undefined>(undefined)
+  const [runtimeReady, setRuntimeReady] = useState(false)
 
   useEffect(() => {
+    setTrafficType(analyticsTrafficTypeFromUrl(window.location.href))
     setPermission(readAnalyticsPermissionSafely(window.localStorage))
+    setRuntimeReady(true)
   }, [])
 
   useEffect(() => {
@@ -92,7 +101,8 @@ export function AnalyticsProvider({
     clearAttributionStorage()
   }, [])
 
-  const enabled = permission === 'accepted' && config.enabled && Boolean(config.measurementId)
+  const enabled = runtimeReady && permission === 'accepted' && config.enabled && Boolean(config.measurementId)
+  const tagConfig = buildAnalyticsTagConfig(config.debugMode, trafficType)
 
   return (
     <>
@@ -110,12 +120,7 @@ export function AnalyticsProvider({
               window.gtag = function(){window.dataLayer.push(arguments);};
               window.__poxiolAnalyticsEnabled = true;
               window.gtag('js', new Date());
-              window.gtag('config', ${JSON.stringify(config.measurementId)}, {
-                send_page_view: false,
-                debug_mode: ${config.debugMode ? 'true' : 'false'},
-                allow_google_signals: false,
-                allow_ad_personalization_signals: false
-              });
+              window.gtag('config', ${JSON.stringify(config.measurementId)}, ${JSON.stringify(tagConfig)});
             `}
           </Script>
           <AnalyticsRuntime />

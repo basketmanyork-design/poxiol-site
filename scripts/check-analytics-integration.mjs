@@ -37,7 +37,10 @@ for (const eventName of [
 
 if (!layout.includes('<AnalyticsProvider')) throw new Error('Root layout does not load AnalyticsProvider')
 if (!server.includes('shouldEnableAnalytics')) throw new Error('Server config does not enforce environment gates')
-if (!provider.includes('send_page_view: false')) throw new Error('GA4 config must disable automatic duplicate page_view')
+if (!core.includes('send_page_view: false')) throw new Error('GA4 config must disable automatic duplicate page_view')
+if (!provider.includes('analyticsTrafficTypeFromUrl')) throw new Error('GA4 provider must classify governed internal-test links before loading the tag')
+if (!provider.includes('buildAnalyticsTagConfig')) throw new Error('GA4 provider must apply the governed traffic type at config scope')
+if (!provider.includes('runtimeReady && permission')) throw new Error('GA4 provider must resolve traffic type before loading the tag')
 if (!provider.includes('classifyOutboundLink')) throw new Error('Outbound link tracking is not centralized')
 if (!provider.includes('normalizeCtaLocation')) throw new Error('CTA locations are not constrained to the governed enum')
 if (provider.includes('anchor.dataset.analyticsLocation || pathname')) throw new Error('A pathname must never masquerade as CTA location')
