@@ -8,6 +8,36 @@ import {
   buildSportsProductGeoDetails,
   resolveSportsFaqs,
 } from '../lib/geo-v1.ts'
+import {POXIOL_PUBLISHER, pseoPages} from '../lib/pseo.ts'
+
+assert.equal(POXIOL_PUBLISHER, 'POXIOL')
+const attributedPages = pseoPages.filter((page) => page.publisher === POXIOL_PUBLISHER)
+assert.equal(attributedPages.length, 8)
+assert.deepEqual(
+  attributedPages.map((page) => page.slug),
+  [
+    'how-to-order-custom-basketball-uniforms',
+    'soccer-jersey-buying-guide',
+    'oem-vs-odm-sportswear',
+    'best-sportswear-fabrics',
+    'how-sublimation-printing-works-for-teamwear',
+    'how-to-choose-a-teamwear-manufacturer',
+    'custom-soccer-uniforms-for-academies',
+    'soccer-jersey-supplier-australia',
+  ],
+)
+const publicPseoData = JSON.stringify(pseoPages)
+for (const name of ['David Zhang', 'Sarah Miller', 'Michael Chen']) {
+  assert.doesNotMatch(publicPseoData, new RegExp(name))
+}
+
+const pseoTemplateSource = readFileSync(path.join(process.cwd(), 'app', '[slug]', 'page.tsx'), 'utf8')
+assert.match(pseoTemplateSource, /page\.publisher/)
+assert.match(pseoTemplateSource, /Published by POXIOL/)
+assert.match(pseoTemplateSource, /GEO_V1\.operator\.id/)
+assert.match(pseoTemplateSource, /page\.publisher \? "Contact POXIOL" : "Contact Our Experts"/)
+assert.doesNotMatch(pseoTemplateSource, /"@type": "Person"/)
+assert.doesNotMatch(pseoTemplateSource, /page\.author/)
 
 const structuredDataSource = readFileSync(
   path.join(process.cwd(), 'components', 'seo', 'GEOStructuredData.tsx'),

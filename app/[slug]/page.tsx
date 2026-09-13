@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import { pseoPages, getPSEOPageBySlug, getPseoCoreSportLink } from "@/lib/pseo";
+import { GEO_V1 } from "@/lib/geo-v1";
 import StructuredData from "@/components/seo/StructuredData";
 import Link from "next/link";
 
@@ -48,20 +49,13 @@ export default async function PSEOPage({ params }: Props) {
     })),
   };
 
-  const articleSchema = page.author ? {
+  const articleSchema = page.publisher ? {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": page.title,
     "description": page.intro,
-    "author": {
-      "@type": "Person",
-      "name": page.author.name,
-      "jobTitle": page.author.role
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "POXIOL"
-    }
+    "author": {"@id": GEO_V1.operator.id},
+    "publisher": {"@id": GEO_V1.operator.id},
   } : null;
 
   return (
@@ -85,19 +79,11 @@ export default async function PSEOPage({ params }: Props) {
               <p>{page.content}</p>
             </div>
 
-            {page.author && (
-              <div className="flex flex-col items-start space-y-4 rounded-3xl border border-lime-400/20 bg-lime-400/5 p-8 md:flex-row md:items-center md:space-x-8 md:space-y-0">
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-lime-400 text-3xl font-black text-black">
-                  {page.author.name.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div>
-                  <p className="text-xs font-black uppercase tracking-widest text-lime-400">Written By Expert</p>
-                  <h3 className="mt-1 text-2xl font-black text-white">{page.author.name}</h3>
-                  <p className="text-sm font-bold text-neutral-400">{page.author.role}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-400">{page.author.bio}</p>
-                </div>
+            {page.publisher ? (
+              <div className="rounded-2xl border border-lime-400/20 bg-lime-400/5 px-6 py-4">
+                <p className="text-sm font-black uppercase tracking-widest text-lime-400">Published by POXIOL</p>
               </div>
-            )}
+            ) : null}
 
             <div className="rounded-3xl border border-white/10 bg-white/5 p-10">
 
@@ -125,7 +111,7 @@ export default async function PSEOPage({ params }: Props) {
             <div className="flex flex-col items-center justify-center space-y-6 pt-10">
               <h2 className="text-3xl font-black uppercase tracking-tight text-white">Ready to Start Your Project?</h2>
               <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-                <PrimaryButton>Contact Our Experts</PrimaryButton>
+                <PrimaryButton>{page.publisher ? "Contact POXIOL" : "Contact Our Experts"}</PrimaryButton>
                 <Link 
                   href="/free-mockup/"
                   className="flex h-[60px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-10 text-base font-black uppercase transition hover:bg-white/10"
