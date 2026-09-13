@@ -19,6 +19,19 @@ const visibleText = (html) => decodeText(
     .trim(),
 )
 
+const nestedPersonFixture = JSON.stringify({
+  '@graph': [{
+    '@type': 'Article',
+    author: {'@type': 'Person', '@id': 'https://example.test/#author'},
+  }],
+})
+assert.equal(
+  jsonLdNodes(`<script type="application/ld+json">${nestedPersonFixture}</script>`)
+    .filter((node) => node?.['@type'] === 'Person').length,
+  1,
+  'JSON-LD traversal must find nested Person nodes',
+)
+
 const pages = {
   home: read('out/index.html'),
   about: read('out/about/index.html'),
@@ -130,13 +143,14 @@ function jsonLdNodes(html) {
   const roots = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
     .map((match) => JSON.parse(match[1]))
   const nodes = []
-  for (const rootValue of roots) {
-    const values = Array.isArray(rootValue) ? rootValue : [rootValue]
-    for (const value of values) {
-      nodes.push(value)
-      if (Array.isArray(value?.['@graph'])) nodes.push(...value['@graph'])
-    }
+  const visited = new Set()
+  const visit = (value) => {
+    if (!value || typeof value !== 'object' || visited.has(value)) return
+    visited.add(value)
+    if (!Array.isArray(value)) nodes.push(value)
+    for (const nestedValue of Object.values(value)) visit(nestedValue)
   }
+  for (const rootValue of roots) visit(rootValue)
   return nodes
 }
 
@@ -175,6 +189,7 @@ for (const html of [pages.home, pages.about, pages.basketball, ...Object.values(
   assert.doesNotMatch(html, /[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]/u)
 }
 const productNodes = jsonLdNodes(pages.basketball).filter((node) => node?.['@type'] === 'Product')
+assert.ok(productNodes.length > 0, 'basketball page must expose Product JSON-LD')
 assert.ok(productNodes.every((node) => node.manufacturer === undefined))
 
 const basketballFaqPages = jsonLdNodes(pages.basketball).filter((node) => node?.['@type'] === 'FAQPage')
