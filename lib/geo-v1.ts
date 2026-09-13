@@ -11,12 +11,16 @@ export type GeoProductDetails = {
 
 export const GEO_V1 = {
   canonicalBaseUrl: 'https://www.poxiol.com',
-  organization: {
-    id: 'https://www.poxiol.com/#organization',
+  brand: {
+    id: 'https://www.poxiol.com/#brand',
     name: 'POXIOL',
-    url: 'https://www.poxiol.com',
-    description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and baseball uniforms.',
-    industry: 'Sportswear Manufacturing',
+    url: 'https://www.poxiol.com/',
+  },
+  operator: {
+    id: 'https://www.poxiol.com/#operator',
+    name: 'Quanzhou Lanren Electronic Commerce Co., Ltd.',
+    legalName: 'QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.',
+    url: 'https://www.poxiol.com/',
   },
   homepage: {
     heroHeading: 'Custom Teamwear Manufacturer for Basketball, Soccer & Baseball Programs',
@@ -37,6 +41,11 @@ export const GEO_V1 = {
   about: {
     heading: 'B2B Custom Teamwear Manufacturer',
     description: 'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms. We help sports clubs, schools, teamwear brands and distributors develop customized uniforms through OEM and private label production, from design confirmation to production and quality inspection.',
+    operatorSection: {
+      eyebrow: 'Brand Identity',
+      title: 'Brand Operator',
+      body: 'POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.',
+    },
     processTitle: 'Manufacturing Process',
     processSteps: [
       {title: 'Design Confirmation', description: 'Confirm the uniform design, colors, logos, names, numbers and project requirements.'},
@@ -79,8 +88,14 @@ function normalizeText(value: string) {
 }
 
 export function applyAboutGeoV1(page: CmsPage): CmsPage {
+  const operatorTitle = normalizeText(GEO_V1.about.operatorSection.title)
   const processTitle = normalizeText(GEO_V1.about.processTitle)
+  const hasOperator = page.sections.some((section) => normalizeText(section.title) === operatorTitle)
   const hasProcess = page.sections.some((section) => normalizeText(section.title) === processTitle)
+  const operatorSection: CmsPageSection = {
+    type: 'richText',
+    ...GEO_V1.about.operatorSection,
+  }
   const processSection: CmsPageSection = {
     type: 'processSteps',
     eyebrow: 'How We Work',
@@ -88,12 +103,16 @@ export function applyAboutGeoV1(page: CmsPage): CmsPage {
     body: 'A clear custom production workflow from approved design details through shipment preparation.',
     steps: GEO_V1.about.processSteps.map((step) => ({...step})),
   }
+  const governedSections = [
+    ...(hasOperator ? [] : [operatorSection]),
+    ...(hasProcess ? [] : [processSection]),
+  ]
 
   return {
     ...page,
     heading: GEO_V1.about.heading,
     description: GEO_V1.about.description,
-    sections: hasProcess ? page.sections : [processSection, ...page.sections],
+    sections: [...governedSections, ...page.sections],
   }
 }
 

@@ -15,13 +15,21 @@ assert.equal(
   GEO_V1.homepage.heroDescription,
   'POXIOL provides custom basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors with design support, sample review and quality control.',
 )
-assert.equal(GEO_V1.organization.id, 'https://www.poxiol.com/#organization')
-assert.deepEqual(GEO_V1.organization, {
-  id: 'https://www.poxiol.com/#organization',
+assert.deepEqual(GEO_V1.brand, {
+  id: 'https://www.poxiol.com/#brand',
   name: 'POXIOL',
-  url: 'https://www.poxiol.com',
-  description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and baseball uniforms.',
-  industry: 'Sportswear Manufacturing',
+  url: 'https://www.poxiol.com/',
+})
+assert.deepEqual(GEO_V1.operator, {
+  id: 'https://www.poxiol.com/#operator',
+  name: 'Quanzhou Lanren Electronic Commerce Co., Ltd.',
+  legalName: 'QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.',
+  url: 'https://www.poxiol.com/',
+})
+assert.deepEqual(GEO_V1.about.operatorSection, {
+  eyebrow: 'Brand Identity',
+  title: 'Brand Operator',
+  body: 'POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.',
 })
 
 const existingSection = {type: 'richText' as const, title: 'Existing section', body: 'Keep me'}
@@ -39,14 +47,22 @@ const about = applyAboutGeoV1({
 assert.equal(about.heading, 'B2B Custom Teamwear Manufacturer')
 assert.match(about.description, /clubs, schools, teamwear brands and distributors/i)
 assert.match(about.description, /OEM and private label production/i)
-assert.equal(about.sections[0].type, 'processSteps')
-assert.equal(about.sections[0].title, 'Manufacturing Process')
 assert.deepEqual(
-  about.sections[0].steps?.map((step) => step.title),
+  about.sections.slice(0, 3).map((section) => section.title),
+  ['Brand Operator', 'Manufacturing Process', 'Existing section'],
+)
+assert.equal(about.sections[1].type, 'processSteps')
+assert.equal(about.sections[1].title, 'Manufacturing Process')
+assert.deepEqual(
+  about.sections[1].steps?.map((step) => step.title),
   ['Design Confirmation', 'Sample Development', 'Material Preparation', 'Production', 'Quality Inspection', 'International Shipping'],
 )
-assert.equal(about.sections[1], existingSection)
+assert.equal(about.sections[2], existingSection)
 assert.equal(about.seo.title, 'Existing SEO title')
+
+const reappliedAbout = applyAboutGeoV1(about)
+assert.equal(reappliedAbout.sections.filter((section) => section.title === 'Brand Operator').length, 1)
+assert.equal(reappliedAbout.sections.filter((section) => section.title === 'Manufacturing Process').length, 1)
 
 const aboutWithProcess = applyAboutGeoV1({
   ...about,
