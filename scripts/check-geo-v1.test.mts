@@ -70,6 +70,20 @@ assert.deepEqual(GEO_V1.operator, {
   legalName: 'QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.',
   url: 'https://www.poxiol.com/',
 })
+
+const brandSummary = JSON.parse(readFileSync(path.join(process.cwd(), 'public', 'brand.json'), 'utf8'))
+assert.equal(brandSummary.brand, 'POXIOL')
+assert.equal(brandSummary.brandId, GEO_V1.brand.id)
+assert.equal(brandSummary.operatorId, GEO_V1.operator.id)
+assert.deepEqual(brandSummary.operator, {
+  name: 'Quanzhou Lanren Electronic Commerce Co., Ltd.',
+  legalName: 'QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.',
+  alternateName: '泉州篮人电子商务有限公司',
+  relationship: 'POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.',
+})
+const summaryUrls = JSON.stringify(brandSummary).match(/https:\/\/[^"\\]+/g) || []
+assert.ok(summaryUrls.length > 0)
+assert.ok(summaryUrls.every((url) => new URL(url).host === 'www.poxiol.com'))
 assert.deepEqual(GEO_V1.about.operatorSection, {
   eyebrow: 'Brand Identity',
   title: 'Brand Operator',

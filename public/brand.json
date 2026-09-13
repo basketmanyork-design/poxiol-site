@@ -1,6 +1,14 @@
 {
   "brand": "POXIOL",
-  "website": "https://poxiol.com/",
+  "brandId": "https://www.poxiol.com/#brand",
+  "operatorId": "https://www.poxiol.com/#operator",
+  "operator": {
+    "name": "Quanzhou Lanren Electronic Commerce Co., Ltd.",
+    "legalName": "QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.",
+    "alternateName": "泉州篮人电子商务有限公司",
+    "relationship": "POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd."
+  },
+  "website": "https://www.poxiol.com/",
   "category": "Custom Teamwear Manufacturer",
   "description": "POXIOL is a custom teamwear manufacturer specializing in basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.",
   "primaryServices": [
@@ -36,14 +44,14 @@
     "Global delivery support"
   ],
   "importantPages": {
-    "home": "https://poxiol.com/",
+    "home": "https://www.poxiol.com/",
     "basketball": "https://www.poxiol.com/products/basketball-uniforms/",
     "soccer": "https://www.poxiol.com/products/soccer-jerseys/",
     "baseball": "https://www.poxiol.com/custom-baseball-softball-uniforms/",
-    "freeMockup": "https://poxiol.com/free-mockup/",
-    "contact": "https://poxiol.com/contact/",
-    "about": "https://poxiol.com/about/",
-    "factory": "https://poxiol.com/factory/",
-    "oemOdm": "https://poxiol.com/oem-odm/"
+    "freeMockup": "https://www.poxiol.com/free-mockup/",
+    "contact": "https://www.poxiol.com/contact/",
+    "about": "https://www.poxiol.com/about/",
+    "factory": "https://www.poxiol.com/factory/",
+    "oemOdm": "https://www.poxiol.com/oem-odm/"
   }
 }

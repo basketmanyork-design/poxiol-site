@@ -24,6 +24,29 @@ const pages = {
   about: read('out/about/index.html'),
   basketball: read('out/products/basketball-uniforms/index.html'),
 }
+const attributedSlugs = [
+  'how-to-order-custom-basketball-uniforms',
+  'soccer-jersey-buying-guide',
+  'oem-vs-odm-sportswear',
+  'best-sportswear-fabrics',
+  'how-sublimation-printing-works-for-teamwear',
+  'how-to-choose-a-teamwear-manufacturer',
+  'custom-soccer-uniforms-for-academies',
+  'soccer-jersey-supplier-australia',
+]
+const attributedPages = Object.fromEntries(
+  attributedSlugs.map((slug) => [slug, read(`out/${slug}/index.html`)]),
+)
+const brandSummary = JSON.parse(read('public/brand.json'))
+assert.equal(brandSummary.brand, 'POXIOL')
+assert.equal(brandSummary.brandId, 'https://www.poxiol.com/#brand')
+assert.equal(brandSummary.operatorId, 'https://www.poxiol.com/#operator')
+assert.deepEqual(brandSummary.operator, {
+  name: 'Quanzhou Lanren Electronic Commerce Co., Ltd.',
+  legalName: 'QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.',
+  alternateName: '泉州篮人电子商务有限公司',
+  relationship: 'POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.',
+})
 
 function canonicalLinks(html) {
   return [...html.matchAll(/<link\b[^>]*>/gi)]
@@ -118,27 +141,41 @@ function jsonLdNodes(html) {
 }
 
 const homeNodes = jsonLdNodes(pages.home)
+const brands = homeNodes.filter((node) => node?.['@type'] === 'Brand')
 const organizations = homeNodes.filter((node) => node?.['@type'] === 'Organization')
-assert.equal(organizations.length, 1, 'homepage must expose one Organization node')
-assert.deepEqual(
-  {
-    id: organizations[0]['@id'],
-    name: organizations[0].name,
-    url: organizations[0].url,
-    description: organizations[0].description,
-    industry: organizations[0].industry,
-  },
-  {
-    id: 'https://www.poxiol.com/#organization',
-    name: 'POXIOL',
-    url: 'https://www.poxiol.com',
-    description: 'Custom Teamwear Manufacturer specializing in basketball, soccer and baseball uniforms.',
-    industry: 'Sportswear Manufacturing',
-  },
-)
+assert.equal(brands.length, 1)
+assert.equal(brands[0]['@id'], 'https://www.poxiol.com/#brand')
+assert.equal(brands[0].name, 'POXIOL')
+assert.equal(organizations.length, 1)
+assert.equal(organizations[0]['@id'], 'https://www.poxiol.com/#operator')
+assert.equal(organizations[0].legalName, 'QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.')
+assert.equal(organizations[0].brand?.['@id'], 'https://www.poxiol.com/#brand')
 const websites = homeNodes.filter((node) => node?.['@type'] === 'WebSite')
 assert.equal(websites.length, 1, 'homepage must retain one WebSite node')
-assert.equal(websites[0].publisher?.['@id'], 'https://www.poxiol.com/#organization')
+assert.equal(websites[0].publisher?.['@id'], 'https://www.poxiol.com/#operator')
+assert.equal(websites[0].about?.['@id'], 'https://www.poxiol.com/#brand')
+
+const operatorStatement = 'POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.'
+assert.equal(aboutText.split(operatorStatement).length - 1, 1)
+for (const [slug, html] of Object.entries(attributedPages)) {
+  const text = visibleText(html)
+  assert.ok(text.includes('Published by POXIOL'), `${slug} is missing POXIOL attribution`)
+  assert.ok(text.includes('Contact POXIOL'), `${slug} is missing the scoped CTA`)
+  for (const name of ['David Zhang', 'Sarah Miller', 'Michael Chen']) {
+    assert.ok(!html.includes(name), `${slug} still contains ${name}`)
+  }
+  const people = jsonLdNodes(html).filter((node) => node?.['@type'] === 'Person')
+  assert.equal(people.length, 0, `${slug} must not emit Person schema`)
+  const articles = jsonLdNodes(html).filter((node) => node?.['@type'] === 'Article')
+  assert.equal(articles.length, 1, `${slug} must retain one Article schema`)
+  assert.equal(articles[0].author?.['@id'], 'https://www.poxiol.com/#operator')
+  assert.equal(articles[0].publisher?.['@id'], 'https://www.poxiol.com/#operator')
+}
+for (const html of [pages.home, pages.about, pages.basketball, ...Object.values(attributedPages)]) {
+  assert.doesNotMatch(html, /[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]/u)
+}
+const productNodes = jsonLdNodes(pages.basketball).filter((node) => node?.['@type'] === 'Product')
+assert.ok(productNodes.every((node) => node.manufacturer === undefined))
 
 const basketballFaqPages = jsonLdNodes(pages.basketball).filter((node) => node?.['@type'] === 'FAQPage')
 assert.ok(basketballFaqPages.length > 0, 'basketball page must expose FAQPage JSON-LD')
