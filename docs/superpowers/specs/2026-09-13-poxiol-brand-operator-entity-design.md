@@ -5,7 +5,8 @@
 - Design path: Architectural
 - Selected approach: Option A — truth-first entity pilot
 - Design confirmed by owner: 2026-09-13
-- Written specification review: pending owner review
+- Written specification review: approved by owner on 2026-09-13
+- English-only compatibility difference: approved by owner on 2026-09-13
 - Production baseline: `66b4b0a5c25dd14526fbe1faf52ee58e22c94c41`
 
 ## Objective
@@ -71,7 +72,6 @@ Use separate identifiers so that a brand relationship cannot silently become a m
   "@id": "https://www.poxiol.com/#operator",
   "name": "Quanzhou Lanren Electronic Commerce Co., Ltd.",
   "legalName": "QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.",
-  "alternateName": "泉州篮人电子商务有限公司",
   "url": "https://www.poxiol.com/",
   "brand": {"@id": "https://www.poxiol.com/#brand"}
 }
@@ -85,6 +85,7 @@ Use separate identifiers so that a brand relationship cannot silently become a m
 - The existing unverified `Product.manufacturer` relationship is removed; it must not be redirected to `#operator`.
 - `Service.provider`, `Article.author`, `Article.publisher` and `CreativeWork.provider` may point to `#operator` because they describe the operator's website and published content, not ownership of production facilities.
 - No `sameAs` trademark link, registration number or trademark status is added.
+- Public HTML and JSON-LD remain English-only. The confirmed Chinese legal name is exposed only in `/brand.json`, which is not HTML and remains machine-readable.
 
 ## Buyer-Visible Copy
 
@@ -94,7 +95,7 @@ The About page receives one non-duplicating identity section before the manufact
 - Heading: `Brand Operator`
 - Body:
 
-> POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd. (泉州篮人电子商务有限公司).
+> POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.
 
 Pages that currently show a personal expert card will instead show a compact organization attribution:
 
@@ -128,7 +129,7 @@ Only these seven implementation/test files may change under this specification:
 ### `lib/geo-v1.ts`
 
 - Replace the single ambiguous organization constant with explicit `brand` and `operator` constants.
-- Store the exact approved English and Chinese operator names.
+- Store the exact approved English operator names used in public HTML and JSON-LD.
 - Store the exact About-page operator statement.
 - Extend `applyAboutGeoV1` to prepend the identity section exactly once, using normalized title matching to prevent duplication when CMS or fallback data already contains it.
 - Preserve the existing About heading, description and manufacturing-process behavior.
@@ -171,12 +172,13 @@ Only these seven implementation/test files may change under this specification:
 
 ### `scripts/check-geo-v1-output.mjs`
 
-- Validate the rendered homepage Brand/Operator graph.
+- Validate the rendered homepage Brand/Operator graph and confirm it contains no CJK ideographs.
 - Validate the exact About operator sentence appears once.
 - Validate all eight affected pages contain `Published by POXIOL`, contain no removed name or personal biography, contain no Person schema and retain their canonical URL.
 - Validate the Article author/publisher references point to `#operator` on only those eight pages.
 - Validate no Product schema uses `#operator` as `manufacturer`.
 - Validate `public/brand.json` parses and matches the canonical entity IDs and legal names.
+- Preserve the existing English-only rendered-HTML gate without exceptions.
 
 No `package.json` change is required. The existing GEO test commands will be used directly.
 
@@ -184,18 +186,19 @@ No `package.json` change is required. The existing GEO test commands will be use
 
 1. `lib/geo-v1.ts` is the runtime source of truth for entity identifiers, names and approved visible copy.
 2. The homepage schema reads those constants and publishes the Brand, Operator and Website graph.
-3. The About transform reads the same approved statement and inserts it once, regardless of whether the page came from CMS or legacy fallback.
+3. The About transform reads the approved English statement and inserts it once, regardless of whether the page came from CMS or legacy fallback.
 4. PSEO data identifies only the eight pages that carry organization attribution.
 5. The root-slug template renders the buyer-visible attribution and Article relationships.
 6. `public/brand.json` remains a static machine-readable summary; regression tests enforce parity with the runtime source of truth.
 
 ## Failure Behavior
 
-- Entity IDs, names or approved text differing between runtime schema and `brand.json` fail tests.
+- Entity IDs, English names or approved English text differing between runtime schema and `brand.json` fail tests.
 - A duplicate About operator section fails tests.
 - Any occurrence of the three removed personal names in public runtime sources or rendered output fails tests.
 - Any Person schema on the eight affected pages fails tests.
 - Any `manufacturer` link to the operator fails tests.
+- Any CJK ideograph in rendered HTML, including JSON-LD, continues to fail the existing English-only output gate.
 - Build, canonical, sitemap, route-release, form or buyer-visible regression failure blocks commit/push/deployment.
 - If live output differs from the approved candidate, deployment is treated as failed and rolled back.
 
@@ -239,7 +242,8 @@ After an approved implementation passes every local gate:
 - verify every listed URL returns the expected status;
 - parse live homepage, About, eight affected pages and `brand.json`;
 - confirm the three names and Person schema are absent;
-- confirm the approved operator statement and Brand/Operator identifiers are present;
+- confirm the approved English operator statement and Brand/Operator identifiers are present;
+- confirm the Chinese legal name appears in `/brand.json` but not rendered HTML or JSON-LD;
 - confirm no operator-as-manufacturer assertion exists; and
 - confirm the inquiry form remains available without submitting it.
 
@@ -262,7 +266,7 @@ After an approved implementation passes every local gate:
 
 - Schema consumers may temporarily reprocess the changed entity graph.
 - Removing personal profiles reduces the appearance of named E-E-A-T, but the existing names are unverified and therefore present a larger trust risk if retained.
-- The Chinese legal name adds multilingual entity evidence to an English page; placement is limited to one factual operator sentence to avoid distracting from buyer content.
+- The Chinese legal name is limited to the public machine-readable `/brand.json`; buyer-visible HTML and JSON-LD remain English-only under the existing hard gate.
 
 ## Git, Deployment and Rollback
 
