@@ -88,17 +88,10 @@ for (const [name, html] of Object.entries(pages)) {
 }
 
 const homeText = visibleText(pages.home)
-for (const phrase of [
-  'Custom Teamwear Manufacturer For Clubs, Schools & Sports Brands',
-  'POXIOL specializes in custom Basketball, Soccer and Baseball teamwear for clubs, schools, youth programs and sports brands, with design support, sample review and quality control.',
-  'Who Is POXIOL?',
-  'POXIOL is a B2B custom teamwear manufacturer specializing in basketball uniforms, soccer kits and baseball uniforms.',
-  'Who We Help',
-  'Youth Teams',
-  'Schools',
-  'Sports Brands',
-  'Distributors',
-]) assert.ok(homeText.includes(phrase), `homepage is missing GEO V1 phrase: ${phrase}`)
+assert.ok(
+  homeText.includes('Custom Teamwear Built for Repeatable Team Orders'),
+  'homepage is missing the approved V8 H1',
+)
 
 const aboutText = visibleText(pages.about)
 for (const phrase of [

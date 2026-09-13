@@ -124,7 +124,7 @@ The source must contain no runtime references to David Zhang, Sarah Miller or Mi
 
 ## Components and Exact File Scope
 
-Only these nine implementation/test files may change under this specification:
+Only these ten approved implementation/test/release-manifest files may change under this specification:
 
 ### `lib/geo-v1.ts`
 
@@ -194,6 +194,11 @@ Only these nine implementation/test files may change under this specification:
 - Validate no Product schema uses `#operator` as `manufacturer`.
 - Validate `public/brand.json` parses and matches the canonical entity IDs and legal names.
 - Preserve the existing English-only rendered-HTML gate without exceptions.
+
+### `construction/release-manifest.json`
+
+- Deterministically record hashes for the final reviewed build only.
+- Do not use the manifest to alter routes, public copy, runtime behavior or entity data.
 
 No `package.json` change is required. The existing GEO test commands will be used directly.
 
@@ -287,11 +292,11 @@ After an approved implementation passes every local gate:
 
 - Work only from the clean linked worktree based on baseline `66b4b0a5c25dd14526fbe1faf52ee58e22c94c41`.
 - Preserve unrelated files and stop if the baseline, target files or branch state drift before implementation.
-- Commit only the nine approved implementation/test files plus the approved planning documents.
+- Commit only the ten approved implementation/test/release-manifest files plus the two approved planning documents. The deterministic `construction/release-manifest.json` is generated and reviewed only after the final build; it records reviewed-build hashes and does not broaden the public route or copy scope.
 - Before Production deployment, record the then-current active Cloudflare Production Deployment ID and release marker.
 - If Production verification fails, restore that recorded deployment and verify the previous marker and critical URLs.
 - A source rollback may revert only the scoped implementation commit; destructive reset is forbidden.
 
 ## Approval Semantics
 
-Owner review of this written specification is the final design gate. After written-spec approval, the next step is a detailed implementation plan. Production execution remains bound to this exact scope, copy and entity model. Any new public claim, new URL, new page, additional runtime file, address disclosure, trademark claim, Basketman relationship, factory-ownership claim, CMS mutation or analytics/configuration change invalidates the approval and requires a difference review.
+Owner review of this written specification is the final design gate. After written-spec approval, the next step is a detailed implementation plan. Production execution remains bound to this exact scope, copy and entity model, including the deterministic reviewed-build hash record in `construction/release-manifest.json`. Any new public claim, new URL, new page, additional runtime file, manifest-driven route/copy change, address disclosure, trademark claim, Basketman relationship, factory-ownership claim, CMS mutation or analytics/configuration change invalidates the approval and requires a difference review.

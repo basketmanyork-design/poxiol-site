@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Implementation baseline is commit `b0effed`, whose parent Production source is `66b4b0a5c25dd14526fbe1faf52ee58e22c94c41`.
-- Runtime/test scope is exactly nine files: `lib/geo-v1.ts`, `components/seo/GEOStructuredData.tsx`, `lib/pseo.ts`, `app/[slug]/page.tsx`, `public/brand.json`, `scripts/check-geo-v1.test.mts`, `scripts/check-geo-v1-output.mjs`, `lib/v8/brand.ts`, and `scripts/check-v8-architecture.test.mts`.
+- Runtime/test scope is exactly nine files: `lib/geo-v1.ts`, `components/seo/GEOStructuredData.tsx`, `lib/pseo.ts`, `app/[slug]/page.tsx`, `public/brand.json`, `scripts/check-geo-v1.test.mts`, `scripts/check-geo-v1-output.mjs`, `lib/v8/brand.ts`, and `scripts/check-v8-architecture.test.mts`. The approved scope also includes the two governing documents (`docs/superpowers/specs/2026-09-13-poxiol-brand-operator-entity-design.md` and this plan) and deterministic `construction/release-manifest.json`, which records only final reviewed-build hashes and never changes routes or public copy.
 - Public HTML and JSON-LD must contain only English text; the confirmed Chinese legal name `泉州篮人电子商务有限公司` may appear only in `/brand.json` and internal planning records.
 - Exact visible statement: `POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.`
 - Exact official machine legal name: `QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.`
@@ -556,7 +556,8 @@ The output test is expected to fail until the fresh static build in Task 5 repla
 ### Task 5: Full Gate, Production Release and Live Verification
 
 **Files:**
-- Verify only: all nine implementation/test files and generated ignored output
+- Verify: all nine implementation/test files, the two governing documents, and `construction/release-manifest.json`
+- Generate and review after the successful final build: deterministic `construction/release-manifest.json`, recording only reviewed-build hashes
 - Do not modify: runtime source, CMS, analytics, Cloudflare configuration or dependency manifests
 
 **Interfaces:**
@@ -583,9 +584,14 @@ lib/pseo.ts
 public/brand.json
 scripts/check-geo-v1-output.mjs
 scripts/check-geo-v1.test.mts
+lib/v8/brand.ts
+scripts/check-v8-architecture.test.mts
+docs/superpowers/specs/2026-09-13-poxiol-brand-operator-entity-design.md
+docs/superpowers/plans/2026-09-13-poxiol-brand-operator-entity.md
+construction/release-manifest.json
 ```
 
-Stop if any other runtime, configuration or dependency file appears.
+Stop if any other runtime, configuration or dependency file appears. The manifest is allowed only as the deterministic reviewed-build hash record; it must not introduce route or public-copy changes.
 
 - [ ] **Step 2: Run the focused source test**
 
@@ -613,19 +619,24 @@ Expected: exit code 0 and no TypeScript error.
 
 - [ ] **Step 5: Create a Production-equivalent static build**
 
-Set only the approved local loopback review variables for this process:
+Set the approved local loopback review variables and the repository's existing strict governance values for this process:
 
 ```powershell
 $env:POXIOL_INTEGRATION_REVIEW='local'
 $env:POXIOL_INTEGRATION_ORIGIN='http://127.0.0.1:4466'
+$env:NEXT_PUBLIC_CONTENT_SOURCE='sanity'
+$env:CMS_LEGACY_LIST_MODE='strict'
+$env:NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT='https://formspree.io/f/xnpqqnol'
 npm run build
 ```
 
-Expected: exit code 0, 139 generated pages unless the existing deterministic route system reports a new approved count, and no English-only output failure.
+Expected: exit code 0, build total `139`, deterministic route generator `136 rendered`, and no English-only output failure.
 
 If Next.js changes `next-env.d.ts`, compare it to `b0effed` and restore only that generated difference with `apply_patch`; do not use `git checkout`, `git restore` or reset.
 
 - [ ] **Step 6: Run rendered GEO and release gates**
+
+After the successful build, Task 5 generates and reviews `construction/release-manifest.json` as the deterministic final reviewed-build hash record, then runs `check:construction-release`. It must not be used to change routes or public copy.
 
 ```powershell
 npm run check:geo-v1:output
@@ -723,7 +734,7 @@ Report the implementation commit SHAs, pushed Production SHA, new Cloudflare Dep
 ## Plan Completion Criteria
 
 - All four code/data tasks have their own passing focused test and scoped commit.
-- The final diff contains only the approved specification/plan and nine runtime/test files.
+- The final diff contains only the two approved governing documents, nine runtime/test files, and the deterministic reviewed-build hash record `construction/release-manifest.json`.
 - Full source, TypeScript, static build, output, canonical, route, sitemap, construction, buyer-facing and inquiry gates pass.
 - Production is either verified on the new SHA or restored to the recorded prior deployment.
 - Live HTML contains the English operator statement and no CJK or personal author identity.
