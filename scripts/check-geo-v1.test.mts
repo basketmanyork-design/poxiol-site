@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import path from 'node:path'
 import {
   GEO_V1,
   applyAboutGeoV1,
@@ -6,6 +8,18 @@ import {
   buildSportsProductGeoDetails,
   resolveSportsFaqs,
 } from '../lib/geo-v1.ts'
+
+const structuredDataSource = readFileSync(
+  path.join(process.cwd(), 'components', 'seo', 'GEOStructuredData.tsx'),
+  'utf8',
+)
+assert.match(structuredDataSource, /"@type": "Brand"/)
+assert.match(structuredDataSource, /"@id": GEO_V1\.brand\.id/)
+assert.match(structuredDataSource, /"@id": GEO_V1\.operator\.id/)
+assert.match(structuredDataSource, /"legalName": GEO_V1\.operator\.legalName/)
+assert.match(structuredDataSource, /"brand": \{ "@id": GEO_V1\.brand\.id \}/)
+assert.doesNotMatch(structuredDataSource, /"manufacturer"/)
+assert.doesNotMatch(structuredDataSource, /GEO_V1\.organization/)
 
 assert.equal(
   GEO_V1.homepage.heroHeading,

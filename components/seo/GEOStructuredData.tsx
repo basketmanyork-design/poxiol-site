@@ -8,20 +8,26 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Brand",
+        "@id": GEO_V1.brand.id,
+        "name": GEO_V1.brand.name,
+        "url": GEO_V1.brand.url,
+      },
+      {
         "@type": "Organization",
         "@id": GEO_V1.operator.id,
         "name": GEO_V1.operator.name,
+        "legalName": GEO_V1.operator.legalName,
         "url": GEO_V1.operator.url,
-        "description": GEO_V1.homepage.entityParagraphs[0]
+        "brand": { "@id": GEO_V1.brand.id },
       },
       {
         "@type": "WebSite",
         "@id": `${baseUrl}/#website`,
         "url": `${baseUrl}/`,
         "name": "POXIOL Custom Teamwear Manufacturer",
-        "publisher": {
-          "@id": GEO_V1.operator.id
-        }
+        "publisher": { "@id": GEO_V1.operator.id },
+        "about": { "@id": GEO_V1.brand.id },
       }
     ]
   };
@@ -64,16 +70,10 @@ export function ProductSchema({ name, description, url, image }: { name: string;
         "@type": "Product",
         "@id": `${url}#product`,
         "name": name,
-        "brand": {
-          "@type": "Brand",
-          "name": "POXIOL"
-        },
+        "brand": { "@id": GEO_V1.brand.id },
         "description": description,
         "category": "Custom Sports Uniforms",
         "image": image || `${baseUrl}/images/poxiol-teamwear-hero-poxiol-only-v2.webp`,
-        "manufacturer": {
-          "@id": `${baseUrl}/#organization`
-        },
       }
     ]
   };
@@ -87,7 +87,7 @@ export function ServiceSchema({ name, description, url }: { name: string; descri
     "serviceType": "Custom Manufacturing",
     "name": name,
     "description": description,
-    "provider": { "@id": `${baseUrl}/#organization` },
+    "provider": { "@id": GEO_V1.operator.id },
     "areaServed": { "@type": "Country", "name": "Global" },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -138,12 +138,8 @@ export function ArticleSchema({ headline, description, url }: { headline: string
     "@type": "Article",
     "headline": headline,
     "description": description,
-    "author": {
-      "@id": `${baseUrl}/#organization`
-    },
-    "publisher": {
-      "@id": `${baseUrl}/#organization`
-    },
+    "author": { "@id": GEO_V1.operator.id },
+    "publisher": { "@id": GEO_V1.operator.id },
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": url
@@ -159,7 +155,7 @@ export function CaseStudySchema({ title, url, description, keywords }: { title: 
     "name": title,
     "url": url,
     "about": description,
-    "provider": { "@id": `${baseUrl}/#organization` },
+    "provider": { "@id": GEO_V1.operator.id },
     "keywords": keywords || ["custom teamwear", "sportswear case study", "B2B manufacturing"]
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
