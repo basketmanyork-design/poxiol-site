@@ -21,7 +21,6 @@ export const organizationSchema = {
   "name": "POXIOL Teamwear",
   "alternateName": "POXIOL",
   "url": "https://www.poxiol.com/",
-  "logo": "https://www.poxiol.com/logo.png",
   "description": "POXIOL is a custom teamwear manufacturer specializing in basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.",
   "knowsAbout": [
     "Custom teamwear",
@@ -51,12 +50,7 @@ export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "POXIOL",
-  "url": "https://www.poxiol.com/",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.poxiol.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "url": "https://www.poxiol.com/"
 };
 
 // Generate full FAQ schema from lib/faq.ts

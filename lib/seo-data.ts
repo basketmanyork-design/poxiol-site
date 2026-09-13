@@ -401,8 +401,8 @@ export const fabricGuideSchema = {
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.poxiol.com/fabric-guide#webpage",
-      "url": "https://www.poxiol.com/fabric-guide",
+      "@id": "https://www.poxiol.com/fabric-guide/#webpage",
+      "url": "https://www.poxiol.com/fabric-guide/",
       "name": "Sportswear Fabric Guide | Teamwear Fabric Database | POXIOL",
       "description": "Explore POXIOL sportswear fabric guide for custom teamwear, including mesh fabric, interlock fabric, bird eye fabric, quick-dry polyester, spandex sports fabric and moisture-wicking materials for basketball, soccer, baseball, volleyball and team sports.",
       "about": [
@@ -414,7 +414,7 @@ export const fabricGuideSchema = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://www.poxiol.com/fabric-guide#faq",
+      "@id": "https://www.poxiol.com/fabric-guide/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -484,7 +484,7 @@ export const fabricGuideSchema = {
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://www.poxiol.com/fabric-guide#breadcrumb",
+      "@id": "https://www.poxiol.com/fabric-guide/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -496,7 +496,7 @@ export const fabricGuideSchema = {
           "@type": "ListItem",
           "position": 2,
           "name": "Fabric Guide",
-          "item": "https://www.poxiol.com/fabric-guide"
+          "item": "https://www.poxiol.com/fabric-guide/"
         }
       ]
     }
@@ -519,8 +519,8 @@ export const printingGuideSchema = {
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.poxiol.com/printing-guide#webpage",
-      "url": "https://www.poxiol.com/printing-guide",
+      "@id": "https://www.poxiol.com/printing-guide/#webpage",
+      "url": "https://www.poxiol.com/printing-guide/",
       "name": "Sportswear Printing Guide | Sublimation, Screen Printing & Embroidery | POXIOL",
       "description": "Learn about sublimation printing, screen printing, embroidery and heat transfer methods for custom teamwear, basketball uniforms, soccer kits and sportswear manufacturing.",
       "about": [
@@ -533,7 +533,7 @@ export const printingGuideSchema = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://www.poxiol.com/printing-guide#faq",
+      "@id": "https://www.poxiol.com/printing-guide/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -579,7 +579,7 @@ export const printingGuideSchema = {
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://www.poxiol.com/printing-guide#breadcrumb",
+      "@id": "https://www.poxiol.com/printing-guide/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -591,7 +591,7 @@ export const printingGuideSchema = {
           "@type": "ListItem",
           "position": 2,
           "name": "Printing Guide",
-          "item": "https://www.poxiol.com/printing-guide"
+          "item": "https://www.poxiol.com/printing-guide/"
         }
       ]
     }

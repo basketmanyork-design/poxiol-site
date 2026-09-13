@@ -60,8 +60,7 @@ export default async function PSEOPage({ params }: Props) {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "POXIOL",
-      "logo": "https://www.poxiol.com/logo.png"
+      "name": "POXIOL"
     }
   } : null;
 
