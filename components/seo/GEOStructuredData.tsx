@@ -9,11 +9,10 @@ export function OrganizationSchema() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": GEO_V1.organization.id,
-        "name": GEO_V1.organization.name,
-        "url": GEO_V1.organization.url,
-        "description": GEO_V1.organization.description,
-        "industry": GEO_V1.organization.industry
+        "@id": GEO_V1.operator.id,
+        "name": GEO_V1.operator.name,
+        "url": GEO_V1.operator.url,
+        "description": GEO_V1.homepage.entityParagraphs[0]
       },
       {
         "@type": "WebSite",
@@ -21,7 +20,7 @@ export function OrganizationSchema() {
         "url": `${baseUrl}/`,
         "name": "POXIOL Custom Teamwear Manufacturer",
         "publisher": {
-          "@id": GEO_V1.organization.id
+          "@id": GEO_V1.operator.id
         }
       }
     ]

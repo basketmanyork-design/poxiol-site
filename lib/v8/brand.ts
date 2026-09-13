@@ -2,12 +2,12 @@ import {GEO_V1} from '../geo-v1.ts'
 import type {V8Buyer} from './types.ts'
 
 export const V8_BRAND = {
-  name: GEO_V1.organization.name,
-  organizationId: GEO_V1.organization.id,
+  name: GEO_V1.brand.name,
+  organizationId: GEO_V1.operator.id,
   canonicalBaseUrl: GEO_V1.canonicalBaseUrl,
   positioning: 'Professional Custom Teamwear Manufacturer',
   valueProposition: GEO_V1.homepage.heroDescription,
-  entityDescription: GEO_V1.organization.description,
+  entityDescription: GEO_V1.homepage.entityParagraphs[0],
 } as const
 
 export const V8_BUYERS: readonly V8Buyer[] = [

@@ -21,7 +21,8 @@ for (const file of requiredFiles) {
 const v8 = await import('../lib/v8/index.ts')
 
 assert.equal(v8.V8_BRAND.positioning, 'Professional Custom Teamwear Manufacturer')
-assert.equal(v8.V8_BRAND.organizationId, 'https://www.poxiol.com/#organization')
+assert.equal(v8.V8_BRAND.organizationId, 'https://www.poxiol.com/#operator')
+assert.equal(v8.V8_BRAND.name, 'POXIOL')
 assert.equal(v8.V8_BRAND.canonicalBaseUrl, 'https://www.poxiol.com')
 
 assert.deepEqual(

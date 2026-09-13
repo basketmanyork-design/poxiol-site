@@ -124,7 +124,7 @@ The source must contain no runtime references to David Zhang, Sarah Miller or Mi
 
 ## Components and Exact File Scope
 
-Only these seven implementation/test files may change under this specification:
+Only these nine implementation/test files may change under this specification:
 
 ### `lib/geo-v1.ts`
 
@@ -169,6 +169,21 @@ Only these seven implementation/test files may change under this specification:
 - Assert About identity-section idempotency.
 - Assert the operator is not represented as Product manufacturer.
 - Assert the PSEO source has eight POXIOL publisher markers and none of the three removed names.
+
+### `lib/v8/brand.ts`
+
+- Consume the canonical Brand display name and Operator identifier from `GEO_V1`.
+- Preserve the existing `organizationId` interface name as a compatibility boundary while pointing it to `#operator`.
+- Derive the entity description from the approved homepage entity paragraph; do not reintroduce an ambiguous organization constant.
+
+### `scripts/check-v8-architecture.test.mts`
+
+- Lock the V8 compatibility identifier to `https://www.poxiol.com/#operator` and the Brand display name to `POXIOL`.
+
+### `components/seo/GEOStructuredData.tsx`
+
+- Perform the minimal forward-compatible migration of existing `GEO_V1.organization` consumers to the canonical Operator values and approved homepage entity paragraph.
+- Leave the complete Brand/Operator graph and Product manufacturer cleanup to the later schema task.
 
 ### `scripts/check-geo-v1-output.mjs`
 
@@ -272,7 +287,7 @@ After an approved implementation passes every local gate:
 
 - Work only from the clean linked worktree based on baseline `66b4b0a5c25dd14526fbe1faf52ee58e22c94c41`.
 - Preserve unrelated files and stop if the baseline, target files or branch state drift before implementation.
-- Commit only the seven approved implementation/test files plus the approved planning documents.
+- Commit only the nine approved implementation/test files plus the approved planning documents.
 - Before Production deployment, record the then-current active Cloudflare Production Deployment ID and release marker.
 - If Production verification fails, restore that recorded deployment and verify the previous marker and critical URLs.
 - A source rollback may revert only the scoped implementation commit; destructive reset is forbidden.

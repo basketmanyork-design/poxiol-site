@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Implementation baseline is commit `b0effed`, whose parent Production source is `66b4b0a5c25dd14526fbe1faf52ee58e22c94c41`.
-- Runtime/test scope is exactly seven files: `lib/geo-v1.ts`, `components/seo/GEOStructuredData.tsx`, `lib/pseo.ts`, `app/[slug]/page.tsx`, `public/brand.json`, `scripts/check-geo-v1.test.mts`, and `scripts/check-geo-v1-output.mjs`.
+- Runtime/test scope is exactly nine files: `lib/geo-v1.ts`, `components/seo/GEOStructuredData.tsx`, `lib/pseo.ts`, `app/[slug]/page.tsx`, `public/brand.json`, `scripts/check-geo-v1.test.mts`, `scripts/check-geo-v1-output.mjs`, `lib/v8/brand.ts`, and `scripts/check-v8-architecture.test.mts`.
 - Public HTML and JSON-LD must contain only English text; the confirmed Chinese legal name `泉州篮人电子商务有限公司` may appear only in `/brand.json` and internal planning records.
 - Exact visible statement: `POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd.`
 - Exact official machine legal name: `QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.`
@@ -22,7 +22,7 @@
 - Never publish an address, trademark registration/status, Basketman relationship, factory-ownership relationship, personal author, credentials, customer claim, pricing, capacity or delivery promise.
 - Do not modify H1, metadata title, canonical URL, route, navigation, form behavior, analytics, CMS data, dependencies, `package.json` or Cloudflare configuration.
 - Do not map the Operator to `Product.manufacturer`; remove that existing unverified relationship.
-- Preserve all unrelated work. Stop if any of the seven target files differs from commit `b0effed` before its task begins.
+- Preserve all unrelated work. Stop if any of the nine target files differs from commit `b0effed` before its task begins.
 - Use `apply_patch` for source edits. Do not use destructive Git commands.
 
 ## File Responsibility Map
@@ -36,6 +36,8 @@
 | `public/brand.json` | Public machine summary, including Chinese legal name outside HTML |
 | `scripts/check-geo-v1.test.mts` | Fast source/runtime identity and attribution contract |
 | `scripts/check-geo-v1-output.mjs` | Static-output verification across homepage, About, products and eight affected pages |
+| `lib/v8/brand.ts` | V8 compatibility consumer of canonical Brand name, Operator ID and entity description |
+| `scripts/check-v8-architecture.test.mts` | V8 architecture contract for the Operator compatibility ID and Brand name |
 
 ---
 
@@ -554,7 +556,7 @@ The output test is expected to fail until the fresh static build in Task 5 repla
 ### Task 5: Full Gate, Production Release and Live Verification
 
 **Files:**
-- Verify only: all seven implementation/test files and generated ignored output
+- Verify only: all nine implementation/test files and generated ignored output
 - Do not modify: runtime source, CMS, analytics, Cloudflare configuration or dependency manifests
 
 **Interfaces:**
@@ -721,7 +723,7 @@ Report the implementation commit SHAs, pushed Production SHA, new Cloudflare Dep
 ## Plan Completion Criteria
 
 - All four code/data tasks have their own passing focused test and scoped commit.
-- The final diff contains only the approved specification/plan and seven runtime/test files.
+- The final diff contains only the approved specification/plan and nine runtime/test files.
 - Full source, TypeScript, static build, output, canonical, route, sitemap, construction, buyer-facing and inquiry gates pass.
 - Production is either verified on the new SHA or restored to the recorded prior deployment.
 - Live HTML contains the English operator statement and no CJK or personal author identity.
