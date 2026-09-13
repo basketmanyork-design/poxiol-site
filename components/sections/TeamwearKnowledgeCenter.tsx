@@ -9,7 +9,7 @@ const cards = [
   },
   {
     title: "Projects Library",
-    description: "Explore real-world teamwear projects and client success stories.",
+    description: "Review buyer-authorized project evidence and clearly labeled manufacturing scenarios.",
     button: "VIEW PROJECTS",
     href: "/projects/",
   },

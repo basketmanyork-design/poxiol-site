@@ -71,10 +71,10 @@ export const BUYER_DECISION_SECTIONS: BuyerDecisionSection[] = [
     id: 'who-we-are',
     eyebrow: '01 / Identity',
     title: 'Who We Are',
-    body: 'POXIOL is a factory-direct custom teamwear manufacturer supporting clubs, schools, academies, distributors and sportswear brands with design review, sampling, production planning and shipment preparation.',
+    body: 'POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd. It supports clubs, schools, academies, distributors and sportswear brands with design review, sampling, production planning and shipment preparation.',
     cards: [
       {title: 'B2B Teamwear Experience', description: 'Project requirements are reviewed against the confirmed product, quantity and schedule.'},
-      {title: 'Factory-Direct Coordination', description: 'Design, sample, production and packing details are managed through one project workflow.'},
+      {title: 'Project Coordination', description: 'Design, sample, production and packing details are managed through one project workflow.'},
     ],
   },
   {

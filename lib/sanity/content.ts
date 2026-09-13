@@ -1233,7 +1233,7 @@ function normalizeHomepageSeo(seo: CmsSeo): CmsSeo {
   return {
     ...seo,
     description: normalizeHomepageClaim(seo.description)
-      .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'POXIOL is a factory-direct custom teamwear manufacturer'),
+      .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'POXIOL supports B2B custom teamwear projects'),
   }
 }
 
@@ -1342,7 +1342,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
     brandName: chrome.brandName,
     siteUrl: chrome.siteUrl,
     productionMedia: page.productionMedia,
-    heroEyebrow: page.eyebrow || 'Factory-Direct Teamwear Manufacturer',
+    heroEyebrow: page.eyebrow || 'B2B Custom Teamwear',
     heroHeading: BUYER_DECISION_HERO_HEADING,
     heroDescription: BUYER_DECISION_HERO_DESCRIPTION,
     heroImage: page.image || {url: '/images/poxiol-v62/home_hero_v62_desktop.webp', alt: 'POXIOL Custom Teamwear Uniforms Factory'},
@@ -1360,7 +1360,7 @@ export async function getHomepageContent(): Promise<CmsHomeContent> {
       faq: {eyebrow: 'FAQ', title: 'Custom Teamwear Sourcing Guide'},
     },
     inquiryTitle: normalizeHomepageClaim(ctaSection?.title || 'Build Your Teamwear Project'),
-    inquiryDescription: normalizeHomepageClaim(ctaSection?.body || 'Submit your project details for a factory-direct evaluation. POXIOL reviews your logo, quantity and deadline to prepare a 3D mockup and production plan.'),
+    inquiryDescription: normalizeHomepageClaim(ctaSection?.body || 'Submit your project details for review. POXIOL reviews your logo, quantity and deadline to prepare a mockup and project-specific production plan.'),
     inquirySupportTitle: pageAny.inquirySupport?.title || 'B2B Support',
     inquirySupportDescription: normalizeHomepageClaim(pageAny.inquirySupport?.description || 'Share the tournament date and project requirements by WhatsApp so the available sample and production schedule can be confirmed.'),
     faqs: BUYER_DECISION_FAQS,

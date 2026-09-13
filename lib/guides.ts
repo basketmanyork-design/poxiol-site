@@ -108,7 +108,7 @@ const existingBuyingGuides: BuyingGuide[] = [
     metaDescription: "The professional's hub for teamwear manufacturing questions. Covers factory verification, fabric GSM, size tolerances, and private label support.",
     eyebrow: "Professional Hub",
     h1: "B2B Sourcing & Manufacturing FAQ",
-    intro: "Deep technical insights and procurement advice for sports organizations, brand owners, and sportswear distributors looking for factory-direct manufacturing excellence.",
+    intro: "Technical references and procurement questions for sports organizations, brand owners and sportswear distributors evaluating custom teamwear suppliers.",
     sections: [],
     faqs: [],
     relatedArticles: [

@@ -97,7 +97,7 @@ export const guidePages: GuidePage[] = [
     ],
     sections: [
       {
-        title: "1. Factory-Direct vs. Middlemen",
+        title: "1. Production Source vs. Sourcing Intermediary",
         content: "A real factory controls the production timeline and technical specs. Middlemen often face delays because they sub-contract production to third-party facilities.",
         table: {
           headers: ["Feature", "Direct Factory", "Middleman / Trading Co"],
