@@ -88,7 +88,7 @@ const pageDefinitions = [
     ],
     solutions: [
       {id: 'club-collection', title: 'Club Collection Planning', audience: 'For a consistent club identity', description: 'Define shared branding and product requirements across match, training and support apparel.', href: '/customization/', ctaLabel: 'Plan Club Customization'},
-      {id: 'club-team-map', title: 'Multiple Team Management', audience: 'For several squads', description: 'Separate roster, size and product details by team while keeping one coordinated program.', href: '/get-quote/', ctaLabel: 'Share Club Requirements'},
+      {id: 'club-team-map', title: 'Multiple Team Management', audience: 'For several squads', description: 'Separate roster, size and product details by team while keeping one coordinated program. Prepare names, numbers, sizes and exceptions with the [Custom Team Uniform Roster Checklist](/blog/custom-team-uniform-roster-checklist/).', href: '/get-quote/', ctaLabel: 'Share Club Requirements'},
       {id: 'club-production', title: 'Repeat Production Review', audience: 'For ongoing programs', description: 'Review the approved specifications and current order details before each repeat run.', href: '/manufacturing/', ctaLabel: 'See Manufacturing'},
     ],
     finalCta: {id: 'get-quote', label: 'Build Your Club Teamwear Program', href: '/get-quote/', description: 'Share your club identity, teams, product categories, estimated quantities and target dates.'},

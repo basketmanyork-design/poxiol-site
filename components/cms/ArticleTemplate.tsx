@@ -4,6 +4,7 @@ import {Header, Footer, PrimaryButton, SecondaryButton} from '@/components/ui'
 import type {CmsArticle} from '@/lib/cms/types'
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 import {normalizePortableText, type CmsPortableContent} from '@/lib/cms/portableText'
+import {SafeInternalText} from '@/components/content/SafeInternalText'
 
 const siteUrl = 'https://www.poxiol.com'
 
@@ -127,11 +128,11 @@ function SectionContent({content}: {content: string | string[]}) {
   if (Array.isArray(content)) {
     return (
       <ul className="mt-6 space-y-4 text-neutral-400">
-        {content.map((item) => <li key={item} className="leading-relaxed">• {item}</li>)}
+        {content.map((item) => <li key={item} className="leading-relaxed">• <SafeInternalText text={item} /></li>)}
       </ul>
     )
   }
-  return <p className="mt-6 whitespace-pre-line text-lg leading-relaxed text-neutral-400">{content}</p>
+  return <p className="mt-6 whitespace-pre-line text-lg leading-relaxed text-neutral-400"><SafeInternalText text={content} /></p>
 }
 
 function PortableTextContent({content}: {content: CmsPortableContent[]}) {
@@ -144,13 +145,13 @@ function PortableTextContent({content}: {content: CmsPortableContent[]}) {
           return <h2 key={node.key} className="pt-6 text-3xl font-black uppercase tracking-tight text-white">{node.text}</h2>
         }
         if (node.kind === 'paragraph') {
-          return <p key={node.key} className="text-lg leading-relaxed text-neutral-300">{node.text}</p>
+          return <p key={node.key} className="text-lg leading-relaxed text-neutral-300"><SafeInternalText text={node.text} /></p>
         }
         if (node.kind === 'list') {
           const List = node.ordered ? 'ol' : 'ul'
           return (
             <List key={node.key} className={`${node.ordered ? 'list-decimal' : 'list-disc'} space-y-3 pl-6 text-lg leading-relaxed text-neutral-300`}>
-              {node.items.map((item, index) => <li key={`${node.key}-${index}`}>{item}</li>)}
+              {node.items.map((item, index) => <li key={`${node.key}-${index}`}><SafeInternalText text={item} /></li>)}
             </List>
           )
         }

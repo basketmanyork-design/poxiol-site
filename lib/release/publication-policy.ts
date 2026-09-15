@@ -25,9 +25,19 @@ export function publicSectionDecision(
 
 const governedArticleRoutes = {
   'blog/custom-teamwear-production-notes': 'blog-custom-teamwear-production-notes',
+  'blog/sportswear-manufacturer-project-brief-checklist': 'blog-sportswear-manufacturer-project-brief-checklist',
+  'blog/tech-pack-vs-pattern-vs-sample': 'blog-tech-pack-vs-pattern-vs-sample',
+  'blog/custom-team-uniform-roster-checklist': 'blog-custom-team-uniform-roster-checklist',
 } as const satisfies Record<string, PublicSectionId>
 
+const approvedBlogRoutes = new Set<string>([
+  'sportswear-manufacturer-project-brief-checklist',
+  'tech-pack-vs-pattern-vs-sample',
+  'custom-team-uniform-roster-checklist',
+])
+
 export function isArticleRouteReleased(articleType: string, slug: string): boolean {
+  if (articleType === 'blog' && !approvedBlogRoutes.has(slug)) return false
   const policyId = governedArticleRoutes[`${articleType}/${slug}` as keyof typeof governedArticleRoutes]
   return !policyId || publicSectionDecision(policyId) !== 'WITHHELD'
 }
