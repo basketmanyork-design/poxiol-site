@@ -13,9 +13,6 @@ function invariant(condition, message) {
 }
 
 const required = new Map([
-  ['/', [
-    ['poxiol-teamwear-hero-3x1.webp', 'Illustrative POXIOL teamwear range banner with copy and inquiry options', 'Illustrative teamwear range concept — not client project evidence'],
-  ]],
   ['products/basketball-uniforms', [
     ['POXIOL_BASK_FullSet.webp', 'POXIOL black basketball jersey and shorts set with neon green lightning graphics and number 23', 'Basketball uniform visualization showing the matching jersey and shorts set.'],
     ['POXIOL_BASK_JerseyFront.webp', 'Front view of black POXIOL basketball jersey with neon green lightning graphics and number 23', 'Front-view basketball jersey visualization.'],
@@ -48,13 +45,20 @@ const required = new Map([
 
 for (const [route, assets] of required) {
   const html = htmlFor(route)
-  invariant(html.includes(route === '/' ? 'Illustrative teamwear range concept — not client project evidence' : 'Product visualization'), `${route} is missing the visualization disclosure`)
+  invariant(html.includes('Product visualization'), `${route} is missing the visualization disclosure`)
   for (const [file, alt, caption] of assets) {
-    invariant(html.includes(route === '/' ? `/images/${file}` : `/product-visualization/${file}`), `${route} is missing ${file}`)
+    invariant(html.includes(`/product-visualization/${file}`), `${route} is missing ${file}`)
     invariant(html.includes(alt), `${route} changed the approved alt for ${file}`)
     invariant(html.includes(caption), `${route} changed the approved caption for ${file}`)
   }
 }
+
+const home=htmlFor('/')
+invariant(home.includes('Product design illustrations — specifications are confirmed for each project.'), 'Homepage design images need an explicit non-proof disclosure')
+for (const slug of ['soccer','basketball','baseball','training','running-track','warm-up']) {
+  invariant(home.includes(`/website-optimization/${slug}-800.webp`), `Homepage is missing the supplied ${slug} card derivative`)
+}
+invariant(home.includes('/website-optimization/poxiol-hero-22s-720p.mp4'), 'Homepage is missing the supplied hero film')
 
 for (const route of ['factory', 'manufacturing', 'quality-control-process']) {
   invariant(!htmlFor(route).includes('/product-visualization/'), `${route} must not use product visualization as production evidence`)

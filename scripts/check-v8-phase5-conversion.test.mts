@@ -29,13 +29,14 @@ const sampleOrderFaqQuestions = [
 ] as const
 
 assert.deepEqual(V8_CONVERSION_ENTRIES.map((entry) => [entry.intent, entry.path]), [
+  ['project', '/'],
   ['mockup', '/free-mockup/'],
   ['quote', '/get-quote/'],
   ['sample', '/sample-order/'],
   ['contact', '/contact/'],
 ])
-assert.equal(new Set(V8_CONVERSION_ENTRIES.map((entry) => entry.purpose)).size, 4, 'Conversion pages must keep separate buyer intents.')
-assert.equal(new Set(V8_CONVERSION_ENTRIES.map((entry) => entry.ctaLabel)).size, 4, 'Each conversion intent needs a specific submission CTA.')
+assert.equal(new Set(V8_CONVERSION_ENTRIES.map((entry) => entry.purpose)).size, 5, 'Conversion pages must keep separate buyer intents.')
+assert.equal(new Set(V8_CONVERSION_ENTRIES.map((entry) => entry.ctaLabel)).size, 5, 'Each conversion intent needs a specific submission CTA.')
 
 const freeMockupSource = read('app/free-mockup/page.tsx')
 assert.match(freeMockupSource, /FREE_MOCKUP_FAQS/, 'Free Mockup must use its page-specific shared FAQ data.')
@@ -77,18 +78,17 @@ assert.doesNotMatch(JSON.stringify(pageWithSampleOrderFaqs), /\b(?:\d+\s*(?:work
 if (outputMode) {
   const requiredFields = [
     'buyerRole',
-    'sport',
-    'quantity',
-    'deadline',
-    'customizationRequirements',
-    'logo_file',
-    'reference_design_file',
+    'product-0',
+    'quantity-0',
+    'required_delivery_date',
+    'delivery_country_code',
+    'delivery_postal_code',
     'whatsapp',
     'email',
   ]
 
   for (const entry of V8_CONVERSION_ENTRIES) {
-    const outputFile = path.join(root, 'out', entry.path.replace(/^\/+|\/+$/g, ''), 'index.html')
+    const outputFile = entry.path==='/'?path.join(root,'out','index.html'):path.join(root, 'out', entry.path.replace(/^\/+|\/+$/g, ''), 'index.html')
     assert.equal(existsSync(outputFile), true, `Missing conversion route: ${entry.path}`)
     const html = readFileSync(outputFile, 'utf8')
     const visibleHtml = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
@@ -101,7 +101,7 @@ if (outputMode) {
     }
     const firstField = entry.intent === 'contact' ? 'message' : 'buyerRole'
     assert.ok(visibleHtml.indexOf(`name="${firstField}"`) < visibleHtml.indexOf('<footer'), `${entry.path} must render its inquiry form before the site footer.`)
-    assert.ok(visibleText.includes('One project, one clear next step'), `${entry.path} is missing the shared conversion-entry guide.`)
+    if (entry.intent!=='project') assert.ok(visibleText.includes('One project, one clear next step'), `${entry.path} is missing the shared conversion-entry guide.`)
   }
 
   const funnelRoutes = [

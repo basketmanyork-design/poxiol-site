@@ -12,9 +12,9 @@ if (baseUrl) {
 }
 
 const pages = [
-  {route: '/get-quote/', target: 'quote-form', title: 'Request a Factory Quote', bottomCta: true},
-  {route: '/free-mockup/', target: 'free-mockup-form', title: 'Request a Free Mockup', bottomCta: true},
-  {route: '/sample-order/', target: 'sample-request-form', title: 'Request a Production Sample', bottomCta: true},
+  {route: '/get-quote/', target: 'quote-form', title: 'Request a Quote', bottomCta: true},
+  {route: '/free-mockup/', target: 'free-mockup-form', title: 'Request Your Free Mockup', bottomCta: true},
+  {route: '/sample-order/', target: 'sample-request-form', title: 'Apply for a Free Sample', bottomCta: true},
   {route: '/contact/', target: 'contact-form', title: 'Send a General Inquiry', bottomCta: false},
 ]
 
@@ -68,11 +68,13 @@ for (const page of pages) {
     }
 
     assert.equal((html.match(/<form\b/gi) || []).length, 1, 'Do not introduce duplicate inquiry forms')
-    assert.equal((html.match(/<input\b[^>]*type="file"/gi) || []).length, page.route === '/contact/' ? 0 : 3, 'Only the general inquiry drops project attachments')
-    for (const name of page.route === '/contact/' ? ['message', 'email'] : ['buyerRole', 'sport', 'quantity', 'email']) {
+    assert.equal((html.match(/<input\b[^>]*type="file"/gi) || []).length, page.route === '/contact/' ? 0 : 1, 'Project form has one optional artwork picker')
+    for (const name of page.route === '/contact/' ? ['message', 'email'] : ['product-0', 'quantity-0', 'required_delivery_date', 'delivery_country_code', 'delivery_postal_code']) {
       const control = html.match(new RegExp(`<(?:input|select|textarea)\\b[^>]*name="${name}"[^>]*>`, 'i'))?.[0]
-      assert.ok(control && /\srequired(?:\s|=|>)/i.test(control), `Keep ${name} validation unchanged in CTA-01`)
+      assert.ok(control, `Keep ${name} present in the buyer form`)
+      if (page.route === '/contact/') assert.match(control, /\srequired(?:\s|=|>)/i)
     }
+    if (page.route !== '/contact/') assert.match(html, /Provide at least one contact method/, 'Email or WhatsApp is validated as an alternative')
     assert.ok(anchors(html).some((link) => link.href.startsWith('https://wa.me/8613055646888')), 'Keep the established WhatsApp channel')
     assert.match(html, new RegExp(`<link[^>]*rel="canonical"[^>]*href="https://www\\.poxiol\\.com${page.route}"`), 'Do not change canonical URLs')
   })

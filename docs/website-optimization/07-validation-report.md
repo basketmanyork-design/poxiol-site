@@ -1,0 +1,24 @@
+# V1.1 review validation, 2026-09-16
+
+Environment: isolated `codex/poxiol-website-optimization-v1-1` worktree, Next.js 15.5.21 static export, bundled Node 24 for local checks, localhost Python static server `127.0.0.1:4466`, Chrome desktop and temporary 320/390/768/1440px DevTools viewport emulation. Production Formspree was **not** contacted; build endpoint is `https://example.invalid/never-sent`. The local machine lacks an `npm` executable, so the repository's composite `npm test` and `npm run build` scripts were not invoked locally. A direct optimized `next build` and focused source/output gates were run; full Node 22 CI gates remain a release requirement.
+
+| Check | Result and evidence |
+|---|---|
+| TypeScript and static export | `tsc --noEmit` PASS; direct `next build` PASS, 114 generated paths. Existing/new `<img>` lint warnings remain; new card WebPs are pre-optimized derivatives. |
+| Homepage/module order | `check-v8-homepage-output` PASS, one visible H1, one supplied video, six mapped cards, nine modules in confirmed order and nine FAQs. |
+| Procurement rules | New 5/5 test PASS: optional notes/file, email-only and WhatsApp-only, quantity/date/country/postal, explicit no-postal, edited product, invalid 2xx JSON. |
+| Recovery and double click | Existing project recovery 28/28 and general recovery 16/16 PASS after fixtures were updated to require JSON acceptance. Client lock prevents same-render duplicate; durable receiver-side dedupe NOT_TESTED. |
+| Existing navigation and conversion | Hybrid 24/24, product taxonomy 4/4, navigation 2/2, V8 architecture/accessibility/mobile/lead source checks, mobile CTA 7/7, conversion CTA 5/5 PASS. |
+| SEO, routes and receiving boundary | Sitemap output PASS at 81 URLs; final SEO 8/8, route-release unit 12/12, V8 phase 5/6 source/output, inquiry context output 4/4, success output 6/6, review endpoint output 5/5 PASS. Each six card route and supplied video returned HTTP 200 locally. Canonical Production host remains `www.poxiol.com`. |
+| Media integrity | `asset-manifest.json` records SHA-256 before/after derivation; originals unchanged at preparation and final repeat. Six 480/800 WebPs total 332,334 bytes; supplied/copy MP4 is 4,644,204 bytes. No regeneration. |
+| Browser empty submit | At 390px, blank form produced required-field errors and stayed at the local page. Screenshot: `screenshots/mobile-390-form-errors.png`. |
+| Browser complete synthetic submit | Soccer, 24 sets, 2026-11-15 in-hand date, GB/postal and synthetic email, no note/file: client submitted only to `.invalid`, then showed “Receipt has not been confirmed”, kept draft, and disabled resending. No accepted-lead event or success UI. Screenshot: `screenshots/mobile-390-form-failure.png`. |
+| Responsive smoke | Actual screenshots at 320, 390, 768 and 1440px. No document horizontal overflow at 768/1440; visual 320/390 review shows mobile menu and fixed action bar. The 320px first viewport ends before the video; it is immediately below the copy/CTAs, and this short viewport is an editorial review point. |
+
+Screenshot set: `desktop-1440-hero.png`, `desktop-full.png`, `tablet-768-hero.png`, `mobile-320-hero.png`, `mobile-390-hero.png`, `mobile-390-full.png`, and both mobile form-state captures in `screenshots/`. Files contain only public content or synthetic QA values. The actual 390px full screenshot is 390×12,572 pixels.
+
+Performance evidence is **local static output**, not a Lighthouse or field score: homepage HTML 115,900 bytes, common first-load JS reported by Next at 103 kB, card derivatives total 332 kB, video 4.64 MB. Loopback GETs for homepage, six card routes and video were 200 with observed 1–25 ms request times; these are not buyer network/LCP figures. `LIGHTHOUSE_MOBILE=NOT_TESTED`, `LIGHTHOUSE_DESKTOP=NOT_TESTED`, `CWV_FIELD_DATA=INSUFFICIENT_OR_NOT_QUERIED`. Run lab tests on the final remote preview and compare against the plan target before release.
+
+`FORM_ACCEPTED_AT_REAL_RECEIVER=NOT_TESTED`, `SAVED_RECORD_RETRIEVAL=NOT_TESTED`, `NOTIFICATION_FAILURE_PRESERVES_LEAD=NOT_TESTED`, `OKKI_HANDOFF=NOT_TESTED`, `SANITY_DRAFT_EDIT=NOT_TESTED`, `PREVIEW_X_ROBOTS_TAG=NOT_TESTED_UNTIL_REMOTE_PREVIEW`, `PRODUCTION_LEAD_CHAIN=NOT_TESTED`, `AD_TRAFFIC_READY=NO`. An in-app browser crashed when its native video timeline was clicked; Chrome displayed the first supplied frame and controls, but full play/pause and seek were not repeated there. The Chrome viewport capability did not resize its active tab, so temporary DevTools metrics were used and cleared afterward. No Production deployment occurred.
+
+Status: `PARTIAL_BLOCKED` for the real receiving chain while the UI/code preview is reviewable. Required next gate: external preview build, full Node 22 CI, isolated Formspree response/storage/notification test, owner/backup and OKKI contract, then York review of a specific version.

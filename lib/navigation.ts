@@ -53,23 +53,23 @@ export const HEADER_NAV: NavItem[] = [
       },
     ],
   },
-  { label: 'Solutions', href: '/private-label-teamwear/', children: [
+  { label: 'Who We Help', href: '/#who-we-help', children: [
     {label: 'Private Label Teamwear', href: '/private-label-teamwear/'},
     {label: 'OEM / ODM', href: '/oem-odm/'},
     {label: 'Sample Order', href: '/sample-order/'},
   ]},
-  { label: 'Why POXIOL', href: '/customization/', children: [
-    {label: 'Customization', href: '/customization/'},
-    {label: 'Quality Control Process', href: '/quality-control-process/'},
+  { label: 'Customization', href: '/customization/', children: [
+    {label: 'Customization Options', href: '/customization/'},
     {label: 'Fabric Guide', href: '/fabric-guide/'},
+    {label: 'Free Mockup', href: '/free-mockup/'},
+  ]},
+  { label: 'Our Factory', href: '/factory/', children: [
+    {label: 'Factory', href: '/factory/'},
+    {label: 'Quality Control Process', href: '/quality-control-process/'},
     {label: 'Shipping & After-Sales', href: '/shipping-after-sales/'},
+    {label: 'About POXIOL', href: '/about/'},
   ]},
   { label: 'Resources', href: '/resources/' },
-  { label: 'About POXIOL', href: '/about/', children: [
-    {label: 'About POXIOL', href: '/about/'},
-    {label: 'Factory', href: '/factory/'},
-    {label: 'Contact', href: '/contact/'},
-  ]},
 ];
 
-export const HEADER_CTA = { label: 'Get Quote', href: '/get-quote/' };
+export const HEADER_CTA = { label: 'Tell Us About Your Project', href: '/get-quote/' };

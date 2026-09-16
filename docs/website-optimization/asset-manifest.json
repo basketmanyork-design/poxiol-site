@@ -1,0 +1,135 @@
+[
+  {
+    "category": "soccer",
+    "source": "E:\\Poxiol团队\\POXIOL独立站\\最新素材\\ChatGPT Image 2026年9月15日 20_32_39 (1).png",
+    "originalSha256": "5d84763b635f7d41e020d14217b26a6f8e4978d2bfe138a23389855cd27d11dd",
+    "sourceBytes": 1956986,
+    "width": 1122,
+    "height": 1402,
+    "outputs": [
+      {
+        "path": "/website-optimization/soccer-480.webp",
+        "bytes": 13956,
+        "sha256": "50dfcafa1d22abda041f997a225a968b4823a4cbe3194549fb1699eb34f63b51"
+      },
+      {
+        "path": "/website-optimization/soccer-800.webp",
+        "bytes": 37170,
+        "sha256": "4e97eca09939203ccca7e2ece1c818fd8089b84666742791bb46614ee8d3292f"
+      }
+    ]
+  },
+  {
+    "category": "basketball",
+    "source": "E:\\Poxiol团队\\POXIOL独立站\\最新素材\\ChatGPT Image 2026年9月15日 20_32_39 (2).png",
+    "originalSha256": "7ed8e568ea3f2efb69e7a98201deb340d099ff70bce8583c016bed07491ad89e",
+    "sourceBytes": 1950981,
+    "width": 1122,
+    "height": 1402,
+    "outputs": [
+      {
+        "path": "/website-optimization/basketball-480.webp",
+        "bytes": 20308,
+        "sha256": "7d346001da984c6033718baa50c552d483cd52ab2d4640d28ff1ff92b6d086e9"
+      },
+      {
+        "path": "/website-optimization/basketball-800.webp",
+        "bytes": 54340,
+        "sha256": "1f44e4d76a8d7a87c755f2d0af3fe2d6063500d68bd73cf0838be4954e7f49cc"
+      }
+    ]
+  },
+  {
+    "category": "baseball",
+    "source": "E:\\Poxiol团队\\POXIOL独立站\\最新素材\\ChatGPT Image 2026年9月15日 20_32_39 (3).png",
+    "originalSha256": "90c42a0e8988f820ddca454ecc26bc7aa60fb2e61937f190007c622920e2c06d",
+    "sourceBytes": 1662980,
+    "width": 1122,
+    "height": 1402,
+    "outputs": [
+      {
+        "path": "/website-optimization/baseball-480.webp",
+        "bytes": 17524,
+        "sha256": "4978c6b38f6a3558230078237889c2735b021ad73bdf1265f08099317ee3076e"
+      },
+      {
+        "path": "/website-optimization/baseball-800.webp",
+        "bytes": 39862,
+        "sha256": "c27f5dbbd7f17eb1efa41ee53e4e103554f5053ea3840899886855887a5401b2"
+      }
+    ]
+  },
+  {
+    "category": "training",
+    "source": "E:\\Poxiol团队\\POXIOL独立站\\最新素材\\ChatGPT Image 2026年9月15日 20_32_39 (4).png",
+    "originalSha256": "368f485bda8b6e60032dd4fe3a7a1b943640e89ef5956c489e473db8fb24cc39",
+    "sourceBytes": 1810992,
+    "width": 1122,
+    "height": 1402,
+    "outputs": [
+      {
+        "path": "/website-optimization/training-480.webp",
+        "bytes": 12908,
+        "sha256": "71cd1e1e5dd71ea427ec19ed44541420cfbbf2fc173210707b5dc04ba2372641"
+      },
+      {
+        "path": "/website-optimization/training-800.webp",
+        "bytes": 30330,
+        "sha256": "c7f226721d1c5873ea446cbe2074eefc1421c00e45964ea3ad789fb15cb993c2"
+      }
+    ]
+  },
+  {
+    "category": "running-track",
+    "source": "E:\\Poxiol团队\\POXIOL独立站\\最新素材\\ChatGPT Image 2026年9月15日 20_32_39 (5).png",
+    "originalSha256": "720bb525759123481330c91a98e8d296a23c5202a771817b23d0936f84e8d86b",
+    "sourceBytes": 1968349,
+    "width": 1122,
+    "height": 1402,
+    "outputs": [
+      {
+        "path": "/website-optimization/running-track-480.webp",
+        "bytes": 15244,
+        "sha256": "a65d8383f49c8f510a6dd41994fda754c36f86e134b521ef92283988908b1843"
+      },
+      {
+        "path": "/website-optimization/running-track-800.webp",
+        "bytes": 47862,
+        "sha256": "378605f7848e8a9a54b19d3ed53fdb9231a0f25f13978b13b0bc72c5272ef474"
+      }
+    ]
+  },
+  {
+    "category": "warm-up",
+    "source": "E:\\Poxiol团队\\POXIOL独立站\\最新素材\\ChatGPT Image 2026年9月15日 20_32_39 (6).png",
+    "originalSha256": "ec6927117766e5a41a3d315cf5bdfa24d478bd31339c49395b9b42c3aa39a69a",
+    "sourceBytes": 1690285,
+    "width": 1122,
+    "height": 1402,
+    "outputs": [
+      {
+        "path": "/website-optimization/warm-up-480.webp",
+        "bytes": 12872,
+        "sha256": "3fe58c86f35822e0f6762117b4abcc03cf1d39d8d9bce1eead71fd17281abf03"
+      },
+      {
+        "path": "/website-optimization/warm-up-800.webp",
+        "bytes": 29958,
+        "sha256": "ba094689fd09568d33fd4e2c17c0e4c54e93584cfc78c02e3543c92422149e75"
+      }
+    ]
+  },
+  {
+    "category": "hero-video",
+    "source": "E:\\Poxiol团队\\POXIOL独立站\\最新素材\\POXIOL_Hero_22s_Web_720p.mp4",
+    "originalSha256": "6b2fb9843cbf319e825f536bae57d270d04092397af6413ffdbdcc9c0d450ce1",
+    "sourceBytes": 4644204,
+    "outputs": [
+      {
+        "path": "/website-optimization/poxiol-hero-22s-720p.mp4",
+        "bytes": 4644204,
+        "sha256": "6b2fb9843cbf319e825f536bae57d270d04092397af6413ffdbdcc9c0d450ce1"
+      }
+    ]
+  }
+]

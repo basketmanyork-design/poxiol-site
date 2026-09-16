@@ -5,8 +5,8 @@ const projectReviewNote = 'Final feasibility remains project-specific and is con
 
 export const hybridHome = {
   seo: {
-    title: 'Global Custom Teamwear Manufacturer',
-    description: 'POXIOL supports teamwear distributors, dealers, sportswear brands, and custom resellers serving teams worldwide with a controlled path from design review through repeat orders.',
+    title: 'Custom Teamwear Manufacturer for Teams & Brands | POXIOL',
+    description: 'Custom teamwear for teams, schools, clubs, brands and resellers. Explore uniforms, request a free mockup and discuss your next teamwear project with POXIOL.',
   },
   hero: {title: 'Custom Teamwear Built for Repeatable Team Orders', body: 'POXIOL supports teamwear distributors, dealers, sportswear brands, and custom resellers serving teams worldwide with a controlled path from design review through repeat orders.', projectReviewNote},
   audience: {title: 'For Teamwear Distributors, Dealers, Brands & Custom Resellers', body: 'Six risks can turn a team order into a client problem. Our process is built to control them.'},

@@ -3,20 +3,21 @@ import {readFile} from 'node:fs/promises'
 import {join} from 'node:path'
 import {test} from 'node:test'
 
-const expected = 'https://formspree.io/f/xnpqqnol'
+const expected = process.env.EXPECTED_INQUIRY_OUTPUT_ENDPOINT || 'https://formspree.io/f/xnpqqnol'
+const isReviewReceiver = expected === 'https://example.invalid/never-sent'
 for (const route of ['', 'get-quote', 'free-mockup', 'sample-order', 'contact']) {
-  test(`/${route}${route ? '/' : ''} sends both native and hydrated inquiry flows to the approved prelaunch endpoint`, async () => {
+  test(`/${route}${route ? '/' : ''} uses the configured receiving boundary in native and hydrated inquiry flows`, async () => {
     const html = await readFile(join('out',route,'index.html'),'utf8')
     const forms = [...html.matchAll(/<form\b[^>]*>[\s\S]*?<\/form>/gi)].map(match=>match[0])
     assert.equal(forms.length,1,'Expected exactly one buyer inquiry form')
     const form = forms[0]
-    assert.equal(form.match(/\baction="([^"]*)"/)?.[1],expected,'Native form action must use the newly tested account')
+    assert.equal(form.match(/\baction="([^"]*)"/)?.[1],route!=='contact' && isReviewReceiver ? '#contact' : expected,'Native form action must use the expected receiver, or stay local in review')
     assert.match(form, /\bmethod="post"/i)
     if (route === 'contact') {
       assert.doesNotMatch(form, /type="file"/)
     } else {
       assert.match(form, /\benctype="multipart\/form-data"/i)
-      assert.equal((form.match(/type="file"/g)||[]).length,3)
+      assert.equal((form.match(/type="file"/g)||[]).length,1)
     }
     const sources = [...new Set([...html.matchAll(/<script\b[^>]*\bsrc="([^"?#]+\.js)"/gi)].map(m=>m[1]))]
     assert.ok(sources.length > 0,'A hydrated client bundle must be present')

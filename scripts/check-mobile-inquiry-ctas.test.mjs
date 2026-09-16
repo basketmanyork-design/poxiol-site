@@ -10,7 +10,7 @@ const cases = [
   {route: '/free-mockup/', href: '#free-mockup-form', label: 'Free Mockup'},
   {route: '/sample-order/', href: '#sample-request-form', label: 'Request Sample'},
   {route: '/contact/', href: '#contact-form', label: 'Inquiry Form'},
-  {route: '/', href: '/get-quote/#quote-form', label: 'Get Quote'},
+  {route: '/', href: '#contact', label: 'Start Your Project'},
   {route: '/about/', href: '/get-quote/#quote-form', label: 'Get Quote'},
   {route: '/products/basketball-uniforms/', href: '/get-quote/#quote-form', label: 'Get Quote'},
 ]

@@ -5,6 +5,7 @@ import { V8_CONVERSION_ENTRIES, getV8ConversionEntry, type V8ConversionIntent } 
 import {contextFromPage, contextualInquiryHref} from '@/lib/inquiry-context';
 
 const labels: Record<V8ConversionIntent, string> = {
+  project: "Start Your Project",
   quote: "Get Quote",
   mockup: "Free Mockup",
   sample: "Request Sample",

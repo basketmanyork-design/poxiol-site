@@ -8,6 +8,7 @@ import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
 import {buildCmsProductGeoDetails} from '@/lib/geo-v1'
 import {productCategoryHref} from '@/lib/products-page'
+import {contextualInquiryHref} from '@/lib/inquiry-context'
 
 type Props = {params: {slug: string}}
 
@@ -93,6 +94,7 @@ export default async function ProductDetailPage({params}: Props) {
   const product = await getProduct(params.slug)
   if (!product) notFound()
   const geoDetails = buildCmsProductGeoDetails(product)
+  const productInquiryHref = contextualInquiryHref('/get-quote/', {product: product.title, source: `/products/${product.slug}/`})
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
@@ -109,7 +111,7 @@ export default async function ProductDetailPage({params}: Props) {
             <p className="mt-10 text-sm font-black uppercase tracking-[0.18em] text-[#B6FF00]">Custom Teamwear Product</p>
             <h1 className="mt-5 text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl">{product.title}</h1>
             <p className="mt-8 text-lg leading-8 text-neutral-300">{product.description}</p>
-            <div className="mt-10 flex flex-wrap gap-4"><PrimaryButton href="/free-mockup/">Request Free Mockup</PrimaryButton><SecondaryButton href="/get-quote/">Get Factory Quote</SecondaryButton></div>
+            <div className="mt-10 flex flex-wrap gap-4"><PrimaryButton href={productInquiryHref}>Discuss This Product</PrimaryButton><SecondaryButton href={productInquiryHref}>Request a Quote</SecondaryButton></div>
           </div>
           {product.image ? <img src={product.image.url} alt={product.image.alt} className="aspect-[4/3] w-full rounded-[2rem] object-cover" /> : null}
         </div>
@@ -150,7 +152,7 @@ export default async function ProductDetailPage({params}: Props) {
       <section className="bg-neutral-900 px-5 py-16 text-center text-white md:px-10 md:py-24 xl:px-20">
         <h2 className="text-3xl font-black uppercase md:text-5xl">Need this product customized?</h2>
         <p className="mx-auto mt-5 max-w-2xl text-neutral-300">Send logo files, quantity, sizes and deadline. POXIOL will help confirm mockup and production details.</p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4"><PrimaryButton href="/free-mockup/">Get a Free Mockup</PrimaryButton><SecondaryButton href="/contact/">Talk to a Teamwear Specialist</SecondaryButton></div>
+        <div className="mt-8 flex flex-wrap justify-center gap-4"><PrimaryButton href={productInquiryHref}>Discuss This Product</PrimaryButton><SecondaryButton href="/free-mockup/">Get a Free Mockup</SecondaryButton></div>
       </section>
       <Footer />
     </main>

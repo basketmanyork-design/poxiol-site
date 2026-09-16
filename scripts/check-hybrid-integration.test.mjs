@@ -179,9 +179,10 @@ test('keeps approved navigation groups and destination-labelled legacy routes', 
   assert.deepEqual(Array.from(products.groups, group => group.label), ['Explore', 'Browse by Sport', 'Browse by Wearing Scenario'])
   assert.equal(products.groups[1].items.length, 12)
   assert.equal(products.groups[2].items.length, 3)
-  assert.deepEqual(Array.from(groups.Solutions, item => item.href), ['/private-label-teamwear/', '/oem-odm/', '/sample-order/'])
-  assert.deepEqual(Array.from(groups['Why POXIOL'], item => item.href), ['/customization/', '/quality-control-process/', '/fabric-guide/', '/shipping-after-sales/'])
-  assert.deepEqual(Array.from(groups['About POXIOL'], item => item.href), ['/about/', '/factory/', '/contact/'])
+  assert.deepEqual(Array.from(groups['Who We Help'], item => item.href), ['/private-label-teamwear/', '/oem-odm/', '/sample-order/'])
+  assert.deepEqual(Array.from(groups.Customization, item => item.href), ['/customization/', '/fabric-guide/', '/free-mockup/'])
+  assert.deepEqual(Array.from(groups['Our Factory'], item => item.href), ['/factory/', '/quality-control-process/', '/shipping-after-sales/', '/about/'])
+  assert.equal(navigation.HEADER_CTA.label, 'Tell Us About Your Project')
 })
 
 test('Header renders real semantic disclosures for every navigation group with children', async () => {

@@ -1,4 +1,4 @@
-export type V8ConversionIntent = 'mockup' | 'quote' | 'sample' | 'contact'
+export type V8ConversionIntent = 'project' | 'mockup' | 'quote' | 'sample' | 'contact'
 export type V8LeadPriority = 'HIGH' | 'MEDIUM' | 'LOW'
 export type BuyerRole = typeof BUYER_ROLE_OPTIONS[number]
 
@@ -24,6 +24,9 @@ export const PROJECT_SPORT_OPTIONS = [
   'Cricket',
   'Golf',
   'Multi-Sport Teamwear',
+  'Training',
+  'Running & Track',
+  'Warm-Up Wear',
   'Other',
 ] as const
 
@@ -48,6 +51,10 @@ export type ProjectQualificationFields = {
   whatsapp: string
   email: string
   selectedStyle: string
+  unit?: string
+  requiredDeliveryDate?: string
+  deliveryPostalCode?: string
+  postalNotApplicable?: boolean
 }
 
 export type ProjectAttachments = {
@@ -109,13 +116,20 @@ export function classifyLead(input: LeadQualificationInput): V8LeadPriority {
 
 export const V8_CONVERSION_ENTRIES = [
   {
+    intent: 'project', path: '/', formAnchorId: 'contact',
+    purpose: 'Start a teamwear project with the basic purchasing requirements.',
+    formTitle: 'Tell Us About Your Project',
+    subtitle: 'Share your product needs and delivery requirements. We’ll help you review the options and next steps.',
+    ctaLabel: 'Submit Your Project', successUrl: '/thank-you/',
+  },
+  {
     intent: 'mockup',
     path: '/free-mockup/',
     formAnchorId: 'free-mockup-form',
     purpose: 'Early design interest and visual concept review.',
-    formTitle: 'Request a Free Mockup',
-    subtitle: 'Share your sport, logo, reference and project requirements for an initial design review.',
-    ctaLabel: 'Submit Free Mockup Request',
+    formTitle: 'Request Your Free Mockup',
+    subtitle: 'Share your sport, colors or design idea. A finished design file is not required.',
+    ctaLabel: 'Request My Free Mockup',
     successUrl: '/thank-you/',
   },
   {
@@ -123,9 +137,9 @@ export const V8_CONVERSION_ENTRIES = [
     path: '/get-quote/',
     formAnchorId: 'quote-form',
     purpose: 'Pricing and production planning for a defined purchasing project.',
-    formTitle: 'Request a Factory Quote',
-    subtitle: 'Share quantity, deadline and customization requirements for a fact-based project quotation.',
-    ctaLabel: 'Send Quote Request',
+    formTitle: 'Request a Quote',
+    subtitle: 'Share your product, quantity and delivery requirements so our team can review your specifications and prepare a quotation.',
+    ctaLabel: 'Request My Quote',
     successUrl: '/quote-received/',
   },
   {
@@ -133,9 +147,9 @@ export const V8_CONVERSION_ENTRIES = [
     path: '/sample-order/',
     formAnchorId: 'sample-request-form',
     purpose: 'High-intent sample approval before bulk production.',
-    formTitle: 'Request a Production Sample',
-    subtitle: 'Share the approved design direction and project requirements for sample planning before bulk production.',
-    ctaLabel: 'Send Sample Request',
+    formTitle: 'Apply for a Free Sample',
+    subtitle: 'Tell us about your team or business order. We’ll review eligibility and confirm sample options and shipping before dispatch.',
+    ctaLabel: 'Submit Sample Request',
     successUrl: '/sample-request-received/',
   },
   {
@@ -194,7 +208,7 @@ export function createProjectSubmissionFormData({
   formData.append('leadPriority', leadPriority)
 
   for (const [key, value] of Object.entries(fields)) {
-    formData.append(key === 'selectedStyle' ? 'selected_style' : key, value)
+    formData.append(key === 'selectedStyle' ? 'selected_style' : key, String(value))
   }
 
   for (const [key, file] of Object.entries(attachments)) {

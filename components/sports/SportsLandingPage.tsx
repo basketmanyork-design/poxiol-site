@@ -8,6 +8,7 @@ import { ProductGeoSections } from "@/components/sections/GeoV1Sections";
 import { buildSportsProductGeoDetails, resolveSportsFaqs } from "@/lib/geo-v1";
 import {publicSectionDecision} from '@/lib/release/publication-policy';
 import {sportsPageSectionCopy} from '@/lib/sports-page-copy';
+import {contextualInquiryHref} from '@/lib/inquiry-context';
 
 function titleCaseKeyword(keyword: string) {
   return keyword.replace(/^custom\s+/i, "").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -18,6 +19,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
   const sectionCopy = sportsPageSectionCopy(productLabel);
   const baseUrl = "https://www.poxiol.com";
   const fullUrl = `${baseUrl}/${data.slug}/`;
+  const productInquiryHref = contextualInquiryHref('/get-quote/', {product: productLabel, source: `/${data.slug}/`});
   const resolvedFaqs = resolveSportsFaqs(data);
   const geoDetails = buildSportsProductGeoDetails(data);
   const planningDecision = publicSectionDecision('solutions-planning');
@@ -63,6 +65,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <PrimaryButton href={data.primaryCta?.href || freeMockupHref}>{data.primaryCta?.label || "Get Free Mockup"}</PrimaryButton>
               <SecondaryButton href={data.secondaryCta?.href || "#procurement-specs"}>{data.secondaryCta?.label || "View Specifications"}</SecondaryButton>
+              <SecondaryButton href={productInquiryHref}>Discuss This Product</SecondaryButton>
             </div>
           </div>
           {data.heroMediaKind === 'illustration' ? (
@@ -326,6 +329,7 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
           <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
             <PrimaryButton href={data.bottomCta?.href || freeMockupHref} className="h-16 px-10">{data.bottomCta?.label || "Get Free Mockup"}</PrimaryButton>
             <SecondaryButton href="/get-quote/" className="h-16 px-10">Request Factory Quote</SecondaryButton>
+            <SecondaryButton href={productInquiryHref} className="h-16 px-10">Discuss This Product</SecondaryButton>
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-50">
              <InquiryLink href="/quality-control-process/" className="text-xs font-black uppercase tracking-[0.2em] hover:text-white underline">QC Workflow</InquiryLink>

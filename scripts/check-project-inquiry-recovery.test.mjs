@@ -9,7 +9,7 @@ import ts from 'typescript'
 const require = createRequire(import.meta.url)
 // Real ContactForm and local helpers; only scheduling, navigation, analytics and
 // HTTP are controlled. The fake clock never waits or contacts a real provider.
-function harness({request = async()=>new Response('{}'), tracking = {}, navigate, endpoint = 'https://example.invalid/qa', uuid = ()=>'qa-only'} = {}) {
+function harness({request = async()=>new Response('{"ok":true}'), tracking = {}, navigate, endpoint = 'https://example.invalid/qa', uuid = ()=>'qa-only'} = {}) {
   const slots=[], effects=[], requests=[], navigations=[], analytics=[], timers=new Map(), cache=new Map(), dom=new Map(), focus=[], scroll=[]
   let cursor=0, nextTimer=1
   const hooks={
@@ -93,7 +93,7 @@ test('Formspree 2xx emits one submit, one lead, and one attachment upload with s
 for(const scenario of ['http-4xx','http-5xx','request-timeout','network-failure'])test(`${scenario} emits no generate_lead`,async()=>{
   const ui=harness({request:async()=>{
     if(scenario==='network-failure')throw TypeError('Disconnected')
-    return new Response('{}',{status:scenario==='http-4xx'?422:scenario==='http-5xx'?503:408})
+    return new Response('{"ok":true}',{status:scenario==='http-4xx'?422:scenario==='http-5xx'?503:408})
   }})
   await ui.send()
   assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)
@@ -104,7 +104,7 @@ test('same-render duplicate submissions produce only one request while pending',
   const submit=ui.handler();const first=submit(ui.event);const second=submit(ui.event)
   assert.equal(ui.requests.length,1)
   assert.equal(ui.button().props.disabled,true)
-  resolve(new Response('{}'));await Promise.all([first,second])
+  resolve(new Response('{"ok":true}'));await Promise.all([first,second])
   await ui.send();assert.equal(ui.requests.length,1)
 })
 
@@ -123,7 +123,7 @@ test('tracking failure cannot discard text or a selected file',()=>{
 })
 
 test('explicit rejection retains draft and optional file for a deliberate retry',async()=>{
-  let calls=0;const ui=harness({request:async()=>new Response('{}',{status:++calls===1?422:200})})
+  let calls=0;const ui=harness({request:async()=>new Response('{"ok":true}',{status:++calls===1?422:200})})
   ui.edit('field-company','Local teamwear reseller');ui.attach('field-tech-pack-file',new File(['QA'],'qa.pdf',{type:'application/pdf'}))
   await ui.send();assertRecovery(ui);assert.equal(ui.navigations.length,0);assert.equal(ui.button().props.disabled,false)
   assert.equal(ui.find('field-company').props.value,'Local teamwear reseller')
@@ -132,7 +132,7 @@ test('explicit rejection retains draft and optional file for a deliberate retry'
 })
 
 for(const scenario of ['network','server','request-timeout'])test(`${scenario} uncertainty cannot be blindly resubmitted or cleared by editing`,async()=>{
-  const ui=harness({request:async()=>{if(scenario==='network')throw TypeError('Disconnected');return new Response('{}',{status:scenario==='server'?503:408})}})
+  const ui=harness({request:async()=>{if(scenario==='network')throw TypeError('Disconnected');return new Response('{"ok":true}',{status:scenario==='server'?503:408})}})
   ui.edit('field-company','Keep this draft');await ui.send();assertRecovery(ui)
   assert.equal(ui.button().props.disabled,true);assert.match(ui.text(ui.alert()),/confirm|check/i)
   ui.edit('field-company','Edited but not resent');await ui.send()
@@ -146,7 +146,7 @@ test('60-second deadline releases pending state without treating abort as non-de
   assert.deepEqual([...ui.timers.values()].map(t=>t.ms),[60000])
   ui.expire();await pending
   assert.equal(ui.requests[0].signal.aborted,true);assertRecovery(ui);assert.equal(ui.button().props.disabled,true)
-  resolve(new Response('{}'));await Promise.resolve();await Promise.resolve()
+  resolve(new Response('{"ok":true}'));await Promise.resolve();await Promise.resolve()
   assert.equal(ui.navigations.length,0);await ui.send();assert.equal(ui.requests.length,1);assert.equal(ui.timers.size,0)
   assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)
 })
@@ -209,7 +209,7 @@ test('removing an oversized file clears its error and allows choosing the same f
 })
 
 test('a rejected submit focuses visible recovery guidance, but subsequent edits do not steal focus',async()=>{
-  const ui=harness({request:async()=>new Response('{}',{status:422})});await ui.send();ui.render()
+  const ui=harness({request:async()=>new Response('{"ok":true}',{status:422})});await ui.send();ui.render()
   assert.ok(ui.focus.some(item=>item.id==='project-form-error'),'Focus the committed error panel after a submission fails')
   assert.ok(ui.scroll.some(item=>item.id==='project-form-error'&&item.options.block==='start'),'Bring the error heading into the viewport')
   assert.equal(ui.find('project-form-error').props.tabIndex,-1)
@@ -218,7 +218,7 @@ test('a rejected submit focuses visible recovery guidance, but subsequent edits 
 })
 
 test('removing a file after an uncertain send cannot imply withdrawal or unlock resending',async()=>{
-  const ui=harness({request:async()=>new Response('{}',{status:503})});ui.attach('field-logo-file',new File(['QA'],'logo.pdf'))
+  const ui=harness({request:async()=>new Response('{"ok":true}',{status:503})});ui.attach('field-logo-file',new File(['QA'],'logo.pdf'))
   await ui.send();const remove=ui.removeButton('field-logo-file');assert.ok(remove);remove.props.onClick();ui.render()
   assert.equal(ui.dom.get('field-logo-file').value,'');assert.equal(ui.button().props.disabled,true);assertRecovery(ui)
   assert.match(ui.text(ui.alert()),/check|confirm/i)
@@ -230,6 +230,6 @@ test('a stale remove action cannot change selected files during or after an acce
   let resolve;const ui=harness({request:()=>new Promise(r=>{resolve=r})});ui.attach('field-logo-file',new File(['QA'],'logo.pdf'))
   const remove=ui.removeButton('field-logo-file');assert.ok(remove);const pending=ui.send();remove.props.onClick();ui.render()
   assert.notEqual(ui.dom.get('field-logo-file').value,'');assert.ok(ui.removeButton('field-logo-file'))
-  resolve(new Response('{}'));await pending;remove.props.onClick();ui.render();assert.notEqual(ui.dom.get('field-logo-file').value,'')
+  resolve(new Response('{"ok":true}'));await pending;remove.props.onClick();ui.render();assert.notEqual(ui.dom.get('field-logo-file').value,'')
   assert.equal(ui.requests.length,1)
 })

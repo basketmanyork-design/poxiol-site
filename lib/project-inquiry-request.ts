@@ -10,7 +10,7 @@ export class ProjectInquiryRequestError extends Error {
 // A client timeout/disconnection does not prove that the provider rejected the
 // request. Never automatically retry a POST or turn an unknown result into one.
 // Also used by the short general inquiry; preserve its injected HTTP boundary.
-export async function sendProjectInquiry(endpoint: string, body: FormData, request: typeof fetch = fetch) {
+export async function sendProjectInquiry(endpoint: string, body: FormData, request: typeof fetch = fetch): Promise<{reference: string | null}> {
   const controller = new AbortController()
   let timer: ReturnType<typeof setTimeout> | undefined
   try {
@@ -35,6 +35,15 @@ export async function sendProjectInquiry(endpoint: string, body: FormData, reque
         false,
       )
     }
+    let confirmation: unknown
+    try { confirmation = await response.json() } catch {
+      throw new ProjectInquiryRequestError('The service returned an unreadable confirmation. We cannot confirm whether your request was received.', true)
+    }
+    if (!confirmation || typeof confirmation !== 'object' || (confirmation as {ok?: unknown}).ok !== true || Array.isArray((confirmation as {errors?: unknown}).errors) && Boolean((confirmation as {errors: unknown[]}).errors.length)) {
+      throw new ProjectInquiryRequestError('The service did not return a valid acceptance confirmation. We cannot confirm whether your request was received.', true)
+    }
+    const candidate = (confirmation as {id?: unknown}).id
+    return {reference: typeof candidate === 'string' && /^[A-Za-z0-9_-]{8,80}$/.test(candidate) ? candidate : null}
   } catch (error) {
     if (error instanceof ProjectInquiryRequestError) throw error
     throw new ProjectInquiryRequestError('The connection ended without a confirmed result. We cannot tell whether your request was received.', true)

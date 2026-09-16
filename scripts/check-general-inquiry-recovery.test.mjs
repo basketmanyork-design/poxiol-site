@@ -9,7 +9,7 @@ import ts from 'typescript'
 const require = createRequire(import.meta.url)
 // Load real form, validation, request transport and contextual links. Only
 // external I/O, React scheduling and the clock are replaced; no live requests.
-function harness({request=async()=>new Response('{}'), prepareError=false, endpoint='https://example.invalid/qa'}={}) {
+function harness({request=async()=>new Response('{"ok":true}'), prepareError=false, endpoint='https://example.invalid/qa'}={}) {
   const slots=[], effects=[], requests=[], analytics=[], timers=new Map(), cache=new Map()
   let cursor=0, nextTimer=1, failPreparation=prepareError
   const hooks={
@@ -84,7 +84,7 @@ test('accepted general inquiry emits one submit and one lead with stable general
 for(const scenario of ['http-4xx','http-5xx','request-timeout','network-failure'])test(`general inquiry ${scenario} emits no generate_lead`,async()=>{
   const ui=harness({request:async()=>{
     if(scenario==='network-failure')throw TypeError('Disconnected')
-    return new Response('{}',{status:scenario==='http-4xx'?422:scenario==='http-5xx'?503:408})
+    return new Response('{"ok":true}',{status:scenario==='http-4xx'?422:scenario==='http-5xx'?503:408})
   }})
   await ui.send()
   assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)
@@ -96,7 +96,7 @@ test('a stale submit handler cannot resend an accepted general question',async()
 })
 
 for(const status of [400,422,429])test(`HTTP${status} keeps the draft and permits one deliberate retry`,async()=>{
-  let calls=0;const ui=harness({request:async()=>new Response('{}',{status:++calls===1?status:200})})
+  let calls=0;const ui=harness({request:async()=>new Response('{"ok":true}',{status:++calls===1?status:200})})
   await ui.send();assertRecovery(ui);assert.equal(ui.button().props.disabled,false)
   assert.equal(ui.find('general-message').props.value,'How do I start supplying local teams?')
   assert.equal(ui.find('general-email').props.value,'qa@example.com')
@@ -108,7 +108,7 @@ for(const status of [400,422,429])test(`HTTP${status} keeps the draft and permit
 })
 
 for(const scenario of ['network','server','request-timeout'])test(`${scenario} ambiguity locks general inquiry resending even after edits`,async()=>{
-  const ui=harness({request:async()=>{if(scenario==='network')throw TypeError('Disconnected');return new Response('{}',{status:scenario==='server'?503:408})}})
+  const ui=harness({request:async()=>{if(scenario==='network')throw TypeError('Disconnected');return new Response('{"ok":true}',{status:scenario==='server'?503:408})}})
   await ui.send();assertRecovery(ui);assert.equal(ui.button().props.disabled,true)
   ui.edit('general-message','Corrected question');ui.edit('general-email','corrected@example.com');ui.edit('inquiry-product','Training tops')
   await ui.send();assert.equal(ui.requests.length,1);assertRecovery(ui)
@@ -122,7 +122,7 @@ test('a 60-second deadline releases pending UI but a late success cannot become 
   assert.ok(waiting,'Explain the pending state');assert.equal(ui.button().props.disabled,true)
   assert.deepEqual([...ui.timers.values()].map(t=>t.ms),[60000])
   ui.expire();await pending;assert.equal(ui.requests[0].signal.aborted,true);assertRecovery(ui)
-  resolve(new Response('{}'));await Promise.resolve();await Promise.resolve()
+  resolve(new Response('{"ok":true}'));await Promise.resolve();await Promise.resolve()
   assert.equal(ui.render().find(n=>n.props?.role==='status'),undefined)
   await ui.send();assert.equal(ui.requests.length,1);assert.equal(ui.button().props.disabled,true);assert.equal(ui.timers.size,0)
   assert.equal(ui.analytics.filter(event=>event.name==='generate_lead').length,0)

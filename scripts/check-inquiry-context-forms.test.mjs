@@ -29,7 +29,7 @@ function formHarness(file, intent, search) {
       FormData:class extends FormData {constructor() {super()}},
       process:{env:{NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT:'https://example.invalid/never-sent'}},
       window:{location}, crypto:{randomUUID:()=> 'qa-id'},
-      fetch:async(url,options)=>{assert.equal(url,'https://example.invalid/never-sent');sent.push(options.body);return new Response('{}')},
+      fetch:async(url,options)=>{assert.equal(url,'https://example.invalid/never-sent');sent.push(options.body);return new Response('{"ok":true}')},
       require(name) {
         if (name==='react') return hooks
         if (name==='next/navigation') return {usePathname:()=>pathname,useRouter:()=>({push(){}})}
