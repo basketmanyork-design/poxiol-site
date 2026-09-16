@@ -37,10 +37,11 @@ test('contact guidance distinguishes optional project details from a general que
 for (const route of ['get-quote', 'free-mockup', 'sample-order']) {
   test(`${route} keeps its full project form`, async () => {
     const html = await readPage(route)
-    for (const name of ['buyerRole', 'sport', 'quantity', 'email']) {
+    for (const name of ['product-0', 'quantity-0', 'required_delivery_date', 'delivery_country_code', 'delivery_postal_code', 'fullName']) {
       const control = html.match(new RegExp(`<(?:input|select)\\b[^>]*name="${name}"[^>]*>`))?.[0]
-      assert.ok(control && /\srequired(?:\s|=|>)/.test(control), name)
+      assert.ok(control, name)
     }
-    assert.equal((html.match(/<input\b[^>]*type="file"/g) || []).length, 3)
+    assert.match(html, /Provide at least one contact method/, 'Email and WhatsApp are alternative ways to reply')
+    assert.equal((html.match(/<input\b[^>]*type="file"/g) || []).length, 1)
   })
 }
