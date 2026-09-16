@@ -30,7 +30,7 @@ export default function MobileMenu() {
       </button>
 
       {open ? (
-        <div className="absolute inset-x-0 top-20 z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto border-b border-white/10 bg-neutral-950 px-5 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-4 shadow-2xl">
+        <div className="poxiol-mobile-menu-open absolute inset-x-0 top-20 z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto border-b border-white/10 bg-neutral-950 px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-4 shadow-2xl">
           <nav aria-label="Mobile navigation" className="flex flex-col">
             <Link
               href="/"

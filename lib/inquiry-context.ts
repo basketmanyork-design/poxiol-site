@@ -1,8 +1,10 @@
 import {PROJECT_SPORT_OPTIONS, V8_CONVERSION_ENTRIES, type V8ConversionIntent} from './v8/leads.ts'
 
-export type InquiryContext = {product: string; sport: string; style: string; source: string}
+export type BuyerRoleHint = 'Team / School / Club' | 'Brand / Reseller'
+export type InquiryContext = {product: string; sport: string; style: string; source: string; buyerRole?: BuyerRoleHint}
 const empty: InquiryContext = {product: '', sport: '', style: '', source: ''}
 const site = 'https://www.poxiol.com'
+const buyerRoleHints: readonly BuyerRoleHint[] = ['Team / School / Club', 'Brand / Reseller']
 
 // Only public path/reference data crosses a CTA. Never forward arbitrary queries,
 // names, email addresses, phone numbers, message text or external origin URLs.
@@ -20,20 +22,23 @@ function reference(value: string | null | undefined) {
   return text.length <= 120 && /^[a-zA-Z0-9][a-zA-Z0-9 ._&/()'-]*$/.test(text) && !/\d{7,}/.test(text) ? text : ''
 }
 function clean(context: Partial<InquiryContext>): InquiryContext {
+  const buyerRole = buyerRoleHints.includes(context.buyerRole as BuyerRoleHint) ? context.buyerRole : undefined
   return {
     product: reference(context.product), style: reference(context.style),
     sport: PROJECT_SPORT_OPTIONS.includes(context.sport as typeof PROJECT_SPORT_OPTIONS[number]) ? context.sport! : '',
     source: publicSourcePath(context.source || ''),
+    ...(buyerRole ? {buyerRole} : {}),
   }
 }
 function fromQuery(search: string) {
   const q = new URLSearchParams(search)
-  return clean({product:q.get('product') || '',sport:q.get('sport') || '',style:q.get('style') || '',source:q.get('source') || ''})
+  return clean({product:q.get('product') || '',sport:q.get('sport') || '',style:q.get('style') || '',source:q.get('source') || '',buyerRole:q.get('buyerRole') as BuyerRoleHint || undefined})
 }
 
 export function contextFromPage(pathname: string, search = ''): InquiryContext {
   const path = publicSourcePath(pathname)
   if (V8_CONVERSION_ENTRIES.some(entry => entry.path === path)) return fromQuery(search)
+  if (path === '/') return fromQuery(search)
   if (path === '/solutions/') return {...empty, product:'Teamwear Solutions',source:path}
   if (path === '/oem-odm/') return {...empty, product:'OEM / ODM Teamwear',source:path}
   if (path === '/private-label-teamwear/') return {...empty, product:'Private Label Teamwear',source:path}
@@ -65,6 +70,7 @@ export function contextualInquiryHref(href: string, context: Partial<InquiryCont
   const merged = clean({
     product:explicit.product || base.product, sport:explicit.sport || base.sport,
     style:explicit.style || base.style, source:explicit.source || base.source,
+    buyerRole:explicit.buyerRole || base.buyerRole,
   })
   if (!Object.values(merged).some(Boolean)) return href
   const query = new URLSearchParams()

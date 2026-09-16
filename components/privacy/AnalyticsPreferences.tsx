@@ -13,7 +13,7 @@ export function AnalyticsPreferences({
   onReject(): void
   onChange(): void
 }) {
-  const panelClass = 'fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] left-3 right-3 z-[80] rounded-2xl border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-white shadow-2xl md:bottom-4 md:right-auto md:max-w-lg md:p-4'
+  const panelClass = 'poxiol-analytics-preferences fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] left-3 right-3 z-[80] rounded-2xl border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-white shadow-2xl md:bottom-4 md:right-auto md:max-w-lg md:p-4'
   const buttonClass = 'inline-flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-[11px] font-black uppercase tracking-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 sm:px-4 sm:text-xs sm:tracking-wide'
 
   if (permission === 'unknown') {
@@ -33,7 +33,7 @@ export function AnalyticsPreferences({
       type="button"
       onClick={onChange}
       aria-label={`Change analytics preference (${permission})`}
-      className="fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] left-3 z-[80] inline-flex min-h-11 items-center justify-center rounded-full border border-neutral-600 bg-neutral-950 px-4 py-2 text-xs font-bold text-white shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 md:bottom-4"
+      className="poxiol-analytics-preferences fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] left-3 z-[80] inline-flex min-h-11 items-center justify-center rounded-full border border-neutral-600 bg-neutral-950 px-4 py-2 text-xs font-bold text-white shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 md:bottom-4"
     >
       Privacy choices
     </button>

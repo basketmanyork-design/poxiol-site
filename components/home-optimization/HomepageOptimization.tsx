@@ -5,12 +5,12 @@ import {HeroBackgroundVideo} from './HeroBackgroundVideo'
 import type {HomepageOptimizationCopy} from '@/lib/sanity/home-optimization'
 
 const cards = [
-  {name: 'Soccer Uniforms', action: 'Explore Soccer', slug: 'soccer', href: '/products/soccer-jerseys/', alt: 'POXIOL soccer jersey and shorts set design illustration'},
-  {name: 'Basketball Uniforms', action: 'Explore Basketball', slug: 'basketball', href: '/products/basketball-uniforms/', alt: 'POXIOL basketball jersey and shorts set design illustration'},
-  {name: 'Baseball Uniforms', action: 'Explore Baseball', slug: 'baseball', href: '/custom-baseball-softball-uniforms/', alt: 'POXIOL baseball jersey and trousers design illustration'},
-  {name: 'Training Sets', action: 'Explore Training', slug: 'training', href: '/products/training-wear/', alt: 'POXIOL short-sleeve training top and shorts design illustration'},
-  {name: 'Running & Track Uniforms', action: 'Explore Running & Track', slug: 'running-track', href: '/products/running-track-uniforms/', alt: 'POXIOL running singlet and shorts design illustration'},
-  {name: 'Warm-Up Wear', action: 'Explore Warm-Up Wear', slug: 'warm-up', href: '/products/warm-up-wear/', alt: 'POXIOL zip-up warm-up jacket and trousers design illustration'},
+  {name: 'Soccer Uniforms', action: 'View Options', slug: 'soccer', href: '/products/soccer-jerseys/', alt: 'POXIOL soccer jersey and shorts set design illustration'},
+  {name: 'Basketball Uniforms', action: 'View Options', slug: 'basketball', href: '/products/basketball-uniforms/', alt: 'POXIOL basketball jersey and shorts set design illustration'},
+  {name: 'Baseball Uniforms', action: 'View Options', slug: 'baseball', href: '/custom-baseball-softball-uniforms/', alt: 'POXIOL baseball jersey and trousers design illustration'},
+  {name: 'Training Sets', action: 'View Options', slug: 'training', href: '/products/training-wear/', alt: 'POXIOL short-sleeve training top and shorts design illustration'},
+  {name: 'Running & Track Uniforms', action: 'View Options', slug: 'running-track', href: '/products/running-track-uniforms/', alt: 'POXIOL running singlet and shorts design illustration'},
+  {name: 'Warm-Up Wear', action: 'View Options', slug: 'warm-up', href: '/products/warm-up-wear/', alt: 'POXIOL zip-up warm-up jacket and trousers design illustration'},
 ] as const
 
 const faqs = [
@@ -29,7 +29,7 @@ const step = (number: string, title: string, body: string) => <li><span>{number}
 
 export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyApproved,copy={}}: {publicEmail: string; whatsappHref: string; privacyPolicyApproved: boolean;copy?:HomepageOptimizationCopy}) {
   return <>
-    <section className={`${styles.section} ${styles.hero}`} aria-labelledby="home-hero-title">
+    <section className={`${styles.section} ${styles.hero}`} data-mobile-inquiry-hero aria-labelledby="home-hero-title">
       <HeroBackgroundVideo />
       <div className={styles.heroShade} aria-hidden="true" />
       <div className={`${styles.container} ${styles.heroContent}`}>
@@ -49,7 +49,7 @@ export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyAp
 
     <section id="product-discovery" className={`${styles.section} ${styles.light}`} aria-labelledby="sports-title">
       <div className={styles.container}>
-        <p className={styles.eyebrow}>Explore by sport</p><h2 id="sports-title">{copy.sportsHeading || 'Find Your Sport. Build Your Teamwear.'}</h2>
+        <p className={styles.eyebrow}>Explore by Sport &amp; Teamwear Type</p><h2 id="sports-title">{copy.sportsHeading || 'Find Your Sport. Build Your Teamwear.'}</h2>
         <p className={styles.lead}>Explore a starting point for your team or business. Colors, branding and product details can be discussed with our team.</p>
         <div className={styles.productGrid}>
           {cards.map(card => <article className={styles.productCard} key={card.slug}>
@@ -67,8 +67,8 @@ export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyAp
     <section id="who-we-help" className={`${styles.section} ${styles.muted}`} aria-labelledby="buyers-title">
       <div className={styles.container}><p className={styles.eyebrow}>Who we help</p><h2 id="buyers-title">{copy.buyersHeading || 'Team Orders or Brand Collections — Start Here'}</h2>
         <div className={styles.twoGrid}>
-          <article className={styles.buyerCard}><h3>For Teams, Schools &amp; Clubs</h3><p>Bring your team identity to life with coordinated uniforms, names, numbers and a size plan for your players.</p><ul><li>Team colors &amp; identity</li><li>Names &amp; numbers</li><li>Player sizing &amp; delivery planning</li></ul><Link className={styles.primary} href="/#contact">Discuss Your Team Order</Link></article>
-          <article className={styles.buyerCard}><h3>For Brands &amp; Resellers</h3><p>Explore custom teamwear for your customers, with support for private-label requirements, product development and repeat orders.</p><ul><li>Private-label requirements</li><li>Product &amp; sample review</li><li>Repeat-order planning</li></ul><Link className={styles.primary} href="/#contact">Discuss Your Business Project</Link></article>
+          <article className={styles.buyerCard}><h3>For Teams, Schools &amp; Clubs</h3><p>Bring your team identity to life with coordinated uniforms, names, numbers and a size plan for your players.</p><ul><li>Team colors &amp; identity</li><li>Names &amp; numbers</li><li>Player sizing &amp; delivery planning</li></ul><Link className={styles.primary} href="/?buyerRole=Team%20%2F%20School%20%2F%20Club#contact">Discuss Your Team Order</Link></article>
+          <article className={styles.buyerCard}><h3>For Brands &amp; Resellers</h3><p>Explore custom teamwear for your customers, with support for private-label requirements, product development and repeat orders.</p><ul><li>Private-label requirements</li><li>Product &amp; sample review</li><li>Repeat-order planning</li></ul><Link className={styles.primary} href="/?buyerRole=Brand%20%2F%20Reseller#contact">Discuss Your Business Project</Link></article>
         </div>
       </div>
     </section>
@@ -81,26 +81,26 @@ export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyAp
           <article><h3>Names, Numbers &amp; Graphics</h3><p>Review artwork, color references and placements before confirming the applicable decoration method.</p></article>
           <article><h3>Labels &amp; Branding</h3><p>Discuss available labels, hangtags and packaging for your product and project.</p></article>
         </div>
-        <div className={styles.actions}><Link className={styles.primary} href="/customization/">Explore Customization Options</Link><Link className={styles.textLink} href="/customization/fabric-options/">View Fabric References →</Link></div>
+        <div className={styles.actions}><Link className={styles.textLink} href="/customization/">Explore Customization Options →</Link><Link className={styles.textLink} href="/customization/fabric-options/">View Fabric References →</Link></div>
       </div>
     </section>
 
     <section id="free-mockup" className={`${styles.section} ${styles.dark}`} aria-labelledby="mockup-title">
       <div className={styles.container}><p className={styles.eyebrow}>Design support</p><h2 id="mockup-title">{copy.mockupHeading || 'See Your Idea as a Free Mockup'}</h2><p className={styles.lead}>Share your preferred sport, colors or a reference image. Our team will review your brief and help turn it into a teamwear design direction. A finished design file is optional.</p>
         <ol className={styles.stepGrid}>{step('01','Share Your Idea','Tell us your sport, colors and quantity.')}{step('02','Review Your Mockup','We discuss the design direction with you.')}{step('03','Refine the Details','Review the product and delivery needs together.')}</ol>
-        <Link className={styles.primary} href="/free-mockup/#free-mockup-form">Get a Free Mockup</Link>
+        <Link className={styles.secondary} href="/free-mockup/#free-mockup-form">Get a Free Mockup</Link>
       </div>
     </section>
 
-    <section id="sample" className={`${styles.section} ${styles.muted}`} aria-labelledby="sample-title"><div className={styles.container}>
+    <section id="sample" className={`${styles.section} ${styles.muted}`} aria-labelledby="sample-title"><div className={`${styles.container} ${styles.sampleBand}`}>
       <p className={styles.eyebrow}>Sample review</p><h2 id="sample-title">{copy.sampleHeading || 'Evaluate a Sample Before You Commit'}</h2><p className={styles.lead}>Eligible team and business buyers can apply for a free sample. Share your project details so our team can review your requirements and confirm the available sample options.</p>
-      <p>Eligibility, sample type, what is included at no charge, and shipping arrangements are confirmed individually before dispatch.</p><Link className={styles.primary} href="/sample-order/#sample-request-form">Apply for a Free Sample</Link>
+      <ul className={styles.sampleSteps}><li><strong>Eligibility</strong> is reviewed for your project.</li><li><strong>Sample scope</strong> is confirmed before dispatch.</li><li><strong>Shipping arrangements</strong> are reviewed for your destination.</li></ul><Link className={styles.secondary} href="/sample-order/#sample-request-form">Apply for a Free Sample</Link>
     </div></section>
 
     <section id="production-delivery" className={`${styles.section} ${styles.light}`} aria-labelledby="production-title"><div className={styles.container}>
       <p className={styles.eyebrow}>Production and delivery</p><h2 id="production-title">{copy.productionHeading || 'From Approved Details to Ready-to-Ship Teamwear'}</h2><p className={styles.lead}>Explore the production, inspection and packing stages behind a custom teamwear order.</p>
       <div className={styles.threeGrid}><article><h3>Production</h3><p>Construction starts from the product and details confirmed for the order.</p></article><article><h3>Quality Checks</h3><p>Review the applicable inspection steps before dispatch.</p></article><article><h3>Packing &amp; Dispatch</h3><p>Confirm packing requirements and shipping feasibility for the destination.</p></article></div>
-      <Link className={styles.primary} href="/factory/">See Our Production &amp; Quality Process</Link>
+      <Link className={styles.textLink} href="/factory/">See Our Production &amp; Quality Process →</Link>
     </div></section>
 
     <section id="faq" className={`${styles.section} ${styles.muted}`} aria-labelledby="faq-title"><div className={styles.container}>
@@ -109,7 +109,7 @@ export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyAp
 
     <section id="contact" className={`${styles.section} ${styles.dark}`} aria-labelledby="contact-title"><div className={`${styles.container} ${styles.formContainer}`}>
       <p className={styles.eyebrow}>Project inquiry</p><h2 id="contact-title">{copy.contactHeading || 'Tell Us About Your Project'}</h2><p className={styles.lead}>Share your product, estimated quantity, required in-hand date and delivery area. We’ll help you review the options and next steps.</p>
-      <ProjectQualificationForm intent="project" formId="homepage_project_inquiry" formType="Homepage Project Inquiry" publicEmail={publicEmail} whatsappHref={whatsappHref} privacyPolicyApproved={privacyPolicyApproved} />
+      <ProjectQualificationForm intent="project" formId="homepage_project_inquiry" formType="Homepage Project Inquiry" showTitle={false} publicEmail={publicEmail} whatsappHref={whatsappHref} privacyPolicyApproved={privacyPolicyApproved} />
     </div></section>
   </>
 }

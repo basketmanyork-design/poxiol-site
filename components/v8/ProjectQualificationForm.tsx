@@ -9,6 +9,7 @@ export function ProjectQualificationForm({
   publicEmail,
   whatsappHref,
   defaultSport,
+  showTitle = true,
   privacyPolicyApproved,
 }: {
   intent: V8ConversionIntent
@@ -17,6 +18,7 @@ export function ProjectQualificationForm({
   publicEmail?: string
   whatsappHref?: string
   defaultSport?: string
+  showTitle?: boolean
   privacyPolicyApproved: boolean
 }) {
   const entry = getV8ConversionEntry(intent)
@@ -28,6 +30,7 @@ export function ProjectQualificationForm({
       subtitle={entry.subtitle}
       formType={formType}
       ctaText={entry.ctaLabel}
+      showTitle={showTitle}
       publicEmail={publicEmail}
       whatsappHref={whatsappHref}
       privacyPolicyApproved={privacyPolicyApproved}

@@ -12,7 +12,7 @@ export default function MobileInquiryBar({children}: {children: ReactNode}) {
     setFormInView(false);
     if (typeof IntersectionObserver === "undefined") return;
 
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-inquiry-form]'));
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-inquiry-form], [data-mobile-inquiry-hero]'));
     if (!targets.length) return;
 
     let visibleTargets = new Set<Element>();

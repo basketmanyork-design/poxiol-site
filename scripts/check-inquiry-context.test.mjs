@@ -60,6 +60,17 @@ test('form query round-trip survives changing inquiry path without inventing a n
   assert.equal(url.searchParams.get('source'), '/products/basketball-uniforms/')
   assert.equal(url.hash, '#quote-form')
 })
+
+test('approved buyer-role hints survive an inquiry handoff and ignore unknown values', () => {
+  const team = call('contextFromPage', '/', '?buyerRole=Team%20%2F%20School%20%2F%20Club')
+  assert.equal(team.buyerRole, 'Team / School / Club')
+  const teamQuote = new URL(call('contextualInquiryHref', '/get-quote/', team), 'https://www.poxiol.com')
+  assert.equal(teamQuote.searchParams.get('buyerRole'), 'Team / School / Club')
+
+  const brand = call('contextFromPage', '/', '?buyerRole=Brand%20%2F%20Reseller')
+  assert.equal(brand.buyerRole, 'Brand / Reseller')
+  assert.equal(call('contextFromPage', '/', '?buyerRole=Unknown').buyerRole, undefined)
+})
 test('query data cannot introduce external origins, markup, personal values or invalid sport', () => {
   const ctx = call('contextFromPage', '/get-quote/', '?product=buyer%40example.com&style=%3Cscript%3E&sport=Invalid&source=https%3A%2F%2Fevil.example%2F')
   assert.deepEqual(ctx, {product:'',style:'',sport:'',source:''})

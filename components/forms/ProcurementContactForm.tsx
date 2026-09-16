@@ -14,9 +14,9 @@ const input = 'min-h-12 w-full rounded-xl border border-neutral-300 bg-white px-
 const label = 'mb-1 block text-sm font-bold text-neutral-950'
 const errorStyle = 'mt-1 text-sm font-semibold text-red-700'
 
-export type ProcurementContactFormProps = {intent: V8ConversionIntent;formId: LeadFormId;title: string;subtitle: string;formType: string;ctaText: string;publicEmail?: string;whatsappHref?: string;privacyPolicyApproved: boolean}
+export type ProcurementContactFormProps = {intent: V8ConversionIntent;formId: LeadFormId;title: string;subtitle: string;formType: string;ctaText: string;showTitle?: boolean;publicEmail?: string;whatsappHref?: string;privacyPolicyApproved: boolean}
 
-export default function ProcurementContactForm({intent,formId,title,subtitle,formType,ctaText,publicEmail='sales@poxiol.com',whatsappHref='https://wa.me/8613055646888',privacyPolicyApproved}: ProcurementContactFormProps) {
+export default function ProcurementContactForm({intent,formId,title,subtitle,formType,ctaText,showTitle=true,publicEmail='sales@poxiol.com',whatsappHref='https://wa.me/8613055646888',privacyPolicyApproved}: ProcurementContactFormProps) {
   const [fields,setFields] = useState<ProcurementFields>(blank)
   const [contactMode,setContactMode] = useState<''|'email'|'whatsapp'>('')
   const [addOtherContact,setAddOtherContact] = useState(false)
@@ -28,6 +28,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
   const submitLock = useRef(false)
   const submissionKey = useRef('')
   const entryProduct = useRef('')
+  const lastSuggestedBuyerRole = useRef('')
   const errorRef = useRef<HTMLDivElement>(null)
   const context = useInquiryContext()
   const analytics = createLeadEventContext(formId,formType)
@@ -37,6 +38,15 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     entryProduct.current = context.product
     setFields(current => ({...current,products:current.products[0].product ? current.products : [{product:context.product,quantity:'',unit:'sets'}]}))
   },[context.product])
+
+  useEffect(() => {
+    const suggestedBuyerRole = context.buyerRole || ''
+    setFields(current => {
+      if (current.buyerRole && current.buyerRole !== lastSuggestedBuyerRole.current) return current
+      lastSuggestedBuyerRole.current = suggestedBuyerRole
+      return current.buyerRole === suggestedBuyerRole ? current : {...current,buyerRole:suggestedBuyerRole}
+    })
+  },[context.buyerRole])
 
   function edit<K extends keyof ProcurementFields>(key: K, value: ProcurementFields[K]) {
     if (state === 'accepted' || state === 'sending') return
@@ -91,7 +101,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
   const configuredAction=process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT
   const fallbackAction=configuredAction && /^https?:\/\/[^/]+\.invalid(?:\/|$)/i.test(configuredAction) ? '#contact' : configuredAction
   return <form data-inquiry-form method="post" action={fallbackAction} encType="multipart/form-data" onSubmit={submit} noValidate className="rounded-3xl bg-white p-5 text-left text-neutral-950 shadow-xl sm:p-8">
-    <header><p className="text-xs font-black uppercase tracking-widest text-green-800">POXIOL Project Inquiry</p><h2 className="mt-2 text-3xl font-black">{title}</h2><p className="mt-3 leading-7 text-neutral-700">{subtitle}</p><p className="mt-3 text-sm text-neutral-600">Additional details and artwork are optional. We review product and delivery feasibility after receiving your request.</p></header>
+    <header><p className="text-xs font-black uppercase tracking-widest text-green-800">POXIOL Project Inquiry</p>{showTitle ? <h2 className="mt-2 text-3xl font-black">{title}</h2> : null}<p className="mt-3 leading-7 text-neutral-700">{subtitle}</p><p className="mt-3 text-sm text-neutral-600">Additional details and artwork are optional. We review product and delivery feasibility after receiving your request.</p></header>
     {message ? <div ref={errorRef} role="alert" tabIndex={-1} className="mt-5 rounded-xl border border-red-300 bg-red-50 p-4 text-red-800 focus:outline-2 focus:outline-red-700"><strong>{state==='unconfirmed'?'Receipt has not been confirmed':'Review your request'}</strong><p>{message}</p>{state==='unconfirmed'?<p>Check receipt with our team before resending. The current Formspree receiver has no verified duplicate protection for a timed-out request.</p>:null}</div>:null}
     {Object.keys(errors).length ? <div role="alert" className="mt-3 text-sm text-red-700">Please correct: {Object.values(errors).join(' ')}</div>:null}
     <fieldset disabled={state==='sending'||state==='accepted'} className="mt-7 min-w-0 space-y-9">

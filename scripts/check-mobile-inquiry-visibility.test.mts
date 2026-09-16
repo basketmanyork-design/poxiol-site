@@ -29,7 +29,7 @@ test('mobile inquiry bar observes marked forms and fully leaves the interaction 
   const component = await readFile('components/MobileInquiryBar.tsx', 'utf8')
   assert.match(component, /usePathname/)
   assert.match(component, /const pathname = usePathname\(\)/)
-  assert.match(component, /querySelectorAll<HTMLElement>\('\[data-inquiry-form\]'\)/)
+  assert.match(component, /querySelectorAll<HTMLElement>\('\[data-inquiry-form\], \[data-mobile-inquiry-hero\]'\)/)
   assert.match(component, /new IntersectionObserver/)
   assert.match(component, /observer\.disconnect\(\)/)
   assert.match(component, /}, \[pathname\]\)/)
@@ -53,4 +53,31 @@ test('opened mobile menu uses a fully opaque surface', async () => {
   assert.match(openPanel, /bg-neutral-950(?:\s|$)/)
   assert.doesNotMatch(openPanel, /bg-neutral-950\/\d+/)
   assert.doesNotMatch(openPanel, /backdrop-blur/)
+})
+
+test('opening the mobile menu removes competing fixed layers', async () => {
+  const [menu, preferences, globals] = await Promise.all([
+    readFile('components/MobileMenu.tsx', 'utf8'),
+    readFile('components/privacy/AnalyticsPreferences.tsx', 'utf8'),
+    readFile('app/globals.css', 'utf8'),
+  ])
+  assert.match(menu, /poxiol-mobile-menu-open/)
+  assert.match(preferences, /poxiol-analytics-preferences/)
+  assert.match(globals, /body:has\(\.poxiol-mobile-menu-open\) \.poxiol-mobile-cta/)
+  assert.match(globals, /body:has\(\.poxiol-mobile-menu-open\) \.poxiol-analytics-preferences/)
+})
+
+test('analytics preference panel yields the hero CTA space when no mobile inquiry bar is present', async () => {
+  const globals = await readFile('app/globals.css', 'utf8')
+  assert.match(globals, /body:not\(:has\(\.poxiol-mobile-cta\)\) \.poxiol-analytics-preferences/)
+  assert.match(globals, /@media \(max-width:380px\)/)
+})
+
+test('the mobile inquiry bar also stays out of the Hero viewport', async () => {
+  const [bar, homepage] = await Promise.all([
+    readFile('components/MobileInquiryBar.tsx', 'utf8'),
+    readFile('components/home-optimization/HomepageOptimization.tsx', 'utf8'),
+  ])
+  assert.match(bar, /data-mobile-inquiry-hero/)
+  assert.match(homepage, /data-mobile-inquiry-hero/)
 })

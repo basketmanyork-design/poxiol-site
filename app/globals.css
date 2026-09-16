@@ -14,6 +14,24 @@ body { margin: 0; background: #050505; color: #111; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 @media (max-width: 767px) {
+  body:has(.poxiol-mobile-menu-open) .poxiol-mobile-cta,
+  body:has(.poxiol-mobile-menu-open) .poxiol-analytics-preferences { display: none; }
+
+  /* The home Hero suppresses the bottom inquiry bar, so keep privacy choices
+     at the safe-area edge instead of reserving an absent bar's height. */
+  body:not(:has(.poxiol-mobile-cta)) .poxiol-analytics-preferences {
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width:380px) {
+  /* Keep the two explicit choices available without covering the Hero CTAs. */
+  .poxiol-analytics-preferences > p { display: none; }
+  .poxiol-analytics-preferences { padding-block: 0.5rem; }
+  .poxiol-analytics-preferences button { min-height: 2.5rem; }
+}
+
+@media (max-width: 767px) {
   /* Leave editing space for the keyboard and native date/select controls. */
   body:has(form :is(input, select, textarea):focus) .poxiol-mobile-cta {
     visibility: hidden;
