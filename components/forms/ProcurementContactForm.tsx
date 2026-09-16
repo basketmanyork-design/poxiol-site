@@ -18,6 +18,8 @@ export type ProcurementContactFormProps = {intent: V8ConversionIntent;formId: Le
 
 export default function ProcurementContactForm({intent,formId,title,subtitle,formType,ctaText,publicEmail='sales@poxiol.com',whatsappHref='https://wa.me/8613055646888',privacyPolicyApproved}: ProcurementContactFormProps) {
   const [fields,setFields] = useState<ProcurementFields>(blank)
+  const [contactMode,setContactMode] = useState<''|'email'|'whatsapp'>('')
+  const [addOtherContact,setAddOtherContact] = useState(false)
   const [file,setFile] = useState<File|null>(null)
   const [errors,setErrors] = useState<Record<string,string>>({})
   const [message,setMessage] = useState('')
@@ -47,7 +49,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     setErrors(current => {const next={...current};delete next[`${key}-${index}`];return next})
   }
   function startAnother() {
-    setFields(blank);setFile(null);setErrors({});setMessage('');setReference('');setState('idle');submissionKey.current='';entryProduct.current='';submitLock.current=false
+    setFields(blank);setContactMode('');setAddOtherContact(false);setFile(null);setErrors({});setMessage('');setReference('');setState('idle');submissionKey.current='';entryProduct.current='';submitLock.current=false
   }
   async function submit(event:React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -55,6 +57,9 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     const now=new Date()
     const today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`
     const nextErrors=validateProcurementFields(fields,today)
+    if (!contactMode) nextErrors.contact='Choose Email or WhatsApp as your preferred contact method.'
+    else if (contactMode==='email' && !fields.email.trim()) nextErrors.contact='Enter the Email address you selected, or switch to WhatsApp.'
+    else if (contactMode==='whatsapp' && !fields.whatsapp.trim()) nextErrors.contact='Enter the WhatsApp number you selected, or switch to Email.'
     if (file && (file.size>10*1024*1024 || !/\.(pdf|png|jpe?g|webp|ai|eps)$/i.test(file.name))) nextErrors.file='Choose a PDF, AI, EPS or image under 10 MB, or remove the file.'
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);setMessage('Please review the highlighted fields. Your entries are still here.')
@@ -65,7 +70,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     try {
       if (!submissionKey.current) submissionKey.current=crypto.randomUUID()
       const endpoint=requireContactFormEndpoint(process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT)
-      const body=createProcurementFormData(fields,{intent,formType,sourcePage:window.location.pathname,originPage:context.source,entryProduct:entryProduct.current,submissionKey:submissionKey.current,attachments:file?[file]:[]})
+      const body=createProcurementFormData(fields,{intent,formType,sourcePage:window.location.pathname,originPage:context.source,entryProduct:entryProduct.current,submissionKey:submissionKey.current,preferredContactMethod:contactMode || undefined,attachments:file?[file]:[]})
       const confirmation=await sendProjectInquiry(endpoint,body)
       setReference(confirmation.reference || '')
       setState('accepted')
@@ -80,6 +85,8 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
 
   const fieldError=(key:string)=>errors[key]?<p id={`error-${key}`} className={errorStyle}>{errors[key]}</p>:null
   const country=DELIVERY_COUNTRIES.find(item=>item.code===fields.deliveryCountry)?.name || fields.deliveryCountry
+  const showEmail=contactMode==='email'||addOtherContact||Boolean(fields.email)
+  const showWhatsapp=contactMode==='whatsapp'||addOtherContact||Boolean(fields.whatsapp)
 
   const configuredAction=process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT
   const fallbackAction=configuredAction && /^https?:\/\/[^/]+\.invalid(?:\/|$)/i.test(configuredAction) ? '#contact' : configuredAction
@@ -107,9 +114,11 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
       <section aria-labelledby="contact-group"><h3 id="contact-group" className="mb-4 text-xl font-black">Contact Details</h3><div className="grid gap-5 sm:grid-cols-2">
         <div><label className={label} htmlFor="full-name">Your Name *</label><input id="full-name" name="fullName" autoComplete="name" maxLength={120} value={fields.fullName} onChange={event=>edit('fullName',event.target.value)} className={input} />{fieldError('fullName')}</div>
         <div><label className={label} htmlFor="company">Company / Team Name (Optional)</label><input id="company" name="company" autoComplete="organization" maxLength={120} value={fields.company} onChange={event=>edit('company',event.target.value)} className={input} /></div>
-        <div><label className={label} htmlFor="email">Email</label><input id="email" name="email" type="email" autoComplete="email" value={fields.email} onChange={event=>edit('email',event.target.value)} className={input} />{fieldError('email')}</div>
-        <div><label className={label} htmlFor="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" type="tel" autoComplete="tel" placeholder="+44 7700 900000" value={fields.whatsapp} onChange={event=>edit('whatsapp',event.target.value)} className={input} />{fieldError('whatsapp')}</div>
-      </div><p className="mt-2 text-sm text-neutral-600">Provide at least one contact method. You may provide both.</p>{fieldError('contact')}</section>
+      </div><fieldset className="mt-5"><legend className={label}>How should we contact you? *</legend><div className="flex flex-wrap gap-5"><label className="flex min-h-11 items-center gap-2"><input type="radio" name="preferred_contact_method" value="email" checked={contactMode==='email'} onChange={()=>setContactMode('email')} /> Email</label><label className="flex min-h-11 items-center gap-2"><input type="radio" name="preferred_contact_method" value="whatsapp" checked={contactMode==='whatsapp'} onChange={()=>setContactMode('whatsapp')} /> WhatsApp</label></div></fieldset>
+      <div className="mt-4 grid gap-5 sm:grid-cols-2">
+        <div hidden={!showEmail}><label className={label} htmlFor="email">Email</label><input id="email" name="email" type="email" autoComplete="email" value={fields.email} onChange={event=>edit('email',event.target.value)} className={input} />{fieldError('email')}</div>
+        <div hidden={!showWhatsapp}><label className={label} htmlFor="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" type="tel" autoComplete="tel" placeholder="+44 7700 900000" value={fields.whatsapp} onChange={event=>edit('whatsapp',event.target.value)} className={input} />{fieldError('whatsapp')}</div>
+      </div>{contactMode?<label className="mt-3 flex min-h-11 items-center gap-2 text-sm font-semibold"><input type="checkbox" checked={addOtherContact} onChange={event=>setAddOtherContact(event.target.checked)} /> Add another contact method (optional)</label>:null}<p className="mt-2 text-sm text-neutral-600">Provide at least one contact method. You may provide both.</p>{fieldError('contact')}</section>
     </fieldset>
     {state==='accepted'?<div role="status" className="mt-7 rounded-xl border border-lime-400 bg-lime-50 p-5"><h3 className="text-xl font-black">Your request has been received.</h3>{reference?<p>Reference: {reference}</p>:null}<p>We’ll review your requirements and contact you using the details you provided.</p><p className="font-semibold">{fields.products.map(line=>`${line.product}: ${line.quantity} ${line.unit}`).join('; ')} · {fields.requiredDeliveryDate} · {country} · {fields.postalNotApplicable?'Postal code not applicable':fields.deliveryPostalCode}</p><p>We’ll check the product, design and delivery feasibility before preparing a quote. {intent==='sample'?'Sample eligibility, free scope and shipping are confirmed before dispatch.':''}</p><button type="button" onClick={startAnother} className="mt-3 min-h-11 font-bold underline">Start another project</button></div>:null}
     {state==='sending'?<p role="status" className="mt-5 text-sm">Submitting your request. Please keep this page open.</p>:null}

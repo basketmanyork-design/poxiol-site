@@ -15,6 +15,10 @@ test('optional narrative and attachment are not required for a purchasing inquir
 })
 test('email-only and WhatsApp-only submissions both validate; neither contact fails',()=>{
   assert.deepEqual(validateProcurementFields({...base,email:'',whatsapp:'+447700900000'},today),{})
+  const whatsapp=createProcurementFormData({...base,email:'',whatsapp:'+447700900000'},{intent:'project',formType:'TEST',sourcePage:'/',submissionKey:'test-key',preferredContactMethod:'whatsapp'})
+  assert.equal(whatsapp.get('preferred_contact_method'),'whatsapp')
+  assert.equal(whatsapp.get('email'),null)
+  assert.equal(whatsapp.get('whatsapp'),'+447700900000')
   assert.ok(validateProcurementFields({...base,email:'',whatsapp:''},today).contact)
 })
 test('exact quantity, in-hand date, country and postal code are required',()=>{

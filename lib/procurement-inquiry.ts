@@ -39,7 +39,7 @@ export function validateProcurementFields(fields: ProcurementFields, today: stri
   return errors
 }
 
-export function createProcurementFormData(fields: ProcurementFields, context: {intent: V8ConversionIntent; sourcePage: string; originPage?: string; entryProduct?: string; formType: string; submissionKey: string; attachments?: File[]}) {
+export function createProcurementFormData(fields: ProcurementFields, context: {intent: V8ConversionIntent; sourcePage: string; originPage?: string; entryProduct?: string; formType: string; submissionKey: string; preferredContactMethod?: 'email'|'whatsapp'; attachments?: File[]}) {
   const date = new Date()
   const today = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`
   const errors = validateProcurementFields(fields,today)
@@ -54,6 +54,7 @@ export function createProcurementFormData(fields: ProcurementFields, context: {i
   data.set('fullName',fields.fullName.trim())
   data.set('buyerRole',fields.buyerRole)
   data.set('company',fields.company.trim())
+  if (context.preferredContactMethod) data.set('preferred_contact_method',context.preferredContactMethod)
   if (fields.email.trim()) data.set('email',fields.email.trim())
   if (fields.whatsapp.trim()) data.set('whatsapp',fields.whatsapp.trim())
   data.set('products',JSON.stringify(fields.products.map(line => ({product:line.product.trim(),quantity:Number(line.quantity),unit:line.unit}))))
