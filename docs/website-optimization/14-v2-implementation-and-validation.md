@@ -30,7 +30,7 @@ Reference captures are in `docs/website-optimization/screenshots/`, including [d
 
 `POXIOL_HOMEPAGE_OPTIMIZATION=PARTIAL_BLOCKED`
 
-The UI/code change is ready to create a new Cloudflare Preview, but it cannot be labelled `READY_FOR_YORK_REVIEW` until the final branch deployment is available and its configured Preview receiver is isolated and verified for acceptance, storage and notification. Production remains untouched. Do not route paid traffic to this branch.
+The UI/code change is locally committed and ready to create a new Cloudflare Preview, but it cannot be labelled `READY_FOR_YORK_REVIEW` until the final branch deployment is available and its configured Preview receiver is isolated and verified for acceptance, storage and notification. The attempted push to `basketmanyork-design/poxiol-site` was rejected by the execution approval layer because it would transmit the complete source branch to an external remote; no workaround was attempted. Production remains untouched. Do not route paid traffic to this branch.
 
 ## Rollback
 
