@@ -51,7 +51,7 @@ test('desktop product links close their disclosure and restore summary focus', (
   assert.equal(focusOptions?.preventScroll, true)
 })
 
-test('mobile menu reserves scroll clearance above the fixed inquiry bar', () => {
+test('mobile menu uses compact safe-area clearance because competing fixed layers are hidden', () => {
   const source = readFileSync('components/MobileMenu.tsx', 'utf8')
-  assert.match(source, /pb-\[calc\(6\.5rem\+env\(safe-area-inset-bottom\)\)\]/)
+  assert.match(source, /pb-\[calc\(1\.5rem\+env\(safe-area-inset-bottom\)\)\]/)
 })
