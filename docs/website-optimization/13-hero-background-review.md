@@ -10,4 +10,5 @@ Local validation: direct Next optimized build and TypeScript pass; updated homep
 
 New screenshots: `screenshots/hero-background-desktop-1440.png`, `hero-background-mobile-390.png`, `hero-background-mobile-375.png`, `hero-background-mobile-320.png`, and `hero-background-mobile-poster-390.png`. The desktop and 390px captures show a playing factory/garment frame, with HTML copy in front and no player box/control strip. The poster capture is from a fresh reduced-motion page load. All are stored in this workspace.
 
-Pending: push this review branch revision and verify its own Cloudflare Preview build and remote HTTP/noindex responses. Production `main` remains out of scope until owner approval.
+Cloudflare Preview build `4b8b920b-ecbc-4dae-872a-3d7892ba4fc8` for commit `01d413a3ce9f7ab115f4e02e5cf210e7d306a981` succeeded in 2m 38s. Review URL: `https://4b8b920b.poxiol-site.pages.dev/`. Remote browser verified a 900px desktop hero with the video playing, controls/figure/figcaption absent, muted/loop enabled, cover fit at 57% 49%, both CTAs intact and no horizontal overflow. Homepage, MP4 and Poster returned HTTP 200 with `X-Robots-Tag: noindex`. Production `main` remains `b7840691cd176f57ed591961be2ec4413acb6739` and was not published.
+
