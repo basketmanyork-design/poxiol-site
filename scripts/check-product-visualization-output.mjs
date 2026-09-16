@@ -58,7 +58,7 @@ invariant(home.includes('Product design illustrations — specifications are con
 for (const slug of ['soccer','basketball','baseball','training','running-track','warm-up']) {
   invariant(home.includes(`/website-optimization/${slug}-800.webp`), `Homepage is missing the supplied ${slug} card derivative`)
 }
-invariant(home.includes('/website-optimization/poxiol-hero-22s-720p.mp4'), 'Homepage is missing the supplied hero film')
+invariant(home.includes('poxiol-teamwear-range-banner-2x1.webp'), 'Homepage is missing the supplied hero poster')
 
 for (const route of ['factory', 'manufacturing', 'quality-control-process']) {
   invariant(!htmlFor(route).includes('/product-visualization/'), `${route} must not use product visualization as production evidence`)

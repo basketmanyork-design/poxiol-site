@@ -11,12 +11,13 @@
 .section h3{font-size:1.4rem;margin-bottom:1rem}
 .section p{line-height:1.65}
 .lead{font-size:clamp(1rem,1.5vw,1.15rem);max-width:47rem}
-.heroGrid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:clamp(2rem,4vw,4rem)}
-.heroCopy{min-width:0}
+.hero{position:relative;isolation:isolate;display:flex;align-items:center;width:100%;min-height:clamp(680px,85svh,900px);overflow:hidden;background:#0a0a0a url('/images/poxiol-teamwear-range-banner-2x1.webp') 84% 50% / cover no-repeat}
+.heroVideo{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:57% 49%;z-index:0}
+.heroShade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(110deg,rgba(5,8,7,.94) 0%,rgba(5,8,7,.82) 38%,rgba(5,8,7,.42) 68%,rgba(5,8,7,.22) 100%)}
+.heroContent{position:relative;z-index:2;width:100%;pointer-events:none}
+.heroCopy{min-width:0;max-width:620px;pointer-events:auto}
 .heroCopy .lead{max-width:37rem}
-.heroMedia{margin:0;min-width:0}
-.heroMedia video{display:block;width:100%;aspect-ratio:16/9;max-height:32rem;border:1px solid #394230;border-radius:1.5rem;background:#121712;object-fit:contain}
-.heroMedia figcaption,.microcopy,.disclosure{font-size:.8rem;color:#aeb7a8}
+.microcopy,.disclosure{font-size:.8rem;color:#dce2da}
 .light .disclosure{color:#5b6557}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin:1.8rem 0}
 .primary,.secondary{display:inline-flex;min-height:3rem;align-items:center;justify-content:center;padding:.8rem 1.4rem;border:2px solid #b7ff00;border-radius:999px;font-weight:800;text-align:center;text-decoration:none;line-height:1.3}
@@ -50,6 +51,6 @@
 .faqList p{margin:1rem 0 0;color:#41483f}
 .formContainer{max-width:58rem}
 #contact{scroll-margin-top:7rem}
-@media(max-width:900px){.heroGrid{grid-template-columns:1fr}.fourGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:640px){.section{padding-inline:1rem}.productGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.cardCopy{display:block;min-height:7rem}.cardCopy span{display:block}.twoGrid,.threeGrid,.stepGrid{grid-template-columns:1fr}.actions{display:grid}.actions>a{width:100%}}
-@media(max-width:380px){.productGrid{grid-template-columns:1fr}.fourGrid{grid-template-columns:1fr}}
+@media(max-width:900px){.fourGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.section{padding-inline:1rem}.hero{min-height:clamp(650px,82svh,760px);background-position:82% 50%;align-items:flex-start;padding-top:clamp(3.75rem,9svh,5rem);padding-bottom:3.5rem}.heroVideo{object-position:68% 50%}.heroShade{background:linear-gradient(180deg,rgba(5,8,7,.93) 0%,rgba(5,8,7,.83) 43%,rgba(5,8,7,.50) 76%,rgba(5,8,7,.36) 100%)}.heroCopy{max-width:100%}.heroCopy p{line-height:1.5}.heroCopy .actions{margin:1.3rem 0}.productGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.cardCopy{display:block;min-height:7rem}.cardCopy span{display:block}.twoGrid,.threeGrid,.stepGrid{grid-template-columns:1fr}.actions{display:grid}.actions>a{width:100%}}
+@media(max-width:380px){.hero h1{font-size:clamp(1.95rem,9.6vw,2.25rem);line-height:1.06}.heroCopy .lead{font-size:.97rem}.productGrid{grid-template-columns:1fr}.fourGrid{grid-template-columns:1fr}}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {ProjectQualificationForm} from '@/components/v8/ProjectQualificationForm'
 import styles from './HomepageOptimization.module.css'
+import {HeroBackgroundVideo} from './HeroBackgroundVideo'
 import type {HomepageOptimizationCopy} from '@/lib/sanity/home-optimization'
 
 const cards = [
@@ -29,7 +30,9 @@ const step = (number: string, title: string, body: string) => <li><span>{number}
 export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyApproved,copy={}}: {publicEmail: string; whatsappHref: string; privacyPolicyApproved: boolean;copy?:HomepageOptimizationCopy}) {
   return <>
     <section className={`${styles.section} ${styles.hero}`} aria-labelledby="home-hero-title">
-      <div className={`${styles.container} ${styles.heroGrid}`}>
+      <HeroBackgroundVideo />
+      <div className={styles.heroShade} aria-hidden="true" />
+      <div className={`${styles.container} ${styles.heroContent}`}>
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>{copy.heroEyebrow || 'Custom Teamwear Manufacturer'}</p>
           <h1 id="home-hero-title">{copy.heroHeading || 'Custom Teamwear for Teams, Clubs & Brands'}</h1>
@@ -41,13 +44,6 @@ export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyAp
           </div>
           <p className={styles.microcopy}>{copy.heroMicrocopy || 'Start with your requirements. No finished design needed.'}</p>
         </div>
-        <figure className={styles.heroMedia}>
-          <video controls playsInline preload="metadata" muted poster="/images/poxiol-teamwear-range-banner-2x1.webp" aria-label="POXIOL teamwear hero video">
-            <source src="/website-optimization/poxiol-hero-22s-720p.mp4" type="video/mp4" />
-            Your browser cannot play this video. The product and project links remain available.
-          </video>
-          <figcaption>POXIOL teamwear film. Use the video controls to play or pause.</figcaption>
-        </figure>
       </div>
     </section>
 
