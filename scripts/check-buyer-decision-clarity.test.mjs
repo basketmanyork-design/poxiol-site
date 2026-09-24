@@ -31,7 +31,7 @@ const [homeSource, homepageV8Source, buyerSource, geoSource, shippingSource, sit
   readFile(path.join(root, 'app/faq/page.tsx'), 'utf8'),
 ])
 
-assert.match(homeSource, /HomepageHybrid/, 'pilot homepage must render the approved hybrid buyer decision composition')
+assert.match(homeSource, /HomepageOptimization/, 'homepage must render the approved nine-module buyer decision composition')
 for (const sharedSection of ['CustomerSegmentation', 'BuyerProblems', 'DesignJourney', 'ProductionProof', 'SolutionCards']) {
   assert.ok(homepageV8Source.includes(`<${sharedSection}`), `HomepageV8 must render ${sharedSection}`)
 }

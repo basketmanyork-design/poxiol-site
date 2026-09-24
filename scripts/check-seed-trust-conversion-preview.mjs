@@ -63,7 +63,7 @@ const requiredOutputCopy = [
 const contentResolverSource = read('lib/sanity/content.ts')
 const homepageSource = read('app/page.tsx')
 const homepageV8Source = read('components/v8/HomepageV8.tsx')
-assert.ok(homepageSource.includes('<HomepageHybrid'), 'Pilot homepage must render the approved hybrid composition')
+assert.ok(homepageSource.includes('<HomepageOptimization'), 'Homepage must render the approved nine-module composition')
 for (const sharedSection of ['CustomerSegmentation', 'BuyerProblems', 'DesignJourney', 'ProductionProof', 'SolutionCards']) {
   assert.ok(homepageV8Source.includes(`<${sharedSection}`), `HomepageV8 does not render ${sharedSection}`)
 }
