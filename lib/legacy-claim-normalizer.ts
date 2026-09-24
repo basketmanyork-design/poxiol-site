@@ -32,6 +32,7 @@ export function normalizeBuyerFacingClaim(value: string): string {
     .replace(/POXIOL\s+addresses\s+each\s+of\s+these\s+factors\s+in\s+its\s+factory[- ]direct\s+manufacturing\s+model/gi, 'POXIOL addresses each of these factors through project-specific sourcing and production coordination')
     .replace(/Request\s+a\s+POXIOL\s+factory[- ]direct\s+quote/gi, 'Request a POXIOL project-specific quotation')
     .replace(/Request\s+a\s+factory[- ]direct\s+quote/gi, 'Request a project-specific quotation')
+    .replace(/\bFactory[- ]Direct\s+Quote\.?/gi, 'Request a Custom Teamwear Quote')
     .replace(/\bfactory[- ]direct\b/gi, 'project-coordinated')
     .replace(/\bdirect[- ]to[- ]factory\b/gi, 'project-specific sourcing')
     .replace(/Elite\s+B2B\s+custom\s+teamwear\s+manufacturer/gi, 'B2B custom teamwear support')

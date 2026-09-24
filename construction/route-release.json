@@ -3,10 +3,10 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
-    "candidateSitemapSha256": "7b41e2f5605a8b61d77cb04d94e1b385cb1940903be03a9e0d761b649f03c350",
+    "candidateSitemapSha256": "725712086815fc81a7c6eab39fcb9ce23e2a93e4fe9ce7172e9193c6e6221b16",
     "publicCount": 100,
-    "candidateCount": 82,
-    "renderedCount": 119,
+    "candidateCount": 84,
+    "renderedCount": 121,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -97,7 +97,9 @@
       "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
       "/guides/moq-1-custom-teamwear-how-it-works/",
       "/guides/oem-odm-sportswear-manufacturing-guide-for-brands/",
-      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/"
+      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/",
+      "/products/running-track-uniforms/",
+      "/products/warm-up-wear/"
     ],
     "REDIRECTED": [
       "/blog/best-sportswear-fabrics/",

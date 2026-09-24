@@ -3,6 +3,7 @@ import {existsSync, readFileSync, readdirSync, statSync} from 'node:fs'
 import {test} from 'node:test'
 import path from 'node:path'
 
+import {normalizeBuyerFacingClaim} from '../lib/legacy-claim-normalizer.ts'
 import {pseoPages} from '../lib/pseo.ts'
 
 const unsupportedClaimPatterns = [
@@ -54,6 +55,10 @@ const pseoBuyerClaims = pseoPages.flatMap((page) => [
   ]),
 ] as const)
 
+test('the legacy Get Quote heading becomes the approved buyer-readable H1', () => {
+  assert.equal(normalizeBuyerFacingClaim('Factory Direct Quote.'), 'Request a Custom Teamwear Quote')
+})
+
 test('public buyer copy does not present unsupported ownership, scale, regional or customer claims', () => {
   const runtimeSources = [
     'lib/cms/legacy.ts',
@@ -93,6 +98,11 @@ test('llms.txt states the approved POXIOL brand and operator relationship', () =
 test('generated buyer-visible output keeps the same public truth boundary', {skip: !outputMode}, () => {
   const outDir = path.join(process.cwd(), 'out')
   assert.equal(existsSync(outDir), true, 'Generated out/ is required for the AI-discovery output check')
+
+  const quoteHtml = readFileSync(path.join(outDir, 'get-quote', 'index.html'), 'utf8')
+  const quoteHeadings = [...quoteHtml.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)]
+    .map((match) => match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim())
+  assert.deepEqual(quoteHeadings, ['Request a Custom Teamwear Quote'], 'Get Quote must render one approved buyer-readable H1')
 
   const findings: string[] = []
   for (const file of listFiles(outDir).filter((item) => item.endsWith('.html') || item.endsWith('llms.txt'))) {
