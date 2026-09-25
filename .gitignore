@@ -32,6 +32,7 @@ tmp_artifact/
 *_log.txt
 
 .open-next
+.poxiol-build/
 
 # Real Production originals/review files are local intake material.
 content/real-production/inbox/*

@@ -1,6 +1,16 @@
-import {createHash} from 'node:crypto'
-import {writeFileSync} from 'node:fs'
+import {execFileSync} from 'node:child_process'
+import {readFileSync, writeFileSync} from 'node:fs'
 import {resolve} from 'node:path'
+
+import {buildDeterministicBuildId} from '../lib/release/build-id.mjs'
+import {
+  SANITY_EVIDENCE_BUILD_ID_PATHS,
+  buildSanityEvidence,
+  captureSanityBuildEvidence,
+  formatSanityEvidenceLog,
+  resolveCandidateCommit,
+  verifySanityBuildEvidence,
+} from '../lib/release/sanity-build-evidence.mjs'
 
 import {
   articleBySlugQuery,
@@ -21,10 +31,6 @@ import {
   siteSettingsQuery,
 } from '../lib/sanity/queries.ts'
 
-const projectId = 'oqpv1xbc'
-const dataset = 'production'
-const apiVersion = '2024-01-01'
-
 const reads = [
   {name: 'site-settings', query: siteSettingsQuery, params: {}},
   {name: 'navigation', query: navigationQuery, params: {}},
@@ -44,60 +50,57 @@ const reads = [
   {name: 'redirect-rules', query: redirectRulesQuery, params: {}},
 ]
 
-function sha256(value: string) {
-  return createHash('sha256').update(value).digest('hex')
+function gitCommit(root: string) {
+  return execFileSync('git', ['-c', `safe.directory=${root.replaceAll('\\', '/')}`, 'rev-parse', 'HEAD'], {
+    cwd: root,
+    encoding: 'utf8',
+    windowsHide: true,
+  }).trim()
 }
 
-const results = []
-let firstPublishedProduct = ''
-let firstPublishedArticle = ''
-for (const read of reads) {
-  const params = Object.fromEntries(Object.entries(read.params).map(([key, value]) => {
-    if (value === '$firstPublishedProduct') return [key, firstPublishedProduct]
-    if (value === '$firstPublishedArticle') return [key, firstPublishedArticle]
-    return [key, value]
-  }))
-  const url = new URL(`https://${projectId}.apicdn.sanity.io/v${apiVersion}/data/query/${dataset}`)
-  url.searchParams.set('query', read.query)
-  url.searchParams.set('perspective', 'published')
-  url.searchParams.set('returnQuery', 'false')
-  for (const [key, value] of Object.entries(params)) {
-    url.searchParams.set(`$${key}`, JSON.stringify(value))
+async function run() {
+  const root = process.cwd()
+  const mode = process.argv[2] || '--legacy'
+
+  if (mode === '--legacy') {
+    const evidence = await buildSanityEvidence({candidateCommit: '0'.repeat(40), reads})
+    const audit = {
+      version: 1,
+      projectId: evidence.projectId,
+      dataset: evidence.dataset,
+      apiVersion: evidence.apiVersion,
+      transport: evidence.transport,
+      perspective: evidence.perspective,
+      authentication: evidence.authentication,
+      cmsWrites: evidence.cmsWrites,
+      reads: evidence.reads.map((read) => ({...read, perspective: 'published'})),
+    }
+    writeFileSync(resolve(root, 'construction/sanity-read-audit.json'), `${JSON.stringify(audit, null, 2)}\n`)
+    console.log(`[sanity-read-audit] ${audit.reads.length} published GET queries hashed; cmsWrites=0`)
+    return
   }
 
-  const response = await fetch(url, {method: 'GET', headers: {Accept: 'application/json'}})
-  const body = await response.text()
-  if (!response.ok) throw new Error(`SANITY_READ_AUDIT_FAILED:${read.name}:${response.status}`)
-  const payload = JSON.parse(body) as {result?: unknown}
-  if (read.name === 'products' && Array.isArray(payload.result)) {
-    firstPublishedProduct = String((payload.result[0] as {slug?: unknown} | undefined)?.slug || '')
-  }
-  if (read.name === 'articles' && Array.isArray(payload.result)) {
-    firstPublishedArticle = String((payload.result[0] as {slug?: unknown} | undefined)?.slug || '')
-  }
-  results.push({
-    name: read.name,
-    method: 'GET',
-    perspective: 'published',
-    params,
-    querySha256: sha256(read.query),
-    responseSha256: sha256(body),
-    resultKind: Array.isArray(payload.result) ? 'array' : payload.result === null ? 'null' : typeof payload.result,
-    resultCount: Array.isArray(payload.result) ? payload.result.length : payload.result == null ? 0 : 1,
+  if (mode !== '--capture' && mode !== '--verify') throw new Error('SANITY_BUILD_EVIDENCE_MODE_INVALID')
+  const candidateCommit = resolveCandidateCommit({
+    envCommit: process.env.CF_PAGES_COMMIT_SHA || '',
+    gitCommit: gitCommit(root),
   })
+
+  if (mode === '--capture') {
+    await captureSanityBuildEvidence({root, candidateCommit, reads})
+    return
+  }
+
+  const buildId = readFileSync(resolve(root, '.next/BUILD_ID'), 'utf8').trim()
+  const expectedBuildId = buildDeterministicBuildId({root, paths: SANITY_EVIDENCE_BUILD_ID_PATHS})
+  const evidence = await verifySanityBuildEvidence({
+    root,
+    candidateCommit,
+    reads,
+    buildId,
+    expectedBuildId,
+  })
+  console.log(formatSanityEvidenceLog({evidence, buildId}))
 }
 
-const audit = {
-  version: 1,
-  projectId,
-  dataset,
-  apiVersion,
-  transport: 'GET_ONLY',
-  perspective: 'published',
-  authentication: 'none',
-  cmsWrites: 0,
-  reads: results,
-}
-
-writeFileSync(resolve('construction/sanity-read-audit.json'), `${JSON.stringify(audit, null, 2)}\n`)
-console.log(`[sanity-read-audit] ${results.length} published GET queries hashed; cmsWrites=0`)
+await run()
