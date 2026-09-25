@@ -272,6 +272,21 @@ export function ArticleTemplate({article}: {article: CmsArticle}) {
           </section>
         ) : null}
 
+        {article.slug === 'how-to-order-custom-basketball-uniforms' ? (
+          <section className="mt-16 rounded-[2rem] border border-white/10 bg-white/[0.03] p-8" aria-labelledby="basketball-product-link-title">
+            <h2 id="basketball-product-link-title" className="text-2xl font-black uppercase">Explore Custom Basketball Uniforms</h2>
+            <p className="mt-4 text-neutral-400">
+              Review POXIOL&apos;s basketball uniform product system, customization options, sample workflow and production process.
+            </p>
+            <Link
+              href="/products/basketball-uniforms/"
+              className="mt-6 inline-flex min-h-12 items-center rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white"
+            >
+              View Custom Basketball Uniforms →
+            </Link>
+          </section>
+        ) : null}
+
         {article.cta || article.secondaryCta ? (
           <div className="mt-16 flex flex-wrap gap-4">
             {article.cta ? <PrimaryButton href={article.cta.href}>{article.cta.label}</PrimaryButton> : null}

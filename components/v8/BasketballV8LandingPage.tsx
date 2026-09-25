@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice'
 import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
@@ -130,6 +131,24 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
       />
 
       <FAQSection faqs={faqs} schema={false} title="Custom Basketball Uniform Questions" />
+
+      <section className="bg-neutral-950 px-5 py-20 text-white md:px-10 xl:px-20" aria-labelledby="basketball-buying-guide-title">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 md:p-12">
+          <p className="text-sm font-black uppercase tracking-[0.2em] text-[#B6FF00]">BASKETBALL BUYING GUIDE</p>
+          <h2 id="basketball-buying-guide-title" className="mt-4 text-3xl font-black uppercase tracking-tight md:text-4xl">
+            Plan Your Basketball Uniform Order
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
+            Compare fabric, fit, printing, size mix, samples and quality-control checkpoints before you send the final roster and quantity.
+          </p>
+          <Link
+            href="/guides/how-to-order-custom-basketball-uniforms/"
+            className="mt-8 inline-flex min-h-12 items-center rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white"
+          >
+            Read the Custom Basketball Uniform Buying Guide →
+          </Link>
+        </div>
+      </section>
 
       <FinalCTA
         title="Ready to Build Your Basketball Uniforms?"
