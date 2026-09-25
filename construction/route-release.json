@@ -2,11 +2,11 @@
   "version": 1,
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
-    "publicSitemapSha256": "ed3f1cb48bd7924ca89b2c18d7d6a5e08f07fd727bd55f761abfa6344609e67c",
-    "candidateSitemapSha256": "725712086815fc81a7c6eab39fcb9ce23e2a93e4fe9ce7172e9193c6e6221b16",
-    "publicCount": 100,
-    "candidateCount": 84,
-    "renderedCount": 121,
+    "publicSitemapSha256": "59a1690dc846c1362c1e569549438de708e3f44f2a98034b4ff72cac5538bdff",
+    "candidateSitemapSha256": "9d14cbfc99bd754bd2752f59efa88357ca18f7758c0a8c5b212af11e997d4e0e",
+    "publicCount": 84,
+    "candidateCount": 82,
+    "renderedCount": 119,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -18,6 +18,9 @@
       "/about/",
       "/best-sportswear-fabrics/",
       "/blog/",
+      "/blog/custom-team-uniform-roster-checklist/",
+      "/blog/sportswear-manufacturer-project-brief-checklist/",
+      "/blog/tech-pack-vs-pattern-vs-sample/",
       "/certificates-testing/",
       "/club-teamwear-program/",
       "/contact/",
@@ -41,13 +44,16 @@
       "/guides/basketball-uniform-size-guide/",
       "/guides/custom-basketball-uniform-cost-factors/",
       "/guides/custom-basketball-uniform-fabric-gsm/",
+      "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
       "/guides/how-to-order-custom-basketball-uniforms/",
+      "/guides/moq-1-custom-teamwear-how-it-works/",
+      "/guides/oem-odm-sportswear-manufacturing-guide-for-brands/",
       "/guides/reversible-vs-single-layer-basketball-uniforms/",
       "/guides/sample-first-vs-bulk-teamwear-order/",
       "/guides/sublimation-printing-guide/",
+      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/",
       "/how-sublimation-printing-works-for-teamwear/",
       "/how-to-choose-a-teamwear-manufacturer/",
-      "/how-to-order-custom-basketball-uniforms/",
       "/intellectual-property-policy/",
       "/manufacturing/",
       "/oem-baseball-apparel-manufacturer/",
@@ -62,9 +68,11 @@
       "/products/",
       "/products/basketball-uniforms/",
       "/products/hoodies-jackets/",
+      "/products/running-track-uniforms/",
       "/products/soccer-jerseys/",
       "/products/team-accessories/",
       "/products/training-wear/",
+      "/products/warm-up-wear/",
       "/projects/australia-soccer-club-kit-project/",
       "/projects/distributor-bulk-teamwear-program/",
       "/projects/middle-east-sports-event-program/",
@@ -89,45 +97,10 @@
       "/terms/",
       "/youth-team-uniforms/"
     ],
-    "ADDED": [
-      "/blog/custom-team-uniform-roster-checklist/",
-      "/blog/sportswear-manufacturer-project-brief-checklist/",
-      "/blog/tech-pack-vs-pattern-vs-sample/",
-      "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
-      "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
-      "/guides/moq-1-custom-teamwear-how-it-works/",
-      "/guides/oem-odm-sportswear-manufacturing-guide-for-brands/",
-      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/",
-      "/products/running-track-uniforms/",
-      "/products/warm-up-wear/"
-    ],
+    "ADDED": [],
     "REDIRECTED": [
-      "/blog/best-sportswear-fabrics/",
-      "/blog/custom-baseball-jerseys-for-clubs/",
-      "/blog/custom-basketball-jerseys-melbourne/",
-      "/blog/custom-basketball-uniforms-for-schools/",
-      "/blog/custom-soccer-kits-london/",
-      "/blog/custom-soccer-uniforms-for-academies/",
-      "/blog/custom-sports-apparel-distributor/",
-      "/blog/custom-teamwear-new-york/",
-      "/blog/custom-volleyball-uniforms-for-schools/",
-      "/blog/how-sublimation-printing-works-for-teamwear/",
-      "/blog/how-to-choose-a-teamwear-manufacturer/",
-      "/blog/oem-baseball-apparel-manufacturer/",
-      "/blog/oem-basketball-apparel-manufacturer/",
-      "/blog/oem-soccer-apparel-manufacturer/",
-      "/blog/oem-volleyball-apparel-manufacturer/",
-      "/blog/oem-vs-odm-sportswear/",
-      "/blog/soccer-jersey-buying-guide/",
-      "/blog/soccer-jersey-supplier-australia/",
-      "/blog/soccer-teamwear-supplier-uk/",
-      "/blog/soccer-teamwear-supplier-usa/",
-      "/guides/custom-teamwear-manufacturer-buying-guide/",
-      "/guides/how-to-choose-teamwear-manufacturer-china/",
-      "/guides/private-label-teamwear-manufacturing/",
-      "/guides/school-basketball-uniform-order-checklist/",
-      "/guides/teamwear-quality-control-checklist/",
-      "/guides/teamwear-sample-approval-checklist/"
+      "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
+      "/how-to-order-custom-basketball-uniforms/"
     ],
     "WITHHELD_LEGAL": [],
     "OWNER_410_REQUIRED": []
@@ -304,13 +277,18 @@
       "status": 301
     },
     {
+      "source": "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
+      "destination": "/guides/how-to-order-custom-basketball-uniforms/",
+      "status": 301
+    },
+    {
       "source": "/guides/private-label-teamwear-manufacturing/",
       "destination": "/resources/private-label-teamwear-launch-checklist/",
       "status": 301
     },
     {
       "source": "/guides/school-basketball-uniform-order-checklist/",
-      "destination": "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
+      "destination": "/guides/how-to-order-custom-basketball-uniforms/",
       "status": 301
     },
     {
@@ -321,6 +299,11 @@
     {
       "source": "/guides/teamwear-sample-approval-checklist/",
       "destination": "/guides/sample-first-vs-bulk-teamwear-order/",
+      "status": 301
+    },
+    {
+      "source": "/how-to-order-custom-basketball-uniforms/",
+      "destination": "/guides/how-to-order-custom-basketball-uniforms/",
       "status": 301
     }
   ],

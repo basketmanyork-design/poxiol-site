@@ -20,19 +20,6 @@ export function getPseoCoreSportLink(slug: string): {label: string; href: string
 export const pseoPages: PSEOPage[] = [
   // --- KNOWLEDGE GUIDES (From Content Pack) ---
   {
-    slug: "how-to-order-custom-basketball-uniforms",
-    title: "How To Order Custom Basketball Uniforms | Complete Buying Guide | POXIOL",
-    h1: "How To Order Custom Basketball Uniforms",
-    intro: "Ordering custom basketball uniforms doesn't have to be complicated. This complete guide covers everything from selecting the right fabrics to final delivery, helping clubs, schools, and academies navigate the manufacturing process with ease.",
-    content: "The process starts with choosing the fabric weight and construction for the intended use. Next, the artwork, team logos, colors and player numbers are reviewed in a visual mockup. Once the design and material details are approved, the project can move into confirmed printing, sewing and quality checks. Packing and shipping are then planned for the destination and project requirements.",
-    publisher: POXIOL_PUBLISHER,
-    faqs: [
-      { question: "How is the production timeline for basketball uniforms confirmed?", answer: "Production scheduling is confirmed after the design, quantity, size breakdown and project requirements are approved." },
-      { question: "Can I see a sample before bulk production?", answer: "Yes, we highly recommend ordering a sample to verify fit, color, and fabric quality." },
-      { question: "What file formats do I need for logos?", answer: "Vector files like AI, EPS, or SVG are preferred for the sharpest printing results." },
-    ],
-  },
-  {
     slug: "soccer-jersey-buying-guide",
     title: "Soccer Jersey Buying Guide | How To Order Custom Soccer Kits | POXIOL",
     h1: "Complete Soccer Jersey Buying Guide",

@@ -12,7 +12,6 @@ const AI_DISCOVERY_TRUTH_ROUTES = new Set([
   '/products/hoodies-jackets/',
   '/products/team-accessories/',
   '/products/training-wear/',
-  '/how-to-order-custom-basketball-uniforms/',
   '/how-to-choose-a-teamwear-manufacturer/',
   '/custom-soccer-uniforms-for-academies/',
   '/soccer-jersey-supplier-australia/',

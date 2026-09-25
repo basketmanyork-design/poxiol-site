@@ -4,7 +4,7 @@ const guides = [
   {
     title: "How To Order Custom Basketball Uniforms",
     description: "A complete guide for schools, academies and clubs ordering basketball jerseys and shorts.",
-    href: "/how-to-order-custom-basketball-uniforms",
+    href: "/guides/how-to-order-custom-basketball-uniforms/",
   },
   {
     title: "Soccer Jersey Buying Guide",

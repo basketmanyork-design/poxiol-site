@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {readFileSync} from 'node:fs'
+import {existsSync, readFileSync} from 'node:fs'
 import test from 'node:test'
 
 function readRouteHtml(route) {
@@ -37,9 +37,14 @@ test('sitemap source consumes the Plan A publication policy', () => {
   assert.match(source, /publicSectionDecision/)
 })
 
-test('the maintained guide receiving a legacy redirect remains discoverable', () => {
+test('only the maintained Basketball ordering guide remains discoverable', () => {
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
-  assert.match(sitemap, /\/guides\/how-to-order-custom-basketball-uniforms-for-your-team\//)
+  assert.match(sitemap, /\/guides\/how-to-order-custom-basketball-uniforms\//)
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/www\.poxiol\.com\/how-to-order-custom-basketball-uniforms\/<\/loc>/)
+  assert.doesNotMatch(sitemap, /\/guides\/how-to-order-custom-basketball-uniforms-for-your-team\//)
+  assert.equal(existsSync('out/how-to-order-custom-basketball-uniforms/index.html'), false)
+  assert.equal(existsSync('out/guides/how-to-order-custom-basketball-uniforms-for-your-team/index.html'), false)
+  assert.equal(existsSync('out/guides/how-to-order-custom-basketball-uniforms/index.html'), true)
 })
 
 test('redirect sources are excluded from the sitemap', () => {
@@ -72,7 +77,6 @@ test('published structured data does not advertise missing logo or search resour
     '/resources/',
     '/projects/',
     '/ai-summary/',
-    '/how-to-order-custom-basketball-uniforms/',
     '/soccer-jersey-buying-guide/',
     '/oem-vs-odm-sportswear/',
     '/best-sportswear-fabrics/',

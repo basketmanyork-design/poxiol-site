@@ -598,18 +598,3 @@ export const printingGuideSchema = {
   ]
 };
 
-export const basketballGuideSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "How to Order Custom Basketball Uniforms",
-  "author": {
-    "@type": "Organization",
-    "name": "POXIOL"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "POXIOL"
-  }
-};
-
-

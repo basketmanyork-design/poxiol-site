@@ -38,7 +38,6 @@ const pages = {
   basketball: read('out/products/basketball-uniforms/index.html'),
 }
 const attributedSlugs = [
-  'how-to-order-custom-basketball-uniforms',
   'soccer-jersey-buying-guide',
   'oem-vs-odm-sportswear',
   'best-sportswear-fabrics',

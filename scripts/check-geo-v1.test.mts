@@ -12,11 +12,10 @@ import {POXIOL_PUBLISHER, pseoPages} from '../lib/pseo.ts'
 
 assert.equal(POXIOL_PUBLISHER, 'POXIOL')
 const attributedPages = pseoPages.filter((page) => page.publisher === POXIOL_PUBLISHER)
-assert.equal(attributedPages.length, 8)
+assert.equal(attributedPages.length, 7)
 assert.deepEqual(
   attributedPages.map((page) => page.slug),
   [
-    'how-to-order-custom-basketball-uniforms',
     'soccer-jersey-buying-guide',
     'oem-vs-odm-sportswear',
     'best-sportswear-fabrics',
