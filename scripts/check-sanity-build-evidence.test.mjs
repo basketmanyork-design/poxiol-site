@@ -239,3 +239,12 @@ test('capture and verify orchestration binds one Candidate and fails on CMS drif
     await rm(root, {recursive: true, force: true})
   }
 })
+
+test('the actual Cloudflare Pages build command captures and verifies Sanity evidence', () => {
+  const scripts = JSON.parse(readFileSync(resolve('package.json'), 'utf8')).scripts
+  const command = scripts['build:cloudflare']
+
+  assert.match(command, /^node --no-warnings --experimental-strip-types scripts\/audit-sanity-published-reads\.mts --capture && /)
+  assert.match(command, / next build && node scripts\/generate-cms-redirects\.mjs /)
+  assert.match(command, / && node --no-warnings --experimental-strip-types scripts\/audit-sanity-published-reads\.mts --verify$/)
+})
