@@ -38,8 +38,12 @@ for (const owner of process.argv.includes('--unit') ? [] : owners) test(`${owner
   const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match=>{
     const root=JSON.parse(match[1]); return [root,...(root['@graph'] || [])]
   })
-  assert.equal(schemas.find(schema=>schema['@type']==='Product')?.name, owner.title, 'Structured data must describe the visible product owner')
-  for(const type of ['Product', 'Service']) assert.equal(schemas.find(schema=>schema['@type']===type)?.description, description, type + ' must share the visible positioning')
+  if (owner.route === '/products/basketball-uniforms/') {
+    assert.equal(schemas.find(schema=>schema['@type']==='Service')?.description, description, 'Service must share the visible positioning')
+  } else {
+    assert.equal(schemas.find(schema=>schema['@type']==='Product')?.name, owner.title, 'Structured data must describe the visible product owner')
+    for(const type of ['Product', 'Service']) assert.equal(schemas.find(schema=>schema['@type']===type)?.description, description, type + ' must share the visible positioning')
+  }
   const links = [...visible.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match=>new URL(match[1].replace(/&amp;/g,'&'),'https://www.poxiol.com'))
   for(const path of ['/free-mockup/', '/sample-order/', '/get-quote/']) assert.ok(links.some(link=>link.pathname===path), 'Retain inquiry intent: '+path)
 })

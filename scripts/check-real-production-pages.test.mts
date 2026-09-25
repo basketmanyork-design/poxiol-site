@@ -12,7 +12,8 @@ assert.doesNotMatch(home, /getHeroProductionAsset/, 'Homepage hero must not pres
 
 const basketball = readFileSync('components/v8/BasketballV8LandingPage.tsx', 'utf8')
 for (const component of ['RealProductGallery', 'MockupToFinished', 'SampleInspectionProof', 'QCProofGallery', 'PackingProof']) assert.match(basketball, new RegExp(component))
-assert.match(basketball, /ProductSchema/)
+assert.match(basketball, /BreadcrumbSchema/)
+assert.doesNotMatch(basketball, /ProductSchema/)
 assert.match(basketball, /FAQSchema/)
 assert.match(basketball, /getV8ProductionAssetsForSample/)
 

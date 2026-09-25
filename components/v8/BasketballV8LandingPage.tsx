@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice'
 import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
-import {FAQSchema, ProductSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
+import {BreadcrumbSchema, FAQSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
 import {Footer, Header} from '@/components/ui'
 import {buildSportsProductGeoDetails} from '@/lib/geo-v1'
 import type {SportsPageData} from '@/lib/sports-pages'
@@ -43,7 +43,11 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   return (
     <main className="bg-white text-neutral-950">
       <ContentViewTracker event="product_category_view" params={{product_category: coreSport.canonicalPath, sport: coreSport.id}} />
-      <ProductSchema name={coreSport.hero.title} description={coreSport.seoDescription} url={fullUrl} image={data.heroImage} />
+      <BreadcrumbSchema items={[
+        {name: 'Home', url: 'https://www.poxiol.com/'},
+        {name: 'Products', url: 'https://www.poxiol.com/products/'},
+        {name: coreSport.hero.title, url: fullUrl},
+      ]} />
       <ServiceSchema name="Custom Basketball Uniform Manufacturing" description={coreSport.seoDescription} url={fullUrl} />
       <FAQSchema faqs={schemaFaqs} />
       <Header />

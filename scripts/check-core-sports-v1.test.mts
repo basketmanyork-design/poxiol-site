@@ -115,7 +115,13 @@ if (outputMode) {
         const roots = Array.isArray(parsed) ? parsed : [parsed]
         return roots.flatMap((rootValue) => [rootValue, ...(Array.isArray(rootValue?.['@graph']) ? rootValue['@graph'] : [])])
       })
-    for (const type of ['Product', 'Service', 'FAQPage']) assert.ok(schemas.some((schema) => schema['@type'] === type), owner.route + ' is missing ' + type + ' schema.')
+    const requiredSchemaTypes = owner.id === 'basketball'
+      ? ['BreadcrumbList', 'Service', 'FAQPage']
+      : ['Product', 'Service', 'FAQPage']
+    for (const type of requiredSchemaTypes) assert.ok(schemas.some((schema) => schema['@type'] === type), owner.route + ' is missing ' + type + ' schema.')
+    if (owner.id === 'basketball') {
+      assert.equal(schemas.some((schema) => schema['@type'] === 'Product'), false, owner.route + ' must not claim Product rich-result eligibility.')
+    }
     const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage')
     const faqSections = [...pageContentHtml(visibleHtml).matchAll(/<section\b[^>]*aria-labelledby="v8-faq-title"[^>]*>([\s\S]*?)<\/section>/gi)]
     assert.equal(faqSections.length, 1, owner.route + ' must contain exactly one labelled FAQ section.')

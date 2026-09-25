@@ -28,7 +28,7 @@ const expectedRoutes = [
       'How long does production take?',
     ],
     links: ['/manufacturing/', '/quality-control-process/', '/sample-order/', '/free-mockup/'],
-    schemas: ['Product', 'Service', 'FAQPage', 'BreadcrumbList'],
+    schemas: ['Service', 'FAQPage', 'BreadcrumbList'],
   },
   {
     id: 'manufacturing',
@@ -76,8 +76,8 @@ const basketballSource = read('components/v8/BasketballV8LandingPage.tsx')
 for (const component of ['V8Hero', 'BuyerProblems', 'SolutionCards', 'DesignJourney', 'SampleApproval', 'ManufacturingTimeline', 'QualityControl', 'FAQSection', 'FinalCTA']) {
   assert.match(basketballSource, new RegExp(`<${component}\\b`), `Basketball page must reuse ${component}.`)
 }
-for (const schema of ['ProductSchema', 'ServiceSchema', 'FAQSchema']) assert.match(basketballSource, new RegExp(schema))
-assert.doesNotMatch(basketballSource, /BreadcrumbSchema/, 'ProductSchema already owns the basketball BreadcrumbList; do not render a duplicate.')
+for (const schema of ['BreadcrumbSchema', 'ServiceSchema', 'FAQSchema']) assert.match(basketballSource, new RegExp(schema))
+assert.doesNotMatch(basketballSource, /ProductSchema/, 'Basketball must not claim Product rich-result eligibility without a supported offer.')
 assert.match(basketballSource, /schema=\{false\}/, 'Basketball visible FAQ and JSON-LD must share one array.')
 
 const authoritySource = read('components/v8/V8AuthorityPage.tsx')
