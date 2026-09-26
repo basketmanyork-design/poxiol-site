@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {getSitePage} from "@/lib/sanity/content";
 import {metadataFromCmsPage} from "@/components/cms/PageTemplate";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading } from "@/components/ui";
@@ -175,6 +176,21 @@ export default async function OEMPage() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/5 px-5 pb-24 md:px-10 md:pb-32 xl:px-20">
+        <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-white/10 bg-white/5 p-8 text-center md:p-12">
+          <h2 className="text-3xl font-black tracking-tight md:text-4xl">Need help choosing between OEM and ODM?</h2>
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-neutral-400">
+            Use the decision guide to compare the two paths, identify which project inputs are already fixed, and prepare the open questions before requesting a quote.
+          </p>
+          <Link
+            href="/guides/oem-odm-sportswear-manufacturing-guide-for-brands/"
+            className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-lime-400 px-7 py-3 text-center text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-white"
+          >
+            Compare OEM and ODM paths
+          </Link>
         </div>
       </section>
 

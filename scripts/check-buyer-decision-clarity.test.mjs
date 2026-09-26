@@ -37,6 +37,32 @@ const [categoryLandingSource, runningTrackSource, warmUpSource] = await Promise.
   readFile(path.join(root, 'app/products/warm-up-wear/page.tsx'), 'utf8'),
 ])
 
+const [oemDecisionGuideSource, oemServiceSource] = await Promise.all([
+  readFile(path.join(root, 'app/guides/oem-odm-sportswear-manufacturing-guide-for-brands/page.tsx'), 'utf8'),
+  readFile(path.join(root, 'app/oem-odm/page.tsx'), 'utf8'),
+])
+
+for (const contract of [
+  ['guide', oemDecisionGuideSource, 'OEM vs ODM Sportswear: A Decision Guide for Brands'],
+  ['guide', oemDecisionGuideSource, 'Choose OEM when your team already controls the product specification and needs a supplier to review manufacturability.'],
+  ['guide', oemDecisionGuideSource, 'OEM and ODM compared'],
+  ['guide', oemDecisionGuideSource, 'What to prepare before requesting a quote'],
+  ['guide', oemDecisionGuideSource, 'Questions to settle before sampling'],
+  ['guide', oemDecisionGuideSource, 'Discuss Your OEM/ODM Project'],
+  ['guide', oemDecisionGuideSource, "'@type': 'BreadcrumbList'"],
+  ['guide', oemDecisionGuideSource, "'@type': 'WebPage'"],
+  ['service page', oemServiceSource, 'Need help choosing between OEM and ODM?'],
+  ['service page', oemServiceSource, 'Compare OEM and ODM paths'],
+  ['service page', oemServiceSource, '/guides/oem-odm-sportswear-manufacturing-guide-for-brands/'],
+]) {
+  assert.ok(contract[1].includes(contract[2]), `${contract[0]} is missing approved OEM/ODM decision contract: ${contract[2]}`)
+}
+
+assert.ok(!oemDecisionGuideSource.includes('Get Free Mockup Now'), 'OEM/ODM decision guide must not retain the generic free-mockup CTA')
+for (const forbidden of ["'@type': 'Article'", "'@type': 'Person'", "'@type': 'Organization'", "'@type': 'Service'", "'@type': 'Product'", "'@type': 'Offer'", "'@type': 'FAQPage'", "'@type': 'Review'", "'@type': 'AggregateRating'"]) {
+  assert.ok(!oemDecisionGuideSource.includes(forbidden), `OEM/ODM decision guide schema must not expose ${forbidden}`)
+}
+
 for (const contract of [
   ['shared template', categoryLandingSource, 'How the project review works'],
   ['shared template', categoryLandingSource, '1. Brief review'],
