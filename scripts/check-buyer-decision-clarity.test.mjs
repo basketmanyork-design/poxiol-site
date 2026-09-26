@@ -31,6 +31,34 @@ const [homeSource, homepageV8Source, buyerSource, geoSource, shippingSource, sit
   readFile(path.join(root, 'app/faq/page.tsx'), 'utf8'),
 ])
 
+const [categoryLandingSource, runningTrackSource, warmUpSource] = await Promise.all([
+  readFile(path.join(root, 'components/home-optimization/CategoryLanding.tsx'), 'utf8'),
+  readFile(path.join(root, 'app/products/running-track-uniforms/page.tsx'), 'utf8'),
+  readFile(path.join(root, 'app/products/warm-up-wear/page.tsx'), 'utf8'),
+])
+
+for (const contract of [
+  ['shared template', categoryLandingSource, 'How the project review works'],
+  ['shared template', categoryLandingSource, '1. Brief review'],
+  ['shared template', categoryLandingSource, '2. Planning confirmation'],
+  ['shared template', categoryLandingSource, '3. Next-step decision'],
+  ['shared template', categoryLandingSource, 'application/ld+json'],
+  ['shared template', categoryLandingSource, 'BreadcrumbList'],
+  ['shared template', categoryLandingSource, "'@type': 'Service'"],
+  ['running page', runningTrackSource, 'Plan a running and track uniform brief'],
+  ['running page', runningTrackSource, 'Running and track uniform planning starts with the garment set, fit, artwork, quantity and required in-hand date. POXIOL reviews these inputs for the specific project rather than presenting one fixed specification for every buyer.'],
+  ['running page', runningTrackSource, 'Singlet, shorts or coordinated set'],
+  ['warm-up page', warmUpSource, 'Plan a warm-up wear brief'],
+  ['warm-up page', warmUpSource, 'Warm-up wear planning starts with the jacket-and-trouser configuration, fit, branding, quantity and required in-hand date. POXIOL reviews these inputs for the specific project rather than presenting one fixed specification for every buyer.'],
+  ['warm-up page', warmUpSource, 'Jacket, trousers or coordinated set'],
+]) {
+  assert.ok(contract[1].includes(contract[2]), `${contract[0]} is missing approved contract: ${contract[2]}`)
+}
+
+for (const forbidden of ['OfferCatalog', 'FAQPage', 'AggregateRating', 'areaServed', 'availability']) {
+  assert.ok(!categoryLandingSource.includes(forbidden), `category landing schema must not expose ${forbidden}`)
+}
+
 assert.match(homeSource, /HomepageOptimization/, 'homepage must render the approved nine-module buyer decision composition')
 for (const sharedSection of ['CustomerSegmentation', 'BuyerProblems', 'DesignJourney', 'ProductionProof', 'SolutionCards']) {
   assert.ok(homepageV8Source.includes(`<${sharedSection}`), `HomepageV8 must render ${sharedSection}`)

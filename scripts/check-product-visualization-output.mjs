@@ -64,4 +64,68 @@ for (const route of ['factory', 'manufacturing', 'quality-control-process']) {
   invariant(!htmlFor(route).includes('/product-visualization/'), `${route} must not use product visualization as production evidence`)
 }
 
+const productFamilyContracts=[
+  {
+    route:'products/running-track-uniforms',
+    url:'https://www.poxiol.com/products/running-track-uniforms/',
+    title:'Running & Track Uniforms for Teams | POXIOL',
+    h1:'Running & Track Uniforms',
+    meta:'Plan custom running and track uniforms for clubs, schools or sportswear brands. Review singlet and shorts options, fit, artwork, quantity and delivery needs.',
+    answer:'Running and track uniform planning starts with the garment set, fit, artwork, quantity and required in-hand date. POXIOL reviews these inputs for the specific project rather than presenting one fixed specification for every buyer.',
+    query:'product=Running+%26+Track+Uniforms&amp;source=%2Fproducts%2Frunning-track-uniforms%2F',
+    copy:['Plan a running and track uniform brief','Garment set','Start with a running singlet and shorts. Tell us whether you need the full set or selected pieces.','Fit and sizing','Share the size range, athlete or customer profile, and any existing size chart that should be reviewed.','Artwork and color','Provide logos, names, numbers, color references or a design direction. Decoration is reviewed with the selected fabric and construction.','Singlet, shorts or coordinated set'],
+  },
+  {
+    route:'products/warm-up-wear',
+    url:'https://www.poxiol.com/products/warm-up-wear/',
+    title:'Warm-Up Wear and Team Tracksuits | POXIOL',
+    h1:'Warm-Up Wear',
+    meta:'Plan custom warm-up wear for teams, clubs, schools or sportswear brands. Review jacket and trouser configuration, fit, branding, quantity and delivery needs.',
+    answer:'Warm-up wear planning starts with the jacket-and-trouser configuration, fit, branding, quantity and required in-hand date. POXIOL reviews these inputs for the specific project rather than presenting one fixed specification for every buyer.',
+    query:'product=Warm-Up+Wear&amp;source=%2Fproducts%2Fwarm-up-wear%2F',
+    copy:['Plan a warm-up wear brief','Set configuration','Start with a warm-up jacket and trousers. Tell us whether you need a coordinated set or selected pieces.','Fit and sizing','Share the size range, wearer profile, and any existing size chart that should be reviewed.','Branding and color','Provide logos, labels, color references or a design direction for project review.','Jacket, trousers or coordinated set'],
+  },
+]
+
+const sharedProductFamilyCopy=[
+  'What to include in your inquiry',
+  'A useful project brief helps POXIOL review the request without filling gaps with assumptions.',
+  'How the project review works',
+  '1. Brief review',
+  'We review the product type, intended use, quantity, size information, artwork status, destination and required in-hand date.',
+  '2. Planning confirmation',
+  'Product configuration, material direction, decoration, sizing and timing are discussed for the specific project.',
+  '3. Next-step decision',
+  'After the open points are identified, you can decide whether to continue with a mockup, sample discussion or quote.',
+  'Discuss This Product',
+  'Request a Free Mockup',
+  'View fabric references',
+  'Discuss sizing for this product',
+  'POXIOL product design illustration — construction and materials are confirmed for each project.',
+]
+
+for (const contract of productFamilyContracts) {
+  const html=htmlFor(contract.route)
+  const decoded=html.replaceAll('&amp;','&').replaceAll('&#x27;',"'").replaceAll('&quot;','"')
+  invariant((html.match(/<h1\b/gi)||[]).length===1, `${contract.route} must render exactly one H1`)
+  invariant(decoded.includes(`<title>${contract.title}</title>`), `${contract.route} changed the approved title`)
+  invariant(decoded.includes(`name="description" content="${contract.meta}"`), `${contract.route} changed the approved meta description`)
+  invariant(decoded.includes(`rel="canonical" href="${contract.url}"`), `${contract.route} changed the self-canonical`)
+  invariant(decoded.includes(`>${contract.h1}</h1>`), `${contract.route} changed the approved H1`)
+  for (const copy of [...contract.copy,contract.answer,...sharedProductFamilyCopy]) invariant(decoded.includes(copy), `${contract.route} is missing approved copy: ${copy}`)
+  invariant(html.includes(contract.query), `${contract.route} changed the approved inquiry context`)
+
+  const jsonLd=[...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)].map(match=>JSON.parse(match[1]))
+  invariant(jsonLd.length===1, `${contract.route} must render exactly one JSON-LD script`)
+  const graph=jsonLd[0]?.['@graph']
+  invariant(Array.isArray(graph)&&graph.length===2, `${contract.route} JSON-LD must contain exactly two graph nodes`)
+  invariant(graph.map(node=>node['@type']).sort().join('|')==='BreadcrumbList|Service', `${contract.route} JSON-LD changed the approved graph types`)
+  const service=graph.find(node=>node['@type']==='Service')
+  invariant(service?.description===contract.answer, `${contract.route} Service description must match visible approved copy`)
+  invariant(service?.name===contract.h1&&service?.url===contract.url, `${contract.route} Service identity changed`)
+  invariant(JSON.stringify(service?.provider)==='{"@type":"Organization","name":"POXIOL","url":"https://www.poxiol.com/"}', `${contract.route} Service provider changed`)
+  const serialized=JSON.stringify(jsonLd[0])
+  for (const forbidden of ['Product','Offer','OfferCatalog','FAQPage','Review','AggregateRating','areaServed','price','availability','MOQ','leadTime']) invariant(!serialized.includes(`"${forbidden}"`), `${contract.route} JSON-LD exposes forbidden field or type ${forbidden}`)
+}
+
 console.log('POXIOL product visualization output checks passed')
