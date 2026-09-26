@@ -121,6 +121,145 @@ test('response hash ignores Sanity timing and sync metadata when the published r
   assert.equal(first.aggregateSha256, second.aggregateSha256)
 })
 
+test('transient network and HTTP failures retry with governed delays before succeeding', async () => {
+  const {buildSanityEvidence} = await import('../lib/release/sanity-build-evidence.mjs')
+  const reads = [{name: 'site-settings', query: 'query-one', params: {}}]
+  const delays = []
+  let networkAttempts = 0
+  const afterNetworkRetry = await buildSanityEvidence({
+    candidateCommit: candidateA,
+    reads,
+    fetchImpl: async () => {
+      networkAttempts += 1
+      if (networkAttempts === 1) throw new Error('temporary network failure')
+      return response('{"result":{"slug":"alpha"}}')
+    },
+    sleepImpl: async (delay) => delays.push(delay),
+  })
+
+  assert.equal(networkAttempts, 2)
+  assert.deepEqual(delays, [250])
+  assert.equal(afterNetworkRetry.reads[0].resultCount, 1)
+
+  delays.length = 0
+  let serviceAttempts = 0
+  await buildSanityEvidence({
+    candidateCommit: candidateA,
+    reads,
+    fetchImpl: async () => {
+      serviceAttempts += 1
+      return serviceAttempts < 3
+        ? response('temporary unavailable', {ok: false, status: 503})
+        : response('{"result":{"slug":"alpha"}}')
+    },
+    sleepImpl: async (delay) => delays.push(delay),
+  })
+
+  assert.equal(serviceAttempts, 3)
+  assert.deepEqual(delays, [250, 750])
+})
+
+test('non-transient HTTP failures do not retry', async () => {
+  const {buildSanityEvidence} = await import('../lib/release/sanity-build-evidence.mjs')
+  let attempts = 0
+  await assert.rejects(
+    buildSanityEvidence({
+      candidateCommit: candidateA,
+      reads: [{name: 'site-settings', query: 'query-one', params: {}}],
+      fetchImpl: async () => {
+        attempts += 1
+        return response('not found', {ok: false, status: 404})
+      },
+      sleepImpl: async () => assert.fail('404 must not wait for a retry'),
+    }),
+    /SANITY_BUILD_EVIDENCE_HTTP:site-settings:404/,
+  )
+  assert.equal(attempts, 1)
+})
+
+test('transient failures stop after three attempts and preserve sanitized errors', async () => {
+  const {buildSanityEvidence} = await import('../lib/release/sanity-build-evidence.mjs')
+  const delays = []
+  let attempts = 0
+  await assert.rejects(
+    buildSanityEvidence({
+      candidateCommit: candidateA,
+      reads: [{name: 'site-settings', query: 'query-one', params: {}}],
+      fetchImpl: async () => {
+        attempts += 1
+        throw new Error('secret transport detail')
+      },
+      sleepImpl: async (delay) => delays.push(delay),
+    }),
+    (error) => {
+      assert.equal(String(error), 'Error: SANITY_BUILD_EVIDENCE_NETWORK:site-settings')
+      return true
+    },
+  )
+  assert.equal(attempts, 3)
+  assert.deepEqual(delays, [250, 750])
+})
+
+test('the shared reader applies a per-attempt timeout and stops after three attempts', async () => {
+  const {readJsonWithRetry} = await import('../lib/sanity/read-retry.mjs')
+  let attempts = 0
+  const result = await readJsonWithRetry(
+    'https://example.invalid/query',
+    {method: 'GET'},
+    {
+      timeoutMs: 1,
+      sleepImpl: async () => {},
+      fetchImpl: async (_url, {signal}) => {
+        attempts += 1
+        return new Promise((_resolve, reject) => {
+          signal.addEventListener('abort', () => reject(new Error('timed out')), {once: true})
+        })
+      },
+    },
+  )
+
+  assert.deepEqual(result, {ok: false, failure: 'network'})
+  assert.equal(attempts, 3)
+})
+
+test('response read and JSON parse failures are transient but missing result is not', async () => {
+  const {buildSanityEvidence} = await import('../lib/release/sanity-build-evidence.mjs')
+  const reads = [{name: 'site-settings', query: 'query-one', params: {}}]
+
+  for (const firstResponse of [
+    {ok: true, status: 200, async text() { throw new Error('body read detail') }},
+    response('not-json'),
+  ]) {
+    let attempts = 0
+    const evidence = await buildSanityEvidence({
+      candidateCommit: candidateA,
+      reads,
+      fetchImpl: async () => {
+        attempts += 1
+        return attempts === 1 ? firstResponse : response('{"result":{"slug":"alpha"}}')
+      },
+      sleepImpl: async () => {},
+    })
+    assert.equal(attempts, 2)
+    assert.equal(evidence.reads[0].resultCount, 1)
+  }
+
+  let missingResultAttempts = 0
+  await assert.rejects(
+    buildSanityEvidence({
+      candidateCommit: candidateA,
+      reads,
+      fetchImpl: async () => {
+        missingResultAttempts += 1
+        return response('{"ms":1}')
+      },
+      sleepImpl: async () => {},
+    }),
+    /SANITY_BUILD_EVIDENCE_RESULT_MISSING:site-settings/,
+  )
+  assert.equal(missingResultAttempts, 1)
+})
+
 test('artifact writer keeps full Candidate evidence separate from neutral build-ID input', async () => {
   const {
     SANITY_BUILD_EVIDENCE_PATH,
@@ -247,4 +386,10 @@ test('the actual Cloudflare Pages build command captures and verifies Sanity evi
   assert.match(command, /^node --no-warnings --experimental-strip-types scripts\/audit-sanity-published-reads\.mts --capture && /)
   assert.match(command, / next build && node scripts\/generate-cms-redirects\.mjs /)
   assert.match(command, / && node --no-warnings --experimental-strip-types scripts\/audit-sanity-published-reads\.mts --verify$/)
+})
+
+test('the application Sanity client uses the same governed retry reader', () => {
+  const clientSource = readFileSync(resolve('lib/sanity/client.ts'), 'utf8')
+  assert.match(clientSource, /import \{readJsonWithRetry\} from '\.\/read-retry\.mjs'/)
+  assert.match(clientSource, /await readJsonWithRetry\(url, \{/)
 })

@@ -3,6 +3,7 @@ import 'server-only'
 import type {CmsMode} from '@/lib/cms/types'
 import {resolveSanityRequestPolicy} from './requestPolicy'
 import {safeLegacyContent} from './legacy-contract'
+import {readJsonWithRetry} from './read-retry.mjs'
 
 const PROJECT = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'oqpv1xbc'
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -79,15 +80,17 @@ export async function sanityQuery<T>(
   if (config.token) headers.Authorization = `Bearer ${config.token}`
 
   try {
-    const response = await fetch(url, {
+    const response = await readJsonWithRetry(url, {
       method: 'GET',
       headers,
       cache: config.cache,
     })
 
-    if (!response.ok) return {ok: false, errorType: 'http-error'}
+    if (!response.ok) {
+      return {ok: false, errorType: response.failure === 'http' ? 'http-error' : 'network-error'}
+    }
 
-    const payload = await response.json() as {result?: T | null}
+    const payload = response.payload as {result?: T | null}
     const normalized = normalizePublishedQueryResult(payload.result ?? null, config.perspective)
     const result = publicContract && normalized !== null
       ? safeLegacyContent<T | null>(

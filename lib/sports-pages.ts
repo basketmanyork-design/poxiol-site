@@ -148,7 +148,7 @@ export const sportsPages: SportsPageData[] = [
       { title: "Basketball Uniform Fabric GSM Guide", slug: "custom-basketball-uniform-fabric-gsm" },
       { title: "Sample First vs Bulk Teamwear Order", slug: "sample-first-vs-bulk-teamwear-order" },
       { title: "Custom Basketball Uniform Cost Factors", slug: "custom-basketball-uniform-cost-factors" },
-      { title: "Teamwear Sample Approval Checklist", slug: "teamwear-sample-approval-checklist" }
+      { title: "Teamwear Sample Approval Checklist", href: "/guides/sample-first-vs-bulk-teamwear-order/" }
     ]
   },
   {
@@ -215,8 +215,8 @@ export const sportsPages: SportsPageData[] = [
     },
     relatedGuides: [
       { title: "B2B Sourcing Pro-FAQ", slug: "b2b-sourcing-faq" },
-      { title: "How to Choose a Teamwear Manufacturer", slug: "how-to-choose-teamwear-manufacturer-china" },
-      { title: "Private Label Manufacturing Guide", slug: "private-label-teamwear-manufacturing" }
+      { title: "How to Choose a Teamwear Manufacturer", href: "/resources/teamwear-manufacturer-evaluation-checklist/" },
+      { title: "Private Label Manufacturing Guide", href: "/resources/private-label-teamwear-launch-checklist/" }
     ]
   },
   {

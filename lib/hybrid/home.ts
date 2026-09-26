@@ -22,7 +22,7 @@ export const hybridHome = {
     {title:'Design Accuracy', body:'Complex customization, confirmed before production.', href:'/customization/', cta:'Review customization'},
     {title:'Size & Fit', body:'Team sizing is checked before the order is locked.', href:'/guides/basketball-uniform-size-guide/', cta:'Basketball size guide'},
     {title:'Project Deadline', body:'Plan backward from the date your customer needs the order.', href:'/shipping-after-sales/', cta:'Review shipping planning'},
-    {title:'Sample-to-Bulk', body:'Use the approved sample as the bulk reference.', href:'/guides/teamwear-sample-approval-checklist/', cta:'Review sample checklist'},
+    {title:'Sample-to-Bulk', body:'Use the approved sample as the bulk reference.', href:'/guides/sample-first-vs-bulk-teamwear-order/', cta:'Review sample checklist'},
     {title:'Reorder Consistency', body:'Reorders should start from confirmed records—not memory.', href:'/get-quote/?product=Teamwear%20Reorder&source=%2F', cta:'Discuss a reorder'},
     {title:'Account Expansion', body:'Start with one team order. Expand as the account grows.', href:'/private-label-teamwear/', cta:'Review private-label options'},
   ],

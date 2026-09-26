@@ -95,6 +95,48 @@ test('llms.txt states the approved POXIOL brand and operator relationship', () =
   }
 })
 
+test('public discovery sources link directly to approved survivor routes', () => {
+  const discoverySources = [
+    'public/llms.txt',
+    'lib/high-intent-guides.js',
+    'lib/hybrid/home.ts',
+    'lib/sports-pages.ts',
+  ]
+  const combinedSources = discoverySources
+    .map((sourcePath) => readFileSync(sourcePath, 'utf8'))
+    .join('\n')
+  const approvedRoutes = [
+    {
+      retiredSlug: 'teamwear-sample-approval-checklist',
+      survivorPath: '/guides/sample-first-vs-bulk-teamwear-order/',
+      expectedReferences: 7,
+    },
+    {
+      retiredSlug: 'how-to-choose-teamwear-manufacturer-china',
+      survivorPath: '/resources/teamwear-manufacturer-evaluation-checklist/',
+      expectedReferences: 2,
+    },
+    {
+      retiredSlug: 'private-label-teamwear-manufacturing',
+      survivorPath: '/resources/private-label-teamwear-launch-checklist/',
+      expectedReferences: 2,
+    },
+  ] as const
+
+  for (const route of approvedRoutes) {
+    assert.doesNotMatch(
+      combinedSources,
+      new RegExp(route.retiredSlug.replaceAll('-', '\\-'), 'g'),
+      `Approved public discovery sources still reference retired route ${route.retiredSlug}`,
+    )
+    assert.equal(
+      combinedSources.split(route.survivorPath).length - 1,
+      route.expectedReferences,
+      `${route.survivorPath} must replace every approved retired-route reference`,
+    )
+  }
+})
+
 test('generated buyer-visible output keeps the same public truth boundary', {skip: !outputMode}, () => {
   const outDir = path.join(process.cwd(), 'out')
   assert.equal(existsSync(outDir), true, 'Generated out/ is required for the AI-discovery output check')
