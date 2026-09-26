@@ -91,6 +91,25 @@ test('canonicalizes only Next export scheduling noise while retaining rendered H
   )
 })
 
+test('canonicalizes a resolved Next streaming segment without hiding buyer-visible changes', () => {
+  const inline = Buffer.from(`<!DOCTYPE html><html><head><title>POXIOL</title><link rel="canonical" href="https://www.poxiol.com/guide/"/></head><body><a href="#main">Skip</a><!--$--><aside aria-label="Analytics preference"><p>Optional analytics.</p><div><button>Accept</button></div></aside><!--/$--><main id="main"><h1>Buyer guide</h1><a href="/get-quote/">Get quote</a></main></body></html>`)
+  const streamed = Buffer.from(`<!DOCTYPE html><html><head><link rel="canonical" href="https://www.poxiol.com/guide/"/><title>POXIOL</title></head><body><a href="#main">Skip</a><!--$?--><template id="B:0"></template><!--/$--><main id="main"><h1>Buyer guide</h1><a href="/get-quote/">Get quote</a></main><script>requestAnimationFrame(function(){$RT=performance.now()});</script><div hidden id="S:0"><aside aria-label="Analytics preference"><p>Optional analytics.</p><div><button>Accept</button></div></aside></div><script>$RC=function(a,b){/* Next transport runtime */};$RC("B:0","S:0")</script></body></html>`)
+  const changedCopy = Buffer.from(`<!DOCTYPE html><html><head><title>POXIOL</title><link rel="canonical" href="https://www.poxiol.com/guide/"/></head><body><a href="#main">Skip</a><!--$--><aside aria-label="Analytics preference"><p>Optional analytics.</p><div><button>Accept</button></div></aside><!--/$--><main id="main"><h1>Changed buyer guide</h1><a href="/get-quote/">Get quote</a></main></body></html>`)
+  const changedHref = Buffer.from(`<!DOCTYPE html><html><head><title>POXIOL</title><link rel="canonical" href="https://www.poxiol.com/guide/"/></head><body><a href="#main">Skip</a><!--$--><aside aria-label="Analytics preference"><p>Optional analytics.</p><div><button>Accept</button></div></aside><!--/$--><main id="main"><h1>Buyer guide</h1><a href="/contact/">Get quote</a></main></body></html>`)
+  const changedCanonical = Buffer.from(`<!DOCTYPE html><html><head><title>POXIOL</title><link rel="canonical" href="https://www.poxiol.com/other/"/></head><body><a href="#main">Skip</a><!--$--><aside aria-label="Analytics preference"><p>Optional analytics.</p><div><button>Accept</button></div></aside><!--/$--><main id="main"><h1>Buyer guide</h1><a href="/get-quote/">Get quote</a></main></body></html>`)
+  const changedStructure = Buffer.from(`<!DOCTYPE html><html><head><title>POXIOL</title><link rel="canonical" href="https://www.poxiol.com/guide/"/></head><body><a href="#main">Skip</a><!--$--><section aria-label="Analytics preference"><p>Optional analytics.</p><div><button>Accept</button></div></section><!--/$--><main id="main"><h1>Buyer guide</h1><a href="/get-quote/">Get quote</a></main></body></html>`)
+
+  const inlineHash = releaseManifest.sha256ReleaseFile('out/guide/index.html', inline)
+  assert.equal(
+    inlineHash,
+    releaseManifest.sha256ReleaseFile('out/guide/index.html', streamed),
+  )
+  assert.notEqual(inlineHash, releaseManifest.sha256ReleaseFile('out/guide/index.html', changedCopy))
+  assert.notEqual(inlineHash, releaseManifest.sha256ReleaseFile('out/guide/index.html', changedHref))
+  assert.notEqual(inlineHash, releaseManifest.sha256ReleaseFile('out/guide/index.html', changedCanonical))
+  assert.notEqual(inlineHash, releaseManifest.sha256ReleaseFile('out/guide/index.html', changedStructure))
+})
+
 test('canonicalizes Next Flight record scheduling while retaining payload changes', () => {
   const first = Buffer.from(':HL["/style.css","style"]\n1:I[9807,["2619","/a.js","3305","/b.js"],"default"]\n2:["$","main",null,{"children":"Stable buyer copy","ref":"$L1"}]\n3:T3,abc')
   const reordered = Buffer.from('a:T3,abc\nb:["$","main",null,{"ref":"$L9","children":"Stable buyer copy"}]\nc:I[9807,["3305","/b.js","2619","/a.js"],"default"]\n:HL["/style.css","style"]\n')
