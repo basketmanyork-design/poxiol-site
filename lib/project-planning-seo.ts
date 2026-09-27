@@ -31,8 +31,9 @@ const genericPlanningSeo: PlanningSeoCopy = {
 }
 
 export function projectPlanningSeo(slug: string): CmsSeo {
+  const copy = Object.hasOwn(planningSeoBySlug, slug) ? planningSeoBySlug[slug] : genericPlanningSeo
   return {
-    ...(planningSeoBySlug[slug] ?? genericPlanningSeo),
+    ...copy,
     canonicalUrl: `https://www.poxiol.com/projects/${slug}/`,
   }
 }

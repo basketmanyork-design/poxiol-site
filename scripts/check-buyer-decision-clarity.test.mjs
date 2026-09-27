@@ -53,6 +53,14 @@ assert.deepEqual(projectPlanningSeo('future-project'), {
   canonicalUrl: 'https://www.poxiol.com/projects/future-project/',
 })
 
+for (const slug of ['constructor', '__proto__', 'toString']) {
+  assert.deepEqual(projectPlanningSeo(slug), {
+    title: 'Teamwear Planning Scenario | POXIOL',
+    description: 'Plan a custom teamwear program using an evidence-neutral scenario for briefing, sample review, quality checkpoints, packing requirements and target delivery timing.',
+    canonicalUrl: `https://www.poxiol.com/projects/${slug}/`,
+  })
+}
+
 const resolvedCmsSeo = {
   title: 'Unverified Customer Case Study',
   description: 'Unverified completed-project claim.',
