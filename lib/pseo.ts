@@ -257,18 +257,6 @@ export const pseoPages: PSEOPage[] = [
       { question: "Can I get a custom design for my NYC club?", answer: "Absolutely, our designers provide free 3D mockups after the project requirements are reviewed to capture your NYC team's identity." },
     ],
   },
-  {
-    slug: "custom-sports-apparel-distributor",
-    title: "Custom Sports Apparel Distributor | Teamwear Manufacturing Partner | POXIOL",
-    h1: "Manufacturing Partner for Sports Apparel Distributors",
-    intro: "Scale your distribution business with a reliable manufacturing partner. POXIOL provides high-quality custom sports apparel for distributors looking for scalable and dependable production.",
-    content: "POXIOL supports distributor inquiries across basketball, soccer, baseball and related teamwear categories. Projects can include buyer-approved branding, labels and packaging. Product specifications, quantity, quotation, production schedule and logistics are confirmed for each distributor project.",
-    faqs: [
-      { question: "How do you support sports apparel distributors?", answer: "We provide wholesale pricing, scalable production, and reliable logistics support for distributors." },
-      { question: "Can we use our own branding for the apparel we distribute?", answer: "Yes, we offer full private-label and white-label services for our distribution partners." },
-      { question: "Do you provide design support for distributors' clients?", answer: "Yes, our design team can work with you to provide mockups for your end customers." },
-    ],
-  },
 ];
 
 export function getPSEOPageBySlug(slug: string) {

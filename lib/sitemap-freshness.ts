@@ -23,7 +23,6 @@ const AI_DISCOVERY_TRUTH_ROUTES = new Set([
   '/custom-basketball-jerseys-melbourne/',
   '/custom-soccer-kits-london/',
   '/custom-teamwear-new-york/',
-  '/custom-sports-apparel-distributor/',
 ])
 
 function normalizeRoute(route: string): string {

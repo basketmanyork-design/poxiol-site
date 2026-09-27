@@ -17,6 +17,8 @@ const expected = new Map([
   ['/custom-tennis-wear/', '/products/'],
   ['/custom-volleyball-uniforms/', '/products/'],
   ['/builder/', '/free-mockup/'],
+  ['/custom-sports-apparel-distributor/', '/private-label-teamwear/'],
+  ['/blog/custom-sports-apparel-distributor/', '/private-label-teamwear/'],
 ])
 
 test('every retired commercial route has exactly one approved HTTP 301 destination', () => {

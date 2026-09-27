@@ -47,6 +47,22 @@ test('only the maintained Basketball ordering guide remains discoverable', () =>
   assert.equal(existsSync('out/guides/how-to-order-custom-basketball-uniforms/index.html'), true)
 })
 
+test('only the maintained private-label page serves distributor intent', () => {
+  const retiredRoute = '/custom-sports-apparel-distributor/'
+  const survivorRoute = '/private-label-teamwear/'
+  const sitemap = readFileSync('out/sitemap.xml', 'utf8')
+  const survivorHtml = readRouteHtml(survivorRoute)
+
+  assert.equal(sitemap.includes(`<loc>https://www.poxiol.com${retiredRoute}</loc>`), false)
+  assert.equal(sitemap.includes(`<loc>https://www.poxiol.com${survivorRoute}</loc>`), true)
+  assert.equal(existsSync(`out${retiredRoute}index.html`), false)
+  assert.equal(existsSync(`out${survivorRoute}index.html`), true)
+  assert.match(survivorHtml, /<title>Private Label Teamwear for Sports Brands and Distributors \| POXIOL<\/title>/)
+  assert.match(survivorHtml, /<h1[^>]*>Private Label Teamwear Built Around Your Brand<\/h1>/)
+  assert.match(survivorHtml, /<link[^>]+rel="canonical"[^>]+href="https:\/\/www\.poxiol\.com\/private-label-teamwear\/"/)
+  assert.equal(survivorHtml.includes('Discuss Your OEM Project'), true)
+})
+
 test('redirect sources are excluded from the sitemap', () => {
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
   const redirects = readFileSync('public/_redirects', 'utf8')
