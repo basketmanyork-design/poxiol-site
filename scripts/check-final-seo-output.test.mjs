@@ -135,11 +135,56 @@ test('robots keeps approved legal policies crawlable', () => {
   }
 })
 
+test('retires the orphan AI summary surface and keeps the About survivor canonical', () => {
+  const sitemap = readFileSync('out/sitemap.xml', 'utf8')
+  const aboutHtml = readRouteHtml('/about/')
+  const summaryJsonText = readFileSync('out/ai-summary.json', 'utf8')
+  const summaryJson = JSON.parse(summaryJsonText)
+
+  assert.equal(existsSync('out/ai-summary/index.html'), false)
+  assert.equal(sitemap.includes('<loc>https://www.poxiol.com/ai-summary/</loc>'), false)
+  assert.match(aboutHtml, /<title>About POXIOL \| Professional Custom Teamwear Manufacturer<\/title>/)
+  assert.match(aboutHtml, /<h1[^>]*>B2B Custom Teamwear Manufacturer<\/h1>/)
+  assert.match(aboutHtml, /<link[^>]+rel="canonical"[^>]+href="https:\/\/www\.poxiol\.com\/about\/"/)
+  assert.equal(summaryJson.url, 'https://www.poxiol.com/')
+  assert.deepEqual(summaryJson.primaryCallToAction, {
+    name: 'Get Free Mockup',
+    url: 'https://www.poxiol.com/free-mockup/',
+  })
+  assert.doesNotMatch(summaryJsonText, /https:\/\/poxiol\.com(?:\/|\")/)
+})
+
+test('does not publish unapproved CMS product-detail routes', () => {
+  const unapprovedProductSlugs = [
+    'basketball-uniforms-1',
+    'basketball-uniforms-2',
+    'basketball-uniforms-3',
+    'basketball-uniforms-4',
+    'hoodies-jackets-1',
+    'hoodies-jackets-2',
+    'hoodies-jackets-3',
+    'soccer-jerseys-1',
+    'soccer-jerseys-2',
+    'soccer-jerseys-3',
+    'soccer-jerseys-4',
+    'team-accessories-1',
+    'team-accessories-2',
+    'training-wear-1',
+    'training-wear-2',
+    'training-wear-3',
+    'training-wear-4',
+  ]
+
+  for (const slug of unapprovedProductSlugs) {
+    assert.equal(existsSync(`out/products/${slug}/index.html`), false, `${slug} HTML must remain withheld`)
+    assert.equal(existsSync(`out/products/${slug}/index.txt`), false, `${slug} RSC output must remain withheld`)
+  }
+})
+
 test('published structured data does not advertise missing logo or search resources', () => {
   const logoRoutes = [
     '/resources/',
     '/projects/',
-    '/ai-summary/',
     '/soccer-jersey-buying-guide/',
     '/oem-vs-odm-sportswear/',
     '/best-sportswear-fabrics/',
@@ -157,7 +202,7 @@ test('published structured data does not advertise missing logo or search resour
     )
   }
 
-  for (const route of ['/resources/', '/projects/', '/ai-summary/']) {
+  for (const route of ['/resources/', '/projects/']) {
     assert.doesNotMatch(
       readRouteHtml(route),
       /"@type":"SearchAction"/,

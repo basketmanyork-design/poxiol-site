@@ -6,7 +6,7 @@
     "candidateSitemapSha256": "18050ae6591f08193994267303ee62b53d37c36cae92de9f7750da492bdf7088",
     "publicCount": 83,
     "candidateCount": 81,
-    "renderedCount": 118,
+    "renderedCount": 98,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -105,6 +105,11 @@
     "OWNER_410_REQUIRED": []
   },
   "redirects": [
+    {
+      "source": "/ai-summary/",
+      "destination": "/about/",
+      "status": 301
+    },
     {
       "source": "/blog/best-sportswear-fabrics/",
       "destination": "/best-sportswear-fabrics/",
@@ -308,6 +313,36 @@
     {
       "source": "/how-to-order-custom-basketball-uniforms/",
       "destination": "/guides/how-to-order-custom-basketball-uniforms/",
+      "status": 301
+    },
+    {
+      "source": "/products/basketball-uniforms-basketball-jerseys/",
+      "destination": "/products/basketball-uniforms/",
+      "status": 301
+    },
+    {
+      "source": "/products/basketball-uniforms-basketball-shorts/",
+      "destination": "/products/basketball-uniforms/",
+      "status": 301
+    },
+    {
+      "source": "/products/basketball-uniforms-full-team-sets/",
+      "destination": "/products/basketball-uniforms/",
+      "status": 301
+    },
+    {
+      "source": "/products/basketball-uniforms-reversible-jerseys/",
+      "destination": "/products/basketball-uniforms/",
+      "status": 301
+    },
+    {
+      "source": "/products/soccer-jerseys-soccer-jerseys/",
+      "destination": "/products/soccer-jerseys/",
+      "status": 301
+    },
+    {
+      "source": "/products/training-wear-training-tops/",
+      "destination": "/products/training-wear/",
       "status": 301
     }
   ],

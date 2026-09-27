@@ -17,6 +17,14 @@ const expected = new Map([
   ['/custom-tennis-wear/', '/products/'],
   ['/custom-volleyball-uniforms/', '/products/'],
   ['/builder/', '/free-mockup/'],
+  ['/ai-summary', '/about/'],
+  ['/ai-summary/', '/about/'],
+  ['/products/basketball-uniforms-basketball-jerseys/', '/products/basketball-uniforms/'],
+  ['/products/basketball-uniforms-basketball-shorts/', '/products/basketball-uniforms/'],
+  ['/products/basketball-uniforms-reversible-jerseys/', '/products/basketball-uniforms/'],
+  ['/products/basketball-uniforms-full-team-sets/', '/products/basketball-uniforms/'],
+  ['/products/soccer-jerseys-soccer-jerseys/', '/products/soccer-jerseys/'],
+  ['/products/training-wear-training-tops/', '/products/training-wear/'],
   ['/custom-sports-apparel-distributor/', '/private-label-teamwear/'],
   ['/blog/custom-sports-apparel-distributor/', '/private-label-teamwear/'],
 ])
@@ -35,7 +43,7 @@ test('every retired commercial route has exactly one approved HTTP 301 destinati
 
 test('retired routes cannot also render App Router 200 pages', () => {
   for (const source of expected.keys()) {
-    const routeFile = `app/${source.slice(1)}page.tsx`
+    const routeFile = `app/${source.replace(/^\//, '').replace(/\/$/, '')}/page.tsx`
     assert.equal(existsSync(routeFile), false, `${source} still has a competing App Router page.`)
   }
   assert.doesNotMatch(

@@ -153,7 +153,6 @@ assert.match(layoutSource, /rel="icon"[\s\S]*data:image\/svg\+xml/, 'root layout
 const ctaSource = (await Promise.all([
   'components/cms/PageTemplate.tsx',
   'components/sports/SportsLandingPage.tsx',
-  'app/products/[slug]/page.tsx',
   'app/projects/page.tsx',
   'app/fabric-guide/page.tsx',
   'app/printing-guide/page.tsx',

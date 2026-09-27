@@ -126,27 +126,20 @@ assert.match(
   'CMS unpublished FAQ suppression must use the same normalized question key as the visible Legacy FAQ.',
 )
 
-const aiSummarySource = readFileSync(path.join(root, 'app/ai-summary/page.tsx'), 'utf8')
-assert.match(aiSummarySource, /const aiSummaryFaqs\s*=/, 'AI Summary must define page-specific FAQ data.')
-assert.match(aiSummarySource, /generateFaqSchema\(aiSummaryFaqs\)/, 'AI Summary FAQPage schema must use the visible page-specific FAQ data.')
-assert.match(aiSummarySource, /aiSummaryFaqs\.map\(/, 'AI Summary visible FAQ must render from its page-specific FAQ data.')
+assert.equal(existsSync(path.join(root, 'app/ai-summary/page.tsx')), false, 'The retired AI Summary page must not remain renderable.')
+
+const aiSummaryJsonPath = path.join(root, outputMode ? 'out/ai-summary.json' : 'public/ai-summary.json')
+const aiSummaryJsonText = readFileSync(aiSummaryJsonPath, 'utf8')
+const aiSummaryJson = JSON.parse(aiSummaryJsonText)
+assert.equal(aiSummaryJson.url, 'https://www.poxiol.com/', 'AI Summary JSON must use the canonical www homepage directly.')
+assert.deepEqual(aiSummaryJson.primaryCallToAction, {
+  name: 'Get Free Mockup',
+  url: 'https://www.poxiol.com/free-mockup/',
+}, 'AI Summary JSON must use the direct canonical Free Mockup URL.')
+assert.doesNotMatch(aiSummaryJsonText, /https:\/\/poxiol\.com(?:\/|\")/, 'AI Summary JSON must not publish apex URLs that require a redirect.')
 
 if (outputMode) {
-  const aiSummaryHtml = readFileSync(path.join(root, 'out/ai-summary/index.html'), 'utf8')
-  const schemaNodes = [...aiSummaryHtml.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
-    .flatMap((match) => {
-      const parsed = JSON.parse(match[1].replaceAll('&quot;', '"'))
-      return Array.isArray(parsed) ? parsed : [parsed]
-    })
-  const faqSchema = schemaNodes.find((node) => node?.['@type'] === 'FAQPage')
-  assert.ok(faqSchema, 'AI Summary must expose one FAQPage schema.')
-  const schemaFaqs = faqSchema.mainEntity.map((item: {name: string; acceptedAnswer: {text: string}}) => ({
-    question: item.name,
-    answer: item.acceptedAnswer.text,
-  }))
-  const visibleFaqs = [...aiSummaryHtml.matchAll(/<h3[^>]*>([^<]+)<\/h3>\s*<p[^>]*>([^<]+)<\/p>/g)]
-    .map((match) => ({question: match[1], answer: match[2]}))
-  assert.deepEqual(schemaFaqs, visibleFaqs, 'AI Summary visible FAQ and FAQPage schema must match exactly.')
+  assert.equal(existsSync(path.join(root, 'out/ai-summary/index.html')), false, 'The retired AI Summary HTML output must not be generated.')
 }
 
 console.log(`POXIOL legacy content governance ${outputMode ? 'output' : 'source'} checks passed.`)

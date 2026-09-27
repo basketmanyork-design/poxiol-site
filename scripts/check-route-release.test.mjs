@@ -142,6 +142,69 @@ test('rejects a redirect whose destination is not rendered', () => {
   )
 })
 
+test('collapses an equivalent no-slash and slash redirect pair into one canonical route decision', () => {
+  const result = compareRoutes({
+    publicUrls: ['/ai-summary/'],
+    candidateUrls: ['/about/'],
+    renderedUrls: ['/about/'],
+    redirects: [
+      {source: '/ai-summary', destination: '/about/', status: 301},
+      {source: '/ai-summary/', destination: '/about/', status: 301},
+    ],
+    gone: [],
+  })
+
+  assert.deepEqual(result.redirects, [
+    {source: '/ai-summary/', destination: '/about/', status: 301},
+  ])
+})
+
+test('rejects literal duplicate redirect sources even when their destinations match', () => {
+  assert.throws(
+    () => compareRoutes({
+      publicUrls: ['/old/'],
+      candidateUrls: ['/current/'],
+      renderedUrls: ['/current/'],
+      redirects: [
+        {source: '/old/', destination: '/current/', status: 301},
+        {source: '/old/', destination: '/current/', status: 301},
+      ],
+      gone: [],
+    }),
+    /DUPLICATE_ROUTE:redirect-source:\/old\//,
+  )
+})
+
+test('rejects slash-pair redirects when destination or status conflicts', () => {
+  assert.throws(
+    () => compareRoutes({
+      publicUrls: ['/old/'],
+      candidateUrls: ['/current/', '/other/'],
+      renderedUrls: ['/current/', '/other/'],
+      redirects: [
+        {source: '/old', destination: '/current/', status: 301},
+        {source: '/old/', destination: '/other/', status: 301},
+      ],
+      gone: [],
+    }),
+    /DUPLICATE_ROUTE:redirect-source:\/old\//,
+  )
+
+  assert.throws(
+    () => compareRoutes({
+      publicUrls: ['/old/'],
+      candidateUrls: ['/current/'],
+      renderedUrls: ['/current/'],
+      redirects: [
+        {source: '/old', destination: '/current/', status: 301},
+        {source: '/old/', destination: '/current/', status: 302},
+      ],
+      gone: [],
+    }),
+    /DUPLICATE_ROUTE:redirect-source:\/old\//,
+  )
+})
+
 test('allows safe route-manifest drift only on a Cloudflare preview branch', () => {
   assert.equal(shouldRequireExactManifest({CF_PAGES: '1', CF_PAGES_BRANCH: 'codex/construction-completion'}), false)
   assert.equal(shouldRequireExactManifest({CF_PAGES: '1', CF_PAGES_BRANCH: 'main'}), true)
