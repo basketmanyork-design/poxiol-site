@@ -29,6 +29,23 @@ const {DEDICATED_GUIDE_SLUGS, filterDedicatedGuideSlugs} = await import('../lib/
 const {pseoPages} = await import('../lib/pseo.ts')
 assert.deepEqual([...DEDICATED_GUIDE_SLUGS].sort(), dedicatedSlugs, 'Dedicated guide slug registry is out of sync')
 
+const retiredGuideSlugs = [
+  'how-to-choose-a-custom-soccer-kit-manufacturer',
+  'moq-1-custom-teamwear-how-it-works',
+  'sublimation-vs-screen-printing-for-custom-teamwear',
+]
+const guideRoutes = await import('../lib/guides/routes.ts')
+assert.deepEqual(
+  [...(guideRoutes.RETIRED_GUIDE_SLUGS ?? [])].sort(),
+  retiredGuideSlugs,
+  'Retired guide slugs must remain blocked from static and CMS route generation',
+)
+assert.deepEqual(
+  dedicatedSlugs.filter((slug) => retiredGuideSlugs.includes(slug)),
+  [],
+  'Retired guide slugs must not remain dedicated 200 routes',
+)
+
 const candidates = [...dedicatedSlugs, 'how-to-order-custom-basketball-uniforms', 'dynamic-guide-example']
   .map((slug) => ({slug}))
 const generated = filterDedicatedGuideSlugs(candidates)
@@ -41,6 +58,11 @@ assert.ok(
   'The maintained CMS Basketball buying guide must own the dynamic guide route',
 )
 assert.ok(generated.some(({slug}) => slug === 'dynamic-guide-example'))
+assert.deepEqual(
+  filterDedicatedGuideSlugs(retiredGuideSlugs.map((slug) => ({slug}))),
+  [],
+  'Published CMS documents must not resurrect retired guide routes',
+)
 assert.ok(
   !pseoPages.some(({slug}) => slug === 'how-to-order-custom-basketball-uniforms'),
   'The retired root PSEO Basketball ordering duplicate must not render as a 200 page',
@@ -62,6 +84,18 @@ for (const source of [
     redirectMap.get(source),
     {destination: survivor, status: '301'},
     `${source} must redirect directly to the maintained Basketball buying guide`,
+  )
+}
+
+for (const [source, destination] of [
+  ['/guides/how-to-choose-a-custom-soccer-kit-manufacturer/', '/how-to-choose-a-teamwear-manufacturer/'],
+  ['/guides/moq-1-custom-teamwear-how-it-works/', '/resources/custom-teamwear-moq-production-time/'],
+  ['/guides/sublimation-vs-screen-printing-for-custom-teamwear/', '/printing-guide/'],
+]) {
+  assert.deepEqual(
+    redirectMap.get(source),
+    {destination, status: '301'},
+    `${source} must redirect directly to its maintained guide survivor`,
   )
 }
 

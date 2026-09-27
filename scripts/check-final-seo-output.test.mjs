@@ -50,8 +50,8 @@ test('project planning hub and scenarios use evidence-neutral search contracts',
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
   const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url)
 
-  assert.equal(sitemapUrls.length, 82)
-  assert.equal(new Set(sitemapUrls).size, 82)
+  assert.equal(sitemapUrls.length, 79)
+  assert.equal(new Set(sitemapUrls).size, 79)
   assert.equal(sitemapUrls.includes('https://www.poxiol.com/projects/'), true)
   assert.match(hubHtml, /<title>Teamwear Planning Scenarios \| POXIOL<\/title>/)
   assert.match(hubHtml, /<meta[^>]+name="description"[^>]+content="Explore planning scenarios for custom teamwear briefs, sample review, quality checkpoints, packing needs and target delivery windows\."/)
@@ -81,6 +81,59 @@ test('only the maintained Basketball ordering guide remains discoverable', () =>
   assert.equal(existsSync('out/how-to-order-custom-basketball-uniforms/index.html'), false)
   assert.equal(existsSync('out/guides/how-to-order-custom-basketball-uniforms-for-your-team/index.html'), false)
   assert.equal(existsSync('out/guides/how-to-order-custom-basketball-uniforms/index.html'), true)
+})
+
+test('only the maintained survivors serve the three retired template-guide intents', () => {
+  const sitemap = readFileSync('out/sitemap.xml', 'utf8')
+  const routes = [
+    {
+      source: '/guides/how-to-choose-a-custom-soccer-kit-manufacturer/',
+      survivor: '/how-to-choose-a-teamwear-manufacturer/',
+      title: 'How To Choose A Teamwear Manufacturer | Complete Buyer Guide | POXIOL',
+      h1: 'How To Choose A Teamwear Manufacturer',
+      ctaHref: '/free-mockup/',
+      ctaText: 'Request Free Mockup',
+      schemaTypes: ['FAQPage', 'Article'],
+    },
+    {
+      source: '/guides/moq-1-custom-teamwear-how-it-works/',
+      survivor: '/resources/custom-teamwear-moq-production-time/',
+      title: 'Custom Teamwear MOQ and Production Time Guide | POXIOL',
+      h1: 'Custom Teamwear MOQ and Production Time Guide',
+      ctaHref: '/get-quote/',
+      ctaText: 'Request Factory Quote',
+      schemaTypes: ['Article', 'BreadcrumbList', 'FAQPage'],
+    },
+    {
+      source: '/guides/sublimation-vs-screen-printing-for-custom-teamwear/',
+      survivor: '/printing-guide/',
+      title: 'Sportswear Printing Guide | Sublimation, Screen Printing & Embroidery | POXIOL',
+      h1: 'Sportswear Printing Guide For Custom Teamwear',
+      ctaHref: '/free-mockup/',
+      ctaText: 'Get a Free Mockup',
+      schemaTypes: ['Organization', 'WebPage', 'FAQPage', 'BreadcrumbList'],
+    },
+  ]
+
+  for (const {source, survivor, title, h1, ctaHref, ctaText, schemaTypes} of routes) {
+    assert.equal(sitemap.includes(`<loc>https://www.poxiol.com${source}</loc>`), false)
+    assert.equal(existsSync(`out${source}index.html`), false)
+    assert.equal(sitemap.includes(`<loc>https://www.poxiol.com${survivor}</loc>`), true)
+    assert.equal(existsSync(`out${survivor}index.html`), true)
+
+    const html = readRouteHtml(survivor)
+    assert.equal(html.includes(`<title>${title}</title>`), true)
+    assert.equal(html.includes(`<h1`), true)
+    assert.match(html, new RegExp(`<h1[^>]*>\\s*${h1.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}\\s*</h1>`, 'i'))
+    assert.equal(html.includes(`rel="canonical" href="https://www.poxiol.com${survivor}"`), true)
+    assert.match(html, new RegExp(`<a[^>]+href="${ctaHref.replaceAll('/', '\\/')}"[^>]*>[\\s\\S]*?${ctaText}[\\s\\S]*?<\\/a>`, 'i'))
+
+    const actualSchemaTypes = readRouteSchemas(survivor)
+      .flatMap(flattenSchemaNodes)
+      .map((schema) => schema['@type'])
+      .filter(Boolean)
+    for (const schemaType of schemaTypes) assert.equal(actualSchemaTypes.includes(schemaType), true)
+  }
 })
 
 test('only the maintained private-label page serves distributor intent', () => {
