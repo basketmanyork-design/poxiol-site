@@ -2,11 +2,11 @@
   "version": 1,
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
-    "publicSitemapSha256": "59a1690dc846c1362c1e569549438de708e3f44f2a98034b4ff72cac5538bdff",
-    "candidateSitemapSha256": "9d14cbfc99bd754bd2752f59efa88357ca18f7758c0a8c5b212af11e997d4e0e",
-    "publicCount": 84,
-    "candidateCount": 82,
-    "renderedCount": 119,
+    "publicSitemapSha256": "687fff8d437edd0f962c1328b6de3ce00adcf2e585a65faba1525c05c7609ae6",
+    "candidateSitemapSha256": "18050ae6591f08193994267303ee62b53d37c36cae92de9f7750da492bdf7088",
+    "publicCount": 83,
+    "candidateCount": 81,
+    "renderedCount": 118,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -30,7 +30,6 @@
       "/custom-basketball-uniforms-for-schools/",
       "/custom-soccer-kits-london/",
       "/custom-soccer-uniforms-for-academies/",
-      "/custom-sports-apparel-distributor/",
       "/custom-teamwear-new-york/",
       "/custom-volleyball-uniforms-for-schools/",
       "/customization/",
@@ -138,7 +137,7 @@
     },
     {
       "source": "/blog/custom-sports-apparel-distributor/",
-      "destination": "/custom-sports-apparel-distributor/",
+      "destination": "/private-label-teamwear/",
       "status": 301
     },
     {
@@ -249,6 +248,11 @@
     {
       "source": "/custom-soccer-kits/",
       "destination": "/products/soccer-jerseys/",
+      "status": 301
+    },
+    {
+      "source": "/custom-sports-apparel-distributor/",
+      "destination": "/private-label-teamwear/",
       "status": 301
     },
     {
