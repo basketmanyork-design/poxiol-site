@@ -3,10 +3,10 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "a44a142692f8b06474e21d65ffc55b2c3af2da60f9bd686c0db8a098762cf656",
-    "candidateSitemapSha256": "da1935708b6221a690cec9b4d52397ba62590a8e44db43e0d94f77cfec6f8151",
+    "candidateSitemapSha256": "37b42351088249bcc12c791a255e113e53990574c2bc6aa74ec0fe8a96a053cd",
     "publicCount": 81,
-    "candidateCount": 82,
-    "renderedCount": 98,
+    "candidateCount": 79,
+    "renderedCount": 95,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -43,14 +43,11 @@
       "/guides/basketball-uniform-size-guide/",
       "/guides/custom-basketball-uniform-cost-factors/",
       "/guides/custom-basketball-uniform-fabric-gsm/",
-      "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
       "/guides/how-to-order-custom-basketball-uniforms/",
-      "/guides/moq-1-custom-teamwear-how-it-works/",
       "/guides/oem-odm-sportswear-manufacturing-guide-for-brands/",
       "/guides/reversible-vs-single-layer-basketball-uniforms/",
       "/guides/sample-first-vs-bulk-teamwear-order/",
       "/guides/sublimation-printing-guide/",
-      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/",
       "/how-sublimation-printing-works-for-teamwear/",
       "/how-to-choose-a-teamwear-manufacturer/",
       "/intellectual-property-policy/",
@@ -99,7 +96,11 @@
     "ADDED": [
       "/projects/"
     ],
-    "REDIRECTED": [],
+    "REDIRECTED": [
+      "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
+      "/guides/moq-1-custom-teamwear-how-it-works/",
+      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/"
+    ],
     "WITHHELD_LEGAL": [],
     "OWNER_410_REQUIRED": []
   },
@@ -280,6 +281,11 @@
       "status": 301
     },
     {
+      "source": "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
+      "destination": "/how-to-choose-a-teamwear-manufacturer/",
+      "status": 301
+    },
+    {
       "source": "/guides/how-to-choose-teamwear-manufacturer-china/",
       "destination": "/resources/teamwear-manufacturer-evaluation-checklist/",
       "status": 301
@@ -290,6 +296,11 @@
       "status": 301
     },
     {
+      "source": "/guides/moq-1-custom-teamwear-how-it-works/",
+      "destination": "/resources/custom-teamwear-moq-production-time/",
+      "status": 301
+    },
+    {
       "source": "/guides/private-label-teamwear-manufacturing/",
       "destination": "/resources/private-label-teamwear-launch-checklist/",
       "status": 301
@@ -297,6 +308,11 @@
     {
       "source": "/guides/school-basketball-uniform-order-checklist/",
       "destination": "/guides/how-to-order-custom-basketball-uniforms/",
+      "status": 301
+    },
+    {
+      "source": "/guides/sublimation-vs-screen-printing-for-custom-teamwear/",
+      "destination": "/printing-guide/",
       "status": 301
     },
     {

@@ -107,7 +107,7 @@ test('only the maintained survivors serve the three retired template-guide inten
     {
       source: '/guides/sublimation-vs-screen-printing-for-custom-teamwear/',
       survivor: '/printing-guide/',
-      title: 'Sportswear Printing Guide | Sublimation, Screen Printing & Embroidery | POXIOL',
+      title: 'Sportswear Printing Guide | Sublimation, Screen Printing &amp; Embroidery | POXIOL',
       h1: 'Sportswear Printing Guide For Custom Teamwear',
       ctaHref: '/free-mockup/',
       ctaText: 'Get a Free Mockup',
@@ -126,7 +126,11 @@ test('only the maintained survivors serve the three retired template-guide inten
     assert.equal(html.includes(`<h1`), true)
     assert.match(html, new RegExp(`<h1[^>]*>\\s*${h1.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}\\s*</h1>`, 'i'))
     assert.equal(html.includes(`rel="canonical" href="https://www.poxiol.com${survivor}"`), true)
-    assert.match(html, new RegExp(`<a[^>]+href="${ctaHref.replaceAll('/', '\\/')}"[^>]*>[\\s\\S]*?${ctaText}[\\s\\S]*?<\\/a>`, 'i'))
+    const anchors = [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(([, attributes, body]) => ({
+      href: (attributes.match(/\bhref="([^"]+)"/i)?.[1] ?? '').replace(/&amp;/g, '&'),
+      text: body.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').trim(),
+    }))
+    assert.equal(anchors.some(({href, text}) => href === ctaHref && text === ctaText), true)
 
     const actualSchemaTypes = readRouteSchemas(survivor)
       .flatMap(flattenSchemaNodes)
