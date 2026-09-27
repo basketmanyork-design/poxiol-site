@@ -42,6 +42,7 @@ import type {
   CmsSiteChrome,
 } from '@/lib/cms/types'
 import type {CmsPortableTextNode} from '@/lib/cms/portableText'
+import {projectPlanningSeo, resolveProjectSeoForEvidence} from '@/lib/project-planning-seo'
 import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
 import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
@@ -478,6 +479,7 @@ function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, 
   const title = project.projectTitle || project.title || fallback?.title || 'POXIOL Project'
   const evidenceVerified = project.evidenceStatus === 'verified' && project.buyerAuthorizationStatus === 'publicApproved'
   const imageApproved = evidenceVerified && project.approvedImageStatus === 'approved'
+  const resolvedSeo = seoFrom(project.seo, fallback?.seo || projectPlanningSeo(project.slug))
   return {
     slug: project.slug,
     title,
@@ -509,7 +511,7 @@ function mapProject(project: SanityCaseStudy, fallback: CmsProject | undefined, 
     evidenceNote: project.evidenceNote,
     verifiedProcess: evidenceVerified ? project.verifiedProcess : undefined,
     verifiableResultStatement: evidenceVerified ? project.verifiableResultStatement : undefined,
-    seo: seoFrom(project.seo, fallback?.seo || {title: title + ' | POXIOL', description: project.overview || project.projectBackground || title}),
+    seo: resolveProjectSeoForEvidence({slug: project.slug, evidenceVerified, resolvedSeo}),
     displayOrder: project.displayOrder ?? fallback?.displayOrder ?? index,
   }
 }

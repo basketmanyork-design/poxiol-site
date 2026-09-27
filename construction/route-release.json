@@ -2,10 +2,10 @@
   "version": 1,
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
-    "publicSitemapSha256": "687fff8d437edd0f962c1328b6de3ce00adcf2e585a65faba1525c05c7609ae6",
-    "candidateSitemapSha256": "18050ae6591f08193994267303ee62b53d37c36cae92de9f7750da492bdf7088",
-    "publicCount": 83,
-    "candidateCount": 81,
+    "publicSitemapSha256": "a44a142692f8b06474e21d65ffc55b2c3af2da60f9bd686c0db8a098762cf656",
+    "candidateSitemapSha256": "da1935708b6221a690cec9b4d52397ba62590a8e44db43e0d94f77cfec6f8151",
+    "publicCount": 81,
+    "candidateCount": 82,
     "renderedCount": 98,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
@@ -96,11 +96,10 @@
       "/terms/",
       "/youth-team-uniforms/"
     ],
-    "ADDED": [],
-    "REDIRECTED": [
-      "/guides/how-to-order-custom-basketball-uniforms-for-your-team/",
-      "/how-to-order-custom-basketball-uniforms/"
+    "ADDED": [
+      "/projects/"
     ],
+    "REDIRECTED": [],
     "WITHHELD_LEGAL": [],
     "OWNER_410_REQUIRED": []
   },

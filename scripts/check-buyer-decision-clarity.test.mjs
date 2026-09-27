@@ -1,9 +1,77 @@
 import assert from 'node:assert/strict'
 import {access, readFile, readdir} from 'node:fs/promises'
 import path from 'node:path'
+import {pathToFileURL} from 'node:url'
 
 const root = process.cwd()
 const sourceOnly = process.argv.includes('--source-only')
+
+const projectPlanningSeoPath = path.join(root, 'lib/project-planning-seo.ts')
+await assert.doesNotReject(
+  access(projectPlanningSeoPath),
+  'planning-safe project SEO resolver is missing',
+)
+
+const {
+  projectPlanningSeo,
+  resolveProjectSeoForEvidence,
+} = await import(pathToFileURL(projectPlanningSeoPath).href)
+
+const planningSeoBySlug = {
+  'usa-basketball-academy-uniform-program': {
+    title: 'Basketball Academy Planning Scenario | POXIOL',
+    description: 'Plan a basketball academy uniform program, including reversible sets, player numbers, size grouping, sample review and tournament scheduling.',
+  },
+  'australia-soccer-club-kit-project': {
+    title: 'Soccer Club Kit Planning Scenario | POXIOL',
+    description: 'Plan a soccer club home-and-away kit program, including color matching, mockup confirmation, player details and bulk-order checkpoints.',
+  },
+  'school-athletics-multi-sport-program': {
+    title: 'School Multi-Sport Planning Scenario | POXIOL',
+    description: 'Plan a school multi-sport uniform program across basketball, volleyball and training wear with coordinated branding, sizing and review steps.',
+  },
+  'middle-east-sports-event-program': {
+    title: 'Sports Event Uniform Planning Scenario | POXIOL',
+    description: 'Plan a sports-event uniform program for staff and participants, including quantity planning, packing organization and delivery checkpoints.',
+  },
+  'distributor-bulk-teamwear-program': {
+    title: 'Teamwear Distributor Planning Scenario | POXIOL',
+    description: 'Plan a distributor teamwear program across multiple product categories with repeat-order structure, quality checkpoints and packing requirements.',
+  },
+}
+
+for (const [slug, expected] of Object.entries(planningSeoBySlug)) {
+  assert.deepEqual(projectPlanningSeo(slug), {
+    ...expected,
+    canonicalUrl: `https://www.poxiol.com/projects/${slug}/`,
+  })
+}
+
+assert.deepEqual(projectPlanningSeo('future-project'), {
+  title: 'Teamwear Planning Scenario | POXIOL',
+  description: 'Plan a custom teamwear program using an evidence-neutral scenario for briefing, sample review, quality checkpoints, packing requirements and target delivery timing.',
+  canonicalUrl: 'https://www.poxiol.com/projects/future-project/',
+})
+
+const resolvedCmsSeo = {
+  title: 'Unverified Customer Case Study',
+  description: 'Unverified completed-project claim.',
+  canonicalUrl: 'https://www.poxiol.com/projects/custom-canonical/',
+  noIndex: true,
+}
+assert.deepEqual(resolveProjectSeoForEvidence({
+  slug: 'usa-basketball-academy-uniform-program',
+  evidenceVerified: false,
+  resolvedSeo: resolvedCmsSeo,
+}), {
+  ...resolvedCmsSeo,
+  ...planningSeoBySlug['usa-basketball-academy-uniform-program'],
+})
+assert.deepEqual(resolveProjectSeoForEvidence({
+  slug: 'usa-basketball-academy-uniform-program',
+  evidenceVerified: true,
+  resolvedSeo: resolvedCmsSeo,
+}), resolvedCmsSeo)
 
 const requiredSourceFiles = [
   'lib/buyer-decision.ts',
@@ -142,6 +210,10 @@ for (const field of ['buyerAuthorizationStatus', 'approvedImageStatus', 'evidenc
 assert.match(projectSource + projectDetailSource, /Planning Scenario/, 'unverified project records must render as planning scenarios')
 assert.doesNotMatch(projectSource + projectDetailSource, /Project imagery pending verification|Verified Project/, 'unsupported project proof must be withheld instead of shown as an unfinished frame')
 assert.match(projectSource + projectDetailSource, /QualifiedExplanationNotice/, 'retained project planning content must carry the public limitation')
+assert.match(projectSource, /Teamwear Planning Scenarios \| POXIOL/, 'project hub must publish planning-safe metadata')
+assert.match(projectSource, /View Planning Scenario/, 'project hub cards must identify planning scenarios')
+assert.doesNotMatch(projectSource, /View Case Study/, 'project hub cards must not imply verified case studies')
+assert.match(sitemapSource, /["']\/projects\/["']/, 'sitemap must include the project planning hub')
 assert.match(faqSource, /faqPageSchemaFromGroups/, 'visible FAQ and FAQPage JSON-LD must share the resolved groups')
 
 const articleTemplateSource = await readFile(path.join(root, 'components/cms/ArticleTemplate.tsx'), 'utf8')
@@ -211,6 +283,9 @@ if (!sourceOnly) {
   assert.match(htmlByRoute.shipping, /Production Planning/, 'built shipping page must render production planning guidance')
   assert.match(htmlByRoute.projects, /Planning Scenario/, 'built projects page must keep unverified records labeled as planning scenarios')
   assert.doesNotMatch(htmlByRoute.projects, /Project imagery pending verification|Verified Project/, 'built projects page must withhold unsupported project proof')
+  assert.match(htmlByRoute.projects, /<title>Teamwear Planning Scenarios \| POXIOL<\/title>/, 'built projects hub must expose planning-safe title')
+  assert.match(htmlByRoute.projects, /View Planning Scenario/, 'built projects hub must use the planning-safe card CTA')
+  assert.doesNotMatch(htmlByRoute.projects, /View Case Study/, 'built projects hub must not label scenarios as case studies')
 
   const faqSchemas = [...htmlByRoute.faq.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
     .map((match) => JSON.parse(match[1]))

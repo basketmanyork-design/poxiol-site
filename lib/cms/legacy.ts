@@ -5,6 +5,7 @@ import {faqData} from '@/lib/faq'
 import {buyingGuides} from '@/lib/guides'
 import {resourcePages} from '@/lib/resources-data'
 import {sportsPages} from '@/lib/sports-pages'
+import {projectPlanningSeo} from '@/lib/project-planning-seo'
 import type {
   CmsArticle,
   CmsFaqGroup,
@@ -258,11 +259,7 @@ export const legacyProjects: CmsProject[] = caseStudies.map((project, index) => 
   packaging: project.packingDelivery,
   solution: project.solution,
   overview: project.overview,
-  seo: {
-    title: `${project.title} | POXIOL B2B Case Study`,
-    description: project.overview,
-    canonicalUrl: `https://www.poxiol.com/projects/${project.slug}/`,
-  },
+  seo: projectPlanningSeo(project.slug),
   displayOrder: index,
 }))
 

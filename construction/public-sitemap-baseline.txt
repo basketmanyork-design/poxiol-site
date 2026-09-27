@@ -28,7 +28,6 @@
 /guides/custom-basketball-uniform-cost-factors/
 /guides/custom-basketball-uniform-fabric-gsm/
 /guides/how-to-choose-a-custom-soccer-kit-manufacturer/
-/guides/how-to-order-custom-basketball-uniforms-for-your-team/
 /guides/how-to-order-custom-basketball-uniforms/
 /guides/moq-1-custom-teamwear-how-it-works/
 /guides/oem-odm-sportswear-manufacturing-guide-for-brands/
@@ -38,7 +37,6 @@
 /guides/sublimation-vs-screen-printing-for-custom-teamwear/
 /how-sublimation-printing-works-for-teamwear/
 /how-to-choose-a-teamwear-manufacturer/
-/how-to-order-custom-basketball-uniforms/
 /intellectual-property-policy/
 /manufacturing/
 /oem-baseball-apparel-manufacturer/

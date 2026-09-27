@@ -7,6 +7,8 @@ import { getProjects } from "@/lib/sanity/content";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
+  title: "Teamwear Planning Scenarios | POXIOL",
+  description: "Explore planning scenarios for custom teamwear briefs, sample review, quality checkpoints, packing needs and target delivery windows.",
   alternates: { canonical: "/projects/" },
 };
 
@@ -40,7 +42,7 @@ export default async function ProjectsPage() {
                   </div>
                   <h2 className="mt-4 text-2xl font-black uppercase tracking-tight text-white transition group-hover:text-lime-400">{project.title}</h2>
                   <p className="mt-4 line-clamp-2 text-sm text-neutral-400 leading-relaxed">{project.overview}</p>
-                  <div className="mt-8 text-xs font-black uppercase tracking-widest text-white underline underline-offset-4 decoration-lime-400/50">View Case Study</div>
+                  <div className="mt-8 text-xs font-black uppercase tracking-widest text-white underline underline-offset-4 decoration-lime-400/50">View Planning Scenario</div>
                 </div>
               </Link>
             ))}

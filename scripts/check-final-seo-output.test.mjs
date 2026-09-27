@@ -37,6 +37,42 @@ test('sitemap source consumes the Plan A publication policy', () => {
   assert.match(source, /publicSectionDecision/)
 })
 
+test('project planning hub and scenarios use evidence-neutral search contracts', () => {
+  const hubRoute = '/projects/'
+  const scenarios = [
+    ['/projects/usa-basketball-academy-uniform-program/', 'Basketball Academy Planning Scenario | POXIOL', 'Plan a basketball academy uniform program, including reversible sets, player numbers, size grouping, sample review and tournament scheduling.'],
+    ['/projects/australia-soccer-club-kit-project/', 'Soccer Club Kit Planning Scenario | POXIOL', 'Plan a soccer club home-and-away kit program, including color matching, mockup confirmation, player details and bulk-order checkpoints.'],
+    ['/projects/school-athletics-multi-sport-program/', 'School Multi-Sport Planning Scenario | POXIOL', 'Plan a school multi-sport uniform program across basketball, volleyball and training wear with coordinated branding, sizing and review steps.'],
+    ['/projects/middle-east-sports-event-program/', 'Sports Event Uniform Planning Scenario | POXIOL', 'Plan a sports-event uniform program for staff and participants, including quantity planning, packing organization and delivery checkpoints.'],
+    ['/projects/distributor-bulk-teamwear-program/', 'Teamwear Distributor Planning Scenario | POXIOL', 'Plan a distributor teamwear program across multiple product categories with repeat-order structure, quality checkpoints and packing requirements.'],
+  ]
+  const hubHtml = readRouteHtml(hubRoute)
+  const sitemap = readFileSync('out/sitemap.xml', 'utf8')
+  const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url)
+
+  assert.equal(sitemapUrls.length, 82)
+  assert.equal(new Set(sitemapUrls).size, 82)
+  assert.equal(sitemapUrls.includes('https://www.poxiol.com/projects/'), true)
+  assert.match(hubHtml, /<title>Teamwear Planning Scenarios \| POXIOL<\/title>/)
+  assert.match(hubHtml, /<meta[^>]+name="description"[^>]+content="Explore planning scenarios for custom teamwear briefs, sample review, quality checkpoints, packing needs and target delivery windows\."/)
+  assert.equal((hubHtml.match(/View Planning Scenario/g) || []).length >= 5, true)
+  assert.doesNotMatch(hubHtml, /View Case Study/)
+  assert.match(hubHtml, /This is a planning explanation, not a customer project, factory record, quality result, delivery result or production guarantee\./)
+
+  for (const [route, title, description] of scenarios) {
+    const html = readRouteHtml(route)
+    const canonical = `https://www.poxiol.com${route}`
+    assert.equal(sitemapUrls.includes(canonical), true)
+    assert.equal((html.match(/<h1\b/gi) || []).length, 1)
+    assert.equal(html.includes(`<title>${title}</title>`), true)
+    assert.equal(html.includes(`name="description" content="${description}"`), true)
+    assert.equal(html.includes(`rel="canonical" href="${canonical}"`), true)
+    assert.match(html, /Planning Scenario/)
+    assert.match(html, /This is a planning explanation, not a customer project, factory record, quality result, delivery result or production guarantee\./)
+    assert.deepEqual(readRouteSchemas(route).map((schema) => schema['@type']), ['BreadcrumbList'])
+  }
+})
+
 test('only the maintained Basketball ordering guide remains discoverable', () => {
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
   assert.match(sitemap, /\/guides\/how-to-order-custom-basketball-uniforms\//)
