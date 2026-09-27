@@ -176,4 +176,38 @@ test('OEM and ODM decision guide renders the approved buyer path and minimal sch
   for (const preservedCta of ['Discuss Your OEM Project', 'Ask a Project Question', 'Start OEM/ODM Project']) {
     assert.equal(serviceHtml.includes(preservedCta), true, `service page lost preserved CTA: ${preservedCta}`)
   }
+
+  const serviceCanonical = 'https://www.poxiol.com/oem-odm/'
+  const serviceTitle = 'OEM/ODM Teamwear for Channel Partners'
+  const serviceDescription = 'OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.'
+  const serviceScripts = readRouteSchemas(serviceRoute)
+  assert.equal(serviceScripts.length, 1, 'service page must render exactly one JSON-LD script')
+  assert.deepEqual(serviceScripts[0]['@graph'].map((node) => node['@type']), ['BreadcrumbList', 'Service'])
+
+  const serviceNodes = flattenSchemaNodes(serviceScripts[0])
+  const serviceBreadcrumb = serviceNodes.find((node) => node['@type'] === 'BreadcrumbList')
+  const service = serviceNodes.find((node) => node['@type'] === 'Service')
+  assert.deepEqual(serviceBreadcrumb, {
+    '@type': 'BreadcrumbList',
+    '@id': `${serviceCanonical}#breadcrumb`,
+    itemListElement: [
+      {'@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.poxiol.com/'},
+      {'@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://www.poxiol.com/solutions/'},
+      {'@type': 'ListItem', position: 3, name: serviceTitle, item: serviceCanonical},
+    ],
+  })
+  assert.deepEqual(service, {
+    '@type': 'Service',
+    '@id': `${serviceCanonical}#service`,
+    name: serviceTitle,
+    description: serviceDescription,
+    url: serviceCanonical,
+    provider: {'@type': 'Organization', name: 'POXIOL', url: 'https://www.poxiol.com/'},
+  })
+  assert.equal(serviceHtml.includes(service.description), true, 'Service description must be visible verbatim')
+
+  const serviceSchemaText = JSON.stringify(serviceScripts[0])
+  for (const forbidden of ['Product', 'Offer', 'OfferCatalog', 'FAQPage', 'Review', 'AggregateRating', 'areaServed', 'price', 'priceCurrency', 'availability', 'MOQ', 'leadTime', 'capacity', 'certification', 'customer', 'datePublished', 'dateModified', 'author', 'reviewer']) {
+    assert.equal(serviceSchemaText.includes(`"${forbidden}"`), false, `service schema must not expose ${forbidden}`)
+  }
 })

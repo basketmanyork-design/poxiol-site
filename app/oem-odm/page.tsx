@@ -64,6 +64,29 @@ const oemPositioning = {
   description: "OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.",
 };
 
+const oemServiceSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.poxiol.com/oem-odm/#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.poxiol.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://www.poxiol.com/solutions/' },
+        { '@type': 'ListItem', position: 3, name: 'OEM/ODM Teamwear for Channel Partners', item: 'https://www.poxiol.com/oem-odm/' },
+      ],
+    },
+    {
+      '@type': 'Service',
+      '@id': 'https://www.poxiol.com/oem-odm/#service',
+      name: 'OEM/ODM Teamwear for Channel Partners',
+      description: 'OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
+      url: 'https://www.poxiol.com/oem-odm/',
+      provider: { '@type': 'Organization', name: 'POXIOL', url: 'https://www.poxiol.com/' },
+    },
+  ],
+};
+
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getSitePage(pageKey);
   return metadataFromCmsPage(page, oemPositioning);
@@ -73,6 +96,10 @@ export default async function OEMPage() {
   const page = await getSitePage(pageKey);
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(oemServiceSchema) }}
+      />
       <Header />
 
       {/* Hero Section */}

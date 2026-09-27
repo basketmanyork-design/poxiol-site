@@ -54,8 +54,22 @@ for (const contract of [
   ['service page', oemServiceSource, 'Need help choosing between OEM and ODM?'],
   ['service page', oemServiceSource, 'Compare OEM and ODM paths'],
   ['service page', oemServiceSource, '/guides/oem-odm-sportswear-manufacturing-guide-for-brands/'],
+  ['service page', oemServiceSource, "'@type': 'BreadcrumbList'"],
+  ['service page', oemServiceSource, "'@type': 'Service'"],
+  ['service page', oemServiceSource, "'@id': 'https://www.poxiol.com/oem-odm/#breadcrumb'"],
+  ['service page', oemServiceSource, "'@id': 'https://www.poxiol.com/oem-odm/#service'"],
+  ['service page', oemServiceSource, "name: 'OEM/ODM Teamwear for Channel Partners'"],
+  ['service page', oemServiceSource, "item: 'https://www.poxiol.com/solutions/'"],
+  ['service page', oemServiceSource, "url: 'https://www.poxiol.com/oem-odm/'"],
+  ['service page', oemServiceSource, "provider: { '@type': 'Organization', name: 'POXIOL', url: 'https://www.poxiol.com/' }"],
+  ['service page', oemServiceSource, 'application/ld+json'],
 ]) {
   assert.ok(contract[1].includes(contract[2]), `${contract[0]} is missing approved OEM/ODM decision contract: ${contract[2]}`)
+}
+
+for (const forbidden of ['OfferCatalog', 'FAQPage', 'AggregateRating', 'areaServed', 'priceCurrency', 'availability', 'datePublished', 'dateModified', 'author', 'reviewer']) {
+  const schemaField = new RegExp(`(?:['"]${forbidden}['"]|\\b${forbidden})\\s*:`)
+  assert.doesNotMatch(oemServiceSource, schemaField, `OEM/ODM service schema must not expose ${forbidden}`)
 }
 
 assert.ok(!oemDecisionGuideSource.includes('Get Free Mockup Now'), 'OEM/ODM decision guide must not retain the generic free-mockup CTA')
