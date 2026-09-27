@@ -38,6 +38,11 @@ test('retired routes cannot also render App Router 200 pages', () => {
     const routeFile = `app/${source.slice(1)}page.tsx`
     assert.equal(existsSync(routeFile), false, `${source} still has a competing App Router page.`)
   }
+  assert.doesNotMatch(
+    readFileSync('lib/pseo.ts', 'utf8'),
+    /slug:\s*["']custom-sports-apparel-distributor["']/,
+    'The retired distributor slug must not remain in the dynamic PSEO route inventory.',
+  )
   assert.equal(existsSync('components/CategoryRedirect.tsx'), false, 'The client redirect component must be removed.')
 })
 

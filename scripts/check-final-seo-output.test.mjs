@@ -60,7 +60,54 @@ test('only the maintained private-label page serves distributor intent', () => {
   assert.match(survivorHtml, /<title>Private Label Teamwear for Sports Brands and Distributors \| POXIOL<\/title>/)
   assert.match(survivorHtml, /<h1[^>]*>Private Label Teamwear Built Around Your Brand<\/h1>/)
   assert.match(survivorHtml, /<link[^>]+rel="canonical"[^>]+href="https:\/\/www\.poxiol\.com\/private-label-teamwear\/"/)
-  assert.equal(survivorHtml.includes('Discuss Your OEM Project'), true)
+
+  const anchors = [...survivorHtml.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(([, attributes, body]) => ({
+    href: (attributes.match(/\bhref="([^"]+)"/i)?.[1] ?? '').replace(/&amp;/g, '&'),
+    text: body.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').trim(),
+  }))
+  const quoteHref = '/get-quote/?product=Private+Label+Teamwear&source=%2Fprivate-label-teamwear%2F#quote-form'
+  const sampleHref = '/sample-order/?product=Private+Label+Teamwear&source=%2Fprivate-label-teamwear%2F#sample-request-form'
+  assert.equal(anchors.filter(({href, text}) => href === quoteHref && text === 'Discuss Your OEM Project').length, 3)
+  assert.equal(anchors.filter(({href, text}) => href === sampleHref && text === 'Request Sample').length, 1)
+
+  assert.deepEqual(readRouteSchemas(survivorRoute), [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      serviceType: 'Custom Manufacturing',
+      name: 'Private Label Teamwear',
+      description: 'Private-label teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
+      provider: {'@id': 'https://www.poxiol.com/#operator'},
+      areaServed: {'@type': 'Country', name: 'Global'},
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Custom Teamwear Services',
+        itemListElement: [
+          {'@type': 'Offer', itemOffered: {'@type': 'Service', name: 'Free 3D Mockup'}},
+          {'@type': 'Offer', itemOffered: {'@type': 'Service', name: 'B2B Factory Quote'}},
+          {'@type': 'Offer', itemOffered: {'@type': 'Service', name: 'Project-Specific Sample Planning'}},
+        ],
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {'@type': 'Question', name: 'Does POXIOL support OEM private label teamwear projects?', acceptedAnswer: {'@type': 'Answer', text: 'Yes. POXIOL can review OEM and private label requirements for sports brands and distributors based on confirmed product specifications.'}},
+        {'@type': 'Question', name: 'Can custom labels and packaging be included?', acceptedAnswer: {'@type': 'Answer', text: 'Label and packaging options are confirmed during project consultation according to the brand requirements and available production options.'}},
+        {'@type': 'Question', name: 'Can a brand review a sample before bulk manufacturing?', acceptedAnswer: {'@type': 'Answer', text: 'Sample requirements and approval details can be agreed before bulk production proceeds.'}},
+        {'@type': 'Question', name: 'What is reconfirmed for a repeat private label production run?', acceptedAnswer: {'@type': 'Answer', text: 'Product specifications, materials, artwork, labels, packaging, quantity and timing are reconfirmed before the new production run.'}},
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {'@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.poxiol.com/'},
+        {'@type': 'ListItem', position: 2, name: 'Private Label Teamwear', item: 'https://www.poxiol.com/private-label-teamwear/'},
+      ],
+    },
+  ])
 })
 
 test('redirect sources are excluded from the sitemap', () => {
