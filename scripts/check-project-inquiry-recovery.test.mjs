@@ -9,7 +9,7 @@ import ts from 'typescript'
 const require = createRequire(import.meta.url)
 // Real ContactForm and local helpers; only scheduling, navigation, analytics and
 // HTTP are controlled. The fake clock never waits or contacts a real provider.
-function harness({request = async()=>new Response('{"ok":true}'), tracking = {}, navigate, endpoint = 'https://example.invalid/qa', uuid = ()=>'qa-only'} = {}) {
+function harness({request = async()=>new Response('{"ok":true}'), tracking = {}, navigate, endpoint = 'https://example.invalid/qa', uuid = ()=>'qa-only', component = 'ContactForm.tsx', componentProps, reconcileDom = false} = {}) {
   const slots=[], effects=[], requests=[], navigations=[], analytics=[], timers=new Map(), cache=new Map(), dom=new Map(), focus=[], scroll=[]
   let cursor=0, nextTimer=1
   const hooks={
@@ -23,9 +23,10 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
     const code=ts.transpileModule(readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,target:ts.ScriptTarget.ES2022}}).outputText
     vm.runInNewContext(code,{
       exports,Error,URL,URLSearchParams,Response,FormData,AbortController,
-      setTimeout(fn,ms){const id=nextTimer++;timers.set(id,{fn,ms});return id},clearTimeout(id){timers.delete(id)},
+      setTimeout(fn,ms){const id=nextTimer++;timers.set(id,{fn,ms});return id},clearTimeout(id){timers.delete(id)},requestAnimationFrame(fn){fn()},
       process:{env:{NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT:endpoint}},
       window:{location:{pathname:'/get-quote/',search:'',href:'https://example.invalid/get-quote/'}},
+      document:{getElementById(id){return dom.get(id)||null}},
       crypto:{randomUUID:uuid},
       fetch:async(url,options)=>{assert.equal(url,'https://example.invalid/qa');requests.push({url,...options});return request(url,options)},
       require(name){
@@ -38,6 +39,9 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
           trackFileUpload(...args){analytics.push({name:'file_upload',args})},
           trackFormSubmit(...args){analytics.push({name:'form_submit',args})},
           trackLead(...args){analytics.push({name:'generate_lead',args})},
+          trackFormStepView(...args){analytics.push({name:'form_step_view',args})},
+          trackFormStepComplete(...args){analytics.push({name:'form_step_complete',args})},
+          trackFormValidationError(...args){analytics.push({name:'form_validation_error',args})},
           ...tracking,
         }
         if(!name.startsWith('@/')&&!name.startsWith('.'))return require(name)
@@ -50,11 +54,12 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
     })
     return exports
   }
-  const Component=load(path.resolve('components/forms/ContactForm.tsx')).default
+  const Component=load(path.resolve('components/forms',component)).default
   function expand(node){if(!node||typeof node!=='object')return[];if(typeof node.type==='function')return expand(node.type(node.props));return[node,...[node.props?.children].flat(Infinity).flatMap(expand)]}
   // Model only DOM ref boundaries; the Browser tests cover native file inputs,
   // actual focus and viewport positioning. Components/helpers remain real.
-  function render(){for(let pass=0;pass<10;pass++){cursor=0;const nodes=expand(Component({intent:'quote',formId:'factory_quote_form',formType:'Get Quote Conversion',successUrl:'/quote-received/',publicEmail:'sales@poxiol.com',whatsappHref:'https://wa.me/8613055646888'}));for(const node of nodes){const id=node.props?.id;if(!id)continue;if(!dom.has(id))dom.set(id,{value:'',focus(options){focus.push({id,options})},scrollIntoView(options){scroll.push({id,options})}});if(node.ref&&typeof node.ref==='object')node.ref.current=dom.get(id)}if(!effects.length)return nodes;effects.splice(0).forEach(fn=>fn())}throw Error('Effects did not settle')}
+  const props=componentProps||{intent:'quote',formId:'factory_quote_form',formType:'Get Quote Conversion',successUrl:'/quote-received/',publicEmail:'sales@poxiol.com',whatsappHref:'https://wa.me/8613055646888'}
+  function render(){for(let pass=0;pass<10;pass++){cursor=0;const nodes=expand(Component(props));for(const node of nodes){const id=node.props?.id;if(!id)continue;if(!dom.has(id))dom.set(id,{value:'',focus(options){focus.push({id,options})},scrollIntoView(options){scroll.push({id,options})}});if(node.ref&&typeof node.ref==='object')node.ref.current=dom.get(id)}if(!effects.length){if(reconcileDom){const mounted=new Set(nodes.map(node=>node.props?.id).filter(Boolean));for(const id of [...dom.keys()])if(!mounted.has(id))dom.delete(id)}return nodes}effects.splice(0).forEach(fn=>fn())}throw Error('Effects did not settle')}
   const find=id=>render().find(n=>n.props?.id===id)
   const edit=(id,value)=>find(id).props.onChange({target:{value}})
   const attach=(id,file)=>{const input=find(id);dom.get(id).value=file?`C:\\fakepath\\${file.name}`:'';input.props.onChange({target:{files:file?[file]:[]}})}
@@ -67,6 +72,14 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
   const text=node=>typeof node==='string'||typeof node==='number'?String(node):!node||typeof node!=='object'?'':[node.props?.children].flat(Infinity).map(text).join(' ')
   const removeButton=id=>render().find(n=>n.type==='button'&&n.props['aria-controls']===id&&/^Remove /.test(n.props['aria-label']||''))
   return{requests,navigations,analytics,timers,dom,focus,scroll,render,find,edit,attach,removeButton,handler,event,send,button,alert,status,text,expire(){for(const[id,t]of[...timers]){timers.delete(id);t.fn()}}}
+}
+
+function progressiveQuoteHarness() {
+  return harness({
+    component:'ProcurementContactForm.tsx',
+    reconcileDom:true,
+    componentProps:{intent:'quote',formId:'quote_form',title:'Request a Quote',subtitle:'Tell us about your project.',formType:'Get Quote',ctaText:'Submit Quote Request',privacyPolicyApproved:true},
+  })
 }
 
 function assertRecovery(ui){
@@ -232,6 +245,31 @@ test('a stale remove action cannot change selected files during or after an acce
   assert.notEqual(ui.dom.get('field-logo-file').value,'');assert.ok(ui.removeButton('field-logo-file'))
   resolve(new Response('{"ok":true}'));await pending;remove.props.onClick();ui.render();assert.notEqual(ui.dom.get('field-logo-file').value,'')
   assert.equal(ui.requests.length,1)
+})
+
+test('progressive quote keeps a retained file truthful after returning to Products and excludes it after removal',async()=>{
+  const ui=progressiveQuoteHarness()
+  ui.edit('product-0','Basketball Uniforms');ui.edit('quantity-0','25')
+  ui.attach('project-file',new File(['QA'],'fixture-logo.png',{type:'image/png'}))
+  let continueButton=ui.render().find(node=>node.type==='button'&&ui.text(node).trim()==='Continue')
+  continueButton.props.onClick();ui.render()
+  assert.equal(ui.find('project-file'),undefined,'The native picker must unmount outside Products')
+  const backButton=ui.render().find(node=>node.type==='button'&&ui.text(node).trim()==='Back')
+  backButton.props.onClick();ui.render()
+  assert.equal(ui.dom.get('project-file').value,'','Returning creates a visually empty native picker')
+  const selectedFileStatus=ui.text(ui.render().find(node=>node.props?.role==='status'&&ui.text(node).includes('fixture-logo.png'))).replace(/\s+/g,' ').trim()
+  assert.equal(selectedFileStatus,'Selected file: fixture-logo.png')
+  const removeButton=ui.render().find(node=>node.type==='button'&&ui.text(node).trim()==='Remove file')
+  removeButton.props.onClick();ui.render()
+  assert.ok(!ui.render().some(node=>node.props?.role==='status'&&ui.text(node).includes('fixture-logo.png')),'Removal clears the retained filename')
+
+  continueButton=ui.render().find(node=>node.type==='button'&&ui.text(node).trim()==='Continue');continueButton.props.onClick();ui.render()
+  ui.edit('delivery-date','2099-10-20');ui.edit('delivery-country','US');ui.edit('delivery-postal','02108')
+  continueButton=ui.render().find(node=>node.type==='button'&&ui.text(node).trim()==='Continue');continueButton.props.onClick();ui.render()
+  ui.edit('full-name','Test Buyer');ui.render().find(node=>node.type==='input'&&node.props?.type==='radio'&&node.props.value==='email').props.onChange();ui.edit('email','buyer@example.invalid')
+  await ui.send()
+  assert.equal(ui.requests.length,1)
+  assert.equal(ui.requests[0].body.has('project_file_1'),false,'Removed file must not enter the mock submission payload')
 })
 
 test('the procurement form preserves recovery while adding governed step analytics',()=>{
