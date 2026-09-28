@@ -18,6 +18,31 @@ const pages = [
   {route: '/contact/', target: 'contact-form', title: 'Send a General Inquiry', bottomCta: false},
 ]
 
+test('CRO pilot keeps existing choices and adds three exact contextual quote entries', async () => {
+  const [home, basketball, privateLabel] = await Promise.all([
+    readFile('components/home-optimization/HomepageOptimization.tsx', 'utf8'),
+    readFile('components/v8/BasketballV8LandingPage.tsx', 'utf8'),
+    readFile('app/customization/private-label/page.tsx', 'utf8'),
+  ])
+
+  assert.match(home, />Tell Us About Your Project<\/Link>/)
+  assert.match(home, />Get a Free Mockup<\/Link>/)
+  assert.match(home, />Request a Quote<\/Link>/)
+  assert.match(home, /contextualInquiryHref\('\/get-quote\/', \{source: '\/'\}\)/)
+  assert.match(home, /data-analytics-location="hero"/)
+
+  assert.match(basketball, /label: 'Request a Basketball Quote'/)
+  assert.match(basketball, /product: 'Basketball Uniforms'/)
+  assert.match(basketball, /source: '\/products\/basketball-uniforms\/'/)
+  assert.match(basketball, /<V8Hero[\s\S]*?primary=\{heroQuoteCta\}/)
+  assert.match(basketball, /<FinalCTA[\s\S]*?primary=\{PHASE4_BASKETBALL\.primaryCta\}/)
+
+  assert.match(privateLabel, />Request a Private Label Quote<\/PrimaryButton>/)
+  assert.match(privateLabel, /product: 'Private Label Teamwear'/)
+  assert.match(privateLabel, /source: '\/customization\/private-label\/'/)
+  assert.match(privateLabel, /analyticsLocation="hero"/)
+})
+
 async function renderedPage(route) {
   if (!baseUrl) return readFile(path.join('out', route.slice(1), 'index.html'), 'utf8')
   const response = await fetch(new URL(route, baseUrl))
