@@ -19,10 +19,11 @@ const pages = [
 ]
 
 test('CRO pilot keeps existing choices and adds three exact contextual quote entries', async () => {
-  const [home, basketball, privateLabel] = await Promise.all([
+  const [home, basketball, privateLabel, procurementForm] = await Promise.all([
     readFile('components/home-optimization/HomepageOptimization.tsx', 'utf8'),
     readFile('components/v8/BasketballV8LandingPage.tsx', 'utf8'),
     readFile('app/customization/private-label/page.tsx', 'utf8'),
+    readFile('components/forms/ProcurementContactForm.tsx', 'utf8'),
   ])
 
   assert.match(home, />Tell Us About Your Project<\/Link>/)
@@ -41,6 +42,7 @@ test('CRO pilot keeps existing choices and adds three exact contextual quote ent
   assert.match(privateLabel, /product: 'Private Label Teamwear'/)
   assert.match(privateLabel, /source: '\/customization\/private-label\/'/)
   assert.match(privateLabel, /analyticsLocation="hero"/)
+  assert.match(procurementForm, /Provide at least one contact method/, 'The progressive quote flow must retain alternative contact validation in its later contact step')
 })
 
 async function renderedPage(route) {
@@ -94,12 +96,21 @@ for (const page of pages) {
 
     assert.equal((html.match(/<form\b/gi) || []).length, 1, 'Do not introduce duplicate inquiry forms')
     assert.equal((html.match(/<input\b[^>]*type="file"/gi) || []).length, page.route === '/contact/' ? 0 : 1, 'Project form has one optional artwork picker')
-    for (const name of page.route === '/contact/' ? ['message', 'email'] : ['product-0', 'quantity-0', 'required_delivery_date', 'delivery_country_code', 'delivery_postal_code']) {
+    const visibleFields = page.route === '/contact/'
+      ? ['message', 'email']
+      : page.route === '/get-quote/'
+        ? ['product-0', 'quantity-0']
+        : ['product-0', 'quantity-0', 'required_delivery_date', 'delivery_country_code', 'delivery_postal_code']
+    for (const name of visibleFields) {
       const control = html.match(new RegExp(`<(?:input|select|textarea)\\b[^>]*name="${name}"[^>]*>`, 'i'))?.[0]
       assert.ok(control, `Keep ${name} present in the buyer form`)
       if (page.route === '/contact/') assert.match(control, /\srequired(?:\s|=|>)/i)
     }
-    if (page.route !== '/contact/') assert.match(html, /Provide at least one contact method/, 'Email or WhatsApp is validated as an alternative')
+    if (page.route === '/get-quote/') {
+      assert.match(html, /Step\s*<!-- -->1<!-- -->\s*of\s*<!-- -->3/i, 'Get Quote must server-render the first of three progressive steps')
+      assert.match(html, />Continue<\/button>/i, 'Get Quote must expose its step advance control')
+    }
+    if (page.route !== '/contact/' && page.route !== '/get-quote/') assert.match(html, /Provide at least one contact method/, 'Email or WhatsApp is validated as an alternative')
     assert.ok(anchors(html).some((link) => link.href.startsWith('https://wa.me/8613055646888')), 'Keep the established WhatsApp channel')
     assert.match(html, new RegExp(`<link[^>]*rel="canonical"[^>]*href="https://www\\.poxiol\\.com${page.route}"`), 'Do not change canonical URLs')
   })
