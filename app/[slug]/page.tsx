@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import { pseoPages, getPSEOPageBySlug, getPseoCoreSportLink } from "@/lib/pseo";
+import { createPageMetadata } from "@/lib/seo/page-metadata";
 import { GEO_V1 } from "@/lib/geo-v1";
 import StructuredData from "@/components/seo/StructuredData";
 import Link from "next/link";
@@ -22,11 +23,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!page) return { title: "Page Not Found" };
 
-  return {
+  return createPageMetadata({
     title: page.title,
     description: page.intro,
-    alternates: { canonical: `/${page.slug}/` },
-  };
+    canonical: `/${page.slug}/`,
+    metadata: {
+      twitter: {
+        card: "summary",
+        title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
+        description:
+          "Custom basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.",
+      },
+    },
+  });
 }
 
 export default async function PSEOPage({ params }: Props) {
