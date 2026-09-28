@@ -24,6 +24,7 @@ export type CoreSportDefinition = {
   customization: readonly V8ContentCard[]
   sampleSteps: readonly V8ProcessStep[]
   authorityLinks: readonly V8ContentCard[]
+  searchIntentLinks?: readonly V8ContentCard[]
   faqs: readonly V8FaqItem[]
   primaryCta: V8Cta
   secondaryCta: V8Cta
@@ -114,19 +115,19 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     label: 'Soccer',
     priority: 35,
     canonicalPath: '/products/soccer-jerseys/',
-    seoTitle: 'Custom Soccer Kit Manufacturer | Soccer Jerseys & Full Kits | POXIOL',
-    seoDescription: 'Custom soccer kits for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client orders, samples and reorders.',
+    seoTitle: 'Custom Soccer Kit Manufacturer & Wholesale Supplier | POXIOL',
+    seoDescription: 'Custom soccer kits for distributors, brands and custom resellers. Compare full-kit scope, sample approval, wholesale sourcing and reorder planning.',
     primaryKeyword: 'custom soccer kits',
-    secondaryKeywords: ['custom soccer jerseys', 'soccer kit manufacturer', 'soccer jersey manufacturer', 'custom soccer uniforms', 'soccer jersey supplier'],
+    secondaryKeywords: ['custom soccer jerseys', 'soccer kit manufacturer', 'soccer jersey manufacturer', 'custom soccer uniforms', 'soccer kit supplier', 'soccer jersey supplier', 'soccer kits wholesale'],
     hero: {
       eyebrow: 'Custom Soccer Kits',
-      title: 'Custom Soccer Kit Manufacturer for Distributors and Brands',
-      description: 'For teamwear distributors, dealers, sportswear brands and custom resellers worldwide managing ongoing team orders. Plan jerseys, shorts, socks and goalkeeper options around your client brief, sample approval and reorder requirements.',
+      title: 'Custom Soccer Kit Manufacturer and Wholesale Supplier',
+      description: 'For teamwear distributors, sportswear brands and custom resellers worldwide planning client orders. Review jerseys, shorts, socks, goalkeeper options, sample approval, wholesale sourcing and reorder requirements from one project brief.',
       primaryCtaId: 'free-mockup',
       secondaryCtaId: 'request-sample',
     },
     visualizationId: 'PV-SOCCER-001',
-    productSummaryTitle: 'Jersey, Shorts and Socks for a Complete Soccer Program',
+    productSummaryTitle: 'Custom Soccer Jerseys and Full Kits for Wholesale Programs',
     productCards: [
       {id: 'soccer-jersey', title: 'Soccer Jersey', audience: 'Match and team identity', description: 'Confirm the front and back design, team crest, sponsor artwork, player name, number, collar and sleeve details.'},
       {id: 'soccer-shorts', title: 'Soccer Shorts', audience: 'Coordinated kit', description: 'Match shorts to the approved jersey colors, artwork, size breakdown and construction requirements.'},
@@ -150,6 +151,13 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     ],
     sampleSteps: sharedSampleSteps,
     authorityLinks: sharedAuthorityLinks('soccer'),
+    searchIntentLinks: [
+      {id: 'soccer-wholesale-guide', audience: 'Supplier comparison', title: 'Wholesale Soccer Kit Sourcing', description: 'Compare supplier evaluation, samples, specifications and quality verification before requesting a quote.', href: '/resources/custom-soccer-kits-wholesale-guide/', ctaLabel: 'Read Wholesale Soccer Kit Guide'},
+      {id: 'soccer-buying-guide', audience: 'Product planning', title: 'Soccer Jersey Buying Guide', description: 'Review kit components, customization, artwork, sizing and order information before preparing the project brief.', href: '/soccer-jersey-buying-guide/', ctaLabel: 'Review Soccer Kit Buying Guide'},
+      {id: 'soccer-usa', audience: 'United States', title: 'Soccer Teamwear Supplier USA', description: 'Continue to the market page for USA clubs, academies, schools, distributors and sports organizations.', href: '/soccer-teamwear-supplier-usa/', ctaLabel: 'View USA Soccer Teamwear'},
+      {id: 'soccer-uk', audience: 'United Kingdom', title: 'Soccer Teamwear Supplier UK', description: 'Continue to the market page for clubs, academies, schools and distributors in England, Scotland and Wales.', href: '/soccer-teamwear-supplier-uk/', ctaLabel: 'View UK Soccer Teamwear'},
+      {id: 'soccer-australia', audience: 'Australia', title: 'Soccer Jersey Supplier Australia', description: 'Continue to the market page for Australian clubs, schools, leagues and distributors.', href: '/soccer-jersey-supplier-australia/', ctaLabel: 'View Australia Soccer Teamwear'},
+    ],
     faqs: [
       {id: 'soccer-full-kit-faq', question: 'Can a soccer project include jerseys, shorts, socks and a goalkeeper kit?', answer: 'Yes. Share the required field-player and goalkeeper products so the complete kit scope can be reviewed and quoted.', pageIds: ['soccer']},
       {id: 'soccer-customization-faq', question: 'Can soccer jerseys include team crests, names and numbers?', answer: 'Yes. Buyer-authorized crests, sponsor artwork, player names and numbers can be included after placement and roster details are confirmed.', pageIds: ['soccer']},

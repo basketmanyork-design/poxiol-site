@@ -58,6 +58,16 @@ export function CoreSportLandingPage({sportId}: {sportId: Exclude<CoreSportId, '
         </section>
       ) : null}
 
+      {sportId === 'soccer' && sport.searchIntentLinks ? (
+        <SolutionCards
+          items={sport.searchIntentLinks}
+          eyebrow="Soccer Sourcing Paths"
+          title="Choose the Right Soccer Kit Buying Path"
+          description="Review the global product scope, compare wholesale sourcing decisions or continue to a market-specific supplier page."
+          headingId="soccer-sourcing-paths-title"
+        />
+      ) : null}
+
       <SolutionCards
         items={sport.productCards}
         eyebrow={sport.label + ' Product System'}

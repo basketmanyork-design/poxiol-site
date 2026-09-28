@@ -32,6 +32,36 @@ test('does not publish a structured image for a withheld proof asset', () => {
   assert.equal(/"image"\s*:\s*"[^"]*factory/i.test(html), false)
 })
 
+test('soccer product pillar aligns global supplier intent and exposes five bounded sourcing paths', () => {
+  const route = '/products/soccer-jerseys/'
+  const html = readRouteHtml(route)
+  const visibleHtml = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+  const visibleText = visibleHtml.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim()
+  const anchors = [...visibleHtml.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(([, attributes, body]) => ({
+    href: (attributes.match(/\bhref="([^"]+)"/i)?.[1] ?? '').replace(/&amp;/g, '&'),
+    text: body.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim(),
+  }))
+
+  assert.match(html, /<title>Custom Soccer Kit Manufacturer &amp; Wholesale Supplier \| POXIOL<\/title>/)
+  assert.match(html, /<meta[^>]+name="description"[^>]+content="Custom soccer kits for distributors, brands and custom resellers\. Compare full-kit scope, sample approval, wholesale sourcing and reorder planning\."/)
+  assert.equal((visibleHtml.match(/<h1\b/gi) || []).length, 1)
+  assert.match(visibleHtml, /<h1[^>]*>Custom Soccer Kit Manufacturer and Wholesale Supplier<\/h1>/)
+  assert.equal(visibleText.includes('Soccer Sourcing Paths'), true)
+  assert.equal(visibleText.includes('Choose the Right Soccer Kit Buying Path'), true)
+  assert.equal(visibleText.includes('Review the global product scope, compare wholesale sourcing decisions or continue to a market-specific supplier page.'), true)
+
+  const expectedLinks = [
+    ['/resources/custom-soccer-kits-wholesale-guide/', 'Read Wholesale Soccer Kit Guide'],
+    ['/soccer-jersey-buying-guide/', 'Review Soccer Kit Buying Guide'],
+    ['/soccer-teamwear-supplier-usa/', 'View USA Soccer Teamwear'],
+    ['/soccer-teamwear-supplier-uk/', 'View UK Soccer Teamwear'],
+    ['/soccer-jersey-supplier-australia/', 'View Australia Soccer Teamwear'],
+  ]
+  for (const [href, text] of expectedLinks) {
+    assert.equal(anchors.some((anchor) => anchor.href === href && anchor.text === text), true, `Missing exact Soccer sourcing path: ${text}`)
+  }
+})
+
 test('sitemap source consumes the Plan A publication policy', () => {
   const source = readFileSync('app/sitemap.ts', 'utf8')
   assert.match(source, /publicSectionDecision/)

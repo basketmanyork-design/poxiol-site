@@ -6,9 +6,24 @@ import {resolveCoreSportGeoDetails} from '../lib/core-sports.ts'
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim()
 const buyers = ['Teamwear distributors', 'dealers', 'sportswear brands', 'custom resellers']
 const owners = [
-  {route: '/products/basketball-uniforms/', product: 'Custom Basketball Uniforms', title: 'Custom Basketball Uniform Manufacturer for Distributors and Brands'},
-  {route: '/products/soccer-jerseys/', product: 'Custom Soccer Kits', title: 'Custom Soccer Kit Manufacturer for Distributors and Brands'},
-  {route: '/custom-baseball-softball-uniforms/', product: 'Custom Baseball Uniforms', title: 'Custom Baseball Uniform Manufacturer for Distributors and Brands'},
+  {
+    route: '/products/basketball-uniforms/',
+    product: 'Custom Basketball Uniforms',
+    title: 'Custom Basketball Uniform Manufacturer for Distributors and Brands',
+    searchBuyers: buyers,
+  },
+  {
+    route: '/products/soccer-jerseys/',
+    product: 'Custom Soccer Kits',
+    title: 'Custom Soccer Kit Manufacturer and Wholesale Supplier',
+    searchBuyers: ['distributors', 'brands', 'custom resellers'],
+  },
+  {
+    route: '/custom-baseball-softball-uniforms/',
+    product: 'Custom Baseball Uniforms',
+    title: 'Custom Baseball Uniform Manufacturer for Distributors and Brands',
+    searchBuyers: buyers,
+  },
 ]
 
 for (const owner of process.argv.includes('--unit') ? [] : owners) test(`${owner.route} keeps legacy CMS audience overrides out of hero, overview and search description`, () => {
@@ -19,7 +34,7 @@ for (const owner of process.argv.includes('--unit') ? [] : owners) test(`${owner
   const hero = [...visible.matchAll(/<section\b[^>]*>([\s\S]*?)<\/section>/g)].find(match => match[1].includes('<h1'))?.[1] || ''
   const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1]
   assert.ok(description, 'A search description must exist')
-  for (const buyer of buyers) {
+  for (const buyer of owner.searchBuyers) {
     assert.ok(text(hero).toLowerCase().includes(buyer.toLowerCase()), 'Hero must address ' + buyer)
     assert.ok(description.toLowerCase().includes(buyer.toLowerCase()), 'Search description must address ' + buyer)
   }
