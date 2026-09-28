@@ -30,18 +30,6 @@ import {BASKETBALL_VISUALIZATION_SEQUENCE, getProductVisualization} from '@/lib/
 import {ProductVisualizationSection} from './ProductVisualizationSection'
 import {getCoreSport, resolveCoreSportGeoDetails} from '@/lib/core-sports'
 import {publicSectionDecision} from '@/lib/release/publication-policy'
-import {contextualInquiryHref} from '@/lib/inquiry-context'
-import type {V8Cta} from '@/lib/v8/types'
-
-const heroQuoteCta = {
-  id: 'get-quote',
-  label: 'Request a Basketball Quote',
-  href: contextualInquiryHref('/get-quote/', {
-    product: 'Basketball Uniforms',
-    source: '/products/basketball-uniforms/',
-  }),
-  description: PHASE4_BASKETBALL.primaryCta.description,
-} satisfies V8Cta
 
 export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
   const coreSport = getCoreSport('basketball')
@@ -63,7 +51,7 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
       <ServiceSchema name="Custom Basketball Uniform Manufacturing" description={coreSport.seoDescription} url={fullUrl} />
       <FAQSchema faqs={schemaFaqs} />
       <Header />
-      <V8Hero config={coreSport.hero} visualization={getProductVisualization('PV-BASK-001')} visualizationPage="/products/basketball-uniforms/" primary={heroQuoteCta} secondary={PHASE4_BASKETBALL.secondaryCta} />
+      <V8Hero config={coreSport.hero} visualization={getProductVisualization('PV-BASK-001')} visualizationPage="/products/basketball-uniforms/" primary={PHASE4_BASKETBALL.primaryCta} secondary={PHASE4_BASKETBALL.secondaryCta} />
 
       <ProductGeoSections details={geoDetails} />
 

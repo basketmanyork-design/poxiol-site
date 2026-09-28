@@ -7,16 +7,6 @@ import {test} from 'node:test'
 import ts from 'typescript'
 
 const require = createRequire(import.meta.url)
-
-test('CRO pilot freezes the three approved contextual quote destinations', () => {
-  const home = readFileSync('components/home-optimization/HomepageOptimization.tsx', 'utf8')
-  const basketball = readFileSync('components/v8/BasketballV8LandingPage.tsx', 'utf8')
-  const privateLabel = readFileSync('app/customization/private-label/page.tsx', 'utf8')
-
-  assert.match(home, /contextualInquiryHref\('\/get-quote\/', \{source: '\/'\}\)/)
-  assert.match(basketball, /contextualInquiryHref\('\/get-quote\/', \{\s*product: 'Basketball Uniforms',\s*source: '\/products\/basketball-uniforms\/',\s*\}\)/)
-  assert.match(privateLabel, /contextualInquiryHref\('\/get-quote\/', \{\s*product: 'Private Label Teamwear',\s*source: '\/customization\/private-label\/',\s*\}\)/)
-})
 // Real form modules and helpers; only React scheduling, navigation and the
 // external HTTP boundary are substituted. No browser or real request is used.
 function formHarness(file, intent, search) {

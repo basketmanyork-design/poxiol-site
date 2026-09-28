@@ -3,7 +3,6 @@ import {ProjectQualificationForm} from '@/components/v8/ProjectQualificationForm
 import styles from './HomepageOptimization.module.css'
 import {HeroBackgroundVideo} from './HeroBackgroundVideo'
 import type {HomepageOptimizationCopy} from '@/lib/sanity/home-optimization'
-import {contextualInquiryHref} from '@/lib/inquiry-context'
 
 const cards = [
   {name: 'Soccer Uniforms', action: 'View Options', slug: 'soccer', href: '/products/soccer-jerseys/', alt: 'POXIOL soccer jersey and shorts set design illustration'},
@@ -42,7 +41,6 @@ export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyAp
           <div className={styles.actions}>
             <Link className={styles.primary} href="/#contact">Tell Us About Your Project</Link>
             <Link className={styles.secondary} href="/free-mockup/#free-mockup-form">Get a Free Mockup</Link>
-            <Link className={styles.secondary} href={contextualInquiryHref('/get-quote/', {source: '/'})} data-analytics-location="hero">Request a Quote</Link>
           </div>
           <p className={styles.microcopy}>{copy.heroMicrocopy || 'Start with your requirements. No finished design needed.'}</p>
         </div>

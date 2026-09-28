@@ -22,9 +22,6 @@ for (const eventName of [
   'get_quote_click',
   'file_select',
   'file_upload',
-  'form_step_view',
-  'form_step_complete',
-  'form_validation_error',
   'alibaba_click',
   'product_view',
   'product_category_view',
@@ -52,9 +49,6 @@ if (!contact.includes('trackFormStart') || !contact.includes('trackLead')) {
 }
 for (const forbidden of ['fullName:', 'email:', 'phone:', 'company:', 'message:', 'file_name:']) {
   if (client.includes(forbidden)) throw new Error(`Client analytics payload exposes ${forbidden}`)
-}
-for (const helper of ['trackFormStepView', 'trackFormStepComplete', 'trackFormValidationError']) {
-  if (!client.includes(`function ${helper}`)) throw new Error(`Client analytics is missing ${helper}`)
 }
 
 console.log('analytics integration contract passed')

@@ -51,8 +51,6 @@ assert.deepEqual(pageWithFreeMockupFaqs.sections.filter((section) => section.typ
 assert.ok(pageWithFreeMockupFaqs.sections.some((section) => section.title === 'Keep this section'), 'Non-FAQ CMS sections must remain intact.')
 
 const getQuoteSource = read('app/get-quote/page.tsx')
-const procurementFormSource = read('components/forms/ProcurementContactForm.tsx')
-const pageTemplateSource = read('components/cms/PageTemplate.tsx')
 assert.match(getQuoteSource, /GET_QUOTE_FAQS/, 'Get Quote must use its page-specific shared FAQ data.')
 assert.match(getQuoteSource, /withGetQuoteFaqs\(page, GET_QUOTE_FAQS\)/, 'Get Quote must safely override CMS FAQ sections with its approved FAQ set.')
 assert.deepEqual(GET_QUOTE_FAQS.map((faq) => faq.question), [...getQuoteFaqQuestions])
@@ -63,26 +61,6 @@ const pageWithGetQuoteFaqs = withGetQuoteFaqs({sections: [
 ]} as CmsPage, GET_QUOTE_FAQS)
 assert.deepEqual(pageWithGetQuoteFaqs.sections.filter((section) => section.type === 'faq').flatMap((section) => section.faqs || []), GET_QUOTE_FAQS, 'The approved Get Quote FAQ set must replace CMS FAQ content without duplication.')
 assert.ok(pageWithGetQuoteFaqs.sections.some((section) => section.title === 'Keep this quote section'), 'Non-FAQ Get Quote CMS sections must remain intact.')
-assert.match(pageTemplateSource, /afterHeroSlot\?: React\.ReactNode/, 'The CMS template must expose one optional after-hero slot.')
-assert.ok(pageTemplateSource.indexOf('{afterHeroSlot}') > pageTemplateSource.indexOf('</section>'), 'The optional slot must render immediately after the hero.')
-assert.match(getQuoteSource, /afterHeroSlot=/, 'Get Quote must place its form in the after-hero slot.')
-assert.match(getQuoteSource, /beforeFooterSlot=\{<ConversionEntryGuide currentIntent="quote" \/>\}/, 'Only the conversion guide remains before the footer.')
-for (const readiness of [
-  'Product and quantity',
-  'Required in-hand date and delivery destination',
-  'Contact method; artwork or references are optional',
-]) assert.ok(getQuoteSource.includes(readiness), `Get Quote is missing readiness copy: ${readiness}`)
-assert.match(procurementFormSource, /PROCUREMENT_FORM_STEPS/, 'The procurement form must consume the governed step model.')
-assert.match(procurementFormSource, /Step \{stepIndex\s*\+\s*1\} of \{PROCUREMENT_FORM_STEPS\.length\}/, 'The form must expose visible text progress.')
-assert.match(procurementFormSource, /aria-current=\{item\.id===step\?'step':undefined\}/, 'The current step must be announced accessibly.')
-for (const step of ['products', 'delivery', 'contact']) {
-  assert.match(procurementFormSource, new RegExp(`step===['"]${step}['"]`), `The ${step} controls must render only on their active step.`)
-}
-assert.match(procurementFormSource, /function continueStep\(/, 'The form must validate before advancing.')
-assert.match(procurementFormSource, /function backStep\(/, 'The form must support value-preserving back navigation.')
-for (const tracker of ['trackFormStepView', 'trackFormStepComplete', 'trackFormValidationError', 'trackFileSelect', 'trackFileUpload']) {
-  assert.match(procurementFormSource, new RegExp(`\\b${tracker}\\b`), `The form must wire ${tracker}.`)
-}
 
 const sampleOrderSource = read('app/sample-order/page.tsx')
 assert.match(sampleOrderSource, /SAMPLE_ORDER_FAQS/, 'Sample Order must use its page-specific shared FAQ data.')
@@ -116,17 +94,8 @@ if (outputMode) {
     const visibleHtml = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
     const visibleText = visibleHtml.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ')
     assert.ok(visibleText.includes(entry.formTitle), `${entry.path} is missing its intent-specific form title.`)
-    if (entry.intent === 'quote') {
-      assert.ok(visibleText.includes('Step 1 of 3') && visibleText.includes('Continue'), `${entry.path} must server-render the first progressive step and its advance control.`)
-      assert.ok(['Products', 'Delivery', 'Contact'].every((label) => visibleText.includes(label)), `${entry.path} is missing its approved step labels.`)
-    } else {
-      assert.ok(visibleText.includes(entry.ctaLabel), `${entry.path} is missing its intent-specific CTA label.`)
-    }
-    const entryFields = entry.intent === 'contact'
-      ? ['message', 'email', 'fullName']
-      : entry.intent === 'quote'
-        ? ['buyerRole', 'product-0', 'quantity-0']
-        : requiredFields
+    assert.ok(visibleText.includes(entry.ctaLabel), `${entry.path} is missing its intent-specific CTA label.`)
+    const entryFields = entry.intent === 'contact' ? ['message', 'email', 'fullName'] : requiredFields
     for (const field of entryFields) {
       assert.match(visibleHtml, new RegExp(`<(?:input|select|textarea)\\b[^>]*name=["']${field}["']`, 'i'), `${entry.path} is missing ${field}.`)
     }
