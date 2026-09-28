@@ -1,7 +1,7 @@
 'use client'
 
-import type {AnalyticsAttribution, AnalyticsEventName, AnalyticsEventParams, CtaLocation, LeadEventContext} from './core'
-import {buildAttributionFromUrl, sanitizeEventParams} from './core'
+import type {AnalyticsAttribution, AnalyticsEventName, AnalyticsEventParams, CtaLocation, FormEventDetails, FormStep, LeadEventContext, ValidationSection} from './core'
+import {buildAttributionFromUrl, normalizeAnalyticsEntryProduct, normalizeFormOriginPage, sanitizeEventParams} from './core'
 
 declare global {
   interface Window {
@@ -15,6 +15,7 @@ const firstTouchKey = 'poxiol.analytics.first-touch'
 const sessionTouchKey = 'poxiol.analytics.session-touch'
 const startedForms = new Set<string>()
 const recordedSubmissions = new Set<string>()
+const viewedFormSteps = new Set<string>()
 
 function safeStorage(storage: Storage | undefined, key: string): AnalyticsAttribution {
   if (!storage) return {}
@@ -84,27 +85,49 @@ export function trackPageView(pagePath: string, pageTitle: string) {
   trackEvent('page_view', {page_path: pagePath, page_title: pageTitle})
 }
 
-function formParams(context: LeadEventContext): AnalyticsEventParams {
-  return {...context, page_path: typeof window === 'undefined' ? '' : window.location.pathname}
+function formParams(context: LeadEventContext, details: FormEventDetails = {}): AnalyticsEventParams {
+  return {
+    ...context,
+    page_path: typeof window === 'undefined' ? '' : window.location.pathname,
+    origin_page: normalizeFormOriginPage(details.origin_page),
+    entry_product: normalizeAnalyticsEntryProduct(details.entry_product),
+    form_step: details.form_step,
+    validation_section: details.validation_section,
+  }
 }
 
-export function trackFormStart(context: LeadEventContext) {
+export function trackFormStart(context: LeadEventContext, details?: FormEventDetails) {
   const key = `${context.form_id}:${typeof window === 'undefined' ? '' : window.location.pathname}`
   if (startedForms.has(key)) return
   startedForms.add(key)
-  trackEvent('form_start', formParams(context))
+  trackEvent('form_start', formParams(context, details))
 }
 
-export function trackFormSubmit(context: LeadEventContext, submissionId: string) {
+export function trackFormSubmit(context: LeadEventContext, submissionId: string, details?: FormEventDetails) {
   if (recordedSubmissions.has(`submit:${submissionId}`)) return
   recordedSubmissions.add(`submit:${submissionId}`)
-  trackEvent('form_submit', formParams(context))
+  trackEvent('form_submit', formParams(context, details))
 }
 
-export function trackLead(context: LeadEventContext, submissionId: string) {
+export function trackLead(context: LeadEventContext, submissionId: string, details?: FormEventDetails) {
   if (recordedSubmissions.has(`lead:${submissionId}`)) return
   recordedSubmissions.add(`lead:${submissionId}`)
-  trackEvent('generate_lead', formParams(context))
+  trackEvent('generate_lead', formParams(context, details))
+}
+
+export function trackFormStepView(context: LeadEventContext, step: FormStep, details?: FormEventDetails) {
+  const key = `${context.form_id}:${typeof window === 'undefined' ? '' : window.location.pathname}:${step}`
+  if (viewedFormSteps.has(key)) return
+  viewedFormSteps.add(key)
+  trackEvent('form_step_view', formParams(context, {...details, form_step: step}))
+}
+
+export function trackFormStepComplete(context: LeadEventContext, step: FormStep, details?: FormEventDetails) {
+  trackEvent('form_step_complete', formParams(context, {...details, form_step: step}))
+}
+
+export function trackFormValidationError(context: LeadEventContext, section: ValidationSection, details?: FormEventDetails) {
+  trackEvent('form_validation_error', formParams(context, {...details, validation_section: section}))
 }
 
 export function trackOutboundClick(event: AnalyticsEventName, href: string, location?: CtaLocation) {
@@ -117,14 +140,14 @@ export function trackOutboundClick(event: AnalyticsEventName, href: string, loca
   trackEvent(event, {link_domain: domain, cta_location: location, page_path: window.location.pathname})
 }
 
-export function trackFileSelect(context: LeadEventContext) {
-  trackEvent('file_select', formParams(context))
+export function trackFileSelect(context: LeadEventContext, details?: FormEventDetails) {
+  trackEvent('file_select', formParams(context, details))
 }
 
-export function trackFileUpload(context: LeadEventContext, submissionId: string) {
+export function trackFileUpload(context: LeadEventContext, submissionId: string, details?: FormEventDetails) {
   if (recordedSubmissions.has(`upload:${submissionId}`)) return
   recordedSubmissions.add(`upload:${submissionId}`)
-  trackEvent('file_upload', formParams(context))
+  trackEvent('file_upload', formParams(context, details))
 }
 
 export function trackContentView(event: AnalyticsEventName, params: AnalyticsEventParams) {

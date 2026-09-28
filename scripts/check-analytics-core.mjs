@@ -4,6 +4,8 @@ import {
   buildAnalyticsTagConfig,
   buildUtmUrl,
   classifyOutboundLink,
+  normalizeAnalyticsEntryProduct,
+  normalizeFormOriginPage,
   normalizeUtmValue,
   sanitizeEventParams,
   shouldEnableAnalytics,
@@ -59,6 +61,34 @@ assert.equal(classifyOutboundLink('mailto:sales@example.com'), 'email_click')
 assert.equal(classifyOutboundLink('https://wa.me/861234567890'), 'whatsapp_click')
 assert.equal(classifyOutboundLink('https://example.alibaba.com/store'), 'alibaba_click')
 assert.equal(classifyOutboundLink('/products/'), null)
+
+for (const origin of ['/', '/products/basketball-uniforms/', '/customization/private-label/']) {
+  assert.equal(normalizeFormOriginPage(origin), origin)
+}
+for (const origin of ['/get-quote/', '/products/soccer-jerseys/', 'https://evil.example/', 'buyer@example.com']) {
+  assert.equal(normalizeFormOriginPage(origin), undefined)
+}
+for (const product of ['Basketball Uniforms', 'Private Label Teamwear']) {
+  assert.equal(normalizeAnalyticsEntryProduct(product), product)
+}
+for (const product of ['Soccer Kits', 'buyer@example.com', '+1 555 123 4567', 'free text']) {
+  assert.equal(normalizeAnalyticsEntryProduct(product), undefined)
+}
+
+assert.deepEqual(sanitizeEventParams({
+  origin_page: '/products/basketball-uniforms/',
+  entry_product: 'Basketball Uniforms',
+  form_step: 'products',
+  validation_section: 'file',
+  submission_key: 'private-id',
+  reference: 'private-reference',
+  message: 'free text',
+}), {
+  origin_page: '/products/basketball-uniforms/',
+  entry_product: 'Basketball Uniforms',
+  form_step: 'products',
+  validation_section: 'file',
+})
 
 assert.equal(shouldEnableAnalytics({
   analyticsEnabled: true,
