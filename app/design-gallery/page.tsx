@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, SecondaryButton, freeMockupHref } from "@/components/ui";
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import { featuredDesigns } from "@/lib/home-data";
 import {publicSectionDecision} from '@/lib/release/publication-policy';
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Custom Teamwear Design Gallery | POXIOL Inspiration",
   description: "Explore our collection of custom basketball uniforms, soccer kits, and training wear designs. Get inspiration for your team's next look with POXIOL.",
-  alternates: { canonical: "/design-gallery/" },
-};
+  canonical: "/design-gallery/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 export default function DesignGalleryPage() {
   const planningDecision = publicSectionDecision('design-planning');

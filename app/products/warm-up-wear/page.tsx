@@ -1,8 +1,8 @@
-import type {Metadata} from 'next'
 import {CategoryLanding} from '@/components/home-optimization/CategoryLanding'
+import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
 
 const path='/products/warm-up-wear/'
-export const metadata:Metadata={title:'Warm-Up Wear and Team Tracksuits | POXIOL',description:'Plan custom warm-up wear for teams, clubs, schools or sportswear brands. Review jacket and trouser configuration, fit, branding, quantity and delivery needs.',alternates:{canonical:`https://www.poxiol.com${path}`}}
+export const metadata=createPageMetadata({title:'Warm-Up Wear and Team Tracksuits | POXIOL',description:'Plan custom warm-up wear for teams, clubs, schools or sportswear brands. Review jacket and trouser configuration, fit, branding, quantity and delivery needs.',canonical:`https://www.poxiol.com${path}`,metadata:{twitter:PRESERVED_ROOT_TWITTER_METADATA}})
 export default function Page(){return <CategoryLanding data={{
   title:'Warm-Up Wear',product:'Warm-Up Wear',path,use:'Warm-up and travel',
   image:'/website-optimization/warm-up-800.webp',alt:'POXIOL zip-up warm-up jacket and trousers design illustration',

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, SecondaryButton } from "@/components/ui";
 import { ProductDiscovery } from "@/components/products/ProductDiscovery";
@@ -6,12 +5,14 @@ import { CollectionPageSchema, FAQSchema, BreadcrumbSchema } from "@/components/
 import { FAQSection } from "@/components/v8/FAQSection";
 import { productsFaqs } from "@/lib/products-page";
 import { SPORT_CATEGORIES } from "@/lib/product-taxonomy";
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Custom Teamwear by Sport & Wearing Scenario | POXIOL",
   description: "Explore POXIOL custom teamwear by sport or wearing scenario. Product construction, material, quantity and timing are confirmed after project review.",
-  alternates: { canonical: "/products/" },
-};
+  canonical: "/products/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 export default function ProductsPage() {
   const baseUrl = "https://www.poxiol.com";

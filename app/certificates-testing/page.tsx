@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton } from "@/components/ui";
 import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEOStructuredData";
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Certificates & Testing | POXIOL Custom Teamwear Quality Documents",
   description: "Review POXIOL custom teamwear quality documents, fabric testing options, inspection records and verified production evidence for B2B sportswear buyers.",
-  alternates: { canonical: "/certificates-testing/" },
-};
+  canonical: "/certificates-testing/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 const documentCategories = [
   {

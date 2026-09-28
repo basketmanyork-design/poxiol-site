@@ -1,14 +1,15 @@
-import type {Metadata} from 'next'
 import Link from 'next/link'
 import {Header, Footer, SectionHeading, PrimaryButton} from '@/components/ui'
 import {getArticles} from '@/lib/sanity/content'
 import {isArticleRouteReleased} from '@/lib/release/publication-policy'
+import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'POXIOL Blog | Teamwear SEO Articles',
   description: 'Teamwear sourcing articles, manufacturing notes and buyer education from POXIOL.',
-  alternates: { canonical: "/blog/" },
-}
+  canonical: "/blog/",
+  metadata: {twitter: PRESERVED_ROOT_TWITTER_METADATA},
+})
 
 export default async function BlogPage() {
   const posts = (await getArticles('blog')).filter((post) => isArticleRouteReleased(post.articleType, post.slug))

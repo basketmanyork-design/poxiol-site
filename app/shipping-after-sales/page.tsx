@@ -1,15 +1,19 @@
-import type {Metadata} from 'next'
 import Link from 'next/link'
 import {Footer, Header, PrimaryButton, SecondaryButton} from '@/components/ui'
 import {ISSUE_REVIEW_STEPS} from '@/lib/buyer-decision'
+import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
 
 const canonical = 'https://www.poxiol.com/shipping-after-sales/'
+const preservedMetadataBaseline = {
+  alternates: {canonical: '/shipping-after-sales/'},
+} as const
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Shipping and After-Sales Process | POXIOL',
   description: 'Review POXIOL production planning, shipping confirmation, tracking updates and the project-specific order issue review process.',
-  alternates: {canonical: '/shipping-after-sales/'},
-}
+  canonical: preservedMetadataBaseline.alternates.canonical,
+  metadata: {twitter: PRESERVED_ROOT_TWITTER_METADATA},
+})
 
 const shippingSteps = [
   {title: 'Production Planning', description: 'The product specification, quantity, artwork or sample approval and target schedule are confirmed before production is scheduled.'},

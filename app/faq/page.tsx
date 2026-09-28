@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { Header, Footer, SectionHeading } from "@/components/ui";
 import StructuredData, { faqPageSchemaFromGroups } from "@/components/seo/StructuredData";
 import { getFaqGroups } from "@/lib/sanity/content";
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Frequently Asked Questions | Custom Teamwear FAQ | POXIOL",
   description: "Find answers to common questions about custom teamwear manufacturing, MOQ, production times, printing methods and sportswear fabrics at POXIOL.",
-  alternates: { canonical: "/faq/" },
-};
+  canonical: "/faq/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 export default async function FAQPage() {
   const faqGroups = await getFaqGroups();

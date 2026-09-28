@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import StructuredData from "@/components/seo/StructuredData";
 import { fabricGuideSchema } from "@/lib/seo-data";
 import { fabricDatabase } from "@/lib/fabrics";
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Sportswear Fabric Guide | Teamwear Fabric Database | POXIOL",
   description: "Explore POXIOL sportswear fabric guide for custom teamwear, including mesh fabric, interlock fabric, bird eye fabric, quick-dry polyester, spandex sports fabric and moisture-wicking materials for basketball, soccer, baseball, volleyball and team sports.",
-  alternates: { canonical: "/fabric-guide/" },
-};
+  canonical: "/fabric-guide/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 const faqs = [
   { question: "What fabric is best for basketball uniforms?", answer: "Mesh fabric, quick-dry polyester and interlock fabric are commonly used for basketball uniforms because they provide breathability, comfort and good printing results." },

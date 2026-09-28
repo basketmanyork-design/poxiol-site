@@ -138,22 +138,29 @@ test("all 19 pSEO outputs mirror their existing page metadata into Open Graph", 
   }
 });
 
-test("homepage and an untouched Stage 2 page retain the approved root metadata", async () => {
-  for (const [route, html] of [
-    ["/", await readOutput("/")],
-    ["/products/", await readOutput("/products/")],
-  ]) {
-    assert.equal(one(metaValues(html, "property", "og:title"), `${route} og:title`), HOME_TITLE);
-    assert.equal(
-      one(metaValues(html, "property", "og:description"), `${route} og:description`),
-      HOME_DESCRIPTION,
-    );
-    assert.deepEqual(metaValues(html, "property", "og:url"), [], `${route} must not gain og:url`);
-    assert.equal(one(metaValues(html, "name", "twitter:title"), `${route} twitter:title`), HOME_TITLE);
-  }
+test("homepage stays unchanged while the completed Stage 2 product hub emits page-specific Open Graph", async () => {
+  const homepage = await readOutput("/");
+  assert.equal(one(metaValues(homepage, "property", "og:title"), "home og:title"), HOME_TITLE);
+  assert.equal(one(metaValues(homepage, "property", "og:description"), "home og:description"), HOME_DESCRIPTION);
+  assert.deepEqual(metaValues(homepage, "property", "og:url"), [], "home must not gain og:url");
+  assert.equal(one(metaValues(homepage, "name", "twitter:title"), "home twitter:title"), HOME_TITLE);
+
+  const products = await readOutput("/products/");
+  const productsTitle = "Custom Teamwear by Sport & Wearing Scenario | POXIOL";
+  const productsDescription =
+    "Explore POXIOL custom teamwear by sport or wearing scenario. Product construction, material, quantity and timing are confirmed after project review.";
+  assert.equal(one(metaValues(products, "property", "og:title"), "products og:title"), productsTitle);
+  assert.equal(one(metaValues(products, "property", "og:description"), "products og:description"), productsDescription);
+  assert.equal(one(metaValues(products, "property", "og:url"), "products og:url"), `${SITE_ORIGIN}/products/`);
+  assert.equal(one(metaValues(products, "property", "og:type"), "products og:type"), "website");
+  assert.equal(one(metaValues(products, "property", "og:site_name"), "products og:site_name"), "POXIOL Teamwear");
+  assert.deepEqual(metaValues(products, "property", "og:image"), [], "products must not gain og:image");
+  assert.equal(one(metaValues(products, "name", "twitter:card"), "products twitter:card"), "summary");
+  assert.equal(one(metaValues(products, "name", "twitter:title"), "products twitter:title"), HOME_TITLE);
+  assert.equal(one(metaValues(products, "name", "twitter:description"), "products twitter:description"), HOME_DESCRIPTION);
 });
 
-test("the 79-URL Sitemap boundary remains fixed and generic homepage Open Graph falls to 20", async () => {
+test("the 79-URL Sitemap boundary remains fixed and only the homepage keeps generic Open Graph", async () => {
   const sitemap = await readFile(path.join(OUTPUT_DIRECTORY, "sitemap.xml"), "utf8");
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => decodeHtml(url));
 
@@ -170,5 +177,5 @@ test("the 79-URL Sitemap boundary remains fixed and generic homepage Open Graph 
       genericCount += 1;
     }
   }
-  assert.equal(genericCount, 20);
+  assert.equal(genericCount, 1);
 });

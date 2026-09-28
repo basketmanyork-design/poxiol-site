@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading } from "@/components/ui";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
 import { getArticles } from "@/lib/sanity/content";
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Teamwear Knowledge Center | Sportswear Buying Guides | POXIOL",
   description: "Explore POXIOL resources including buying guides, fabric knowledge, and manufacturing insights.",
-  alternates: { canonical: "/resources/" },
-};
+  canonical: "/resources/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 export default async function ResourcesPage() {
   const resourceArticles = await getArticles("resource");

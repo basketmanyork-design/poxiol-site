@@ -1,14 +1,14 @@
-import type {Metadata} from 'next'
 import {Header, Footer} from '@/components/ui'
 import {LegalDraftNotice} from '@/components/legal/LegalDraftNotice'
 import {legalPolicyMetadata} from '@/lib/legal-release'
+import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Privacy Policy | POXIOL',
   description: 'How POXIOL handles project inquiry information submitted by B2B custom teamwear buyers.',
-  alternates: {canonical: 'https://www.poxiol.com/privacy-policy/'},
-  ...legalPolicyMetadata(),
-}
+  canonical: 'https://www.poxiol.com/privacy-policy/',
+  metadata: {...legalPolicyMetadata(), twitter: PRESERVED_ROOT_TWITTER_METADATA},
+})
 
 export default function Page() {
   return (

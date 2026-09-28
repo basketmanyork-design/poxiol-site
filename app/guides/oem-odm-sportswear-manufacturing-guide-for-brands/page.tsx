@@ -1,16 +1,17 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Footer, Header } from '@/components/ui'
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from '@/lib/seo/page-metadata'
 
 const canonicalUrl = 'https://www.poxiol.com/guides/oem-odm-sportswear-manufacturing-guide-for-brands/'
 const pageTitle = 'OEM vs ODM Sportswear: A Decision Guide for Brands'
 const answerFirst = 'Choose OEM when your team already controls the product specification and needs a supplier to review manufacturability. Choose ODM when the product direction is still being shaped and a development route must be defined before sampling. The exact scope must be confirmed for each project.'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: `${pageTitle} | POXIOL`,
   description: 'Compare OEM and ODM paths for a custom sportswear project. Use a practical decision matrix and project brief checklist before requesting a quote.',
-  alternates: { canonical: canonicalUrl },
-}
+  canonical: canonicalUrl,
+  metadata: {twitter: PRESERVED_ROOT_TWITTER_METADATA},
+})
 
 const schema = {
   '@context': 'https://schema.org',

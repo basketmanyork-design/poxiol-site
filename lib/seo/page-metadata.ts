@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 
 const SITE_ORIGIN = "https://www.poxiol.com";
 
+export const PRESERVED_ROOT_TWITTER_METADATA: NonNullable<Metadata["twitter"]> = {
+  card: "summary",
+  title: "Custom Teamwear & Sports Uniforms Manufacturer | POXIOL",
+  description:
+    "Custom basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.",
+};
+
 export type PageMetadataInput = {
   title: string;
   description: string;

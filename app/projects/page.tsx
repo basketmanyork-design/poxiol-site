@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import { Header, Footer, PrimaryButton } from "@/components/ui";
 import {publicSectionDecision} from '@/lib/release/publication-policy';
 import { getProjects } from "@/lib/sanity/content";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Teamwear Planning Scenarios | POXIOL",
   description: "Explore planning scenarios for custom teamwear briefs, sample review, quality checkpoints, packing needs and target delivery windows.",
-  alternates: { canonical: "/projects/" },
-};
+  canonical: "/projects/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 export default async function ProjectsPage() {
   const projects = await getProjects();

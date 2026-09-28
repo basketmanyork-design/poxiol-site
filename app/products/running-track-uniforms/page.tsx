@@ -1,8 +1,8 @@
-import type {Metadata} from 'next'
 import {CategoryLanding} from '@/components/home-optimization/CategoryLanding'
+import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
 
 const path='/products/running-track-uniforms/'
-export const metadata:Metadata={title:'Running & Track Uniforms for Teams | POXIOL',description:'Plan custom running and track uniforms for clubs, schools or sportswear brands. Review singlet and shorts options, fit, artwork, quantity and delivery needs.',alternates:{canonical:`https://www.poxiol.com${path}`}}
+export const metadata=createPageMetadata({title:'Running & Track Uniforms for Teams | POXIOL',description:'Plan custom running and track uniforms for clubs, schools or sportswear brands. Review singlet and shorts options, fit, artwork, quantity and delivery needs.',canonical:`https://www.poxiol.com${path}`,metadata:{twitter:PRESERVED_ROOT_TWITTER_METADATA}})
 export default function Page(){return <CategoryLanding data={{
   title:'Running & Track Uniforms',product:'Running & Track Uniforms',path,use:'Running and track',
   image:'/website-optimization/running-track-800.webp',alt:'POXIOL running singlet and shorts set design illustration',

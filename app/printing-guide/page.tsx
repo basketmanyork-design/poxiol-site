@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import StructuredData from "@/components/seo/StructuredData";
 import { printingGuideSchema } from "@/lib/seo-data";
 import { Printer, Zap, Scissors, ShieldCheck, Info } from "lucide-react";
+import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Sportswear Printing Guide | Sublimation, Screen Printing & Embroidery | POXIOL",
   description: "Learn about sublimation printing, screen printing, embroidery and heat transfer methods for custom teamwear, basketball uniforms, soccer kits and sportswear manufacturing.",
-  alternates: { canonical: "/printing-guide/" },
-};
+  canonical: "/printing-guide/",
+  metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
+});
 
 const printingMethods = [
   {
