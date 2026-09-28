@@ -98,6 +98,26 @@ for (const forbidden of ["'use client'", '"use client"', 'dangerouslySetInnerHTM
   assert.ok(!seo033PanelSource.includes(forbidden), `BuyerDecisionPanel must not contain ${forbidden}`)
 }
 
+const [seo033BasketballSource, seo033OemSource, seo033HomeSource, seo033QuoteSource] = await Promise.all([
+  readFile(path.join(root, 'components/v8/BasketballV8LandingPage.tsx'), 'utf8'),
+  readFile(path.join(root, 'app/oem-odm/page.tsx'), 'utf8'),
+  readFile(path.join(root, 'app/page.tsx'), 'utf8'),
+  readFile(path.join(root, 'app/get-quote/page.tsx'), 'utf8'),
+])
+const occurrenceCount = (source, token) => source.split(token).length - 1
+for (const [name, source, contentName] of [
+  ['Basketball', seo033BasketballSource, 'SEO033_BASKETBALL_CONTENT'],
+  ['OEM/ODM', seo033OemSource, 'SEO033_OEM_ODM_CONTENT'],
+]) {
+  assert.equal(occurrenceCount(source, "import {BuyerDecisionPanel} from '@/components/seo-growth/BuyerDecisionPanel'"), 1, `${name} must import BuyerDecisionPanel exactly once`)
+  assert.equal(occurrenceCount(source, contentName), 2, `${name} must import and render its own frozen content exactly once`)
+  assert.equal(occurrenceCount(source, `<BuyerDecisionPanel content={${contentName}} />`), 1, `${name} must render exactly one buyer-decision panel`)
+}
+for (const [name, source] of [['homepage', seo033HomeSource], ['Get Quote', seo033QuoteSource]]) {
+  assert.equal(occurrenceCount(source, 'BuyerDecisionPanel'), 0, `${name} must not render the SEO-037 panel`)
+  assert.equal(occurrenceCount(source, 'data-seo033-panel'), 0, `${name} must not expose an SEO-037 marker`)
+}
+
 const projectPlanningSeoPath = path.join(root, 'lib/project-planning-seo.ts')
 await assert.doesNotReject(
   access(projectPlanningSeoPath),

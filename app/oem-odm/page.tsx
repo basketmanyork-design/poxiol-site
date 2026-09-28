@@ -4,6 +4,8 @@ import {getSitePage} from "@/lib/sanity/content";
 import {metadataFromCmsPage} from "@/components/cms/PageTemplate";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading } from "@/components/ui";
 import { Layers, Rocket, Users, ShieldCheck, CheckCircle2, Package, Layout, Palette, PenTool, ClipboardCheck, Globe, Trophy, Store, ClipboardList, Ruler, Zap } from "lucide-react";
+import {BuyerDecisionPanel} from '@/components/seo-growth/BuyerDecisionPanel'
+import {SEO033_OEM_ODM_CONTENT} from '@/lib/seo-growth/seo-033-content'
 
 const userGroups = [
   {
@@ -205,6 +207,8 @@ export default async function OEMPage() {
           </div>
         </div>
       </section>
+
+      <BuyerDecisionPanel content={SEO033_OEM_ODM_CONTENT} />
 
       <section className="border-b border-white/5 px-5 pb-24 md:px-10 md:pb-32 xl:px-20">
         <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-white/10 bg-white/5 p-8 text-center md:p-12">

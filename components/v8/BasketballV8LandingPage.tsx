@@ -32,6 +32,8 @@ import {getCoreSport, resolveCoreSportGeoDetails} from '@/lib/core-sports'
 import {publicSectionDecision} from '@/lib/release/publication-policy'
 import {contextualInquiryHref} from '@/lib/inquiry-context'
 import type {V8Cta} from '@/lib/v8/types'
+import {BuyerDecisionPanel} from '@/components/seo-growth/BuyerDecisionPanel'
+import {SEO033_BASKETBALL_CONTENT} from '@/lib/seo-growth/seo-033-content'
 
 const heroQuoteCta = {
   id: 'get-quote',
@@ -80,6 +82,8 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
         title={coreSport.productSummaryTitle}
         description="Review the complete basketball product scope before design and sample approval."
       />
+
+      <BuyerDecisionPanel content={SEO033_BASKETBALL_CONTENT} />
 
       <ProductVisualizationSection
         assets={BASKETBALL_VISUALIZATION_SEQUENCE}
