@@ -45,6 +45,22 @@ test('CRO pilot keeps existing choices and adds three exact contextual quote ent
   assert.match(procurementForm, /Provide at least one contact method/, 'The progressive quote flow must retain alternative contact validation in its later contact step')
 })
 
+test('CRO pilot renders each approved contextual quote entry exactly once', async () => {
+  const cases = [
+    {route: '/', label: 'Request a Quote', href: '/get-quote/?source=%2F#quote-form'},
+    {route: '/products/basketball-uniforms/', label: 'Request a Basketball Quote', href: '/get-quote/?product=Basketball+Uniforms&sport=Basketball&source=%2Fproducts%2Fbasketball-uniforms%2F#quote-form'},
+    {route: '/customization/private-label/', label: 'Request a Private Label Quote', href: '/get-quote/?product=Private+Label+Teamwear&source=%2Fcustomization%2Fprivate-label%2F#quote-form'},
+  ]
+
+  for (const item of cases) {
+    const html = withoutScripts(await renderedPage(item.route))
+    const matches = anchors(html)
+      .map((link) => ({...link, href: link.href.replaceAll('&amp;', '&')}))
+      .filter((link) => link.text === item.label)
+    assert.deepEqual(matches, [{href: item.href, text: item.label}], `${item.route} must render its approved contextual quote URL exactly once`)
+  }
+})
+
 async function renderedPage(route) {
   if (!baseUrl) return readFile(path.join('out', route.slice(1), 'index.html'), 'utf8')
   const response = await fetch(new URL(route, baseUrl))
