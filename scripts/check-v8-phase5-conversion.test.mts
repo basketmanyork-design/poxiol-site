@@ -51,6 +51,7 @@ assert.deepEqual(pageWithFreeMockupFaqs.sections.filter((section) => section.typ
 assert.ok(pageWithFreeMockupFaqs.sections.some((section) => section.title === 'Keep this section'), 'Non-FAQ CMS sections must remain intact.')
 
 const getQuoteSource = read('app/get-quote/page.tsx')
+const procurementFormSource = read('components/forms/ProcurementContactForm.tsx')
 assert.match(getQuoteSource, /GET_QUOTE_FAQS/, 'Get Quote must use its page-specific shared FAQ data.')
 assert.match(getQuoteSource, /withGetQuoteFaqs\(page, GET_QUOTE_FAQS\)/, 'Get Quote must safely override CMS FAQ sections with its approved FAQ set.')
 assert.deepEqual(GET_QUOTE_FAQS.map((faq) => faq.question), [...getQuoteFaqQuestions])
@@ -61,6 +62,17 @@ const pageWithGetQuoteFaqs = withGetQuoteFaqs({sections: [
 ]} as CmsPage, GET_QUOTE_FAQS)
 assert.deepEqual(pageWithGetQuoteFaqs.sections.filter((section) => section.type === 'faq').flatMap((section) => section.faqs || []), GET_QUOTE_FAQS, 'The approved Get Quote FAQ set must replace CMS FAQ content without duplication.')
 assert.ok(pageWithGetQuoteFaqs.sections.some((section) => section.title === 'Keep this quote section'), 'Non-FAQ Get Quote CMS sections must remain intact.')
+assert.match(procurementFormSource, /PROCUREMENT_FORM_STEPS/, 'The procurement form must consume the governed step model.')
+assert.match(procurementFormSource, /Step \{stepIndex\s*\+\s*1\} of \{PROCUREMENT_FORM_STEPS\.length\}/, 'The form must expose visible text progress.')
+assert.match(procurementFormSource, /aria-current=\{item\.id===step\?'step':undefined\}/, 'The current step must be announced accessibly.')
+for (const step of ['products', 'delivery', 'contact']) {
+  assert.match(procurementFormSource, new RegExp(`step===['"]${step}['"]`), `The ${step} controls must render only on their active step.`)
+}
+assert.match(procurementFormSource, /function continueStep\(/, 'The form must validate before advancing.')
+assert.match(procurementFormSource, /function backStep\(/, 'The form must support value-preserving back navigation.')
+for (const tracker of ['trackFormStepView', 'trackFormStepComplete', 'trackFormValidationError', 'trackFileSelect', 'trackFileUpload']) {
+  assert.match(procurementFormSource, new RegExp(`\\b${tracker}\\b`), `The form must wire ${tracker}.`)
+}
 
 const sampleOrderSource = read('app/sample-order/page.tsx')
 assert.match(sampleOrderSource, /SAMPLE_ORDER_FAQS/, 'Sample Order must use its page-specific shared FAQ data.')
