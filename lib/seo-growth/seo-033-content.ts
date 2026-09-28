@@ -69,9 +69,9 @@ export const SEO033_BASKETBALL_CONTENT = {
   ],
   links: [
     {label: 'Basketball Uniform Ordering Guide', href: '/guides/how-to-order-custom-basketball-uniforms/'},
-    {label: 'Plan a Sample Order', href: '/sample-order/'},
+    {label: 'Plan a Sample Order', href: '/sample-order/?product=Basketball+Uniforms&sport=Basketball&source=%2Fproducts%2Fbasketball-uniforms%2F#sample-request-form'},
     {label: 'Review the Quality Control Process', href: '/quality-control-process/'},
-    {label: 'Request a Basketball Project Quote', href: '/get-quote/'},
+    {label: 'Request a Basketball Project Quote', href: '/get-quote/?product=Basketball+Uniforms&sport=Basketball&source=%2Fproducts%2Fbasketball-uniforms%2F#quote-form'},
   ],
 } satisfies BuyerDecisionContent
 
@@ -110,7 +110,7 @@ export const SEO033_OEM_ODM_CONTENT = {
   links: [
     {label: 'OEM/ODM Sportswear Manufacturing Guide', href: '/guides/oem-odm-sportswear-manufacturing-guide-for-brands/'},
     {label: 'Review Private Label Teamwear', href: '/private-label-teamwear/'},
-    {label: 'Plan a Sample Order', href: '/sample-order/'},
-    {label: 'Discuss an OEM/ODM Project', href: '/get-quote/'},
+    {label: 'Plan a Sample Order', href: '/sample-order/?product=OEM+%2F+ODM+Teamwear&source=%2Foem-odm%2F#sample-request-form'},
+    {label: 'Discuss an OEM/ODM Project', href: '/get-quote/?product=OEM+%2F+ODM+Teamwear&source=%2Foem-odm%2F#quote-form'},
   ],
 } satisfies BuyerDecisionContent

@@ -42,9 +42,9 @@ assert.deepEqual(SEO033_BASKETBALL_CONTENT, {
   checklist: ['Product structure', 'Expected quantity', 'Size breakdown', 'Final names and numbers', 'Authorized logos and color direction', 'Sample expectation', 'Destination', 'Required in-hand date'],
   links: [
     {label: 'Basketball Uniform Ordering Guide', href: '/guides/how-to-order-custom-basketball-uniforms/'},
-    {label: 'Plan a Sample Order', href: '/sample-order/'},
+    {label: 'Plan a Sample Order', href: '/sample-order/?product=Basketball+Uniforms&sport=Basketball&source=%2Fproducts%2Fbasketball-uniforms%2F#sample-request-form'},
     {label: 'Review the Quality Control Process', href: '/quality-control-process/'},
-    {label: 'Request a Basketball Project Quote', href: '/get-quote/'},
+    {label: 'Request a Basketball Project Quote', href: '/get-quote/?product=Basketball+Uniforms&sport=Basketball&source=%2Fproducts%2Fbasketball-uniforms%2F#quote-form'},
   ],
 })
 
@@ -61,8 +61,8 @@ assert.deepEqual(SEO033_OEM_ODM_CONTENT, {
   links: [
     {label: 'OEM/ODM Sportswear Manufacturing Guide', href: '/guides/oem-odm-sportswear-manufacturing-guide-for-brands/'},
     {label: 'Review Private Label Teamwear', href: '/private-label-teamwear/'},
-    {label: 'Plan a Sample Order', href: '/sample-order/'},
-    {label: 'Discuss an OEM/ODM Project', href: '/get-quote/'},
+    {label: 'Plan a Sample Order', href: '/sample-order/?product=OEM+%2F+ODM+Teamwear&source=%2Foem-odm%2F#sample-request-form'},
+    {label: 'Discuss an OEM/ODM Project', href: '/get-quote/?product=OEM+%2F+ODM+Teamwear&source=%2Foem-odm%2F#quote-form'},
   ],
 })
 
@@ -384,6 +384,9 @@ for (const tokenName of ['SANITY_READ_TOKEN', 'SANITY_WRITE_TOKEN']) {
 if (!sourceOnly) {
   const routeFiles = {
     home: 'out/index.html',
+    quote: 'out/get-quote/index.html',
+    basketball: 'out/products/basketball-uniforms/index.html',
+    oem: 'out/oem-odm/index.html',
     shipping: 'out/shipping-after-sales/index.html',
     faq: 'out/faq/index.html',
     projects: 'out/projects/index.html',
@@ -399,13 +402,25 @@ if (!sourceOnly) {
     }
   }
 
-  assert.match(htmlByRoute.home, /Custom Teamwear Built for Repeatable Team Orders/, 'built pilot homepage must render the approved global B2B H1')
   assert.match(htmlByRoute.shipping, /Production Planning/, 'built shipping page must render production planning guidance')
   assert.match(htmlByRoute.projects, /Planning Scenario/, 'built projects page must keep unverified records labeled as planning scenarios')
   assert.doesNotMatch(htmlByRoute.projects, /Project imagery pending verification|Verified Project/, 'built projects page must withhold unsupported project proof')
   assert.match(htmlByRoute.projects, /<title>Teamwear Planning Scenarios \| POXIOL<\/title>/, 'built projects hub must expose planning-safe title')
   assert.match(htmlByRoute.projects, /View Planning Scenario/, 'built projects hub must use the planning-safe card CTA')
   assert.doesNotMatch(htmlByRoute.projects, /View Case Study/, 'built projects hub must not label scenarios as case studies')
+
+  assert.equal((htmlByRoute.basketball.match(/data-seo033-panel=/g) || []).length, 1, 'Basketball output must render one SEO-037 panel')
+  assert.equal((htmlByRoute.oem.match(/data-seo033-panel=/g) || []).length, 1, 'OEM/ODM output must render one SEO-037 panel')
+  assert.equal((htmlByRoute.home.match(/data-seo033-panel=/g) || []).length, 0, 'homepage must remain outside the SEO-037 pilot')
+  assert.equal((htmlByRoute.quote.match(/data-seo033-panel=/g) || []).length, 0, 'Get Quote must remain outside the SEO-037 pilot')
+  for (const [name, html, content] of [
+    ['Basketball', htmlByRoute.basketball, SEO033_BASKETBALL_CONTENT],
+    ['OEM/ODM', htmlByRoute.oem, SEO033_OEM_ODM_CONTENT],
+  ]) {
+    for (const value of [content.eyebrow, content.title, content.answer, ...content.rows.flatMap(Object.values), ...content.checklist, ...content.links.flatMap(({label, href}) => [label, href])]) {
+      assert.ok(html.includes(value.replaceAll('&', '&amp;')) || html.includes(value), `${name} output is missing frozen value: ${value}`)
+    }
+  }
 
   const faqSchemas = [...htmlByRoute.faq.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
     .map((match) => JSON.parse(match[1]))

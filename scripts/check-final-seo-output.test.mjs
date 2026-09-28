@@ -373,7 +373,7 @@ test('OEM and ODM decision guide renders the approved buyer path and minimal sch
   assert.equal(serviceHtml.includes('Need help choosing between OEM and ODM?'), true)
   assert.equal(serviceHtml.includes('Use the decision guide to compare the two paths, identify which project inputs are already fixed, and prepare the open questions before requesting a quote.'), true)
   assert.equal(serviceHtml.includes('Compare OEM and ODM paths'), true)
-  assert.equal((serviceHtml.match(/href="\/guides\/oem-odm-sportswear-manufacturing-guide-for-brands\/"/g) || []).length, 1)
+  assert.equal((serviceHtml.match(/href="\/guides\/oem-odm-sportswear-manufacturing-guide-for-brands\/"/g) || []).length, 2)
   for (const preservedCta of ['Discuss Your OEM Project', 'Ask a Project Question', 'Start OEM/ODM Project']) {
     assert.equal(serviceHtml.includes(preservedCta), true, `service page lost preserved CTA: ${preservedCta}`)
   }
