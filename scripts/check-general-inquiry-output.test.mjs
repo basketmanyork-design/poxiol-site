@@ -34,7 +34,24 @@ test('contact guidance distinguishes optional project details from a general que
   assert.doesNotMatch(html, /All routes use the same secure project review workflow/)
 })
 
-for (const route of ['get-quote', 'free-mockup', 'sample-order']) {
+test('get-quote initially renders only the Products step of its progressive project form', async () => {
+  const html = await readPage('get-quote')
+  const form = html.match(/<form\b[^>]*>[\s\S]*?<\/form>/i)?.[0]
+  assert.ok(form)
+  assert.equal((html.match(/<form\b/gi) || []).length, 1)
+  assert.match(form, /Step\s*(?:<!-- -->)?1(?:<!-- -->)?\s*of\s*(?:<!-- -->)?3/)
+  assert.match(form, />Products</)
+  assert.match(form, />Delivery</)
+  assert.match(form, />Contact</)
+  assert.match(form, /name="buyerRole"/)
+  assert.match(form, /name="product-0"/)
+  assert.match(form, /name="quantity-0"/)
+  assert.match(form, />Continue</)
+  assert.doesNotMatch(form, /name="required_delivery_date"|name="delivery_country_code"|name="delivery_postal_code"|name="fullName"/)
+  assert.equal((form.match(/<input\b[^>]*type="file"/g) || []).length, 1)
+})
+
+for (const route of ['free-mockup', 'sample-order']) {
   test(`${route} keeps its full project form`, async () => {
     const html = await readPage(route)
     for (const name of ['product-0', 'quantity-0', 'required_delivery_date', 'delivery_country_code', 'delivery_postal_code', 'fullName']) {
