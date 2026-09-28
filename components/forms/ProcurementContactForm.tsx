@@ -55,7 +55,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
 
   useEffect(() => {
     if (!progressive) return
-    try {trackFormStepView(analytics,step,analyticsDetails())} catch {}
+    try {trackFormStepView(createLeadEventContext(formId,formType),step,{origin_page:context.source,entry_product:entryProduct.current})} catch {}
   },[progressive,step,formId,formType,context.source])
 
   function edit<K extends keyof ProcurementFields>(key: K, value: ProcurementFields[K]) {

@@ -116,8 +116,17 @@ if (outputMode) {
     const visibleHtml = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
     const visibleText = visibleHtml.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ')
     assert.ok(visibleText.includes(entry.formTitle), `${entry.path} is missing its intent-specific form title.`)
-    assert.ok(visibleText.includes(entry.ctaLabel), `${entry.path} is missing its intent-specific CTA label.`)
-    const entryFields = entry.intent === 'contact' ? ['message', 'email', 'fullName'] : requiredFields
+    if (entry.intent === 'quote') {
+      assert.ok(visibleText.includes('Step 1 of 3') && visibleText.includes('Continue'), `${entry.path} must server-render the first progressive step and its advance control.`)
+      assert.ok(['Products', 'Delivery', 'Contact'].every((label) => visibleText.includes(label)), `${entry.path} is missing its approved step labels.`)
+    } else {
+      assert.ok(visibleText.includes(entry.ctaLabel), `${entry.path} is missing its intent-specific CTA label.`)
+    }
+    const entryFields = entry.intent === 'contact'
+      ? ['message', 'email', 'fullName']
+      : entry.intent === 'quote'
+        ? ['buyerRole', 'product-0', 'quantity-0']
+        : requiredFields
     for (const field of entryFields) {
       assert.match(visibleHtml, new RegExp(`<(?:input|select|textarea)\\b[^>]*name=["']${field}["']`, 'i'), `${entry.path} is missing ${field}.`)
     }
