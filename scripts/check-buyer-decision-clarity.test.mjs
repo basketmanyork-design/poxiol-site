@@ -73,6 +73,31 @@ for (const content of [SEO033_BASKETBALL_CONTENT, SEO033_OEM_ODM_CONTENT]) {
   assert.equal(content.links.length, 4, `${content.id} must expose exactly four approved next-step links`)
 }
 
+const seo033PanelPath = path.join(root, 'components/seo-growth/BuyerDecisionPanel.tsx')
+await assert.doesNotReject(
+  access(seo033PanelPath),
+  'SEO-037 BuyerDecisionPanel component is missing',
+)
+const seo033PanelSource = await readFile(seo033PanelPath, 'utf8')
+for (const contract of [
+  '<section',
+  'data-seo033-panel={content.id}',
+  'aria-labelledby={`${content.id}-title`}',
+  '<h2',
+  '{content.answer}',
+  '<table',
+  'md:hidden',
+  'content.checklist.map',
+  'content.links.map',
+  '<Link',
+]) {
+  assert.ok(seo033PanelSource.includes(contract), `BuyerDecisionPanel is missing source contract: ${contract}`)
+}
+assert.match(seo033PanelSource, /className="[^"]*\bhidden\b[^"]*\bmd:block\b/, 'desktop decision table must be hidden below md')
+for (const forbidden of ["'use client'", '"use client"', 'dangerouslySetInnerHTML', '<form', 'application/ld+json']) {
+  assert.ok(!seo033PanelSource.includes(forbidden), `BuyerDecisionPanel must not contain ${forbidden}`)
+}
+
 const projectPlanningSeoPath = path.join(root, 'lib/project-planning-seo.ts')
 await assert.doesNotReject(
   access(projectPlanningSeoPath),
