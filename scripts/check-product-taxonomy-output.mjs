@@ -70,6 +70,12 @@ for (const href of [
   assert.ok(html.includes(`href="${href}"`), `Missing mature link ${href}`)
 }
 
+assert.match(
+  html,
+  /<a\b[^>]*href="\/products\/team-accessories\/"[^>]*>[\s\S]*?View Custom Team Accessories[\s\S]*?<\/a>/i,
+  'Off-Field & Travel must expose the approved contextual Team Accessories link.',
+)
+
 const quoteLinks = [...html.matchAll(/<a\b[^>]*href="([^"]+)"/gi)]
   .map((match) => new URL(match[1].replace(/&amp;/g, '&'), 'https://www.poxiol.com'))
   .filter((url) => url.pathname === '/get-quote/' && url.searchParams.get('source') === '/products/')

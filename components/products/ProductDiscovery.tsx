@@ -86,6 +86,15 @@ export function ProductDiscovery() {
                       </li>
                     ))}
                   </ul>
+                  {scenario.id === 'off-field-travel' ? (
+                    <Link
+                      className="mt-7 inline-flex min-h-11 items-center gap-2 font-black uppercase tracking-wide text-[#b6ff00] outline-none focus-visible:ring-2 focus-visible:ring-[#b6ff00] focus-visible:ring-offset-4 focus-visible:ring-offset-black"
+                      href="/products/team-accessories/"
+                    >
+                      View Custom Team Accessories
+                      <ArrowRight aria-hidden="true" className="h-4 w-4" strokeWidth={2.5} />
+                    </Link>
+                  ) : null}
                 </div>
               </article>
             ))}
