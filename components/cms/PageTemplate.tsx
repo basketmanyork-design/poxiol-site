@@ -195,7 +195,7 @@ function CmsSection({section, index}: {section: CmsPageSection; index: number}) 
   )
 }
 
-export function CmsPageTemplate({page, contactSlot, beforeFooterSlot, conversionIntent}: {page: CmsPage; contactSlot?: React.ReactNode; beforeFooterSlot?: React.ReactNode; conversionIntent?: V8ConversionIntent}) {
+export function CmsPageTemplate({page, afterHeroSlot, contactSlot, beforeFooterSlot, conversionIntent}: {page: CmsPage; afterHeroSlot?: React.ReactNode; contactSlot?: React.ReactNode; beforeFooterSlot?: React.ReactNode; conversionIntent?: V8ConversionIntent}) {
   const faqItems = page.sections.flatMap((section) => section.faqs || [])
   const heroMedia = verifiedMedia(page.productionMedia)[0]
   const conversionEntry = conversionIntent ? getV8ConversionEntry(conversionIntent) : undefined
@@ -223,6 +223,8 @@ export function CmsPageTemplate({page, contactSlot, beforeFooterSlot, conversion
           {heroMedia ? <VerifiedMediaPlaceholder asset={heroMedia} /> : null}
         </div>
       </section>
+
+      {afterHeroSlot}
 
       {conversionIntent === 'contact' ? contactSection : null}
 

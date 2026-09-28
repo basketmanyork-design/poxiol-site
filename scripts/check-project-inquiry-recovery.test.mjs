@@ -233,3 +233,17 @@ test('a stale remove action cannot change selected files during or after an acce
   resolve(new Response('{"ok":true}'));await pending;remove.props.onClick();ui.render();assert.notEqual(ui.dom.get('field-logo-file').value,'')
   assert.equal(ui.requests.length,1)
 })
+
+test('the procurement form preserves recovery while adding governed step analytics',()=>{
+  const source=readFileSync('components/forms/ProcurementContactForm.tsx','utf8')
+  assert.match(source,/errorsForProcurementStep/)
+  assert.match(source,/firstValidationSection/)
+  assert.match(source,/trackFormStepView/)
+  assert.match(source,/trackFormStepComplete/)
+  assert.match(source,/trackFormValidationError/)
+  assert.match(source,/trackFileSelect/)
+  assert.match(source,/trackFileUpload/)
+  assert.match(source,/confirmation=await sendProjectInquiry/,'Keep the accepted response boundary before conversion tracking')
+  assert.ok(source.lastIndexOf('trackFileUpload')>source.indexOf('confirmation=await sendProjectInquiry'),'Attachment upload analytics must remain accepted-only')
+  assert.match(source,/setStep\('products'\)/,'Reset must return to the first step')
+})

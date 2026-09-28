@@ -9,6 +9,9 @@ export type AnalyticsEventName =
   | 'get_quote_click'
   | 'file_select'
   | 'file_upload'
+  | 'form_step_view'
+  | 'form_step_complete'
+  | 'form_validation_error'
   | 'alibaba_click'
   | 'product_view'
   | 'product_category_view'
@@ -32,6 +35,26 @@ export type LeadEventContext = {
   lead_type: LeadType
   form_id: LeadFormId
   form_type: string
+}
+
+export type FormStep = 'products' | 'delivery' | 'contact'
+export type ValidationSection = FormStep | 'file' | 'form'
+export type FormEventDetails = {
+  origin_page?: string
+  entry_product?: string
+  form_step?: FormStep
+  validation_section?: ValidationSection
+}
+
+const formOriginPages = ['/', '/products/basketball-uniforms/', '/customization/private-label/'] as const
+const analyticsEntryProducts = ['Basketball Uniforms', 'Private Label Teamwear'] as const
+
+export function normalizeFormOriginPage(value: string | undefined): string | undefined {
+  return formOriginPages.find(origin => origin === value)
+}
+
+export function normalizeAnalyticsEntryProduct(value: string | undefined): string | undefined {
+  return analyticsEntryProducts.find(product => product === value)
 }
 
 const leadTypeByFormId: Record<LeadFormId, LeadType> = {
@@ -101,6 +124,10 @@ const allowedParameterNames = new Set([
   'utm_campaign',
   'utm_content',
   'landing_page',
+  'origin_page',
+  'entry_product',
+  'form_step',
+  'validation_section',
 ])
 
 const forbiddenValuePattern = /@|(?:\+?\d[\d\s().-]{6,}\d)/i

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import { getApprovedClaimWording } from "@/lib/governance/claims";
+import { contextualInquiryHref } from "@/lib/inquiry-context";
 
 export const metadata: Metadata = {
   title: "Private Label Teamwear Manufacturing | POXIOL OEM",
@@ -31,7 +32,13 @@ export default function PrivateLabelPage() {
           </div>
 
           <div className="mt-24">
-            <PrimaryButton href="/contact/">Enquire About Private Label</PrimaryButton>
+            <PrimaryButton
+              href={contextualInquiryHref('/get-quote/', {
+                product: 'Private Label Teamwear',
+                source: '/customization/private-label/',
+              })}
+              analyticsLocation="hero"
+            >Request a Private Label Quote</PrimaryButton>
           </div>
         </div>
       </section>

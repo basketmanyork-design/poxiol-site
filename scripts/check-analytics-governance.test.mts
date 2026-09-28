@@ -9,6 +9,8 @@ import {
   buildAttributionFromUrl,
   createLeadEventContext,
   normalizeCtaLocation,
+  normalizeAnalyticsEntryProduct,
+  normalizeFormOriginPage,
   sanitizeEventParams,
   shouldEnableAnalytics,
 } from '../lib/analytics/core.ts'
@@ -65,6 +67,71 @@ test('analytics sanitizer permits governance keys and still removes private fiel
   })
 })
 
+test('quote funnel context accepts only the three pilot origins and two controlled products', () => {
+  assert.equal(normalizeFormOriginPage('/'), '/')
+  assert.equal(normalizeFormOriginPage('/products/basketball-uniforms/'), '/products/basketball-uniforms/')
+  assert.equal(normalizeFormOriginPage('/customization/private-label/'), '/customization/private-label/')
+  assert.equal(normalizeFormOriginPage('/products/soccer-jerseys/'), undefined)
+  assert.equal(normalizeFormOriginPage('buyer@example.com'), undefined)
+  assert.equal(normalizeAnalyticsEntryProduct('Basketball Uniforms'), 'Basketball Uniforms')
+  assert.equal(normalizeAnalyticsEntryProduct('Private Label Teamwear'), 'Private Label Teamwear')
+  assert.equal(normalizeAnalyticsEntryProduct('buyer@example.com'), undefined)
+})
+
+test('step events are governed, privacy-safe, and step views dedupe by lifecycle', () => {
+  const calls: unknown[][] = []
+  const storage = {getItem: () => null, setItem() {}, removeItem() {}}
+  const client = loadAnalyticsClient({
+    __poxiolAnalyticsEnabled: true,
+    gtag: (...args: unknown[]) => calls.push(args),
+    location: {pathname: '/get-quote/', origin: 'https://www.poxiol.com'},
+    localStorage: storage,
+    sessionStorage: storage,
+  })
+  const context = createLeadEventContext('factory_quote_form', 'Get Quote Conversion')
+  const details = {
+    origin_page: '/products/basketball-uniforms/',
+    entry_product: 'Basketball Uniforms',
+    email: 'buyer@example.com',
+    message: 'private brief',
+  }
+
+  client.trackFormStepView(context, 'products', details)
+  client.trackFormStepView(context, 'products', details)
+  client.trackFormStepComplete(context, 'products', details)
+  client.trackFormStepComplete(context, 'products', details)
+  client.trackFormValidationError(context, 'file', details)
+
+  assert.deepEqual(calls.map(call => call[1]), [
+    'form_step_view',
+    'form_step_complete',
+    'form_step_complete',
+    'form_validation_error',
+  ])
+  assert.deepEqual(calls[0]?.[2], {
+    lead_type: 'factory_quote',
+    form_id: 'factory_quote_form',
+    form_type: 'Get Quote Conversion',
+    page_path: '/get-quote/',
+    origin_page: '/products/basketball-uniforms/',
+    entry_product: 'Basketball Uniforms',
+    form_step: 'products',
+  })
+  assert.equal(JSON.stringify(calls).includes('buyer@example.com'), false)
+  assert.equal(JSON.stringify(calls).includes('private brief'), false)
+})
+
+test('step events are no-ops without consent or gtag', () => {
+  const context = createLeadEventContext('factory_quote_form', 'Get Quote Conversion')
+  for (const window of [
+    {__poxiolAnalyticsEnabled: false, location: {pathname: '/get-quote/'}, localStorage: undefined, sessionStorage: undefined},
+    {__poxiolAnalyticsEnabled: true, location: {pathname: '/get-quote/'}, localStorage: undefined, sessionStorage: undefined},
+  ]) {
+    const client = loadAnalyticsClient(window)
+    assert.doesNotThrow(() => client.trackFormStepView(context, 'products', {origin_page: '/'}))
+  }
+})
+
 test('landing attribution keeps pathname and approved UTM keys only', () => {
   assert.deepEqual(
     buildAttributionFromUrl('https://www.poxiol.com/get-quote/?utm_source=linkedin&utm_medium=paid&utm_campaign=fall&utm_content=hero&email=buyer%40example.com&token=secret&gclid=private'),
@@ -99,9 +166,10 @@ test('one accepted callback emits each conversion event exactly once with stable
   const context = createLeadEventContext('factory_quote_form', 'Get Quote Conversion')
   const submissionId = 'governance-test-submission'
 
-  client.trackFormSubmit(context, submissionId)
-  client.trackLead(context, submissionId)
-  client.trackFileUpload(context, submissionId)
+  const details = {origin_page: '/products/basketball-uniforms/', entry_product: 'Basketball Uniforms'}
+  client.trackFormSubmit(context, submissionId, details)
+  client.trackLead(context, submissionId, details)
+  client.trackFileUpload(context, submissionId, details)
   client.trackFormSubmit(context, submissionId)
   client.trackLead(context, submissionId)
   client.trackFileUpload(context, submissionId)
@@ -113,8 +181,11 @@ test('one accepted callback emits each conversion event exactly once with stable
       form_id: 'factory_quote_form',
       form_type: 'Get Quote Conversion',
       page_path: '/get-quote/',
+      origin_page: '/products/basketball-uniforms/',
+      entry_product: 'Basketball Uniforms',
     })
   }
+  assert.equal(JSON.stringify(calls).includes(submissionId), false)
 })
 
 test('file selection is distinct from successful attachment upload', () => {
