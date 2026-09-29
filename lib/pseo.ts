@@ -6,6 +6,9 @@ export type PSEOPage = {
   h1: string;
   intro: string;
   content: string;
+  decisionSections?: { heading: string; body: string }[];
+  finalCtaHeading?: string;
+  primaryCta?: { label: string; href: string };
   publisher?: typeof POXIOL_PUBLISHER;
   faqs: { question: string; answer: string }[];
 };
@@ -199,15 +202,35 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "custom-basketball-jerseys-melbourne",
-    title: "Custom Basketball Jerseys Melbourne | Teamwear Manufacturer | POXIOL",
-    h1: "Custom Basketball Jerseys for Melbourne Clubs",
-    intro: "Elevate your Melbourne-based basketball team with premium custom jerseys. POXIOL provides high-performance basketball apparel for clubs and academies across Melbourne.",
-    content: "Melbourne basketball uniform inquiries can be reviewed for breathable fabrics, club colors, names, numbers and approved logos. Product specifications, quotation, shipping method and delivery timing to Victoria are confirmed according to the complete project requirements.",
-    faqs: [
-      { question: "How is shipping to Melbourne planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
-      { question: "Can Melbourne sports distributors request a quotation?", answer: "Yes. Distributors and club managers can submit the product mix, quantity, customization and destination for project review." },
-      { question: "Can I get a custom design for my Melbourne academy?", answer: "Absolutely, we provide free 3D mockups after the project requirements are reviewed to help your academy stand out." },
+    title: "Custom Basketball Jerseys Melbourne | Club & Team Orders | POXIOL",
+    h1: "Custom Basketball Jerseys for Melbourne Clubs and Teams",
+    intro: "Plan custom basketball jerseys for a Melbourne club, school, academy or distributor. Review roster, artwork, sizing, sample and delivery details before a quote.",
+    content: "POXIOL reviews Melbourne basketball uniform projects according to the product mix, quantity, artwork, colors, names and numbers, size breakdown, target date and delivery destination. Product specifications, sample options, quotation, shipping method and delivery timing are confirmed only after the complete project requirements are reviewed.",
+    decisionSections: [
+      {
+        heading: "Prepare a Melbourne Basketball Uniform Brief",
+        body: "Send the jersey and shorts requirements, reversible or single-layer preference, team colors, logo files, names and numbers, separate top and bottom sizes, quantity, target date and Melbourne or Victoria delivery postcode. These inputs allow the project team to review the uniform format and identify missing decisions before quotation.",
+      },
+      {
+        heading: "Confirm Roster, Artwork and Sizing",
+        body: "Use one controlled roster for each player and keep printed names, numbers, jersey sizes and shorts sizes in separate fields. Review artwork placement, color direction and the applicable size chart before sample or bulk-production decisions.",
+      },
+      {
+        heading: "Plan Samples, Quotation and Delivery to Victoria",
+        body: "Sample availability, unit pricing, shipping method and delivery timing are project-specific. They are confirmed after the garment format, materials, customization, quantity, destination and schedule have been reviewed. Do not treat an unconfirmed target date as a production or delivery commitment.",
+      },
     ],
+    faqs: [
+      { question: "What details should a Melbourne basketball club send for a quote?", answer: "Send the jersey and shorts formats, quantity, colors, logo files, names and numbers, separate size breakdowns, target date and delivery postcode. Any missing specification is reviewed before the quotation is confirmed." },
+      { question: "Can jersey and shorts sizes be listed separately?", answer: "List jersey and shorts sizes in separate roster fields for each player. The applicable size chart and final size breakdown must be reviewed before production decisions." },
+      { question: "Can a sample be reviewed before a bulk basketball uniform order?", answer: "Sample availability, specification and timing are confirmed after the design, materials, construction, quantity and project requirements are reviewed." },
+      { question: "How is delivery to Melbourne planned?", answer: "Shipping method and delivery timing are confirmed according to the Melbourne or Victoria destination, shipment details and complete project requirements." },
+    ],
+    finalCtaHeading: "Ready to Plan a Melbourne Basketball Uniform Project?",
+    primaryCta: {
+      label: "Request a Basketball Project Quote",
+      href: "/get-quote/?product=Basketball+Uniforms&sport=Basketball&source=%2Fcustom-basketball-jerseys-melbourne%2F#quote-form",
+    },
   },
   {
     slug: "oem-baseball-apparel-manufacturer",

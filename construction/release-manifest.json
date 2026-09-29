@@ -393,11 +393,11 @@
       "sha256": "6cdfe1e572ae2de5d66f21ecb29a44bb7d96da4ff03ac886a005c94db5ded3e9"
     },
     {
-      "path": "out/_next/static/poxiol-8c626a64cbbe97432a9f92c5/_buildManifest.js",
+      "path": "out/_next/static/poxiol-1e77c39bbe5b70f63555940b/_buildManifest.js",
       "sha256": "8d03a0aa54e9c1f030503117717c18cc8fd05b43a81951b86137d018635d38fb"
     },
     {
-      "path": "out/_next/static/poxiol-8c626a64cbbe97432a9f92c5/_ssgManifest.js",
+      "path": "out/_next/static/poxiol-1e77c39bbe5b70f63555940b/_ssgManifest.js",
       "sha256": "5386821b72d5364a5fa73c1e0f5f3e911f28c4c8c2f872930f7db3fb8fc4135d"
     },
     {
@@ -406,19 +406,19 @@
     },
     {
       "path": "out/404.html",
-      "sha256": "c4677fec8b31d867947ba0f868d7ee76fb8930be63473734f2036fa3ff1b7a8b"
+      "sha256": "fe4abe595f1245d7acda6579b5024fe34c0961e09a1db27ff6c40739b8373b29"
     },
     {
       "path": "out/404/index.html",
-      "sha256": "c4677fec8b31d867947ba0f868d7ee76fb8930be63473734f2036fa3ff1b7a8b"
+      "sha256": "fe4abe595f1245d7acda6579b5024fe34c0961e09a1db27ff6c40739b8373b29"
     },
     {
       "path": "out/about/index.html",
-      "sha256": "a0415a2cf0626675e69461d2b4b6297fa98c1f3a5b9c68da769dab2fb23dda1d"
+      "sha256": "a534ac7fd1adfb4d0e2ebaa918cbf7b561acdebb150c2aea9d09fee9e6f4e13e"
     },
     {
       "path": "out/about/index.txt",
-      "sha256": "70be88e6a12e5000e141073c92d78efa5cf497e47b69c966b35b099148186585"
+      "sha256": "874b0aa1cc71f8721aad216d575a93cf05e7934aeeff49d40245e133cd50c973"
     },
     {
       "path": "out/ai-summary.json",
@@ -426,43 +426,43 @@
     },
     {
       "path": "out/best-sportswear-fabrics/index.html",
-      "sha256": "266bbace6b61223070d324d278fd2587d96a9c29690590bf0eb1521fca01351e"
+      "sha256": "a9c64af5b4877e2630de10f0ea6ca82684428fb5a1d5604fe66a998dca96de20"
     },
     {
       "path": "out/best-sportswear-fabrics/index.txt",
-      "sha256": "5201077daaa7ad4f06238451d5a9983a133663b0e23700bc1328273a63e7926a"
+      "sha256": "05047a63aa5cfa5f800b11b0e0164afc4e9e570cafa1330576a5e15108f5e480"
     },
     {
       "path": "out/blog/custom-team-uniform-roster-checklist/index.html",
-      "sha256": "839a7552b6b017e6744f35112046e10153ec33ed42c8c290f2326533326519bc"
+      "sha256": "3fb9976c57718848dcd5d6ae4c0cb84ce0d217d25452d02b9f761488b5695602"
     },
     {
       "path": "out/blog/custom-team-uniform-roster-checklist/index.txt",
-      "sha256": "a81358994eb96675358035137ca53ff95c2b77bd74dd97d41567bc81fc26bdd9"
+      "sha256": "15a960a1f3631f5743f67d9fa2b31080e8033ff19bed6f8c57905fe4ac9e2623"
     },
     {
       "path": "out/blog/index.html",
-      "sha256": "2dcfc0344a59c22cc1aae3edc1deba8c109996d1d06331e0fa89e0209d770037"
+      "sha256": "7165e40c4b2486b07f00e61e9c06d0e5891bed513237e20259cd30d12e30604e"
     },
     {
       "path": "out/blog/index.txt",
-      "sha256": "a5d1f7b81a2f624c60011d06e91b357bd04cc7ffe4ba83b370d08e6f18efed53"
+      "sha256": "69b4b86f1562cc388a05b9eb20636f9ce8d89b7dd20296a4ca0598e0e8b456f1"
     },
     {
       "path": "out/blog/sportswear-manufacturer-project-brief-checklist/index.html",
-      "sha256": "f48e21f02e16591767dad439ef8cc81822905c81025014ae2e53834f44fae123"
+      "sha256": "9f8e000b91fb072ff694d8e7ddf5b07ab39030fbcc569e1833f1363f44fd075b"
     },
     {
       "path": "out/blog/sportswear-manufacturer-project-brief-checklist/index.txt",
-      "sha256": "6ae651ee0640256bf19e9889a3ad9798f24a8ddf4c41ab2d83e4b1dced6f3277"
+      "sha256": "1da70818e2d9ab59d5b67356c309e33620ba43be3fd37562e052c72dddb78d5c"
     },
     {
       "path": "out/blog/tech-pack-vs-pattern-vs-sample/index.html",
-      "sha256": "561f0aef4755a5028ac499b590a1261100fbe2067835ffd95a3a5c9e916a728e"
+      "sha256": "ab828252bd26c0f92ad4b7f15b58dc630620e202f2b02680fd0d3388fca4945f"
     },
     {
       "path": "out/blog/tech-pack-vs-pattern-vs-sample/index.txt",
-      "sha256": "52a56c0d71c64fb8ee7246fe1dbcff8b5033a031b86b96ebc8dfa8720c6b0ff1"
+      "sha256": "defedf80cdf95a31ee2c188c9fcd405f2c9b7910a15763b5423f0e4569074a53"
     },
     {
       "path": "out/brand.json",
@@ -470,11 +470,11 @@
     },
     {
       "path": "out/certificates-testing/index.html",
-      "sha256": "77476d531b7ae2dadd1c2ea6e3dc290481e514861d67297c3aaf02df548d5e9f"
+      "sha256": "a8cebc881ff95f6ce120e094b6b81645e9dc6d859486220010d4a64f9fab9be3"
     },
     {
       "path": "out/certificates-testing/index.txt",
-      "sha256": "e6c5d6956092130c9c0f44c1ff511e6f6c1761898ba16f0a3b19c6721d20e657"
+      "sha256": "2f4971f6c8d81b2a8d6a396e975fa33405b49de216d8a6b291eb4c94e5447e2a"
     },
     {
       "path": "out/club-kit-reference/01-kit-range.png",
@@ -514,139 +514,139 @@
     },
     {
       "path": "out/club-teamwear-program/index.html",
-      "sha256": "b5da4a837c4d104452f475f4cc1fee0347420b85a041bad667c1bc02c844fd81"
+      "sha256": "981989bbfdeab543f13172c886c16a131e18b23b285a2b0053b77ed4a10360a1"
     },
     {
       "path": "out/club-teamwear-program/index.txt",
-      "sha256": "7c793c66f7da91c48ea329226e8e024c29ec94e632537ec57c1e73b2a8279082"
+      "sha256": "1e1cb90e61c907ac2901bc60842cf8e6805a351d0c51ac68bc920832eb2987bc"
     },
     {
       "path": "out/contact/index.html",
-      "sha256": "19f3e235adcc9a10142ba3bcaf55a6c3581aca2fde959412a9c74f4a7b494dad"
+      "sha256": "fc0361b04ead91aafc6a387fabdd882554b1c3add4e78b58237deec170d5cfe0"
     },
     {
       "path": "out/contact/index.txt",
-      "sha256": "97dcc6ec2e9a7d91bd789147e04e44a74bd712a4f9767cabf7cf71059bdad3b8"
+      "sha256": "d6a1d87b7d2eca0e84e8afa1c2002e585ca1b124783c7c521c7cb8b0f945657a"
     },
     {
       "path": "out/custom-baseball-jerseys-for-clubs/index.html",
-      "sha256": "3f28be8c54c4a380cb6387999b2098874a95b18fda73eb929773a5ce3c3d9e15"
+      "sha256": "72c939233d649c4af9135236ad418b670e63054124f53b0fb98902b86056dcbd"
     },
     {
       "path": "out/custom-baseball-jerseys-for-clubs/index.txt",
-      "sha256": "6c96bda2fa1c1c3bdaf96daeeec56ee7c0432969d9a34ee7722bfb08d17b7e01"
+      "sha256": "caf7220d806b202a1d2c87555b0bf0d5c02812dc2422c39cc30c415dcb0ef778"
     },
     {
       "path": "out/custom-baseball-softball-uniforms/index.html",
-      "sha256": "6c7213be31691f8b2704ca3c547ac23cc72b5f8abc5c03d86a5ca95ecf13037c"
+      "sha256": "b37890ef138f9e5055e6bcf6afeeba0a9c164620348b7503c736c68c4bc42261"
     },
     {
       "path": "out/custom-baseball-softball-uniforms/index.txt",
-      "sha256": "664c01f298815e3d2948809ea01afe9f560399d287ea79938cc3b6f1e63b4ca1"
+      "sha256": "429a86bdd18e13b9bd7770d870274e368fe25ad09524adbe9dc9d6573ee4680a"
     },
     {
       "path": "out/custom-basketball-jerseys-melbourne/index.html",
-      "sha256": "56f7dc72f8a14faeefe634d7c7a859c11307b4ab26f2dc5a79fe9222f219fef6"
+      "sha256": "cdbec438fa54b82585f8d906c36d518537a8194fd59f79a73b0bfad792a209a1"
     },
     {
       "path": "out/custom-basketball-jerseys-melbourne/index.txt",
-      "sha256": "a31486b1bdd50f292202fe2d8f49871c1bb944a21083b4d1ae5c21668b62ea8d"
+      "sha256": "1b3326b977f934fc696bf595b215095aca7b5afb5210900d2826145c4647c95c"
     },
     {
       "path": "out/custom-basketball-uniforms-for-schools/index.html",
-      "sha256": "fde85a1f5aa04af1f2a99f9f645344742fed67c4cffad77fbaa97761c2458285"
+      "sha256": "98aced9a20bedbf7e6ec1e8b419abd479b0d7370d5cc9f4b1a401e718494493f"
     },
     {
       "path": "out/custom-basketball-uniforms-for-schools/index.txt",
-      "sha256": "99e78b0bb952e9fc7d6b0f4d7771c532dbc9afbeafba33ead572e8a6508f917e"
+      "sha256": "81773be6023f3f3417f371280164291b7465aa662a9d0f2c098adba77f10895b"
     },
     {
       "path": "out/custom-soccer-kits-london/index.html",
-      "sha256": "2652f8644eeaab5e7010a53db24aa49a09bf92a09cd217e5abca288a06047c91"
+      "sha256": "23dd0494c9f31b919bf3400bce2e21c05033357077d6305bc90d2e9ca8003ed1"
     },
     {
       "path": "out/custom-soccer-kits-london/index.txt",
-      "sha256": "e2879a1c5283da0fa2900c2f92c8fa0b81a12411766b41697104ed0615142779"
+      "sha256": "7e659856dd0f1e5ef560804fdf067836fe7881a5b7d3e593f3dfdab1ca9f05d4"
     },
     {
       "path": "out/custom-soccer-uniforms-for-academies/index.html",
-      "sha256": "b71935b50ebc8166934a8f009700f0e9e3ce3e2300649048ca4ee7ffc358838d"
+      "sha256": "ee49ba502a36d1d22b8ff14e06edb09533390229bba430128776e66849ca5a7d"
     },
     {
       "path": "out/custom-soccer-uniforms-for-academies/index.txt",
-      "sha256": "0af6be691761310bd9192e72f93e39af847af6310c65498e38f5dbb34e8151a4"
+      "sha256": "10ba6cabef0fb5099fc24e7d53b7501bb2c8d8a416acc71150e3533a0f6bfc3e"
     },
     {
       "path": "out/custom-teamwear-new-york/index.html",
-      "sha256": "e91bd27bd3a79f0a43d4f592268a49e858305fd15a91171dee8f6ff256f6dd02"
+      "sha256": "eae0fbe8526335550c5ad8dedc018c94b445ec3873bf01b5f9bdb673026ab103"
     },
     {
       "path": "out/custom-teamwear-new-york/index.txt",
-      "sha256": "688009f300bb0c42556812a5f355a06bf49291c63c0ef75c4134169b6fff28a7"
+      "sha256": "23e4c80c393e2a16988b3a64a202288253840981f739815c42fbcaf1591e7ee7"
     },
     {
       "path": "out/custom-volleyball-uniforms-for-schools/index.html",
-      "sha256": "d10aca4219834bee46688f9c294c7063de0b352499ab202b64033b88cd00d4fa"
+      "sha256": "86bbda148c518b0c021b27ac28342a761aa15ac8b9e98d4c108ddb070779b175"
     },
     {
       "path": "out/custom-volleyball-uniforms-for-schools/index.txt",
-      "sha256": "e19450ababbe83844917f14e77b110c6f7279559fd909d815bd136ae3745d789"
+      "sha256": "5d696e3e45dee1b6a30d048ccacb4a64bf7bec7414b5a895562b3a8c91393482"
     },
     {
       "path": "out/customization/custom-packaging/index.html",
-      "sha256": "ba5e247eafc7c003a5dd6f28b4ae82a2c7d8f15ea50f2013c6597e2e81607401"
+      "sha256": "437a5c51b29f01605530437d52d9e406aa9843099ea4d0768fbc9bf343a793d8"
     },
     {
       "path": "out/customization/custom-packaging/index.txt",
-      "sha256": "af68fb8e632116e58b3ea9628f9d8a31486f81c94e5d2176e5a5def0b140d72e"
+      "sha256": "ceaf27616e7a42ed29509533f952996beb4b3258084d340481d8304656615bfa"
     },
     {
       "path": "out/customization/fabric-options/index.html",
-      "sha256": "b055e30bd60d65c2d7f32d1ccf4bc57b4cf28bd5e82f8113a43e33ff1206cdb8"
+      "sha256": "608d4b720c048a5d7330222c59294b0e8e8be270283af91aebf19f6514596977"
     },
     {
       "path": "out/customization/fabric-options/index.txt",
-      "sha256": "3c553dae552982dfc482bf8ad287a551e5547feb269f87abeb7876e6bd7e1dfe"
+      "sha256": "6532052b32d5e5d599ea17186b82e19058becdc1b1b27b072ab2a5964d406a88"
     },
     {
       "path": "out/customization/index.html",
-      "sha256": "e7f86d824359fd098d13253e3c3c9a5763284a4a86d92dbb258a3df1a468dd6b"
+      "sha256": "6e0cede5dc116c6f0893c7a2c6bee2879a476131c491346cb6df0428ffba2b34"
     },
     {
       "path": "out/customization/index.txt",
-      "sha256": "38bd7b2617e64103c38749ebd372615d09d7e4fdd90d1d7e624559b03a8a4e07"
+      "sha256": "d578b21331c7dc352a9f8edfce8f049fee9e564ef942c4eedcb4f76e9dd2fa9d"
     },
     {
       "path": "out/customization/logo-name-number/index.html",
-      "sha256": "8384cf55f21c5849c6d83d8ab44125e87e151030bcf6ac091fc7a3c9b76e1ef8"
+      "sha256": "5aa93ffab15a0d6b60767ac966d9b3ed272f794a3f8d8ef1256f9a3f7b23a655"
     },
     {
       "path": "out/customization/logo-name-number/index.txt",
-      "sha256": "eafc27e4123a987c74c975683592d78b5d5e81b2be7cce6d17439c80264783c8"
+      "sha256": "1e4875559fe4c61f7db3771ccde71f92542972040da4025145f091e46b0786ac"
     },
     {
       "path": "out/customization/private-label/index.html",
-      "sha256": "58e3a4b47afccd388c52f68444a237552a63ecaeb441b5670a5c8338154e20ed"
+      "sha256": "b3e506322e0815b5b225f236f5eb862b69ea8d9c80051a5075549b3663b073c7"
     },
     {
       "path": "out/customization/private-label/index.txt",
-      "sha256": "b4417727de016ec67e043c11eabcb857e6c2f3937bf469ffee2dc2a281bfeb70"
+      "sha256": "dbe158e355dbb9487722791695598ef44ffa562fa685f89924d8b45437c7e208"
     },
     {
       "path": "out/design-gallery/index.html",
-      "sha256": "27d0f7dd084d716018ee2e64a478fc358c83e3edfea04342593c955abff2c6e4"
+      "sha256": "adc7746043cb8678aff8bbb4ed58ad32ff4ac6de971275323b640f194a867e03"
     },
     {
       "path": "out/design-gallery/index.txt",
-      "sha256": "2a50d9b42712bad4fd251571c9fe3da2493adb21aed5c2f100eca1bceca6c574"
+      "sha256": "448411ce8ea7f742baeadee45240763a293c32f27bc6f0bc4bf707579606e583"
     },
     {
       "path": "out/fabric-guide/index.html",
-      "sha256": "a462783a8a1ea7e30b58f61997d9301859bd74d46e09a6555a5a02b6c7ca0e8f"
+      "sha256": "e7af5504867087182c3bf8cf27832230cd582274b7d5dbaac3db186eb3e1499f"
     },
     {
       "path": "out/fabric-guide/index.txt",
-      "sha256": "f575a5a483f1bcac1ce843acd566ee493b288cd1066b92490969f77b47cbb728"
+      "sha256": "8ebc11b8ce8b956007d8ea78dbb5363fe7d5a0fd97c1011e1d249979e8c7c811"
     },
     {
       "path": "out/fabric-library/px-f001-original.jpg",
@@ -766,35 +766,35 @@
     },
     {
       "path": "out/factory/index.html",
-      "sha256": "6fb324897e1447ee2099e0ef8f7a42fe25dcc25db44fe6e69d6c5aa0cd493e89"
+      "sha256": "ec0a656a9ccc856ccb7d6c8c5fb5403f33a500a2860036da6a0d88cb18fe7c59"
     },
     {
       "path": "out/factory/index.txt",
-      "sha256": "666946f45951f5d6dfaa0ad0f3dbced329b864ca9b1095ec46697a6c3c64c387"
+      "sha256": "5ba4574bb86ab6b9326a4c59ddc5046a60416a2956098a8a12d3033feec0b61b"
     },
     {
       "path": "out/faq/index.html",
-      "sha256": "cc837ac746e89e034df85ac58d7d2adc25bf1e2de6d9f17d05450179699154b9"
+      "sha256": "60510d5b15fdac3043779461d36c4a67bc3fa678ac42d4e0ff99ee0692ed710b"
     },
     {
       "path": "out/faq/index.txt",
-      "sha256": "48a7f2850bea4b56659f73177ccd080850ab387fe1a59af6408b3f4e585635b6"
+      "sha256": "14d11f88c00b1e61c832a30bca8b5e983d1e3ee816ae406bb9976de796a38c2b"
     },
     {
       "path": "out/free-mockup/index.html",
-      "sha256": "39bcc31c0d2b041aa9317b8e3f3288e8920560f9fd68c12fa7d174673cb536c7"
+      "sha256": "5bd82244bde704cd4fe238a7e6df76762c6df56d305782836e9300512664e630"
     },
     {
       "path": "out/free-mockup/index.txt",
-      "sha256": "cda9c8a0f0c733737a8f54b9835f4694c6ee99a308bbb0f4efab3483f71a016e"
+      "sha256": "e7d3a366db14d7223dd2e1f7a503cb8458faa54a54c33473befb592f74d31102"
     },
     {
       "path": "out/get-quote/index.html",
-      "sha256": "651c43f1eace4033a78ea4462069d70ddcc9025e12707b417431fde93b2e5d45"
+      "sha256": "4d3fdf6ded28f2644332a6667799204bf9b4dceb8a1d87666397e91da6fd18ee"
     },
     {
       "path": "out/get-quote/index.txt",
-      "sha256": "641dfbc5874b4e9af17c91e319484ffb110d1761f86143db2d8b1bedb59c2412"
+      "sha256": "e2e8f139193c01a9d3ad86cc1cefe78a0b0201b890c1f8755c2273e8f4243745"
     },
     {
       "path": "out/googlec5c97eecb7db490b.html",
@@ -802,147 +802,147 @@
     },
     {
       "path": "out/guides/b2b-sourcing-faq/index.html",
-      "sha256": "da84f100b0b563a72f4c9a3ffcc1cd7c62c903bee6435ae9cb2b448a83e1467f"
+      "sha256": "6f1bcba187cd75478a8f3a3e4519b7fa46c2069dd653b906cf11cf6772ff0f90"
     },
     {
       "path": "out/guides/b2b-sourcing-faq/index.txt",
-      "sha256": "a38aded166fcc62e13cea5654bf0464c6de1a2893a37d1f3cfa6aeedb467b81f"
+      "sha256": "8c86e4938ca9c71a88e066db4c6ece2c70329beb2afc23f0c9b4c5a032e15ded"
     },
     {
       "path": "out/guides/basketball-uniform-size-guide/index.html",
-      "sha256": "e05b09a7e9665fe9576b716658d61bcf6d5b586f2ffcccaf0bae7299b746b3e8"
+      "sha256": "bdb7b3dfdffbc4d84002fff5d127041a1198e8732938532ec22290c5c162de51"
     },
     {
       "path": "out/guides/basketball-uniform-size-guide/index.txt",
-      "sha256": "6050f97a6a74f66c683db83c701e6d4b840950ebe9c3de46cfe5821ca6bef778"
+      "sha256": "6fcf97d710bf7af55e1a299a67713b7e3e577c056270951f7bdf1c6f46552a58"
     },
     {
       "path": "out/guides/custom-basketball-uniform-cost-factors/index.html",
-      "sha256": "9cae47a13f1024b6f37c35c1326f11f38ec4247a70a329a2e2b0f06bf4f6cc2a"
+      "sha256": "d280d87059be5e6b9994ae49a89a23e4ede5071ff17d4dc0c9e2f74f32156230"
     },
     {
       "path": "out/guides/custom-basketball-uniform-cost-factors/index.txt",
-      "sha256": "3f8f49c048690a6bf3371898ade56ff88d5ed2b5a49ec87525d5714ac3e2825c"
+      "sha256": "f34ed026cf79292a20905cac77736a62a104b3c20242f2c4e34c7cd7a8d98833"
     },
     {
       "path": "out/guides/custom-basketball-uniform-fabric-gsm/index.html",
-      "sha256": "85dd9dab686f00c1bbc0e231377f68377a8e343b6b22cdce9d2377295d64dbc5"
+      "sha256": "ffbb677da36750b76def94008420933a19dbf063ea58a7c2b84c37e2374f1e4e"
     },
     {
       "path": "out/guides/custom-basketball-uniform-fabric-gsm/index.txt",
-      "sha256": "a392f8b719f84f3dfc34251d877a00015b81f4b48d4188ca3391b4d4ee835254"
+      "sha256": "bc2e67f57b88483527ecf207d080e18f0e2f9065b12caca868312136d1e7add2"
     },
     {
       "path": "out/guides/custom-teamwear-manufacturer-buying-guide/index.html",
-      "sha256": "9939a5be89e42924c0fe7175f714361bae8960a7c8d34a5394807314df33d2e3"
+      "sha256": "4ed4211fd4201079990548c80d560891efaa54b34741f343035a6faaec613af6"
     },
     {
       "path": "out/guides/custom-teamwear-manufacturer-buying-guide/index.txt",
-      "sha256": "68245f11494ebca3cb291e3e82b56767af397547df5ee411fb0829da3742196a"
+      "sha256": "7bcaba4ef322d04a7303efdf4cc6258e5e09db2bcc41a7615bf345c72b54c81b"
     },
     {
       "path": "out/guides/how-to-choose-teamwear-manufacturer-china/index.html",
-      "sha256": "0b7e4006676f19e3556693cabb8c31c7ab51aeebda31b1c3496cb7cd8d95bcf9"
+      "sha256": "064f50d3791d91f880644b4d923f917b587a0f25fd49992f761bbd2d8740ef70"
     },
     {
       "path": "out/guides/how-to-choose-teamwear-manufacturer-china/index.txt",
-      "sha256": "d0cbc9be2624e73c4d6db4248fe19706cd2e3b0c30b4cc6c83742c3efcc29b93"
+      "sha256": "3b7f82d19d291379b75dae4d36613842110c245ee10620239e6154b722d5a319"
     },
     {
       "path": "out/guides/how-to-order-custom-basketball-uniforms/index.html",
-      "sha256": "0eaa2951e7934e7137dc4a795c35703e0ba4ac0033840e097690c272fad267aa"
+      "sha256": "ddcefe74686281d9d7cb38a59e22434cbff2def815cda849b4efd312575b6f6e"
     },
     {
       "path": "out/guides/how-to-order-custom-basketball-uniforms/index.txt",
-      "sha256": "d0afacc12a21599bf23727321c0928476fdcd4e58a5d988bafa6f7b608cfc1db"
+      "sha256": "f37a669f826be804f4f77cdb94d5e242549c2d5b19d1af4c5736cf10d724c351"
     },
     {
       "path": "out/guides/index.html",
-      "sha256": "67432ab72f6edede59226e7bbbf4d0414e3753157f37ab56b527097413bb33c4"
+      "sha256": "733bf06adb6d053d71eddb785cf4a41265d57a484e13aacad50fd31d3e654233"
     },
     {
       "path": "out/guides/index.txt",
-      "sha256": "614e576397ecb64beea776e2fb9f86a9b89bbbead64a300ff092f157a84ca350"
+      "sha256": "552189d442e60c69b5ced78c363046b41301843c4b67ef8d3ebf357c0275d5de"
     },
     {
       "path": "out/guides/oem-odm-sportswear-manufacturing-guide-for-brands/index.html",
-      "sha256": "e030b3cfccbf49ffea055d522337570bc78850cd5048723629742c008622dabb"
+      "sha256": "7c356952e264c7d0d349c5347c54dbbd35930b2f57b8e7ecc447406edb77499e"
     },
     {
       "path": "out/guides/oem-odm-sportswear-manufacturing-guide-for-brands/index.txt",
-      "sha256": "3fdda85d6d104759d098550bdea40396d8894aaa7e51fdf4cbb25febc2a5ed9c"
+      "sha256": "2e2b983f8e4fec1bd0aea156e9557cfe4b3ee2e5d192b395ba8fa062aa798bd8"
     },
     {
       "path": "out/guides/private-label-teamwear-manufacturing/index.html",
-      "sha256": "bb24733aeafa525cb3b924a360b308cf1b5d38ecbfef95fb380b328aeeb099c6"
+      "sha256": "ab8dfd65de71fa4c67d0d3fd90f92c67f327d31e47330b9a9f623055715f6ddd"
     },
     {
       "path": "out/guides/private-label-teamwear-manufacturing/index.txt",
-      "sha256": "91dd8a56c43ed2f7ca00b8636d457e4d14b488bfcb606f6e68ebdcd29a9a0f42"
+      "sha256": "a9e030cc8a429aa0c8b0dccb85df08a982e668df7c3d91f832507f33874f299f"
     },
     {
       "path": "out/guides/reversible-vs-single-layer-basketball-uniforms/index.html",
-      "sha256": "be9b3ec3a5f4eabe47eb4b426eda886d49696efaaeec03511db972af08c1ab68"
+      "sha256": "cfafcd37ba0c9454feef84468cf2cbe87f303db053149cf71ab365bf28171928"
     },
     {
       "path": "out/guides/reversible-vs-single-layer-basketball-uniforms/index.txt",
-      "sha256": "5d05166dacc9269c0acd5461b1a63c3a92c9b7b19c10d3370f57c8b9cb3e66f0"
+      "sha256": "cac49b42171daaebec31a1314e09439863ecbe0aee41800082ca7deb5e143190"
     },
     {
       "path": "out/guides/sample-first-vs-bulk-teamwear-order/index.html",
-      "sha256": "78ede72cd446ed57bc1368cfa8066c165f974f6d0a749e85bb16e8abb57ab269"
+      "sha256": "71a71af3d7fc5fc37bc75dbd06fecc11572654af1df9297874b9755be73f6bea"
     },
     {
       "path": "out/guides/sample-first-vs-bulk-teamwear-order/index.txt",
-      "sha256": "f3b4fa05035b93367fa9aac6d4906ad7d6ebb11757154d64b538720a63dbdc45"
+      "sha256": "134d03991f9dcc421364560218a1803e1ddcbcef4bcad0b643e4702b734fcc76"
     },
     {
       "path": "out/guides/school-basketball-uniform-order-checklist/index.html",
-      "sha256": "6d22814fc2153ebe9fd61b8f5135956d5baba474907e4dfd70aba44a9b1c6d0a"
+      "sha256": "5c14474f93a614d7faf201dd521e225bf212062dd17e5d49323f529e44e5820c"
     },
     {
       "path": "out/guides/school-basketball-uniform-order-checklist/index.txt",
-      "sha256": "3c0aae94f8a0dd167dc788c52d01480724f4c1a9f20dfded42c3c5fbc7d9a3eb"
+      "sha256": "9dc19c643de7820aa237a9c03240cf5899a1ecbf58d86df4c66438b946d8ad0f"
     },
     {
       "path": "out/guides/sublimation-printing-guide/index.html",
-      "sha256": "46c8ef0c1773e699c07bcb88a198932826ac76e556a79aafd2a8344379b85447"
+      "sha256": "cf41d004f4cd9571fde26b2946f3068ced2963716a16e80e87e3db4d448c1573"
     },
     {
       "path": "out/guides/sublimation-printing-guide/index.txt",
-      "sha256": "8df478fbb3f57e302198b6b7470c25e0e4fc317aa60aa6bc4732f8591031cb29"
+      "sha256": "383eaef34963520fecc8b19684f3509a2947fbe4e25bd43f9b880c0b3c384c7c"
     },
     {
       "path": "out/guides/teamwear-quality-control-checklist/index.html",
-      "sha256": "5c906612ccfd6e18abeee1430afab4da45753cdcaf7d914b7ca2829f09f2f4ef"
+      "sha256": "04e25a126d75314a1f04f0a20b75a0b9951e8f338938dbb0a24ea0d7f4bcb5df"
     },
     {
       "path": "out/guides/teamwear-quality-control-checklist/index.txt",
-      "sha256": "a6188e8709ed75d6423d98a5917a768d8cf438420e54df4a3ab6a16e1d671e3b"
+      "sha256": "72ffb10a433b222fb704772f1d3389165c9397e1ddee1514a769655ecdc00154"
     },
     {
       "path": "out/guides/teamwear-sample-approval-checklist/index.html",
-      "sha256": "db91f57ed5d45af95db16982654bd7178e8389bdab04ea3801a555c2f1c14246"
+      "sha256": "3385186b86d60a8970d18a099ba9a1c1a07bffda3bdaa9341609af270640c367"
     },
     {
       "path": "out/guides/teamwear-sample-approval-checklist/index.txt",
-      "sha256": "2fc0ba1a7aedf2fd7c67f0386ac735923c55138e57a208b17d6950fed3c13b60"
+      "sha256": "90038c790026b5b0c9a05adcf3aa010df1a1d03eb4134f8fd29a4af0aed4c74d"
     },
     {
       "path": "out/how-sublimation-printing-works-for-teamwear/index.html",
-      "sha256": "d86887fb0a0597f3f36f6f96659886a2033e8bbcc8502bac1162ba33a7baee4d"
+      "sha256": "1547cca7608928747941b468bf64182c81042b1ddc13a507819c5c50f7f68905"
     },
     {
       "path": "out/how-sublimation-printing-works-for-teamwear/index.txt",
-      "sha256": "1dbd753bea44a17fb2845bb2be0f8e95c58fe17f0df15aa09f7b69dafbfef679"
+      "sha256": "de4163c386f638dfeda91d125f9301cebae082d23d73c2eada5a4cd60265d7dc"
     },
     {
       "path": "out/how-to-choose-a-teamwear-manufacturer/index.html",
-      "sha256": "ddb4cf004ba95871623f92c8bcd69581d62a76a904fb339babca7338fa249a4d"
+      "sha256": "94772437b5d68362f0e922f78557ed189396c1bd656a99d3173370134445cab4"
     },
     {
       "path": "out/how-to-choose-a-teamwear-manufacturer/index.txt",
-      "sha256": "e1d28fae018fa451582c4909897381dc9f42202f7131d41fbcd52b30e2f05ab1"
+      "sha256": "5149ee92dc10f99e36cbcf270aceee946eca83fb6b21b5e1261154678c524299"
     },
     {
       "path": "out/images/contact/mockup-visual.webp",
@@ -2290,19 +2290,19 @@
     },
     {
       "path": "out/index.html",
-      "sha256": "ecc5e63f6106187714a7f274bf3522ad4f1961153ca8767f06c48dbf99334b1f"
+      "sha256": "98dd9eff7c2cbd5183418c6e8403cb29cb1c98bed31c03eb69b0e83686e9716a"
     },
     {
       "path": "out/index.txt",
-      "sha256": "d6d10c8f834d46b61c70b02f85971028c6295c38694f334b7a4d459db01f53b9"
+      "sha256": "9261ded0c7bb5126a85749ff188ca784a20463f227cc8c2b54ec21094155be69"
     },
     {
       "path": "out/intellectual-property-policy/index.html",
-      "sha256": "749f7bdebb86bb4cdf09d0b0e5350e89d5ce888af9132d53900c93b87c27ef02"
+      "sha256": "f6c57508f5d1acdea946468cb45637f72af55a0d1ee6d82e41ed2aee67ac8759"
     },
     {
       "path": "out/intellectual-property-policy/index.txt",
-      "sha256": "e2de03e1ad5326ee9fa8e32819cafd0ce248e7d294c3e20633d0703e0ff2a648"
+      "sha256": "e51c8e798736ec8a8764bb972863359e86ab34f23342522c45d745d79d4ac81c"
     },
     {
       "path": "out/llms.txt",
@@ -2310,83 +2310,83 @@
     },
     {
       "path": "out/manufacturing/index.html",
-      "sha256": "e8919f03e8b80824fe19176baa28acaab7eb76da7b917f4711db04e8a6f19a5a"
+      "sha256": "433de50470b02dfd6febd8c679f3ec67cddf3d93b7bc68eb205eea2d4b3de115"
     },
     {
       "path": "out/manufacturing/index.txt",
-      "sha256": "8d2739ff1bbd4fb857dd9482c86543cc86f40424226e2ed8916de565d1b67355"
+      "sha256": "e980a39af5bd8e3a40facebbfaf34a07b068ed54467e2c26ef6f52ba49c08b55"
     },
     {
       "path": "out/oem-baseball-apparel-manufacturer/index.html",
-      "sha256": "0cac4ac63c1c2548d9d9c8da81f00b8a30a4cb8b3495cf986fd63e287bf7f58a"
+      "sha256": "fd3b27acd1d45efe7852c90d5fd0e0ffbb0bc1fae678df79a9eb66666dfe2dae"
     },
     {
       "path": "out/oem-baseball-apparel-manufacturer/index.txt",
-      "sha256": "73cda7633b411a53202dad92499f724941ea78afda9806a48d55d2e7dec7e05f"
+      "sha256": "415baf95e8cbedac70109cc59b9e339869e4ef27701ebca191c4f298462af3cc"
     },
     {
       "path": "out/oem-basketball-apparel-manufacturer/index.html",
-      "sha256": "2b0293f6174dfc476f6f85e5927b9c09d98f32a3bdd470482aadf1021d388a76"
+      "sha256": "2bb8ca354451fe88dbf0336a485d51792ff65e87b5dd7a89915a2927f06cb777"
     },
     {
       "path": "out/oem-basketball-apparel-manufacturer/index.txt",
-      "sha256": "d59020da4c49d95c4df9236e270d01dddfb7d9093ce8f2f1497ed2d508dbed6e"
+      "sha256": "2b0be6990cd96c9b749c8c5d1ad06af167b58b892674460670fed23afcd544fc"
     },
     {
       "path": "out/oem-odm/index.html",
-      "sha256": "6e8779d47542472399cc5799017f6eb4763d575255347b18f1f780a40b4d9545"
+      "sha256": "ca3268c31b3721ede59b59cf22b9182de4b5d72048e6bb7cfa2bde4b53e7bb5e"
     },
     {
       "path": "out/oem-odm/index.txt",
-      "sha256": "5fc3101a9baf216cbcde443ad542ba31b03b79d9fe31d2b1012688b159bd88c9"
+      "sha256": "0baae0e3f5332087e15d428f652cfbaaf8ecfaba2bea090624340637ec7e4ca8"
     },
     {
       "path": "out/oem-soccer-apparel-manufacturer/index.html",
-      "sha256": "f31e35b0074243e8e67a0d331eb8c921696240294cd45ad4e77ca1b74acf3cb7"
+      "sha256": "969b4bdfb6ed3065037ea434b6d3e9bc33396a3135fc192f496474a68a5706b7"
     },
     {
       "path": "out/oem-soccer-apparel-manufacturer/index.txt",
-      "sha256": "a493f13cbdc3f92a775472666746d4308a2ba10acca6df739a4523f7b1a1bc3f"
+      "sha256": "c595350e7ddefeb8dfc7a9bf29a0a56ada92406e57eb4ca6a51c4f953359dd7a"
     },
     {
       "path": "out/oem-volleyball-apparel-manufacturer/index.html",
-      "sha256": "434a54ee3131be6c689e3020b3895ede5f0d0456440b2ac6c96b9d1d26b7f239"
+      "sha256": "f3899211078856aceea4bc6125920641fdf424acff99b095d33936d09a109702"
     },
     {
       "path": "out/oem-volleyball-apparel-manufacturer/index.txt",
-      "sha256": "948bc7ea7b66edbcdf31e5a67a6d40137f2de21884b31d5330d7ba0d753336a2"
+      "sha256": "1883e53b5db2d9bac60501fccd819e3b957ca1f21c71276d56674b23a32626c3"
     },
     {
       "path": "out/oem-vs-odm-sportswear/index.html",
-      "sha256": "034b73665069274461c37a3635a465c3122ee592384868aa212d25425ddf0362"
+      "sha256": "afc09fc759006cf82c443914af371e8fa213dfb9522b28e97c4f21573f0e11ca"
     },
     {
       "path": "out/oem-vs-odm-sportswear/index.txt",
-      "sha256": "d2577cfe4cec0946489441ddfec14d70d4dba533a5146b726689ec2a7b3a10ac"
+      "sha256": "8c566f7518b2a319a55a3be34a3a717a8079dcd657d0eb2ec2716cf83a05ada2"
     },
     {
       "path": "out/printing-guide/index.html",
-      "sha256": "350c1add8c11a0accab8547fd812f2d72f3fe383c3240ca0b0cbef79a6e83599"
+      "sha256": "389dcf3d5f03efd8389eae0749e46dd7a585e76e73f7c264d809b59369fad9fd"
     },
     {
       "path": "out/printing-guide/index.txt",
-      "sha256": "fb5aa38e54564b39ad6eb648ed5ee193b332ee5442370f0900babe10336f3944"
+      "sha256": "6e13e4a173dccdc5ec8c9241c230445bbedbaca255b14887de7d70117cce5420"
     },
     {
       "path": "out/privacy-policy/index.html",
-      "sha256": "d88987582a85d9162e983dd86b396348223777edd43454e683fdf0bbe1b02042"
+      "sha256": "5e114d4c7151a05558f96a9a9c89b66f4609a80dceb8b91ef1df968e8604c487"
     },
     {
       "path": "out/privacy-policy/index.txt",
-      "sha256": "b120c7a7c5bfed0ff6c50e4e3e0026351122f0944efbc9994f878f21d6c14925"
+      "sha256": "45e0930b6eb7dcf9008b42335a98db8fa8091cc73f363f6e2020d6f815eb80e2"
     },
     {
       "path": "out/private-label-teamwear/index.html",
-      "sha256": "fb8fa9032f5cd6ef9b2da8224cd30eac22ffcd5c016b968bd368ce62945a5cc3"
+      "sha256": "1af8f26c588c5c4617d7dcca8aa34a23edfe51f03144b2f57eb67e707dec2307"
     },
     {
       "path": "out/private-label-teamwear/index.txt",
-      "sha256": "40551643c691567cfcbaf55a79a3586527e2cf1e55be600de8dcfa954f4e2d47"
+      "sha256": "8b88381a9669cdff1895724538274fcfcc23e3c4d78a7b479795e74ab5474dad"
     },
     {
       "path": "out/product-visualization/POXIOL_BASEBALL_FullSet.webp",
@@ -2446,131 +2446,131 @@
     },
     {
       "path": "out/products/basketball-uniforms/index.html",
-      "sha256": "bf6410d79da0c6a1aa94e71e7c1f9a6324d0014c7f3d2372e58ff34b058db31e"
+      "sha256": "42e6fea1ec454bdb33325dcea4853934a82d2bb1d84c9325da42a38528dd6407"
     },
     {
       "path": "out/products/basketball-uniforms/index.txt",
-      "sha256": "e0772c75f7ca36bca21026c6ac5e05d2ce888aaddb32e7f5158c63369a17fb16"
+      "sha256": "6ffba0d774e7f1c819663185c6149c2c517aec6f1afdb9d871783399f3b6612d"
     },
     {
       "path": "out/products/hoodies-jackets/index.html",
-      "sha256": "81a70f8c15617a2ff31e67498bb51ff3ef1488145ae114b64963973bd3ae9333"
+      "sha256": "53356d57c9ffe1cf3aa16f1a491ee9ab899ec50b19fdf7214b74dbfe2e45fc19"
     },
     {
       "path": "out/products/hoodies-jackets/index.txt",
-      "sha256": "06c530d9b0afa10b3474f12a9d098478de27a2ac164eec853d66df7187a61f7c"
+      "sha256": "3f256c21f41af1f37980edf2af6f90611403f1d059e97b7cd718494814487b43"
     },
     {
       "path": "out/products/index.html",
-      "sha256": "f7f1a7109e8250a196738a59fac3becc7118e175eb90633bba1ec7364aee0f62"
+      "sha256": "d6f111716a00504acbb3d269cd657097d558c56f7c8fc394166851874d2cecd4"
     },
     {
       "path": "out/products/index.txt",
-      "sha256": "bf1c6a988fcb89abd4b9aeb5d6c45c67ae4098e091166cb3b5e52a2c3d5f7591"
+      "sha256": "abc6c1a3ea820733967eb46d1d30498dfd84aad42326fa486bcb16305913551d"
     },
     {
       "path": "out/products/running-track-uniforms/index.html",
-      "sha256": "306ca62c5209cfe53cfd9f73ed0b4785dfe484277aa1351718c89cb0a45ecdd8"
+      "sha256": "8721fa157a82e7e695d6df3ad559d0f2c9a6949f71ad9bce5c20432da0ecd760"
     },
     {
       "path": "out/products/running-track-uniforms/index.txt",
-      "sha256": "acb5f5e33808394bda707e3f78b9eb4ef4a38a88c9afc0985df0061e3d797bd1"
+      "sha256": "3637dc6a81ce82bb019a80cf95db5b5109dd1d19eba5a44dd8b6794a4ac7ff1a"
     },
     {
       "path": "out/products/soccer-jerseys/index.html",
-      "sha256": "6281e505344f6efe094f690bb94e38369acb0d7cd69c7e118a781526ac220669"
+      "sha256": "134762d438825ca8c58f08dad947e6c879a398cceedc2c8ca1ed7a204e2366c5"
     },
     {
       "path": "out/products/soccer-jerseys/index.txt",
-      "sha256": "e4c00c134dfca3f2c8cd19ad2d7c2fc656b9e8da99984c6719fc53caa57c4790"
+      "sha256": "85cab0eac70e71a040b8ca2265a1daa0d332f900c1b785e820f605f11cfa1538"
     },
     {
       "path": "out/products/team-accessories/index.html",
-      "sha256": "dec1f04233e94e6c075a8dc40f07f18db732a2491eed90cf9b1d70b1210f42fd"
+      "sha256": "e6a345ee4afbfd956db94d0824a5b3285d18f22dba203c241d9145ed65b2c07b"
     },
     {
       "path": "out/products/team-accessories/index.txt",
-      "sha256": "9208ec0f31253982ffbdcc2df26119f6ace1d830f562f7b2c145e59e5814f95d"
+      "sha256": "c64a3867c8d20a0228fc52e0e570019c03fae580c53cf3e4b21201590233cb7a"
     },
     {
       "path": "out/products/training-wear/index.html",
-      "sha256": "971a5b44b895dd3846a955c4455826c188e49670cb16d61857eee372e0d75f40"
+      "sha256": "fc2fd5d63c0b245d9298b7f478de3bba5ad21be1ef95c4754dd97052c08e385d"
     },
     {
       "path": "out/products/training-wear/index.txt",
-      "sha256": "daf56994e4d53511064093ec6597e10e080669837b5ea92a029cbde5926d8485"
+      "sha256": "cb2b40d52767b25caadad5f266dc8dac743308a15df0ef748f0d1730299b9b55"
     },
     {
       "path": "out/products/warm-up-wear/index.html",
-      "sha256": "8413b87a994c3bf54c7ed3dc80c40c2f6d6a0c57de60a5ae1060fb4c023866a1"
+      "sha256": "483376b1117a94acfa5701c44eff650b94a8dfcddb562f3d6e63f753089c49f4"
     },
     {
       "path": "out/products/warm-up-wear/index.txt",
-      "sha256": "85a78ab76560a87e7262848a6ec317b2ae9e019bdd526e15e615d21d73992e82"
+      "sha256": "acb4c6ca9df9e289ac49acb7fc97e0a69baa1ca1cc6f61f550978e094b144bae"
     },
     {
       "path": "out/projects/australia-soccer-club-kit-project/index.html",
-      "sha256": "0bc2bf224672f351a0fa257e442d1166c2aafb23dda6be4efc4d66af15c38e2d"
+      "sha256": "f7e01770d79258901a5a3bc3b72c7a86c73cf35a087048093ccf233b5633d404"
     },
     {
       "path": "out/projects/australia-soccer-club-kit-project/index.txt",
-      "sha256": "8b069f8aa1a13dd49c2a7066d747b790a7fc14aeaf25ae0f047c84a3deb92373"
+      "sha256": "eb628f947cb6f180a63246c89b15903982b798fdbdd8e8c0dcfd31fe33d45eb4"
     },
     {
       "path": "out/projects/distributor-bulk-teamwear-program/index.html",
-      "sha256": "fdf187d0a9ca9789ac304a902d9a29a727519dfe55a2082defc5595ff41187d4"
+      "sha256": "baf5a66f2cd318d733111a6f24f19748a93a74d7d2ef5e9a7a6611044cfa67a1"
     },
     {
       "path": "out/projects/distributor-bulk-teamwear-program/index.txt",
-      "sha256": "0f3a5f4723d87a0d8b76de381224edff0fd4db837b2ed945de391ce8a10145cf"
+      "sha256": "13a9be982c839627509731efd4ed1409f9a961d5a47b723bb0b7024c20d3160d"
     },
     {
       "path": "out/projects/index.html",
-      "sha256": "16b6811aa39f989d13ea56c05be660116700e81698b63b366b49e2274fd25a8a"
+      "sha256": "fc895ee29fa16ec39cb3c688fc7fb677dbe8b1a0999acc9ed0095ef76a59456f"
     },
     {
       "path": "out/projects/index.txt",
-      "sha256": "99b3acbf88afd0931b984bf06b0a1a9824c453c64df436fd237b10157c5130be"
+      "sha256": "1b58cc7dec086385fce93d1bc2655138a79f7eeb85f5f3067635e55e0cf860e1"
     },
     {
       "path": "out/projects/middle-east-sports-event-program/index.html",
-      "sha256": "4a43e099a6edcb7a9b27a173c1c2cd18eade5aee99133d77a5718ec438631423"
+      "sha256": "72442b48a1d988403d431689b3b01611ff8b486fe42f21eba8767406ab9acfc2"
     },
     {
       "path": "out/projects/middle-east-sports-event-program/index.txt",
-      "sha256": "2429d5aea627cb2f0c19d462f9fa9c192cab133c501f23fcf9fc8b6e2a1dd6b6"
+      "sha256": "2b2137a37cbecccc214684ae4fa4c81da7190d3893769a445e8a16836c2f0b1a"
     },
     {
       "path": "out/projects/school-athletics-multi-sport-program/index.html",
-      "sha256": "8a4629c0f067bee988b9e3ba7119a3bdf482bf7a2c2aae1f204a4a83732513bc"
+      "sha256": "7728ed7fe7709390113459fe9bb294f59e5421f5c32174b660adeeb01f09b146"
     },
     {
       "path": "out/projects/school-athletics-multi-sport-program/index.txt",
-      "sha256": "b7af63f32e881761a45076f6811bae2bf3fb0ddb42dd186d26e805e7d2e97e2f"
+      "sha256": "cde78b12a9a173bd7497cbee15e796a1ff75cf82fcd29b7332dbcacd0ecb8b86"
     },
     {
       "path": "out/projects/usa-basketball-academy-uniform-program/index.html",
-      "sha256": "09820ef401cff9ecbbd86d4dd8b20cf4a7ee84f9a66834628f35cddee522b4cd"
+      "sha256": "21c6a503f855b21f1d8044b2291b957238a3d6399212f81cc7409dfa453d4e3f"
     },
     {
       "path": "out/projects/usa-basketball-academy-uniform-program/index.txt",
-      "sha256": "d09ab13c60d79915840ee40d08debe9d9556d0a6f9170298d9ace4d49601706e"
+      "sha256": "719ca94bd2522f6126d834321e3f2701da4def37e25f2fd083d204ac642d262f"
     },
     {
       "path": "out/quality-control-process/index.html",
-      "sha256": "d373c95916c6755e427c91f383d1eebd8efe22c2dd238ab970693d6a300aadd0"
+      "sha256": "42c68a8705dd9c9cafd0a37359d27519b7aa0ee63de70b7c6065c0660eb5542b"
     },
     {
       "path": "out/quality-control-process/index.txt",
-      "sha256": "e35b7240918bca3dd11c7a895711753aa05af35e7fdcb76de433a1d24b8ad25f"
+      "sha256": "d9614c0e993aff153ad1125b8ea4ee7f6d19705547d45b43a96b9e806e5332a8"
     },
     {
       "path": "out/quote-received/index.html",
-      "sha256": "8177ec735ac5c22b3863203c3d2803e4bf27e1ee3898408725d27df2b661cf02"
+      "sha256": "3c40d7f0e2ab5220493ca4d0d48b67aaffcae8573334efc924e53954dbcd8747"
     },
     {
       "path": "out/quote-received/index.txt",
-      "sha256": "c44500029e50e18738ea858d1926920c02f18fb3375748a89c39b7bb0a62fea2"
+      "sha256": "411b8096bab6cba0f7e0edcbfe626c858e1eae5756d225279e5af9dd360296b0"
     },
     {
       "path": "out/real-production/.gitkeep",
@@ -2614,59 +2614,59 @@
     },
     {
       "path": "out/resources/custom-basketball-uniform-manufacturer-guide/index.html",
-      "sha256": "2246acc2ac6528381071d9e20ba3e5ae3b6220082c948c2fb2dc5d3427b34e65"
+      "sha256": "592fb88f6f7dda4801f7ccd872a69e70ef1e55580ad16abf4ea84e1c882b5115"
     },
     {
       "path": "out/resources/custom-basketball-uniform-manufacturer-guide/index.txt",
-      "sha256": "14a8b429e7e7ba2a73b187968ba7dba45c1de3ca1194ecc0affb6bd52eabea89"
+      "sha256": "e0a951557824034fa6b02260d48b1e9e7f3d36087ed2bce5ecad0d601ce9ae97"
     },
     {
       "path": "out/resources/custom-soccer-kits-wholesale-guide/index.html",
-      "sha256": "5b494bf99f6f6fe14a9e71936fe47775db024c2124ff4cef87a19fc6395eab54"
+      "sha256": "ed7e0c9d1ade59d9d11134064cc399ba9e403c29bbd01c40c6cb851fcc09d90a"
     },
     {
       "path": "out/resources/custom-soccer-kits-wholesale-guide/index.txt",
-      "sha256": "f2a66af5bea0d5abb8659624220bf3227c3cb9b98db33a0100b1b04259fe7875"
+      "sha256": "d5f66c7f8df806db2bf916efbb112907dedba46dad7d5154f5129ee1e9255aaf"
     },
     {
       "path": "out/resources/custom-teamwear-moq-production-time/index.html",
-      "sha256": "af01d2010d0e5ee593ad4fcb8cab018241ae6086b4247fa2cd69b6749c3363e8"
+      "sha256": "d1481af3f12cb5c3381d2be7f8e3734bbcddfab1af60cecf26d232da97a1f32e"
     },
     {
       "path": "out/resources/custom-teamwear-moq-production-time/index.txt",
-      "sha256": "75fa06afe9c0cec4695780981bdac339fe812e1b60a2adb2701afe323f0e29c1"
+      "sha256": "8b2b166ab4146924f86415dcb69d08109b95b0a27c4909b64206ba4ebab2d513"
     },
     {
       "path": "out/resources/index.html",
-      "sha256": "60365d9502d59fd6f4c93ad8fd8829bc28b6be1358f2a5b37820805aed5339bb"
+      "sha256": "737fbb6779e64164fec59b3a09b2a76238fde46f855fadf40c4d5125a8929812"
     },
     {
       "path": "out/resources/index.txt",
-      "sha256": "ebaae9a4eea9305769c0fe2b622b528258cae5581b34bd996ed29bd5c168e54d"
+      "sha256": "3c6c70890dadf4c3ae5671444c282666e6aef4fd77f908d5c99f557fdca10f76"
     },
     {
       "path": "out/resources/private-label-teamwear-launch-checklist/index.html",
-      "sha256": "524920f53c5b158b8ab0d136f891c9fe5443a2daa766ad00b10d5c7a0e9ca93b"
+      "sha256": "cda5384ee948278feef9d61eae6c7246b62114764750929ea06032ddb8cacde1"
     },
     {
       "path": "out/resources/private-label-teamwear-launch-checklist/index.txt",
-      "sha256": "3ba158c4f531a3d76f3b6eef6189435f57fd95268cc6df5ffc0499a5e8db39b5"
+      "sha256": "6d52f64aead72ea178b1ee4dd0f3858cee856b619d4b4bffb900f9654286c791"
     },
     {
       "path": "out/resources/sports-uniform-fabric-guide/index.html",
-      "sha256": "8e0b37466acb8df0bead09950541cb34ca8b9f4445a902c40d6a5c9283fb41ce"
+      "sha256": "ac193ddb29023fd0b71c45821e2f36d0132d673ff9a4328d62f0a131e4662652"
     },
     {
       "path": "out/resources/sports-uniform-fabric-guide/index.txt",
-      "sha256": "8f498786388f9fe7cfe358f549b9fb4c540f437b67d3af9607ee1d10f02b7b38"
+      "sha256": "5e61c7753c328c54404d48aa496fa2cb0320333dadd993ae24da16990ff601b1"
     },
     {
       "path": "out/resources/teamwear-manufacturer-evaluation-checklist/index.html",
-      "sha256": "a2e430774cc12a9244e293500c97464ae1fff0d0628436725c36ea5c6deb29c4"
+      "sha256": "1a0192d59e8423b0eda8a96ccea35dd8fd44b00029002a3d0f8fd8f764c40099"
     },
     {
       "path": "out/resources/teamwear-manufacturer-evaluation-checklist/index.txt",
-      "sha256": "d8c6769c9c8e16e6417ecfacd5ee17d242334747c3bfb1fd576ce08dab3ba386"
+      "sha256": "900fb01bc205cd4fdfea744b7da2cfa821df187a02b61537433dde89a327e035"
     },
     {
       "path": "out/robots.txt",
@@ -2674,35 +2674,35 @@
     },
     {
       "path": "out/sample-order/index.html",
-      "sha256": "033c94ab4680e50b69e30eee3a7464bc043feeac4ac0d422c638a84a08b766bc"
+      "sha256": "23c5de29c6fc5e4ab5f9e3b6eb9ceb5729a05a2bb6e7811e8d81c9c72551b2cf"
     },
     {
       "path": "out/sample-order/index.txt",
-      "sha256": "9c4117eb075222488bbb8d2dc063a6943466c159d8269923a54e9936bb66f67a"
+      "sha256": "6da33b3b11a71f15102bc33bd8d7bd552c83a301c833ae53eea604f9c16e4fd7"
     },
     {
       "path": "out/sample-request-received/index.html",
-      "sha256": "21a033414fa5cad6426b97883a6a816885be026f15c7aae8d6d4b4ed5fe43365"
+      "sha256": "cc02c4f217b31af0eab1ef65f6f443023e19d2f2260fa4979e8fec4482533cf5"
     },
     {
       "path": "out/sample-request-received/index.txt",
-      "sha256": "e77cb74f4a11b0e281a0e0f6d279a308e8c352c8a93e8387f430e680d75a4c12"
+      "sha256": "7a2f8433b9dd41da061ba59405c3b66de478be84a8a34aa430175b249c612f7e"
     },
     {
       "path": "out/school-teamwear/index.html",
-      "sha256": "6dd77d99fa556449c92aace4592cf5536031303af6b6d2880d0ff68320430321"
+      "sha256": "3779aba7f18d7647f9e1b8a0262ff734c39ae93ab710b980480440753a6f5e47"
     },
     {
       "path": "out/school-teamwear/index.txt",
-      "sha256": "9fc775f6d1213585d00d17b4e6fad6eba5940235282e0a56da7561836a6b400e"
+      "sha256": "919eb74128ccb872947f0fb0ebe21958f517d31f0998ee05fb87cb2ac65aa7a6"
     },
     {
       "path": "out/shipping-after-sales/index.html",
-      "sha256": "abbb9461c20cd764e5bb39fb15dcbc563f95e2fafa364484f9be29c38d4190f9"
+      "sha256": "c521c7ad1bc090b168062caa1b4b4570600235b49d42f57581708fa5ee2dec5f"
     },
     {
       "path": "out/shipping-after-sales/index.txt",
-      "sha256": "e0d9872b8d62547294efd44456fe2704d919eb89ed9d38fd2276295729b27bf7"
+      "sha256": "57d0e67e4d6a019924f2195d40376646d5667b0ac4f7c133443887879318e238"
     },
     {
       "path": "out/sitemap.xml",
@@ -2710,67 +2710,67 @@
     },
     {
       "path": "out/soccer-jersey-buying-guide/index.html",
-      "sha256": "30a61d6a3185cb4ce22ed80b4db18f8c1ba118503a42567aec107bd5505df351"
+      "sha256": "70c998dd09c3e3fa178f961edf05c02622e8bc0c293f845cc869e6370cca7b80"
     },
     {
       "path": "out/soccer-jersey-buying-guide/index.txt",
-      "sha256": "babb7b8acf1b8c5d2d4ba13f8d218a5a287be19f55a9637c7f20ce22c2f26aec"
+      "sha256": "7608663ce2e8e2a701be08351ebc734a27ff8c0fcfd9cf535b90ff5e995a3715"
     },
     {
       "path": "out/soccer-jersey-supplier-australia/index.html",
-      "sha256": "d7ea3dbe4bf79ff033a416d218bd456e64356ccfd4fa92064ce6d3e081b8f8b1"
+      "sha256": "a1264fe84fa00f2b4dcec60bb3d899593dc18a63a9e21723c928859175d28f8e"
     },
     {
       "path": "out/soccer-jersey-supplier-australia/index.txt",
-      "sha256": "a01983ae90e797bbefb432b6d3a56ed985fe0f3184b81e159bcd71e6655871f2"
+      "sha256": "9586f4d65f6eb22816e312370df0b86f77b4334f141914c46e6296d5dce095fb"
     },
     {
       "path": "out/soccer-teamwear-supplier-uk/index.html",
-      "sha256": "e0546c39b4611dd59d5e6039221efce60f0a0fa9a2de39c1c931c1d339568bce"
+      "sha256": "1e90a8f483e7151ff36171d39dc8ab9fda08590d0a05a45be910166d437c6743"
     },
     {
       "path": "out/soccer-teamwear-supplier-uk/index.txt",
-      "sha256": "0ccc71cde3e4528dc112e5a6cd4efa09db3bebdc4bbee90f96353c6766ae291e"
+      "sha256": "873a2c277ccf92ba466a6653eb76ee35f7fb3434e19fc830b90b938681f9c31e"
     },
     {
       "path": "out/soccer-teamwear-supplier-usa/index.html",
-      "sha256": "d8d6e8099fa8540a105545ddca71316054dafe807257802f0a1e1e2b654a34ec"
+      "sha256": "70fb8323a4be05502f72f4caababc1361cafd9f5edaf59eda06b56c08092f1f3"
     },
     {
       "path": "out/soccer-teamwear-supplier-usa/index.txt",
-      "sha256": "53f6b265325032768221796c8f6e07e238b11695aa287ff9727865eb2ae37abc"
+      "sha256": "94cc1bdaaaf346962c7c585305a337899ada020204c0bc9bacb96a2b1ac2a8a4"
     },
     {
       "path": "out/solutions/index.html",
-      "sha256": "9a8dfd881387732041b9e5986c3699a89ec80227068adc1f589eb4354d117c1a"
+      "sha256": "51b750d64bb1eefcf6aed6710c95c9993e2aa8c5595a46d696963e66897678ff"
     },
     {
       "path": "out/solutions/index.txt",
-      "sha256": "d57d24cb96f99043709aafc1645e8d95f28660e66aa08b1d57368c2653d9c114"
+      "sha256": "e59bf6b58dc6c1d1a1016d40a9e54332ea3ce64ddb1020e4eb9b26a5f8c0249a"
     },
     {
       "path": "out/sports/index.html",
-      "sha256": "c6a18365c1f22f374ec9cf72d16b43079a1b082d4c7a873b1c1f4ac773fac687"
+      "sha256": "304ebdac3fd048128e21cc3bd3cfc79e285b44c1879471bb05f125be11788685"
     },
     {
       "path": "out/sports/index.txt",
-      "sha256": "7083fcd18cf1bfb4eeae0452f4039b21d715781492a7aa1ae26e969a56233aaa"
+      "sha256": "4191ea73bea4fa7eb7b7f3aeae20c8c3a8feb369674619f965179875b9add89d"
     },
     {
       "path": "out/terms/index.html",
-      "sha256": "097e5f3435f01110cf2c734a0bed96424d3dc75041bd36725de0db4df061d1bf"
+      "sha256": "b1047709ce08dd0b164884df5d183715770eab48d718cdd4838d9d8bb89dec23"
     },
     {
       "path": "out/terms/index.txt",
-      "sha256": "066d6a2297e35f049f70b90c369948a9d8f0ac92b5d052ce241f9ab49b591cff"
+      "sha256": "52afa27f1d7c903921050cb4a4379ae8cf82c8f5b6456b358a1bafab82eece79"
     },
     {
       "path": "out/thank-you/index.html",
-      "sha256": "0c09b2182d9640b1afbd82fb659c14a4567906fa89c6d11cd496a0e42259c3bb"
+      "sha256": "ffec83a5b5256513529215251833877103a01f81293aa511a1509df66e066678"
     },
     {
       "path": "out/thank-you/index.txt",
-      "sha256": "6f59601d2ec64e3f9f776e000448f29a656114387b9215b89871f39522748106"
+      "sha256": "d2365ff7469d19b76fa568fa9ff3df6173da4fad49df7f22ab0f5782246b1f2f"
     },
     {
       "path": "out/website-optimization/baseball-480.webp",
@@ -2826,11 +2826,11 @@
     },
     {
       "path": "out/youth-team-uniforms/index.html",
-      "sha256": "712092c17f26dda8af4b74a00ed79ff2e47a1d5bc4d02af87e79cadb4b58e061"
+      "sha256": "9d5f780bab2282842e3d98810b42ad8e4130a1832abab443fd8b56025f170c8b"
     },
     {
       "path": "out/youth-team-uniforms/index.txt",
-      "sha256": "2560be6317546aa6745fefa6e821058bdb0b309988ec1918f1e0e41babb9e5a1"
+      "sha256": "2c2d541e21bda60f3ebe02eed798b19310223220c953a7f29e192719e0717a3d"
     }
   ]
 }

@@ -45,7 +45,7 @@ import type {CmsPortableTextNode} from '@/lib/cms/portableText'
 import {projectPlanningSeo, resolveProjectSeoForEvidence} from '@/lib/project-planning-seo'
 import {contentSource, sanityQuery} from './client'
 import {isDocumentVisible} from '@/lib/cms/visibility'
-import {getCmsListMode, mergeCmsList, resolveSingle, type SourceState} from '@/lib/cms/listMode'
+import {getCmsListMode, mergeCmsList, resolveSingle, type CmsListMode, type SourceState} from '@/lib/cms/listMode'
 import {resolveProductsForCategoryVisibility} from '@/lib/cms/category-visibility'
 import {resolveContent} from './fallback'
 import {getWeek3GuideBySlug, week3Guides} from '@/lib/week3-guides'
@@ -903,7 +903,7 @@ async function resolveProductCategory(slug: string): Promise<ProductCategoryReso
   return {category: fallback, suppressed: false}
 }
 
-export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> {
+export async function getProducts(categorySlug?: string, listMode: CmsListMode = getCmsListMode()): Promise<CmsProduct[]> {
   const categoryResolution = await resolveProductCategories()
   const visibleCategorySlugs = new Set(categoryResolution.categories.map((category) => category.slug))
   const legacy = categorySlug ? legacyProducts.filter((product) => product.categorySlug === categorySlug) : legacyProducts
@@ -912,7 +912,7 @@ export async function getProducts(categorySlug?: string): Promise<CmsProduct[]> 
     legacy: legacy.filter((product) => !product.categorySlug || visibleCategorySlugs.has(product.categorySlug)),
     cms: response.ok ? response.result || [] : [],
     sourceState: queryState(response),
-    mode: getCmsListMode(),
+    mode: listMode,
     contentSource,
     mapCms: (product, fallback, index) => mapProduct(product, fallback || legacyProducts.find((item) => item.slug === product.slug), index),
   })
@@ -987,10 +987,25 @@ function withBuyerDecisionFaqs(groups: CmsFaqGroup[]): CmsFaqGroup[] {
   return [{category: 'Buyer Decision Guide', items: BUYER_DECISION_FAQS}, ...remaining]
 }
 
+function withUniqueFaqQuestions(groups: CmsFaqGroup[]): CmsFaqGroup[] {
+  const seen = new Set<string>()
+  return groups
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => {
+        const key = item.question.trim().toLowerCase()
+        if (seen.has(key)) return false
+        seen.add(key)
+        return true
+      }),
+    }))
+    .filter((group) => group.items.length)
+}
+
 export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
-  if (contentSource === 'legacy') return withBuyerDecisionFaqs(legacyFaqGroups)
+  if (contentSource === 'legacy') return withUniqueFaqQuestions(withBuyerDecisionFaqs(legacyFaqGroups))
   const response = await sanityQuery<SanityFaq[]>(faqItemsQuery, {}, {documentType: 'faqItem'})
-  if (!response.ok) return legacyFaqGroups
+  if (!response.ok) return withUniqueFaqQuestions(legacyFaqGroups)
 
   const cms = response.result || []
   const legacyItems = legacyFaqGroups.flatMap((group) => group.items.map((item) => ({category: group.category, ...item, ...normalizeFaqPair(item.question, item.answer)})))
@@ -998,8 +1013,6 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
   const visibleCms = cms
     .filter((faq) => faq.question && isDocumentVisible(faq.publishStatus, contentSource))
     .map((faq) => ({category: faqCategoryName(faq.category), ...normalizeFaqPair(faq.question as string, textFromPortable(faq.answer))}))
-
-  if (getCmsListMode() === 'strict') return withBuyerDecisionFaqs(groupsFromFaqItems(visibleCms))
 
   const cmsByKey = new Map(visibleCms.map((faq) => [faqKey(faq.question, faq.category), faq]))
   const merged: Array<{category?: string; question: string; answer: string}> = []
@@ -1010,7 +1023,7 @@ export async function getFaqGroups(): Promise<CmsFaqGroup[]> {
     cmsByKey.delete(key)
   }
   merged.push(...Array.from(cmsByKey.values()))
-  return withBuyerDecisionFaqs(groupsFromFaqItems(merged))
+  return withUniqueFaqQuestions(withBuyerDecisionFaqs(groupsFromFaqItems(merged)))
 }
 
 function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, index = 0): CmsArticle | null {
@@ -1104,9 +1117,28 @@ export async function getMatchedFaqsForProduct(productSlug: string, fallback: Cm
   return matched.length ? matched.slice(0, 8) : fallback
 }
 
+const strictSportsProductCardCategories = new Set([
+  'training-wear',
+  'hoodies-jackets',
+  'team-accessories',
+])
+
+function resolveSportsProductCards(
+  productCards: SportsPageData['productTypes'],
+  legacyData: SportsPageData,
+  strictProductCards: boolean,
+): Pick<SportsPageData, 'productTypes' | 'features'> {
+  if (strictProductCards || productCards.length) {
+    return {productTypes: productCards, features: productCards.slice(0, 4)}
+  }
+  return {productTypes: legacyData.productTypes, features: legacyData.features}
+}
+
 export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promise<SportsPageData | null> {
   const categorySlug = legacyData.slug.replace(/^products\//, '')
-  const [resolution, products] = await Promise.all([resolveProductCategory(categorySlug), getProducts(categorySlug)])
+  const strictProductCards = strictSportsProductCardCategories.has(categorySlug)
+  const productListMode = strictProductCards ? 'strict' : getCmsListMode()
+  const [resolution, products] = await Promise.all([resolveProductCategory(categorySlug), getProducts(categorySlug, productListMode)])
   if (resolution.suppressed) {
     if (getCmsListMode() === 'strict') return null
     return {...legacyData, noIndex: true}
@@ -1117,6 +1149,7 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
   if (!category) return getCmsListMode() === 'strict' ? null : legacyData
   const matchedFaqs = await getMatchedFaqsForProductCategory(categorySlug, category.relatedFaqs?.length ? category.relatedFaqs : legacyData.faqs, category.title)
   const productCards = products.map((product) => ({title: product.title, description: product.description}))
+  const resolvedProductCards = resolveSportsProductCards(productCards, legacyData, strictProductCards)
   return {
     ...legacyData,
     metaTitle: category.seo.title,
@@ -1128,8 +1161,7 @@ export async function getCmsSportsPageBySlug(legacyData: SportsPageData): Promis
     // CMS may continue to overlay buyer-facing text, but cannot replace reviewed POXIOL media.
     heroImage: legacyData.heroImage,
     primaryKeyword: category.title || legacyData.primaryKeyword,
-    productTypes: productCards.length ? productCards : legacyData.productTypes,
-    features: productCards.length ? productCards.slice(0, 4) : legacyData.features,
+    ...resolvedProductCards,
     designs: legacyData.designs,
     faqs: matchedFaqs.length ? matchedFaqs : legacyData.faqs,
     noIndex: category.seo.noIndex,

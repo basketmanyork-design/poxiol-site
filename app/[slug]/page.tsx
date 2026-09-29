@@ -88,6 +88,17 @@ export default async function PSEOPage({ params }: Props) {
               <p>{page.content}</p>
             </div>
 
+            {page.decisionSections?.length ? (
+              <div className="grid gap-6 md:grid-cols-3">
+                {page.decisionSections.map((section) => (
+                  <section key={section.heading} className="rounded-3xl border border-white/10 bg-white/5 p-7">
+                    <h2 className="text-xl font-black text-white">{section.heading}</h2>
+                    <p className="mt-4 leading-7 text-neutral-400">{section.body}</p>
+                  </section>
+                ))}
+              </div>
+            ) : null}
+
             {page.publisher ? (
               <div className="rounded-2xl border border-lime-400/20 bg-lime-400/5 px-6 py-4">
                 <p className="text-sm font-black uppercase tracking-widest text-lime-400">Published by POXIOL</p>
@@ -118,9 +129,9 @@ export default async function PSEOPage({ params }: Props) {
             ) : null}
 
             <div className="flex flex-col items-center justify-center space-y-6 pt-10">
-              <h2 className="text-3xl font-black uppercase tracking-tight text-white">Ready to Start Your Project?</h2>
+              <h2 className="text-center text-3xl font-black uppercase tracking-tight text-white">{page.finalCtaHeading ?? "Ready to Start Your Project?"}</h2>
               <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-                <PrimaryButton>{page.publisher ? "Contact POXIOL" : "Contact Our Experts"}</PrimaryButton>
+                <PrimaryButton href={page.primaryCta?.href}>{page.primaryCta?.label ?? (page.publisher ? "Contact POXIOL" : "Contact Our Experts")}</PrimaryButton>
                 <Link 
                   href="/free-mockup/"
                   className="flex h-[60px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-10 text-base font-black uppercase transition hover:bg-white/10"

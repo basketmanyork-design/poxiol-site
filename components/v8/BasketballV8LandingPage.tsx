@@ -161,6 +161,12 @@ export function BasketballV8LandingPage({data}: {data: SportsPageData}) {
           <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
             Compare fabric, fit, printing, size mix, samples and quality-control checkpoints before you send the final roster and quantity.
           </p>
+          <p className="mt-5 max-w-3xl text-base leading-7 text-neutral-300">
+            Planning for a Melbourne club, school or distributor?{' '}
+            <Link href="/custom-basketball-jerseys-melbourne/" className="font-black text-[#B6FF00] underline underline-offset-4 hover:text-white">
+              Review the Melbourne basketball jersey project brief →
+            </Link>
+          </p>
           <Link
             href="/guides/how-to-order-custom-basketball-uniforms/"
             className="mt-8 inline-flex min-h-12 items-center rounded-full bg-[#B6FF00] px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-white"
