@@ -2,7 +2,7 @@ import InquiryLink from "@/components/InquiryLink";
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import type { SportsPageData } from "@/lib/sports-pages";
 import { Header, Footer, PrimaryButton, SecondaryButton, SectionHeading, freeMockupHref, getQuoteHref } from "@/components/ui";
-import { ProductSchema, FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
+import { FAQSchema, BreadcrumbSchema, ServiceSchema } from "@/components/seo/GEOStructuredData";
 import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
 import { ProductGeoSections } from "@/components/sections/GeoV1Sections";
 import { buildSportsProductGeoDetails, resolveSportsFaqs } from "@/lib/geo-v1";
@@ -30,11 +30,6 @@ export default function SportsLandingPage({ data }: { data: SportsPageData }) {
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black text-left">
       <ContentViewTracker event="product_category_view" params={{product_category: data.slug, sport: data.primaryKeyword}} />
       {/* --- AEO / GEO Infrastructure --- */}
-      <ProductSchema
-        name={data.h1}
-        description={data.metaDescription}
-        url={fullUrl}
-      />
       <ServiceSchema
         name={`Custom ${productLabel} Manufacturing`}
         description={`POXIOL supports custom ${productLabel.toLowerCase()} projects with mockup, sampling and project-specific production planning.`}
