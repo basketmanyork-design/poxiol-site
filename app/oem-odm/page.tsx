@@ -149,6 +149,25 @@ export default async function OEMPage() {
         </div>
       </section>
 
+      {/* Search intent pilot */}
+      <section className="bg-neutral-100 px-5 py-20 text-neutral-950 md:px-10 md:py-24 xl:px-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <SectionHeading eyebrow="Buyer Comparison" title="Compare OEM/ODM Sportswear Development Paths" center />
+          <p className="mt-8 text-lg leading-relaxed text-neutral-600">
+            If you are comparing an ODM sportswear manufacturer, a uniform OEM supplier or another OEM/ODM sportswear development path, begin with the same project inputs: product category, reference styles, authorized artwork, fabric and construction requirements, size range, quantities, sample objectives, packaging needs, target date and destination.
+          </p>
+          <p className="mt-5 text-lg leading-relaxed text-neutral-600">
+            POXIOL reviews those inputs before confirming the suitable OEM or ODM path, quotation scope, sample plan or timing. For production-stage questions, use the manufacturing workflow to review the steps that follow an approved brief.
+          </p>
+          <Link
+            href="/manufacturing/"
+            className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full border border-neutral-950 px-7 py-3 text-center text-sm font-black uppercase tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white"
+          >
+            Review the manufacturing workflow →
+          </Link>
+        </div>
+      </section>
+
       {/* Partner Groups */}
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20 bg-white text-black">
         <div className="mx-auto max-w-7xl">
