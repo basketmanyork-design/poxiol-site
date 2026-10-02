@@ -73,7 +73,7 @@ function formHarness(file, intent, search) {
   const find=id=>render().find(node=>node.props?.id===id)
   const edit=(id,value)=>{const node=find(id);assert.ok(node,`Missing editable field ${id}`);node.props.onChange({target:{value}})}
   const send=()=>render().find(node=>node.type==='form').props.onSubmit({preventDefault(){},currentTarget:{}})
-  return {find,edit,send,sent,render}
+  return {find,edit,send,sent,render,load}
 }
 const query='?product=Basketball+Uniforms&sport=Basketball&style=home-kit&source=%2Fproducts%2Fbasketball-uniforms%2F'
 
@@ -147,4 +147,15 @@ test('a cleared product and style stay cleared in the quote request',async()=>{
   await ui.send()
   assert.equal(ui.sent[0].has('requested_product'),false)
   assert.equal(ui.sent[0].get('selected_style'),'')
+})
+
+test('normal procurement payload sends an explicit empty Formspree honeypot',()=>{
+  const ui=formHarness('components/forms/ContactForm.tsx','quote',query)
+  const {createProcurementFormData}=ui.load(path.resolve('lib/procurement-inquiry.ts'))
+  const body=createProcurementFormData({
+    fullName:'Test Buyer',buyerRole:'Team / School / Club',company:'',email:'buyer@example.com',whatsapp:'',
+    products:[{product:'Basketball Uniforms',quantity:'25',unit:'sets'}],requiredDeliveryDate:'2099-10-20',deliveryCountry:'US',
+    deliveryPostalCode:'02108',postalNotApplicable:false,additionalDetails:'',
+  },{intent:'quote',sourcePage:'/get-quote/',formType:'Get Quote',submissionKey:'qa-id'})
+  assert.equal(body.get('_gotcha'),'')
 })

@@ -108,6 +108,13 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
   async function submit(event:React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (submitLock.current || state !== 'idle') return
+    const gotcha=String(new FormData(event.currentTarget).get('_gotcha') || '')
+    if (gotcha) {
+      setErrors({})
+      setMessage('Please use email or WhatsApp to contact us.')
+      requestAnimationFrame(()=>errorRef.current?.focus())
+      return
+    }
     const nextErrors=validateAll()
     if (Object.keys(nextErrors).length) {
       const section=firstValidationSection(nextErrors)
@@ -140,6 +147,10 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
   const configuredAction=process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT
   const fallbackAction=configuredAction && /^https?:\/\/[^/]+\.invalid(?:\/|$)/i.test(configuredAction) ? '#contact' : configuredAction
   return <form data-inquiry-form method="post" action={fallbackAction} encType="multipart/form-data" onSubmit={submit} noValidate className="rounded-3xl bg-white p-5 text-left text-neutral-950 shadow-xl sm:p-8">
+    <div className="hidden" aria-hidden="true">
+      <label htmlFor="procurement-website">Leave this field empty</label>
+      <input id="procurement-website" type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+    </div>
     <header><p className="text-xs font-black uppercase tracking-widest text-green-800">POXIOL Project Inquiry</p>{showTitle ? <h2 className="mt-2 text-3xl font-black">{title}</h2> : null}<p className="mt-3 leading-7 text-neutral-700">{subtitle}</p><p className="mt-3 text-sm text-neutral-600">Additional details and artwork are optional. We review product and delivery feasibility after receiving your request.</p></header>
     {progressive?<div className="mt-6" aria-label="Quote request progress"><p className="text-sm font-bold text-neutral-700">Step {stepIndex + 1} of {PROCUREMENT_FORM_STEPS.length}</p><ol className="mt-3 grid grid-cols-3 gap-2">{PROCUREMENT_FORM_STEPS.map(item=><li key={item.id} aria-current={item.id===step?'step':undefined} className={`rounded-full px-3 py-2 text-center text-xs font-black ${item.id===step?'bg-neutral-950 text-white':'bg-neutral-100 text-neutral-600'}`}>{item.title}</li>)}</ol></div>:null}
     {message ? <div ref={errorRef} role="alert" tabIndex={-1} className="mt-5 rounded-xl border border-red-300 bg-red-50 p-4 text-red-800 focus:outline-2 focus:outline-red-700"><strong>{state==='unconfirmed'?'Receipt has not been confirmed':'Review your request'}</strong><p>{message}</p>{state==='unconfirmed'?<p>Check receipt with our team before resending. The current Formspree receiver has no verified duplicate protection for a timed-out request.</p>:null}</div>:null}

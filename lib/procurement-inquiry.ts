@@ -47,6 +47,7 @@ export function createProcurementFormData(fields: ProcurementFields, context: {i
   const errors = validateProcurementFields(fields,today)
   if (Object.keys(errors).length) throw new Error(Object.values(errors)[0])
   const data = new FormData()
+  data.set('_gotcha','')
   data.set('formType',context.formType)
   data.set('intent',context.intent)
   data.set('submission_key',context.submissionKey)

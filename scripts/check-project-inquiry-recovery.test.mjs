@@ -9,7 +9,7 @@ import ts from 'typescript'
 const require = createRequire(import.meta.url)
 // Real ContactForm and local helpers; only scheduling, navigation, analytics and
 // HTTP are controlled. The fake clock never waits or contacts a real provider.
-function harness({request = async()=>new Response('{"ok":true}'), tracking = {}, navigate, endpoint = 'https://example.invalid/qa', uuid = ()=>'qa-only', component = 'ContactForm.tsx', componentProps, reconcileDom = false} = {}) {
+function harness({request = async()=>new Response('{"ok":true}'), tracking = {}, navigate, endpoint = 'https://example.invalid/qa', uuid = ()=>'qa-only', component = 'ContactForm.tsx', componentProps, reconcileDom = false, gotcha = ''} = {}) {
   const slots=[], effects=[], requests=[], navigations=[], analytics=[], timers=new Map(), cache=new Map(), dom=new Map(), focus=[], scroll=[]
   let cursor=0, nextTimer=1
   const hooks={
@@ -22,7 +22,7 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
     const exports={};cache.set(filename,exports)
     const code=ts.transpileModule(readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,target:ts.ScriptTarget.ES2022}}).outputText
     vm.runInNewContext(code,{
-      exports,Error,URL,URLSearchParams,Response,FormData,AbortController,
+      exports,Error,URL,URLSearchParams,Response,FormData:class extends FormData{constructor(form){super();if(form?._gotcha)this.set('_gotcha',String(form._gotcha))}},AbortController,
       setTimeout(fn,ms){const id=nextTimer++;timers.set(id,{fn,ms});return id},clearTimeout(id){timers.delete(id)},requestAnimationFrame(fn){fn()},
       process:{env:{NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT:endpoint}},
       window:{location:{pathname:'/get-quote/',search:'',href:'https://example.invalid/get-quote/'}},
@@ -64,7 +64,7 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
   const edit=(id,value)=>find(id).props.onChange({target:{value}})
   const attach=(id,file)=>{const input=find(id);dom.get(id).value=file?`C:\\fakepath\\${file.name}`:'';input.props.onChange({target:{files:file?[file]:[]}})}
   const handler=()=>render().find(n=>n.type==='form').props.onSubmit
-  const event={preventDefault(){},currentTarget:{}}
+  const event={preventDefault(){},currentTarget:{_gotcha:gotcha}}
   const send=()=>handler()(event)
   const button=()=>render().find(n=>n.type==='button'&&n.props.type==='submit')
   const alert=()=>render().find(n=>n.props?.role==='alert')
@@ -74,13 +74,40 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
   return{requests,navigations,analytics,timers,dom,focus,scroll,render,find,edit,attach,removeButton,handler,event,send,button,alert,status,text,expire(){for(const[id,t]of[...timers]){timers.delete(id);t.fn()}}}
 }
 
-function progressiveQuoteHarness() {
+function progressiveQuoteHarness(options={}) {
   return harness({
+    ...options,
     component:'ProcurementContactForm.tsx',
     reconcileDom:true,
     componentProps:{intent:'quote',formId:'quote_form',title:'Request a Quote',subtitle:'Tell us about your project.',formType:'Get Quote',ctaText:'Submit Quote Request',privacyPolicyApproved:true},
   })
 }
+
+test('procurement form renders one inaccessible honeypot outside the visible buyer flow',()=>{
+  const ui=progressiveQuoteHarness()
+  const input=ui.find('procurement-website')
+  assert.ok(input,'Render the approved procurement honeypot')
+  assert.equal(input.props.name,'_gotcha')
+  assert.equal(input.props.type,'text')
+  assert.equal(input.props.tabIndex,-1)
+  assert.equal(input.props.autoComplete,'off')
+  const wrappers=ui.render().filter(node=>node.type==='div'&&node.props?.className==='hidden'&&String(node.props?.['aria-hidden'])==='true')
+  assert.equal(wrappers.length,1,'Keep the honeypot out of the buyer-visible flow and accessibility tree')
+})
+
+test('filled procurement honeypot blocks provider and success analytics while retaining the draft',async()=>{
+  const ui=progressiveQuoteHarness({gotcha:'https://spam.invalid'})
+  ui.edit('product-0','Basketball Uniforms')
+  ui.attach('project-file',new File(['QA'],'fixture-logo.png',{type:'image/png'}))
+  await ui.send()
+  assert.equal(ui.requests.length,0)
+  assert.deepEqual(conversionNames(ui),[])
+  assert.equal(ui.analytics.filter(event=>event.name==='form_validation_error').length,0,'Block before buyer-field validation')
+  assert.match(ui.text(ui.alert()),/Please use email or WhatsApp to contact us\./)
+  assert.equal(ui.render().find(node=>node.type==='fieldset').props.disabled,false,'Keep the procurement form idle for a real buyer correction')
+  assert.equal(ui.find('product-0').props.value,'Basketball Uniforms')
+  assert.ok(ui.render().some(node=>node.props?.role==='status'&&ui.text(node).includes('fixture-logo.png')),'Keep the selected-file draft')
+})
 
 function assertRecovery(ui){
   const alert=ui.alert();assert.ok(alert,'Failure guidance must be accessible')
