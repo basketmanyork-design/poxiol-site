@@ -130,7 +130,7 @@ function nodes(node) { if (typeof node === 'string') return [node]; return !node
 
 test('renders the approved global-buyer content with distinct existing inquiry targets', () => {
   const leads = compile('lib/v8/leads.ts')
-  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': leads})
+  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': leads, './google-ads-attribution.ts': compile('lib/google-ads-attribution.ts')})
   const productTaxonomy = compile('lib/product-taxonomy.ts', {'./inquiry-context.ts': inquiryContext})
   const home = compile('lib/hybrid/home.ts')
   const component = compile('components/hybrid/HomepageHybrid.tsx', {
@@ -171,7 +171,7 @@ test('renders the approved global-buyer content with distinct existing inquiry t
 })
 
 test('keeps approved navigation groups and destination-labelled legacy routes', () => {
-  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts')})
+  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts'), './google-ads-attribution.ts': compile('lib/google-ads-attribution.ts')})
   const productTaxonomy = compile('lib/product-taxonomy.ts', {'./inquiry-context.ts': inquiryContext})
   const navigation = compile('lib/navigation.ts', {'./product-taxonomy.ts': productTaxonomy})
   const groups = Object.fromEntries(navigation.HEADER_NAV.map(item => [item.label, item.children || []]))
@@ -186,7 +186,7 @@ test('keeps approved navigation groups and destination-labelled legacy routes', 
 })
 
 test('Header renders real semantic disclosures for every navigation group with children', async () => {
-  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts')})
+  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts'), './google-ads-attribution.ts': compile('lib/google-ads-attribution.ts')})
   const productTaxonomy = compile('lib/product-taxonomy.ts', {'./inquiry-context.ts': inquiryContext})
   const navigation = compile('lib/navigation.ts', {'./product-taxonomy.ts': productTaxonomy})
   const ui = compile('components/ui.tsx', {
@@ -210,7 +210,7 @@ test('Header renders real semantic disclosures for every navigation group with c
 function mobileMenuHarness() {
   const slots = []
   let cursor = 0
-  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts')})
+  const inquiryContext = compile('lib/inquiry-context.ts', {'./v8/leads.ts': compile('lib/v8/leads.ts'), './google-ads-attribution.ts': compile('lib/google-ads-attribution.ts')})
   const productTaxonomy = compile('lib/product-taxonomy.ts', {'./inquiry-context.ts': inquiryContext})
   const navigation = compile('lib/navigation.ts', {'./product-taxonomy.ts': productTaxonomy})
   const menu = compile('components/MobileMenu.tsx', {
