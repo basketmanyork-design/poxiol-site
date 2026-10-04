@@ -50,6 +50,8 @@ const params = sanitizeEventParams({
   full_name: 'Private Person',
   company: 'Private Company',
   file_name: 'private-logo.ai',
+  gclid: 'must-not-enter-analytics',
+  utm_term: 'buyer@example.com',
 })
 assert.deepEqual(params, {
   page_path: '/contact/',

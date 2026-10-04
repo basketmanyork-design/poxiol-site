@@ -42,6 +42,8 @@ function harness({request = async()=>new Response('{"ok":true}'), tracking = {},
           trackFormStepView(...args){analytics.push({name:'form_step_view',args})},
           trackFormStepComplete(...args){analytics.push({name:'form_step_complete',args})},
           trackFormValidationError(...args){analytics.push({name:'form_validation_error',args})},
+          trackSampleFormStart(...args){analytics.push({name:'sample_form_start',args})},
+          trackSampleApplicationSubmitted(...args){analytics.push({name:'sample_application_submitted',args})},
           ...tracking,
         }
         if(!name.startsWith('@/')&&!name.startsWith('.'))return require(name)

@@ -3,6 +3,8 @@ export type AnalyticsEventName =
   | 'form_start'
   | 'form_submit'
   | 'generate_lead'
+  | 'sample_form_start'
+  | 'sample_application_submitted'
   | 'whatsapp_click'
   | 'email_click'
   | 'free_mockup_click'

@@ -1,7 +1,8 @@
 import {PROJECT_SPORT_OPTIONS, V8_CONVERSION_ENTRIES, type V8ConversionIntent} from './v8/leads.ts'
+import {googleAdsAttributionQuery, type GoogleAdsAttribution} from './google-ads-attribution.ts'
 
 export type BuyerRoleHint = 'Team / School / Club' | 'Brand / Reseller'
-export type InquiryContext = {product: string; sport: string; style: string; source: string; buyerRole?: BuyerRoleHint}
+export type InquiryContext = {product: string; sport: string; style: string; source: string; buyerRole?: BuyerRoleHint; adsAttribution?: GoogleAdsAttribution}
 const empty: InquiryContext = {product: '', sport: '', style: '', source: ''}
 const site = 'https://www.poxiol.com'
 const buyerRoleHints: readonly BuyerRoleHint[] = ['Team / School / Club', 'Brand / Reseller']
@@ -72,9 +73,11 @@ export function contextualInquiryHref(href: string, context: Partial<InquiryCont
     style:explicit.style || base.style, source:explicit.source || base.source,
     buyerRole:explicit.buyerRole || base.buyerRole,
   })
-  if (!Object.values(merged).some(Boolean)) return href
+  const attributionQuery = googleAdsAttributionQuery(context.adsAttribution)
+  if (!Object.values(merged).some(Boolean) && !attributionQuery.toString()) return href
   const query = new URLSearchParams()
-  for (const [name,value] of Object.entries(merged)) if (value) query.set(name,value)
+  for (const [name,value] of [['product',merged.product],['sport',merged.sport],['style',merged.style],['source',merged.source],['buyerRole',merged.buyerRole]] as const) if (value) query.set(name,value)
+  attributionQuery.forEach((value,name) => query.set(name,value))
   return `${entry.path}?${query}#${entry.formAnchorId}`
 }
 

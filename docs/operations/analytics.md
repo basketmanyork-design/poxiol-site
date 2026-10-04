@@ -34,3 +34,13 @@ The only permission key is `poxiol.analytics.permission.v1`. The only POXIOL att
 Cloudflare Web Analytics is controlled in the Cloudflare dashboard rather than by the React preference component. Keep it disabled while either legal or analytics approval is pending. Before activation, record the owner/legal decision, validate dashboard state, update the governed record through review, rebuild the exact release commit, and rerun C3/C5 acceptance.
 
 Never place personal form fields, email addresses, phone numbers, message content, filenames or attachment data in analytics events.
+
+## Google Ads pilot provenance and sample funnel
+
+The public sample form accepts only these bounded campaign values from a POXIOL URL: `gclid`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, and `utm_content`. Values containing email-like or phone-like content, unsupported characters, or more than 100 characters are discarded. Landing and source references must be canonical same-origin paths. Unknown query fields and raw URLs are never copied.
+
+Operational provenance is attached only to a voluntarily submitted inquiry as `ads_*` form fields. It is separate from analytics event parameters and must never include buyer fields, free text, filenames, credentials, payment data, account/customer IDs, or an unredacted external URL. Browser storage is not required for this form path, so unavailable storage and an analytics permission of `unknown` or `rejected` cannot prevent submission.
+
+The browser may emit `sample_form_start` once on the first sample-form edit and `sample_application_submitted` once after the form provider confirms acceptance. Validation failures, HTTP errors, timeouts, network uncertainty, duplicate clicks, and reloads do not create a submission-success event. `qualified_sample_lead` is an offline/manual review outcome and has no browser dispatch helper.
+
+The owner/legal decision for treating GCLID/UTM as consent-independent operational provenance or consent-gated marketing data is still pending. Until the purpose, retention period, access, deletion handling, and cross-border/vendor terms are approved and recorded, Google Ads launch remains blocked. This implementation does not enable GA4, Google Ads tags, or conversion actions.

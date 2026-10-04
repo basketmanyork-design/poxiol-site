@@ -10,12 +10,15 @@ const client = read('lib/analytics/client.ts')
 const server = read('lib/analytics/server.ts')
 const layout = read('app/layout.tsx')
 const contact = read('components/forms/ContactForm.tsx')
+const procurement = read('components/forms/ProcurementContactForm.tsx')
 
 for (const eventName of [
   'page_view',
   'form_start',
   'form_submit',
   'generate_lead',
+  'sample_form_start',
+  'sample_application_submitted',
   'whatsapp_click',
   'email_click',
   'free_mockup_click',
@@ -55,6 +58,19 @@ for (const forbidden of ['fullName:', 'email:', 'phone:', 'company:', 'message:'
 }
 for (const helper of ['trackFormStepView', 'trackFormStepComplete', 'trackFormValidationError']) {
   if (!client.includes(`function ${helper}`)) throw new Error(`Client analytics is missing ${helper}`)
+}
+for (const helper of ['trackSampleFormStart', 'trackSampleApplicationSubmitted']) {
+  if (!client.includes(`function ${helper}`)) throw new Error(`Client analytics is missing ${helper}`)
+  if (!procurement.includes(helper)) throw new Error(`Sample form lifecycle is missing ${helper}`)
+}
+if (client.includes('trackQualifiedSampleLead') || procurement.includes('qualified_sample_lead')) {
+  throw new Error('The public browser must not expose a qualified sample lead event')
+}
+if (!procurement.includes("if(intent==='sample')trackSampleFormStart")) {
+  throw new Error('Sample form start must be conditional and tied to first buyer interaction')
+}
+if (!procurement.includes("if(intent==='sample')trackSampleApplicationSubmitted")) {
+  throw new Error('Sample application submitted must run only after a confirmed sample response')
 }
 
 console.log('analytics integration contract passed')

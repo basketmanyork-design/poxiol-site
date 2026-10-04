@@ -3,7 +3,7 @@
 import {useEffect,useRef,useState} from 'react'
 import {useInquiryContext} from '@/components/useInquiryContext'
 import {createLeadEventContext,type FormEventDetails,type LeadFormId} from '@/lib/analytics/core'
-import {trackFileSelect,trackFileUpload,trackFormStart,trackFormStepComplete,trackFormStepView,trackFormSubmit,trackFormValidationError,trackLead} from '@/lib/analytics/client'
+import {trackFileSelect,trackFileUpload,trackFormStart,trackFormStepComplete,trackFormStepView,trackFormSubmit,trackFormValidationError,trackLead,trackSampleApplicationSubmitted,trackSampleFormStart} from '@/lib/analytics/client'
 import {DELIVERY_COUNTRIES,PRODUCT_OPTIONS,createProcurementFormData,sampleQualificationFieldsFromProcurement,validateProcurementFields,type ProcurementFields,type ProductLine} from '@/lib/procurement-inquiry'
 import {PROCUREMENT_FORM_STEPS,errorsForProcurementStep,firstValidationSection,type ProcurementFormStep} from '@/lib/procurement-form-steps'
 import {ProjectInquiryRequestError,sendProjectInquiry} from '@/lib/project-inquiry-request'
@@ -63,7 +63,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     if (state === 'accepted' || state === 'sending') return
     setFields(current => ({...current,[key]:value}))
     setErrors(current => {const next={...current};delete next[String(key)];return next})
-    try {trackFormStart(analytics,progressive?analyticsDetails():undefined)} catch {}
+    try {trackFormStart(analytics,progressive?analyticsDetails():undefined);if(intent==='sample')trackSampleFormStart(analytics,analyticsDetails())} catch {}
   }
   function editLine(index:number,key:keyof ProductLine,value:string) {
     edit('products',fields.products.map((line,i) => i===index ? {...line,[key]:value} as ProductLine : line))
@@ -128,11 +128,11 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     try {
       if (!submissionKey.current) submissionKey.current=crypto.randomUUID()
       const endpoint=requireContactFormEndpoint(process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT)
-      const body=createProcurementFormData(fields,{intent,formType,sourcePage:window.location.pathname,originPage:context.source,entryProduct:entryProduct.current,submissionKey:submissionKey.current,preferredContactMethod:contactMode || undefined,attachments:file?[file]:[]})
+      const body=createProcurementFormData(fields,{intent,formType,sourcePage:window.location.pathname,originPage:context.source,entryProduct:entryProduct.current,submissionKey:submissionKey.current,preferredContactMethod:contactMode || undefined,attachments:file?[file]:[],adsAttribution:context.adsAttribution})
       const confirmation=await sendProjectInquiry(endpoint,body)
       setReference(confirmation.reference || '')
       setState('accepted')
-      try {const details=progressive?analyticsDetails():undefined;trackFormSubmit(analytics,submissionKey.current,details);trackLead(analytics,submissionKey.current,details);if(progressive&&file)trackFileUpload(analytics,submissionKey.current,details)} catch {}
+      try {const details=progressive?analyticsDetails():undefined;trackFormSubmit(analytics,submissionKey.current,details);trackLead(analytics,submissionKey.current,details);if(intent==='sample')trackSampleApplicationSubmitted(analytics,submissionKey.current,analyticsDetails());if(progressive&&file)trackFileUpload(analytics,submissionKey.current,details)} catch {}
     } catch(cause) {
       const uncertain=cause instanceof ProjectInquiryRequestError && cause.unconfirmed
       setState(uncertain?'unconfirmed':'idle')

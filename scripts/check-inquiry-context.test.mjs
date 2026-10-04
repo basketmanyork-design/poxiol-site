@@ -45,6 +45,23 @@ test('product CTA preserves intent, adds context and reaches the correct form', 
   assert.deepEqual(Object.fromEntries(url.searchParams), {product:'Basketball Uniforms',sport:'Basketball',source:'/products/basketball-uniforms/'})
   assert.equal(new URL(call('contextualInquiryHref', '/sample-order/', basketball), url).hash, '#sample-request-form')
 })
+test('product CTA retains only safe Google Ads campaign provenance', () => {
+  const url = new URL(call('contextualInquiryHref', '/sample-order/', {
+    ...basketball,
+    adsAttribution:{gclid:'AbC_123456789-xy.z',utm_source:'google',utm_medium:'cpc',utm_campaign:'buyer@example.com',landing_path:'/products/basketball-uniforms/'},
+  }), 'https://www.poxiol.com')
+  assert.equal(url.searchParams.get('gclid'),'AbC_123456789-xy.z')
+  assert.equal(url.searchParams.get('utm_source'),'google')
+  assert.equal(url.searchParams.get('utm_medium'),'cpc')
+  assert.equal(url.searchParams.has('utm_campaign'),false)
+  assert.equal(url.searchParams.has('landing_path'),false)
+})
+test('homepage CTA retains safe Google Ads provenance even without product context', () => {
+  const url = new URL(call('contextualInquiryHref','/sample-order/',{adsAttribution:{utm_source:'google',utm_medium:'cpc'}}),'https://www.poxiol.com')
+  assert.equal(url.searchParams.get('utm_source'),'google')
+  assert.equal(url.searchParams.get('utm_medium'),'cpc')
+  assert.equal(url.hash,'#sample-request-form')
+})
 test('an explicit solution or style beats generic page context', () => {
   const href = '/get-quote/?product=Soccer+Uniform+Solution&sport=Soccer&style=away-kit'
   const url = new URL(call('contextualInquiryHref', href, {product:'Teamwear Solutions',source:'/solutions/',sport:'',style:''}), 'https://www.poxiol.com')

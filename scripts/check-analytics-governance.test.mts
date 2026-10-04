@@ -188,6 +188,31 @@ test('one accepted callback emits each conversion event exactly once with stable
   assert.equal(JSON.stringify(calls).includes(submissionId), false)
 })
 
+test('sample funnel emits each public event once and remains a no-op without consent', () => {
+  const calls: unknown[][] = []
+  const storage = {getItem: () => null, setItem() {}, removeItem() {}}
+  const browser = {
+    __poxiolAnalyticsEnabled: true,
+    gtag: (...args: unknown[]) => calls.push(args),
+    location: {pathname: '/sample-order/', origin: 'https://www.poxiol.com'},
+    localStorage: storage,
+    sessionStorage: storage,
+  }
+  const client = loadAnalyticsClient(browser)
+  const context = createLeadEventContext('production_sample_form', 'Sample Application')
+  client.trackSampleFormStart(context)
+  client.trackSampleFormStart(context)
+  client.trackSampleApplicationSubmitted(context, 'sample-submission-1')
+  client.trackSampleApplicationSubmitted(context, 'sample-submission-1')
+  assert.deepEqual(calls.map(call => call[1]), ['sample_form_start', 'sample_application_submitted'])
+
+  browser.__poxiolAnalyticsEnabled = false
+  client.trackSampleFormStart({...context, form_id: 'homepage_project_inquiry'})
+  client.trackSampleApplicationSubmitted(context, 'sample-submission-rejected-consent')
+  assert.equal(calls.length, 2)
+  assert.equal(JSON.stringify(calls).includes('sample-submission'), false)
+})
+
 test('file selection is distinct from successful attachment upload', () => {
   const calls: unknown[][] = []
   const storage = {getItem: () => null, setItem() {}, removeItem() {}}

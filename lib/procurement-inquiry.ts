@@ -1,4 +1,5 @@
 import {publicSourcePath} from './inquiry-context.ts'
+import {appendGoogleAdsAttribution, type GoogleAdsAttribution} from './google-ads-attribution.ts'
 import type {V8ConversionIntent} from './v8/leads.ts'
 import {sampleQualificationOutcome, validateSampleQualification, type SampleQualificationFields} from './v8/sample-qualification.ts'
 
@@ -59,7 +60,7 @@ export function validateProcurementFields(fields: ProcurementFields, today: stri
   return errors
 }
 
-export function createProcurementFormData(fields: ProcurementFields, context: {intent: V8ConversionIntent; sourcePage: string; originPage?: string; entryProduct?: string; formType: string; submissionKey: string; preferredContactMethod?: 'email'|'whatsapp'; attachments?: File[]}) {
+export function createProcurementFormData(fields: ProcurementFields, context: {intent: V8ConversionIntent; sourcePage: string; originPage?: string; entryProduct?: string; formType: string; submissionKey: string; preferredContactMethod?: 'email'|'whatsapp'; attachments?: File[]; adsAttribution?: GoogleAdsAttribution}) {
   const date = new Date()
   const today = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`
   const errors = validateProcurementFields(fields,today)
@@ -73,6 +74,7 @@ export function createProcurementFormData(fields: ProcurementFields, context: {i
   data.set('sourcePage',publicSourcePath(context.sourcePage))
   if (context.originPage) data.set('originPage',publicSourcePath(context.originPage))
   if (context.entryProduct) data.set('entry_product_reference',context.entryProduct.slice(0,120))
+  appendGoogleAdsAttribution(data, context.adsAttribution)
   data.set('fullName',fields.fullName.trim())
   data.set('buyerRole',fields.buyerRole)
   data.set('company',fields.company.trim())

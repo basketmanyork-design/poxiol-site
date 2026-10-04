@@ -103,6 +103,13 @@ export function trackFormStart(context: LeadEventContext, details?: FormEventDet
   trackEvent('form_start', formParams(context, details))
 }
 
+export function trackSampleFormStart(context: LeadEventContext, details?: FormEventDetails) {
+  const key = `sample:${context.form_id}:${typeof window === 'undefined' ? '' : window.location.pathname}`
+  if (startedForms.has(key)) return
+  startedForms.add(key)
+  trackEvent('sample_form_start', formParams(context, details))
+}
+
 export function trackFormSubmit(context: LeadEventContext, submissionId: string, details?: FormEventDetails) {
   if (recordedSubmissions.has(`submit:${submissionId}`)) return
   recordedSubmissions.add(`submit:${submissionId}`)
@@ -113,6 +120,12 @@ export function trackLead(context: LeadEventContext, submissionId: string, detai
   if (recordedSubmissions.has(`lead:${submissionId}`)) return
   recordedSubmissions.add(`lead:${submissionId}`)
   trackEvent('generate_lead', formParams(context, details))
+}
+
+export function trackSampleApplicationSubmitted(context: LeadEventContext, submissionId: string, details?: FormEventDetails) {
+  if (recordedSubmissions.has(`sample-submitted:${submissionId}`)) return
+  recordedSubmissions.add(`sample-submitted:${submissionId}`)
+  trackEvent('sample_application_submitted', formParams(context, details))
 }
 
 export function trackFormStepView(context: LeadEventContext, step: FormStep, details?: FormEventDetails) {
