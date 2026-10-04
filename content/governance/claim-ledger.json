@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "ledgerId": "poxiol-public-claim-ledger",
-  "lastUpdated": "2026-09-02",
+  "lastUpdated": "2026-10-04",
   "claims": [
     {
       "id": "inquiry-information-purpose",
@@ -79,6 +79,28 @@
       "publishScope": ["/customization/private-label/"],
       "dynamicOrStatic": "STATIC",
       "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-09-02"}
+    },
+    {
+      "id": "flexible-order-quantity-review",
+      "claim": "Flexible project-specific order quantity",
+      "source": "Owner-approved POXIOL US Google Ads pilot design",
+      "sourceDate": "2026-10-04",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Flexible Custom Team Uniforms.",
+      "publishScope": ["/sample-order/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-10-04"}
+    },
+    {
+      "id": "qualified-free-sample-review",
+      "claim": "Qualified one-sample application with paid international shipping and manual review",
+      "source": "Owner-approved POXIOL US Google Ads pilot design",
+      "sourceDate": "2026-10-04",
+      "evidenceType": "OWNER_DIRECTION",
+      "approvedWording": "Qualified Teams, Clubs, Schools, Brands and Distributors Can Apply for One Free Sample. International Shipping Applies. Subject to Review.",
+      "publishScope": ["/sample-order/"],
+      "dynamicOrStatic": "STATIC",
+      "ownerApproval": {"status": "APPROVED", "approvedBy": "POXIOL owner", "approvedAt": "2026-10-04"}
     }
   ]
 }

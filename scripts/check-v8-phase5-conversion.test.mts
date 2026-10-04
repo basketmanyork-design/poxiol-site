@@ -27,6 +27,10 @@ const sampleOrderFaqQuestions = [
   'What should I review when the sample is received?',
   'What happens after the sample is approved?',
 ] as const
+const approvedSampleProgramClaim = 'Flexible Custom Team Uniforms. Qualified Teams, Clubs, Schools, Brands and Distributors Can Apply for One Free Sample. International Shipping Applies. Subject to Review.'
+const unsafeSampleClaimPattern = /2\s*[-–]\s*3\s*day production|3\s*[-–]\s*7\s*day delivery|sample fee credited over 100 sets|MOQ\s*1\s*Set|free shipping/i
+const unconditionalSampleFixturePattern = /"Free sample"|"(?:description|body)":"[^"]*\bfree sample\b/i
+const withoutApprovedSampleClaim = (value: string) => value.split(approvedSampleProgramClaim).join('')
 
 assert.deepEqual(V8_CONVERSION_ENTRIES.map((entry) => [entry.intent, entry.path]), [
   ['project', '/'],
@@ -37,6 +41,7 @@ assert.deepEqual(V8_CONVERSION_ENTRIES.map((entry) => [entry.intent, entry.path]
 ])
 assert.equal(new Set(V8_CONVERSION_ENTRIES.map((entry) => entry.purpose)).size, 5, 'Conversion pages must keep separate buyer intents.')
 assert.equal(new Set(V8_CONVERSION_ENTRIES.map((entry) => entry.ctaLabel)).size, 5, 'Each conversion intent needs a specific submission CTA.')
+assert.equal(V8_CONVERSION_ENTRIES.find((entry) => entry.intent === 'sample')?.subtitle, approvedSampleProgramClaim, 'The sample entry must use the exact approved sample-program claim.')
 
 const freeMockupSource = read('app/free-mockup/page.tsx')
 assert.match(freeMockupSource, /FREE_MOCKUP_FAQS/, 'Free Mockup must use its page-specific shared FAQ data.')
@@ -90,12 +95,19 @@ assert.match(sampleOrderSource, /withSampleOrderFaqs\(page, SAMPLE_ORDER_FAQS\)/
 assert.deepEqual(SAMPLE_ORDER_FAQS.map((faq) => faq.question), [...sampleOrderFaqQuestions])
 assert.doesNotMatch(JSON.stringify(SAMPLE_ORDER_FAQS), /\b(?:\d+\s*(?:hours?|days?)|MOQ\s*\d+|guarantee(?:d|s)?|guaranteed\s+(?:shipping|approval|availability)|refund|replacement)\b/i, 'Sample Order FAQs must not publish fixed timing, MOQ, shipping, approval, availability, refund or replacement promises.')
 const pageWithSampleOrderFaqs = withSampleOrderFaqs({sections: [
-  {type: 'richText', title: 'Keep this sample section', body: 'Sample Production: 2-3 Days After Mockup Confirmation. Sample shipping: 3-7 Business Days depending on country.'},
+  {type: 'richText', title: 'Keep this sample section', body: 'Free sample with free shipping. Sample fee credited over 100 sets. MOQ 1 Set. 2–3 day production and 3–7 day delivery.'},
+  {type: 'evidenceGrid', title: 'Unsafe facts', facts: ['Free sample', 'Free shipping', 'MOQ 1 Set']},
+  {type: 'stats', title: 'Unsafe stats', stats: [{value: '2–3 day production', label: 'Production'}, {value: '3–7 day delivery', label: 'Delivery'}]},
+  {type: 'processSteps', title: 'Unsafe steps', steps: [{title: 'Credit', description: 'Sample fee credited over 100 sets.'}]},
+  {type: 'specifications', title: 'Unsafe specifications', specifications: [{label: 'MOQ', value: 'MOQ 1 Set'}]},
   {type: 'faq', title: 'CMS Sample FAQ', faqs: [{question: 'Old sample question', answer: 'Old sample answer'}]},
-], description: 'Start a 1-piece custom jersey sample order.', seo: {description: 'Sample production: 2-3 working days after mockup approval.'}} as CmsPage, SAMPLE_ORDER_FAQS)
+], description: 'Start a 1-piece custom jersey sample order with a free sample.', seo: {description: 'Sample production: 2-3 working days after mockup approval. Free shipping.'}} as CmsPage, SAMPLE_ORDER_FAQS)
 assert.deepEqual(pageWithSampleOrderFaqs.sections.filter((section) => section.type === 'faq').flatMap((section) => section.faqs || []), SAMPLE_ORDER_FAQS, 'The approved Sample Order FAQ set must replace CMS FAQ content without duplication.')
 assert.ok(pageWithSampleOrderFaqs.sections.some((section) => section.title === 'Keep this sample section'), 'Non-FAQ Sample Order CMS sections must remain intact.')
-assert.doesNotMatch(JSON.stringify(pageWithSampleOrderFaqs), /\b(?:\d+\s*(?:working\s*|business\s*)?days?|1[-\s]piece)\b/i, 'Sample Order must normalize fixed timing and fixed sample quantity claims from CMS content.')
+const normalizedSamplePageJson = JSON.stringify(pageWithSampleOrderFaqs)
+assert.match(normalizedSamplePageJson, new RegExp(approvedSampleProgramClaim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'The normalized Sample Order page must publish the exact approved eligibility and shipping claim.')
+assert.doesNotMatch(withoutApprovedSampleClaim(normalizedSamplePageJson), unsafeSampleClaimPattern, 'Sample Order must normalize fixed timing, threshold, MOQ, unconditional free-sample and free-shipping claims from CMS content.')
+assert.doesNotMatch(withoutApprovedSampleClaim(normalizedSamplePageJson), unconditionalSampleFixturePattern, 'Sample Order CMS copy must not retain an unconditional free-sample statement.')
 
 if (outputMode) {
   const requiredFields = [
@@ -185,6 +197,8 @@ if (outputMode) {
   assert.deepEqual(getQuoteFaqSchemas[0].mainEntity.map((item: {name: string; acceptedAnswer: {text: string}}) => ({question: item.name, answer: item.acceptedAnswer.text})), visibleGetQuoteFaqs, 'Get Quote FAQPage schema must match visible questions, answers and order.')
 
   const sampleOrderHtml = read('out/sample-order/index.html')
+  const visibleSampleOrderHtml = sampleOrderHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+  const visibleSampleOrderText = visibleSampleOrderHtml.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ')
   const visibleSampleOrderFaqs = [...pageContentHtml(sampleOrderHtml).matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
     .map((match) => ({
       question: match[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(),
@@ -196,7 +210,8 @@ if (outputMode) {
   assert.deepEqual(visibleSampleOrderFaqs, SAMPLE_ORDER_FAQS.map(({question, answer}) => ({question, answer})), 'Sample Order must show exactly its four page-specific FAQ questions and answers.')
   assert.equal(sampleOrderFaqSchemas.length, 1, 'Sample Order must publish exactly one FAQPage schema.')
   assert.deepEqual(sampleOrderFaqSchemas[0].mainEntity.map((item: {name: string; acceptedAnswer: {text: string}}) => ({question: item.name, answer: item.acceptedAnswer.text})), visibleSampleOrderFaqs, 'Sample Order FAQPage schema must match visible questions, answers and order.')
-  assert.doesNotMatch(sampleOrderHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ''), /\b\d+\s*(?:working\s*|business\s*)?days?\b/i, 'Sample Order output must not publish fixed sample, production or shipping days.')
+  assert.ok(visibleSampleOrderText.includes(approvedSampleProgramClaim), 'Sample Order output must publish the exact approved eligibility and shipping claim.')
+  assert.doesNotMatch(withoutApprovedSampleClaim(visibleSampleOrderText), unsafeSampleClaimPattern, 'Sample Order output must not publish unsafe sample timing, threshold, MOQ, unconditional free-sample or free-shipping claims.')
 }
 
 console.log(`POXIOL V8 Phase 5 ${outputMode ? 'output' : 'source'} checks passed.`)

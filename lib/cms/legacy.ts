@@ -6,6 +6,7 @@ import {buyingGuides} from '@/lib/guides'
 import {resourcePages} from '@/lib/resources-data'
 import {sportsPages} from '@/lib/sports-pages'
 import {projectPlanningSeo} from '@/lib/project-planning-seo'
+import {getSampleProgramClaimWording} from '@/lib/governance/claims'
 import type {
   CmsArticle,
   CmsFaqGroup,
@@ -142,6 +143,7 @@ function pageSections(key: string, title: string): CmsPageSection[] {
       {type: 'faq', eyebrow: 'Expert Answers', title: 'Mockup Sourcing FAQ', faqs: [{question: 'How long does a POXIOL free mockup take?', answer: 'Most complete requests can receive a design preview after the project requirements are reviewed.'}, {question: 'Do I need production-ready artwork?', answer: 'No. A clear logo file and reference colors are enough to start.'}]},
     ],
     'sample-order': [
+      {type: 'richText', eyebrow: 'Sample eligibility', title: 'Flexible Sample Support for Qualified Organizations', body: getSampleProgramClaimWording()},
       {type: 'processSteps', eyebrow: 'Sample support', title: 'Request Physical Sample', steps: [{title: 'Confirm mockup', description: 'Approve visual direction before sampling.'}, {title: 'Choose fabric', description: 'Select sport-appropriate material and construction.'}, {title: 'Review sample', description: 'Check fit, printing, stitching and packaging direction.'}, {title: 'Plan bulk order', description: 'Move into final pricing and production schedule.'}]},
       {type: 'faq', eyebrow: 'Buying Guide', title: 'Teamwear Sampling FAQ', faqs: [{question: 'Can I order one custom sample?', answer: 'Yes. POXIOL supports sample orders for selected custom teamwear projects.'}, {question: 'What should I check on the sample?', answer: 'Review fabric, fit, print clarity, logo placement, size and sewing details.'}]},
     ],

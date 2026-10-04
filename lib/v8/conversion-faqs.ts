@@ -1,4 +1,5 @@
 import type {CmsFaqItem, CmsPage, CmsPageSection} from '../cms/types.ts'
+import {getSampleProgramClaimWording} from '../governance/claims.ts'
 
 export const FREE_MOCKUP_FAQS = [
   {
@@ -41,7 +42,7 @@ export const GET_QUOTE_FAQS = [
 export const SAMPLE_ORDER_FAQS = [
   {
     question: 'What information is needed for a sample request?',
-    answer: 'Share the product or sport, intended use, customization requirements, size information, estimated bulk quantity, target date and shipping destination. Sample requirements are reviewed according to the project before preparation is discussed.',
+    answer: `${getSampleProgramClaimWording()} Share the product or sport, intended use, customization requirements, size information, estimated quantity, target date and shipping destination for review.`,
   },
   {
     question: 'Can I provide my logo, artwork or reference files for the sample?',
@@ -87,10 +88,21 @@ export function withGetQuoteFaqs(page: CmsPage, faqs: readonly CmsFaqItem[]): Cm
 }
 
 export function withSampleOrderFaqs(page: CmsPage, faqs: readonly CmsFaqItem[]): CmsPage {
+  const approvedClaim = getSampleProgramClaimWording()
+  const approvedClaimToken = '__POXIOL_APPROVED_SAMPLE_PROGRAM_CLAIM__'
   const normalizeSampleOrderText = (value: string) => value
+    .split(approvedClaim).join(approvedClaimToken)
     .replace(/Sample Production:\s*\d+\s*[-–]\s*\d+\s*(?:working\s*)?Days? After Mockup (?:Confirmation|Approval)\.?/gi, 'Sample timing is confirmed after the project requirements are reviewed.')
     .replace(/Sample shipping:\s*\d+\s*[-–]\s*\d+\s*Business Days? depending on country\.?/gi, 'Sample shipping timing is confirmed after the destination and project requirements are reviewed.')
+    .replace(/\bfree sample with free shipping\b/gi, 'sample eligibility and international shipping confirmed after review')
+    .replace(/\b\d+\s*[-–]\s*\d+\s*day production\b/gi, 'sample production timing confirmed after project review')
+    .replace(/\b\d+\s*[-–]\s*\d+\s*day delivery\b/gi, 'sample delivery timing confirmed after destination review')
+    .replace(/\bsample fee credited over \d+ sets\b/gi, 'sample terms confirmed after project review')
+    .replace(/\bMOQ\s*1\s*Set\b/gi, 'order quantity confirmed for the project')
+    .replace(/\bfree shipping\b/gi, 'international shipping costs apply')
+    .replace(/\bfree sample\b/gi, 'sample eligibility subject to review')
     .replace(/\b(?:a\s+)?1[-\s]piece custom jersey sample order\b/gi, 'a custom jersey sample order')
+    .split(approvedClaimToken).join(approvedClaim)
   const pageWithSafeClaims: CmsPage = {
     ...page,
     description: normalizeSampleOrderText(page.description),

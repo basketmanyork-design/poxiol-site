@@ -8,6 +8,8 @@ export type ApprovedClaimId =
   | 'decoration-placement-review'
   | 'packaging-review'
   | 'private-label-review'
+  | 'flexible-order-quantity-review'
+  | 'qualified-free-sample-review'
 
 type ClaimRecord = {
   id: string
@@ -25,4 +27,11 @@ export function getApprovedClaimWording(id: ApprovedClaimId): string {
   const wording = approvedClaims.get(id)
   if (!wording) throw new Error(`Approved claim not found: ${id}`)
   return wording
+}
+
+export function getSampleProgramClaimWording(): string {
+  return [
+    getApprovedClaimWording('flexible-order-quantity-review'),
+    getApprovedClaimWording('qualified-free-sample-review'),
+  ].join(' ')
 }

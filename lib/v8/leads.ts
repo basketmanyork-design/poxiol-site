@@ -148,7 +148,7 @@ export const V8_CONVERSION_ENTRIES = [
     formAnchorId: 'sample-request-form',
     purpose: 'High-intent sample approval before bulk production.',
     formTitle: 'Apply for a Free Sample',
-    subtitle: 'Tell us about your team or business order. We’ll review eligibility and confirm sample options and shipping before dispatch.',
+    subtitle: 'Flexible Custom Team Uniforms. Qualified Teams, Clubs, Schools, Brands and Distributors Can Apply for One Free Sample. International Shipping Applies. Subject to Review.',
     ctaLabel: 'Submit Sample Request',
     successUrl: '/sample-request-received/',
   },
