@@ -9,9 +9,9 @@ export const PROCUREMENT_FORM_STEPS = [
 export type ProcurementFormStep = (typeof PROCUREMENT_FORM_STEPS)[number]['id']
 
 const fixedKeys: Record<ProcurementFormStep, ReadonlySet<string>> = {
-  products: new Set(['products', 'additionalDetails', 'file']),
-  delivery: new Set(['requiredDeliveryDate', 'deliveryCountry', 'deliveryPostalCode']),
-  contact: new Set(['fullName', 'contact', 'email', 'whatsapp']),
+  products: new Set(['products', 'additionalDetails', 'file', 'businessUseConfirmation']),
+  delivery: new Set(['requiredDeliveryDate', 'deliveryCountry', 'deliveryPostalCode', 'deliveryState', 'deliveryCity', 'internationalShippingConsent']),
+  contact: new Set(['fullName', 'company', 'organizationType', 'organizationUrl', 'contact', 'email', 'whatsapp']),
 }
 
 function stepForError(key: string): ProcurementFormStep | undefined {

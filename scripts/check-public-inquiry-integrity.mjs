@@ -10,6 +10,8 @@ const contact = readFileSync('components/forms/ContactForm.tsx', 'utf8')
 const leadPipeline = readFileSync('lib/v8/leads.ts', 'utf8')
 const analyticsClient = readFileSync('lib/analytics/client.ts', 'utf8')
 const analyticsCore = readFileSync('lib/analytics/core.ts', 'utf8')
+const procurementForm = readFileSync('components/forms/ProcurementContactForm.tsx', 'utf8')
+const procurementPipeline = readFileSync('lib/procurement-inquiry.ts', 'utf8')
 
 function renderedContactFileNames() {
   const slots = []
@@ -83,5 +85,11 @@ for (const contract of [
 for (const utmField of ['utm_source', 'utm_medium', 'utm_campaign']) {
   assert.ok(analyticsClient.includes(utmField) || analyticsCore.includes(utmField), `UTM contract missing: ${utmField}`)
 }
+
+for (const sampleField of ['organization_type', 'organization_url', 'delivery_state', 'delivery_city', 'international_shipping_consent', 'business_use_confirmation']) {
+  assert.ok(procurementForm.includes(`name="${sampleField}"`), `Sample qualification control missing: ${sampleField}`)
+  assert.ok(procurementPipeline.includes(`data.set('${sampleField}'`), `Sample qualification serialization missing: ${sampleField}`)
+}
+assert.ok(procurementPipeline.includes("data.set('sample_qualification_status', sampleQualificationOutcome(sampleFields))"), 'Sample submission must remain REVIEW_REQUIRED rather than becoming browser-qualified')
 
 console.log('public inquiry integrity contracts passed')

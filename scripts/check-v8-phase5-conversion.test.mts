@@ -88,6 +88,12 @@ assert.match(procurementFormSource, /function backStep\(/, 'The form must suppor
 for (const tracker of ['trackFormStepView', 'trackFormStepComplete', 'trackFormValidationError', 'trackFileSelect', 'trackFileUpload']) {
   assert.match(procurementFormSource, new RegExp(`\\b${tracker}\\b`), `The form must wire ${tracker}.`)
 }
+for (const sampleField of ['organization_type', 'organization_url', 'delivery_state', 'delivery_city', 'international_shipping_consent', 'business_use_confirmation']) {
+  assert.match(procurementFormSource, new RegExp(`name=["']${sampleField}["']`), `The sample form must render ${sampleField}.`)
+}
+assert.match(procurementFormSource, /intent===['"]sample['"]/, 'Sample qualification controls must remain conditional on sample intent.')
+assert.match(procurementFormSource, /international shipping charges apply to the applicant/i, 'The sample form must state that international shipping charges apply to the applicant.')
+assert.match(procurementFormSource, /not a personal single-piece retail order/i, 'The sample form must exclude personal single-piece retail use.')
 
 const sampleOrderSource = read('app/sample-order/page.tsx')
 assert.match(sampleOrderSource, /SAMPLE_ORDER_FAQS/, 'Sample Order must use its page-specific shared FAQ data.')
@@ -138,6 +144,8 @@ if (outputMode) {
       ? ['message', 'email', 'fullName']
       : entry.intent === 'quote'
         ? ['buyerRole', 'product-0', 'quantity-0']
+        : entry.intent === 'sample'
+          ? [...requiredFields, 'company', 'organization_type', 'organization_url', 'delivery_state', 'delivery_city', 'international_shipping_consent', 'business_use_confirmation']
         : requiredFields
     for (const field of entryFields) {
       assert.match(visibleHtml, new RegExp(`<(?:input|select|textarea)\\b[^>]*name=["']${field}["']`, 'i'), `${entry.path} is missing ${field}.`)

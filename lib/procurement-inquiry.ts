@@ -1,5 +1,6 @@
 import {publicSourcePath} from './inquiry-context.ts'
 import type {V8ConversionIntent} from './v8/leads.ts'
+import {sampleQualificationOutcome, validateSampleQualification, type SampleQualificationFields} from './v8/sample-qualification.ts'
 
 export const PRODUCT_OPTIONS = ['Soccer Uniforms','Basketball Uniforms','Baseball Uniforms','Training Sets','Running & Track Uniforms','Warm-Up Wear','Other'] as const
 export type ProductLine = {product: string; quantity: string; unit: 'pieces' | 'sets'}
@@ -7,6 +8,23 @@ export type ProcurementFields = {
   fullName: string; buyerRole: string; company: string; email: string; whatsapp: string;
   products: ProductLine[]; requiredDeliveryDate: string; deliveryCountry: string;
   deliveryPostalCode: string; postalNotApplicable: boolean; additionalDetails: string;
+  organizationType: SampleQualificationFields['organizationType']; organizationUrl: string;
+  deliveryState: string; deliveryCity: string; internationalShippingConsent: boolean;
+  businessUseConfirmation: boolean;
+}
+
+export function sampleQualificationFieldsFromProcurement(fields: ProcurementFields): SampleQualificationFields {
+  return {
+    organizationName: fields.company,
+    organizationType: fields.organizationType,
+    organizationUrl: fields.organizationUrl,
+    deliveryCountry: fields.deliveryCountry,
+    deliveryState: fields.deliveryState,
+    deliveryCity: fields.deliveryCity,
+    internationalShippingConsent: fields.internationalShippingConsent,
+    businessUseConfirmation: fields.businessUseConfirmation,
+    quantity: fields.products[0]?.quantity || '',
+  }
 }
 
 const isoCountryCodes = 'AD AE AF AG AI AL AM AO AQ AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BV BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GS GT GU GW GY HK HM HN HR HT HU ID IE IL IM IN IO IQ IR IS IT JE JM JO JP KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TF TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG UM US UY UZ VA VC VE VG VI VN VU WF WS YE YT ZA ZM ZW'.split(' ')
@@ -45,6 +63,7 @@ export function createProcurementFormData(fields: ProcurementFields, context: {i
   const date = new Date()
   const today = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`
   const errors = validateProcurementFields(fields,today)
+  if (context.intent === 'sample') Object.assign(errors, validateSampleQualification(sampleQualificationFieldsFromProcurement(fields)))
   if (Object.keys(errors).length) throw new Error(Object.values(errors)[0])
   const data = new FormData()
   data.set('_gotcha','')
@@ -67,6 +86,16 @@ export function createProcurementFormData(fields: ProcurementFields, context: {i
   data.set('delivery_country',DELIVERY_COUNTRIES.find(item=>item.code===fields.deliveryCountry)!.name)
   data.set('postal_code_status',fields.postalNotApplicable ? 'not_applicable' : 'provided')
   data.set('delivery_postal_code',fields.postalNotApplicable ? '' : fields.deliveryPostalCode.trim())
+  if (context.intent === 'sample') {
+    const sampleFields = sampleQualificationFieldsFromProcurement(fields)
+    data.set('organization_type', sampleFields.organizationType)
+    data.set('organization_url', sampleFields.organizationUrl.trim())
+    data.set('delivery_state', sampleFields.deliveryState.trim())
+    data.set('delivery_city', sampleFields.deliveryCity.trim())
+    data.set('international_shipping_consent', sampleFields.internationalShippingConsent ? 'accepted' : '')
+    data.set('business_use_confirmation', sampleFields.businessUseConfirmation ? 'confirmed' : '')
+    data.set('sample_qualification_status', sampleQualificationOutcome(sampleFields))
+  }
   if (fields.additionalDetails.trim()) data.set('additional_details',fields.additionalDetails.trim())
   const attachments=context.attachments || []
   attachments.forEach((file,index)=>data.append(`project_file_${index+1}`,file))
