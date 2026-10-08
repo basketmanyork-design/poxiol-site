@@ -59,6 +59,29 @@ test('the legacy Get Quote heading becomes the approved buyer-readable H1', () =
   assert.equal(normalizeBuyerFacingClaim('Factory Direct Quote.'), 'Request a Custom Teamwear Quote')
 })
 
+test('the Australia soccer FAQ keeps procurement guidance and structured-data source claim-safe', () => {
+  const page = pseoPages.find((candidate) => candidate.slug === 'soccer-jersey-supplier-australia')
+
+  assert.ok(page, 'Australia soccer pSEO data must exist')
+  assert.deepEqual(page.faqs, [
+    {
+      question: 'How is shipping to Australia planned?',
+      answer: 'Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements.',
+    },
+    {
+      question: 'How should sponsor logos be planned for NPL and other Australian clubs?',
+      answer: 'Provide authorized logo files, placement requirements and any competition rules with the project brief. Logo count, artwork quality and placement are reviewed before the design is approved.',
+    },
+    {
+      question: 'How should soccer kits be planned for warm Australian conditions?',
+      answer: 'Share the playing conditions, garment requirements and fabric preferences in the project brief. Fabric and construction options should be reviewed through the sample before bulk production is approved.',
+    },
+  ])
+
+  const faqClaims = page.faqs.flatMap((faq) => [faq.question, faq.answer]).join(' ')
+  assert.doesNotMatch(faqClaims, /\bunlimited\b|professional, durable finish|specifically engineered|suitable for hot Australian summers/i)
+})
+
 test('public buyer copy does not present unsupported ownership, scale, regional or customer claims', () => {
   const runtimeSources = [
     'lib/cms/legacy.ts',

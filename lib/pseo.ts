@@ -124,8 +124,8 @@ export const pseoPages: PSEOPage[] = [
     publisher: POXIOL_PUBLISHER,
     faqs: [
       { question: "How is shipping to Australia planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
-      { question: "Can you handle sponsor logos for NPL clubs?", answer: "Yes, we can integrate unlimited sponsor logos into the sublimated design for a professional, durable finish." },
-      { question: "Are your soccer kits suitable for hot Australian summers?", answer: "Yes, we use lightweight, breathable Interlock and Mesh fabrics specifically engineered for performance in warm conditions." },
+      { question: "How should sponsor logos be planned for NPL and other Australian clubs?", answer: "Provide authorized logo files, placement requirements and any competition rules with the project brief. Logo count, artwork quality and placement are reviewed before the design is approved." },
+      { question: "How should soccer kits be planned for warm Australian conditions?", answer: "Share the playing conditions, garment requirements and fabric preferences in the project brief. Fabric and construction options should be reviewed through the sample before bulk production is approved." },
     ],
   },
   {
