@@ -45,9 +45,10 @@ for (const owner of owners) {
 for (const component of ['V8Hero', 'BuyerProblems', 'SolutionCards', 'DesignJourney', 'SampleApproval', 'ManufacturingTimeline', 'QualityControl', 'FAQSection', 'FinalCTA']) {
   assert.match(compositionSource, new RegExp('<' + component + '\\b'), 'Core Sport composition must reuse ' + component + '.')
 }
-for (const schema of ['ProductSchema', 'ServiceSchema', 'FAQSchema']) {
+for (const schema of ['BreadcrumbSchema', 'ServiceSchema', 'FAQSchema']) {
   assert.match(compositionSource, new RegExp(schema), 'Core Sport composition must output ' + schema + '.')
 }
+assert.doesNotMatch(compositionSource, /\bProductSchema\b/, 'Quote-only Core Sports pages must not declare Product rich-result eligibility.')
 assert.match(compositionSource, /schema=\{false\}/, 'Visible FAQ and FAQPage JSON-LD must share the same data.')
 
 const soccerSource = coreSource.slice(coreSource.indexOf("id: 'soccer'"), coreSource.indexOf("id: 'baseball'"))
@@ -142,13 +143,16 @@ if (outputMode) {
         const roots = Array.isArray(parsed) ? parsed : [parsed]
         return roots.flatMap((rootValue) => [rootValue, ...(Array.isArray(rootValue?.['@graph']) ? rootValue['@graph'] : [])])
       })
-    const requiredSchemaTypes = owner.id === 'basketball'
-      ? ['BreadcrumbList', 'Service', 'FAQPage']
-      : ['Product', 'Service', 'FAQPage']
+    const requiredSchemaTypes = ['BreadcrumbList', 'Service', 'FAQPage']
     for (const type of requiredSchemaTypes) assert.ok(schemas.some((schema) => schema['@type'] === type), owner.route + ' is missing ' + type + ' schema.')
-    if (owner.id === 'basketball') {
-      assert.equal(schemas.some((schema) => schema['@type'] === 'Product'), false, owner.route + ' must not claim Product rich-result eligibility.')
-    }
+    assert.equal(schemas.filter((schema) => schema['@type'] === 'Product').length, 0, owner.route + ' must not claim Product rich-result eligibility.')
+    assert.equal(schemas.filter((schema) => schema['@type'] === 'BreadcrumbList').length, 1, owner.route + ' must output exactly one BreadcrumbList.')
+    const breadcrumb = schemas.find((schema) => schema['@type'] === 'BreadcrumbList')
+    assert.deepEqual(breadcrumb.itemListElement, [
+      {'@type': 'ListItem', position: 1, name: 'Home', item: baseUrl + '/'},
+      {'@type': 'ListItem', position: 2, name: 'Products', item: baseUrl + '/products/'},
+      {'@type': 'ListItem', position: 3, name: owner.h1, item: baseUrl + owner.route},
+    ], owner.route + ' breadcrumb hierarchy changed.')
     const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage')
     const faqSections = [...pageContentHtml(visibleHtml).matchAll(/<section\b[^>]*aria-labelledby="v8-faq-title"[^>]*>([\s\S]*?)<\/section>/gi)]
     assert.equal(faqSections.length, 1, owner.route + ' must contain exactly one labelled FAQ section.')

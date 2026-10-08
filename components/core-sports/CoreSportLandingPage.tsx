@@ -1,7 +1,7 @@
 import {ContentViewTracker} from '@/components/analytics/ContentViewTracker'
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice'
 import {ProductGeoSections} from '@/components/sections/GeoV1Sections'
-import {FAQSchema, ProductSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
+import {BreadcrumbSchema, FAQSchema, ServiceSchema} from '@/components/seo/GEOStructuredData'
 import {Footer, Header} from '@/components/ui'
 import {
   CORE_SPORT_JOURNEY,
@@ -37,7 +37,11 @@ export function CoreSportLandingPage({sportId}: {sportId: Exclude<CoreSportId, '
   return (
     <main className="bg-white text-neutral-950">
       <ContentViewTracker event="product_category_view" params={{product_category: sport.canonicalPath, sport: sport.id}} />
-      <ProductSchema name={sport.hero.title} description={sport.seoDescription} url={fullUrl} image={visualization.publicPath} />
+      <BreadcrumbSchema items={[
+        {name: 'Home', url: 'https://www.poxiol.com/'},
+        {name: 'Products', url: 'https://www.poxiol.com/products/'},
+        {name: sport.hero.title, url: fullUrl},
+      ]} />
       <ServiceSchema name={'Custom ' + sport.label + ' Uniform Manufacturing'} description={sport.seoDescription} url={fullUrl} />
       <FAQSchema faqs={schemaFaqs} />
 
