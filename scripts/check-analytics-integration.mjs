@@ -11,6 +11,7 @@ const server = read('lib/analytics/server.ts')
 const layout = read('app/layout.tsx')
 const contact = read('components/forms/ContactForm.tsx')
 const procurement = read('components/forms/ProcurementContactForm.tsx')
+const projectPage = read('app/projects/[slug]/page.tsx')
 
 for (const eventName of [
   'page_view',
@@ -31,7 +32,6 @@ for (const eventName of [
   'alibaba_click',
   'product_view',
   'product_category_view',
-  'case_study_view',
   'guide_view',
   'qualify_lead',
   'close_convert_lead',
@@ -71,6 +71,9 @@ if (!procurement.includes("if(intent==='sample')trackSampleFormStart")) {
 }
 if (!procurement.includes("if(intent==='sample')trackSampleApplicationSubmitted")) {
   throw new Error('Sample application submitted must run only after a confirmed sample response')
+}
+if (projectPage.includes('case_study_view') || /content_type\s*:\s*["']case-study["']/.test(projectPage)) {
+  throw new Error('Planning Scenario pages must not emit Case Study analytics semantics')
 }
 
 console.log('analytics integration contract passed')

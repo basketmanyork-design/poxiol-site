@@ -4,7 +4,6 @@ import Link from "next/link";
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import { Header, Footer, PrimaryButton } from "@/components/ui";
 import { getProject, getProjects } from "@/lib/sanity/content";
-import { ContentViewTracker } from "@/components/analytics/ContentViewTracker";
 import {publicSectionDecision} from '@/lib/release/publication-policy';
 
 type Props = { params: { slug: string } };
@@ -30,7 +29,6 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
-      <ContentViewTracker event="case_study_view" params={{content_type: "case-study", content_slug: project.slug}} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`${baseUrl}/`},{"@type":"ListItem",position:2,name:"Projects",item:`${baseUrl}/projects/`},{"@type":"ListItem",position:3,name:project.title,item:`${baseUrl}/projects/${project.slug}/`}]})}} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">

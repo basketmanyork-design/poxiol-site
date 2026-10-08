@@ -17,7 +17,6 @@ export type AnalyticsEventName =
   | 'alibaba_click'
   | 'product_view'
   | 'product_category_view'
-  | 'case_study_view'
   | 'guide_view'
   | 'qualify_lead'
   | 'close_convert_lead'

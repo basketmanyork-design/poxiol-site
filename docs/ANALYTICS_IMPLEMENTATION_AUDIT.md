@@ -36,10 +36,11 @@ Implemented events:
 - `alibaba_click`
 - `product_view`
 - `product_category_view`
-- `case_study_view`
 - `guide_view`
 
 `form_submit` and `generate_lead` fire only after the form endpoint returns success. Duplicate page views and duplicate submission events are suppressed. Event payloads use a strict allowlist and reject values that resemble email addresses or phone numbers. Names, emails, phone numbers, companies, messages, uploaded file names and file contents are never sent to analytics.
+
+The five claim-limited Planning Scenario detail pages intentionally emit no separate content-view event. Their visits remain measurable through the centrally governed `page_view` event and its `page_path`; they are not classified as case studies.
 
 ## Attribution
 
@@ -52,7 +53,7 @@ First-touch UTM attribution is stored in local storage and session-touch attribu
 | Analytics Settings schema | Deployed to the Sanity Schema Registry |
 | Centralized GA4 loader | Implemented, disabled until configured |
 | Form and CTA tracking | Implemented |
-| Content-view tracking | Implemented |
+| Content-view tracking | Implemented for governed content types; Planning Scenario pages use `page_view + page_path` only |
 | UTM builder | Implemented in authenticated Studio |
 | GA4 live data | Not configured; real Measurement ID is unavailable |
 | GA4 Data API dashboard | Not configured; server-side Google credentials are unavailable |
