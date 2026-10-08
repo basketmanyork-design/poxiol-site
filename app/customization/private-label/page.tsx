@@ -6,6 +6,7 @@ import { contextualInquiryHref } from "@/lib/inquiry-context";
 export const metadata: Metadata = {
   title: "Private Label Teamwear Manufacturing | POXIOL OEM",
   description: "Review label, hangtag, care-information, and packaging requirements for private-label custom teamwear projects.",
+  alternates: { canonical: "https://www.poxiol.com/customization/private-label/" },
 };
 
 export default function PrivateLabelPage() {
@@ -14,7 +15,7 @@ export default function PrivateLabelPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading eyebrow="OEM Support" title="Private Label Requirements" subtitle={getApprovedClaimWording("private-label-review")} dark center />
+          <SectionHeading eyebrow="OEM Support" title="Private Label Requirements" subtitle={getApprovedClaimWording("private-label-review")} dark center level="h1" />
           
           <div className="mt-20 grid gap-8 text-left md:grid-cols-3">
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8">

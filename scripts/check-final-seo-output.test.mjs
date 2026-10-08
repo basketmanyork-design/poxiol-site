@@ -18,6 +18,34 @@ function flattenSchemaNodes(value) {
   return [value, ...flattenSchemaNodes(value['@graph'] ?? [])]
 }
 
+test('indexed non-sitemap customization and guides pages keep exact headings, canonicals and buyer paths', () => {
+  const sitemap = readFileSync('out/sitemap.xml', 'utf8')
+  const pages = [
+    ['/customization/custom-packaging/', 'Project Packaging Requirements', 'Custom Teamwear Packaging Review | POXIOL B2B', 'Review packing, size-grouping, labeling, carton, and branded-packaging requirements for a custom teamwear project.', '/contact/', 'Connect With Logistics Team'],
+    ['/customization/private-label/', 'Private Label Requirements', 'Private Label Teamwear Manufacturing | POXIOL OEM', 'Review label, hangtag, care-information, and packaging requirements for private-label custom teamwear projects.', '/get-quote/?product=Private+Label+Teamwear&source=%2Fcustomization%2Fprivate-label%2F#quote-form', 'Request a Private Label Quote'],
+    ['/guides/', 'Professional Buying Guides', 'Teamwear Buying Guides | Expert Custom Sportswear Advice | POXIOL', 'Explore our library of professional teamwear buying guides and manufacturing advice.', null, 'Read Guide'],
+  ]
+
+  assert.equal([...sitemap.matchAll(/<loc>/g)].length, 78)
+  for (const [route, heading, title, description, ctaHref, ctaText] of pages) {
+    const html = readRouteHtml(route)
+    const canonical = `https://www.poxiol.com${route}`
+    assert.equal(sitemap.includes(`<loc>${canonical}</loc>`), false)
+    assert.equal((html.match(/<h1\b/gi) || []).length, 1, `${route} must have one H1`)
+    assert.equal(html.includes(`>${heading}</h1>`), true)
+    assert.equal((html.match(/rel="canonical"/g) || []).length, 1)
+    assert.equal(html.includes(`rel="canonical" href="${canonical}"`), true)
+    assert.equal(html.includes(`<title>${title.replaceAll('&', '&amp;')}</title>`), true)
+    assert.equal(html.includes(`name="description" content="${description}"`), true)
+    assert.doesNotMatch(html, /<meta[^>]+name="robots"[^>]+noindex/i)
+    assert.equal(html.includes(ctaText), true)
+    if (ctaHref) assert.equal(html.includes(`href="${ctaHref.replaceAll('&', '&amp;')}"`), true)
+  }
+  const guideHtml = readRouteHtml('/guides/')
+  assert.equal((guideHtml.match(/Read Guide/g) || []).length > 0, true)
+  assert.equal((guideHtml.match(/href="\/guides\/[^"#?]+\/"/g) || []).length > 0, true)
+})
+
 test('publishes approved legal policies in sitemap without noindex directives', () => {
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
   for (const route of ['/privacy-policy/', '/terms/', '/intellectual-property-policy/']) {

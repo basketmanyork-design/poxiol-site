@@ -5,6 +5,7 @@ import { getApprovedClaimWording } from "@/lib/governance/claims";
 export const metadata: Metadata = {
   title: "Custom Teamwear Packaging Review | POXIOL B2B",
   description: "Review packing, size-grouping, labeling, carton, and branded-packaging requirements for a custom teamwear project.",
+  alternates: { canonical: "https://www.poxiol.com/customization/custom-packaging/" },
 };
 
 export default function CustomPackagingPage() {
@@ -13,7 +14,7 @@ export default function CustomPackagingPage() {
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading eyebrow="Logistics" title="Project Packaging Requirements" subtitle={getApprovedClaimWording("packaging-review")} dark center />
+          <SectionHeading eyebrow="Logistics" title="Project Packaging Requirements" subtitle={getApprovedClaimWording("packaging-review")} dark center level="h1" />
           
           <div className="mt-20 grid gap-12 text-left md:grid-cols-2">
             <div className="p-8 rounded-[2.5rem] border border-white/10 bg-white/[0.03]">
