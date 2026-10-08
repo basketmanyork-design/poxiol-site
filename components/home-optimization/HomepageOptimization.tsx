@@ -11,7 +11,7 @@ const cards = [
   {name: 'Baseball Uniforms', action: 'View Options', slug: 'baseball', href: '/custom-baseball-softball-uniforms/', alt: 'POXIOL baseball jersey and trousers design illustration'},
   {name: 'Training Sets', action: 'View Options', slug: 'training', href: '/products/training-wear/', alt: 'POXIOL short-sleeve training top and shorts design illustration'},
   {name: 'Running & Track Uniforms', action: 'View Options', slug: 'running-track', href: '/products/running-track-uniforms/', alt: 'POXIOL running singlet and shorts design illustration'},
-  {name: 'Warm-Up Wear', action: 'View Options', slug: 'warm-up', href: '/products/warm-up-wear/', alt: 'POXIOL zip-up warm-up jacket and trousers design illustration'},
+  {name: 'Warm-Up Wear', action: 'View Options', slug: 'warm-up', href: '/products/training-wear/', alt: 'POXIOL zip-up warm-up jacket and trousers design illustration'},
 ] as const
 
 const faqs = [

@@ -160,12 +160,12 @@ test("homepage stays unchanged while the completed Stage 2 product hub emits pag
   assert.equal(one(metaValues(products, "name", "twitter:description"), "products twitter:description"), HOME_DESCRIPTION);
 });
 
-test("the 79-URL Sitemap boundary remains fixed and only the homepage keeps generic Open Graph", async () => {
+test("the 78-URL Sitemap boundary remains fixed and only the homepage keeps generic Open Graph", async () => {
   const sitemap = await readFile(path.join(OUTPUT_DIRECTORY, "sitemap.xml"), "utf8");
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => decodeHtml(url));
 
-  assert.equal(urls.length, 79);
-  assert.equal(new Set(urls).size, 79);
+  assert.equal(urls.length, 78);
+  assert.equal(new Set(urls).size, 78);
   for (const { slug } of pseoPages) {
     assert.ok(urls.includes(`${SITE_ORIGIN}/${slug}/`), `Sitemap missing /${slug}/`);
   }

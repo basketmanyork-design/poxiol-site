@@ -127,12 +127,17 @@ test("homepage root Open Graph and Twitter metadata remain unchanged", async () 
   assert.equal(one(metaValues(html, "name", "twitter:description"), "home twitter:description"), HOME_DESCRIPTION);
 });
 
-test("Sitemap stays at 79 unique URLs and only the homepage keeps generic Open Graph", async () => {
+test("Sitemap stays at 78 unique URLs and only the homepage keeps generic Open Graph", async () => {
   const sitemap = await readFile(path.join(OUTPUT_DIRECTORY, "sitemap.xml"), "utf8");
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => decodeHtml(url));
-  assert.equal(urls.length, 79);
-  assert.equal(new Set(urls).size, 79);
-  for (const [route] of PAGES) assert.ok(urls.includes(`${SITE_ORIGIN}${route}`), `Sitemap missing ${route}`);
+  assert.equal(urls.length, 78);
+  assert.equal(new Set(urls).size, 78);
+  assert.ok(!urls.includes(`${SITE_ORIGIN}/products/warm-up-wear/`), "Sitemap must exclude retired Warm-Up Wear");
+  assert.ok(urls.includes(`${SITE_ORIGIN}/products/training-wear/`), "Sitemap must retain Training Wear survivor");
+  for (const [route] of PAGES) {
+    if (route === "/products/warm-up-wear/") continue;
+    assert.ok(urls.includes(`${SITE_ORIGIN}${route}`), `Sitemap missing ${route}`);
+  }
 
   let genericCount = 0;
   for (const url of urls) {

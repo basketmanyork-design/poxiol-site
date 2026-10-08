@@ -20,7 +20,7 @@ const ids=['home-hero-title','product-discovery','who-we-help','customization-de
 const positions=ids.map(id=>html.indexOf(`id="${id}"`))
 assert.ok(positions.every(position=>position>=0),'Nine confirmed homepage modules must be present')
 assert.deepEqual([...positions].sort((a,b)=>a-b),positions,'Nine homepage modules must retain the confirmed order')
-for(const [name,path] of [['soccer','/products/soccer-jerseys/'],['basketball','/products/basketball-uniforms/'],['baseball','/custom-baseball-softball-uniforms/'],['training','/products/training-wear/'],['running-track','/products/running-track-uniforms/'],['warm-up','/products/warm-up-wear/']]){
+for(const [name,path] of [['soccer','/products/soccer-jerseys/'],['basketball','/products/basketball-uniforms/'],['baseball','/custom-baseball-softball-uniforms/'],['training','/products/training-wear/'],['running-track','/products/running-track-uniforms/'],['warm-up','/products/training-wear/']]){
   assert.match(html,new RegExp(`website-optimization/${name}-800\\.webp`))
   assert.match(html,new RegExp(`href="${path.replaceAll('/','\\/')}"`))
 }

@@ -3,9 +3,9 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "a44a142692f8b06474e21d65ffc55b2c3af2da60f9bd686c0db8a098762cf656",
-    "candidateSitemapSha256": "3f940d5bcb3b5989f1bb9a5aede864cdadd6074645537233560650c5543ee5a1",
+    "candidateSitemapSha256": "171e43b3ac80415f297c691094c51b64d4a4b678e8e54eee0e17133d00032ad4",
     "publicCount": 81,
-    "candidateCount": 79,
+    "candidateCount": 78,
     "renderedCount": 95,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
@@ -68,7 +68,6 @@
       "/products/soccer-jerseys/",
       "/products/team-accessories/",
       "/products/training-wear/",
-      "/products/warm-up-wear/",
       "/projects/australia-soccer-club-kit-project/",
       "/projects/distributor-bulk-teamwear-program/",
       "/projects/middle-east-sports-event-program/",
@@ -99,7 +98,8 @@
     "REDIRECTED": [
       "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",
       "/guides/moq-1-custom-teamwear-how-it-works/",
-      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/"
+      "/guides/sublimation-vs-screen-printing-for-custom-teamwear/",
+      "/products/warm-up-wear/"
     ],
     "WITHHELD_LEGAL": [],
     "OWNER_410_REQUIRED": []
@@ -357,6 +357,11 @@
     },
     {
       "source": "/products/training-wear-training-tops/",
+      "destination": "/products/training-wear/",
+      "status": 301
+    },
+    {
+      "source": "/products/warm-up-wear/",
       "destination": "/products/training-wear/",
       "status": 301
     }

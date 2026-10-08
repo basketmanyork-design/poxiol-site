@@ -80,8 +80,8 @@ test('project planning hub and scenarios use evidence-neutral search contracts',
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
   const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url)
 
-  assert.equal(sitemapUrls.length, 79)
-  assert.equal(new Set(sitemapUrls).size, 79)
+  assert.equal(sitemapUrls.length, 78)
+  assert.equal(new Set(sitemapUrls).size, 78)
   assert.equal(sitemapUrls.includes('https://www.poxiol.com/projects/'), true)
   assert.match(hubHtml, /<title>Teamwear Planning Scenarios \| POXIOL<\/title>/)
   assert.match(hubHtml, /<meta[^>]+name="description"[^>]+content="Explore planning scenarios for custom teamwear briefs, sample review, quality checkpoints, packing needs and target delivery windows\."/)
