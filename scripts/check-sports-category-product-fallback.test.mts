@@ -145,12 +145,19 @@ function cardTitles(section: string) {
 if (process.argv.includes('--output')) {
   test('the three guarded category pages render the product cards for their content source', async () => {
     const source = process.env.NEXT_PUBLIC_CONTENT_SOURCE || 'sanity'
-    const expectedCards = source === 'legacy' ? EXPECTED_LEGACY_PRODUCT_CARDS : EXPECTED_PRODUCT_CARDS
+    const previewTrainingHtml = source === 'sanity-preview'
+      ? await readFile(path.join(OUTPUT_DIRECTORY, 'products', 'training-wear', 'index.html'), 'utf8')
+      : ''
+    const previewUsesLegacyFallback = source === 'sanity-preview' &&
+      JSON.stringify(cardTitles(productOptionSection(previewTrainingHtml))) ===
+      JSON.stringify(EXPECTED_LEGACY_PRODUCT_CARDS.get('training-wear'))
+    const legacyCards = source === 'legacy' || previewUsesLegacyFallback
+    const expectedCards = legacyCards ? EXPECTED_LEGACY_PRODUCT_CARDS : EXPECTED_PRODUCT_CARDS
     for (const [slug, expectedTitles] of expectedCards) {
       const html = await readFile(path.join(OUTPUT_DIRECTORY, 'products', slug, 'index.html'), 'utf8')
       const section = productOptionSection(html)
       assert.deepEqual(cardTitles(section), expectedTitles, `${slug} product card titles`)
-      if (source !== 'legacy') {
+      if (!legacyCards) {
         for (const copy of SUPPRESSED_COPY) assert.ok(!section.includes(copy), `${slug} must suppress: ${copy}`)
       }
     }

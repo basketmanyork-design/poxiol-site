@@ -22,4 +22,6 @@ The first row is the actual CI failure. The subsequent rows were reproduced loca
 
 The Owner separately approved reconciling CI for legacy, Published Sanity, and preview, while retaining strict Published checks. The default Sanity step still runs the complete `npm run build` chain, including the exact Published FAQ, CMS card, SEO, legal, analytics, and release gates. Legacy and preview steps now run the Cloudflare build contract, Sitemap output integrity, FAQ schema/visible parity, guarded product-card expectations, legal output, and analytics consent output. Their published-only output snapshots no longer run against a different content source.
 
+The first corrected workflow run passed both legacy and Published builds. The preview build returned the exact legacy product-card set because its CMS read fell back; the initial preview assertion expected only the Published set. The preview check now accepts the complete, exact legacy fallback set or the complete, exact Published set across all three guarded pages, and still rejects mixed or unknown card sets. The Published build retains the single exact Published expectation.
+
 PR #69 remains draft until the new full CI workflow passes, followed by deployment and live consent verification. The approved Clarity change is implemented but **not live** on www.poxiol.com.
