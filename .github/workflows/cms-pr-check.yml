@@ -102,7 +102,12 @@ jobs:
           path: docs/CMS_FINAL_PREFLIGHT_SUMMARY.json
 
       - name: Legacy static build
-        run: npm run build
+        run: |
+          npm run build:cloudflare
+          npm run check:faq-published-drift:output
+          npm run check:sports-category-product-fallback:output
+          npm run check:legal-release:output
+          npm run check:analytics-permission:output
         env:
           NEXT_PUBLIC_CONTENT_SOURCE: legacy
           CMS_LEGACY_LIST_MODE: merge
@@ -125,7 +130,11 @@ jobs:
       - name: Sanity preview static build
         run: |
           rm -rf .next out
-          npm run build
+          npm run build:cloudflare
+          npm run check:faq-published-drift:output
+          npm run check:sports-category-product-fallback:output
+          npm run check:legal-release:output
+          npm run check:analytics-permission:output
         env:
           NEXT_PUBLIC_CONTENT_SOURCE: sanity-preview
           CMS_LEGACY_LIST_MODE: merge

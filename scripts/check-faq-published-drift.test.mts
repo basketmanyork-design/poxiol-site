@@ -54,22 +54,26 @@ function visibleQuestions(html: string) {
     .map(([, content]) => decodeHtml(content.replace(/<[^>]*>/g, '').trim()))
 }
 
-test('Published FAQ output keeps one visible and schema entry per normalized buyer question', async () => {
+test('FAQ output keeps one visible and schema entry per normalized buyer question', async () => {
   const html = await readFile(FAQ_FILE, 'utf8')
   const schemas = faqSchemas(html)
   assert.equal(schemas.length, 1, 'FAQ page must emit exactly one FAQPage schema')
 
   const entities = schemas[0].mainEntity
   assert.ok(Array.isArray(entities), 'FAQPage mainEntity must be an array')
-  assert.equal(entities.length, 51, 'FAQPage must contain exactly 51 approved unique questions')
+  if ((process.env.NEXT_PUBLIC_CONTENT_SOURCE || 'sanity') === 'sanity') {
+    assert.equal(entities.length, 51, 'Published FAQPage must contain exactly 51 approved unique questions')
+  } else {
+    assert.ok(entities.length > 0, 'FAQPage must not be empty in legacy or preview mode')
+  }
 
   const schemaQuestions = entities.map((entity: {name?: string}) => entity.name ?? '')
   const visible = visibleQuestions(html)
-  assert.equal(visible.length, 51, 'FAQ page must render exactly 51 visible questions')
+  assert.equal(visible.length, entities.length, 'every schema question must be visible')
   assert.deepEqual(visible, schemaQuestions, 'visible and schema question order must match')
 
   const normalized = schemaQuestions.map(normalizeQuestion)
-  assert.equal(new Set(normalized).size, 51, 'normalized questions must be globally unique')
+  assert.equal(new Set(normalized).size, entities.length, 'normalized questions must be globally unique')
   for (const question of REMOVED_DUPLICATES) {
     assert.equal(normalized.filter((value: string) => value === normalizeQuestion(question)).length, 1, `${question} must be preserved once`)
   }

@@ -18,8 +18,8 @@ The workflow runs the same full `npm run build` in legacy, default Sanity, and S
 
 The first row is the actual CI failure. The subsequent rows were reproduced locally against the same legacy build output by running the individual output checks. The differences above were present in content sources before the Clarity branch and are separate from the 128-to-148 CMS candidate reconciliation. The local checks for the Melbourne page, OEM/ODM page, and product taxonomy passed. Experimental test edits made during diagnosis were discarded; no CI gate has been changed in this PR.
 
-## Recommendation and release boundary
+## Approved CI correction
 
-Reconcile the workflow's three content modes with their intended output contracts in a separate, reviewed CI change. Preserve exact Published Sanity assertions in the Published build. Give legacy and preview builds explicit, source-appropriate expectations, and run all relevant privacy, analytics, SEO, and release gates before merging Clarity. Re-run the full CI workflow and verify the production deployment and consent behavior afterward.
+The Owner separately approved reconciling CI for legacy, Published Sanity, and preview, while retaining strict Published checks. The default Sanity step still runs the complete `npm run build` chain, including the exact Published FAQ, CMS card, SEO, legal, analytics, and release gates. Legacy and preview steps now run the Cloudflare build contract, Sitemap output integrity, FAQ schema/visible parity, guarded product-card expectations, legal output, and analytics consent output. Their published-only output snapshots no longer run against a different content source.
 
-Until that work is approved and passes, PR #69 remains draft. The approved Clarity change is implemented but **not live** on www.poxiol.com.
+PR #69 remains draft until the new full CI workflow passes, followed by deployment and live consent verification. The approved Clarity change is implemented but **not live** on www.poxiol.com.
