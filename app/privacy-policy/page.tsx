@@ -28,6 +28,8 @@ export default function Page() {
             <section>
               <h2 className="text-2xl font-black uppercase text-white">How information is used</h2>
               <p className="mt-4 leading-8">Information is used to reply to inquiries, prepare mockup or quote guidance, coordinate sampling and support order communication.</p>
+              <p className="mt-4 leading-8">If you choose to accept optional analytics, we use Microsoft Clarity to understand how visitors use our website through heatmaps and session recordings. Clarity may collect page interactions and device information. We mask page text and form content in Clarity. You can withdraw your analytics choice at any time using Privacy choices.</p>
+              <p className="mt-4 leading-8">Learn more in the <a className="text-[#B6FF00] underline" href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft Privacy Statement</a>.</p>
             </section>
             <section>
               <h2 className="text-2xl font-black uppercase text-white">Data sharing</h2>

@@ -203,6 +203,24 @@ export function shouldEnableAnalytics(input: {
   )
 }
 
+export function shouldEnableClarity(input: {
+  analyticsEnabled: boolean
+  projectId: string
+  nodeEnv?: string
+  contentSource?: string
+  cloudflarePages?: string
+  cloudflareBranch?: string
+}): boolean {
+  return Boolean(
+    input.analyticsEnabled &&
+      /^[a-z0-9]{8,20}$/.test(input.projectId) &&
+      input.nodeEnv === 'production' &&
+      input.contentSource !== 'sanity-preview' &&
+      input.cloudflarePages === '1' &&
+      input.cloudflareBranch === 'main',
+  )
+}
+
 export function buildUtmUrl(input: {
   destination: string
   source: string
