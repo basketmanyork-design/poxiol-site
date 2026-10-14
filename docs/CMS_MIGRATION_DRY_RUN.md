@@ -2,7 +2,7 @@
 
 This deterministic dry run is read-only. It reads local legacy source files, compares planned document types against the registered local Studio schema, writes ignored temporary artifacts, and produces summary reports. It does not query Sanity, read tokens, write Sanity documents, upload assets, run Seed, run Dataset Import, modify Cloudflare, deploy schema, or deploy Studio.
 
-Dry run hash: `28a10c083359033f9aed7ccaacc29efd350173f1ad704486c5dc0dd06d560d0e`
+Dry run hash: `5b2a2617dde978cf71ad5b66ffacdf9db4590f0f0dc863059467e8ea895cb812`
 
 ## Local Candidate Inventory
 
@@ -13,7 +13,7 @@ Dry run hash: `28a10c083359033f9aed7ccaacc29efd350173f1ad704486c5dc0dd06d560d0e`
 | productsOrProductTypes | 17 |
 | caseStudies | 5 |
 | faqItems | 35 |
-| articles | 38 |
+| articles | 36 |
 | coreSitePages | 11 |
 | contactCardsEmbeddedIntoSitePage | 4 |
 | inquiryTypesEmbeddedIntoSitePages | 7 |
@@ -64,13 +64,13 @@ Published business document count is currently 0.
 | footerSettings | 1 |
 | navigationSettings | 1 |
 | procurementStandards | 1 |
-| product | 17 |
+| product | 11 |
 | productCategory | 5 |
-| redirectRule | 27 |
+| redirectRule | 53 |
 | sitePage | 11 |
 | siteSettings | 1 |
 
-Corrected candidate count: 128
+Corrected candidate count: 148
 Unsupported schema type count: 0
 Unsupported schema types: none
 
@@ -86,7 +86,7 @@ Unsupported schema types: none
 
 - Reuse existing drafts: 2
 - Update existing drafts: 40
-- Create new drafts: 86
+- Create new drafts: 106
 - Duplicate existing: 0
 - Obsolete MVP candidates: 10
 - Corrupted existing: 5

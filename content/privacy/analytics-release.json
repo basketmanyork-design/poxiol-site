@@ -2,6 +2,10 @@
   "schemaVersion": 1,
   "status": "APPROVED",
   "ga4": "ENABLED",
+  "clarity": "ENABLED",
+  "clarityProjectId": "yxe6yo9s3s",
+  "clarityApprovedBy": "POXIOL Owner",
+  "clarityApprovedAt": "2026-10-14T03:22:45.000Z",
   "cloudflareWebAnalytics": "DISABLED_PENDING_APPROVAL",
   "approvedBy": "POXIOL Owner",
   "approvedAt": "2026-09-03T09:13:17.246Z"

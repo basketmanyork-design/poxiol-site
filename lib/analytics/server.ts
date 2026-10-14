@@ -1,8 +1,9 @@
 import 'server-only'
 
 import {contentSource, sanityQuery} from '@/lib/sanity/client'
-import {shouldEnableAnalytics} from './core'
+import {shouldEnableAnalytics, shouldEnableClarity} from './core'
 import {governedAnalyticsEnabled} from '@/lib/privacy/analytics-release'
+import analyticsRelease from '@/content/privacy/analytics-release.json'
 
 type AnalyticsSettingsDocument = {
   analyticsEnabled?: boolean
@@ -18,6 +19,7 @@ type AnalyticsSettingsDocument = {
 export type AnalyticsRuntimeConfig = {
   enabled: boolean
   measurementId: string
+  clarityProjectId: string
   consentModeEnabled: boolean
   debugMode: boolean
   cloudflareAnalyticsEnabled: boolean
@@ -37,6 +39,7 @@ const analyticsSettingsQuery = `*[_id == "analyticsSettings"][0]{
 const disabledConfig: AnalyticsRuntimeConfig = {
   enabled: false,
   measurementId: '',
+  clarityProjectId: '',
   consentModeEnabled: false,
   debugMode: false,
   cloudflareAnalyticsEnabled: false,
@@ -57,10 +60,20 @@ export async function getAnalyticsRuntimeConfig(): Promise<AnalyticsRuntimeConfi
     cloudflarePages: process.env.CF_PAGES,
     cloudflareBranch: process.env.CF_PAGES_BRANCH,
   })
+  const clarityProjectId = String(analyticsRelease.clarityProjectId || '').trim().toLowerCase()
+  const clarityEnabled = governedAnalyticsEnabled('clarity') && shouldEnableClarity({
+    analyticsEnabled: settings.analyticsEnabled === true,
+    projectId: clarityProjectId,
+    nodeEnv: process.env.NODE_ENV,
+    contentSource,
+    cloudflarePages: process.env.CF_PAGES,
+    cloudflareBranch: process.env.CF_PAGES_BRANCH,
+  })
 
   return {
     enabled,
     measurementId: enabled ? measurementId : '',
+    clarityProjectId: clarityEnabled ? clarityProjectId : '',
     consentModeEnabled: enabled && settings.consentModeEnabled === true,
     debugMode: enabled && settings.debugMode === true,
     cloudflareAnalyticsEnabled: governedAnalyticsEnabled('cloudflareWebAnalytics') && settings.cloudflareAnalyticsEnabled === true,

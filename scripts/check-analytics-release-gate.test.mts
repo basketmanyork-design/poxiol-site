@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
 import {pathToFileURL} from 'node:url'
-import {shouldEnableAnalytics} from '../lib/analytics/core.ts'
+import {shouldEnableAnalytics, shouldEnableClarity} from '../lib/analytics/core.ts'
 import {
   analyticsReleaseApproved,
   assertAnalyticsReleaseReady,
@@ -84,6 +84,37 @@ test('Preview and development never enable the Production GA loader even for an 
   assert.equal(shouldEnableAnalytics({...base, nodeEnv: 'production', cloudflareBranch: 'preview-branch'}), false)
 })
 
+test('Clarity requires a valid project ID, production deployment, and its own release approval', () => {
+  const base = {
+    analyticsEnabled: true,
+    projectId: 'yxe6yo9s3s',
+    nodeEnv: 'production',
+    contentSource: 'sanity',
+    cloudflarePages: '1',
+    cloudflareBranch: 'main',
+  }
+  assert.equal(shouldEnableClarity(base), true)
+  assert.equal(shouldEnableClarity({...base, projectId: 'invalid/id'}), false)
+  assert.equal(shouldEnableClarity({...base, nodeEnv: 'development'}), false)
+  assert.equal(shouldEnableClarity({...base, cloudflareBranch: 'preview'}), false)
+  assert.equal(shouldEnableClarity({...base, analyticsEnabled: false}), false)
+  const release = JSON.parse(readFileSync('content/privacy/analytics-release.json', 'utf8')) as AnalyticsReleaseRecord
+  assert.equal(release.clarityProjectId, base.projectId)
+  assert.equal(governedAnalyticsEnabled('clarity', release), true)
+  assert.equal(governedAnalyticsEnabled('clarity', {
+    ...release, clarityApprovedBy: null,
+  }), false)
+  assert.equal(governedAnalyticsEnabled('clarity', {
+    ...release, clarity: 'ENABLED', clarityApprovedBy: 'POXIOL Owner', clarityApprovedAt: '2026-10-14T00:00:00.000Z',
+  }), true)
+  const provider = readFileSync('components/analytics/AnalyticsProvider.tsx', 'utf8')
+  assert.match(provider, /permission === 'accepted' && Boolean\(config\.clarityProjectId\)/)
+  assert.match(provider, /'consentv2', \{ad_Storage:'denied', analytics_Storage:'granted'\}/)
+  assert.match(provider, /window\.location\.reload\(\)/)
+  const privacyPolicy = readFileSync('app/privacy-policy/page.tsx', 'utf8')
+  assert.match(privacyPolicy, /Microsoft Clarity to understand how visitors use our website through heatmaps and session recordings/)
+})
+
 test('pending legal approval rejects enabled analytics', () => {
   assert.throws(
     () => assertAnalyticsReleaseReady({legalApproved: false, ga4Enabled: true, cloudflareAnalyticsEnabled: false}),
@@ -101,7 +132,7 @@ test('pending legal approval permits both analytics systems disabled', () => {
 
 test('every enabled provider requires an approved governance record with valid Owner metadata', () => {
   const record = JSON.parse(readFileSync('content/privacy/analytics-release.json', 'utf8')) as AnalyticsReleaseRecord
-  const providers = ['ga4', 'cloudflareWebAnalytics'] as const
+  const providers = ['ga4', 'clarity', 'cloudflareWebAnalytics'] as const
 
   for (const provider of providers) {
     assert.ok(
@@ -118,6 +149,10 @@ test('every enabled provider requires an approved governance record with valid O
     assert.ok(record.approvedAt?.trim(), `${provider} requires approvedAt`)
     assert.equal(Number.isNaN(Date.parse(record.approvedAt)), false)
     assert.equal(analyticsReleaseApproved(record), true)
+    if (provider === 'clarity') {
+      assert.ok(record.clarityApprovedBy?.trim())
+      assert.ok(record.clarityApprovedAt?.trim())
+    }
     assert.equal(governedAnalyticsEnabled(provider, record), true)
   }
 })

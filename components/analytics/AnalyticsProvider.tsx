@@ -92,6 +92,10 @@ export function AnalyticsProvider({
   }, [])
 
   const change = useCallback(() => {
+    const clarity = (window as Window & {clarity?: (...args: unknown[]) => void}).clarity
+    if (config.clarityProjectId && clarity) {
+      clarity('consentv2', {ad_Storage: 'denied', analytics_Storage: 'denied'})
+    }
     try {
       clearAnalyticsPermission(window.localStorage)
       setPermission('unknown')
@@ -99,9 +103,12 @@ export function AnalyticsProvider({
       setPermission('rejected')
     }
     clearAttributionStorage()
-  }, [])
+    // A loaded recorder keeps running after React removes its script tag.
+    if (config.clarityProjectId) window.location.reload()
+  }, [config.clarityProjectId])
 
   const enabled = runtimeReady && permission === 'accepted' && config.enabled && Boolean(config.measurementId)
+  const clarityEnabled = runtimeReady && permission === 'accepted' && Boolean(config.clarityProjectId)
   const tagConfig = buildAnalyticsTagConfig(config.debugMode, trafficType)
 
   return (
@@ -125,6 +132,18 @@ export function AnalyticsProvider({
           </Script>
           <AnalyticsRuntime />
         </>
+      ) : null}
+      {clarityEnabled ? (
+        <Script id="poxiol-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              c[a]('consentv2', {ad_Storage:'denied', analytics_Storage:'granted'});
+              t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, 'clarity', 'script', ${JSON.stringify(config.clarityProjectId)});
+          `}
+        </Script>
       ) : null}
     </>
   )
