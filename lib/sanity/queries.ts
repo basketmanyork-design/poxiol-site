@@ -364,6 +364,7 @@ export const faqItemsQuery = `*[_type == "faqItem"] | order(displayOrder asc, _u
 const articleProjection = `{
   title,
   "slug": slug.current,
+  summary,
   excerpt,
   articleType,
   featuredImage${imageProjection},

@@ -363,6 +363,7 @@ type RelatedDoc = {title?: string; productName?: string; categoryName?: string; 
 type SanityArticle = {
   title?: string
   slug?: string
+  summary?: string
   excerpt?: string
   articleType?: string
   featuredImage?: SanityImage
@@ -1034,7 +1035,9 @@ function mapArticle(article: SanityArticle, fallback: CmsArticle | undefined, in
     slug: article.slug,
     title: normalizeBuyerFacingClaim(article.title),
     excerpt: normalizeBuyerFacingClaim(article.excerpt || fallback?.excerpt || body || article.title),
-    intro: normalizeBuyerFacingClaim(article.excerpt || fallback?.intro || body || article.title),
+    intro: normalizeBuyerFacingClaim(article.slug === 'teamwear-manufacturer-evaluation-checklist'
+      ? article.summary || article.excerpt || fallback?.intro || body || article.title
+      : article.excerpt || fallback?.intro || body || article.title),
     eyebrow: fallback?.eyebrow || (articleType === 'blog' ? 'Blog' : articleType === 'resource' ? 'Resource' : 'Guide'),
     featuredImage: optionalImage(article.featuredImage || article.heroImage, fallback?.featuredImage, 'hero'),
     imageStatus: fallback?.imageStatus,

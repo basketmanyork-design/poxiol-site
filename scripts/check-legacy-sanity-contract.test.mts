@@ -1,7 +1,19 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {readFileSync} from 'node:fs'
 
 import {safeLegacyContent, validateLegacyPublicDocument} from '../lib/sanity/legacy-contract.ts'
+
+test('article summary contract is limited to the evaluation checklist card', () => {
+  const contract = JSON.parse(readFileSync(new URL('../content/cms/legacy-public-contract.json', import.meta.url), 'utf8'))
+  const query = readFileSync(new URL('../lib/sanity/queries.ts', import.meta.url), 'utf8')
+  const mapping = readFileSync(new URL('../lib/sanity/content.ts', import.meta.url), 'utf8')
+
+  assert.ok(contract.article.includes('summary'))
+  assert.match(query, /const articleProjection = `[\s\S]*?\bsummary,\s*\n\s*excerpt,/)
+  assert.match(mapping, /article\.slug === 'teamwear-manufacturer-evaluation-checklist'\s*\?\s*article\.summary \|\| article\.excerpt/)
+  assert.match(mapping, /:\s*article\.excerpt \|\| fallback\?\.intro \|\| body \|\| article\.title/)
+})
 
 test('accepts the published legacy site settings shape', () => {
   const result = validateLegacyPublicDocument('siteSettings', {
