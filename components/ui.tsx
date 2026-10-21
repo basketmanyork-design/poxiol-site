@@ -77,7 +77,7 @@ export async function WhatsAppButton() {
         href={chrome.whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-[60] hidden items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-sm font-black uppercase tracking-wide text-white shadow-2xl transition hover:scale-105 active:scale-95 md:inline-flex"
+        className="fixed bottom-8 right-8 z-[60] hidden items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-sm font-black uppercase tracking-wide text-neutral-950 shadow-2xl transition hover:scale-105 active:scale-95 md:inline-flex"
         aria-label="Chat with our team on WhatsApp"
       >
         {icon}
@@ -91,7 +91,7 @@ export async function WhatsAppButton() {
           data-analytics-location="sticky_mobile"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[#25D366] text-sm font-black uppercase tracking-wide text-white"
+          className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[#25D366] text-sm font-black uppercase tracking-wide text-neutral-950"
         >
           {icon}
           WhatsApp
