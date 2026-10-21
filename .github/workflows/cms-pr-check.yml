@@ -148,7 +148,9 @@ jobs:
         run: node scripts/check-cms-safety.mjs
 
       - name: Binary diff guard
-        run: node --no-warnings --experimental-strip-types scripts/check-cms-binary-allowlist.mts
+        run: |
+          node --no-warnings --experimental-strip-types scripts/check-homepage-poster-binary-allowlist.test.mts
+          node --no-warnings --experimental-strip-types scripts/check-cms-binary-allowlist.mts
 
       - name: Studio install
         working-directory: studio

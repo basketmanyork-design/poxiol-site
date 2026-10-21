@@ -25,11 +25,14 @@ export function HeroBackgroundVideo() {
       if (!motion.matches && !connection?.saveData) setMayPlay(true)
     }
     const startAfterLoad=()=>{
-      if (typeof window.requestIdleCallback === 'function') {
-        idleHandle=window.requestIdleCallback(allowPlayback,{timeout:2000})
-      } else {
-        timerHandle=window.setTimeout(allowPlayback,0)
-      }
+      timerHandle=window.setTimeout(()=>{
+        timerHandle=undefined
+        if (typeof window.requestIdleCallback === 'function') {
+          idleHandle=window.requestIdleCallback(allowPlayback,{timeout:2000})
+        } else {
+          allowPlayback()
+        }
+      },3000)
     }
     const update=()=>{
       cancelPending()
