@@ -194,7 +194,7 @@ export async function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-20 flex flex-col gap-6 border-t border-white/10 pt-10 text-xs font-bold uppercase tracking-widest text-neutral-500 md:flex-row md:items-center md:justify-between">
+        <div className="mt-20 flex flex-col gap-6 border-t border-white/10 pt-10 text-xs font-bold uppercase tracking-widest text-neutral-400 md:flex-row md:items-center md:justify-between">
           <p>{chrome.copyright}</p>
           <div className="flex flex-wrap gap-x-8 gap-y-2">
             <span>Project MOQ Confirmed by Consultation</span>

@@ -13,11 +13,39 @@ export function HeroBackgroundVideo() {
   useEffect(() => {
     const motion=window.matchMedia('(prefers-reduced-motion: reduce)')
     const connection=(navigator as Navigator & {connection?:ConnectionPreference}).connection
-    const update=()=>setMayPlay(!motion.matches && !connection?.saveData)
+    let idleHandle: number | undefined
+    let timerHandle: number | undefined
+    const cancelPending=()=>{
+      if (idleHandle !== undefined) window.cancelIdleCallback(idleHandle)
+      if (timerHandle !== undefined) window.clearTimeout(timerHandle)
+      idleHandle=undefined
+      timerHandle=undefined
+    }
+    const allowPlayback=()=>{
+      if (!motion.matches && !connection?.saveData) setMayPlay(true)
+    }
+    const startAfterLoad=()=>{
+      if (typeof window.requestIdleCallback === 'function') {
+        idleHandle=window.requestIdleCallback(allowPlayback,{timeout:2000})
+      } else {
+        timerHandle=window.setTimeout(allowPlayback,0)
+      }
+    }
+    const update=()=>{
+      cancelPending()
+      if (motion.matches || connection?.saveData) {
+        setMayPlay(false)
+      } else if (document.readyState === 'complete') {
+        startAfterLoad()
+      }
+    }
     update()
+    window.addEventListener('load',update)
     motion.addEventListener('change',update)
     connection?.addEventListener?.('change',update)
     return () => {
+      cancelPending()
+      window.removeEventListener('load',update)
       motion.removeEventListener('change',update)
       connection?.removeEventListener?.('change',update)
     }
