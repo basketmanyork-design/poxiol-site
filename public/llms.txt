@@ -4,30 +4,30 @@
 
 ## Core Pages
 
-- Homepage: https://www.poxiol.com/
-- Products: https://www.poxiol.com/products/
-- Custom Basketball Uniforms: https://www.poxiol.com/products/basketball-uniforms/
-- Custom Soccer Jerseys: https://www.poxiol.com/products/soccer-jerseys/
-- Custom Baseball Uniforms: https://www.poxiol.com/custom-baseball-softball-uniforms/
-- Manufacturing: https://www.poxiol.com/manufacturing/
-- Quality Control Process: https://www.poxiol.com/quality-control-process/
-- Certificates & Testing: https://www.poxiol.com/certificates-testing/
-- Free Mockup: https://www.poxiol.com/free-mockup/
-- Factory: https://www.poxiol.com/factory/
-- Guides: https://www.poxiol.com/guides/
-- Resources: https://www.poxiol.com/resources/
-- Blog: https://www.poxiol.com/blog/
-- B2B Sourcing FAQ: https://www.poxiol.com/guides/b2b-sourcing-faq/
-- Sample Approval Guide: https://www.poxiol.com/guides/sample-first-vs-bulk-teamwear-order/
-- Fabric GSM Guide: https://www.poxiol.com/guides/custom-basketball-uniform-fabric-gsm/
-- Factory Selection Guide: https://www.poxiol.com/resources/teamwear-manufacturer-evaluation-checklist/
-- Private Label Guide: https://www.poxiol.com/resources/private-label-teamwear-launch-checklist/
-- Projects: https://www.poxiol.com/projects/
-- FAQ: https://www.poxiol.com/faq/
-- Contact: https://www.poxiol.com/contact/
-- Privacy Policy: https://www.poxiol.com/privacy-policy/
-- Terms: https://www.poxiol.com/terms/
-- Intellectual Property Policy: https://www.poxiol.com/intellectual-property-policy/
+- [Homepage](https://www.poxiol.com/)
+- [Products](https://www.poxiol.com/products/)
+- [Custom Basketball Uniforms](https://www.poxiol.com/products/basketball-uniforms/)
+- [Custom Soccer Jerseys](https://www.poxiol.com/products/soccer-jerseys/)
+- [Custom Baseball Uniforms](https://www.poxiol.com/custom-baseball-softball-uniforms/)
+- [Manufacturing](https://www.poxiol.com/manufacturing/)
+- [Quality Control Process](https://www.poxiol.com/quality-control-process/)
+- [Certificates & Testing](https://www.poxiol.com/certificates-testing/)
+- [Free Mockup](https://www.poxiol.com/free-mockup/)
+- [Factory](https://www.poxiol.com/factory/)
+- [Guides](https://www.poxiol.com/guides/)
+- [Resources](https://www.poxiol.com/resources/)
+- [Blog](https://www.poxiol.com/blog/)
+- [B2B Sourcing FAQ](https://www.poxiol.com/guides/b2b-sourcing-faq/)
+- [Sample Approval Guide](https://www.poxiol.com/guides/sample-first-vs-bulk-teamwear-order/)
+- [Fabric GSM Guide](https://www.poxiol.com/guides/custom-basketball-uniform-fabric-gsm/)
+- [Factory Selection Guide](https://www.poxiol.com/resources/teamwear-manufacturer-evaluation-checklist/)
+- [Private Label Guide](https://www.poxiol.com/resources/private-label-teamwear-launch-checklist/)
+- [Projects](https://www.poxiol.com/projects/)
+- [FAQ](https://www.poxiol.com/faq/)
+- [Contact](https://www.poxiol.com/contact/)
+- [Privacy Policy](https://www.poxiol.com/privacy-policy/)
+- [Terms](https://www.poxiol.com/terms/)
+- [Intellectual Property Policy](https://www.poxiol.com/intellectual-property-policy/)
 
 ## Key Capabilities
 

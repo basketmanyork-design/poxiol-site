@@ -16,6 +16,8 @@ const VISUAL_PUBLIC_ROOT = 'public/product-visualization'
 const VISUAL_PUBLIC_PREFIX = 'public/product-visualization/'
 const CLUB_PUBLIC_PREFIX = 'public/club-kit-reference/'
 const FABRIC_PUBLIC_PREFIX = 'public/fabric-library/'
+const APPROVED_HOMEPAGE_POSTER = 'public/images/poxiol-teamwear-range-banner-2x1.webp'
+const RELEASE_ASSET_ALLOWLIST = 'content/release/asset-allowlist.json'
 const ALLOWED_EXTENSION = '.webp'
 const ALLOWED_STATUSES = new Set([
   'VERIFIED_POXIOL',
@@ -259,6 +261,29 @@ function auditFabricReferences(root: string, changedPaths: string[]) {
   return {approved, errors}
 }
 
+function auditHomepagePoster(root: string, changedPaths: string[]) {
+  if (!changedPaths.length) return {approved: 0, errors: [] as string[]}
+  const errors: string[] = []
+  try {
+    const records = JSON.parse(readFileSync(join(root, RELEASE_ASSET_ALLOWLIST), 'utf8')) as Array<Record<string, unknown>>
+    const matches = records.filter((record) => record.path === `/${APPROVED_HOMEPAGE_POSTER.slice('public/'.length)}`)
+    if (matches.length !== 1) throw new Error(`Homepage poster must have exactly one release asset record: ${APPROVED_HOMEPAGE_POSTER}`)
+    const record = matches[0]
+    if (record.assetId !== 'ILL-TEAMWEAR-003-MOBILE' || record.classification !== 'ILLUSTRATION_NON_PROOF' ||
+        record.allowedUse !== 'teamwear-illustration' || record.reviewSource !== 'OWNER-APPROVED-2026-10-21-PAGESPEED-REENCODE' ||
+        record.thirdPartyMarkReview !== 'PASS' || record.poxiolMarkReview !== 'PASS_RETAINED' ||
+        typeof record.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(record.sha256)) {
+      throw new Error(`Homepage poster release asset approval is invalid: ${APPROVED_HOMEPAGE_POSTER}`)
+    }
+    const actual = createHash('sha256').update(readFileSync(join(root, APPROVED_HOMEPAGE_POSTER))).digest('hex')
+    if (actual !== record.sha256) throw new Error(`Homepage poster digest mismatch: ${APPROVED_HOMEPAGE_POSTER}`)
+    return {approved: 1, errors}
+  } catch (error) {
+    errors.push(error instanceof Error ? error.message : 'Homepage poster approval invalid')
+    return {approved: 0, errors}
+  }
+}
+
 export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
   const changedBinaryPaths = Array.from(new Set(binaryPaths.map(normalizeRepoPath))).sort()
   if (!changedBinaryPaths.length) return {passed: true, binaryChangeCount: 0, approvedBinaryChangeCount: 0, errors: [] as string[]}
@@ -267,20 +292,23 @@ export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
   const visualPaths = changedBinaryPaths.filter((path) => path.startsWith(VISUAL_PUBLIC_PREFIX))
   const clubPaths = changedBinaryPaths.filter((path) => path.startsWith(CLUB_PUBLIC_PREFIX))
   const fabricPaths = changedBinaryPaths.filter((path) => path.startsWith(FABRIC_PUBLIC_PREFIX))
-  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX) && !path.startsWith(CLUB_PUBLIC_PREFIX) && !path.startsWith(FABRIC_PUBLIC_PREFIX))
+  const posterPaths = changedBinaryPaths.filter((path) => path === APPROVED_HOMEPAGE_POSTER)
+  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX) && !path.startsWith(CLUB_PUBLIC_PREFIX) && !path.startsWith(FABRIC_PUBLIC_PREFIX) && path !== APPROVED_HOMEPAGE_POSTER)
   const real = auditRealProduction(root, realPaths)
   const visual = auditProductVisualizations(root, visualPaths)
   const club = auditClubKitReferences(root, clubPaths)
   const fabric = auditFabricReferences(root, fabricPaths)
+  const poster = auditHomepagePoster(root, posterPaths)
   const errors = [
     ...outsidePaths.map((path) => `Binary change outside approved directories: ${path}`),
     ...real.errors,
     ...visual.errors,
     ...club.errors,
     ...fabric.errors,
+    ...poster.errors,
   ]
   const uniqueErrors = Array.from(new Set(errors)).sort()
-  const approvedBinaryChangeCount = real.approved + visual.approved + club.approved + fabric.approved
+  const approvedBinaryChangeCount = real.approved + visual.approved + club.approved + fabric.approved + poster.approved
   return {
     passed: uniqueErrors.length === 0 && approvedBinaryChangeCount === changedBinaryPaths.length,
     binaryChangeCount: changedBinaryPaths.length,

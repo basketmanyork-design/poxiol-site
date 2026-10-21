@@ -55,7 +55,7 @@ export function HomepageOptimization({publicEmail, whatsappHref, privacyPolicyAp
         <p className={styles.lead}>Explore a starting point for your team or business. Colors, branding and product details can be discussed with our team.</p>
         <div className={styles.productGrid}>
           {cards.map(card => <article className={styles.productCard} key={card.slug}>
-            <Link href={card.href} aria-label={card.action}>
+            <Link href={card.href} aria-label={`${card.action} for ${card.name}`}>
               <picture><source media="(max-width: 640px)" srcSet={`/website-optimization/${card.slug}-480.webp`} /><img src={`/website-optimization/${card.slug}-800.webp`} width="800" height="999" loading="lazy" alt={card.alt} /></picture>
               <div className={styles.cardCopy}><h3>{card.name}</h3><span>{card.action} →</span></div>
             </Link>
