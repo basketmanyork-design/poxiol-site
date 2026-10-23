@@ -6,8 +6,8 @@ import { fabricDatabase } from "@/lib/fabrics";
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Sportswear Fabric Guide | Teamwear Fabric Database | POXIOL",
-  description: "Explore POXIOL sportswear fabric guide for custom teamwear, including mesh fabric, interlock fabric, bird eye fabric, quick-dry polyester, spandex sports fabric and moisture-wicking materials for basketball, soccer, baseball, volleyball and team sports.",
+  title: "Sportswear Fabric Guide: Mesh, Interlock & More | POXIOL",
+  description: "Compare mesh, interlock, bird eye, quick-dry polyester and spandex fabrics by breathability, stretch, durability and printing fit for custom teamwear.",
   canonical: "/fabric-guide/",
   metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
 });

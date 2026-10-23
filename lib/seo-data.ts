@@ -403,8 +403,8 @@ export const fabricGuideSchema = {
       "@type": "WebPage",
       "@id": "https://www.poxiol.com/fabric-guide/#webpage",
       "url": "https://www.poxiol.com/fabric-guide/",
-      "name": "Sportswear Fabric Guide | Teamwear Fabric Database | POXIOL",
-      "description": "Explore POXIOL sportswear fabric guide for custom teamwear, including mesh fabric, interlock fabric, bird eye fabric, quick-dry polyester, spandex sports fabric and moisture-wicking materials for basketball, soccer, baseball, volleyball and team sports.",
+      "name": "Sportswear Fabric Guide: Mesh, Interlock & More | POXIOL",
+      "description": "Compare mesh, interlock, bird eye, quick-dry polyester and spandex fabrics by breathability, stretch, durability and printing fit for custom teamwear.",
       "about": [
         "Sportswear fabrics",
         "Teamwear materials",
