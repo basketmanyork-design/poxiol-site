@@ -174,12 +174,6 @@ export async function Footer() {
           <div>
             <Link href="/" className="inline-flex min-h-10 items-center text-3xl font-black uppercase tracking-tight">{chrome.logo ? <><img src={chrome.logo.url} alt={chrome.logo.alt} width="150" height="42" className="h-10 w-auto object-contain" /><span className="sr-only">{chrome.brandName}</span></> : <span>{chrome.brandName}<span className="text-[#B6FF00]">.</span></span>}</Link>
             <p className="mt-6 max-w-xs leading-8 text-neutral-400">Custom teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide, supporting ongoing team orders for your clients.</p>
-            <address className="mt-6 max-w-xs not-italic text-sm leading-6 text-neutral-400">
-              <p className="font-semibold text-white">QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.</p>
-              <p className="mt-2">{chrome.address}</p>
-              <a href={`tel:${chrome.whatsappNumber.replace(/\s/g, '')}`} className="mt-2 block hover:text-white">Phone: {chrome.whatsappNumber}</a>
-              <a href={emailHref(chrome.publicEmail)} data-analytics-location="footer" className="block hover:text-white">Email: <EmailAddress email={chrome.publicEmail} /></a>
-            </address>
             <div className="mt-8 flex flex-col gap-3">
               <InquiryLink href={freeMockupHref} data-analytics-location="footer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Free Mockup →</InquiryLink>
               <InquiryLink href={getQuoteHref} data-analytics-location="footer" className="text-[#B6FF00] font-black uppercase text-sm tracking-wider hover:underline">Get Factory Quote →</InquiryLink>
@@ -208,6 +202,16 @@ export async function Footer() {
             {chrome.alibabaStoreUrl ? <a href={chrome.alibabaStoreUrl} data-analytics-location="footer" target="_blank" rel="noreferrer" className="text-white hover:text-[#B6FF00]">Alibaba Store</a> : null}
           </div>
         </div>
+        <address className="mt-8 grid gap-4 border-t border-white/10 pt-6 not-italic text-sm leading-6 text-neutral-400 md:grid-cols-[minmax(0,1fr)_auto] md:gap-8">
+          <div>
+            <p className="font-semibold text-white">QUANZHOU LANREN ELECTRONIC COMMERCE CO., LTD.</p>
+            <p className="mt-1">{chrome.address}</p>
+          </div>
+          <div className="flex flex-col md:items-end">
+            <a href={`tel:${chrome.whatsappNumber.replace(/\s/g, '')}`} className="hover:text-white">Phone: {chrome.whatsappNumber}</a>
+            <a href={emailHref(chrome.publicEmail)} data-analytics-location="footer" className="hover:text-white">Email: <EmailAddress email={chrome.publicEmail} /></a>
+          </div>
+        </address>
       </div>
     </footer>
   );
