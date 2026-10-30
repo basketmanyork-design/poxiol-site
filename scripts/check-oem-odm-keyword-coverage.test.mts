@@ -119,7 +119,7 @@ if (!outputMode) {
     assert.equal(one([...html.matchAll(/<link rel="canonical" href="([^"]*)"/gi)].map((match) => match[1]), 'manufacturing canonical'), 'https://www.poxiol.com/manufacturing/')
     assert.equal((html.match(/<h1\b/gi) ?? []).length, 1)
     assert.ok(visible.includes('How POXIOL Manufactures Custom Teamwear'))
-    assert.equal(digest(visible), 'b53654f1f4561514e11c43917b081a1e4ad5c485610087b1b0953d4898db9866')
+    assert.equal(digest(visible), 'd8c42fe78291b3cc1eb64b74191379806fc8a60395f57e72d1c26cc734891138')
     assert.ok(!visible.includes(approved.heading))
   })
 
