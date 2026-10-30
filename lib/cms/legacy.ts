@@ -86,7 +86,7 @@ export const legacySiteChrome: CmsSiteChrome = {
   headerNavigation: legacyHeaderNavigation,
   footerColumns: legacyFooterColumns,
   copyright: '© 2026 POXIOL Teamwear. All rights reserved.',
-  address: 'China-based custom teamwear manufacturing partner for global B2B buyers.',
+  address: 'Room 5421-2, 5th Floor, Building A, International Textile City, No. 288 Nanyang Road, Lingxiu Town, Shishi City, Quanzhou City, Fujian, China',
 }
 
 
