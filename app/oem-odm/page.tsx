@@ -318,7 +318,7 @@ export default async function OEMPage() {
                 <div className="h-12 w-12 rounded-2xl bg-lime-400 text-black flex items-center justify-center">
                    <ShieldCheck className="h-6 w-6" />
                 </div>
-                <h4 className="text-2xl font-black uppercase tracking-tight leading-none">{adv.title}</h4>
+                <h3 className="text-2xl font-black uppercase tracking-tight leading-none">{adv.title}</h3>
                 <p className="text-neutral-400 leading-relaxed text-sm">{adv.desc}</p>
               </div>
             ))}
