@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import InquiryLink from '@/components/InquiryLink'
 
 import type {BuyerDecisionContent} from '@/lib/seo-growth/seo-033-content'
 
@@ -92,12 +92,12 @@ export function BuyerDecisionPanel({content}: BuyerDecisionPanelProps) {
             <ul className="mt-6 grid gap-3">
               {content.links.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <InquiryLink
                     href={link.href}
                     className="inline-flex min-h-11 items-center font-black text-[#B6FF00] underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B6FF00]"
                   >
                     {link.label} <span aria-hidden="true">&nbsp;→</span>
-                  </Link>
+                  </InquiryLink>
                 </li>
               ))}
             </ul>
