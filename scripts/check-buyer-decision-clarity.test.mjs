@@ -89,7 +89,7 @@ for (const contract of [
   'md:hidden',
   'content.checklist.map',
   'content.links.map',
-  '<Link',
+  '<InquiryLink',
 ]) {
   assert.ok(seo033PanelSource.includes(contract), `BuyerDecisionPanel is missing source contract: ${contract}`)
 }

@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { V8_CONVERSION_ENTRIES, getV8ConversionEntry, type V8ConversionIntent } from "@/lib/v8/leads";
 import {contextFromPage, contextualInquiryHref} from '@/lib/inquiry-context';
+import {useInquiryContext} from '@/components/useInquiryContext';
 
 const labels: Record<V8ConversionIntent, string> = {
   project: "Start Your Project",
@@ -14,10 +15,11 @@ const labels: Record<V8ConversionIntent, string> = {
 
 export default function MobileInquiryLink() {
   const pathname = usePathname();
+  const {adsAttribution} = useInquiryContext();
   const normalizedPath = pathname ? `${pathname.replace(/\/+$/, "")}/` : "/";
   const currentEntry = V8_CONVERSION_ENTRIES.find((entry) => entry.path === normalizedPath);
   const entry = currentEntry || getV8ConversionEntry("quote");
-  const href = currentEntry ? `#${entry.formAnchorId}` : contextualInquiryHref(`${entry.path}#${entry.formAnchorId}`, contextFromPage(normalizedPath));
+  const href = currentEntry ? `#${entry.formAnchorId}` : contextualInquiryHref(`${entry.path}#${entry.formAnchorId}`, {...contextFromPage(normalizedPath), adsAttribution});
 
   // Native fragment navigation preserves typed fields and avoids router-driven
   // re-centering of the tall form container. No submit or extra tracking handler.
