@@ -2,6 +2,7 @@ import React from "react";
 import { GEO_V1 } from "@/lib/geo-v1";
 
 const baseUrl = GEO_V1.canonicalBaseUrl;
+const brandLogoUrl = `${baseUrl}/poxiol-logo.svg`;
 
 export function OrganizationSchema() {
   const schema = {
@@ -12,6 +13,7 @@ export function OrganizationSchema() {
         "@id": GEO_V1.brand.id,
         "name": GEO_V1.brand.name,
         "url": GEO_V1.brand.url,
+        "logo": brandLogoUrl,
       },
       {
         "@type": "Organization",
@@ -19,6 +21,7 @@ export function OrganizationSchema() {
         "name": GEO_V1.operator.name,
         "legalName": GEO_V1.operator.legalName,
         "url": GEO_V1.operator.url,
+        "logo": brandLogoUrl,
         "brand": { "@id": GEO_V1.brand.id },
       },
       {
