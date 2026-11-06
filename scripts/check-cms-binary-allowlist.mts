@@ -18,6 +18,14 @@ const CLUB_PUBLIC_PREFIX = 'public/club-kit-reference/'
 const FABRIC_PUBLIC_PREFIX = 'public/fabric-library/'
 const APPROVED_HOMEPAGE_POSTER = 'public/images/poxiol-teamwear-range-banner-2x1.webp'
 const RELEASE_ASSET_ALLOWLIST = 'content/release/asset-allowlist.json'
+const BRAND_ICON_ALLOWLIST = 'content/release/brand-icon-allowlist.json'
+const BRAND_ICON_PATHS = new Set([
+  'public/favicon.ico',
+  'public/favicon-48.png',
+  'public/favicon-192.png',
+  'public/favicon-512.png',
+  'public/apple-touch-icon.png',
+])
 const ALLOWED_EXTENSION = '.webp'
 const ALLOWED_STATUSES = new Set([
   'VERIFIED_POXIOL',
@@ -284,6 +292,38 @@ function auditHomepagePoster(root: string, changedPaths: string[]) {
   }
 }
 
+function auditBrandIcons(root: string, changedPaths: string[]) {
+  if (!changedPaths.length) return {approved: 0, errors: [] as string[]}
+  const errors: string[] = []
+  let approved = 0
+  try {
+    const records = JSON.parse(readFileSync(join(root, BRAND_ICON_ALLOWLIST), 'utf8')) as Array<Record<string, unknown>>
+    for (const repoPath of changedPaths) {
+      const publicPath = `/${repoPath.slice('public/'.length)}`
+      const matches = records.filter((record) => record.path === publicPath)
+      if (matches.length !== 1) {
+        errors.push(`Brand icon must have exactly one release asset record: ${repoPath}`)
+        continue
+      }
+      const record = matches[0]
+      if (record.classification !== 'BRAND_ASSET' ||
+          !['browser-favicon', 'web-manifest-icon', 'apple-touch-icon'].includes(String(record.allowedUse)) ||
+          record.reviewSource !== 'OWNER-APPROVED-SEO-APPROVAL-046' ||
+          record.thirdPartyMarkReview !== 'PASS' || record.poxiolMarkReview !== 'PASS_RETAINED' ||
+          typeof record.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(record.sha256)) {
+        errors.push(`Brand icon release approval is invalid: ${repoPath}`)
+        continue
+      }
+      const actual = createHash('sha256').update(readFileSync(join(root, repoPath))).digest('hex')
+      if (actual !== record.sha256) errors.push(`Brand icon digest mismatch: ${repoPath}`)
+      else approved++
+    }
+  } catch (error) {
+    errors.push(error instanceof Error ? error.message : 'Brand icon release approval invalid')
+  }
+  return {approved, errors}
+}
+
 export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
   const changedBinaryPaths = Array.from(new Set(binaryPaths.map(normalizeRepoPath))).sort()
   if (!changedBinaryPaths.length) return {passed: true, binaryChangeCount: 0, approvedBinaryChangeCount: 0, errors: [] as string[]}
@@ -293,12 +333,14 @@ export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
   const clubPaths = changedBinaryPaths.filter((path) => path.startsWith(CLUB_PUBLIC_PREFIX))
   const fabricPaths = changedBinaryPaths.filter((path) => path.startsWith(FABRIC_PUBLIC_PREFIX))
   const posterPaths = changedBinaryPaths.filter((path) => path === APPROVED_HOMEPAGE_POSTER)
-  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX) && !path.startsWith(CLUB_PUBLIC_PREFIX) && !path.startsWith(FABRIC_PUBLIC_PREFIX) && path !== APPROVED_HOMEPAGE_POSTER)
+  const brandPaths = changedBinaryPaths.filter((path) => BRAND_ICON_PATHS.has(path))
+  const outsidePaths = changedBinaryPaths.filter((path) => !path.startsWith(REAL_PUBLIC_PREFIX) && !path.startsWith(VISUAL_PUBLIC_PREFIX) && !path.startsWith(CLUB_PUBLIC_PREFIX) && !path.startsWith(FABRIC_PUBLIC_PREFIX) && path !== APPROVED_HOMEPAGE_POSTER && !BRAND_ICON_PATHS.has(path))
   const real = auditRealProduction(root, realPaths)
   const visual = auditProductVisualizations(root, visualPaths)
   const club = auditClubKitReferences(root, clubPaths)
   const fabric = auditFabricReferences(root, fabricPaths)
   const poster = auditHomepagePoster(root, posterPaths)
+  const brand = auditBrandIcons(root, brandPaths)
   const errors = [
     ...outsidePaths.map((path) => `Binary change outside approved directories: ${path}`),
     ...real.errors,
@@ -306,9 +348,10 @@ export function auditBinaryAllowlist(root: string, binaryPaths: string[]) {
     ...club.errors,
     ...fabric.errors,
     ...poster.errors,
+    ...brand.errors,
   ]
   const uniqueErrors = Array.from(new Set(errors)).sort()
-  const approvedBinaryChangeCount = real.approved + visual.approved + club.approved + fabric.approved + poster.approved
+  const approvedBinaryChangeCount = real.approved + visual.approved + club.approved + fabric.approved + poster.approved + brand.approved
   return {
     passed: uniqueErrors.length === 0 && approvedBinaryChangeCount === changedBinaryPaths.length,
     binaryChangeCount: changedBinaryPaths.length,
