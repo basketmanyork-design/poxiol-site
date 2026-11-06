@@ -27,6 +27,28 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "POXIOL Teamwear",
   },
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        type: "image/x-icon",
+        sizes: "16x16 32x32 48x48",
+      },
+      {
+        url: "/favicon-48.png",
+        type: "image/png",
+        sizes: "48x48",
+      },
+    ],
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
+  manifest: "/manifest.webmanifest",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -35,7 +57,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0A0A'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' font-weight='900' fill='%23B6FF00'%3EP%3C/text%3E%3C/svg%3E" />
         <link rel="preload" as="image" href="/images/poxiol-teamwear-range-banner-2x1.webp" fetchPriority="high" />
       </head>
       <body className="antialiased selection:bg-lime-400 selection:text-neutral-950">

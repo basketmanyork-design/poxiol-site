@@ -21,6 +21,7 @@ export const organizationSchema = {
   "name": "POXIOL Teamwear",
   "alternateName": "POXIOL",
   "url": "https://www.poxiol.com/",
+  "logo": "https://www.poxiol.com/poxiol-logo.svg",
   "description": "POXIOL is a custom teamwear manufacturer specializing in basketball, soccer and baseball uniforms for clubs, schools, youth programs, sports brands and distributors.",
   "knowsAbout": [
     "Custom teamwear",

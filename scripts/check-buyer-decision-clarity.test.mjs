@@ -340,7 +340,8 @@ const articleTemplateSource = await readFile(path.join(root, 'components/cms/Art
 assert.match(articleTemplateSource, /References[\s\S]*break-all/, 'article reference URLs must wrap on mobile')
 
 const layoutSource = await readFile(path.join(root, 'app/layout.tsx'), 'utf8')
-assert.match(layoutSource, /rel="icon"[\s\S]*data:image\/svg\+xml/, 'root layout must declare an inline favicon so browsers do not request missing favicon.ico')
+assert.match(layoutSource, /url:\s*["']\/favicon\.ico["']/, 'root metadata must declare the stable public favicon')
+assert.doesNotMatch(layoutSource, /rel="icon"[^>]+data:image/i, 'root layout must not retain a conflicting data URL favicon')
 
 const ctaSource = (await Promise.all([
   'components/cms/PageTemplate.tsx',

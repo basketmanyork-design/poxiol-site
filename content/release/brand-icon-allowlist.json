@@ -1,0 +1,7 @@
+[
+  {"assetId":"BRAND-FAVICON-ICO","path":"/favicon.ico","sha256":"b5d57cfd72b2258aa3e2cec4c4b908c93192dc69a6a284aa4e57f2c6913bbd81","classification":"BRAND_ASSET","allowedUse":"browser-favicon","thirdPartyMarkReview":"PASS","poxiolMarkReview":"PASS_RETAINED","reviewSource":"OWNER-APPROVED-SEO-APPROVAL-046"},
+  {"assetId":"BRAND-FAVICON-48","path":"/favicon-48.png","sha256":"d5ffc3c99aee4ca210fea3a848d61714419a4d6ea850149f466964f22482128a","classification":"BRAND_ASSET","allowedUse":"browser-favicon","thirdPartyMarkReview":"PASS","poxiolMarkReview":"PASS_RETAINED","reviewSource":"OWNER-APPROVED-SEO-APPROVAL-046"},
+  {"assetId":"BRAND-FAVICON-192","path":"/favicon-192.png","sha256":"8e8a831f892ccd374d4b0ebd7a15e2f8340e0685104a9ffca4f934fb9a8c9610","classification":"BRAND_ASSET","allowedUse":"web-manifest-icon","thirdPartyMarkReview":"PASS","poxiolMarkReview":"PASS_RETAINED","reviewSource":"OWNER-APPROVED-SEO-APPROVAL-046"},
+  {"assetId":"BRAND-FAVICON-512","path":"/favicon-512.png","sha256":"5f6279e453c6d45c043bf5acb926c8ddda4ef1b8e8083d258406ff2b7a593930","classification":"BRAND_ASSET","allowedUse":"web-manifest-icon","thirdPartyMarkReview":"PASS","poxiolMarkReview":"PASS_RETAINED","reviewSource":"OWNER-APPROVED-SEO-APPROVAL-046"},
+  {"assetId":"BRAND-APPLE-TOUCH-ICON","path":"/apple-touch-icon.png","sha256":"2d3a475b39211e80cb1ac3e7aa77d78bd07d6a24b9d86ca37075e03adac843ba","classification":"BRAND_ASSET","allowedUse":"apple-touch-icon","thirdPartyMarkReview":"PASS","poxiolMarkReview":"PASS_RETAINED","reviewSource":"OWNER-APPROVED-SEO-APPROVAL-046"}
+]
