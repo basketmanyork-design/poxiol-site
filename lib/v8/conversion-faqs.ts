@@ -56,6 +56,10 @@ export const SAMPLE_ORDER_FAQS = [
     question: 'What happens after the sample is approved?',
     answer: 'Bulk production planning begins only after the sample feedback and project specifications are confirmed. Quantity, sizes, customization, packaging, timing and shipping requirements are reviewed for the bulk project.',
   },
+  {
+    question: 'What sample costs and revision details should I confirm?',
+    answer: 'Ask for any sample product, artwork or logo, and shipping charges to be listed separately. Confirm whether each artwork or logo charge applies per garment, per design or to the whole order. If you are requesting a sample-cost credit toward a later bulk order, ask whether a credit applies and obtain its conditions in writing before paying. Identify the artwork version and decoration method covered by the quote, and confirm how revisions will be reviewed, whether they change the cost and whether another physical sample is needed.',
+  },
 ] as const satisfies readonly CmsFaqItem[]
 
 function withConversionFaqs(page: CmsPage, faqs: readonly CmsFaqItem[], section: Pick<CmsPageSection, 'eyebrow' | 'title' | 'body'>): CmsPage {
