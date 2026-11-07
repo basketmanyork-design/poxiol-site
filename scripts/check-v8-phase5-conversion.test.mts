@@ -26,6 +26,7 @@ const sampleOrderFaqQuestions = [
   'Can I provide my logo, artwork or reference files for the sample?',
   'What should I review when the sample is received?',
   'What happens after the sample is approved?',
+  'What sample costs and revision details should I confirm?',
 ] as const
 const approvedSampleProgramClaim = 'Flexible Custom Team Uniforms. Qualified Teams, Clubs, Schools, Brands and Distributors Can Apply for One Free Sample. International Shipping Applies. Subject to Review.'
 const unsafeSampleClaimPattern = /2\s*[-–]\s*3\s*day production|3\s*[-–]\s*7\s*day delivery|sample fee credited over 100 sets|MOQ\s*1\s*Set|free shipping/i
