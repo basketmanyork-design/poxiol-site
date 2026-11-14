@@ -5,6 +5,7 @@ import {publicSectionDecision} from '@/lib/release/publication-policy';
 import { getProjects } from "@/lib/sanity/content";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata = createPageMetadata({
   title: "Teamwear Planning Scenarios | POXIOL",
@@ -20,6 +21,7 @@ export default async function ProjectsPage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <StructuredData data={[organizationSchema, websiteSchema]} />
+      <RouteBreadcrumbs trail={[{name: 'Projects', path: '/projects/'}]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">

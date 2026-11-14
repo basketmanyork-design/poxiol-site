@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer, SectionHeading, PrimaryButton } from "@/components/ui";
 import { getApprovedClaimWording } from "@/lib/governance/claims";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata: Metadata = {
   title: "Custom Teamwear Packaging Review | POXIOL B2B",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function CustomPackagingPage() {
   return (
     <main className="bg-[#0A0A0A] text-white">
+      <RouteBreadcrumbs trail={[{name: 'Customization', path: '/customization/'}, {name: 'Custom Packaging', path: '/customization/custom-packaging/'}]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-4xl">

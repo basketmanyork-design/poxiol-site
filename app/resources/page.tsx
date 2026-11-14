@@ -3,6 +3,7 @@ import { Header, Footer, SectionHeading } from "@/components/ui";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
 import { getArticles } from "@/lib/sanity/content";
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata = createPageMetadata({
   title: "Teamwear Knowledge Center | Buying Guides & Specs",
@@ -18,6 +19,7 @@ export default async function ResourcesPage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <StructuredData data={[organizationSchema, websiteSchema]} />
+      <RouteBreadcrumbs trail={[{name: 'Resources', path: '/resources/'}]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">

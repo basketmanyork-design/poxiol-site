@@ -4,6 +4,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import { fabricGuideSchema } from "@/lib/seo-data";
 import { fabricDatabase } from "@/lib/fabrics";
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata = createPageMetadata({
   title: "Sportswear Fabric Guide: Mesh, Interlock & More | POXIOL",
@@ -27,6 +28,7 @@ export default function FabricGuidePage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <StructuredData data={[fabricGuideSchema]} />
+      <RouteBreadcrumbs trail={[{name: 'Fabric Guide', path: '/fabric-guide/'}]} />
       <Header />
       
       {/* Hero Section */}

@@ -2,6 +2,7 @@ import {Header, Footer} from '@/components/ui'
 import {LegalDraftNotice} from '@/components/legal/LegalDraftNotice'
 import {legalPolicyMetadata} from '@/lib/legal-release'
 import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata = createPageMetadata({
   title: 'Privacy Policy | POXIOL',
@@ -13,6 +14,7 @@ export const metadata = createPageMetadata({
 export default function Page() {
   return (
     <main className="bg-neutral-950 text-white">
+      <RouteBreadcrumbs trail={[{name: 'Privacy Policy', path: '/privacy-policy/'}]} />
       <Header />
       <section className="px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">

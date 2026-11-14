@@ -3,6 +3,7 @@ import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMoc
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import {contextualInquiryHref} from '@/lib/inquiry-context';
 import {publicSectionDecision} from '@/lib/release/publication-policy';
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 const solutionSeo = {
   title: "B2B Custom Teamwear Solutions | POXIOL",
@@ -71,6 +72,7 @@ export default function SolutionsPage() {
 
   return (
     <main className="bg-[#0A0A0A] text-white">
+      <RouteBreadcrumbs trail={[{name: 'Solutions', path: '/solutions/'}]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
         <div className="mx-auto max-w-7xl">

@@ -6,6 +6,7 @@ import { createPageMetadata } from "@/lib/seo/page-metadata";
 import { GEO_V1 } from "@/lib/geo-v1";
 import StructuredData from "@/components/seo/StructuredData";
 import Link from "next/link";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -70,6 +71,7 @@ export default async function PSEOPage({ params }: Props) {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <StructuredData data={articleSchema ? [faqSchema, articleSchema] : faqSchema} />
+      <RouteBreadcrumbs trail={[{name: page.h1, path: `/${page.slug}/`}]} />
       <Header />
 
       

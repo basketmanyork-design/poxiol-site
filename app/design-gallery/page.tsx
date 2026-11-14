@@ -3,6 +3,7 @@ import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplana
 import { featuredDesigns } from "@/lib/home-data";
 import {publicSectionDecision} from '@/lib/release/publication-policy';
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata = createPageMetadata({
   title: "Custom Teamwear Design Gallery | POXIOL Inspiration",
@@ -16,6 +17,7 @@ export default function DesignGalleryPage() {
 
   return (
     <main className="bg-[#0A0A0A] text-white">
+      <RouteBreadcrumbs trail={[{name: 'Design Gallery', path: '/design-gallery/'}]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-7xl">

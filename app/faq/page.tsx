@@ -2,6 +2,7 @@ import { Header, Footer, SectionHeading } from "@/components/ui";
 import StructuredData, { faqPageSchemaFromGroups } from "@/components/seo/StructuredData";
 import { getFaqGroups } from "@/lib/sanity/content";
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata = createPageMetadata({
   title: "Frequently Asked Questions | Custom Teamwear FAQ | POXIOL",
@@ -15,6 +16,7 @@ export default async function FAQPage() {
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
       <StructuredData data={faqPageSchemaFromGroups(faqGroups)} />
+      <RouteBreadcrumbs trail={[{name: 'FAQ', path: '/faq/'}]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">
