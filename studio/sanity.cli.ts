@@ -11,6 +11,7 @@ export default defineCliConfig({
   // (see node_modules/sanity/lib/_chunks-cjs/deployAction.js). The hostname has
   // to be assigned once on the project record itself.
   deployment: {
-    studioHost: 'poxiol-cms-admin',
+    studioHost: 'poxiol-cms',
   },
 })
+

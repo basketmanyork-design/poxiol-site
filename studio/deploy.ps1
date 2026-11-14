@@ -6,12 +6,12 @@
 #
 #   powershell -ExecutionPolicy Bypass -File .\deploy.ps1
 #
-# When the CLI asks for a Studio hostname, type: poxiol-cms-admin
+# When the CLI asks for a Studio hostname, type: poxiol-cms
 
 $ErrorActionPreference = 'Stop'
 Set-Location -LiteralPath $PSScriptRoot
 
-$wanted = 'poxiol-cms-admin'
+$wanted = 'poxiol-cms'
 
 Write-Host 'Building studio...' -ForegroundColor Cyan
 npx sanity build
@@ -26,3 +26,4 @@ if ($LASTEXITCODE -ne 0) { throw 'sanity deploy failed' }
 
 Write-Host ''
 Write-Host "Verify: https://$wanted.sanity.studio/" -ForegroundColor Green
+
