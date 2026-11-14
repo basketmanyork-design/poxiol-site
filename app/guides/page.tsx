@@ -1,18 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header, Footer, SectionHeading } from "@/components/ui";
+import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 import { getArticles } from "@/lib/sanity/content";
+import { getPermanentRedirectSources } from "@/lib/release/redirect-sources";
+
+const TITLE = "Teamwear Buying Guides: Sizing, Fabric & MOQ | POXIOL";
+const DESCRIPTION =
+  "Guides on teamwear sizing, fabric weight, sublimation printing, sampling, MOQ and quality control, written for clubs, schools and sportswear brands.";
 
 export const metadata: Metadata = {
-  title: "Teamwear Buying Guides | Expert Custom Sportswear Advice | POXIOL",
-  description: "Explore our library of professional teamwear buying guides and manufacturing advice.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "https://www.poxiol.com/guides/" },
 };
 
 export default async function GuidesPage() {
-  const guides = await getArticles("guide");
+  // Articles that were retired or merged are permanent redirect sources; linking to
+  // them from the hub would send visitors and crawlers through a 301 hop.
+  const redirectSources = getPermanentRedirectSources();
+  const guides = (await getArticles("guide")).filter(
+    (guide) => !redirectSources.has(`/guides/${guide.slug}/`),
+  );
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <RouteBreadcrumbs trail={[{ name: "Guides", path: "/guides/" }]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">

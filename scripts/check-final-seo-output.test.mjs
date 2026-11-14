@@ -23,7 +23,7 @@ test('indexed non-sitemap customization and guides pages keep exact headings, ca
   const pages = [
     ['/customization/custom-packaging/', 'Project Packaging Requirements', 'Custom Teamwear Packaging Review | POXIOL B2B', 'Review packing, size-grouping, labeling, carton, and branded-packaging requirements for a custom teamwear project.', '/contact/', 'Connect With Logistics Team'],
     ['/customization/private-label/', 'Private Label Requirements', 'Private Label Teamwear Manufacturing | POXIOL OEM', 'Review label, hangtag, care-information, and packaging requirements for private-label custom teamwear projects.', '/get-quote/?product=Private+Label+Teamwear&source=%2Fcustomization%2Fprivate-label%2F#quote-form', 'Request a Private Label Quote'],
-    ['/guides/', 'Professional Buying Guides', 'Teamwear Buying Guides | Expert Custom Sportswear Advice | POXIOL', 'Explore our library of professional teamwear buying guides and manufacturing advice.', null, 'Read Guide'],
+    ['/guides/', 'Professional Buying Guides', 'Teamwear Buying Guides: Sizing, Fabric & MOQ | POXIOL', 'Guides on teamwear sizing, fabric weight, sublimation printing, sampling, MOQ and quality control, written for clubs, schools and sportswear brands.', null, 'Read Guide'],
   ]
 
   assert.equal([...sitemap.matchAll(/<loc>/g)].length, 78)
