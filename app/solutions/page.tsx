@@ -53,6 +53,27 @@ const solutions: Solution[] = [
     items: ["Pullover Hoodies", "Zip-up Jackets", "Fleece Outerwear", "Vibrant Team Accents"]
   },
   {
+    title: "League & Season Program",
+    sport: 'Multi-Sport League',
+    subtitle: "For League Organisers Running Multiple Clubs",
+    desc: "Run one league-wide kit cycle across several clubs. The league supplies the club list with a roster and size list per club, the league branding rules and the first match date; POXIOL confirms the mockup route, whether a sample is required and the production sequence before any club order is scheduled.",
+    items: ["Per-Club Roster and Size Lists", "League Branding Rules Confirmed First", "Staggered Club Delivery Windows", "One Artwork Approval per Club"]
+  },
+  {
+    title: "School & District Multi-Sport Program",
+    sport: 'School Teamwear',
+    subtitle: "For Schools Buying Across Several Sports",
+    desc: "Cover basketball, soccer, track and PE kit in one purchasing cycle. The school supplies the sport list per team, a size list per squad and the named approval contact; POXIOL confirms which items share a production window and which need separate approvals before term starts.",
+    items: ["One Inquiry Across All Sports", "Per-Squad Size Lists", "Named School Approval Contact", "Term-Start Delivery Planning"]
+  },
+  {
+    title: "Reseller Repeat-Order Program",
+    sport: 'Distributor Supply',
+    subtitle: "For Resellers and Distributors Reordering",
+    desc: "Keep design files, size breakdowns and production records so a repeat order reuses the approved specifications. The reseller confirms the recurring item list and the restock trigger; POXIOL confirms what is held on file and what has to be re-approved before the next batch.",
+    items: ["Approved Specifications Kept on File", "Recurring Item List per Account", "Restock Trigger Confirmed per Batch", "Re-Approval Scope Stated Up Front"]
+  },
+  {
     title: "Teamwear Package Solution",
     sport: 'Multi-Sport Teamwear',
     subtitle: "Full Teamwear for Ongoing Client Accounts",

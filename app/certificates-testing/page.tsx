@@ -39,7 +39,9 @@ const documentCategories = [
 const certificatesFaqs = [
   { question: "Can POXIOL provide testing reports?", answer: "Testing reports depend on the product, target market and buyer requirements. Share the required standard before production so POXIOL can confirm the appropriate evidence path; availability is not a claim that a report is already held." },
   { question: "Can I request a QC report before shipment?", answer: "Yes. POXIOL can provide project-based QC records including size measurement, print clarity, stitching inspection and packing quantity review." },
-  { question: "Are all documents on this page verified?", answer: "A document is shown in one of three evidence tiers: currently verified evidence, project or order confirmation, or buyer requirements that must be supplied before confirmation. Availability is never presented as proof that a certificate or test has already been issued." }
+  { question: "Are all documents on this page verified?", answer: "A document is shown in one of three evidence tiers: currently verified evidence, project or order confirmation, or buyer requirements that must be supplied before confirmation. Availability is never presented as proof that a certificate or test has already been issued." },
+  { question: "Which labeling rules apply to teamwear sold in the United States?", answer: "Two FTC rules apply. 16 CFR Part 303 requires fiber content, country of origin and the responsible company identification on the textile label. 16 CFR Part 423 requires care instructions attached to the garment. The buyer supplies the fiber blend, the company identifier and the wash or dry-clean method before production." },
+  { question: "Which test methods should a buyer specify for teamwear fabric?", answer: "Name the property, the method number and the pass threshold rather than the property alone. Colorfastness to crocking, for example, is cited as AATCC TM 8 with a stated grade. POXIOL confirms which methods can be arranged for the fabric and destination on the specific order; a named method is not a claim that a report is already held." }
 ];
 
 export default function CertificatesTestingPage() {
@@ -118,6 +120,62 @@ export default function CertificatesTestingPage() {
               <p className="mt-8 text-sm text-neutral-500 italic">Photos of these items can be provided during your specific project production cycle.</p>
             </div>
           </div>
+
+            <div className="rounded-[2.5rem] border border-neutral-200 bg-neutral-50 p-8 md:p-12 shadow-sm">
+              <h2 className="text-2xl font-black uppercase tracking-tight text-neutral-950 mb-4">5. Labeling and Testing Requirements by Market</h2>
+              <p className="text-sm text-neutral-600 mb-8 max-w-3xl leading-relaxed">
+                The items below are public labeling and testing requirements, not POXIOL certifications. Each one applies only when the buyer names it
+                for the destination market, and the buyer supplies the inputs the rule depends on.
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[640px] text-left text-sm border-collapse">
+                  <thead>
+                    <tr className="border-b border-neutral-300">
+                      <th className="py-3 pr-4 font-black uppercase tracking-wide text-neutral-900">Market</th>
+                      <th className="py-3 pr-4 font-black uppercase tracking-wide text-neutral-900">Requirement</th>
+                      <th className="py-3 pr-4 font-black uppercase tracking-wide text-neutral-900">What it governs</th>
+                      <th className="py-3 font-black uppercase tracking-wide text-neutral-900">What the buyer supplies</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-neutral-600">
+                    <tr className="border-b border-neutral-200 align-top">
+                      <td className="py-4 pr-4 font-bold text-neutral-900">United States</td>
+                      <td className="py-4 pr-4 whitespace-nowrap">16 CFR Part 303</td>
+                      <td className="py-4 pr-4">Fiber content, country of origin and the responsible company identification carried on the textile label</td>
+                      <td className="py-4">Fiber blend, company identifier and country of origin to print on the label</td>
+                    </tr>
+                    <tr className="border-b border-neutral-200 align-top">
+                      <td className="py-4 pr-4 font-bold text-neutral-900">United States</td>
+                      <td className="py-4 pr-4 whitespace-nowrap">16 CFR Part 423</td>
+                      <td className="py-4 pr-4">Care instructions that must be attached to the garment and remain legible for its useful life</td>
+                      <td className="py-4">Whether the item is wash or dry-clean, and any temperature limits</td>
+                    </tr>
+                    <tr className="border-b border-neutral-200 align-top">
+                      <td className="py-4 pr-4 font-bold text-neutral-900">United States</td>
+                      <td className="py-4 pr-4 whitespace-nowrap">AATCC TM 8</td>
+                      <td className="py-4 pr-4">Colorfastness to crocking, the standard method buyers cite for print and dye transfer</td>
+                      <td className="py-4">The method number and the pass threshold required for this order</td>
+                    </tr>
+                    <tr className="border-b border-neutral-200 align-top">
+                      <td className="py-4 pr-4 font-bold text-neutral-900">European Union</td>
+                      <td className="py-4 pr-4 whitespace-nowrap">Regulation (EU) No 1007/2011</td>
+                      <td className="py-4 pr-4">Textile fibre names, fibre content tolerance and the language required on the label</td>
+                      <td className="py-4">Fibre composition and the market language for the label</td>
+                    </tr>
+                    <tr className="align-top">
+                      <td className="py-4 pr-4 font-bold text-neutral-900">Any market</td>
+                      <td className="py-4 pr-4 whitespace-nowrap">Buyer-nominated laboratory</td>
+                      <td className="py-4 pr-4">Restricted substance testing run against the limit list the buyer declares</td>
+                      <td className="py-4">The limit list and the accredited laboratory the buyer accepts</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-8 text-sm text-neutral-500 italic">
+                Naming a requirement does not mean a report is already held. POXIOL confirms which of these can be arranged for the specific fabric,
+                destination and order before production is scheduled.
+              </p>
+            </div>
 
           <div className="mt-20 rounded-[3rem] border border-neutral-200 bg-neutral-50 p-10 text-center">
              <h3 className="text-2xl font-black uppercase mb-4">Need Quality Documents?</h3>
