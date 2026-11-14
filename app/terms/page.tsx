@@ -5,7 +5,7 @@ import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/pag
 
 export const metadata = createPageMetadata({
   title: 'Terms | POXIOL',
-  description: 'General website and inquiry terms for POXIOL custom teamwear buyers.',
+  description: 'General website and inquiry terms for POXIOL custom teamwear buyers, covering quotes, samples, production schedules and order changes.',
   canonical: 'https://www.poxiol.com/terms/',
   metadata: {...legalPolicyMetadata(), twitter: PRESERVED_ROOT_TWITTER_METADATA},
 })

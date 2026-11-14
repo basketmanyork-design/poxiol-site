@@ -5,7 +5,7 @@ import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/pag
 
 export const metadata = createPageMetadata({
   title: 'Intellectual Property Policy | POXIOL',
-  description: 'POXIOL only supports buyer-owned, original or properly authorized artwork for custom teamwear production.',
+  description: 'POXIOL only supports buyer-owned, original or properly authorized artwork for custom teamwear production, including logos, prints and embroidery files.',
   canonical: 'https://www.poxiol.com/intellectual-property-policy/',
   metadata: {...legalPolicyMetadata(), twitter: PRESERVED_ROOT_TWITTER_METADATA},
 })

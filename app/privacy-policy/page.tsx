@@ -6,7 +6,7 @@ import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
 
 export const metadata = createPageMetadata({
   title: 'Privacy Policy | POXIOL',
-  description: 'How POXIOL handles project inquiry information submitted by B2B custom teamwear buyers.',
+  description: 'How POXIOL handles project inquiry information submitted by B2B custom teamwear buyers, including what we collect and how long we keep it.',
   canonical: 'https://www.poxiol.com/privacy-policy/',
   metadata: {...legalPolicyMetadata(), twitter: PRESERVED_ROOT_TWITTER_METADATA},
 })
