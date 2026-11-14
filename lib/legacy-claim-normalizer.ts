@@ -40,6 +40,16 @@ export function normalizeBuyerFacingClaim(value: string): string {
     .replace(/Elite\s+OEM\s+Soccer\s+Apparel\s+Manufacturer/gi, 'OEM Soccer Apparel Manufacturer')
     .replace(/Elite\s+Custom\s+Teamwear\s+Manufacturer/gi, 'Custom teamwear manufacturer')
     .replace(/Elite\s+sublimation\s+printing/gi, 'Full-color sublimation printing')
+    // A rewritten claim sentence must not inherit the trailing connective of the
+    // sentence it replaced ("... printing with Sample timing is confirmed ...").
+    // Break the sentence instead of leaving a dangling "with / and / plus".
+    .replace(
+      /[,;]?\s+(?:with|and|plus|including)\s+(?=(?:Sample timing|Production scheduling|Shipping timing|Sample availability)\s+is\s+confirmed)/gi,
+      '. ',
+    )
+    // The factory-direct rewrite can land at the start of a sentence and inherit a
+    // lowercase first letter ("… brands. project-coordinated manufacturing").
+    .replace(/\.\s+(project-coordinated|project-specific|custom teamwear)\b/g, (_, word: string) => `. ${word.charAt(0).toUpperCase()}${word.slice(1)}`)
 }
 
 export function normalizeBuyerFacingQuestion(value: string): string {

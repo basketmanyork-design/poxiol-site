@@ -12,9 +12,9 @@ const outputMode = process.argv.includes('--output')
 
 const expected = {
   slug: 'custom-basketball-jerseys-melbourne',
-  title: 'Custom Basketball Jerseys Melbourne | Club & Team Orders | POXIOL',
+  title: 'Custom Basketball Jerseys Melbourne | Club & Team Orders',
   h1: 'Custom Basketball Jerseys for Melbourne Clubs and Teams',
-  intro: 'Plan custom basketball jerseys for a Melbourne club, school, academy or distributor. Review roster, artwork, sizing, sample and delivery details before a quote.',
+  intro: 'Custom basketball jerseys for Melbourne clubs, schools, academies and distributors. Check roster, artwork, sizing, samples and delivery before quoting.',
   content: 'POXIOL reviews Melbourne basketball uniform projects according to the product mix, quantity, artwork, colors, names and numbers, size breakdown, target date and delivery destination. Product specifications, sample options, quotation, shipping method and delivery timing are confirmed only after the complete project requirements are reviewed.',
   decisionSections: [
     {
