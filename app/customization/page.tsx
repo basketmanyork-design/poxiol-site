@@ -3,6 +3,7 @@ import {CmsPageTemplate, metadataFromCmsPage} from '@/components/cms/PageTemplat
 import {SolutionCards} from '@/components/v8/SolutionCards'
 import {FAQSection} from '@/components/v8/FAQSection'
 import {getSitePage} from '@/lib/sanity/content'
+import {repairSerpText} from '@/lib/seo/serp-overrides'
 import {getV8Faqs} from '@/lib/v8/faqs'
 import {cmsProductionMediaToV8Assets} from '@/lib/v8/media'
 import {getV8ProductionAssetsForPage} from '@/lib/real-production/registry.ts'
@@ -20,7 +21,12 @@ const pageKey = 'customization'
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getSitePage(pageKey)
-  return metadataFromCmsPage(page)
+  const metadata = metadataFromCmsPage(page)
+  const repair = repairSerpText("/customization/", {
+    title: typeof metadata.title === "string" ? metadata.title : undefined,
+    description: metadata.description ?? undefined,
+  })
+  return {...metadata, ...repair}
 }
 
 export default async function Page() {

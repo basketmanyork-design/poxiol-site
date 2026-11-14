@@ -3,6 +3,7 @@ import {notFound} from 'next/navigation'
 import {ArticleTemplate, metadataFromArticle} from '@/components/cms/ArticleTemplate'
 import {getArticle, getArticles} from '@/lib/sanity/content'
 import {WEEK3_GUIDE_SLUGS} from '@/lib/week3-guides'
+import {repairSerpText} from '@/lib/seo/serp-overrides'
 
 type Props = {params: {slug: string}}
 
@@ -18,7 +19,12 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {slug} = params
   const article = await getArticle(slug)
   if (!article || article.articleType !== 'resource') return {title: 'Not Found'}
-  return metadataFromArticle(article)
+  const metadata = metadataFromArticle(article)
+  const repair = repairSerpText(`/resources/${slug}/`, {
+    title: typeof metadata.title === 'string' ? metadata.title : undefined,
+    description: metadata.description ?? undefined,
+  })
+  return {...metadata, ...repair}
 }
 
 export default async function ArticleDetailPage({params}: Props) {
