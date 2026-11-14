@@ -6,8 +6,8 @@ import { Printer, Zap, Scissors, ShieldCheck, Info } from "lucide-react";
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Sportswear Printing Guide | Sublimation, Screen Printing & Embroidery | POXIOL",
-  description: "Learn about sublimation printing, screen printing, embroidery and heat transfer methods for custom teamwear, basketball uniforms, soccer kits and sportswear manufacturing.",
+  title: "Sportswear Printing Guide | Sublimation & Embroidery",
+  description: "Compare sublimation, screen printing, embroidery and heat transfer for custom teamwear, basketball uniforms and soccer kits before you specify.",
   canonical: "/printing-guide/",
   metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
 });

@@ -5,6 +5,7 @@ export type PSEOPage = {
   title: string;
   h1: string;
   intro: string;
+  metaDescription?: string;
   content: string;
   decisionSections?: { heading: string; body: string }[];
   finalCtaHeading?: string;
@@ -37,9 +38,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "oem-vs-odm-sportswear",
-    title: "OEM vs ODM Sportswear Manufacturing | Complete Teamwear Guide | POXIOL",
+    title: "OEM vs ODM Sportswear Manufacturing | POXIOL",
     h1: "OEM vs ODM Sportswear Manufacturing",
     intro: "Understanding the difference between OEM and ODM is crucial for brands and distributors looking to optimize their supply chain. Each model offers unique advantages depending on your design needs and timeline.",
+    metaDescription: "Compare OEM and ODM sportswear manufacturing: how design ownership, tooling, minimums and timelines differ for teamwear brands and distributors.",
     content: "OEM (Original Equipment Manufacturing) is for clients who have their own designs and tech packs and need a factory to execute them to exact specifications. This offers maximum control over every detail. ODM (Original Design Manufacturing), on the other hand, involves choosing from a factory's existing designs and customizing them with your branding. This is faster and requires less development effort. At POXIOL, we support both models, providing the technical expertise to bring your vision to life or the proven templates to get your brand to market quickly.",
     publisher: POXIOL_PUBLISHER,
     faqs: [
@@ -50,9 +52,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "best-sportswear-fabrics",
-    title: "Best Sportswear Fabrics Explained | Complete Teamwear Fabric Guide | POXIOL",
+    title: "Best Sportswear Fabrics for Team Kits | POXIOL",
     h1: "Best Sportswear Fabrics Explained",
     intro: "The performance of a sports uniform starts with the fabric. From moisture-wicking polyester to high-stretch spandex, choosing the right material is key to player comfort and durability.",
+    metaDescription: "Compare fabrics used in custom teamwear: moisture-wicking polyester, spandex blends and GSM choices, and what each means for comfort and durability.",
     content: "For basketball and soccer, lightweight 'Interlock' or 'Mesh' polyesters are the standard due to their breathability and strength. Baseball jerseys often require a heavier, higher-density polyester for durability during sliding and fielding. If you're designing training wear, look for 'Bird Eye' mesh, which features a unique knit pattern that maximizes airflow. All our fabrics at POXIOL are engineered for moisture management, ensuring that sweat is moved away from the skin quickly. This technical focus ensures your team stays cool under pressure.",
     publisher: POXIOL_PUBLISHER,
     faqs: [
@@ -63,9 +66,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "how-sublimation-printing-works-for-teamwear",
-    title: "How Sublimation Printing Works for Teamwear | Complete Teamwear Printing Guide | POXIOL",
+    title: "How Sublimation Printing Works for Teamwear | POXIOL",
     h1: "Complete How Sublimation Printing Works for Teamwear",
     intro: "Sublimation printing has revolutionized teamwear by allowing for unlimited design creativity without sacrificing performance. Learn why it's the preferred choice for professional sports uniforms.",
+    metaDescription: "How dye sublimation turns artwork into full-colour teamwear with no print limit, and where it suits jerseys, shorts and training wear best.",
     content: "Unlike screen printing or heat transfer, sublimation uses heat to turn ink into a gas that infuses directly into the fabric fibers. This results in a print with high color fastness that is highly resistant to cracking or peeling, and maintains the fabric's full breathability. This process is professional-grade for complex patterns, gradients, and multiple sponsor logos. At POXIOL, we use high-precision Japanese printers and professional-grade inks to ensure vibrant, lasting colors that stand out on the field and the court. Sublimation is a leading solution for durable, high-impact teamwear branding.",
     publisher: POXIOL_PUBLISHER,
     faqs: [
@@ -76,9 +80,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "how-to-choose-a-teamwear-manufacturer",
-    title: "How To Choose A Teamwear Manufacturer | Complete Buyer Guide | POXIOL",
+    title: "How to Choose a Teamwear Manufacturer | POXIOL",
     h1: "How To Choose A Teamwear Manufacturer",
     intro: "Finding the right manufacturing partner can be the difference between a successful season and a branding disaster. Use this checklist to evaluate potential suppliers for your team or brand.",
+    metaDescription: "A buyer checklist for vetting custom teamwear suppliers: sampling, fabric sourcing, quality checks, minimum order ranges and production scheduling.",
     content: "When evaluating a supplier, look for clear project communication and written confirmation of product details. Check whether the supplier understands your sport, provides mockups for design review, documents quality checkpoints and confirms shipping assumptions before payment. POXIOL supports this project-based review for custom basketball, soccer, baseball and multi-sport teamwear inquiries.",
     publisher: POXIOL_PUBLISHER,
     faqs: [
@@ -92,9 +97,10 @@ export const pseoPages: PSEOPage[] = [
 
   {
     slug: "custom-basketball-uniforms-for-schools",
-    title: "Custom Basketball Uniforms for Schools | High School Basketball Jerseys | POXIOL",
+    title: "Custom Basketball Uniforms for Schools | POXIOL",
     h1: "Custom Basketball Uniforms for Schools & Academies",
     intro: "POXIOL provides professional-grade custom basketball uniforms specifically designed for school programs and basketball academies. We understand the unique needs of school athletics, from durable performance fabrics to consistent branding across youth and varsity teams.",
+    metaDescription: "School basketball uniforms for varsity and youth squads: durable fabrics, consistent branding and roster-based sizing confirmed before production.",
     content: "Our school basketball uniform program features high-performance mesh and interlock fabrics that stand up to daily practice and game-day intensity. As a direct manufacturer, we offer schools flexible ordering, budget-friendly pricing, and fast delivery timelines to ensure your teams are ready for the season opener. Whether you need classic sublimated jerseys or modern reversible sets, our design team provides free mockups after the project requirements are reviewed to help you visualize your school's unique identity.",
     faqs: [
       { question: "Do you offer youth and adult sizes for schools?", answer: "Yes, we provide a full range of sizes from youth XS to adult 5XL to accommodate all school grade levels." },
@@ -104,9 +110,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "custom-soccer-uniforms-for-academies",
-    title: "Custom Soccer Uniforms for Academies | Youth Soccer Kits Manufacturer | POXIOL",
+    title: "Custom Soccer Uniforms for Academies | POXIOL",
     h1: "Custom Soccer Uniforms for Youth Academies",
     intro: "Empower your youth soccer academy with professional-grade custom kits. POXIOL specializes in durable, high-performance soccer apparel that builds team spirit and stands out on the pitch.",
+    metaDescription: "Custom soccer kits for academies and youth programs: durable fabrics, academy branding and size sets that hold up across a full season.",
     content: "Academy soccer uniform projects can be reviewed for lightweight performance fabrics, youth and adult size mixes, and full-color sublimation. Buyer-owned or authorized club crests, sponsor graphics and original patterns can be included in the approved artwork. Product structure, quantity and pricing are confirmed for each academy project.",
     publisher: POXIOL_PUBLISHER,
     faqs: [
@@ -130,9 +137,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "oem-basketball-apparel-manufacturer",
-    title: "OEM Basketball Apparel Manufacturer | Private Label Basketball Jerseys | POXIOL",
+    title: "OEM Basketball Apparel Manufacturer | POXIOL",
     h1: "Professional OEM Basketball Apparel Manufacturer",
     intro: "POXIOL is a dedicated OEM basketball apparel manufacturer, helping sports brands and private labels develop high-quality basketball clothing lines with custom specs and branding.",
+    metaDescription: "OEM basketball apparel for sports brands and private labels: your specs and branding, produced to sample-approved standards before bulk runs.",
     content: "As a specialist in basketball teamwear production, we offer comprehensive OEM services including pattern development, fabric sourcing, sublimation printing, and private labeling. Our factory is equipped to handle everything from initial sampling to large-scale bulk production for international basketball brands. We prioritize technical excellence, ensuring that every garment meets pro-level standards for durability, fit, and performance.",
     faqs: [
       { question: "Do you support private labeling?", answer: "Yes, we provide custom neck labels, hang tags, and branded packaging for all OEM orders." },
@@ -142,9 +150,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "custom-baseball-jerseys-for-clubs",
-    title: "Custom Baseball Jerseys for Clubs | Team Baseball Uniforms | POXIOL",
+    title: "Custom Baseball Jerseys for Clubs | POXIOL",
     h1: "Custom Baseball Jerseys for Competitive Clubs",
     intro: "Level up your baseball club's appearance with premium custom jerseys. POXIOL manufactures durable, stylish, and high-performance baseball uniforms for competitive teams and leagues.",
+    metaDescription: "Custom baseball jerseys and uniforms for clubs and leagues: button-front or two-button styles, team branding and roster-based sizing.",
     content: "Baseball jersey projects can be reviewed for durable polyester fabrics, range of motion and the club's preferred construction. Options may include full-button, two-button and v-neck styles with approved team graphics and player numbers. Production and shipping schedules are confirmed after the design, quantity, destination and project requirements are reviewed.",
     faqs: [
       { question: "Do you offer full-button baseball jerseys?", answer: "Yes, we manufacture full-button, two-button, and v-neck baseball jerseys." },
@@ -166,9 +175,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "custom-volleyball-uniforms-for-schools",
-    title: "Custom Volleyball Uniforms for Schools | School Volleyball Kits | POXIOL",
+    title: "Custom Volleyball Uniforms for Schools | POXIOL",
     h1: "Custom Volleyball Uniforms for School Teams",
     intro: "Provide your school volleyball team with the perfect blend of comfort and style. POXIOL manufactures high-stretch, breathable volleyball uniforms tailored for school athletics.",
+    metaDescription: "School volleyball uniforms in high-stretch breathable fabrics, with consistent team branding across junior and senior squads.",
     content: "School volleyball uniform projects can be reviewed for player mobility, fabric durability and the required indoor or beach-volleyball construction. The design can include buyer-owned or authorized school graphics, names and numbers. Materials, quantity and pricing are confirmed for the project before production planning.",
     faqs: [
       { question: "What is the best fabric for school volleyball jerseys?", answer: "We recommend our high-stretch performance polyester for maximum comfort and durability." },
@@ -178,9 +188,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "oem-soccer-apparel-manufacturer",
-    title: "OEM Soccer Apparel Manufacturer | Private Label Soccer Kits | POXIOL",
+    title: "OEM Soccer Apparel Manufacturer | POXIOL",
     h1: "OEM Soccer Apparel Manufacturer",
     intro: "Scale your soccer brand with POXIOL's expert OEM manufacturing services. We provide professional-grade soccer apparel production with custom branding and technical specifications.",
+    metaDescription: "OEM soccer apparel production for brands: your patterns and branding, technical spec review and sample approval before bulk production.",
     content: "As a specialist soccer apparel manufacturer, we support brands and distributors in developing comprehensive soccer kit lines. Our OEM services include advanced fabric sourcing, high-precision sublimation printing, and meticulous QC standards. We help you create unique soccer gear that sets your brand apart in a competitive market. From match-day jerseys to training wear and accessories, POXIOL is your reliable partner for soccer apparel excellence.",
     faqs: [
       { question: "How is production capacity confirmed for soccer jerseys?", answer: "Available capacity and scheduling are confirmed after the product specification, quantity and target delivery requirements are reviewed." },
@@ -234,9 +245,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "oem-baseball-apparel-manufacturer",
-    title: "OEM Baseball Apparel Manufacturer | Private Label Baseball Gear | POXIOL",
+    title: "OEM Baseball Apparel Manufacturer | POXIOL",
     h1: "Professional OEM Baseball Apparel Manufacturer",
     intro: "Launch and scale your baseball brand with POXIOL's specialized OEM manufacturing. We offer high-quality baseball apparel production with custom branding and specs.",
+    metaDescription: "OEM baseball apparel for brands and private labels: custom specs, your branding and sample sign-off before production scheduling.",
     content: "Our baseball OEM services are designed for brands that demand quality and durability. We provide expert pattern development, high-density fabric sourcing, and professional sublimation and embroidery services. Whether you're creating a line of traditional jerseys or modern performance wear, POXIOL has the manufacturing expertise to ensure your brand's baseball collection meets the highest industry standards.",
     faqs: [
       { question: "What types of baseball jerseys can you manufacture?", answer: "We produce full-button, two-button, v-neck, and compression-style baseball tops." },
@@ -246,9 +258,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "custom-soccer-kits-london",
-    title: "Custom Soccer Kits London | Football Teamwear Manufacturer | POXIOL",
+    title: "Custom Soccer Kits London | Teamwear Manufacturer",
     h1: "Custom Soccer Kits for London Clubs",
     intro: "Stand out on the London football scene with professional custom kits. POXIOL provides elite soccer apparel for clubs and academies throughout Greater London.",
+    metaDescription: "Custom soccer kits for London clubs and academies: design support, sample approval and delivery planning that fits the UK season.",
     content: "London soccer organizations can request match-day kits, training wear and related team products with buyer-approved artwork. POXIOL reviews the product mix, size requirements, quantity and deadline before confirming design support, quotation, production scheduling and shipping assumptions.",
     faqs: [
       { question: "How is delivery to London planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
@@ -258,9 +271,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "oem-volleyball-apparel-manufacturer",
-    title: "OEM Volleyball Apparel Manufacturer | Private Label Volleyball Kits | POXIOL",
+    title: "OEM Volleyball Apparel Manufacturer | POXIOL",
     h1: "Expert OEM Volleyball Apparel Manufacturer",
     intro: "Develop your volleyball brand with POXIOL's specialized OEM manufacturing. We provide high-stretch, performance-focused volleyball apparel production.",
+    metaDescription: "OEM volleyball apparel for brands: high-stretch performance fabrics, your branding and sample approval before bulk production starts.",
     content: "As a specialist in volleyball apparel, we understand the technical requirements for player mobility and fabric resilience. Our OEM services include sourcing premium spandex and polyester blends, precision sublimation printing, and expert assembly. We help you create a volleyball line that combines style with athletic excellence, providing the scalability your brand needs to succeed in the global teamwear market.",
     faqs: [
       { question: "What is your focus for volleyball apparel manufacturing?", answer: "We focus on high-stretch fabrics, durable seams, and vibrant, non-fading sublimated designs." },
@@ -270,9 +284,10 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "custom-teamwear-new-york",
-    title: "Custom Teamwear New York | Sports Apparel Manufacturer | POXIOL",
+    title: "Custom Teamwear New York | POXIOL",
     h1: "Custom Teamwear for New York Sports Teams",
     intro: "Equip your New York-based sports organization with elite custom teamwear. POXIOL provides professional-grade apparel for clubs, schools, and leagues across the New York area.",
+    metaDescription: "Custom teamwear for New York clubs, schools and leagues: sport-specific specs, roster sizing and a sample sign-off before bulk production.",
     content: "New York sports teams can request custom basketball, soccer, baseball and multi-sport uniforms with buyer-approved artwork. POXIOL reviews the product mix, size requirements, quantity and destination before confirming the mockup, quotation, production plan and shipping assumptions for the project.",
     faqs: [
       { question: "How is shipping to New York planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },

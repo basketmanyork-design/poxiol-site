@@ -97,8 +97,8 @@ if (!outputMode) {
     const html = await readFile(outputFile(route), 'utf8')
     const text = visibleText(html)
 
-    assert.match(html, /<title>Custom Basketball Jerseys Melbourne \| Club &amp; Team Orders \| POXIOL<\/title>/)
-    assert.match(html, /<meta name="description" content="Plan custom basketball jerseys for a Melbourne club, school, academy or distributor\. Review roster, artwork, sizing, sample and delivery details before a quote\."\/?>/)
+    assert.match(html, /<title>Custom Basketball Jerseys Melbourne \| Club &amp; Team Orders<\/title>/)
+    assert.match(html, /<meta name="description" content="Custom basketball jerseys for Melbourne clubs, schools, academies and distributors\. Check roster, artwork, sizing, samples and delivery before quoting\."\/?>/)
     assert.match(html, /<link rel="canonical" href="https:\/\/www\.poxiol\.com\/custom-basketball-jerseys-melbourne\/"\/?>/)
     assert.equal((html.match(/<h1\b/gi) ?? []).length, 1)
     assert.match(text, /Custom Basketball Jerseys for Melbourne Clubs and Teams/)
@@ -109,7 +109,11 @@ if (!outputMode) {
 
     const jsonLd = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
       .map(([, json]) => JSON.parse(json))
-    assert.equal(jsonLd.length, 1)
+    assert.equal(jsonLd.length, 2)
+    assert.ok(
+      jsonLd.some((entry) => entry["@type"] === "BreadcrumbList"),
+      "Melbourne page must emit a BreadcrumbList",
+    )
     assert.equal(jsonLd[0]['@type'], 'FAQPage')
     assert.deepEqual(
       jsonLd[0].mainEntity.map((item: {name: string; acceptedAnswer: {text: string}}) => ({

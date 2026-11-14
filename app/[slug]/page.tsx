@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return createPageMetadata({
     title: page.title,
-    description: page.intro,
+    description: page.metaDescription ?? page.intro,
     canonical: `/${page.slug}/`,
     metadata: {
       twitter: {

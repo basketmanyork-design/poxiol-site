@@ -81,13 +81,16 @@ test("all 19 pSEO outputs mirror their existing page metadata into Open Graph", 
     const html = await readOutput(route);
 
     assert.equal(elementText(html, "title"), page.title, `${route} title`);
-    assert.equal(one(metaValues(html, "name", "description"), `${route} description`), page.intro);
+    assert.equal(
+      one(metaValues(html, "name", "description"), `${route} description`),
+      page.metaDescription ?? page.intro,
+    );
     assert.equal(one(linkValues(html, "canonical"), `${route} canonical`), absolute);
     assert.equal(elementText(html, "h1"), page.h1, `${route} H1`);
     assert.equal(one(metaValues(html, "property", "og:title"), `${route} og:title`), page.title);
     assert.equal(
       one(metaValues(html, "property", "og:description"), `${route} og:description`),
-      page.intro,
+      page.metaDescription ?? page.intro,
     );
     assert.equal(one(metaValues(html, "property", "og:url"), `${route} og:url`), absolute);
     assert.equal(one(metaValues(html, "property", "og:type"), `${route} og:type`), "website");
@@ -107,7 +110,11 @@ test("all 19 pSEO outputs mirror their existing page metadata into Open Graph", 
 
     const jsonLd = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
       .map(([, json]) => JSON.parse(json));
-    assert.equal(jsonLd.length, 1, `${route} JSON-LD script count`);
+    assert.equal(jsonLd.length, 2, `${route} JSON-LD script count`);
+    assert.ok(
+      jsonLd.some((entry) => entry["@type"] === "BreadcrumbList"),
+      `${route} must emit a BreadcrumbList`,
+    );
     const expectedFaq = {
       "@context": "https://schema.org",
       "@type": "FAQPage",

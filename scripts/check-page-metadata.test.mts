@@ -104,6 +104,6 @@ test("the dynamic pSEO route delegates successful metadata to the shared helper"
   assert.match(source, /return createPageMetadata\(\{/);
   assert.match(source, /if \(!page\) return \{ title: "Page Not Found" \};/);
   assert.match(source, /title: page\.title/);
-  assert.match(source, /description: page\.intro/);
+  assert.match(source, /description: page\.metaDescription \?\? page\.intro/);
   assert.match(source, /canonical: `\/\$\{page\.slug\}\//);
 });

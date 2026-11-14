@@ -34,7 +34,7 @@ const expectedPages = [
   {
     id: 'private-label-teamwear',
     route: '/private-label-teamwear/',
-    title: 'Private Label Teamwear for Sports Brands and Distributors | POXIOL',
+    title: 'Private Label Teamwear for Sports Brands & Distributors',
     description: 'Private-label teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
     h1: 'Private Label Teamwear Built Around Your Brand',
     cta: 'Discuss Your OEM Project',
@@ -110,7 +110,7 @@ if (outputMode) {
     assert.equal(new Set(ids).size, ids.length, `${expected.id} must not contain duplicate HTML ids.`)
     const h1s = [...bodyWithoutScripts.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((match) => match[1].replace(/<[^>]+>/g, '').trim())
 
-    assert.equal(title, expected.title)
+    assert.equal(title.replace(/&amp;/g, '&'), expected.title)
     assert.equal(description, expected.description)
     assert.equal(canonicalTags.length, 1)
     assert.equal(canonical, `${baseUrl}${expected.route}`)
