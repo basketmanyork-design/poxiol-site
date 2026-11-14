@@ -3,7 +3,7 @@ import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/GEO
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Certificates & Testing | POXIOL Custom Teamwear Quality Documents",
+  title: "Certificates & Testing | Teamwear Quality Documents",
   description: "Review POXIOL custom teamwear quality documents, fabric testing options, inspection records and verified production evidence for B2B sportswear buyers.",
   canonical: "/certificates-testing/",
   metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },

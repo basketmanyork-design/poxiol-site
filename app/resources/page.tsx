@@ -5,8 +5,8 @@ import { getArticles } from "@/lib/sanity/content";
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Teamwear Knowledge Center | Sportswear Buying Guides | POXIOL",
-  description: "Explore POXIOL resources including buying guides, fabric knowledge, and manufacturing insights.",
+  title: "Teamwear Knowledge Center | Buying Guides & Specs",
+  description: "Buying guides, fabric and sizing specs, and manufacturing know-how for custom teamwear buyers, written for clubs, schools, brands and distributors.",
   canonical: "/resources/",
   metadata: { twitter: PRESERVED_ROOT_TWITTER_METADATA },
 });

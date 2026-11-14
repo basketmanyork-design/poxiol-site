@@ -24,9 +24,9 @@ export const pseoPages: PSEOPage[] = [
   // --- KNOWLEDGE GUIDES (From Content Pack) ---
   {
     slug: "soccer-jersey-buying-guide",
-    title: "Soccer Jersey Buying Guide | How To Order Custom Soccer Kits | POXIOL",
+    title: "Custom Soccer Jersey Buying Guide | MOQ, Fabric & Sizing",
     h1: "Complete Soccer Jersey Buying Guide",
-    intro: "Whether you're a semi-pro club or a youth academy, choosing the right soccer kit is essential for team identity and player performance. This guide explores the technical aspects of soccer apparel manufacturing.",
+    intro: "A step-by-step guide to ordering custom soccer kits: fabric and GSM choices, sizing and numbering, MOQ, sampling and production timelines.",
     content: "A high-quality soccer jersey must balance breathability with durability. We recommend using 'Bird Eye' or 'Micro-Mesh' polyester, which provides excellent moisture-wicking properties for match-day intensity. Sublimation remains the gold standard for soccer printing, as it allows for unlimited sponsor logos and intricate patterns without adding weight to the garment. Don't forget the importance of 'Cool-Dry' technology, which keeps players comfortable during the full 90 minutes. POXIOL provides end-to-end support for soccer organizations looking to upgrade their teamwear.",
     publisher: POXIOL_PUBLISHER,
     faqs: [
@@ -117,9 +117,9 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "soccer-jersey-supplier-australia",
-    title: "Soccer Jersey Supplier Australia | Custom Football Kits Manufacturer | POXIOL",
+    title: "Soccer Jersey Supplier Australia | Custom Football Kits",
     h1: "Premier Soccer Jersey Supplier for Australian Clubs",
-    intro: "POXIOL supports custom soccer kit inquiries from Australian clubs, schools, leagues and distributors, including projects shipping to Melbourne, Sydney, Brisbane and Perth.",
+    intro: "Custom soccer kits for Australian clubs, schools and leagues. Factory supply, free mockups, delivery to Melbourne and Sydney.",
     content: "Australian soccer kit projects can be reviewed for lightweight performance fabrics, sublimated jerseys, shorts and socks. Order quantity, specifications, quotation, shipping method and delivery timing are confirmed after the destination and complete project requirements are reviewed.",
     publisher: POXIOL_PUBLISHER,
     faqs: [
@@ -154,9 +154,9 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "soccer-teamwear-supplier-usa",
-    title: "Soccer Teamwear Supplier USA | Custom Football Kits America | POXIOL",
+    title: "Soccer Teamwear Supplier USA | Custom Football Kits",
     h1: "Trusted Soccer Teamwear Supplier for USA Markets",
-    intro: "POXIOL is a premier soccer teamwear supplier for the United States, delivering custom soccer kits to academies, schools, clubs, colleges and sports organizations from New York to Los Angeles.",
+    intro: "Custom soccer teamwear for US clubs, academies, schools and colleges. Factory supply, free mockups and nationwide delivery.",
     content: "POXIOL supports US soccer teamwear inquiries with project-specific size-chart review, performance-fabric options and custom artwork support. Distributors and soccer organizations can submit their required measurements, product mix, quantity and destination so specifications, pricing and shipping assumptions can be confirmed in writing.",
     faqs: [
       { question: "How is shipping to the USA planned?", answer: "Shipping method and delivery timing are confirmed according to the destination, shipment details and project requirements." },
@@ -190,7 +190,7 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "soccer-teamwear-supplier-uk",
-    title: "Soccer Teamwear Supplier UK | Custom Football Kits Britain | POXIOL",
+    title: "Soccer Teamwear Supplier UK | Custom Football Kits",
     h1: "Professional Soccer Teamwear Supplier for UK Clubs",
     intro: "POXIOL supports custom soccer teamwear inquiries from clubs, academies, schools and distributors in England, Scotland and Wales.",
     content: "UK soccer kit projects can be reviewed for match-day and training products, performance-fabric options, approved artwork and mixed size requirements. The order structure, quotation, shipping method and delivery timing are confirmed after the complete project requirements are reviewed.",
@@ -202,9 +202,9 @@ export const pseoPages: PSEOPage[] = [
   },
   {
     slug: "custom-basketball-jerseys-melbourne",
-    title: "Custom Basketball Jerseys Melbourne | Club & Team Orders | POXIOL",
+    title: "Custom Basketball Jerseys Melbourne | Club & Team Orders",
     h1: "Custom Basketball Jerseys for Melbourne Clubs and Teams",
-    intro: "Plan custom basketball jerseys for a Melbourne club, school, academy or distributor. Review roster, artwork, sizing, sample and delivery details before a quote.",
+    intro: "Custom basketball jerseys for Melbourne clubs, schools, academies and distributors. Check roster, artwork, sizing, samples and delivery before quoting.",
     content: "POXIOL reviews Melbourne basketball uniform projects according to the product mix, quantity, artwork, colors, names and numbers, size breakdown, target date and delivery destination. Product specifications, sample options, quotation, shipping method and delivery timing are confirmed only after the complete project requirements are reviewed.",
     decisionSections: [
       {

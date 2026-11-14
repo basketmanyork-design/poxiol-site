@@ -130,8 +130,8 @@ export const resourcePages: ResourcePageData[] = [
   },
   {
     slug: "private-label-teamwear-launch-checklist",
-    metaTitle: "Private Label Teamwear Manufacturing for Sportswear Brands | POXIOL",
-    metaDescription: "POXIOL supports private label teamwear manufacturing for sportswear brands, distributors and custom uniform retailers, including OEM/ODM production, labels, hangtags, packaging and repeat order support.",
+    metaTitle: "Private Label Teamwear Manufacturing | OEM/ODM Process",
+    metaDescription: "How private label teamwear is produced: OEM/ODM workflow, custom labels and hangtags, packaging, sample approval and repeat order planning.",
     h1: "Private Label Teamwear Manufacturing for Sportswear Brands and Distributors",
     intro: "Private label teamwear allows sportswear brands, distributors and custom uniform retailers to sell custom sports uniforms under their own brand identity. This requires more than basic production. Buyers need support for label, packaging, fit, fabric, product development and repeat orders.",
     sections: [
@@ -155,8 +155,8 @@ export const resourcePages: ResourcePageData[] = [
   },
   {
     slug: "sports-uniform-fabric-guide",
-    metaTitle: "Sports Uniform Fabric Guide for Custom Teamwear Buyers | POXIOL",
-    metaDescription: "A B2B guide to sports uniform fabrics for basketball, soccer, volleyball, running and training wear. Learn about polyester mesh, interlock, bird eye, stretch fabric and quick-dry performance materials.",
+    metaTitle: "Sports Uniform Fabric Guide: Mesh, Interlock & GSM",
+    metaDescription: "B2B guide to uniform fabrics for basketball, soccer and training wear: polyester mesh, interlock, bird-eye and quick-dry options, with GSM guidance.",
     h1: "Sports Uniform Fabric Guide for Custom Teamwear Buyers",
     intro: "Fabric selection is one of the most important decisions in custom teamwear manufacturing. The right fabric affects comfort, durability, print result, price and buyer satisfaction.",
     sections: [

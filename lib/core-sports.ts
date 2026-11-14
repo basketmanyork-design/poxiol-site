@@ -192,7 +192,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     label: 'Baseball',
     priority: 20,
     canonicalPath: '/custom-baseball-softball-uniforms/',
-    seoTitle: 'Custom Baseball Uniform Manufacturer | Jerseys, Pants & Team Sets | POXIOL',
+    seoTitle: 'Custom Baseball Uniforms | Jerseys, Pants & Team Sets',
     seoDescription: 'Custom baseball uniforms for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client orders, samples and reorders.',
     primaryKeyword: 'custom baseball uniforms',
     secondaryKeywords: ['baseball uniform manufacturer', 'custom baseball jerseys', 'baseball jersey manufacturer', 'baseball uniform supplier', 'custom sublimated baseball jerseys'],

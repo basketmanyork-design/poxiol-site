@@ -98,7 +98,7 @@ const pageDefinitions = [
     label: 'Private Label Teamwear',
     canonicalPath: '/private-label-teamwear/',
     purpose: 'For teamwear distributors, dealers, sportswear brands and custom resellers worldwide managing downstream team clients, brand-owned collections and repeat orders.',
-    seoTitle: 'Private Label Teamwear for Sports Brands and Distributors | POXIOL',
+    seoTitle: 'Private Label Teamwear for Sports Brands & Distributors',
     seoDescription: 'Private-label teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
     heroEyebrow: 'For Global Teamwear Channel Partners',
     heroTitle: 'Private Label Teamwear Built Around Your Brand',
