@@ -59,6 +59,16 @@
 - Youth programs
 - Custom retailers
 
+## Labeling and Testing Framework
+
+- [Certificates & Testing](https://www.poxiol.com/certificates-testing/)
+- United States textile labeling: 16 CFR Part 303 covers fiber content, country of origin and the responsible company identification carried on the label
+- United States care labeling: 16 CFR Part 423 covers care instructions attached to the garment
+- Colorfastness to crocking is specified as AATCC TM 8 together with the pass threshold the buyer sets
+- European Union textile labeling: Regulation (EU) No 1007/2011 covers fibre names, content tolerance and the language required on the label
+- Restricted substance testing is run against the limit list and the accredited laboratory the buyer nominates
+- Naming a requirement is not a claim that a report is already held; documents are confirmed for the specific order
+
 ## Important Compliance Notes
 
 POXIOL supports original custom teamwear designs, buyer-owned logos and properly authorized artwork. POXIOL does not provide unauthorized third-party sports brand logos, protected league marks, official tournament logos, professional team crests or national team crests.
