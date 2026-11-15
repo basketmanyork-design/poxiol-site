@@ -41,7 +41,11 @@ test('mature sports retain canonical pages and other sports require project revi
   assert.equal(getSportCategory('soccer')?.href, '/products/soccer-jerseys/')
   assert.equal(getSportCategory('basketball')?.href, '/products/basketball-uniforms/')
   assert.equal(getSportCategory('baseball-softball')?.href, '/custom-baseball-softball-uniforms/')
-  assert.equal(getSportCategory('cricket')?.contentStage, 'project-review')
+  assert.equal(getSportCategory('rugby')?.href, '/products/rugby-uniforms/')
+  assert.equal(getSportCategory('rugby')?.contentStage, 'deep-page')
+  assert.equal(getSportCategory('cricket')?.href, '/products/cricket-uniforms/')
+  assert.equal(getSportCategory('cricket')?.contentStage, 'deep-page')
+  assert.equal(getSportCategory('tennis')?.contentStage, 'project-review')
 })
 
 test('a selected sport and scenario reaches the safe quote form with editable context', () => {
@@ -83,9 +87,9 @@ test('the Products menu exposes the complete dual-dimension taxonomy', () => {
     '/custom-baseball-softball-uniforms/',
     '/products/#sport-ice-hockey',
     '/products/#sport-american-football',
-    '/products/#sport-rugby',
+    '/products/rugby-uniforms/',
     '/products/#sport-tennis',
-    '/products/#sport-cricket',
+    '/products/cricket-uniforms/',
     '/products/#sport-golf',
   ])
   assert.deepEqual(products?.groups?.[2]?.items, [

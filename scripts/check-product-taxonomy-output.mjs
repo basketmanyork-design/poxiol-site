@@ -91,6 +91,8 @@ assert.deepEqual(
     'https://www.poxiol.com/products/soccer-jerseys/',
     'https://www.poxiol.com/products/basketball-uniforms/',
     'https://www.poxiol.com/custom-baseball-softball-uniforms/',
+    'https://www.poxiol.com/products/rugby-uniforms/',
+    'https://www.poxiol.com/products/cricket-uniforms/',
   ],
 )
 const faqSchema = schemas.find((schema) => schema['@type'] === 'FAQPage')

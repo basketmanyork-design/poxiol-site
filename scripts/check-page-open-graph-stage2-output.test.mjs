@@ -11,7 +11,7 @@ const HOME_DESCRIPTION =
 const OUTPUT_DIRECTORY = path.resolve(process.env.POXIOL_OUTPUT_DIR ?? "out");
 
 const PAGES = [
-  ["/products/", "Custom Teamwear by Sport & Wearing Scenario | POXIOL", "Explore POXIOL custom teamwear by sport or wearing scenario. Product construction, material, quantity and timing are confirmed after project review.", "Custom Teamwear by Sport and Wearing Scenario", "https://www.poxiol.com/products/", "8ea028f70541f883e2c5e48b3dfeaf1ef029a97af5a6358c40f69e970ab34f75", 3, "e2036dc1977f73e42a2488dc6729895d6941ae881c170bb1fba8115506ac0852", "6efd1fca3fa82a4325e0ce6ae8487f7d0b1b310bf196d6751386ffa95cbc7449"],
+  ["/products/", "Custom Teamwear by Sport & Wearing Scenario | POXIOL", "Explore POXIOL custom teamwear by sport or wearing scenario. Product construction, material, quantity and timing are confirmed after project review.", "Custom Teamwear by Sport and Wearing Scenario", "https://www.poxiol.com/products/", "1d2d3edc77e76bfe53aa7b74c9412185ea5abdc1f15479b0e3028d552634f123", 3, "3176447041205cc2ee5599262deed8455248412a08da9ed6ee7d6d6ddd2fb747", "aed41caa4d24b6c73266d46445e2083fb38764fc151264c8d945c935f0c0d4f2"],
   ["/products/running-track-uniforms/", "Running & Track Uniforms for Teams | POXIOL", "Plan custom running and track uniforms for clubs, schools or sportswear brands. Review singlet and shorts options, fit, artwork, quantity and delivery needs.", "Running & Track Uniforms", "https://www.poxiol.com/products/running-track-uniforms/", "51a60cd60dd5cc99dafb6e0bfa341923ad009357502d23aa5917880a5fc106e0", 1, "59e17b92b1bcc9a969e0f36f8f0db3f753956aafb03cf428f43b84cf46aa353a", "2a1bad55c82c8aa08a0bd6b178a04502f77d5ba3787c76e0929cdf83d6b633a5"],
   ["/products/warm-up-wear/", "Warm-Up Wear and Team Tracksuits | POXIOL", "Plan custom warm-up wear for teams, clubs, schools or sportswear brands. Review jacket and trouser configuration, fit, branding, quantity and delivery needs.", "Warm-Up Wear", "https://www.poxiol.com/products/warm-up-wear/", "9450945eedd46f75eca72ee63e49b4d6848c934144af4f5902023b324940aa0b", 1, "d6e0bc920e455ead8630194a8d5148c7f2e0f95dbe8d3eaabae66865db70a039", "750ea99271d9cae13165a0edfbf98069ba29d5fad1d2efae143028691fad877a"],
   ["/resources/", "Teamwear Knowledge Center | Buying Guides & Specs", "Buying guides, fabric and sizing specs, and manufacturing know-how for custom teamwear buyers, written for clubs, schools, brands and distributors.", "Teamwear Knowledge & Buying Guides", "https://www.poxiol.com/resources/", "6f7e80ae6d1f85fbc4c15ad317e354fd5e2c945714e38dfd9fca428ecf0574f0", 2, "6749903f35dfdb6e9f1e8ea07ea6fbcc7ba7b243c9ceaa3cff6d771276943728", "cc5ac3beb5987541f37cc30d5e05169091c630c47f7e53575ea8986c86255beb"],
@@ -132,11 +132,11 @@ test("homepage root Open Graph and Twitter metadata remain unchanged", async () 
   assert.equal(one(metaValues(html, "name", "twitter:description"), "home twitter:description"), HOME_DESCRIPTION);
 });
 
-test("Sitemap stays at 78 unique URLs and only the homepage keeps generic Open Graph", async () => {
+test("Sitemap stays at 80 unique URLs and only the homepage keeps generic Open Graph", async () => {
   const sitemap = await readFile(path.join(OUTPUT_DIRECTORY, "sitemap.xml"), "utf8");
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => decodeHtml(url));
-  assert.equal(urls.length, 78);
-  assert.equal(new Set(urls).size, 78);
+  assert.equal(urls.length, 80);
+  assert.equal(new Set(urls).size, 80);
   assert.ok(!urls.includes(`${SITE_ORIGIN}/products/warm-up-wear/`), "Sitemap must exclude retired Warm-Up Wear");
   assert.ok(urls.includes(`${SITE_ORIGIN}/products/training-wear/`), "Sitemap must retain Training Wear survivor");
   for (const [route] of PAGES) {

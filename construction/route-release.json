@@ -3,10 +3,10 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "a44a142692f8b06474e21d65ffc55b2c3af2da60f9bd686c0db8a098762cf656",
-    "candidateSitemapSha256": "62383f0ee9697815cd06500612b460ed9aa535dabc095d800e569d4bde1cc4fd",
+    "candidateSitemapSha256": "4e74a2b18adaf72a1c0804952812f5eac24cea5d2468fed7e1913b6bd3b4c4e7",
     "publicCount": 81,
-    "candidateCount": 78,
-    "renderedCount": 95,
+    "candidateCount": 80,
+    "renderedCount": 97,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -93,6 +93,8 @@
       "/youth-team-uniforms/"
     ],
     "ADDED": [
+      "/products/cricket-uniforms/",
+      "/products/rugby-uniforms/",
       "/projects/"
     ],
     "REDIRECTED": [
