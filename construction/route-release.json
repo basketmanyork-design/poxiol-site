@@ -3,7 +3,7 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "a44a142692f8b06474e21d65ffc55b2c3af2da60f9bd686c0db8a098762cf656",
-    "candidateSitemapSha256": "fd0015bab87ab3e8cfc57c1a6f0754b60fc31e2dcd30fb3f75656a883787da6a",
+    "candidateSitemapSha256": "62383f0ee9697815cd06500612b460ed9aa535dabc095d800e569d4bde1cc4fd",
     "publicCount": 81,
     "candidateCount": 78,
     "renderedCount": 95,
@@ -356,6 +356,11 @@
       "status": 301
     },
     {
+      "source": "/products/soccer-jerseys-goalkeeper-kits/",
+      "destination": "/products/soccer-jerseys/",
+      "status": 301
+    },
+    {
       "source": "/products/soccer-jerseys-soccer-jerseys/",
       "destination": "/products/soccer-jerseys/",
       "status": 301
@@ -368,6 +373,11 @@
     {
       "source": "/products/warm-up-wear/",
       "destination": "/products/training-wear/",
+      "status": 301
+    },
+    {
+      "source": "/sublimation-printing-guide/",
+      "destination": "/printing-guide/",
       "status": 301
     }
   ],

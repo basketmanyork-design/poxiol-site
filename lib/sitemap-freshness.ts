@@ -1,5 +1,12 @@
 const BASELINE_LAST_MODIFIED = new Date('2026-08-29T00:00:00.000Z')
 const AI_DISCOVERY_TRUTH_RELEASE = new Date('2026-09-13T00:00:00.000Z')
+const GEO_CONTENT_RELEASE = new Date('2026-11-15T00:00:00.000Z')
+
+const GEO_CONTENT_ROUTES = new Set([
+  '/solutions/',
+  '/shipping-after-sales/',
+  '/certificates-testing/',
+])
 
 const AI_DISCOVERY_TRUTH_ROUTES = new Set([
   '/',
@@ -31,9 +38,12 @@ function normalizeRoute(route: string): string {
 }
 
 export function getRouteLastModified(route: string, sourceLastModified = BASELINE_LAST_MODIFIED): Date {
-  const routeRelease = AI_DISCOVERY_TRUTH_ROUTES.has(normalizeRoute(route))
-    ? AI_DISCOVERY_TRUTH_RELEASE
-    : BASELINE_LAST_MODIFIED
+  const normalized = normalizeRoute(route)
+  const routeRelease = GEO_CONTENT_ROUTES.has(normalized)
+    ? GEO_CONTENT_RELEASE
+    : AI_DISCOVERY_TRUTH_ROUTES.has(normalized)
+      ? AI_DISCOVERY_TRUTH_RELEASE
+      : BASELINE_LAST_MODIFIED
 
   return new Date(Math.max(sourceLastModified.getTime(), routeRelease.getTime()))
 }
