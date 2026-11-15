@@ -208,7 +208,15 @@ export default function FabricGuidePage() {
         </div>
       </section>
 
-      <Footer />
+            <section className="bg-neutral-950 px-5 pb-20 md:px-10 xl:px-20">
+        <div className="mx-auto max-w-4xl border-t border-white/10 pt-10">
+          <h2 className="text-sm font-black uppercase tracking-widest text-white/50">Next step</h2>
+          <ul className="mt-5 grid gap-3 text-sm md:grid-cols-2">
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/printing-guide/">Printing Guide: Sublimation, Screen Print and Embroidery</a></li>
+          </ul>
+        </div>
+      </section>
+<Footer />
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link"
 import {Footer, Header, PrimaryButton, SecondaryButton} from '@/components/ui'
 import {ISSUE_REVIEW_STEPS} from '@/lib/buyer-decision'
 import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
@@ -74,6 +74,27 @@ export default function ShippingAfterSalesPage() {
           <div className="mt-12 space-y-8">{shippingFaqs.map(faq => <div key={faq.question}><h3 className="text-lg font-black">{faq.question}</h3><p className="mt-2 leading-7 text-neutral-600">{faq.answer}</p></div>)}</div>
         </div>
       </section>
+      <section className="bg-neutral-950 border-t border-white/5 px-5 py-20 text-white md:px-10 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Policies</h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-400">The commercial and legal basis for an order sits in these pages.</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Link key="/terms/" href="/terms/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Terms</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">The terms that apply to an order.</p>
+            </Link>
+            <Link key="/intellectual-property-policy/" href="/intellectual-property-policy/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Intellectual Property</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">How artwork, logos and marks are handled.</p>
+            </Link>
+            <Link key="/privacy-policy/" href="/privacy-policy/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Privacy Policy</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">What is collected and why.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   )

@@ -3,6 +3,7 @@ import {Header, Footer, SectionHeading, PrimaryButton} from '@/components/ui'
 import {getArticles} from '@/lib/sanity/content'
 import {isArticleRouteReleased} from '@/lib/release/publication-policy'
 import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
+import {CollectionPageSchema, BreadcrumbSchema} from '@/components/seo/GEOStructuredData'
 
 export const metadata = createPageMetadata({
   title: 'POXIOL Blog | Teamwear SEO Articles',
@@ -15,6 +16,23 @@ export default async function BlogPage() {
   const posts = (await getArticles('blog')).filter((post) => isArticleRouteReleased(post.articleType, post.slug))
   return (
     <main className="bg-[#0A0A0A] text-white selection:bg-[#B6FF00] selection:text-black">
+      <CollectionPageSchema
+        name="POXIOL Blog"
+        description="Articles on teamwear sourcing, fabric selection, printing methods, sampling and production planning."
+        url="https://www.poxiol.com/blog/"
+        items={posts.map((post) => ({name: post.title, url: `https://www.poxiol.com/blog/${post.slug}/`}))}
+      />
+      <BreadcrumbSchema items={[{name: 'Home', url: 'https://www.poxiol.com/'}, {name: 'Blog', url: 'https://www.poxiol.com/blog/'}]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        '@id': 'https://www.poxiol.com/blog/#blog',
+        url: 'https://www.poxiol.com/blog/',
+        name: 'POXIOL Blog',
+        description: 'Articles on teamwear sourcing, fabric selection, printing methods, sampling and production planning.',
+        isPartOf: {'@type': 'WebSite', '@id': 'https://www.poxiol.com/#website', url: 'https://www.poxiol.com/', name: 'POXIOL'},
+        publisher: {'@type': 'Organization', '@id': 'https://www.poxiol.com/#organization', name: 'POXIOL', url: 'https://www.poxiol.com/'},
+      })}} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-7xl">

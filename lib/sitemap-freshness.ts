@@ -6,6 +6,16 @@ const GEO_CONTENT_ROUTES = new Set([
   '/solutions/',
   '/shipping-after-sales/',
   '/certificates-testing/',
+  '/fabric-guide/',
+  '/blog/',
+  '/terms/',
+  '/intellectual-property-policy/',
+  '/products/',
+  '/oem-odm/',
+  '/resources/',
+  '/projects/',
+  '/products/rugby-uniforms/',
+  '/products/cricket-uniforms/',
 ])
 
 const AI_DISCOVERY_TRUTH_ROUTES = new Set([

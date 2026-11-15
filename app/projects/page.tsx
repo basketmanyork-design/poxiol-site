@@ -52,6 +52,19 @@ export default async function ProjectsPage() {
           </div> : null}
         </div>
       </section>
+      <section className="bg-neutral-950 border-t border-white/5 px-5 py-20 text-white md:px-10 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Design references</h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-400">Browse the gallery before writing a brief; it is faster to point at a direction than to describe one.</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Link key="/design-gallery/" href="/design-gallery/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Design Gallery</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Design directions and colour treatments for reference.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white px-5 py-20 md:px-10 md:py-28 xl:px-20 text-neutral-950">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl font-black uppercase tracking-tight md:text-5xl">Launch Your Team Project</h2>

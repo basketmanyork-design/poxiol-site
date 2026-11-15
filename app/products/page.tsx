@@ -51,7 +51,59 @@ export default function ProductsPage() {
           <SecondaryButton href="/free-mockup/">Request Free Mockup</SecondaryButton>
         </div>
       </section>
-      <Footer />
+      <section className="bg-neutral-950 border-t border-white/5 px-5 py-20 text-white md:px-10 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Product categories</h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-400">Every category below is reviewed against the same brief: garment set, fit, artwork, quantity and required in-hand date.</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Link key="/products/basketball-uniforms/" href="/products/basketball-uniforms/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Basketball Uniforms</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Uniform configuration, fabrics and programme questions.</p>
+            </Link>
+            <Link key="/products/soccer-jerseys/" href="/products/soccer-jerseys/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Soccer Jerseys</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Kit configuration, sponsor marks and club marks.</p>
+            </Link>
+            <Link key="/products/training-wear/" href="/products/training-wear/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Training Wear</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Training garments and warm-up suits for squads.</p>
+            </Link>
+            <Link key="/products/hoodies-jackets/" href="/products/hoodies-jackets/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Hoodies & Jackets</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Team hoodies and jackets.</p>
+            </Link>
+            <Link key="/products/team-accessories/" href="/products/team-accessories/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Team Accessories</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Team socks, bags and supporting items.</p>
+            </Link>
+            <Link key="/products/running-track-uniforms/" href="/products/running-track-uniforms/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Running & Track</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Singlets and shorts for track teams.</p>
+            </Link>
+            <Link key="/products/rugby-uniforms/" href="/products/rugby-uniforms/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Rugby Uniforms</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Jerseys and shorts built for contact.</p>
+            </Link>
+            <Link key="/products/cricket-uniforms/" href="/products/cricket-uniforms/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Cricket Uniforms</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">White or club-colour shirts and trousers.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+            <section className="bg-neutral-950 px-5 pb-20 md:px-10 xl:px-20">
+        <div className="mx-auto max-w-4xl border-t border-white/10 pt-10">
+          <h2 className="text-sm font-black uppercase tracking-widest text-white/50">More product programs</h2>
+          <ul className="mt-5 grid gap-3 text-sm md:grid-cols-2">
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/products/hoodies-jackets/">Team Hoodies & Jackets</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/youth-team-uniforms/">Youth Team Uniforms</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/products/team-accessories/">Team Accessories</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/products/training-wear/">Training Wear & Warm-Ups</a></li>
+          </ul>
+        </div>
+      </section>
+<Footer />
     </main>
   );
 }

@@ -2,6 +2,7 @@ import {Header, Footer} from '@/components/ui'
 import {LegalDraftNotice} from '@/components/legal/LegalDraftNotice'
 import {legalPolicyMetadata} from '@/lib/legal-release'
 import {createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA} from '@/lib/seo/page-metadata'
+import {BreadcrumbSchema} from '@/components/seo/GEOStructuredData'
 
 export const metadata = createPageMetadata({
   title: 'Terms | POXIOL',
@@ -13,6 +14,16 @@ export const metadata = createPageMetadata({
 export default function Page() {
   return (
     <main className="bg-neutral-950 text-white">
+      <BreadcrumbSchema items={[{name: 'Home', url: 'https://www.poxiol.com/'}, {name: 'Terms', url: 'https://www.poxiol.com/terms/'}]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': 'https://www.poxiol.com/terms/#webpage',
+        url: 'https://www.poxiol.com/terms/',
+        name: 'Terms',
+        isPartOf: {'@type': 'WebSite', '@id': 'https://www.poxiol.com/#website', url: 'https://www.poxiol.com/', name: 'POXIOL'},
+        mainEntity: {'@type': 'Organization', '@id': 'https://www.poxiol.com/#organization', name: 'POXIOL', url: 'https://www.poxiol.com/'},
+      })}} />
       <Header />
       <section className="px-5 py-20 md:px-10 md:py-28 xl:px-20">
         <div className="mx-auto max-w-4xl">

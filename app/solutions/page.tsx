@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link"
 import { Header, Footer, SectionHeading, PrimaryButton, SecondaryButton, freeMockupHref, getQuoteHref } from "@/components/ui";
 import {QualifiedExplanationNotice} from '@/components/evidence/QualifiedExplanationNotice';
 import {contextualInquiryHref} from '@/lib/inquiry-context';
@@ -153,6 +154,43 @@ export default function SolutionsPage() {
         </div>
       </section>
 
+      <section className="bg-neutral-950 border-t border-white/5 px-5 py-20 text-white md:px-10 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Sector and regional programmes</h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-400">The same programme logic applies whether the buyer is a school, an academy or a single club. These pages carry the sector and market detail.</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Link key="/custom-basketball-uniforms-for-schools/" href="/custom-basketball-uniforms-for-schools/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Basketball for Schools</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">School basketball programmes with per-squad size lists.</p>
+            </Link>
+            <Link key="/custom-soccer-uniforms-for-academies/" href="/custom-soccer-uniforms-for-academies/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Soccer for Academies</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Academy kits with squad-level reordering.</p>
+            </Link>
+            <Link key="/custom-volleyball-uniforms-for-schools/" href="/custom-volleyball-uniforms-for-schools/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Volleyball for Schools</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">School volleyball programmes.</p>
+            </Link>
+            <Link key="/custom-baseball-jerseys-for-clubs/" href="/custom-baseball-jerseys-for-clubs/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Baseball for Clubs</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Club baseball jerseys and reorders.</p>
+            </Link>
+            <Link key="/youth-team-uniforms/" href="/youth-team-uniforms/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Youth Team Uniforms</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Mixed youth and adult size ranges in one order.</p>
+            </Link>
+            <Link key="/custom-teamwear-new-york/" href="/custom-teamwear-new-york/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">New York Buyers</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Programmes planned for United States buyers.</p>
+            </Link>
+            <Link key="/custom-soccer-kits-london/" href="/custom-soccer-kits-london/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">London Clubs</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Soccer kits planned for United Kingdom buyers.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-neutral-900 px-5 py-20 md:px-10 text-center border-y border-white/5">
         <h2 className="text-3xl font-black uppercase md:text-5xl">Ready to Start Your Program?</h2>
@@ -161,7 +199,20 @@ export default function SolutionsPage() {
           <PrimaryButton href="/contact/">Connect With A Specialist</PrimaryButton>
         </div>
       </section>
-      <Footer />
+            <section className="bg-neutral-950 px-5 pb-20 md:px-10 xl:px-20">
+        <div className="mx-auto max-w-4xl border-t border-white/10 pt-10">
+          <h2 className="text-sm font-black uppercase tracking-widest text-white/50">Programs by buyer type and location</h2>
+          <ul className="mt-5 grid gap-3 text-sm md:grid-cols-2">
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/custom-basketball-uniforms-for-schools/">Custom Basketball Uniforms for Schools</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/custom-soccer-uniforms-for-academies/">Custom Soccer Uniforms for Academies</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/custom-volleyball-uniforms-for-schools/">Custom Volleyball Uniforms for Schools</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/custom-baseball-jerseys-for-clubs/">Custom Baseball Jerseys for Clubs</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/custom-soccer-kits-london/">Custom Soccer Kits in London</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/custom-teamwear-new-york/">Custom Teamwear in New York</a></li>
+          </ul>
+        </div>
+      </section>
+<Footer />
     </main>
   );
 }

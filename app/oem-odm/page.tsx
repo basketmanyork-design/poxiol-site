@@ -326,6 +326,48 @@ export default async function OEMPage() {
         </div>
       </section>
 
+      <section className="bg-neutral-950 border-t border-white/5 px-5 py-20 text-white md:px-10 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Sport-specific development paths</h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-400">Each sport carries its own construction and decoration questions. These pages describe what changes when the programme is built around a single sport.</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Link key="/oem-basketball-apparel-manufacturer/" href="/oem-basketball-apparel-manufacturer/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">OEM Basketball Apparel</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Development path for a basketball apparel line.</p>
+            </Link>
+            <Link key="/oem-soccer-apparel-manufacturer/" href="/oem-soccer-apparel-manufacturer/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">OEM Soccer Apparel</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Development path for soccer kits and training layers.</p>
+            </Link>
+            <Link key="/oem-baseball-apparel-manufacturer/" href="/oem-baseball-apparel-manufacturer/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">OEM Baseball Apparel</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Development path for baseball and softball apparel.</p>
+            </Link>
+            <Link key="/oem-volleyball-apparel-manufacturer/" href="/oem-volleyball-apparel-manufacturer/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">OEM Volleyball Apparel</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Development path for volleyball uniforms.</p>
+            </Link>
+            <Link key="/oem-vs-odm-sportswear/" href="/oem-vs-odm-sportswear/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">OEM vs ODM</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">How the two engagement models differ in what the buyer supplies.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/5 px-5 py-20 md:px-10 xl:px-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Project questions</h2>
+          <div className="mt-10 space-y-8">
+          <div key="What does the buyer need t"><h3 className="text-lg font-black">What does the buyer need to supply to start an OEM project?</h3><p className="mt-2 leading-7 text-neutral-400">A product specification: the garment, the fabric reference, the measurements, the decoration and any label or packaging requirement. OEM starts from a specification you control.</p></div>
+          <div key="How is ODM different in pr"><h3 className="text-lg font-black">How is ODM different in practice?</h3><p className="mt-2 leading-7 text-neutral-400">ODM starts before the specification exists. The product direction is defined first, then a development route is chosen, then the specification is written from that route.</p></div>
+          <div key="Who owns the tooling and p"><h3 className="text-lg font-black">Who owns the tooling and patterns in an OEM project?</h3><p className="mt-2 leading-7 text-neutral-400">Ownership terms are agreed in the project documents before production. They are not assumed from the engagement model.</p></div>
+          <div key="Can a brand start with ODM"><h3 className="text-lg font-black">Can a brand start with ODM and move to OEM later?</h3><p className="mt-2 leading-7 text-neutral-400">Yes, and it is a common path: the first collection establishes the product, then the specification is taken in-house and produced as OEM.</p></div>
+          <div key="Where are quality checkpoi"><h3 className="text-lg font-black">Where are quality checkpoints agreed?</h3><p className="mt-2 leading-7 text-neutral-400">They are agreed with the specification, before the first production run, so the inspection criteria match the product rather than a generic list.</p></div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="px-5 py-24 md:px-10 md:py-32 xl:px-20">
         <div className="mx-auto max-w-4xl text-center">
@@ -340,7 +382,18 @@ export default async function OEMPage() {
         </div>
       </section>
 
-      <Footer />
+            <section className="bg-neutral-950 px-5 pb-20 md:px-10 xl:px-20">
+        <div className="mx-auto max-w-4xl border-t border-white/10 pt-10">
+          <h2 className="text-sm font-black uppercase tracking-widest text-white/50">OEM programs by sport</h2>
+          <ul className="mt-5 grid gap-3 text-sm md:grid-cols-2">
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/oem-basketball-apparel-manufacturer/">Basketball Apparel Manufacturing</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/oem-soccer-apparel-manufacturer/">Soccer Apparel Manufacturing</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/oem-baseball-apparel-manufacturer/">Baseball Apparel Manufacturing</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-lime-400" href="/oem-volleyball-apparel-manufacturer/">Volleyball Apparel Manufacturing</a></li>
+          </ul>
+        </div>
+      </section>
+<Footer />
     </main>
   );
 }

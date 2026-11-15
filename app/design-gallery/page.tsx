@@ -4,6 +4,7 @@ import { featuredDesigns } from "@/lib/home-data";
 import {publicSectionDecision} from '@/lib/release/publication-policy';
 import { createPageMetadata, PRESERVED_ROOT_TWITTER_METADATA } from "@/lib/seo/page-metadata";
 import RouteBreadcrumbs from "@/components/seo/RouteBreadcrumbs";
+import {FAQSchema} from "@/components/seo/GEOStructuredData";
 
 export const metadata = createPageMetadata({
   title: "Custom Teamwear Design Gallery | POXIOL Inspiration",
@@ -51,6 +52,23 @@ export default function DesignGalleryPage() {
           <SecondaryButton href={freeMockupHref}>Customize Your Design</SecondaryButton>
         </div>
       </section>
+      <section className="bg-white px-5 py-20 text-neutral-950 md:px-10 xl:px-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Design questions</h2>
+          <div className="mt-10 space-y-8">
+          <div key="Can a gallery design be ch"><h3 className="text-lg font-black">Can a gallery design be changed before production?</h3><p className="mt-2 leading-7 text-neutral-600">Yes. The gallery is a set of directions, not a fixed catalogue. Colour, panel layout, trim and lettering are all reviewed against your own brief before a mockup is produced.</p></div>
+          <div key="Can colours be matched to "><h3 className="text-lg font-black">Can colours be matched to an existing club kit?</h3><p className="mt-2 leading-7 text-neutral-600">Colour references are taken from what you supply, such as a garment, a Pantone reference or a previous order. Digital mockups are a planning view; the physical result is reviewed on the sample.</p></div>
+          <div key="Is every design in the gal"><h3 className="text-lg font-black">Is every design in the gallery an original POXIOL concept?</h3><p className="mt-2 leading-7 text-neutral-600">The gallery shows original concepts and colour treatments. Existing club identities are only used where the buyer supplies and authorises the marks.</p></div>
+          <div key="What happens if the design"><h3 className="text-lg font-black">What happens if the design needs a different construction?</h3><p className="mt-2 leading-7 text-neutral-600">Construction is reviewed with the design. If a look depends on a seam, panel or fabric that the chosen garment cannot support, that is raised before sampling rather than after.</p></div>
+          </div>
+        </div>
+      </section>
+      <FAQSchema faqs={[
+    {question: "Can a gallery design be changed before production?", answer: "Yes. The gallery is a set of directions, not a fixed catalogue. Colour, panel layout, trim and lettering are all reviewed against your own brief before a mockup is produced."},
+    {question: "Can colours be matched to an existing club kit?", answer: "Colour references are taken from what you supply, such as a garment, a Pantone reference or a previous order. Digital mockups are a planning view; the physical result is reviewed on the sample."},
+    {question: "Is every design in the gallery an original POXIOL concept?", answer: "The gallery shows original concepts and colour treatments. Existing club identities are only used where the buyer supplies and authorises the marks."},
+    {question: "What happens if the design needs a different construction?", answer: "Construction is reviewed with the design. If a look depends on a seam, panel or fabric that the chosen garment cannot support, that is raised before sampling rather than after."},
+  ]} />
       <Footer />
     </main>
   );
