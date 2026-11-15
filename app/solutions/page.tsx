@@ -88,11 +88,25 @@ const solutions: Solution[] = [
   }
 ];
 
+const solutionsFaqs = [
+  {question: "Which teamwear program should a new buyer start with?", answer: "Start from who places the order and how many teams, sports or accounts it covers. A single team, a league, a school district and a reseller each need a different brief, so the program is chosen before the product list is fixed."},
+  {question: "Can one project cover several sports?", answer: "Yes. A multi-sport brief lists the sports per team together with a size list for each squad. Which items share a production window and which need separate artwork approval is confirmed before anything is scheduled."},
+  {question: "How is a league-wide order coordinated?", answer: "The league supplies the club list, a roster and size list for each club, the league branding rules and the first match date. The mockup route, whether a sample is required and the production sequence are confirmed before any club order is placed."},
+  {question: "Can a reseller reorder an approved design later?", answer: "Approved specifications, size breakdowns and production records are kept so a repeat order starts from the same basis. What is reused and what has to be re-approved is stated for each batch rather than assumed."},
+  {question: "What should a multi-team brief include?", answer: "The team or club list, the sports and products per team, a size list per squad, artwork and branding status, the approval contact and the required in-hand date. Missing items are confirmed during the review rather than filled in for you."},
+]
+
 export default function SolutionsPage() {
   const planningDecision = publicSectionDecision('solutions-planning');
 
   return (
     <main className="bg-[#0A0A0A] text-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        '@id': 'https://www.poxiol.com/solutions/#faq',
+        mainEntity: solutionsFaqs.map(({question, answer}) => ({'@type': 'Question', name: question, acceptedAnswer: {'@type': 'Answer', text: answer}})),
+      })}} />
       <RouteBreadcrumbs trail={[{name: 'Solutions', path: '/solutions/'}]} />
       <Header />
       <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-32 xl:px-20 text-center">
@@ -129,6 +143,13 @@ export default function SolutionsPage() {
               </article>
             ))}
           </div> : null}
+        </div>
+      </section>
+
+      <section className="bg-neutral-950 px-5 py-20 md:px-10 xl:px-20 border-t border-white/5">
+        <div className="mx-auto max-w-4xl">
+          <SectionHeading eyebrow="FAQ" title="Program Questions" dark />
+          <div className="mt-12 space-y-8">{solutionsFaqs.map(faq => <div key={faq.question}><h2 className="text-xl font-black text-white">{faq.question}</h2><p className="mt-3 leading-7 text-neutral-400">{faq.answer}</p></div>)}</div>
         </div>
       </section>
 
