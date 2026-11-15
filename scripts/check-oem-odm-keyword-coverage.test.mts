@@ -20,7 +20,7 @@ const approved = {
   description: 'OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
   canonical: 'https://www.poxiol.com/oem-odm/',
   quoteHref: '/get-quote/?product=OEM+%2F+ODM+Teamwear&source=%2Foem-odm%2F#quote-form',
-  schemaHash: '541fcce2dc307ba949c8d46dbabf436e9a5aa321e0f3dea7318babf3d6b745af',
+  schemaHash: '46bad65eecd6f259af1c0b60d4ebc769b1a2cc13dccbb04775bf645b076f9872',
 }
 
 function decodeHtml(value: string): string {

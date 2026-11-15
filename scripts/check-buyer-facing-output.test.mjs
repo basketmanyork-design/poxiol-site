@@ -86,7 +86,7 @@ const seo037Targets = [
     description: 'OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
     h1: 'OEM/ODM Teamwear for Channel Partners',
     canonical: 'https://www.poxiol.com/oem-odm/',
-    schemaHashes: ['541fcce2dc307ba949c8d46dbabf436e9a5aa321e0f3dea7318babf3d6b745af'],
+    schemaHashes: ['46bad65eecd6f259af1c0b60d4ebc769b1a2cc13dccbb04775bf645b076f9872'],
     panelId: 'oem-odm-project-planning',
     copy: [
       'OEM/ODM Project Planning',

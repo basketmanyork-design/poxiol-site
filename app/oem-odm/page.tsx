@@ -66,6 +66,14 @@ const oemPositioning = {
   description: "OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.",
 };
 
+const oemFaqs = [
+  { question: 'What is the difference between OEM and ODM here?', answer: 'OEM means the buyer brings the design and the garment is built to that specification. ODM means an existing POXIOL-developed style is adapted with the buyer branding. Which route applies is confirmed from the brief rather than assumed from the product type.' },
+  { question: 'What should a buyer send before a quotation?', answer: 'The intended use, the item list, the size range, the quantity basis, the decoration method, the label and packaging requirements, and the delivery destination. A finished tech pack is not required for a first review.' },
+  { question: 'Can a brand start with one style instead of a full collection?', answer: 'Yes. The starting scope is agreed per project. A single style is reviewed the same way a collection is: specification, mockup, and whether a physical sample is required before production is scheduled.' },
+  { question: 'Who owns the artwork and the marks on a garment?', answer: 'The buyer supplies artwork it owns or is authorised to use. League marks, club crests and third-party brand marks have to be authorised by the buyer, and POXIOL does not produce protected marks without that authorisation.' },
+  { question: 'How are repeat orders handled?', answer: 'Approved specifications, size breakdowns and production records are kept for the account. What is reused as-is and what has to be re-approved is stated for each batch rather than assumed.' },
+]
+
 const oemServiceSchema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -85,6 +93,11 @@ const oemServiceSchema = {
       description: 'OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.',
       url: 'https://www.poxiol.com/oem-odm/',
       provider: { '@type': 'Organization', name: 'POXIOL', url: 'https://www.poxiol.com/' },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://www.poxiol.com/oem-odm/#faq',
+      mainEntity: oemFaqs.map(({question, answer}) => ({'@type': 'Question', name: question, acceptedAnswer: {'@type': 'Answer', text: answer}})),
     },
   ],
 };
@@ -393,7 +406,13 @@ export default async function OEMPage() {
           </ul>
         </div>
       </section>
-<Footer />
+      <section className="bg-neutral-950 px-5 py-20 md:px-10 xl:px-20 border-t border-white/5">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-white md:text-4xl">OEM and ODM Questions</h2>
+          <div className="mt-10 space-y-8">{oemFaqs.map(faq => <div key={faq.question}><h3 className="text-lg font-black text-white">{faq.question}</h3><p className="mt-2 leading-7 text-neutral-400">{faq.answer}</p></div>)}</div>
+        </div>
+      </section>
+      <Footer />
     </main>
   );
 }

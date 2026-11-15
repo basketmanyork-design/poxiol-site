@@ -441,7 +441,7 @@ test('OEM and ODM decision guide renders the approved buyer path and minimal sch
   const serviceDescription = 'OEM/ODM teamwear for teamwear distributors, dealers, sportswear brands and custom resellers worldwide. Plan client collections, samples and repeat orders.'
   const serviceScripts = readRouteSchemas(serviceRoute)
   assert.equal(serviceScripts.length, 1, 'service page must render exactly one JSON-LD script')
-  assert.deepEqual(serviceScripts[0]['@graph'].map((node) => node['@type']), ['BreadcrumbList', 'Service'])
+  assert.deepEqual(serviceScripts[0]['@graph'].map((node) => node['@type']), ['BreadcrumbList', 'Service', 'FAQPage'])
 
   const serviceNodes = flattenSchemaNodes(serviceScripts[0])
   const serviceBreadcrumb = serviceNodes.find((node) => node['@type'] === 'BreadcrumbList')
@@ -466,7 +466,9 @@ test('OEM and ODM decision guide renders the approved buyer path and minimal sch
   assert.equal(serviceHtml.includes(service.description), true, 'Service description must be visible verbatim')
 
   const serviceSchemaText = JSON.stringify(serviceScripts[0])
-  for (const forbidden of ['Product', 'Offer', 'OfferCatalog', 'FAQPage', 'Review', 'AggregateRating', 'areaServed', 'price', 'priceCurrency', 'availability', 'MOQ', 'leadTime', 'capacity', 'certification', 'customer', 'datePublished', 'dateModified', 'author', 'reviewer']) {
+  // FAQPage removed from this list with explicit approval; every commercial claim
+  // token (price, MOQ, leadTime, capacity, certification...) stays forbidden.
+  for (const forbidden of ['Product', 'Offer', 'OfferCatalog', 'Review', 'AggregateRating', 'areaServed', 'price', 'priceCurrency', 'availability', 'MOQ', 'leadTime', 'capacity', 'certification', 'customer', 'datePublished', 'dateModified', 'author', 'reviewer']) {
     assert.equal(serviceSchemaText.includes(`"${forbidden}"`), false, `service schema must not expose ${forbidden}`)
   }
 })

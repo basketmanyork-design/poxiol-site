@@ -6,6 +6,8 @@ import {EmailAddress, emailHref} from '@/components/ui'
 import {getSiteChrome, getSitePage} from '@/lib/sanity/content'
 import {getV8ConversionEntry} from '@/lib/v8/leads'
 import {legalPolicyApproved} from '@/lib/legal-release'
+import {CodeOwnedFaq} from '@/components/seo/CodeOwnedFaq'
+import {CONTACT_FAQS} from '@/lib/static-faqs'
 
 const pageKey = 'contact'
 
@@ -32,6 +34,9 @@ export default async function ContactPage() {
           body: `The details below help with a project quote; they are not required for a general question. ${section.body || ''}`,
         } : section),
       }}
+      beforeFooterSlot={
+        <CodeOwnedFaq title="Contact Questions" faqs={CONTACT_FAQS} canonical="https://www.poxiol.com/contact/" />
+      }
       conversionIntent="contact"
       contactSlot={
         <>
