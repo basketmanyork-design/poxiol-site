@@ -22,6 +22,8 @@ const faqs = [
   { question: "Can I choose fabric before production?", answer: "Yes. POXIOL can recommend fabric options before sample or bulk production." },
   { question: "Is spandex good for teamwear?", answer: "Spandex blends are useful for sportswear that requires flexibility and movement, such as volleyball and training apparel." },
   { question: "Do you provide fabric recommendations?", answer: "Yes. POXIOL recommends fabric based on sport type, printing method, design requirements and target use." },
+  { question: "What is the difference between mesh and interlock fabric?", answer: "Mesh is an open knit with visible holes that lets air move through the garment. Interlock is a denser double knit with a smooth, uniform surface. Both are polyester knits and both accept sublimation printing." },
+  { question: "Is mesh or interlock better for basketball uniforms?", answer: "Both are used for basketball uniforms. Mesh suits a garment where airflow matters most, while interlock suits a garment that needs a smooth surface for fine print detail. The choice is confirmed against the fabric reference for the project." },
 ];
 
 export default function FabricGuidePage() {
@@ -132,6 +134,53 @@ export default function FabricGuidePage() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Mesh vs Interlock */}
+      <section className="bg-neutral-950 px-5 py-20 md:px-10 md:py-28 xl:px-20 border-t border-white/5">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-lime-400">Mesh vs Interlock</h2>
+          <p className="mt-6 text-lg leading-relaxed text-neutral-400">These are the two fabrics buyers ask about most often. Both are polyester knits and both accept sublimation; the choice follows the garment and the decoration rather than a ranking.</p>
+          <div className="mt-10 overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm md:text-base">
+              <thead>
+                <tr className="border-b border-white/15">
+                  <th className="py-4 pr-4 font-black text-white">Property</th>
+                  <th className="py-4 pr-4 font-black text-white">Mesh</th>
+                  <th className="py-4 font-black text-white">Interlock</th>
+                </tr>
+              </thead>
+              <tbody className="text-neutral-400">
+                <tr className="border-b border-white/5 align-top">
+                  <td className="py-4 pr-4 font-bold text-neutral-200">Air movement</td>
+                  <td className="py-4 pr-4">Open knit structure with visible holes; air passes through the fabric itself</td>
+                  <td className="py-4">Denser knit; breathability comes from the yarn and the garment construction</td>
+                </tr>
+                <tr className="border-b border-white/5 align-top">
+                  <td className="py-4 pr-4 font-bold text-neutral-200">Surface</td>
+                  <td className="py-4 pr-4">Textured mesh hand feel</td>
+                  <td className="py-4">Smooth, uniform surface</td>
+                </tr>
+                <tr className="border-b border-white/5 align-top">
+                  <td className="py-4 pr-4 font-bold text-neutral-200">Fine print detail</td>
+                  <td className="py-4 pr-4">Very fine lines and small text are limited by the open structure</td>
+                  <td className="py-4">Holds fine lines, small text and crisp edges</td>
+                </tr>
+                <tr className="border-b border-white/5 align-top">
+                  <td className="py-4 pr-4 font-bold text-neutral-200">Shape retention</td>
+                  <td className="py-4 pr-4">Mechanical give from the open structure</td>
+                  <td className="py-4">Holds its shape with less mechanical give</td>
+                </tr>
+                <tr className="align-top">
+                  <td className="py-4 pr-4 font-bold text-neutral-200">Common garments</td>
+                  <td className="py-4 pr-4">Basketball uniforms, training wear, warm-weather teamwear</td>
+                  <td className="py-4">Soccer jerseys, polo-style teamwear, garments needing crisp logos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-8 text-sm leading-7 text-neutral-500">The fabric reference, mass per area and construction for your order are confirmed for the specific project rather than published as a fixed specification.</p>
         </div>
       </section>
 

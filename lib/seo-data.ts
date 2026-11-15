@@ -474,6 +474,22 @@ export const fabricGuideSchema = {
         },
         {
           "@type": "Question",
+          "name": "What is the difference between mesh and interlock fabric?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mesh is an open knit with visible holes that lets air move through the garment. Interlock is a denser double knit with a smooth, uniform surface. Both are polyester knits and both accept sublimation printing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is mesh or interlock better for basketball uniforms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both are used for basketball uniforms. Mesh suits a garment where airflow matters most, while interlock suits a garment that needs a smooth surface for fine print detail. The choice is confirmed against the fabric reference for the project."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Do you provide fabric recommendations?",
           "acceptedAnswer": {
             "@type": "Answer",
