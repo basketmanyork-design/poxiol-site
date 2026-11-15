@@ -26,7 +26,7 @@ test('indexed non-sitemap customization and guides pages keep exact headings, ca
     ['/guides/', 'Professional Buying Guides', 'Teamwear Buying Guides: Sizing, Fabric & MOQ | POXIOL', 'Guides on teamwear sizing, fabric weight, sublimation printing, sampling, MOQ and quality control, written for clubs, schools and sportswear brands.', null, 'Read Guide'],
   ]
 
-  assert.equal([...sitemap.matchAll(/<loc>/g)].length, 85)
+  assert.equal([...sitemap.matchAll(/<loc>/g)].length, 87)
   for (const [route, heading, title, description, ctaHref, ctaText] of pages) {
     const html = readRouteHtml(route)
     const canonical = `https://www.poxiol.com${route}`
@@ -108,8 +108,8 @@ test('project planning hub and scenarios use evidence-neutral search contracts',
   const sitemap = readFileSync('out/sitemap.xml', 'utf8')
   const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url)
 
-  assert.equal(sitemapUrls.length, 85)
-  assert.equal(new Set(sitemapUrls).size, 85)
+  assert.equal(sitemapUrls.length, 87)
+  assert.equal(new Set(sitemapUrls).size, 87)
   assert.equal(sitemapUrls.includes('https://www.poxiol.com/projects/'), true)
   assert.match(hubHtml, /<title>Teamwear Planning Scenarios \| POXIOL<\/title>/)
   assert.match(hubHtml, /<meta[^>]+name="description"[^>]+content="Explore planning scenarios for custom teamwear briefs, sample review, quality checkpoints, packing needs and target delivery windows\."/)

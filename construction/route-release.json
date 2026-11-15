@@ -3,10 +3,10 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "a44a142692f8b06474e21d65ffc55b2c3af2da60f9bd686c0db8a098762cf656",
-    "candidateSitemapSha256": "02ef212270903705ce96231490e7afdb92fe8602e96b5fb11f2a06d4adc50519",
+    "candidateSitemapSha256": "fdce96c69e79cf439eda6723dd4d8aa5a0587f98a5b8e353e8b34dac779c5760",
     "publicCount": 81,
-    "candidateCount": 85,
-    "renderedCount": 102,
+    "candidateCount": 87,
+    "renderedCount": 104,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -95,11 +95,13 @@
     "ADDED": [
       "/baseball-positions-and-numbers-explained/",
       "/basketball-positions-explained/",
+      "/football-positions-explained/",
       "/products/cricket-uniforms/",
       "/products/rugby-uniforms/",
       "/projects/",
       "/soccer-offside-rule-explained/",
       "/team-name-ideas-for-sports-clubs/",
+      "/volleyball-positions-explained/",
       "/what-the-a-and-c-mean-on-a-jersey/"
     ],
     "REDIRECTED": [

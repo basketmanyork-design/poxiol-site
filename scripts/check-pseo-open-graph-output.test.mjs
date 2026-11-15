@@ -67,9 +67,9 @@ async function readOutput(pathname) {
   return readFile(outputFileForUrl(`${SITE_ORIGIN}${pathname}`), "utf8");
 }
 
-test("all 24 pSEO outputs mirror their existing page metadata into Open Graph", async () => {
-  assert.equal(pseoPages.length, 24);
-  assert.equal(new Set(pseoPages.map(({ slug }) => slug)).size, 24);
+test("all 26 pSEO outputs mirror their existing page metadata into Open Graph", async () => {
+  assert.equal(pseoPages.length, 26);
+  assert.equal(new Set(pseoPages.map(({ slug }) => slug)).size, 26);
 
   for (const page of pseoPages) {
     assert.ok(page.title.trim());
@@ -167,12 +167,12 @@ test("homepage stays unchanged while the completed Stage 2 product hub emits pag
   assert.equal(one(metaValues(products, "name", "twitter:description"), "products twitter:description"), HOME_DESCRIPTION);
 });
 
-test("the 85-URL Sitemap boundary remains fixed and only the homepage keeps generic Open Graph", async () => {
+test("the 87-URL Sitemap boundary remains fixed and only the homepage keeps generic Open Graph", async () => {
   const sitemap = await readFile(path.join(OUTPUT_DIRECTORY, "sitemap.xml"), "utf8");
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => decodeHtml(url));
 
-  assert.equal(urls.length, 85);
-  assert.equal(new Set(urls).size, 85);
+  assert.equal(urls.length, 87);
+  assert.equal(new Set(urls).size, 87);
   for (const { slug } of pseoPages) {
     assert.ok(urls.includes(`${SITE_ORIGIN}/${slug}/`), `Sitemap missing /${slug}/`);
   }
