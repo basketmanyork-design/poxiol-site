@@ -2,32 +2,75 @@
 
 > POXIOL is a brand operated by Quanzhou Lanren Electronic Commerce Co., Ltd. It supports B2B custom teamwear projects for clubs, schools, youth programs, sports brands and distributors.
 
-## Core Pages
+## How to read this file
+
+- Each entry is one public page followed by a statement of what that page actually covers.
+- Quantitative answers — order quantity, sample timing, production timing, delivery timing and price — are confirmed for the specific project. They are not published as fixed figures, so a page that describes a process does not imply a guaranteed number.
+
+## Supplier evaluation and production evidence
+
+- [Factory](https://www.poxiol.com/factory/) — how sampling responsibility, materials and production evidence are explained for a project
+- [Quality Control Process](https://www.poxiol.com/quality-control-process/) — the inspection checkpoints applied before an order is released
+- [Manufacturing](https://www.poxiol.com/manufacturing/) — the steps that follow an approved brief
+- [Certificates & Testing](https://www.poxiol.com/certificates-testing/) — labeling and testing requirements by market, and what the buyer has to supply for each
+- [Shipping and After-Sales](https://www.poxiol.com/shipping-after-sales/) — production scheduling, dispatch confirmation, duties and the order issue review
+- [FAQ](https://www.poxiol.com/faq/) — answered questions across sourcing, sampling, production, delivery and documentation
+- [B2B Sourcing FAQ](https://www.poxiol.com/guides/b2b-sourcing-faq/) — question index for B2B sourcing and manufacturing topics
+- [Factory Selection Guide](https://www.poxiol.com/resources/teamwear-manufacturer-evaluation-checklist/) — checklist for evaluating a teamwear manufacturer before ordering
+
+## Buyer programs
+
+- [Solutions](https://www.poxiol.com/solutions/) — how single-team, league, school district and reseller programs differ in what the buyer prepares
+- [Club Teamwear Program](https://www.poxiol.com/club-teamwear-program/) — one club running several squads, including repeat orders
+- [School Teamwear](https://www.poxiol.com/school-teamwear/) — school orders spanning seasons, squads and approval contacts
+- [Youth Team Uniforms](https://www.poxiol.com/youth-team-uniforms/) — mixed youth and adult size ranges within one order
+- [Private Label Teamwear](https://www.poxiol.com/private-label-teamwear/) — neck labels, hangtags, packaging and distributor-ready presentation
+- [OEM / ODM](https://www.poxiol.com/oem-odm/) — the two development paths and which project inputs each one needs
+- [Private Label Guide](https://www.poxiol.com/resources/private-label-teamwear-launch-checklist/) — launch checklist for a private label collection
+
+## Products
+
+- [Products](https://www.poxiol.com/products/) — the full product range
+- [Custom Basketball Uniforms](https://www.poxiol.com/products/basketball-uniforms/) — basketball uniform configuration, fabrics and program questions
+- [Custom Soccer Jerseys](https://www.poxiol.com/products/soccer-jerseys/) — soccer kit configuration, sponsor marks and club marks
+- [Custom Baseball Uniforms](https://www.poxiol.com/custom-baseball-softball-uniforms/) — baseball and softball uniform configuration
+- [Training Wear](https://www.poxiol.com/products/training-wear/) — training garments for squads
+- [Hoodies & Jackets](https://www.poxiol.com/products/hoodies-jackets/) — team hoodies and jackets
+- [Warm-Up Wear](https://www.poxiol.com/products/warm-up-wear/) — warm-up jacket and trouser sets
+- [Running & Track Uniforms](https://www.poxiol.com/products/running-track-uniforms/) — running singlets and shorts for clubs and track teams
+- [Team Accessories](https://www.poxiol.com/products/team-accessories/) — supporting team items
+
+## Customization and decoration
+
+- [Customization](https://www.poxiol.com/customization/) — the customization options that can be specified for a project
+- [Fabric Options](https://www.poxiol.com/customization/fabric-options/) — fabric references available for selection
+- [Fabric Guide](https://www.poxiol.com/fabric-guide/) — how mesh, interlock, bird eye, quick-dry polyester and spandex behave, and how fabric is chosen
+- [Printing Guide](https://www.poxiol.com/printing-guide/) — sublimation, screen printing and embroidery compared
+- [Logo, Name & Number](https://www.poxiol.com/customization/logo-name-number/) — personalization and artwork requirements
+- [Custom Packaging](https://www.poxiol.com/customization/custom-packaging/) — packaging options for a project
+
+## Sampling and quoting
+
+- [Free Mockup](https://www.poxiol.com/free-mockup/) — how the mockup step works before a physical sample
+- [Sample Order](https://www.poxiol.com/sample-order/) — what a physical sample review covers and what the buyer provides
+- [Get Quote](https://www.poxiol.com/get-quote/) — the project inputs a quotation is built from
+- [Contact](https://www.poxiol.com/contact/) — reaching a specialist for a project question
+
+## Guides and resources
+
+- [Guides](https://www.poxiol.com/guides/) — buying guides for teamwear sourcing decisions
+- [Sample Approval Guide](https://www.poxiol.com/guides/sample-first-vs-bulk-teamwear-order/) — when a sample belongs before a bulk order and what it should prove
+- [Fabric GSM Guide](https://www.poxiol.com/guides/custom-basketball-uniform-fabric-gsm/) — fabric mass per area, breathability and durability in practice
+- [Resources](https://www.poxiol.com/resources/) — checklists and reference material for buyers
+- [Blog](https://www.poxiol.com/blog/) — articles on teamwear sourcing and production
+
+## Company
 
 - [Homepage](https://www.poxiol.com/)
-- [Products](https://www.poxiol.com/products/)
-- [Custom Basketball Uniforms](https://www.poxiol.com/products/basketball-uniforms/)
-- [Custom Soccer Jerseys](https://www.poxiol.com/products/soccer-jerseys/)
-- [Custom Baseball Uniforms](https://www.poxiol.com/custom-baseball-softball-uniforms/)
-- [Manufacturing](https://www.poxiol.com/manufacturing/)
-- [Quality Control Process](https://www.poxiol.com/quality-control-process/)
-- [Certificates & Testing](https://www.poxiol.com/certificates-testing/)
-- [Free Mockup](https://www.poxiol.com/free-mockup/)
-- [Factory](https://www.poxiol.com/factory/)
-- [Guides](https://www.poxiol.com/guides/)
-- [Resources](https://www.poxiol.com/resources/)
-- [Blog](https://www.poxiol.com/blog/)
-- [B2B Sourcing FAQ](https://www.poxiol.com/guides/b2b-sourcing-faq/)
-- [Sample Approval Guide](https://www.poxiol.com/guides/sample-first-vs-bulk-teamwear-order/)
-- [Fabric GSM Guide](https://www.poxiol.com/guides/custom-basketball-uniform-fabric-gsm/)
-- [Factory Selection Guide](https://www.poxiol.com/resources/teamwear-manufacturer-evaluation-checklist/)
-- [Private Label Guide](https://www.poxiol.com/resources/private-label-teamwear-launch-checklist/)
-- [Projects](https://www.poxiol.com/projects/)
-- [FAQ](https://www.poxiol.com/faq/)
-- [Contact](https://www.poxiol.com/contact/)
-- [Privacy Policy](https://www.poxiol.com/privacy-policy/)
-- [Terms](https://www.poxiol.com/terms/)
-- [Intellectual Property Policy](https://www.poxiol.com/intellectual-property-policy/)
+- [About](https://www.poxiol.com/about/) — who operates the brand and how projects are handled
+- [Projects](https://www.poxiol.com/projects/) — project records presented by use case
+- [Sports](https://www.poxiol.com/sports/) — the sports covered
+- [Design Gallery](https://www.poxiol.com/design-gallery/) — design directions for reference
 
 ## Key Capabilities
 
