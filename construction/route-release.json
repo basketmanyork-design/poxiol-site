@@ -3,10 +3,10 @@
   "source": {
     "publicSitemap": "https://www.poxiol.com/sitemap.xml",
     "publicSitemapSha256": "a44a142692f8b06474e21d65ffc55b2c3af2da60f9bd686c0db8a098762cf656",
-    "candidateSitemapSha256": "111742d6f2dff2235380b5e1b530de8d1d726bf39c653a7a39b7ca306073ea0c",
+    "candidateSitemapSha256": "7ffc207a2b4c6f0b43bb0a50e6ac43f01d7cfebf7f29024cfbe37cdb51eea911",
     "publicCount": 81,
-    "candidateCount": 80,
-    "renderedCount": 97,
+    "candidateCount": 83,
+    "renderedCount": 100,
     "legalStatus": "APPROVED",
     "contentSource": "sanity",
     "cmsListMode": "strict",
@@ -93,9 +93,12 @@
       "/youth-team-uniforms/"
     ],
     "ADDED": [
+      "/baseball-positions-and-numbers-explained/",
+      "/basketball-positions-explained/",
       "/products/cricket-uniforms/",
       "/products/rugby-uniforms/",
-      "/projects/"
+      "/projects/",
+      "/soccer-offside-rule-explained/"
     ],
     "REDIRECTED": [
       "/guides/how-to-choose-a-custom-soccer-kit-manufacturer/",

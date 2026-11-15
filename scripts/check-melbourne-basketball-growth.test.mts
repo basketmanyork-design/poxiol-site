@@ -83,9 +83,9 @@ if (!outputMode) {
     assert.doesNotMatch(JSON.stringify(page), forbidden)
   })
 
-  test('the other 18 pSEO pages do not inherit Melbourne-only decision or CTA data', () => {
+  test('the other 21 pSEO pages do not inherit Melbourne-only decision or CTA data', () => {
     const others = pseoPages.filter(({slug}) => slug !== expected.slug)
-    assert.equal(others.length, 18)
+    assert.equal(others.length, 21)
     for (const page of others) {
       assert.equal(page.decisionSections, undefined, page.slug)
       assert.equal(page.finalCtaHeading, undefined, page.slug)
