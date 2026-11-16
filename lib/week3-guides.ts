@@ -15,16 +15,20 @@ const sharedFaqs = (sport: string): CmsFaqItem[] => [
     question: `What should a buyer compare when choosing a ${sport} supplier?`,
     answer: `Compare the supplier's confirmed product scope, available samples, decoration options, size process, quality checks, packaging assumptions and written quotation. Treat capability statements as items to verify for the specific ${sport} program.`,
   },
+  // The three questions below were identical on the basketball and soccer guides, both of
+  // which live under /resources/ and both of which are compared against the same product
+  // pages. Scoping the wording to the sport keeps the answers intact while giving an AI
+  // engine a reason to cite one guide rather than neither.
   {
-    question: 'What information should be sent before requesting a quotation?',
+    question: `What information should be sent before requesting a ${sport} quotation?`,
     answer: 'Send the garment type, quantity estimate, size breakdown, artwork, personalization, packaging, destination, target market requirements and requested schedule. The supplier can then confirm what is feasible for the project.',
   },
   {
-    question: 'How can a buyer verify quality before bulk production?',
+    question: `How can a buyer verify ${sport} quality before bulk production?`,
     answer: 'Request a representative sample or traceable swatch, record the approved measurements and artwork, and agree the inspection points and packing checks in writing before bulk production.',
   },
   {
-    question: 'Can a supplier promise one fixed specification for every order?',
+    question: `Can a supplier promise one fixed ${sport} specification for every order?`,
     answer: 'No. Fabric availability, construction, personalization, size mix, destination and buyer requirements can change the quotation. Confirm the current specification and schedule for each order.',
   },
 ]
