@@ -14,12 +14,18 @@ export const V8_FAQS: readonly V8FaqItem[] = [
     id: 'project-start-details',
     question: 'What information helps POXIOL review a custom teamwear project?',
     answer: 'Share the sport, quantity, deadline, logo or reference files and customization requirements available for the project.',
-    pageIds: ['home', 'customization', 'factory'],
+    pageIds: ['home', 'customization'],
   },
   {
     id: 'factory-buyer-types',
     question: 'Which buyer types does POXIOL work with?',
     answer: 'Clubs, schools, academies, event organisers, sportswear brands, distributors and wholesalers, with each project planned against its own product, quantity and delivery requirements.',
+    pageIds: ['factory'],
+  },
+  {
+    id: 'factory-categories',
+    question: 'Which sportswear categories can POXIOL produce?',
+    answer: 'Basketball uniforms, soccer kits, baseball and softball uniforms, volleyball uniforms, rugby and cricket kit, training wear, hoodies and jackets, and team accessories, each planned against the confirmed project specification.',
     pageIds: ['factory'],
   },
   {
