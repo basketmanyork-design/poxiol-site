@@ -14,7 +14,13 @@ export const V8_FAQS: readonly V8FaqItem[] = [
     id: 'project-start-details',
     question: 'What information helps POXIOL review a custom teamwear project?',
     answer: 'Share the sport, quantity, deadline, logo or reference files and customization requirements available for the project.',
-    pageIds: ['home', 'customization'],
+    pageIds: ['home', 'customization', 'factory'],
+  },
+  {
+    id: 'factory-buyer-types',
+    question: 'Which buyer types does POXIOL work with?',
+    answer: 'Clubs, schools, academies, event organisers, sportswear brands, distributors and wholesalers, with each project planned against its own product, quantity and delivery requirements.',
+    pageIds: ['factory'],
   },
   {
     id: 'sample-before-bulk',
@@ -26,13 +32,16 @@ export const V8_FAQS: readonly V8FaqItem[] = [
     id: 'manufacturing-workflow',
     question: 'How does POXIOL manufacture custom teamwear?',
     answer: 'The workflow covers design preparation, material selection, printing, cutting, sewing, assembly, inspection preparation and packing based on confirmed specifications.',
-    pageIds: ['factory', 'manufacturing'],
+    pageIds: ['manufacturing'],
   },
   {
     id: 'quality-verification',
     question: 'How does POXIOL verify uniform quality?',
     answer: 'Checks can cover incoming materials, printing, sewing, sizing, final product details and packing against the confirmed project requirements.',
-    pageIds: ['factory', 'manufacturing', 'quality-control'],
+    // 'manufacturing' stays in this list on purpose: check-oem-odm-keyword-coverage freezes
+    // the /manufacturing/ visible-text digest as the unchanged control page for the OEM/ODM
+    // pilot, so removing it here would break that control rather than fix a real duplication.
+    pageIds: ['manufacturing', 'quality-control'],
   },
   {
     id: 'youth-mixed-sizes',

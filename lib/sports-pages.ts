@@ -44,14 +44,21 @@ export type SportsPageData = {
   bottomCta?: {label: string; href: string};
 };
 
-const commonFaqs = [
-  { question: "What is the minimum order quantity?", answer: "Sample order support is available for design and quality confirmation. Bulk team order pricing depends on product type, quantity, fabric, customization details and packaging requirements." },
-  { question: "Can I get a free mockup before ordering?", answer: "Yes. Send your logo, colors, sport category and quantity. Our design team can create a professional visual mockup for review." },
-  { question: "How is sample and delivery timing confirmed?", answer: "Sample availability is confirmed after the mockup, materials and construction requirements are reviewed. Shipping method and delivery timing are confirmed for the destination and project requirements." },
-  { question: "How long does production take?", answer: "Bulk production time depends on order quantity, customization complexity, confirmed size breakdown and current factory schedule. POXIOL will provide a production plan before order confirmation." },
-  { question: "Can you customize names, numbers and team logos?", answer: "Yes. POXIOL supports custom team names, player names, numbers, logos, colors and original pattern designs." },
-  { question: "Do you support OEM/ODM for sportswear brands?", answer: "Yes. POXIOL supports OEM/ODM teamwear development, including design support, sampling, production and flexible customization." },
-];
+// The same six questions were previously shared verbatim by the training wear, hoodies and
+// accessories pages, which made them indistinguishable as extraction targets: an AI engine
+// answering "what is the minimum order quantity" saw three identical questions on three URLs
+// and had no basis to cite one. The wording is now scoped to the category; the answers keep
+// the original, verifiable commitments unchanged.
+function commonFaqs(label: string) {
+  return [
+    { question: `What is the minimum order quantity for custom ${label}?`, answer: "Sample order support is available for design and quality confirmation. Bulk team order pricing depends on product type, quantity, fabric, customization details and packaging requirements." },
+    { question: `Can I get a free mockup before ordering ${label}?`, answer: "Yes. Send your logo, colors, sport category and quantity. Our design team can create a professional visual mockup for review." },
+    { question: `How is sample and delivery timing confirmed for ${label}?`, answer: "Sample availability is confirmed after the mockup, materials and construction requirements are reviewed. Shipping method and delivery timing are confirmed for the destination and project requirements." },
+    { question: `How long does production take for custom ${label}?`, answer: "Bulk production time depends on order quantity, customization complexity, confirmed size breakdown and current factory schedule. POXIOL will provide a production plan before order confirmation." },
+    { question: `Can custom ${label} include team names, player names and numbers?`, answer: "Yes. POXIOL supports custom team names, player names, numbers, logos, colors and original pattern designs." },
+    { question: `Do you support OEM/ODM projects for custom ${label}?`, answer: "Yes. POXIOL supports OEM/ODM teamwear development, including design support, sampling, production and flexible customization." },
+  ];
+}
 
 function genericProcurementTable(productName: string, mainProducts: string) {
   return [
@@ -249,7 +256,7 @@ export const sportsPages: SportsPageData[] = [
       { title: "Brands", description: "OEM/ODM training wear collection development." }
     ],
     procurementTable: genericProcurementTable("Custom Training Wear", "Tracksuits, warm-up jackets, training tops and travel suits"),
-    faqs: commonFaqs,
+    faqs: commonFaqs("training wear"),
   },
   {
     slug: "products/hoodies-jackets",
@@ -277,7 +284,7 @@ export const sportsPages: SportsPageData[] = [
       { title: "Brands", description: "OEM hoodie collections with private label support." }
     ],
     procurementTable: genericProcurementTable("Custom Hoodies & Jackets", "Pullover hoodies, zip-up jackets and team outerwear"),
-    faqs: commonFaqs,
+    faqs: commonFaqs("hoodies and jackets"),
   },
   {
     slug: "products/team-accessories",
@@ -303,7 +310,7 @@ export const sportsPages: SportsPageData[] = [
       { title: "Events", description: "Branded merchandise and participant gear." }
     ],
     procurementTable: genericProcurementTable("Custom Team Accessories", "Custom team socks and gear bags"),
-    faqs: commonFaqs,
+    faqs: commonFaqs("team accessories"),
   },
 ];
 
