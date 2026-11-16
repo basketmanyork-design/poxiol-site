@@ -28,6 +28,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
   const [state,setState] = useState<'idle'|'sending'|'accepted'|'unconfirmed'>('idle')
   const [reference,setReference] = useState('')
   const [step,setStep] = useState<ProcurementFormStep>('products')
+  const [stage,setStage] = useState<1|2>(1)
   const submitLock = useRef(false)
   const submissionKey = useRef('')
   const entryProduct = useRef('')
@@ -36,6 +37,12 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
   const context = useInquiryContext()
   const analytics = createLeadEventContext(formId,formType)
   const progressive = intent === 'quote'
+  // Sample and mockup ask for the most fields because the qualification gates live on them.
+  // Showing all of them at once buries the two things a buyer expects to answer first. These
+  // two intents open on the product block and reveal delivery and contact only on request.
+  // The later fields stay in the DOM (hidden) so the rendered page still publishes the full
+  // qualification set, and every one of them remains mandatory at submit time.
+  const staged = intent === 'sample' || intent === 'mockup'
   const stepIndex = PROCUREMENT_FORM_STEPS.findIndex(item=>item.id===step)
   const analyticsDetails = (): FormEventDetails => ({origin_page:context.source,entry_product:entryProduct.current})
 
@@ -70,7 +77,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     setErrors(current => {const next={...current};delete next[`${key}-${index}`];return next})
   }
   function startAnother() {
-    setFields(blank);setContactMode('');setAddOtherContact(false);setFile(null);setErrors({});setMessage('');setReference('');setState('idle');setStep('products');submissionKey.current='';entryProduct.current='';submitLock.current=false
+    setFields(blank);setContactMode('');setAddOtherContact(false);setFile(null);setErrors({});setMessage('');setReference('');setState('idle');setStep('products');setStage(1);submissionKey.current='';entryProduct.current='';submitLock.current=false
   }
   function validateAll() {
     const now=new Date()
@@ -99,6 +106,17 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     setErrors({});setMessage('')
     setStep(PROCUREMENT_FORM_STEPS[Math.max(stepIndex-1,0)].id)
   }
+  function revealStage() {
+    const stepErrors=errorsForProcurementStep(validateAll(),'products')
+    if (Object.keys(stepErrors).length) {showValidationErrors(stepErrors);return}
+    try {trackFormStepComplete(analytics,'products',analyticsDetails())} catch {}
+    setErrors({});setMessage('');setStage(2)
+    requestAnimationFrame(()=>{
+      const heading=document.getElementById('delivery-group')
+      if(heading instanceof HTMLElement) heading.focus({preventScroll:true})
+      heading?.scrollIntoView({block:'start',behavior:'smooth'})
+    })
+  }
   function selectFile(nextFile:File|null) {
     if (state === 'accepted' || state === 'sending') return
     setFile(nextFile)
@@ -121,6 +139,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     if (Object.keys(nextErrors).length) {
       const section=firstValidationSection(nextErrors)
       if (progressive) setStep(section==='file'?'products':section==='form'?'contact':section)
+      if (staged && (section==='delivery'||section==='contact')) setStage(2)
       showValidationErrors(nextErrors)
       return
     }
@@ -170,14 +189,15 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
         <div className="mt-5"><label className={label} htmlFor="additional-details">Additional Details (Optional)</label><textarea id="additional-details" name="additional_details" rows={4} maxLength={4000} value={fields.additionalDetails} onChange={event=>edit('additionalDetails',event.target.value)} className={input} placeholder="Add colors, design ideas or questions you would like us to review." />{fieldError('additionalDetails')}</div>
         <div className="mt-5"><label className={label} htmlFor="project-file">Upload Your Logo / References (Optional)</label><input id="project-file" name="project_file" type="file" accept=".pdf,.ai,.eps,.png,.jpg,.jpeg,.webp" onChange={event=>selectFile(event.target.files?.[0]||null)} className="block min-h-11 w-full text-sm" /><p className="text-xs text-neutral-600">No design file yet? You can still send your request. Maximum 10 MB.</p>{file?<><p role="status" aria-live="polite" className="mt-2 break-all text-sm font-semibold text-neutral-800">Selected file: {file.name}</p><button type="button" onClick={()=>{selectFile(null);const control=document.getElementById('project-file') as HTMLInputElement|null;if(control)control.value=''}} className="min-h-11 text-sm font-bold underline">Remove file</button></>:null}{fieldError('file')}</div>
       </section>:null}
-      {(!progressive||step==='delivery')?<section aria-labelledby="delivery-group"><h3 id="delivery-group" className="mb-4 text-xl font-black">Delivery Requirements</h3><div className="grid gap-5 sm:grid-cols-2">
+      {staged&&stage===1?<div className="mt-7 rounded-2xl border border-neutral-300 bg-neutral-50 p-5"><p className="text-lg font-black text-neutral-950">Next: delivery and contact details</p><p className="mt-2 text-sm leading-6 text-neutral-700">The next two sections confirm when you need the order, where it ships and how we reply. Both are required before the request can be sent, so nothing you enter here is lost.</p></div>:null}
+      {(!progressive||step==='delivery')?<section aria-labelledby="delivery-group" hidden={staged&&stage===1}><h3 id="delivery-group" tabIndex={-1} className="mb-4 text-xl font-black focus:outline-none">Delivery Requirements</h3><div className="grid gap-5 sm:grid-cols-2">
         <div><label className={label} htmlFor="delivery-date">Required Delivery Date *</label><input id="delivery-date" name="required_delivery_date" type="date" value={fields.requiredDeliveryDate} onChange={event=>edit('requiredDeliveryDate',event.target.value)} className={input} /><p className="mt-1 text-xs text-neutral-600">When do you need the order in hand? We’ll check production and shipping feasibility.</p>{fieldError('requiredDeliveryDate')}</div>
         <div><label className={label} htmlFor="delivery-country">Delivery Country / Region *</label><select id="delivery-country" name="delivery_country_code" value={fields.deliveryCountry} onChange={event=>edit('deliveryCountry',event.target.value)} className={input}><option value="">Choose a country or region</option>{DELIVERY_COUNTRIES.map(item=><option key={item.code} value={item.code}>{item.name}</option>)}</select>{fieldError('deliveryCountry')}</div>
-        {intent==='sample'?<><div><label className={label} htmlFor="delivery-state">Delivery State / Region *</label><input id="delivery-state" name="delivery_state" maxLength={120} value={fields.deliveryState} onChange={event=>edit('deliveryState',event.target.value)} className={input} />{fieldError('deliveryState')}</div><div><label className={label} htmlFor="delivery-city">Delivery City *</label><input id="delivery-city" name="delivery_city" maxLength={120} value={fields.deliveryCity} onChange={event=>edit('deliveryCity',event.target.value)} className={input} />{fieldError('deliveryCity')}</div></>:null}
+        {intent==='sample'?<><div><label className={label} htmlFor="delivery-state">Delivery State / Region *</label><input id="delivery-state" name="delivery_state" maxLength={120} autoComplete="address-level1" value={fields.deliveryState} onChange={event=>edit('deliveryState',event.target.value)} className={input} />{fieldError('deliveryState')}</div><div><label className={label} htmlFor="delivery-city">Delivery City *</label><input id="delivery-city" name="delivery_city" maxLength={120} autoComplete="address-level2" value={fields.deliveryCity} onChange={event=>edit('deliveryCity',event.target.value)} className={input} />{fieldError('deliveryCity')}</div></>:null}
         <div className="sm:col-span-2"><label className={label} htmlFor="delivery-postal">Delivery Postal Code *</label><input id="delivery-postal" name="delivery_postal_code" value={fields.deliveryPostalCode} onChange={event=>edit('deliveryPostalCode',event.target.value)} disabled={fields.postalNotApplicable} maxLength={20} autoComplete="postal-code" className={input} /><p className="mt-1 text-xs text-neutral-600">This helps us review shipping options and delivery feasibility.</p><label className="mt-3 flex min-h-11 items-center gap-2 text-sm font-bold"><input type="checkbox" checked={fields.postalNotApplicable} onChange={event=>edit('postalNotApplicable',event.target.checked)} /> My delivery area does not use postal codes</label>{fieldError('deliveryPostalCode')}</div>
         {intent==='sample'?<div className="sm:col-span-2 rounded-xl border border-neutral-200 bg-neutral-50 p-4"><label className="flex min-h-11 items-start gap-3 text-sm font-semibold"><input name="international_shipping_consent" type="checkbox" checked={fields.internationalShippingConsent} onChange={event=>edit('internationalShippingConsent',event.target.checked)} className="mt-1" /> <span>I understand that international shipping charges apply to the applicant if the sample application is approved.</span></label>{fieldError('internationalShippingConsent')}</div>:null}
       </div></section>:null}
-      {(!progressive||step==='contact')?<section aria-labelledby="contact-group"><h3 id="contact-group" className="mb-4 text-xl font-black">Contact Details</h3><div className="grid gap-5 sm:grid-cols-2">
+      {(!progressive||step==='contact')?<section aria-labelledby="contact-group" hidden={staged&&stage===1}><h3 id="contact-group" className="mb-4 text-xl font-black">Contact Details</h3><div className="grid gap-5 sm:grid-cols-2">
         <div><label className={label} htmlFor="full-name">Your Name *</label><input id="full-name" name="fullName" autoComplete="name" maxLength={120} value={fields.fullName} onChange={event=>edit('fullName',event.target.value)} className={input} />{fieldError('fullName')}</div>
         <div><label className={label} htmlFor="company">Company / Team Name {intent==='sample'?'*':'(Optional)'}</label><input id="company" name="company" autoComplete="organization" maxLength={120} value={fields.company} onChange={event=>edit('company',event.target.value)} className={input} />{fieldError('company')}</div>
         {intent==='sample'?<><div><label className={label} htmlFor="organization-type">Organization Type *</label><select id="organization-type" name="organization_type" value={fields.organizationType} onChange={event=>edit('organizationType',event.target.value as ProcurementFields['organizationType'])} className={input}><option value="">Choose an organization type</option>{SAMPLE_ORGANIZATION_TYPES.map(value=><option key={value}>{value}</option>)}</select>{fieldError('organizationType')}</div><div><label className={label} htmlFor="organization-url">Organization Website or Public Profile *</label><input id="organization-url" name="organization_url" type="url" inputMode="url" maxLength={500} placeholder="https://" value={fields.organizationUrl} onChange={event=>edit('organizationUrl',event.target.value)} className={input} />{fieldError('organizationUrl')}</div></>:null}
@@ -189,7 +209,7 @@ export default function ProcurementContactForm({intent,formId,title,subtitle,for
     </fieldset>
     {state==='accepted'?<div role="status" className="mt-7 rounded-xl border border-lime-400 bg-lime-50 p-5"><h3 className="text-xl font-black">Your request has been received.</h3>{reference?<p>Reference: {reference}</p>:null}<p>We’ll review your requirements and contact you using the details you provided.</p><p className="font-semibold">{fields.products.map(line=>`${line.product}: ${line.quantity} ${line.unit}`).join('; ')} · {fields.requiredDeliveryDate} · {country} · {fields.postalNotApplicable?'Postal code not applicable':fields.deliveryPostalCode}</p><p>We’ll check the product, design and delivery feasibility before preparing a quote. {intent==='sample'?'Sample eligibility, free scope and shipping are confirmed before dispatch.':''}</p><button type="button" onClick={startAnother} className="mt-3 min-h-11 font-bold underline">Start another project</button></div>:null}
     {state==='sending'?<p role="status" className="mt-5 text-sm">Submitting your request. Please keep this page open.</p>:null}
-    {progressive?<div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">{step!=='products'?<button type="button" disabled={state!=='idle'} onClick={backStep} className="min-h-12 rounded-full border border-neutral-950 px-6 font-black disabled:opacity-60">Back</button>:<span />}{step!=='contact'?<button type="button" disabled={state!=='idle'} onClick={continueStep} className="min-h-12 rounded-full bg-lime-400 px-6 font-black text-neutral-950 disabled:opacity-60">Continue</button>:<button type="submit" disabled={state!=='idle'} className="min-h-14 rounded-full bg-lime-400 px-6 font-black text-neutral-950 disabled:opacity-60">{state==='sending'?'Submitting…':state==='accepted'?'Received':state==='unconfirmed'?'Check receipt before resending':ctaText}</button>}</div>:<button type="submit" disabled={state!=='idle'} className="mt-7 min-h-14 w-full rounded-full bg-lime-400 px-5 font-black text-neutral-950 disabled:opacity-60">{state==='sending'?'Submitting…':state==='accepted'?'Received':state==='unconfirmed'?'Check receipt before resending':ctaText}</button>}
+    {progressive?<div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">{step!=='products'?<button type="button" disabled={state!=='idle'} onClick={backStep} className="min-h-12 rounded-full border border-neutral-950 px-6 font-black disabled:opacity-60">Back</button>:<span />}{step!=='contact'?<button type="button" disabled={state!=='idle'} onClick={continueStep} className="min-h-12 rounded-full bg-lime-400 px-6 font-black text-neutral-950 disabled:opacity-60">Continue</button>:<button type="submit" disabled={state!=='idle'} className="min-h-14 rounded-full bg-lime-400 px-6 font-black text-neutral-950 disabled:opacity-60">{state==='sending'?'Submitting…':state==='accepted'?'Received':state==='unconfirmed'?'Check receipt before resending':ctaText}</button>}</div>:staged?<div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between"><button type="button" hidden={stage===1} disabled={state!=='idle'} onClick={()=>{setErrors({});setMessage('');setStage(1)}} className="min-h-12 rounded-full border border-neutral-950 px-6 font-black disabled:opacity-60">Back</button><button type="button" hidden={stage===2} disabled={state!=='idle'} onClick={revealStage} className="min-h-12 rounded-full bg-lime-400 px-6 font-black text-neutral-950 disabled:opacity-60">Continue</button><button type="submit" hidden={stage===1} disabled={state!=='idle'} className="min-h-14 rounded-full bg-lime-400 px-6 font-black text-neutral-950 disabled:opacity-60">{state==='sending'?'Submitting…':state==='accepted'?'Received':state==='unconfirmed'?'Check receipt before resending':ctaText}</button></div>:<button type="submit" disabled={state!=='idle'} className="mt-7 min-h-14 w-full rounded-full bg-lime-400 px-5 font-black text-neutral-950 disabled:opacity-60">{state==='sending'?'Submitting…':state==='accepted'?'Received':state==='unconfirmed'?'Check receipt before resending':ctaText}</button>}
     <p className="mt-4 text-xs text-neutral-700"><PrivacyStatusLink approved={privacyPolicyApproved} /></p>
     <p className="mt-4 text-sm text-neutral-700">Need help? <a className="font-bold underline" href={`mailto:${publicEmail}`}>Email POXIOL</a> or <a className="font-bold underline" href={whatsappHref} target="_blank" rel="noopener noreferrer">open WhatsApp</a>. These links do not send a message automatically.</p>
   </form>
