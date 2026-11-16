@@ -44,6 +44,15 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <section className="border-t border-white/10 px-5 py-14 md:px-10 xl:px-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-sm font-black uppercase tracking-widest text-white/50">Related policies</h2>
+          <ul className="mt-5 grid gap-3 text-sm md:grid-cols-2">
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-[#B6FF00]" href="/terms/">Terms of Service</a></li>
+            <li><a className="text-neutral-400 underline decoration-white/20 underline-offset-4 hover:text-[#B6FF00]" href="/intellectual-property-policy/">Intellectual Property Policy</a></li>
+          </ul>
+        </div>
+      </section>
       <Footer />
     </main>
   )

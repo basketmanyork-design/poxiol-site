@@ -3,6 +3,7 @@ import {Footer,Header,PrimaryButton,SecondaryButton} from '@/components/ui'
 import {contextualInquiryHref} from '@/lib/inquiry-context'
 
 type DecisionCard={title:string;body:string}
+type CategoryLandingSection={heading:string;paragraphs:string[]}
 
 export type CategoryLandingData={
   title:string
@@ -16,6 +17,7 @@ export type CategoryLandingData={
   planningAnswer:string
   decisionCards:DecisionCard[]
   briefItems:string[]
+  sections?:CategoryLandingSection[]
 }
 
 export function CategoryLanding({data}:{data:CategoryLandingData}) {
@@ -70,6 +72,12 @@ export function CategoryLanding({data}:{data:CategoryLandingData}) {
         <article className="rounded-xl border border-neutral-200 p-5"><h3 className="text-lg font-black">3. Next-step decision</h3><p className="mt-2 leading-7 text-neutral-700">After the open points are identified, you can decide whether to continue with a mockup, sample discussion or quote.</p></article>
       </div>
     </div></section>
+    {data.sections?.length?<section className="border-t border-white/5 bg-neutral-950 px-5 py-16 md:px-10"><div className="mx-auto max-w-4xl space-y-12">
+      {data.sections.map(section=><div key={section.heading}>
+        <h2 className="text-2xl font-black uppercase tracking-tight text-white md:text-3xl">{section.heading}</h2>
+        <div className="mt-5 space-y-4">{section.paragraphs.map((paragraph,index)=><p key={index} className="leading-8 text-neutral-400">{paragraph}</p>)}</div>
+      </div>)}
+    </div></section>:null}
     <section className="px-5 py-16 text-center md:px-10"><h2 className="text-3xl font-black">Ready to discuss {data.product}?</h2><p className="mx-auto mt-3 max-w-2xl text-neutral-300">A design file is optional. Your product selection stays visible and can be edited in the inquiry form.</p><div className="mt-7"><PrimaryButton href={quote}>Discuss This Product</PrimaryButton></div></section><Footer />
   </main>
 }
