@@ -171,7 +171,15 @@ export default function SolutionsPage() {
               <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Volleyball for Schools</h3>
               <p className="mt-2 text-sm leading-6 text-neutral-400">School volleyball programmes.</p>
             </Link>
-            <Link key="/custom-baseball-jerseys-for-clubs/" href="/custom-baseball-jerseys-for-clubs/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+                        <Link key="/volleyball-positions-explained/" href="/volleyball-positions-explained/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Volleyball Positions</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Why a volleyball squad needs a second jersey colour.</p>
+            </Link>
+            <Link key="/team-name-ideas-for-sports-clubs/" href="/team-name-ideas-for-sports-clubs/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Team Name Ideas</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Naming a new programme before the first kit order.</p>
+            </Link>
+<Link key="/custom-baseball-jerseys-for-clubs/" href="/custom-baseball-jerseys-for-clubs/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
               <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Baseball for Clubs</h3>
               <p className="mt-2 text-sm leading-6 text-neutral-400">Club baseball jerseys and reorders.</p>
             </Link>

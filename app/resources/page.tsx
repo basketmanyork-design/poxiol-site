@@ -74,6 +74,43 @@ export default async function ResourcesPage() {
       </section>
 
       <section className="bg-neutral-950 border-t border-white/5 px-5 py-20 text-white md:px-10 xl:px-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Rules and terminology</h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-neutral-400">Most kit questions start as a rules question: which position wears which number, who wears a different colour, what the letters on a shirt mean. These pages answer that part, then close on the garment decision it creates.</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Link key="/basketball-positions-explained/" href="/basketball-positions-explained/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Basketball Positions</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">The five roles, and what each one asks of a jersey.</p>
+            </Link>
+            <Link key="/soccer-offside-rule-explained/" href="/soccer-offside-rule-explained/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">The Offside Rule</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Why it is called, and what it means for a kit order.</p>
+            </Link>
+            <Link key="/baseball-positions-and-numbers-explained/" href="/baseball-positions-and-numbers-explained/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Baseball Positions and Numbers</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Position numbering, and how it drives jersey numbers.</p>
+            </Link>
+            <Link key="/volleyball-positions-explained/" href="/volleyball-positions-explained/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Volleyball Positions</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Six roles, and the one that forces a second jersey colour.</p>
+            </Link>
+            <Link key="/football-positions-explained/" href="/football-positions-explained/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">American Football Positions</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">Units, the safety, and why numbering is decided first.</p>
+            </Link>
+            <Link key="/what-the-a-and-c-mean-on-a-jersey/" href="/what-the-a-and-c-mean-on-a-jersey/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">The A and C on a Jersey</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">What the letters mean, and who gets them.</p>
+            </Link>
+            <Link key="/team-name-ideas-for-sports-clubs/" href="/team-name-ideas-for-sports-clubs/" className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+              <h3 className="text-lg font-black uppercase tracking-tight text-lime-400">Team Name Ideas</h3>
+              <p className="mt-2 text-sm leading-6 text-neutral-400">How clubs name themselves, and what to check before printing.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-neutral-950 border-t border-white/5 px-5 py-20 text-white md:px-10 xl:px-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Buyer questions</h2>
           <div className="mt-10 space-y-8">
