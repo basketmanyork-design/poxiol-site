@@ -70,20 +70,20 @@ test('soccer product pillar aligns global supplier intent and exposes five bound
     text: body.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim(),
   }))
 
-  assert.match(html, /<title>Custom Soccer Kit Manufacturer &amp; Wholesale Supplier \| POXIOL<\/title>/)
-  assert.match(html, /<meta[^>]+name="description"[^>]+content="Custom soccer kits for distributors, brands and custom resellers\. Compare full-kit scope, sample approval, wholesale sourcing and reorder planning\."/)
+  assert.match(html, /<title>Custom Soccer Jerseys &amp; Kits Manufacturer \| POXIOL<\/title>/)
+  assert.match(html, /<meta[^>]+name="description"[^>]+content="Custom soccer jerseys and full kits for distributors, brands and custom resellers\. Review full-kit scope, sample approval, wholesale sourcing and reorders\."/)
   assert.equal((visibleHtml.match(/<h1\b/gi) || []).length, 1)
-  assert.match(visibleHtml, /<h1[^>]*>Custom Soccer Kit Manufacturer and Wholesale Supplier<\/h1>/)
+  assert.match(visibleHtml, /<h1[^>]*>Custom Soccer Jerseys, Kits and Uniforms for Wholesale Programs<\/h1>/)
   assert.equal(visibleText.includes('Soccer Sourcing Paths'), true)
   assert.equal(visibleText.includes('Choose the Right Soccer Kit Buying Path'), true)
   assert.equal(visibleText.includes('Review the global product scope, compare wholesale sourcing decisions or continue to a market-specific supplier page.'), true)
 
   const expectedLinks = [
     ['/resources/custom-soccer-kits-wholesale-guide/', 'Read Wholesale Soccer Kit Guide'],
-    ['/soccer-jersey-buying-guide/', 'Review Soccer Kit Buying Guide'],
+    ['/soccer-jersey-buying-guide/', 'Soccer Jersey Buying Guide'],
     ['/soccer-teamwear-supplier-usa/', 'View USA Soccer Teamwear'],
     ['/soccer-teamwear-supplier-uk/', 'View UK Soccer Teamwear'],
-    ['/soccer-jersey-supplier-australia/', 'View Australia Soccer Teamwear'],
+    ['/soccer-jersey-supplier-australia/', 'Soccer Jersey Supplier Australia'],
   ]
   for (const [href, text] of expectedLinks) {
     assert.equal(anchors.some((anchor) => anchor.href === href && anchor.text === text), true, `Missing exact Soccer sourcing path: ${text}`)

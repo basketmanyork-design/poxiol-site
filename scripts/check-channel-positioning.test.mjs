@@ -15,7 +15,7 @@ const owners = [
   {
     route: '/products/soccer-jerseys/',
     product: 'Custom Soccer Kits',
-    title: 'Custom Soccer Kit Manufacturer and Wholesale Supplier',
+    title: 'Custom Soccer Jerseys, Kits and Uniforms for Wholesale Programs',
     searchBuyers: ['distributors', 'brands', 'custom resellers'],
   },
   {

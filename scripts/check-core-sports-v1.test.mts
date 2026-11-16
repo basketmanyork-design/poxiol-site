@@ -20,7 +20,7 @@ const owners = [
     id: 'soccer',
     route: '/products/soccer-jerseys/',
     file: 'app/products/soccer-jerseys/page.tsx',
-    h1: 'Custom Soccer Kit Manufacturer and Wholesale Supplier',
+    h1: 'Custom Soccer Jerseys, Kits and Uniforms for Wholesale Programs',
     terms: ['Custom Soccer Jerseys and Full Kits for Wholesale Programs', 'Full Soccer Kit', 'Goalkeeper', 'Team Crest', 'Sample Approval', 'Manufacturing', 'Quality Control', 'Packaging'],
   },
   {
@@ -56,15 +56,16 @@ assert.doesNotMatch(soccerSource, /basketball/i, 'Soccer data must not contain B
 
 const {getCoreSport} = await import('../lib/core-sports.ts')
 const soccer = getCoreSport('soccer')
-assert.equal(soccer.seoTitle, 'Custom Soccer Kit Manufacturer & Wholesale Supplier | POXIOL')
-assert.equal(soccer.seoDescription, 'Custom soccer kits for distributors, brands and custom resellers. Compare full-kit scope, sample approval, wholesale sourcing and reorder planning.')
-assert.equal(soccer.hero.title, 'Custom Soccer Kit Manufacturer and Wholesale Supplier')
-assert.equal(soccer.hero.description, 'For teamwear distributors, sportswear brands and custom resellers worldwide planning client orders. Review jerseys, shorts, socks, goalkeeper options, sample approval, wholesale sourcing and reorder requirements from one project brief.')
+assert.equal(soccer.seoTitle, 'Custom Soccer Jerseys & Kits Manufacturer | POXIOL')
+assert.equal(soccer.seoDescription, 'Custom soccer jerseys and full kits for distributors, brands and custom resellers. Review full-kit scope, sample approval, wholesale sourcing and reorders.')
+assert.equal(soccer.hero.title, 'Custom Soccer Jerseys, Kits and Uniforms for Wholesale Programs')
+assert.equal(soccer.hero.description, 'POXIOL manufactures custom soccer jerseys and full kits for teamwear distributors, sportswear brands and custom resellers worldwide. Every soccer jersey order starts from one project brief: jersey, shorts, socks and goalkeeper options, decoration placement, size mix and quantity. Sample approval, wholesale sourcing and reorder requirements are reviewed together before production planning.')
 assert.equal(soccer.productSummaryTitle, 'Custom Soccer Jerseys and Full Kits for Wholesale Programs')
 assert.deepEqual(soccer.secondaryKeywords, [
-  'custom soccer jerseys',
+  'soccer jersey',
   'soccer kit manufacturer',
   'soccer jersey manufacturer',
+  'custom soccer kits',
   'custom soccer uniforms',
   'soccer kit supplier',
   'soccer jersey supplier',
@@ -74,10 +75,10 @@ assert.deepEqual(soccer.secondaryKeywords, [
 const soccerSearchIntentLinks = (soccer as unknown as {searchIntentLinks?: readonly Record<string, string>[]}).searchIntentLinks
 assert.deepEqual(soccerSearchIntentLinks, [
   {id: 'soccer-wholesale-guide', audience: 'Supplier comparison', title: 'Wholesale Soccer Kit Sourcing', description: 'Compare supplier evaluation, samples, specifications and quality verification before requesting a quote.', href: '/resources/custom-soccer-kits-wholesale-guide/', ctaLabel: 'Read Wholesale Soccer Kit Guide'},
-  {id: 'soccer-buying-guide', audience: 'Product planning', title: 'Soccer Jersey Buying Guide', description: 'Review kit components, customization, artwork, sizing and order information before preparing the project brief.', href: '/soccer-jersey-buying-guide/', ctaLabel: 'Review Soccer Kit Buying Guide'},
+  {id: 'soccer-buying-guide', audience: 'Product planning', title: 'Soccer Jersey Buying Guide', description: 'Review kit components, customization, artwork, sizing and order information before preparing the project brief.', href: '/soccer-jersey-buying-guide/', ctaLabel: 'Soccer Jersey Buying Guide'},
   {id: 'soccer-usa', audience: 'United States', title: 'Soccer Teamwear Supplier USA', description: 'Continue to the market page for USA clubs, academies, schools, distributors and sports organizations.', href: '/soccer-teamwear-supplier-usa/', ctaLabel: 'View USA Soccer Teamwear'},
   {id: 'soccer-uk', audience: 'United Kingdom', title: 'Soccer Teamwear Supplier UK', description: 'Continue to the market page for clubs, academies, schools and distributors in England, Scotland and Wales.', href: '/soccer-teamwear-supplier-uk/', ctaLabel: 'View UK Soccer Teamwear'},
-  {id: 'soccer-australia', audience: 'Australia', title: 'Soccer Jersey Supplier Australia', description: 'Continue to the market page for Australian clubs, schools, leagues and distributors.', href: '/soccer-jersey-supplier-australia/', ctaLabel: 'View Australia Soccer Teamwear'},
+  {id: 'soccer-australia', audience: 'Australia', title: 'Soccer Jersey Supplier Australia', description: 'Continue to the market page for Australian clubs, schools, leagues and distributors.', href: '/soccer-jersey-supplier-australia/', ctaLabel: 'Soccer Jersey Supplier Australia'},
 ])
 assert.match(compositionSource, /sport\.searchIntentLinks/, 'Soccer sourcing paths must render from the approved shared data contract.')
 
