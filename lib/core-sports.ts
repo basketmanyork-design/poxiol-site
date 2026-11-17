@@ -129,7 +129,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     visualizationId: 'PV-SOCCER-001',
     productSummaryTitle: 'Custom Soccer Jerseys and Full Kits for Wholesale Programs',
     productCards: [
-      {id: 'soccer-jersey', title: 'Soccer Jersey', audience: 'Match and team identity', description: 'Confirm the front and back design, team crest, sponsor artwork, player name, number, collar and sleeve details.'},
+      {id: 'soccer-jersey', title: 'Soccer Jersey', audience: 'Match and team identity', description: 'Confirm the front and back soccer jersey design, team crest, sponsor artwork, player name, number, collar and sleeve details.'},
       {id: 'soccer-shorts', title: 'Soccer Shorts', audience: 'Coordinated kit', description: 'Match shorts to the approved jersey colors, artwork, size breakdown and construction requirements.'},
       {id: 'soccer-socks', title: 'Soccer Socks', audience: 'Full kit planning', description: 'Include coordinated socks when the club, school or brand requires a complete kit program.'},
       {id: 'soccer-full-kit', title: 'Full Soccer Kit', audience: 'Jersey, shorts and socks', description: 'Plan the full kit as one approved team identity with clear roster, sizing and packing requirements.'},
@@ -137,7 +137,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
       {id: 'soccer-front-back', title: 'Front and Back', audience: 'Artwork approval', description: 'Review crest, sponsor, player name and number placement on both sides before sample approval.'},
     ],
     problems: [
-      {id: 'soccer-kit-scope', title: 'Does the whole kit stay coordinated?', description: 'Confirm jersey, shorts, socks and optional goalkeeper requirements from one approved project brief.'},
+      {id: 'soccer-kit-scope', title: 'Does the whole kit stay coordinated?', description: 'Confirm soccer jersey, shorts, socks and optional goalkeeper requirements from one approved project brief.'},
       {id: 'soccer-artwork', title: 'Will every crest and player detail be correct?', description: 'Review authorized crest, sponsor, name and number placement before production.'},
       {id: 'soccer-repeat', title: 'Can a later reorder match the project?', description: 'Reconfirm artwork, material availability, sizes, quantities and timing for every reorder.'},
     ],
@@ -145,7 +145,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
       {id: 'soccer-crest', title: 'Team Crest and Sponsor Placement', audience: 'Authorized artwork', description: 'Confirm the placement and scale of buyer-authorized team and sponsor artwork.'},
       {id: 'soccer-roster', title: 'Player Names and Numbers', audience: 'Roster control', description: 'Prepare the approved player list and size breakdown before production planning.'},
       {id: 'soccer-sizing', title: 'Youth and Adult Sizing', audience: 'Schools and clubs', description: 'Confirm available sizes against the final roster during project consultation.'},
-      {id: 'soccer-print', title: 'Sublimation and Customization', audience: 'Design review', description: 'Confirm the suitable printing and customization method for the approved design and material.'},
+      {id: 'soccer-print', title: 'Sublimation and Customization', audience: 'Design review', description: 'Confirm the suitable printing and customization method for the approved soccer jersey design and material.'},
       {id: 'soccer-private-label', title: 'Private Label and Packaging', audience: 'Brands and distributors', description: 'Confirm label, packaging and collection requirements during project consultation.', href: '/private-label-teamwear/', ctaLabel: 'Review Private Label'},
       {id: 'soccer-reorders', title: 'Reorders', audience: 'Ongoing programs', description: 'Reconfirm the current specification, materials, roster, quantity and schedule for a repeat order.'},
     ],
@@ -161,7 +161,7 @@ export const CORE_SPORTS: readonly CoreSportDefinition[] = [
     faqs: [
       {id: 'soccer-full-kit-faq', question: 'Can a soccer project include jerseys, shorts, socks and a goalkeeper kit?', answer: 'Yes. Share the required field-player and goalkeeper products so the complete kit scope can be reviewed and quoted.', pageIds: ['soccer']},
       {id: 'soccer-customization-faq', question: 'Can soccer jerseys include team crests, names and numbers?', answer: 'Yes. Buyer-authorized crests, sponsor artwork, player names and numbers can be included after placement and roster details are confirmed.', pageIds: ['soccer']},
-      {id: 'soccer-sample-faq', question: 'How does soccer kit sample approval work?', answer: 'The buyer confirms the design and sample requirements, reviews the completed sample against the agreed details and approves the specification before bulk production planning.', pageIds: ['soccer']},
+      {id: 'soccer-sample-faq', question: 'How does soccer jersey sample approval work?', answer: 'The buyer confirms the design and sample requirements, reviews the completed sample against the agreed details and approves the specification before bulk production planning.', pageIds: ['soccer']},
       {id: 'soccer-reorder-faq', question: 'What is checked before a soccer kit reorder?', answer: 'The current artwork, material availability, sizes, quantities, customization and required timing are reconfirmed before a repeat production plan is issued.', pageIds: ['soccer']},
       {id: 'soccer-quote-faq', question: 'What information is needed for a soccer kit quote?', answer: 'Share the kit components, quantity, size breakdown, authorized artwork, player list, destination and target date for project review. List the quantity for each size and separate youth and adult garments. Review sizes against the applicable measurement chart, and ask for confirmation that the proposed size mix is available for your order. Check the final size breakdown together with player names and numbers before approving production.', pageIds: ['soccer']},
     ],
